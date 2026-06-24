@@ -1,0 +1,88 @@
+{
+  "id": "algebra-12-systems-3x3-gauss",
+  "subjectId": "algebra",
+  "order": 10,
+  "estimatedMinutes": 50,
+  "title": { "en": "Systems of 3×3 Equations (Gauss)", "es": "Sistemas 3×3 (Gauss)" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "With three unknowns, ad-hoc substitution becomes messy. We need a **systematic** procedure that always works and that a computer can follow — **Gaussian elimination**. It is the single most important algorithm in computational linear algebra, and you are about to do it by hand.",
+        "es": "Con tres incógnitas, la sustitución improvisada se vuelve engorrosa. Necesitamos un procedimiento **sistemático** que siempre funcione y que un ordenador pueda seguir — la **eliminación de Gauss**. Es el algoritmo más importante del álgebra lineal computacional, y vas a hacerlo a mano."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The idea: use **row operations** to introduce zeros below the diagonal, reaching an **upper-triangular** system that you solve from the bottom up by **back-substitution**. The three legal row operations are: swap two equations, multiply an equation by a nonzero constant, and add a multiple of one equation to another. None of them changes the solution set.",
+        "es": "La idea: usar **operaciones de fila** para introducir ceros bajo la diagonal, llegando a un sistema **triangular superior** que resuelves de abajo arriba por **sustitución hacia atrás**. Las tres operaciones de fila legales son: intercambiar dos ecuaciones, multiplicar una ecuación por una constante no nula y sumar a una ecuación un múltiplo de otra. Ninguna cambia el conjunto solución."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Geometrically, each equation in three unknowns is a **plane** in space. A unique solution is the single point where all three planes meet. As before, planes can also fail to meet at a common point (no solution) or share a whole line (infinitely many) — Gaussian elimination detects which case you are in.",
+        "es": "Geométricamente, cada ecuación con tres incógnitas es un **plano** en el espacio. Una solución única es el punto donde se cortan los tres planos. Como antes, los planos también pueden no cortarse en un punto común (sin solución) o compartir toda una recta (infinitas) — la eliminación de Gauss detecta en qué caso estás."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — elimination then back-substitution", "es": "Ejemplo resuelto — eliminación y sustitución" },
+      "content": {
+        "en": "Take $x+y+z=6$, $x-y+z=2$, $x+y-z=0$. Subtract eq.1 − eq.2: the $x$ and $z$ cancel, leaving $2y = 4$, so $y = 2$. Subtract eq.1 − eq.3: $2z = 6$, so $z = 3$. Back-substitute into eq.1: $x + 2 + 3 = 6$, so $x = 1$. Solution $(1, 2, 3)$, easily checked in all three equations.",
+        "es": "Toma $x+y+z=6$, $x-y+z=2$, $x+y-z=0$. Resta ec.1 − ec.2: se cancelan $x$ y $z$, queda $2y = 4$, así $y = 2$. Resta ec.1 − ec.3: $2z = 6$, así $z = 3$. Sustituye en ec.1: $x + 2 + 3 = 6$, así $x = 1$. Solución $(1, 2, 3)$, fácil de comprobar en las tres ecuaciones."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Doing this with the variables written out is tedious; the next lessons replace them with a compact **matrix** of coefficients, where row operations act on rows of numbers. That is exactly how software solves systems with thousands of unknowns.",
+        "es": "Hacer esto escribiendo las variables es tedioso; las próximas lecciones las sustituyen por una **matriz** compacta de coeficientes, donde las operaciones actúan sobre filas de números. Así es exactamente como el software resuelve sistemas con miles de incógnitas."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-12-e1",
+      "answerType": "number",
+      "prompt": { "en": "For the system above, find $y$.", "es": "Para el sistema anterior, halla $y$." },
+      "answer": "2",
+      "acceptedAlt": ["4/2"],
+      "hint": { "en": "Subtract equation 2 from equation 1.", "es": "Resta la ecuación 2 de la 1." },
+      "solution": [
+        { "tex": "(x+y+z)-(x-y+z) = 6-2", "en": "Eliminate x and z.", "es": "Elimina x y z." },
+        { "tex": "2y = 4 \\Rightarrow y = 2", "en": "Solve for y.", "es": "Despeja y." }
+      ]
+    },
+    {
+      "id": "algebra-12-e2",
+      "answerType": "number",
+      "prompt": { "en": "For the system above, find $z$.", "es": "Para el sistema anterior, halla $z$." },
+      "answer": "3",
+      "acceptedAlt": ["6/2"],
+      "hint": { "en": "Subtract equation 3 from equation 1.", "es": "Resta la ecuación 3 de la 1." },
+      "solution": [
+        { "tex": "(x+y+z)-(x+y-z) = 6-0", "en": "Eliminate x and y.", "es": "Elimina x e y." },
+        { "tex": "2z = 6 \\Rightarrow z = 3", "en": "Solve for z.", "es": "Despeja z." }
+      ]
+    },
+    {
+      "id": "algebra-12-e3",
+      "answerType": "number",
+      "prompt": { "en": "For the system above, find $x$.", "es": "Para el sistema anterior, halla $x$." },
+      "answer": "1",
+      "acceptedAlt": ["6-2-3"],
+      "hint": { "en": "Use x + y + z = 6 with y = 2, z = 3.", "es": "Usa x + y + z = 6 con y = 2, z = 3." },
+      "solution": [
+        { "tex": "x + 2 + 3 = 6", "en": "Back-substitute y and z.", "es": "Sustituye y y z." },
+        { "tex": "x = 1", "en": "Solve for x.", "es": "Despeja x." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 2, Solving Linear Equations (elimination)", "es": "Cap. 2, resolución por eliminación" } },
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 10.2, systems in several variables", "es": "Cap. 10.2, sistemas con varias variables" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Sistemas de ecuaciones' — método de Gauss", "es": "Apartado 'Sistemas de ecuaciones' — método de Gauss" } }
+  ]
+}

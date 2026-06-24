@@ -1,0 +1,80 @@
+{
+  "id": "linmaps-11-rotation",
+  "subjectId": "linear-maps",
+  "order": 11,
+  "estimatedMinutes": 40,
+  "title": { "en": "Rotation in 2D", "es": "Rotación en 2D" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Unlike translation, **rotation about the origin is a genuine linear map**, represented by the matrix $R(\\theta) = \\begin{pmatrix}\\cos\\theta & -\\sin\\theta\\\\ \\sin\\theta & \\cos\\theta\\end{pmatrix}$. Multiplying a point by $R(\\theta)$ spins it counterclockwise by angle $\\theta$ while preserving its distance from the origin.",
+        "es": "A diferencia de la traslación, **la rotación en torno al origen es una aplicación lineal genuina**, representada por la matriz $R(\\theta) = \\begin{pmatrix}\\cos\\theta & -\\sin\\theta\\\\ \\sin\\theta & \\cos\\theta\\end{pmatrix}$. Multiplicar un punto por $R(\\theta)$ lo gira en sentido antihorario un ángulo $\\theta$ conservando su distancia al origen."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Rotations are **orthogonal** transformations: they preserve lengths and angles, and their determinant is $1$ (area is unchanged, orientation preserved). The columns of $R(\\theta)$ are exactly the images of the basis vectors — $(1,0)$ rotates to $(\\cos\\theta, \\sin\\theta)$ and $(0,1)$ to $(-\\sin\\theta, \\cos\\theta)$.",
+        "es": "Las rotaciones son transformaciones **ortogonales**: conservan longitudes y ángulos, y su determinante es $1$ (el área no cambia, la orientación se conserva). Las columnas de $R(\\theta)$ son exactamente las imágenes de los vectores base — $(1,0)$ rota a $(\\cos\\theta, \\sin\\theta)$ y $(0,1)$ a $(-\\sin\\theta, \\cos\\theta)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Special cases are worth knowing. A $90°$ rotation sends $(1,0)\\mapsto(0,1)$ and $(0,1)\\mapsto(-1,0)$. A $180°$ rotation sends every point to its negative, $(x,y)\\mapsto(-x,-y)$. Composing rotations simply **adds their angles**: $R(\\alpha)R(\\beta) = R(\\alpha+\\beta)$.",
+        "es": "Conviene conocer casos especiales. Una rotación de $90°$ envía $(1,0)\\mapsto(0,1)$ y $(0,1)\\mapsto(-1,0)$. Una rotación de $180°$ envía cada punto a su opuesto, $(x,y)\\mapsto(-x,-y)$. Componer rotaciones simplemente **suma sus ángulos**: $R(\\alpha)R(\\beta) = R(\\alpha+\\beta)$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — 90° rotation", "es": "Ejemplo resuelto — rotación de 90°" },
+      "content": {
+        "en": "Rotate $(1,0)$ by $90°$. With $\\cos 90° = 0$ and $\\sin 90° = 1$, $R = \\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, so $(1,0)\\mapsto(0,1)$: new x-coordinate $0$, new y-coordinate $1$. A $180°$ rotation would send $(1,0)$ to $(-1,0)$.",
+        "es": "Rota $(1,0)$ por $90°$. Con $\\cos 90° = 0$ y $\\sin 90° = 1$, $R = \\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, así $(1,0)\\mapsto(0,1)$: nueva coordenada x $0$, nueva y $1$. Una rotación de $180°$ enviaría $(1,0)$ a $(-1,0)$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-11-e1",
+      "answerType": "number",
+      "prompt": { "en": "Rotating $(1,0)$ by $90°$ gives a point. What is its new x-coordinate?", "es": "Rotar $(1,0)$ por $90°$ da un punto. ¿Cuál es su nueva coordenada x?" },
+      "answer": "0",
+      "acceptedAlt": ["cos(pi/2)"],
+      "hint": { "en": "cos 90° = 0.", "es": "cos 90° = 0." },
+      "solution": [ { "tex": "(1,0)\\mapsto(0,1)", "en": "New x is 0.", "es": "Nueva x es 0." } ]
+    },
+    {
+      "id": "linmaps-11-e2",
+      "answerType": "number",
+      "prompt": { "en": "Rotating $(1,0)$ by $90°$, what is its new y-coordinate?", "es": "Rotando $(1,0)$ por $90°$, ¿cuál es su nueva coordenada y?" },
+      "answer": "1",
+      "acceptedAlt": ["sin(pi/2)"],
+      "hint": { "en": "sin 90° = 1.", "es": "sin 90° = 1." },
+      "solution": [ { "tex": "(1,0)\\mapsto(0,1)", "en": "New y is 1.", "es": "Nueva y es 1." } ]
+    },
+    {
+      "id": "linmaps-11-e3",
+      "answerType": "number",
+      "prompt": { "en": "What is $\\cos 90°$ (the $(1,1)$ entry of the rotation matrix)?", "es": "¿Cuánto es $\\cos 90°$ (el elemento $(1,1)$ de la matriz de rotación)?" },
+      "answer": "0",
+      "acceptedAlt": ["cos(pi/2)"],
+      "hint": { "en": "A standard angle.", "es": "Un ángulo estándar." },
+      "solution": [ { "tex": "\\cos 90° = 0", "en": "Zero.", "es": "Cero." } ]
+    },
+    {
+      "id": "linmaps-11-e4",
+      "answerType": "number",
+      "prompt": { "en": "Rotating $(1,0)$ by $180°$, what is its new x-coordinate?", "es": "Rotando $(1,0)$ por $180°$, ¿cuál es su nueva coordenada x?" },
+      "answer": "-1",
+      "acceptedAlt": ["cos(pi)"],
+      "hint": { "en": "180° sends (x,y) to (−x,−y).", "es": "180° envía (x,y) a (−x,−y)." },
+      "solution": [ { "tex": "(1,0)\\mapsto(-1,0)", "en": "New x is −1.", "es": "Nueva x es −1." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Transformaciones geométricas (PID_00269008)", "detail": { "en": "Rotation in 2D about the origin and a general point", "es": "Rotación en 2D en torno al origen y a un punto genérico" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 8.1, rotation matrices", "es": "Cap. 8.1, matrices de rotación" } }
+  ]
+}

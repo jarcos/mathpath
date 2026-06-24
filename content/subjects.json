@@ -1,0 +1,306 @@
+{
+  "subjects": [
+    {
+      "id": "algebra",
+      "icon": "∑",
+      "targetDays": 30,
+      "status": "available",
+      "plannedLessons": 20,
+      "source": "00_Iniciación a las matemáticas para la ingeniería",
+      "name": { "en": "Pre-University Algebra", "es": "Álgebra preuniversitaria" },
+      "description": {
+        "en": "Numbers, equations, systems, polynomials and matrices — the foundation for everything that follows.",
+        "es": "Números, ecuaciones, sistemas, polinomios y matrices: la base de todo lo que viene después."
+      },
+      "lessons": [
+        "algebra/lesson-05-natural-integer-numbers.json",
+        "algebra/lesson-06-rational-numbers.json",
+        "algebra/lesson-07-real-numbers-powers-roots.json",
+        "algebra/lesson-08-numeric-expressions.json",
+        "algebra/lesson-09-algebraic-expressions.json",
+        "algebra/lesson-01-linear-equations.json",
+        "algebra/lesson-02-quadratic-equations.json",
+        "algebra/lesson-10-inequalities.json",
+        "algebra/lesson-11-systems-2x2.json",
+        "algebra/lesson-12-systems-3x3-gauss.json",
+        "algebra/lesson-13-systems-mxn.json",
+        "algebra/lesson-14-systems-inequalities.json",
+        "algebra/lesson-15-polynomials-intro.json",
+        "algebra/lesson-16-polynomial-operations.json",
+        "algebra/lesson-17-factoring-polynomials.json",
+        "algebra/lesson-04-exponents-and-simplification.json",
+        "algebra/lesson-18-matrices-intro.json",
+        "algebra/lesson-19-matrix-operations.json",
+        "algebra/lesson-20-determinant-inverse.json",
+        "algebra/lesson-21-systems-with-matrices.json"
+      ]
+    },
+    {
+      "id": "functions",
+      "icon": "ƒ",
+      "targetDays": 30,
+      "status": "available",
+      "plannedLessons": 16,
+      "source": "00_Iniciación a las matemáticas para la ingeniería",
+      "name": { "en": "Functions & Pre-Calculus", "es": "Funciones y precálculo" },
+      "description": {
+        "en": "Functions, graphs, trigonometry, exponentials and logarithms.",
+        "es": "Funciones, gráficas, trigonometría, exponenciales y logaritmos."
+      },
+      "lessons": [
+        "functions/lesson-01-concept-of-a-function.json",
+        "functions/lesson-02-representing-functions.json",
+        "functions/lesson-03-operations-composition.json",
+        "functions/lesson-04-properties.json",
+        "functions/lesson-05-piecewise.json",
+        "functions/lesson-06-linear-affine.json",
+        "functions/lesson-07-quadratic.json",
+        "functions/lesson-08-polynomial.json",
+        "functions/lesson-09-trig-ratios.json",
+        "functions/lesson-10-sine-cosine.json",
+        "functions/lesson-11-tangent-cotangent.json",
+        "functions/lesson-12-secant-cosecant-inverse.json",
+        "functions/lesson-13-exponential.json",
+        "functions/lesson-14-logarithms.json",
+        "functions/lesson-15-logarithmic.json",
+        "functions/lesson-16-exp-log-equations.json"
+      ]
+    },
+    {
+      "id": "calculus",
+      "icon": "∫",
+      "targetDays": 30,
+      "status": "available",
+      "plannedLessons": 12,
+      "source": "PID_00284286, PID_00284288, PID_00284285, PID_00284290, PID_00284292",
+      "name": { "en": "Introduction to Calculus", "es": "Introducción al cálculo" },
+      "description": {
+        "en": "Sequences, limits, continuity, derivatives and integrals — how things change.",
+        "es": "Sucesiones, límites, continuidad, derivadas e integrales: cómo cambian las cosas."
+      },
+      "lessons": [
+        "calculus/lesson-01-sequences.json",
+        "calculus/lesson-02-series-progressions.json",
+        "calculus/lesson-03-limits.json",
+        "calculus/lesson-04-indeterminate-forms.json",
+        "calculus/lesson-05-continuity.json",
+        "calculus/lesson-06-derivative-tangent.json",
+        "calculus/lesson-07-rules-chain.json",
+        "calculus/lesson-08-monotonicity-extrema.json",
+        "calculus/lesson-09-lhopital.json",
+        "calculus/lesson-10-indefinite-integral.json",
+        "calculus/lesson-11-definite-integral.json",
+        "calculus/lesson-12-applications-integration.json"
+      ]
+    },
+    {
+      "id": "linear-algebra",
+      "icon": "⎡⎤",
+      "targetDays": 30,
+      "status": "available",
+      "plannedLessons": 23,
+      "source": "PID_00271022, PID_00269009, PID_00293765",
+      "name": { "en": "Linear Algebra & Geometry", "es": "Álgebra lineal y geometría" },
+      "description": {
+        "en": "Complex numbers, vector spaces, matrices, determinants, linear systems and geometry.",
+        "es": "Números complejos, espacios vectoriales, matrices, determinantes, sistemas lineales y geometría."
+      },
+      "lessons": [
+        "linear-algebra/lesson-01-complex-binomic.json",
+        "linear-algebra/lesson-02-complex-operations.json",
+        "linear-algebra/lesson-03-complex-polar.json",
+        "linear-algebra/lesson-04-induction.json",
+        "linear-algebra/lesson-05-vectors-rn.json",
+        "linear-algebra/lesson-06-vector-spaces.json",
+        "linear-algebra/lesson-07-linear-combination.json",
+        "linear-algebra/lesson-08-independence-basis.json",
+        "linear-algebra/lesson-09-matrices-operations.json",
+        "linear-algebra/lesson-10-determinants-23.json",
+        "linear-algebra/lesson-11-determinants-properties.json",
+        "linear-algebra/lesson-12-rank-inverse.json",
+        "linear-algebra/lesson-13-change-of-basis.json",
+        "linear-algebra/lesson-14-lines.json",
+        "linear-algebra/lesson-15-planes.json",
+        "linear-algebra/lesson-16-dot-norm-angle.json",
+        "linear-algebra/lesson-17-orthogonal-projections.json",
+        "linear-algebra/lesson-18-gram-schmidt.json",
+        "linear-algebra/lesson-19-systems-gauss.json",
+        "linear-algebra/lesson-20-rouche-frobenius.json",
+        "linear-algebra/lesson-21-homogeneous.json",
+        "linear-algebra/lesson-22-cramer.json",
+        "linear-algebra/lesson-23-geometric-interpretation.json"
+      ]
+    },
+    {
+      "id": "linear-maps",
+      "icon": "↦",
+      "targetDays": 30,
+      "status": "available",
+      "plannedLessons": 16,
+      "source": "PID_00269006, PID_00269008",
+      "name": { "en": "Linear Maps & Transformations", "es": "Aplicaciones lineales y transformaciones" },
+      "description": {
+        "en": "Linear maps, eigenvalues, diagonalization and geometric transformations — the bridge to ML.",
+        "es": "Aplicaciones lineales, autovalores, diagonalización y transformaciones geométricas: el puente hacia el ML."
+      },
+      "lessons": [
+        "linear-maps/lesson-01-linear-maps-concept.json",
+        "linear-maps/lesson-02-matrix-of-a-map.json",
+        "linear-maps/lesson-03-kernel-image.json",
+        "linear-maps/lesson-04-mono-epi.json",
+        "linear-maps/lesson-05-change-of-basis-map.json",
+        "linear-maps/lesson-06-eigenvalues.json",
+        "linear-maps/lesson-07-diagonalization.json",
+        "linear-maps/lesson-08-powers-diagonalization.json",
+        "linear-maps/lesson-09-dynamical-systems.json",
+        "linear-maps/lesson-10-translation-2d.json",
+        "linear-maps/lesson-11-rotation-2d.json",
+        "linear-maps/lesson-12-scaling-2d.json",
+        "linear-maps/lesson-13-homogeneous-coordinates.json",
+        "linear-maps/lesson-14-composition.json",
+        "linear-maps/lesson-15-affine-2d.json",
+        "linear-maps/lesson-16-transformations-3d.json"
+      ]
+    },
+    {
+      "id": "statistics",
+      "icon": "σ",
+      "targetDays": 30,
+      "status": "coming-soon",
+      "plannedLessons": 16,
+      "source": "Pearl, Probabilistic Reasoning (1988); general statistics",
+      "name": { "en": "Statistics & Probability", "es": "Estadística y probabilidad" },
+      "description": {
+        "en": "Descriptive statistics, probability, distributions, Bayes and inference.",
+        "es": "Estadística descriptiva, probabilidad, distribuciones, Bayes e inferencia."
+      },
+      "lessons": []
+    },
+    {
+      "id": "ml-foundations",
+      "icon": "⚙",
+      "targetDays": 30,
+      "status": "coming-soon",
+      "plannedLessons": 18,
+      "source": "Russell & Norvig, AIMA (1995); Goodfellow et al., Part II",
+      "name": { "en": "Machine Learning Foundations", "es": "Fundamentos de aprendizaje automático" },
+      "description": {
+        "en": "Supervised/unsupervised learning, regression, classification, loss and gradient descent.",
+        "es": "Aprendizaje supervisado/no supervisado, regresión, clasificación, función de pérdida y descenso de gradiente."
+      },
+      "lessons": []
+    },
+    {
+      "id": "neural-networks",
+      "icon": "🧠",
+      "targetDays": 30,
+      "status": "coming-soon",
+      "plannedLessons": 16,
+      "source": "Rumelhart & McClelland, PDP (1986); Goodfellow et al., ch. 6",
+      "name": { "en": "Neural Networks", "es": "Redes neuronales" },
+      "description": {
+        "en": "Perceptrons, multilayer networks, backpropagation and gradient descent.",
+        "es": "Perceptrones, redes multicapa, retropropagación y descenso de gradiente."
+      },
+      "lessons": []
+    },
+    {
+      "id": "deep-learning",
+      "icon": "◈",
+      "targetDays": 30,
+      "status": "coming-soon",
+      "plannedLessons": 18,
+      "source": "Goodfellow, Bengio & Courville, Deep Learning (2016)",
+      "name": { "en": "Deep Learning", "es": "Aprendizaje profundo" },
+      "description": {
+        "en": "Convolutional networks, regularization, optimization and sequence models.",
+        "es": "Redes convolucionales, regularización, optimización y modelos secuenciales."
+      },
+      "lessons": []
+    },
+    {
+      "id": "nlp-transformers",
+      "icon": "💬",
+      "targetDays": 30,
+      "status": "coming-soon",
+      "plannedLessons": 16,
+      "source": "Jurafsky & Martin, SLP; Vaswani et al., Attention Is All You Need (2017)",
+      "name": { "en": "NLP & Transformers", "es": "PLN y transformers" },
+      "description": {
+        "en": "Language models, embeddings, attention and the transformer architecture.",
+        "es": "Modelos de lenguaje, embeddings, atención y la arquitectura transformer."
+      },
+      "lessons": []
+    },
+    {
+      "id": "reinforcement-learning",
+      "icon": "🎯",
+      "targetDays": 30,
+      "status": "coming-soon",
+      "plannedLessons": 16,
+      "source": "Sutton & Barto, Reinforcement Learning: An Introduction (2018)",
+      "name": { "en": "Reinforcement Learning", "es": "Aprendizaje por refuerzo" },
+      "description": {
+        "en": "Markov decision processes, value and policy methods, Q-learning and policy gradients.",
+        "es": "Procesos de decisión de Markov, métodos de valor y política, Q-learning y gradientes de política."
+      },
+      "lessons": []
+    },
+    {
+      "id": "knowledge-representation",
+      "icon": "🕸",
+      "targetDays": 30,
+      "status": "coming-soon",
+      "plannedLessons": 14,
+      "source": "Brachman & Levesque (2004); Pearl, Probabilistic Reasoning (1988)",
+      "name": { "en": "Knowledge Representation & Reasoning", "es": "Representación del conocimiento y razonamiento" },
+      "description": {
+        "en": "Logic, ontologies, inference and probabilistic reasoning.",
+        "es": "Lógica, ontologías, inferencia y razonamiento probabilístico."
+      },
+      "lessons": []
+    },
+    {
+      "id": "computer-vision",
+      "icon": "👁",
+      "targetDays": 30,
+      "status": "coming-soon",
+      "plannedLessons": 14,
+      "source": "Marr, Vision (1982); Goodfellow et al., ch. 9 (CNNs)",
+      "name": { "en": "Computer Vision", "es": "Visión por computador" },
+      "description": {
+        "en": "Image representation, Marr's levels, convolution and visual recognition.",
+        "es": "Representación de imágenes, niveles de Marr, convolución y reconocimiento visual."
+      },
+      "lessons": []
+    },
+    {
+      "id": "ai-foundations",
+      "icon": "🧭",
+      "targetDays": 30,
+      "status": "coming-soon",
+      "plannedLessons": 14,
+      "source": "Turing (1950); Searle (1980); Dreyfus (1992); Brooks (1991); Simon (1995); Bommasani et al. (2021)",
+      "name": { "en": "AI Foundations & Philosophy", "es": "Fundamentos y filosofía de la IA" },
+      "description": {
+        "en": "The Turing test, the Chinese Room, symbolic vs connectionist AI, and foundation models. Conceptual, reading-based.",
+        "es": "El test de Turing, la habitación china, IA simbólica vs conexionista y modelos fundacionales. Conceptual, basado en lecturas."
+      },
+      "lessons": []
+    },
+    {
+      "id": "active-inference",
+      "icon": "🌀",
+      "targetDays": 30,
+      "status": "coming-soon",
+      "plannedLessons": 12,
+      "source": "Parr, Pezzulo & Friston, Active Inference (2022)",
+      "name": { "en": "Active Inference (Advanced)", "es": "Inferencia activa (avanzado)" },
+      "description": {
+        "en": "The free energy principle and predictive processing in mind, brain and behavior.",
+        "es": "El principio de energía libre y el procesamiento predictivo en mente, cerebro y conducta."
+      },
+      "lessons": []
+    }
+  ]
+}

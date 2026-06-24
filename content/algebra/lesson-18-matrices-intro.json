@@ -1,0 +1,87 @@
+{
+  "id": "algebra-18-matrices-intro",
+  "subjectId": "algebra",
+  "order": 17,
+  "estimatedMinutes": 35,
+  "title": { "en": "Matrices: Types & Elements", "es": "Matrices: tipos y elementos" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **matrix** is a rectangular array of numbers arranged in rows and columns. It is the central object of linear algebra and the data structure behind spreadsheets, images, and the weight tables of neural networks. A matrix with $m$ rows and $n$ columns has **size** (or dimension) $m \\times n$ and contains $m\\cdot n$ entries.",
+        "es": "Una **matriz** es una tabla rectangular de números dispuestos en filas y columnas. Es el objeto central del álgebra lineal y la estructura de datos tras las hojas de cálculo, las imágenes y las tablas de pesos de las redes neuronales. Una matriz con $m$ filas y $n$ columnas tiene **dimensión** $m \\times n$ y contiene $m\\cdot n$ elementos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Each entry is named by its position: $a_{ij}$ sits in **row $i$, column $j$** (row first, always). So in $\\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix}$, the entry $a_{21}$ — row 2, column 1 — is $3$. Getting the row/column order right is a small but constant source of slips.",
+        "es": "Cada elemento se nombra por su posición: $a_{ij}$ está en la **fila $i$, columna $j$** (fila primero, siempre). Así en $\\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix}$, el elemento $a_{21}$ — fila 2, columna 1 — es $3$. Acertar el orden fila/columna es una fuente pequeña pero constante de errores."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Important special types: a **square** matrix has $m = n$; the **identity** $I$ is square with $1$s on the main diagonal and $0$s elsewhere (it acts like the number $1$ for multiplication); a **diagonal** matrix has nonzeros only on the diagonal; the **zero** matrix is all zeros; the **transpose** $A^{T}$ swaps rows and columns. The **trace** of a square matrix is the sum of its diagonal entries.",
+        "es": "Tipos especiales importantes: una matriz **cuadrada** tiene $m = n$; la **identidad** $I$ es cuadrada con $1$ en la diagonal principal y $0$ en el resto (actúa como el número $1$ para multiplicar); una matriz **diagonal** tiene valores no nulos solo en la diagonal; la matriz **cero** es todo ceros; la **traspuesta** $A^{T}$ intercambia filas y columnas. La **traza** de una matriz cuadrada es la suma de su diagonal."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — reading a matrix", "es": "Ejemplo resuelto — leer una matriz" },
+      "content": {
+        "en": "For $A = \\begin{pmatrix}2 & 0\\\\ 1 & 5\\end{pmatrix}$: it is $2\\times 2$ (square), with $4$ entries. Its trace is $2 + 5 = 7$. Its transpose swaps the off-diagonal entries: $A^{T} = \\begin{pmatrix}2 & 1\\\\ 0 & 5\\end{pmatrix}$.",
+        "es": "Para $A = \\begin{pmatrix}2 & 0\\\\ 1 & 5\\end{pmatrix}$: es $2\\times 2$ (cuadrada), con $4$ elementos. Su traza es $2 + 5 = 7$. Su traspuesta intercambia los elementos fuera de la diagonal: $A^{T} = \\begin{pmatrix}2 & 1\\\\ 0 & 5\\end{pmatrix}$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-18-e1",
+      "answerType": "number",
+      "prompt": { "en": "In $A = \\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix}$, what is the element $a_{21}$ (row 2, column 1)?", "es": "En $A = \\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix}$, ¿cuál es el elemento $a_{21}$ (fila 2, columna 1)?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "Second row, first column.", "es": "Segunda fila, primera columna." },
+      "solution": [ { "tex": "a_{21} = 3", "en": "Row 2, column 1 holds 3.", "es": "Fila 2, columna 1 contiene 3." } ]
+    },
+    {
+      "id": "algebra-18-e2",
+      "answerType": "number",
+      "prompt": { "en": "How many elements does a $3\\times 4$ matrix have?", "es": "¿Cuántos elementos tiene una matriz $3\\times 4$?" },
+      "answer": "12",
+      "acceptedAlt": ["3*4"],
+      "hint": { "en": "Rows times columns.", "es": "Filas por columnas." },
+      "solution": [ { "tex": "3\\cdot 4 = 12", "en": "Multiply rows by columns.", "es": "Multiplica filas por columnas." } ]
+    },
+    {
+      "id": "algebra-18-e3",
+      "answerType": "number",
+      "prompt": { "en": "What is the trace of $\\begin{pmatrix}2 & 0\\\\ 1 & 5\\end{pmatrix}$?", "es": "¿Cuál es la traza de $\\begin{pmatrix}2 & 0\\\\ 1 & 5\\end{pmatrix}$?" },
+      "answer": "7",
+      "acceptedAlt": ["2+5", "trace([[2,0],[1,5]])"],
+      "hint": { "en": "Sum the diagonal entries.", "es": "Suma los elementos de la diagonal." },
+      "solution": [
+        { "tex": "\\text{tr} = 2 + 5", "en": "Add the diagonal.", "es": "Suma la diagonal." },
+        { "tex": "= 7", "en": "Result.", "es": "Resultado." }
+      ]
+    },
+    {
+      "id": "algebra-18-e4",
+      "answerType": "text",
+      "prompt": { "en": "Is $\\begin{pmatrix}1 & 0\\\\ 0 & 1\\end{pmatrix}$ the identity matrix? (yes / no)", "es": "¿Es $\\begin{pmatrix}1 & 0\\\\ 0 & 1\\end{pmatrix}$ la matriz identidad? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "1s on the diagonal, 0s elsewhere?", "es": "¿1 en la diagonal y 0 en el resto?" },
+      "solution": [
+        { "tex": "\\begin{pmatrix}1 & 0\\\\ 0 & 1\\end{pmatrix} = I_2", "en": "It matches the identity pattern.", "es": "Coincide con el patrón identidad." },
+        { "tex": "\\text{yes}", "en": "So yes.", "es": "Por tanto sí." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 1–2, matrices and notation", "es": "Cap. 1–2, matrices y notación" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Concept and types of matrices", "es": "Concepto y tipos de matrices" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Matrices' — tipos y elementos", "es": "Apartado 'Matrices' — tipos y elementos" } }
+  ]
+}

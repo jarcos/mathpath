@@ -1,0 +1,80 @@
+{
+  "id": "linalg-04-induction",
+  "subjectId": "linear-algebra",
+  "order": 4,
+  "estimatedMinutes": 40,
+  "title": { "en": "Mathematical Induction", "es": "Principio de inducción" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "How do you prove a statement is true for **all** natural numbers — infinitely many cases — in finite work? **Mathematical induction** is the answer, and it is the standard tool for proving formulas, analyzing recursive algorithms, and establishing properties that hold at every step.",
+        "es": "¿Cómo demuestras que una afirmación es cierta para **todos** los naturales — infinitos casos — con trabajo finito? La **inducción matemática** es la respuesta, y es la herramienta estándar para probar fórmulas, analizar algoritmos recursivos y establecer propiedades que se cumplen en cada paso."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "It has two steps. The **base case**: show the statement $P(1)$ is true. The **inductive step**: assume $P(k)$ holds (the *inductive hypothesis*) and use it to prove $P(k+1)$. Together these force $P(n)$ for every $n$ — like an infinite row of dominoes: knock the first ($P(1)$), and the implication $P(k)\\Rightarrow P(k+1)$ topples each in turn.",
+        "es": "Tiene dos pasos. El **caso base**: muestra que $P(1)$ es cierta. El **paso inductivo**: supón que $P(k)$ se cumple (la *hipótesis de inducción*) y úsalo para probar $P(k+1)$. Juntos fuerzan $P(n)$ para todo $n$ — como una fila infinita de fichas de dominó: tira la primera ($P(1)$), y la implicación $P(k)\\Rightarrow P(k+1)$ tumba cada una en cadena."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The archetypal result: $1 + 2 + \\dots + n = \\tfrac{n(n+1)}{2}$. The base case $n=1$ gives $\\tfrac{1\\cdot 2}{2} = 1$ ✓. Assuming it for $k$, adding $k+1$ to both sides and simplifying yields the formula for $k+1$ — completing the induction. Another classic: the sum of the first $n$ odd numbers is $n^2$.",
+        "es": "El resultado arquetípico: $1 + 2 + \\dots + n = \\tfrac{n(n+1)}{2}$. El caso base $n=1$ da $\\tfrac{1\\cdot 2}{2} = 1$ ✓. Suponiéndolo para $k$, sumar $k+1$ a ambos lados y simplificar da la fórmula para $k+1$ — completando la inducción. Otro clásico: la suma de los primeros $n$ impares es $n^2$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — base case", "es": "Ejemplo resuelto — caso base" },
+      "content": {
+        "en": "To prove $1+2+\\dots+n = \\tfrac{n(n+1)}{2}$, first verify the base case at $n=1$: the left side is $1$, the right side is $\\tfrac{1\\cdot 2}{2} = 1$. They match, so the dominoes are set up. The inductive step then carries it to every $n$.",
+        "es": "Para probar $1+2+\\dots+n = \\tfrac{n(n+1)}{2}$, verifica primero el caso base en $n=1$: el lado izquierdo es $1$, el derecho $\\tfrac{1\\cdot 2}{2} = 1$. Coinciden, así que las fichas están dispuestas. El paso inductivo lo lleva luego a todo $n$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-04-e1",
+      "answerType": "number",
+      "prompt": { "en": "Using $\\tfrac{n(n+1)}{2}$, compute $1+2+\\dots+5$.", "es": "Usando $\\tfrac{n(n+1)}{2}$, calcula $1+2+\\dots+5$." },
+      "answer": "15",
+      "acceptedAlt": ["5*6/2"],
+      "hint": { "en": "n = 5.", "es": "n = 5." },
+      "solution": [ { "tex": "\\tfrac{5\\cdot6}{2} = 15", "en": "Apply the formula.", "es": "Aplica la fórmula." } ]
+    },
+    {
+      "id": "linalg-04-e2",
+      "answerType": "text",
+      "prompt": { "en": "Induction has a base case and the ___ step. (one word)", "es": "La inducción tiene un caso base y el paso ___. (una palabra)" },
+      "answer": "inductive",
+      "acceptedAlt": ["inductivo", "inducción", "induccion"],
+      "hint": { "en": "Assume P(k), prove P(k+1).", "es": "Supón P(k), prueba P(k+1)." },
+      "solution": [ { "tex": "P(k)\\Rightarrow P(k+1)", "en": "The inductive step.", "es": "El paso inductivo." } ]
+    },
+    {
+      "id": "linalg-04-e3",
+      "answerType": "number",
+      "prompt": { "en": "The sum of the first $n$ odd numbers is $n^2$. Compute it for $n=4$.", "es": "La suma de los primeros $n$ impares es $n^2$. Calcúlala para $n=4$." },
+      "answer": "16",
+      "acceptedAlt": ["4^2"],
+      "hint": { "en": "1+3+5+7.", "es": "1+3+5+7." },
+      "solution": [ { "tex": "1+3+5+7 = 16 = 4^2", "en": "Equals n².", "es": "Igual a n²." } ]
+    },
+    {
+      "id": "linalg-04-e4",
+      "answerType": "number",
+      "prompt": { "en": "Evaluate the base case $\\tfrac{n(n+1)}{2}$ at $n=1$.", "es": "Evalúa el caso base $\\tfrac{n(n+1)}{2}$ en $n=1$." },
+      "answer": "1",
+      "acceptedAlt": ["1*2/2"],
+      "hint": { "en": "Substitute n = 1.", "es": "Sustituye n = 1." },
+      "solution": [ { "tex": "\\tfrac{1\\cdot2}{2} = 1", "en": "Base case holds.", "es": "El caso base se cumple." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Los números (PID_00271022)", "detail": { "en": "The principle of induction; applications to algorithms", "es": "El principio de inducción; aplicaciones a algoritmos" } },
+    { "source": "Pólya — How to Solve It", "detail": { "en": "Induction and generalization", "es": "Inducción y generalización" } }
+  ]
+}

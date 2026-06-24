@@ -1,0 +1,84 @@
+# MathPath — CLAUDE.md
+
+MathPath is an **offline Electron + React + Vite desktop app** for self-learning
+maths from pre-university level up to ML/AI. Single-user, fully local: all
+progress, attempts, settings and study plans live in a **SQLite** file
+(better-sqlite3) in the OS user-data folder. No network, no accounts, no runtime
+API keys.
+
+## Core principles (do not violate)
+
+- **Offline-first.** Never add runtime network calls or API-key dependencies. All
+  lesson content is pre-generated at build time and stored in `content/`.
+- **Correctness is gated.** LLM-generated maths can be wrong. Every lesson answer
+  and `acceptedAlt` MUST pass `npm run verify:content` (mathjs symbolic/numeric
+  checks in `src/shared/validate.js`). Run it after any content change before
+  considering a task done.
+- **Bilingual.** Every lesson stores English + Spanish (EN default, ES toggle via
+  i18next). Text answers must not depend on one language — supply both via
+  `acceptedAlt` (e.g. `yes`/`sí`).
+- **Textbook depth.** Lessons are written to textbook depth with a cited
+  "Sources & further reading" section (lesson schema `references` field, an array
+  of `{source, detail:{en,es}|string}`). Cite real sources (Stewart, Larson,
+  Salas, Strang, Polya, UOC modules, AIMA, Goodfellow, etc.).
+
+## Commands
+
+```bash
+npm install            # deps + electron-rebuild of better-sqlite3 (needs Xcode CLT on macOS)
+npm run dev            # launch with hot reload
+npm run verify:content # mathjs-check every answer/acceptedAlt  ← run before finishing
+npm run build          # production build into ./out
+```
+
+## Architecture
+
+```
+src/
+  main/        Electron main process + SQLite data layer (db.js) + IPC handlers
+  preload/     Secure contextBridge — the only renderer ↔ main channel
+  shared/      validate.js — mathjs answer checker, used by BOTH app and verifier
+  renderer/    React UI (Vite)
+    src/
+      AppContext.jsx   language + progress state, loc() content selector, theme
+      lib/plan.js      adaptive 30-day scheduler (pure, testable)
+      components/      MathText (KaTeX), FunctionGraph (custom SVG plotter on mathjs),
+                       Exercise, ProgressBar
+      pages/           Dashboard, SubjectView, LessonView
+content/         per-subject lessons + subjects.json + index.js
+scripts/         verify-content.mjs
+sources/         math/ + ai/ source material; see sources/INDEX.md
+docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
+```
+
+- Math rendering: **KaTeX**. Graphs: **custom SVG plotter** (`FunctionGraph.jsx`)
+  built on mathjs — not function-plot.
+- **Light/dark theme:** state in AppContext, persisted in SQLite `settings` key
+  `theme`, applied via `data-theme` on `documentElement`; light overrides live in
+  `styles.css` under `:root[data-theme="light"]`. FunctionGraph picks colors by theme.
+
+## mathjs gotchas
+
+- Complex forms with `i` (e.g. `i^2`, `(1+i)(1-i)`) are NOT reduced and FAIL
+  equivalence checks — never use i-forms in `acceptedAlt`; give the plain
+  real/numeric answer.
+- Matrix exercises use scalar answers (det / trace / entry) so mathjs can verify them.
+
+## Curriculum status
+
+Math ladder **complete** (textbook depth, all verified): algebra (20), functions
+(16), calculus (12), linear-algebra (23), linear-maps (16). ~87 lessons / 356
+exercises / 712 checks passing.
+
+Next: **AI/ML track** (M11 Statistics onward), currently planned / coming-soon in
+`subjects.json` + `CURRICULUM.md`. `ai-foundations` and `active-inference` are
+reading-based (text / MCQ, not mathjs). See `CURRICULUM.md` and `sources/INDEX.md`.
+
+## Workflow rules
+
+- Generate subject-by-subject; verify each with `npm run verify:content` before
+  moving on.
+- After completing any lesson or milestone, **refresh the dashboard** at
+  `docs/project.html` (description, requirements, milestone timeline, kanban).
+- Don't commit `node_modules` / `out`. They may have been built in a Linux sandbox;
+  on macOS run a fresh `npm install` (rebuilds better-sqlite3 for Electron).

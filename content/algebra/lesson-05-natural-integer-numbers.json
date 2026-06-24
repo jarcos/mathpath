@@ -1,0 +1,115 @@
+{
+  "id": "algebra-05-natural-integer-numbers",
+  "subjectId": "algebra",
+  "order": 1,
+  "estimatedMinutes": 40,
+  "title": { "en": "Natural & Integer Numbers", "es": "Números naturales y enteros" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Mathematics begins with **counting**. The **natural numbers** $\\mathbb{N} = \\{0, 1, 2, 3, \\dots\\}$ are the numbers we use to count objects and order them. They go on forever — there is no largest natural number, because you can always add one more. This simple fact, that the naturals are *infinite* and have a clear *starting point and successor*, is the foundation everything else is built on.",
+        "es": "La matemática empieza por **contar**. Los **números naturales** $\\mathbb{N} = \\{0, 1, 2, 3, \\dots\\}$ son los que usamos para contar objetos y ordenarlos. Siguen para siempre — no hay un natural más grande, porque siempre puedes sumar uno más. Este hecho sencillo, que los naturales son *infinitos* y tienen un *inicio y un sucesor* claros, es la base sobre la que se construye todo lo demás."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Addition and multiplication of naturals always give another natural — the set is **closed** under them. Subtraction is not so kind: $3 - 7$ has no answer inside $\\mathbb{N}$. To repair this we extend to the **integers** $\\mathbb{Z} = \\{\\dots, -2, -1, 0, 1, 2, \\dots\\}$, adding a **negative** mirror of every natural. Now subtraction is always possible: $3 - 7 = -4$. Integers model debts, temperatures below zero, positions left of an origin — anything with two opposite directions.",
+        "es": "La suma y la multiplicación de naturales siempre dan otro natural — el conjunto es **cerrado** bajo ellas. La resta no es tan amable: $3 - 7$ no tiene respuesta dentro de $\\mathbb{N}$. Para arreglarlo extendemos a los **enteros** $\\mathbb{Z} = \\{\\dots, -2, -1, 0, 1, 2, \\dots\\}$, añadiendo un espejo **negativo** de cada natural. Ahora la resta siempre es posible: $3 - 7 = -4$. Los enteros modelan deudas, temperaturas bajo cero, posiciones a la izquierda de un origen — cualquier cosa con dos sentidos opuestos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Picture the integers on the **number line**: zero in the middle, positives to the right, negatives to the left, equally spaced. This picture makes **order** visual — $a < b$ means $a$ sits to the left of $b$ — and gives meaning to **absolute value** $|n|$, the distance from $n$ to zero (always non-negative): $|-4| = 4$.",
+        "es": "Imagina los enteros en la **recta numérica**: el cero en el centro, los positivos a la derecha, los negativos a la izquierda, igualmente espaciados. Esta imagen hace visual el **orden** — $a < b$ significa que $a$ está a la izquierda de $b$ — y da sentido al **valor absoluto** $|n|$, la distancia de $n$ a cero (siempre no negativa): $|-4| = 4$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **rules of signs** for multiplication and division follow a single pattern: like signs give a positive result, unlike signs a negative one. So $(-3)(-4) = 12$, $(-3)(4) = -12$. For addition, think of moving along the line: adding a positive moves right, adding a negative moves left.",
+        "es": "Las **reglas de los signos** para multiplicar y dividir siguen un único patrón: signos iguales dan resultado positivo, signos distintos negativo. Así $(-3)(-4) = 12$, $(-3)(4) = -12$. Para la suma, piensa en moverte por la recta: sumar un positivo mueve a la derecha, sumar un negativo a la izquierda."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Within the naturals, **divisibility** organizes everything. We say $d$ **divides** $n$ if $n$ is a whole number of $d$'s. A **prime** is a natural greater than $1$ divisible only by $1$ and itself ($2, 3, 5, 7, 11, \\dots$). The **Fundamental Theorem of Arithmetic** says every natural $> 1$ factors uniquely into primes — e.g. $12 = 2^2\\cdot 3$. Prime factorization is the engine behind the **greatest common divisor (gcd)** and **least common multiple (lcm)**.",
+        "es": "Dentro de los naturales, la **divisibilidad** lo organiza todo. Decimos que $d$ **divide** a $n$ si $n$ es un número entero de veces $d$. Un **primo** es un natural mayor que $1$ divisible solo por $1$ y por sí mismo ($2, 3, 5, 7, 11, \\dots$). El **Teorema Fundamental de la Aritmética** dice que todo natural $> 1$ se factoriza de forma única en primos — p. ej. $12 = 2^2\\cdot 3$. La factorización en primos es el motor del **máximo común divisor (mcd)** y el **mínimo común múltiplo (mcm)**."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — gcd by factoring", "es": "Ejemplo resuelto — mcd por factorización" },
+      "content": {
+        "en": "Find $\\gcd(12, 18)$. Factor: $12 = 2^2\\cdot 3$ and $18 = 2\\cdot 3^2$. The gcd takes the **lowest** power of each shared prime: $2^1\\cdot 3^1 = 6$. The lcm takes the **highest**: $2^2\\cdot 3^2 = 36$. Notice $\\gcd\\cdot\\text{lcm} = 6\\cdot 36 = 216 = 12\\cdot 18$ — a useful identity.",
+        "es": "Halla $\\gcd(12, 18)$. Factoriza: $12 = 2^2\\cdot 3$ y $18 = 2\\cdot 3^2$. El mcd toma la potencia **menor** de cada primo común: $2^1\\cdot 3^1 = 6$. El mcm toma la **mayor**: $2^2\\cdot 3^2 = 36$. Observa que $\\gcd\\cdot\\text{mcm} = 6\\cdot 36 = 216 = 12\\cdot 18$ — una identidad útil."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Common pitfall", "es": "Error frecuente" },
+      "content": {
+        "en": "Sign mistakes dominate early algebra. $5 - (-3)$ is **not** $2$: subtracting a negative adds, so $5 - (-3) = 8$. And $-2^2 = -4$ (the power binds before the minus) whereas $(-2)^2 = 4$. When in doubt, slow down and read left to right.",
+        "es": "Los errores de signo dominan el álgebra inicial. $5 - (-3)$ **no** es $2$: restar un negativo suma, así $5 - (-3) = 8$. Y $-2^2 = -4$ (la potencia actúa antes que el signo) mientras que $(-2)^2 = 4$. Ante la duda, ve despacio y lee de izquierda a derecha."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-05-e1",
+      "answerType": "number",
+      "prompt": { "en": "Compute:  $17 + (-8) - 5$", "es": "Calcula:  $17 + (-8) - 5$" },
+      "answer": "4",
+      "acceptedAlt": ["17-8-5"],
+      "hint": { "en": "Adding a negative is the same as subtracting.", "es": "Sumar un negativo es igual que restar." },
+      "solution": [
+        { "tex": "17 + (-8) - 5 = 17 - 8 - 5", "en": "Rewrite the addition of a negative.", "es": "Reescribe la suma de un negativo." },
+        { "tex": "= 4", "en": "Compute left to right.", "es": "Calcula de izquierda a derecha." }
+      ]
+    },
+    {
+      "id": "algebra-05-e2",
+      "answerType": "number",
+      "prompt": { "en": "Compute:  $(-3)\\cdot(-4) + 2$", "es": "Calcula:  $(-3)\\cdot(-4) + 2$" },
+      "answer": "14",
+      "acceptedAlt": ["(-3)*(-4)+2"],
+      "hint": { "en": "Two negatives multiply to a positive.", "es": "Dos negativos multiplicados dan positivo." },
+      "solution": [
+        { "tex": "(-3)\\cdot(-4) = 12", "en": "Same signs → positive.", "es": "Signos iguales → positivo." },
+        { "tex": "12 + 2 = 14", "en": "Add 2.", "es": "Suma 2." }
+      ]
+    },
+    {
+      "id": "algebra-05-e3",
+      "answerType": "number",
+      "prompt": { "en": "What is the greatest common divisor of 12 and 18?", "es": "¿Cuál es el máximo común divisor de 12 y 18?" },
+      "answer": "6",
+      "acceptedAlt": ["gcd(12,18)"],
+      "hint": { "en": "Lowest power of each shared prime.", "es": "Potencia menor de cada primo común." },
+      "solution": [
+        { "tex": "12 = 2^2\\cdot 3,\\quad 18 = 2\\cdot 3^2", "en": "Factor both numbers.", "es": "Factoriza ambos números." },
+        { "tex": "\\gcd = 2\\cdot 3 = 6", "en": "Multiply the shared prime factors.", "es": "Multiplica los factores primos comunes." }
+      ]
+    },
+    {
+      "id": "algebra-05-e4",
+      "answerType": "number",
+      "prompt": { "en": "Compute $5 - (-3)$.", "es": "Calcula $5 - (-3)$." },
+      "answer": "8",
+      "acceptedAlt": ["5+3"],
+      "hint": { "en": "Subtracting a negative adds.", "es": "Restar un negativo suma." },
+      "solution": [
+        { "tex": "5 - (-3) = 5 + 3", "en": "Two minuses make a plus.", "es": "Dos menos hacen un más." },
+        { "tex": "= 8", "en": "Add.", "es": "Suma." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.1, Real Numbers", "es": "Cap. 1.1, Los números reales" } },
+    { "source": "Long — Painless Algebra", "detail": { "en": "Numbers and the number line", "es": "Los números y la recta numérica" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Números' — naturales y enteros", "es": "Apartado 'Números' — naturales y enteros" } }
+  ]
+}

@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MathPath — Project Dashboard</title>
+<style>
+  :root{
+    --bg:#0f1220; --bg-soft:#171b2e; --panel:#1d2237; --panel-2:#232943;
+    --border:#2c3350; --text:#e7e9f3; --muted:#9aa1c0;
+    --accent:#6c8cff; --accent-2:#8a6cff; --ok:#3ecf8e; --warn:#f0a35e; --bad:#ff6b81;
+    --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:radial-gradient(1200px 600px at 80% -10%, #20264a 0%, var(--bg) 55%);
+    color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6;
+  }
+  a{color:var(--accent)}
+  .wrap{max-width:1100px; margin:0 auto; padding:40px 24px 80px}
+  header.hero{display:flex; align-items:center; gap:18px; margin-bottom:8px}
+  .mark{display:inline-grid; place-items:center; width:54px; height:54px; border-radius:14px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; font-size:1.8rem; font-weight:700}
+  h1{margin:0; font-size:2rem}
+  .sub{color:var(--muted); margin:2px 0 0}
+  .meta{color:var(--muted); font-size:.85rem; margin-top:18px; display:flex; gap:18px; flex-wrap:wrap}
+  .meta b{color:var(--text)}
+  h2{font-size:1.3rem; margin:42px 0 14px; display:flex; align-items:center; gap:10px}
+  h2 .dot{width:9px; height:9px; border-radius:50%; background:var(--accent)}
+  .card{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
+  p.lead{font-size:1.05rem}
+  .grid{display:grid; gap:14px}
+  .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .req{display:flex; gap:12px; align-items:flex-start}
+  .req .ic{flex:0 0 auto; width:26px; height:26px; border-radius:8px; display:grid; place-items:center;
+    background:rgba(62,207,142,.15); color:var(--ok); font-weight:700; font-size:.85rem}
+  .req .ic.partial{background:rgba(240,163,94,.15); color:var(--warn)}
+  .req .ic.todo{background:rgba(154,161,192,.15); color:var(--muted)}
+  .req h4{margin:0 0 2px; font-size:.98rem}
+  .req p{margin:0; color:var(--muted); font-size:.88rem}
+  .pill{display:inline-block; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
+    padding:3px 9px; border-radius:999px; background:var(--panel-2); color:var(--muted)}
+  .pill.ok{background:rgba(62,207,142,.15); color:var(--ok)}
+  .pill.prog{background:rgba(108,140,255,.18); color:var(--accent)}
+  .pill.todo{background:rgba(154,161,192,.15); color:var(--muted)}
+
+  /* tech chips */
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{background:var(--bg-soft); border:1px solid var(--border); border-radius:10px; padding:7px 12px; font-size:.85rem}
+  .chip b{color:var(--accent)}
+
+  /* timeline */
+  .timeline{position:relative; margin-left:8px; padding-left:26px; border-left:2px solid var(--border)}
+  .ms{position:relative; padding:0 0 22px}
+  .ms:last-child{padding-bottom:0}
+  .ms .node{position:absolute; left:-35px; top:2px; width:18px; height:18px; border-radius:50%;
+    background:var(--panel-2); border:2px solid var(--muted)}
+  .ms.done .node{background:var(--ok); border-color:var(--ok)}
+  .ms.prog .node{background:var(--accent); border-color:var(--accent); box-shadow:0 0 0 4px rgba(108,140,255,.2)}
+  .ms h4{margin:0 0 2px; font-size:1rem; display:flex; gap:10px; align-items:center}
+  .ms p{margin:0; color:var(--muted); font-size:.88rem}
+
+  /* progress bar */
+  .progress{margin:14px 0 0}
+  .ptrack{height:10px; background:var(--panel-2); border-radius:999px; overflow:hidden}
+  .pfill{height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); border-radius:999px}
+  .plabel{display:flex; justify-content:space-between; color:var(--muted); font-size:.82rem; margin-bottom:6px}
+
+  /* kanban */
+  .board{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; align-items:start}
+  @media(max-width:820px){.board{grid-template-columns:1fr}}
+  .col{background:var(--bg-soft); border:1px solid var(--border); border-radius:var(--radius); padding:14px; min-height:120px}
+  .col h3{margin:0 0 12px; font-size:.95rem; display:flex; align-items:center; justify-content:space-between}
+  .col h3 .count{background:var(--panel-2); color:var(--muted); border-radius:999px; padding:2px 9px; font-size:.75rem}
+  .col.todo{border-top:3px solid var(--muted)}
+  .col.prog{border-top:3px solid var(--accent)}
+  .col.done{border-top:3px solid var(--ok)}
+  .task{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:11px 12px; margin-bottom:10px;
+    cursor:grab; font-size:.9rem; transition:border-color .15s, transform .05s}
+  .task:hover{border-color:var(--accent)}
+  .task:active{cursor:grabbing}
+  .task.dragging{opacity:.4}
+  .task .tag{display:block; font-size:.7rem; color:var(--muted); margin-top:5px}
+  .task .tag.s{color:var(--accent)}
+  .col.drag-over{outline:2px dashed var(--accent); outline-offset:2px}
+  .hint{color:var(--muted); font-size:.8rem; margin-top:10px}
+  .reset{background:none; border:1px solid var(--border); color:var(--muted); border-radius:8px; padding:5px 12px; font-size:.78rem; cursor:pointer}
+  footer{color:var(--muted); font-size:.82rem; margin-top:50px; border-top:1px solid var(--border); padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="mark">π</div>
+    <div>
+      <h1>MathPath</h1>
+      <p class="sub">Offline desktop e-learning, from pre-university maths to machine learning &amp; AI</p>
+    </div>
+  </header>
+  <div class="meta">
+    <span><b>Status:</b> Full math ladder shipped (5 subjects, textbook depth) · light/dark themes · 10-subject AI/ML track planned</span>
+    <span><b>Platform:</b> Electron (macOS)</span>
+    <span><b>Updated:</b> 24 Jun 2026</span>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <h2><span class="dot"></span>Project Description</h2>
+  <div class="card">
+    <p class="lead">MathPath is a single-user, fully offline desktop application that teaches mathematics in a structured ladder — starting at pre-university level and building toward the linear algebra, calculus and statistics that underpin machine learning and deep learning.</p>
+    <p style="color:var(--muted); margin-bottom:0">Each big subject is scoped to a ~30-day adaptive study plan. Lessons combine explanations, worked examples and live function graphs; exercises are checked <b>symbolically</b> (so <code>1/2</code>, <code>0.5</code> and <code>2/4</code> all count as correct) and reveal step-by-step solutions on demand. All content is bilingual (English / Spanish) and pre-generated at build time, with curriculum sourced from UOC engineering-maths modules and verified by an automated mathjs gate. Progress, attempts and plans live locally in SQLite — no accounts, no network.</p>
+  </div>
+
+  <!-- TECH STACK -->
+  <h2><span class="dot"></span>Tech Stack</h2>
+  <div class="chips">
+    <span class="chip"><b>Electron</b> 31 · desktop shell</span>
+    <span class="chip"><b>React</b> 18 + <b>Vite</b> · UI</span>
+    <span class="chip"><b>better-sqlite3</b> · local data</span>
+    <span class="chip"><b>mathjs</b> · symbolic validation</span>
+    <span class="chip"><b>function-plot</b> · graphs</span>
+    <span class="chip"><b>KaTeX</b> · math rendering</span>
+    <span class="chip"><b>i18next</b> · EN / ES</span>
+  </div>
+
+  <!-- REQUIREMENTS -->
+  <h2><span class="dot"></span>Requirements</h2>
+  <div class="card grid cols-2">
+    <div class="req"><div class="ic">✓</div><div><h4>Electron e-learning app</h4><p>Cross-platform desktop app, currently running on macOS.</p></div></div>
+    <div class="req"><div class="ic partial">◑</div><div><h4>Pre-university → ML/AI coverage</h4><p>Full ladder mapped; Algebra complete, ML track planned.</p></div></div>
+    <div class="req"><div class="ic">✓</div><div><h4>Step-by-step exercises + in-app validation</h4><p>Symbolic checking via mathjs; worked solutions reveal on demand.</p></div></div>
+    <div class="req"><div class="ic">✓</div><div><h4>Progress bar &amp; per-lesson completion</h4><p>Per-subject and overall progress; each lesson checkable.</p></div></div>
+    <div class="req"><div class="ic">✓</div><div><h4>Divided into big subjects</h4><p>Algebra, Functions, Calculus, Linear Algebra, Linear Maps, + ML track.</p></div></div>
+    <div class="req"><div class="ic">✓</div><div><h4>One month per subject</h4><p>Adaptive 30-day plan that re-spreads lessons if you fall behind.</p></div></div>
+    <div class="req"><div class="ic">✓</div><div><h4>English with Spanish toggle</h4><p>All UI and lesson content bilingual; instant switch.</p></div></div>
+    <div class="req"><div class="ic">✓</div><div><h4>Single-user, local data</h4><p>SQLite in the OS user-data folder; no accounts or network.</p></div></div>
+    <div class="req"><div class="ic">✓</div><div><h4>Node.js libraries for plotting graphs</h4><p>function-plot (D3-based) renders y = f(x) in lessons.</p></div></div>
+  </div>
+
+  <!-- MILESTONES -->
+  <h2><span class="dot"></span>Milestones</h2>
+  <div class="card">
+    <div class="progress">
+      <div class="plabel"><span>Overall completion</span><span id="ms-pct">58%</span></div>
+      <div class="ptrack"><div class="pfill" id="ms-fill" style="width:58%"></div></div>
+    </div>
+    <div class="timeline" style="margin-top:24px">
+      <div class="ms done"><div class="node"></div><h4>M1 · App scaffold &amp; architecture <span class="pill ok">Done</span></h4><p>Electron + React + Vite, secure preload/IPC, dark UI.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M2 · Local data layer <span class="pill ok">Done</span></h4><p>SQLite schema for progress, attempts, settings and study plans.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M3 · Algebra MVP <span class="pill ok">Done</span></h4><p>End-to-end proof: lessons, graphs, validation, i18n, plan.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M4 · Curriculum from UOC PDFs <span class="pill ok">Done</span></h4><p>Extracted topics from 6 source PDFs into a full curriculum map.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M5 · Algebra subject complete <span class="pill ok">Done</span></h4><p>20 lessons · 77 exercises · 167 mathjs checks passing.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M6 · Running on Mac <span class="pill ok">Done</span></h4><p>Resolved Node 26 / native build &amp; Electron extraction issues.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M7 · Functions &amp; Pre-Calculus <span class="pill ok">Done</span></h4><p>16 lessons · functions, trigonometry, exponentials, logarithms · verified.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M8 · Introduction to Calculus <span class="pill ok">Done</span></h4><p>12 lessons · sequences, limits, continuity, derivatives, L'Hôpital, integrals · verified.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M9 · Linear Algebra &amp; Geometry <span class="pill ok">Done</span></h4><p>23 lessons · complex numbers, vector spaces, determinants, systems, geometry · verified.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M10 · Linear Maps &amp; Transformations <span class="pill ok">Done</span></h4><p>16 lessons · linear maps, eigenvalues, diagonalization, 2D/3D transforms · verified. Completes the math ladder.</p></div>
+      <div class="ms prog"><div class="node"></div><h4>M11 · Statistics &amp; Probability <span class="pill prog">Next</span></h4><p>~16 lessons · Pearl; descriptive stats, probability, Bayes, inference.</p></div>
+      <div class="ms"><div class="node"></div><h4>M12 · Machine Learning Foundations <span class="pill todo">Planned</span></h4><p>~18 lessons · AIMA + Goodfellow; regression, classification, gradient descent.</p></div>
+      <div class="ms"><div class="node"></div><h4>M13 · Neural Networks <span class="pill todo">Planned</span></h4><p>~16 lessons · Rumelhart PDP + Goodfellow; perceptrons, backprop.</p></div>
+      <div class="ms"><div class="node"></div><h4>M14 · Deep Learning <span class="pill todo">Planned</span></h4><p>~18 lessons · Goodfellow; CNNs, regularization, optimization.</p></div>
+      <div class="ms"><div class="node"></div><h4>M15 · NLP &amp; Transformers <span class="pill todo">Planned</span></h4><p>~16 lessons · Jurafsky &amp; Martin; Attention Is All You Need.</p></div>
+      <div class="ms"><div class="node"></div><h4>M16 · Reinforcement Learning <span class="pill todo">Planned</span></h4><p>~16 lessons · Sutton &amp; Barto; MDPs, Q-learning, policy gradients.</p></div>
+      <div class="ms"><div class="node"></div><h4>M17 · Knowledge Representation <span class="pill todo">Planned</span></h4><p>~14 lessons · Brachman &amp; Levesque; Pearl. Logic &amp; probabilistic reasoning.</p></div>
+      <div class="ms"><div class="node"></div><h4>M18 · Computer Vision <span class="pill todo">Planned</span></h4><p>~14 lessons · Marr; CNNs. Image representation &amp; recognition.</p></div>
+      <div class="ms"><div class="node"></div><h4>M19 · AI Foundations &amp; Philosophy <span class="pill todo">Planned</span></h4><p>~14 lessons · Turing, Searle, Dreyfus, Brooks, Bommasani. Conceptual.</p></div>
+      <div class="ms"><div class="node"></div><h4>M20 · Active Inference (advanced) <span class="pill todo">Planned</span></h4><p>~12 lessons · Parr, Pezzulo &amp; Friston; free energy principle.</p></div>
+      <div class="ms"><div class="node"></div><h4>M21 · Packaging &amp; distributable <span class="pill todo">Future</span></h4><p>electron-builder installer; reproducible build docs.</p></div>
+    </div>
+  </div>
+
+  <!-- KANBAN -->
+  <h2><span class="dot"></span>Kanban Board</h2>
+  <div class="card">
+    <div class="board" id="board">
+      <div class="col todo" data-col="todo">
+        <h3>To-Do <span class="count">0</span></h3>
+      </div>
+      <div class="col prog" data-col="prog">
+        <h3>In Progress <span class="count">0</span></h3>
+      </div>
+      <div class="col done" data-col="done">
+        <h3>Done <span class="count">0</span></h3>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px">
+      <p class="hint">Drag cards between columns — your changes are saved in this browser.</p>
+      <button class="reset" id="reset">Reset to defaults</button>
+    </div>
+  </div>
+
+  <footer>
+    MathPath project dashboard · generated for José Arcos · math-skills project.
+    See <code>CURRICULUM.md</code> for the full lesson map and <code>README.md</code> to run the app.
+  </footer>
+
+</div>
+
+<script>
+  // --- Kanban data ---------------------------------------------------------
+  const DEFAULT_TASKS = [
+    // Done
+    {id:'t1',  col:'done', text:'Scaffold Electron + React + Vite', tag:'Infra'},
+    {id:'t2',  col:'done', text:'SQLite data layer + secure IPC/preload', tag:'Infra'},
+    {id:'t3',  col:'done', text:'React UI: dashboard, subject & lesson views', tag:'UI'},
+    {id:'t4',  col:'done', text:'KaTeX rendering + function-plot graphs', tag:'UI'},
+    {id:'t5',  col:'done', text:'mathjs symbolic validation + worked solutions', tag:'Engine'},
+    {id:'t6',  col:'done', text:'EN/ES i18n toggle', tag:'UI'},
+    {id:'t7',  col:'done', text:'Adaptive 30-day study plan', tag:'Engine'},
+    {id:'t8',  col:'done', text:'Build-time content verifier (mathjs gate)', tag:'Engine'},
+    {id:'t9',  col:'done', text:'Extract topics from 6 UOC PDFs', tag:'Content'},
+    {id:'t10', col:'done', text:'Curriculum map (CURRICULUM.md)', tag:'Content'},
+    {id:'t11', col:'done', text:'Algebra subject — 20 lessons, verified', tag:'Content'},
+    {id:'t12', col:'done', text:'Run on Mac (electron-rebuild + ditto fix)', tag:'Infra'},
+    // In progress
+    {id:'t13', col:'prog', text:'Review Algebra lessons in the app', tag:'Review'},
+    // To-do
+    {id:'t14', col:'done', text:'Functions subject — 16 lessons, verified', tag:'Content'},
+    {id:'t15', col:'done', text:'Calculus subject — 12 lessons, verified', tag:'Content'},
+    {id:'t16', col:'done', text:'Linear Algebra subject — 23 lessons, verified', tag:'Content'},
+    {id:'t17', col:'done', text:'Linear Maps subject — 16 lessons, verified', tag:'Content'},
+    {id:'t30', col:'done', text:'Light/dark theme toggle (persisted)', tag:'UI'},
+    {id:'t31', col:'done', text:'Textbook-depth rewrite + cited Sources (5 subjects)', tag:'Content'},
+    {id:'t18', col:'todo', text:'Statistics & Probability (~16) — M11', tag:'AI track'},
+    {id:'t19', col:'todo', text:'Machine Learning Foundations (~18) — M12', tag:'AI track'},
+    {id:'t20', col:'todo', text:'Neural Networks (~16) — M13', tag:'AI track'},
+    {id:'t21', col:'todo', text:'Deep Learning (~18) — M14', tag:'AI track'},
+    {id:'t22', col:'todo', text:'NLP & Transformers (~16) — M15', tag:'AI track'},
+    {id:'t23', col:'todo', text:'Reinforcement Learning (~16) — M16', tag:'AI track'},
+    {id:'t24', col:'todo', text:'Knowledge Representation (~14) — M17', tag:'AI track'},
+    {id:'t25', col:'todo', text:'Computer Vision (~14) — M18', tag:'AI track'},
+    {id:'t26', col:'todo', text:'AI Foundations & Philosophy (~14) — M19', tag:'AI track'},
+    {id:'t27', col:'todo', text:'Active Inference (~12) — M20', tag:'AI track'},
+    {id:'t28', col:'todo', text:'Package distributable (electron-builder)', tag:'Infra'},
+    {id:'t29', col:'todo', text:'Update README with Node-26 / rebuild workflow', tag:'Docs'},
+  ];
+
+  const STORE = 'mathpath-kanban-v1';
+  function load(){
+    try{ const s = localStorage.getItem(STORE); if(s) return JSON.parse(s); }catch(e){}
+    return DEFAULT_TASKS.map(t=>({...t}));
+  }
+  function save(tasks){ try{ localStorage.setItem(STORE, JSON.stringify(tasks)); }catch(e){} }
+
+  let tasks = load();
+
+  function render(){
+    document.querySelectorAll('.col').forEach(col=>{
+      // remove existing task nodes (keep h3)
+      col.querySelectorAll('.task').forEach(n=>n.remove());
+      const colId = col.dataset.col;
+      const items = tasks.filter(t=>t.col===colId);
+      col.querySelector('.count').textContent = items.length;
+      items.forEach(t=>{
+        const el = document.createElement('div');
+        el.className='task'; el.draggable=true; el.dataset.id=t.id;
+        el.innerHTML = `${t.text}<span class="tag s">${t.tag}</span>`;
+        col.appendChild(el);
+      });
+    });
+    bindDrag();
+    updateProgress();
+  }
+
+  function updateProgress(){
+    const total = tasks.length;
+    const done = tasks.filter(t=>t.col==='done').length;
+    const pct = total ? Math.round(done/total*100) : 0;
+    document.getElementById('ms-pct').textContent = pct+'%';
+    document.getElementById('ms-fill').style.width = pct+'%';
+  }
+
+  let dragId = null;
+  function bindDrag(){
+    document.querySelectorAll('.task').forEach(t=>{
+      t.addEventListener('dragstart', e=>{ dragId=t.dataset.id; t.classList.add('dragging'); });
+      t.addEventListener('dragend', e=>{ t.classList.remove('dragging'); });
+    });
+  }
+  document.querySelectorAll('.col').forEach(col=>{
+    col.addEventListener('dragover', e=>{ e.preventDefault(); col.classList.add('drag-over'); });
+    col.addEventListener('dragleave', ()=> col.classList.remove('drag-over'));
+    col.addEventListener('drop', e=>{
+      e.preventDefault(); col.classList.remove('drag-over');
+      if(!dragId) return;
+      const t = tasks.find(x=>x.id===dragId);
+      if(t){ t.col = col.dataset.col; save(tasks); render(); }
+      dragId=null;
+    });
+  });
+
+  document.getElementById('reset').addEventListener('click', ()=>{
+    tasks = DEFAULT_TASKS.map(t=>({...t})); save(tasks); render();
+  });
+
+  render();
+</script>
+</body>
+</html>

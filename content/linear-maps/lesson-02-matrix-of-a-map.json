@@ -1,0 +1,80 @@
+{
+  "id": "linmaps-02-matrix",
+  "subjectId": "linear-maps",
+  "order": 2,
+  "estimatedMinutes": 40,
+  "title": { "en": "Matrix of a Linear Map", "es": "Matriz asociada a una aplicación lineal" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The central theorem of the subject: **every linear map between finite-dimensional spaces is a matrix multiplication**. Once you fix bases, a linear map $T$ is completely captured by a matrix $A$, so that $T(\\mathbf{x}) = A\\mathbf{x}$. This is why matrices matter — they *are* linear maps in coordinates.",
+        "es": "El teorema central de la asignatura: **toda aplicación lineal entre espacios de dimensión finita es una multiplicación por matriz**. Una vez fijadas las bases, una aplicación lineal $T$ queda completamente capturada por una matriz $A$, de modo que $T(\\mathbf{x}) = A\\mathbf{x}$. Por eso importan las matrices — *son* aplicaciones lineales en coordenadas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Building the matrix is beautifully simple: the **columns of $A$ are the images of the basis vectors**. For $T(x,y) = (2x, 3y)$, we have $T(1,0) = (2,0)$ and $T(0,1) = (0,3)$, so $A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$. Knowing where the basis goes determines where *everything* goes, by linearity.",
+        "es": "Construir la matriz es bellamente simple: las **columnas de $A$ son las imágenes de los vectores base**. Para $T(x,y) = (2x, 3y)$, tenemos $T(1,0) = (2,0)$ y $T(0,1) = (0,3)$, así $A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$. Saber a dónde van los vectores base determina a dónde va *todo*, por linealidad."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Sizes encode the spaces: a map $T : \\mathbb{R}^n \\to \\mathbb{R}^m$ has an $m \\times n$ matrix — $m$ rows (output dimension) and $n$ columns (input dimension). Composing maps corresponds to multiplying their matrices, which is exactly why matrix multiplication is defined the way it is.",
+        "es": "Los tamaños codifican los espacios: una aplicación $T : \\mathbb{R}^n \\to \\mathbb{R}^m$ tiene una matriz $m \\times n$ — $m$ filas (dimensión de salida) y $n$ columnas (dimensión de entrada). Componer aplicaciones corresponde a multiplicar sus matrices, que es justo por qué la multiplicación de matrices se define como se define."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Find the matrix of $T(x,y) = (2x, y)$. Images of the basis: $T(1,0) = (2,0)$ (first column), $T(0,1) = (0,1)$ (second column), so $A = \\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$. The $(1,1)$ entry is $2$. Then $T(1,1) = (2,1)$, with first component $2$.",
+        "es": "Halla la matriz de $T(x,y) = (2x, y)$. Imágenes de la base: $T(1,0) = (2,0)$ (primera columna), $T(0,1) = (0,1)$ (segunda columna), así $A = \\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$. El elemento $(1,1)$ es $2$. Entonces $T(1,1) = (2,1)$, con primera componente $2$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-02-e1",
+      "answerType": "number",
+      "prompt": { "en": "For $T(x,y)=(2x,3y)$, what is the $(1,1)$ entry of its matrix?", "es": "Para $T(x,y)=(2x,3y)$, ¿cuál es el elemento $(1,1)$ de su matriz?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Image of (1,0) is the first column.", "es": "La imagen de (1,0) es la primera columna." },
+      "solution": [ { "tex": "T(1,0)=(2,0)", "en": "First column (2,0); entry 2.", "es": "Primera columna (2,0); elemento 2." } ]
+    },
+    {
+      "id": "linmaps-02-e2",
+      "answerType": "number",
+      "prompt": { "en": "For the matrix $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$, what is the first component of $T(1,1)$?", "es": "Para la matriz $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$, ¿cuál es la primera componente de $T(1,1)$?" },
+      "answer": "2",
+      "acceptedAlt": ["2*1+0*1"],
+      "hint": { "en": "Row 1 · (1,1).", "es": "Fila 1 · (1,1)." },
+      "solution": [ { "tex": "2\\cdot1 + 0\\cdot1 = 2", "en": "First component.", "es": "Primera componente." } ]
+    },
+    {
+      "id": "linmaps-02-e3",
+      "answerType": "number",
+      "prompt": { "en": "A linear map $T:\\mathbb{R}^3\\to\\mathbb{R}^2$ has a matrix with how many rows?", "es": "Una aplicación lineal $T:\\mathbb{R}^3\\to\\mathbb{R}^2$ tiene una matriz con cuántas filas?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Rows = output dimension.", "es": "Filas = dimensión de salida." },
+      "solution": [ { "tex": "m\\times n = 2\\times 3", "en": "2 rows.", "es": "2 filas." } ]
+    },
+    {
+      "id": "linmaps-02-e4",
+      "answerType": "number",
+      "prompt": { "en": "For $T(x,y)=(2x,y)$, the first entry of the first column of its matrix is?", "es": "Para $T(x,y)=(2x,y)$, ¿el primer elemento de la primera columna de su matriz es?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "First column is T(1,0).", "es": "La primera columna es T(1,0)." },
+      "solution": [ { "tex": "T(1,0)=(2,0)", "en": "First entry 2.", "es": "Primer elemento 2." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Matrix associated with a linear map", "es": "Matriz asociada a una aplicación lineal" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 8.2, the matrix of a linear transformation", "es": "Cap. 8.2, la matriz de una transformación lineal" } }
+  ]
+}

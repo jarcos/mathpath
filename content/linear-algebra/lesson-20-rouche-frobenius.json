@@ -1,0 +1,80 @@
+{
+  "id": "linalg-20-rouche-frobenius",
+  "subjectId": "linear-algebra",
+  "order": 20,
+  "estimatedMinutes": 45,
+  "title": { "en": "Rouché-Fröbenius & Discussion", "es": "Rouché-Fröbenius y discusión" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Before solving a system, we can **discuss** it — determine how many solutions it has without finding them. The **Rouché-Fröbenius theorem** gives a complete answer in terms of two ranks: $r = \\text{rank}(A)$ of the coefficient matrix, and $r' = \\text{rank}(A\\,|\\,\\mathbf{b})$ of the augmented matrix.",
+        "es": "Antes de resolver un sistema, podemos **discutirlo** — determinar cuántas soluciones tiene sin hallarlas. El **teorema de Rouché-Fröbenius** da una respuesta completa en términos de dos rangos: $r = \\text{rango}(A)$ de la matriz de coeficientes, y $r' = \\text{rango}(A\\,|\\,\\mathbf{b})$ de la matriz ampliada."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The verdict, with $n$ unknowns: if $r \\neq r'$ the system is **inconsistent** — no solution. If $r = r' = n$ it is **consistent and determinate** — a unique solution. If $r = r' < n$ it is **consistent and indeterminate** — infinitely many solutions, with $n - r$ free parameters. Three ranks, three worlds, no exceptions.",
+        "es": "El veredicto, con $n$ incógnitas: si $r \\neq r'$ el sistema es **incompatible** — sin solución. Si $r = r' = n$ es **compatible determinado** — solución única. Si $r = r' < n$ es **compatible indeterminado** — infinitas soluciones, con $n - r$ parámetros libres. Tres rangos, tres mundos, sin excepciones."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Intuitively, $r = r'$ means the right-hand side is consistent with the equations (no contradiction like $0 = 5$); and $r = n$ means there are enough independent equations to pin down every unknown. This single theorem unifies everything you saw about $2\\times2$ and $3\\times3$ systems.",
+        "es": "Intuitivamente, $r = r'$ significa que el término de la derecha es coherente con las ecuaciones (sin contradicción como $0 = 5$); y $r = n$ significa que hay suficientes ecuaciones independientes para fijar cada incógnita. Este único teorema unifica todo lo que viste sobre sistemas $2\\times2$ y $3\\times3$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If $\\text{rank}(A) = 2$ but $\\text{rank}(A\\,|\\,\\mathbf{b}) = 3$, then $r \\neq r'$ — the augmented column added new information, signalling a contradiction. The system is **inconsistent**, no solution. But if $r = r' = 2$ with $n = 3$ unknowns, there are $3 - 2 = 1$ free parameters: infinitely many solutions.",
+        "es": "Si $\\text{rango}(A) = 2$ pero $\\text{rango}(A\\,|\\,\\mathbf{b}) = 3$, entonces $r \\neq r'$ — la columna ampliada añadió información nueva, señalando una contradicción. El sistema es **incompatible**, sin solución. Pero si $r = r' = 2$ con $n = 3$ incógnitas, hay $3 - 2 = 1$ parámetros libres: infinitas soluciones."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-20-e1",
+      "answerType": "number",
+      "prompt": { "en": "For a unique solution in 3 unknowns, the rank must equal ___?", "es": "Para solución única en 3 incógnitas, el rango debe ser ___?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "r = n.", "es": "r = n." },
+      "solution": [ { "tex": "r = r' = n = 3", "en": "Full rank.", "es": "Rango máximo." } ]
+    },
+    {
+      "id": "linalg-20-e2",
+      "answerType": "text",
+      "prompt": { "en": "If $\\text{rank}(A)=2$ but $\\text{rank}(A|b)=3$, is the system consistent? (yes / no)", "es": "Si $\\text{rango}(A)=2$ pero $\\text{rango}(A|b)=3$, ¿es compatible? (sí / no)" },
+      "answer": "no",
+      "acceptedAlt": ["no"],
+      "hint": { "en": "r ≠ r' means no solution.", "es": "r ≠ r' significa sin solución." },
+      "solution": [ { "tex": "r \\neq r' \\Rightarrow \\text{none}", "en": "Inconsistent.", "es": "Incompatible." } ]
+    },
+    {
+      "id": "linalg-20-e3",
+      "answerType": "number",
+      "prompt": { "en": "If $r = r' = n$, how many solutions?", "es": "Si $r = r' = n$, ¿cuántas soluciones?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "Full rank → unique.", "es": "Rango máximo → única." },
+      "solution": [ { "tex": "\\text{unique} = 1", "en": "One solution.", "es": "Una solución." } ]
+    },
+    {
+      "id": "linalg-20-e4",
+      "answerType": "number",
+      "prompt": { "en": "If $r = r' = 2$ and $n = 3$, how many free parameters?", "es": "Si $r = r' = 2$ y $n = 3$, ¿cuántos parámetros libres?" },
+      "answer": "1",
+      "acceptedAlt": ["3-2"],
+      "hint": { "en": "n − r.", "es": "n − r." },
+      "solution": [ { "tex": "n - r = 1", "en": "One free parameter.", "es": "Un parámetro libre." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)", "detail": { "en": "Rank and the Rouché-Fröbenius theorem", "es": "Rango y el teorema de Rouché-Fröbenius" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 3.3–3.4, rank and the complete solution to Ax = b", "es": "Cap. 3.3–3.4, rango y la solución completa de Ax = b" } }
+  ]
+}

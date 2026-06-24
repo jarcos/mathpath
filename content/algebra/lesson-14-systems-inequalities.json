@@ -1,0 +1,92 @@
+{
+  "id": "algebra-14-systems-inequalities",
+  "subjectId": "algebra",
+  "order": 12,
+  "estimatedMinutes": 40,
+  "title": { "en": "Systems of Inequalities", "es": "Sistemas de inecuaciones" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **system of inequalities** imposes several constraints at once and asks for the values satisfying **all** of them. Its solution is the **intersection** of the individual solution sets — the overlap. In one variable that overlap is an interval; in two variables it becomes a region of the plane.",
+        "es": "Un **sistema de inecuaciones** impone varias restricciones a la vez y pide los valores que cumplen **todas**. Su solución es la **intersección** de los conjuntos solución individuales — el solapamiento. En una variable ese solapamiento es un intervalo; en dos variables se vuelve una región del plano."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "When constraints point the same way, the **stricter** one wins: $x > 0$ together with $x > 3$ simplifies to just $x > 3$. When they point opposite ways, you get a bounded interval: $x > 1$ and $x < 5$ give $1 < x < 5$. If the constraints are incompatible (say $x > 5$ and $x < 1$), the intersection is empty — no solution.",
+        "es": "Cuando las restricciones apuntan en el mismo sentido, gana la **más estricta**: $x > 0$ junto con $x > 3$ se reduce a $x > 3$. Cuando apuntan en sentidos opuestos, obtienes un intervalo acotado: $x > 1$ y $x < 5$ dan $1 < x < 5$. Si las restricciones son incompatibles (digamos $x > 5$ y $x < 1$), la intersección es vacía — sin solución."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "In two variables, each linear inequality shades a **half-plane**, and the system's solution is where all the shaded regions overlap — a **feasible region**, often a polygon. This is the geometric heart of **linear programming**, which optimizes a quantity (cost, profit) over such a region and underlies countless decisions in logistics, economics and machine learning.",
+        "es": "En dos variables, cada inecuación lineal sombrea un **semiplano**, y la solución del sistema es donde se solapan todas las regiones sombreadas — una **región factible**, a menudo un polígono. Este es el corazón geométrico de la **programación lineal**, que optimiza una cantidad (coste, beneficio) sobre esa región y sustenta innumerables decisiones en logística, economía y aprendizaje automático."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — counting integer solutions", "es": "Ejemplo resuelto — contar soluciones enteras" },
+      "content": {
+        "en": "How many integers satisfy $x \\ge 2$ **and** $x \\le 5$? The overlap is the interval $[2, 5]$; the integers in it are $2, 3, 4, 5$ — four values. Always check both endpoints' bracket type: here both are $\\le/\\ge$, so both ends are included.",
+        "es": "¿Cuántos enteros cumplen $x \\ge 2$ **y** $x \\le 5$? El solapamiento es el intervalo $[2, 5]$; los enteros en él son $2, 3, 4, 5$ — cuatro valores. Comprueba siempre el tipo de extremo: aquí ambos son $\\le/\\ge$, así que ambos extremos se incluyen."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-14-e1",
+      "answerType": "text",
+      "prompt": { "en": "System $x > 1$ and $x < 5$. Is $x = 3$ a solution? (yes / no)", "es": "Sistema $x > 1$ y $x < 5$. ¿Es $x = 3$ solución? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Check both conditions.", "es": "Comprueba ambas condiciones." },
+      "solution": [
+        { "tex": "1 < 3 < 5", "en": "Both hold.", "es": "Ambas se cumplen." },
+        { "tex": "\\text{yes}", "en": "So x = 3 is a solution.", "es": "Por tanto x = 3 es solución." }
+      ]
+    },
+    {
+      "id": "algebra-14-e2",
+      "answerType": "text",
+      "prompt": { "en": "System $x > 1$ and $x < 5$. Is $x = 6$ a solution? (yes / no)", "es": "Sistema $x > 1$ y $x < 5$. ¿Es $x = 6$ solución? (sí / no)" },
+      "answer": "no",
+      "acceptedAlt": ["no"],
+      "hint": { "en": "Does 6 < 5 hold?", "es": "¿Se cumple 6 < 5?" },
+      "solution": [
+        { "tex": "6 < 5 \\text{ is false}", "en": "The second condition fails.", "es": "Falla la segunda condición." },
+        { "tex": "\\text{no}", "en": "So x = 6 is not a solution.", "es": "Por tanto x = 6 no es solución." }
+      ]
+    },
+    {
+      "id": "algebra-14-e3",
+      "answerType": "number",
+      "prompt": { "en": "How many integers satisfy $x \\ge 2$ and $x \\le 5$?", "es": "¿Cuántos enteros cumplen $x \\ge 2$ y $x \\le 5$?" },
+      "answer": "4",
+      "acceptedAlt": [],
+      "hint": { "en": "List the integers from 2 to 5.", "es": "Lista los enteros del 2 al 5." },
+      "solution": [
+        { "tex": "x \\in \\{2, 3, 4, 5\\}", "en": "The integers in range.", "es": "Los enteros del intervalo." },
+        { "tex": "4 \\text{ values}", "en": "Four of them.", "es": "Cuatro valores." }
+      ]
+    },
+    {
+      "id": "algebra-14-e4",
+      "answerType": "number",
+      "prompt": { "en": "System $x > 0$ and $x > 3$. Enter the boundary value of the combined condition.", "es": "Sistema $x > 0$ y $x > 3$. Escribe el valor frontera de la condición combinada." },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "The stricter condition wins.", "es": "Gana la condición más estricta." },
+      "solution": [
+        { "tex": "x > 0 \\text{ and } x > 3 \\Rightarrow x > 3", "en": "The stricter bound dominates.", "es": "Domina la cota más estricta." },
+        { "tex": "\\text{boundary } = 3", "en": "Boundary at 3.", "es": "Frontera en 3." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 10.5, systems of inequalities; linear programming", "es": "Cap. 10.5, sistemas de inecuaciones; programación lineal" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Sistemas' — sistemas de inecuaciones", "es": "Apartado 'Sistemas' — sistemas de inecuaciones" } }
+  ]
+}

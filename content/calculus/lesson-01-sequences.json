@@ -1,0 +1,84 @@
+{
+  "id": "calculus-01-sequences",
+  "subjectId": "calculus",
+  "order": 1,
+  "estimatedMinutes": 40,
+  "title": { "en": "Sequences & Their Limits", "es": "Sucesiones y sus límites" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Calculus is the mathematics of the **infinite** and the **infinitesimal**, and the gateway to both is the **limit**. We start with the simplest setting: sequences. A **sequence** $a_n$ is an ordered, endless list of numbers indexed by $n = 1, 2, 3, \\dots$ — for instance $a_n = \\tfrac{1}{n}$ produces $1, \\tfrac12, \\tfrac13, \\tfrac14, \\dots$. The central question is what happens **in the long run**, as $n$ grows without bound.",
+        "es": "El cálculo es la matemática de lo **infinito** y lo **infinitesimal**, y la puerta a ambos es el **límite**. Empezamos por el escenario más simple: las sucesiones. Una **sucesión** $a_n$ es una lista ordenada e interminable de números indexada por $n = 1, 2, 3, \\dots$ — por ejemplo $a_n = \\tfrac{1}{n}$ produce $1, \\tfrac12, \\tfrac13, \\tfrac14, \\dots$. La pregunta central es qué ocurre **a la larga**, cuando $n$ crece sin límite."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A sequence **converges** to a limit $L$ if its terms get and stay arbitrarily close to $L$ — written $\\lim_{n\\to\\infty} a_n = L$. So $\\tfrac1n \\to 0$: the terms shrink toward zero without ever quite reaching it. A sequence that does not approach any single value **diverges**, either by growing without bound (like $a_n = n$) or by oscillating (like $a_n = (-1)^n$).",
+        "es": "Una sucesión **converge** a un límite $L$ si sus términos se acercan y permanecen arbitrariamente cerca de $L$ — se escribe $\\lim_{n\\to\\infty} a_n = L$. Así $\\tfrac1n \\to 0$: los términos menguan hacia cero sin llegar a alcanzarlo. Una sucesión que no se aproxima a ningún valor único **diverge**, ya sea creciendo sin límite (como $a_n = n$) u oscilando (como $a_n = (-1)^n$)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Useful limit facts: any $\\tfrac{1}{n^p}$ with $p > 0$ tends to $0$; a geometric sequence $r^n$ tends to $0$ when $|r| < 1$ and diverges when $|r| > 1$. For ratios of polynomials in $n$, the highest powers dominate — divide top and bottom by the largest power to read off the limit, exactly as we will do for functions next.",
+        "es": "Hechos útiles de límites: cualquier $\\tfrac{1}{n^p}$ con $p > 0$ tiende a $0$; una sucesión geométrica $r^n$ tiende a $0$ cuando $|r| < 1$ y diverge cuando $|r| > 1$. Para cocientes de polinomios en $n$, dominan las mayores potencias — divide numerador y denominador por la mayor potencia para leer el límite, igual que haremos con las funciones a continuación."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Find $\\lim_{n\\to\\infty}\\tfrac{2n+1}{n}$. Split: $\\tfrac{2n+1}{n} = 2 + \\tfrac{1}{n}$. As $n\\to\\infty$ the $\\tfrac1n$ vanishes, leaving the limit $2$. Equivalently, divide top and bottom by $n$ — the standard trick for such ratios.",
+        "es": "Halla $\\lim_{n\\to\\infty}\\tfrac{2n+1}{n}$. Separa: $\\tfrac{2n+1}{n} = 2 + \\tfrac{1}{n}$. Cuando $n\\to\\infty$ el $\\tfrac1n$ se anula, dejando el límite $2$. Equivalentemente, divide numerador y denominador por $n$ — el truco estándar para estos cocientes."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "calculus-01-e1",
+      "answerType": "number",
+      "prompt": { "en": "Find $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{1}{n}$.", "es": "Halla $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{1}{n}$." },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "1 divided by ever-larger numbers.", "es": "1 dividido entre números cada vez mayores." },
+      "solution": [ { "tex": "\\tfrac1n \\to 0", "en": "Terms shrink to zero.", "es": "Los términos tienden a cero." } ]
+    },
+    {
+      "id": "calculus-01-e2",
+      "answerType": "number",
+      "prompt": { "en": "Find $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{2n+1}{n}$.", "es": "Halla $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{2n+1}{n}$." },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Split into 2 + 1/n.", "es": "Separa en 2 + 1/n." },
+      "solution": [
+        { "tex": "\\tfrac{2n+1}{n} = 2 + \\tfrac1n", "en": "Rewrite.", "es": "Reescribe." },
+        { "tex": "\\to 2", "en": "The 1/n term vanishes.", "es": "El término 1/n se anula." }
+      ]
+    },
+    {
+      "id": "calculus-01-e3",
+      "answerType": "number",
+      "prompt": { "en": "For $a_n = n^2$, find $a_4$.", "es": "Para $a_n = n^2$, halla $a_4$." },
+      "answer": "16",
+      "acceptedAlt": ["4^2"],
+      "hint": { "en": "Substitute n = 4.", "es": "Sustituye n = 4." },
+      "solution": [ { "tex": "a_4 = 4^2 = 16", "en": "Evaluate.", "es": "Evalúa." } ]
+    },
+    {
+      "id": "calculus-01-e4",
+      "answerType": "number",
+      "prompt": { "en": "Find $\\displaystyle\\lim_{n\\to\\infty} \\left(\\tfrac12\\right)^n$.", "es": "Halla $\\displaystyle\\lim_{n\\to\\infty} \\left(\\tfrac12\\right)^n$." },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Repeatedly halving.", "es": "Reduciendo a la mitad sin parar." },
+      "solution": [ { "tex": "(\\tfrac12)^n \\to 0", "en": "A ratio below 1 decays to 0.", "es": "Una razón menor que 1 decae a 0." } ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 11.1, Sequences", "es": "Cap. 11.1, Sucesiones" } },
+    { "source": "Salas, Etgen & Hille — Calculus: One and Several Variables", "detail": { "en": "Ch. 11, sequences and limits", "es": "Cap. 11, sucesiones y límites" } },
+    { "source": "UOC — Sucesiones y series de números reales (PID_00284286)", "detail": { "en": "Sequences; limits of sequences", "es": "Sucesiones; límites de sucesiones" } }
+  ]
+}

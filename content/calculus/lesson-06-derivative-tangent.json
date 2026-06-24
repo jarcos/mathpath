@@ -1,0 +1,90 @@
+{
+  "id": "calculus-06-derivative-tangent",
+  "subjectId": "calculus",
+  "order": 6,
+  "estimatedMinutes": 45,
+  "title": { "en": "The Derivative & the Tangent", "es": "La derivada y la tangente" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **derivative** answers a deceptively simple question: how fast is a function changing *right now*, at a single instant? It is the **instantaneous rate of change**, and geometrically the **slope of the tangent line** to the graph at a point. Velocity is the derivative of position; marginal cost is the derivative of cost; the gradient that trains a neural network is a derivative.",
+        "es": "La **derivada** responde una pregunta engañosamente simple: ¿con qué rapidez cambia una función *ahora mismo*, en un único instante? Es la **tasa de cambio instantánea**, y geométricamente la **pendiente de la recta tangente** a la gráfica en un punto. La velocidad es la derivada de la posición; el coste marginal es la derivada del coste; el gradiente que entrena una red neuronal es una derivada."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "It is defined as a limit of **average rates of change** (slopes of secant lines) as the interval shrinks to zero: $f'(x) = \\lim_{h\\to 0}\\dfrac{f(x+h) - f(x)}{h}$. As $h\\to 0$, the secant through two nearby points rotates into the tangent at one point. This limit is why we spent so long on limits first.",
+        "es": "Se define como un límite de **tasas medias de cambio** (pendientes de rectas secantes) cuando el intervalo se reduce a cero: $f'(x) = \\lim_{h\\to 0}\\dfrac{f(x+h) - f(x)}{h}$. Cuando $h\\to 0$, la secante por dos puntos cercanos gira hasta la tangente en un punto. Este límite es la razón de habernos detenido tanto en los límites primero."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Computing that limit by hand for $x^2$ gives $\\lim_{h\\to0}\\tfrac{(x+h)^2 - x^2}{h} = \\lim_{h\\to0}(2x + h) = 2x$. This reveals the **power rule**: $\\tfrac{d}{dx}x^n = n\\,x^{n-1}$. So the derivative of $x^2$ is $2x$, of $x^3$ is $3x^2$, and the derivative of any constant is $0$ (a flat line has zero slope).",
+        "es": "Calcular ese límite a mano para $x^2$ da $\\lim_{h\\to0}\\tfrac{(x+h)^2 - x^2}{h} = \\lim_{h\\to0}(2x + h) = 2x$. Esto revela la **regla de la potencia**: $\\tfrac{d}{dx}x^n = n\\,x^{n-1}$. Así la derivada de $x^2$ es $2x$, la de $x^3$ es $3x^2$, y la de cualquier constante es $0$ (una recta horizontal tiene pendiente cero)."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "x^2",
+      "domain": [-3, 3],
+      "caption": {
+        "en": "$y = x^2$. The tangent at $x = 3$ has slope $f'(3) = 2\\cdot 3 = 6$; near the vertex at $x=0$ the slope is $0$ (horizontal tangent). The derivative function $f'(x) = 2x$ records the slope at every point.",
+        "es": "$y = x^2$. La tangente en $x = 3$ tiene pendiente $f'(3) = 2\\cdot 3 = 6$; cerca del vértice en $x=0$ la pendiente es $0$ (tangente horizontal). La función derivada $f'(x) = 2x$ registra la pendiente en cada punto."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — slope at a point", "es": "Ejemplo resuelto — pendiente en un punto" },
+      "content": {
+        "en": "Find the slope of $y = x^2$ at $x = 3$. The derivative is $f'(x) = 2x$, so $f'(3) = 6$. The tangent line through $(3, 9)$ with slope $6$ is $y - 9 = 6(x - 3)$. The derivative turned a curve into a line we can use locally.",
+        "es": "Halla la pendiente de $y = x^2$ en $x = 3$. La derivada es $f'(x) = 2x$, así $f'(3) = 6$. La recta tangente por $(3, 9)$ con pendiente $6$ es $y - 9 = 6(x - 3)$. La derivada convirtió una curva en una recta utilizable localmente."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "calculus-06-e1",
+      "answerType": "expression",
+      "prompt": { "en": "Differentiate $f(x) = x^2$.", "es": "Deriva $f(x) = x^2$." },
+      "answer": "2*x",
+      "acceptedAlt": ["2x"],
+      "hint": { "en": "Power rule: bring down the 2.", "es": "Regla de la potencia: baja el 2." },
+      "solution": [ { "tex": "\\tfrac{d}{dx}x^2 = 2x", "en": "Power rule.", "es": "Regla de la potencia." } ]
+    },
+    {
+      "id": "calculus-06-e2",
+      "answerType": "number",
+      "prompt": { "en": "Find the slope of the tangent to $f(x)=x^2$ at $x = 3$.", "es": "Halla la pendiente de la tangente a $f(x)=x^2$ en $x = 3$." },
+      "answer": "6",
+      "acceptedAlt": ["2*3"],
+      "hint": { "en": "Evaluate f'(3) = 2·3.", "es": "Evalúa f'(3) = 2·3." },
+      "solution": [ { "tex": "f'(x)=2x,\\; f'(3)=6", "en": "Substitute into the derivative.", "es": "Sustituye en la derivada." } ]
+    },
+    {
+      "id": "calculus-06-e3",
+      "answerType": "expression",
+      "prompt": { "en": "Differentiate $f(x) = x^3$.", "es": "Deriva $f(x) = x^3$." },
+      "answer": "3*x^2",
+      "acceptedAlt": ["3x^2"],
+      "hint": { "en": "Power rule with n = 3.", "es": "Regla de la potencia con n = 3." },
+      "solution": [ { "tex": "\\tfrac{d}{dx}x^3 = 3x^2", "en": "Power rule.", "es": "Regla de la potencia." } ]
+    },
+    {
+      "id": "calculus-06-e4",
+      "answerType": "number",
+      "prompt": { "en": "Differentiate the constant $f(x) = 5$.", "es": "Deriva la constante $f(x) = 5$." },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Constants don't change.", "es": "Las constantes no cambian." },
+      "solution": [ { "tex": "\\tfrac{d}{dx} 5 = 0", "en": "Derivative of a constant.", "es": "Derivada de una constante." } ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 2.7 & 3.1, Derivatives and Rates of Change; the power rule", "es": "Cap. 2.7 y 3.1, derivadas y tasas de cambio; regla de la potencia" } },
+    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 3, the derivative", "es": "Cap. 3, la derivada" } },
+    { "source": "UOC — Derivación: el problema de la tangente (PID_00284285)", "detail": { "en": "Derivative at a point; the tangent problem", "es": "Derivada en un punto; el problema de la tangente" } }
+  ]
+}

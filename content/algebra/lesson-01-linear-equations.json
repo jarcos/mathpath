@@ -1,0 +1,127 @@
+{
+  "id": "algebra-01-linear-equations",
+  "subjectId": "algebra",
+  "order": 6,
+  "estimatedMinutes": 45,
+  "title": { "en": "Linear Equations", "es": "Ecuaciones de primer grado" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "An **equation** is a statement that two expressions are equal. To **solve** it is to find every value of the unknown that makes the statement true — its **solutions**. A **linear equation** in one variable is one that can be written $ax + b = 0$ with $a \\neq 0$: the variable appears only to the first power, never squared, rooted, or in a denominator. Such an equation has exactly **one** solution.",
+        "es": "Una **ecuación** afirma que dos expresiones son iguales. **Resolverla** es hallar todo valor de la incógnita que hace cierta la afirmación — sus **soluciones**. Una **ecuación de primer grado** en una variable se puede escribir $ax + b = 0$ con $a \\neq 0$: la variable aparece solo a la primera potencia, nunca al cuadrado, bajo raíz ni en un denominador. Tiene exactamente **una** solución."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two equations are **equivalent** if they have the same solutions. We solve by transforming an equation into ever-simpler equivalent ones, until the variable stands alone. Only two kinds of move preserve equivalence: **(1)** add or subtract the same quantity on both sides, and **(2)** multiply or divide both sides by the same **nonzero** number. Think of a balance scale: whatever you do to one pan, do to the other.",
+        "es": "Dos ecuaciones son **equivalentes** si tienen las mismas soluciones. Resolvemos transformando una ecuación en otras equivalentes cada vez más simples, hasta que la variable quede sola. Solo dos tipos de movimiento conservan la equivalencia: **(1)** sumar o restar la misma cantidad en ambos lados, y **(2)** multiplicar o dividir ambos lados por el mismo número **distinto de cero**. Piensa en una balanza: lo que hagas a un platillo, hazlo al otro."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **strategy** is always the same: gather variable terms on one side and constants on the other, then divide by the coefficient of the variable. For $3x - 5 = 7$: add $5$ to both sides to get $3x = 12$, then divide by $3$ to get $x = 4$. Every linear equation, however tangled, reduces to this skeleton.",
+        "es": "La **estrategia** es siempre la misma: reúne los términos con variable en un lado y las constantes en el otro, y luego divide por el coeficiente de la variable. Para $3x - 5 = 7$: suma $5$ a ambos lados para obtener $3x = 12$, y divide entre $3$ para llegar a $x = 4$. Toda ecuación lineal, por enredada que esté, se reduce a este esquema."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two **special cases** are worth recognizing. If the variable cancels and you are left with a false statement like $0 = 5$, the equation has **no solution**. If you are left with a true statement like $0 = 0$, **every** number is a solution (an identity). These tell you the original was not a genuine first-degree equation in disguise.",
+        "es": "Conviene reconocer dos **casos especiales**. Si la variable se cancela y queda una afirmación falsa como $0 = 5$, la ecuación **no tiene solución**. Si queda una afirmación verdadera como $0 = 0$, **todo** número es solución (una identidad). Esto indica que la original no era una verdadera ecuación de primer grado."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "2*x - 4",
+      "domain": [-3, 7],
+      "caption": {
+        "en": "Geometrically, solving $2x - 4 = 0$ means finding where the line $y = 2x - 4$ crosses the x-axis. That crossing — the **root** — is at $x = 2$. Every linear equation corresponds to one such intercept of a straight line.",
+        "es": "Geométricamente, resolver $2x - 4 = 0$ es hallar dónde la recta $y = 2x - 4$ cruza el eje x. Ese cruce — la **raíz** — está en $x = 2$. Toda ecuación lineal corresponde a un corte así de una recta."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — variables on both sides", "es": "Ejemplo resuelto — variable en ambos lados" },
+      "content": {
+        "en": "Solve $5x - 3 = 2x + 9$. Subtract $2x$: $3x - 3 = 9$. Add $3$: $3x = 12$. Divide by $3$: $x = 4$. **Check:** left $5(4)-3 = 17$, right $2(4)+9 = 17$ ✓.",
+        "es": "Resuelve $5x - 3 = 2x + 9$. Resta $2x$: $3x - 3 = 9$. Suma $3$: $3x = 12$. Divide entre $3$: $x = 4$. **Comprobación:** izquierda $5(4)-3 = 17$, derecha $2(4)+9 = 17$ ✓."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-01-e1",
+      "answerType": "number",
+      "prompt": { "en": "Solve for x:  $2x - 4 = 0$", "es": "Resuelve para x:  $2x - 4 = 0$" },
+      "answer": "2",
+      "acceptedAlt": ["4/2"],
+      "hint": { "en": "Add 4 to both sides, then divide by 2.", "es": "Suma 4 a ambos lados y luego divide entre 2." },
+      "solution": [
+        { "tex": "2x - 4 = 0", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
+        { "tex": "2x = 4", "en": "Add 4 to both sides.", "es": "Suma 4 a ambos lados." },
+        { "tex": "x = 2", "en": "Divide both sides by 2.", "es": "Divide ambos lados entre 2." }
+      ]
+    },
+    {
+      "id": "algebra-01-e2",
+      "answerType": "number",
+      "prompt": { "en": "Solve for x:  $3x + 6 = 0$", "es": "Resuelve para x:  $3x + 6 = 0$" },
+      "answer": "-2",
+      "acceptedAlt": ["-6/3"],
+      "hint": { "en": "Subtract 6 from both sides first.", "es": "Primero resta 6 a ambos lados." },
+      "solution": [
+        { "tex": "3x + 6 = 0", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
+        { "tex": "3x = -6", "en": "Subtract 6 from both sides.", "es": "Resta 6 a ambos lados." },
+        { "tex": "x = -2", "en": "Divide both sides by 3.", "es": "Divide ambos lados entre 3." }
+      ]
+    },
+    {
+      "id": "algebra-01-e3",
+      "answerType": "number",
+      "prompt": { "en": "Solve for x:  $\\tfrac{1}{2}x - 3 = 1$", "es": "Resuelve para x:  $\\tfrac{1}{2}x - 3 = 1$" },
+      "answer": "8",
+      "acceptedAlt": ["16/2"],
+      "hint": { "en": "Add 3 to both sides, then multiply by 2.", "es": "Suma 3 a ambos lados y luego multiplica por 2." },
+      "solution": [
+        { "tex": "\\tfrac{1}{2}x - 3 = 1", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
+        { "tex": "\\tfrac{1}{2}x = 4", "en": "Add 3 to both sides.", "es": "Suma 3 a ambos lados." },
+        { "tex": "x = 8", "en": "Multiply both sides by 2.", "es": "Multiplica ambos lados por 2." }
+      ]
+    },
+    {
+      "id": "algebra-01-e4",
+      "answerType": "number",
+      "prompt": { "en": "Solve for x:  $5 - 2x = 11$", "es": "Resuelve para x:  $5 - 2x = 11$" },
+      "answer": "-3",
+      "acceptedAlt": ["6/-2"],
+      "hint": { "en": "Move the 5 across first, watch the sign of the x term.", "es": "Primero pasa el 5 al otro lado y cuida el signo del término en x." },
+      "solution": [
+        { "tex": "5 - 2x = 11", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
+        { "tex": "-2x = 6", "en": "Subtract 5 from both sides.", "es": "Resta 5 a ambos lados." },
+        { "tex": "x = -3", "en": "Divide both sides by -2.", "es": "Divide ambos lados entre -2." }
+      ]
+    },
+    {
+      "id": "algebra-01-e5",
+      "answerType": "number",
+      "prompt": { "en": "Solve for x:  $5x - 3 = 2x + 9$", "es": "Resuelve para x:  $5x - 3 = 2x + 9$" },
+      "answer": "4",
+      "acceptedAlt": ["12/3"],
+      "hint": { "en": "Gather x terms on one side.", "es": "Reúne los términos en x en un lado." },
+      "solution": [
+        { "tex": "5x - 3 = 2x + 9", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
+        { "tex": "3x = 12", "en": "Subtract 2x and add 3.", "es": "Resta 2x y suma 3." },
+        { "tex": "x = 4", "en": "Divide by 3.", "es": "Divide entre 3." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.5, Equations", "es": "Cap. 1.5, Ecuaciones" } },
+    { "source": "Long — Painless Algebra", "detail": { "en": "Solving linear equations", "es": "Resolución de ecuaciones lineales" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Ecuaciones' — ecuaciones de primer grado", "es": "Apartado 'Ecuaciones' — ecuaciones de primer grado" } },
+    { "source": "Pólya — How to Solve It", "detail": { "en": "Devising and checking a plan", "es": "Idear y comprobar un plan" } }
+  ]
+}

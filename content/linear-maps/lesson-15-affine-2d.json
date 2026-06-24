@@ -1,0 +1,79 @@
+{
+  "id": "linmaps-15-affine",
+  "subjectId": "linear-maps",
+  "order": 15,
+  "estimatedMinutes": 40,
+  "title": { "en": "Affine Transformations in 2D", "es": "Transformaciones afines en 2D" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "An **affine transformation** is a linear map **followed by a translation**: $T(\\mathbf{x}) = A\\mathbf{x} + \\mathbf{b}$. This is the general workhorse of 2D graphics — it covers rotations, scalings, shears, reflections, and slides, all in one form. In one dimension it looks exactly like the familiar line $T(x) = ax + b$.",
+        "es": "Una **transformación afín** es una aplicación lineal **seguida de una traslación**: $T(\\mathbf{x}) = A\\mathbf{x} + \\mathbf{b}$. Es el caballo de batalla general de los gráficos 2D — cubre rotaciones, escalados, cizallas, reflexiones y deslizamientos, todo en una forma. En una dimensión se ve exactamente como la recta familiar $T(x) = ax + b$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Affine maps **preserve straight lines, parallelism, and ratios of lengths along a line** — parallel lines stay parallel, midpoints stay midpoints. What they do **not** generally preserve is the origin (the $+\\mathbf{b}$ moves it), angles, or absolute lengths. Because of the translation part, an affine map is **not linear** unless $\\mathbf{b} = \\mathbf{0}$.",
+        "es": "Las aplicaciones afines **conservan las rectas, el paralelismo y las razones de longitudes a lo largo de una recta** — las paralelas siguen paralelas, los puntos medios siguen siendo medios. Lo que **no** conservan en general es el origen (el $+\\mathbf{b}$ lo mueve), los ángulos o las longitudes absolutas. Por la parte de traslación, una aplicación afín **no es lineal** salvo que $\\mathbf{b} = \\mathbf{0}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Homogeneous coordinates absorb affine maps neatly: a single $3\\times 3$ matrix holds both the linear part $A$ (top-left) and the translation $\\mathbf{b}$ (last column). This is exactly the representation used to place and orient every object in a 2D scene.",
+        "es": "Las coordenadas homogéneas absorben las aplicaciones afines con elegancia: una única matriz $3\\times 3$ contiene tanto la parte lineal $A$ (arriba a la izquierda) como la traslación $\\mathbf{b}$ (última columna). Es exactamente la representación usada para colocar y orientar cada objeto en una escena 2D."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The 1D affine map $T(x) = 2x + 1$: $T(3) = 2\\cdot 3 + 1 = 7$. Its 'linear part' is $2x$ and its translation is $+1$. Note $T(0) = 1 \\neq 0$ — the translation moves the origin, so it is affine but not linear. And $T(x)=3x-2$ gives $T(0) = -2$.",
+        "es": "La aplicación afín 1D $T(x) = 2x + 1$: $T(3) = 2\\cdot 3 + 1 = 7$. Su 'parte lineal' es $2x$ y su traslación $+1$. Nota $T(0) = 1 \\neq 0$ — la traslación mueve el origen, así que es afín pero no lineal. Y $T(x)=3x-2$ da $T(0) = -2$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-15-e1",
+      "answerType": "text",
+      "prompt": { "en": "An affine transformation is a linear map followed by a ___ (one word).", "es": "Una transformación afín es una aplicación lineal seguida de una ___ (una palabra)." },
+      "answer": "translation",
+      "acceptedAlt": ["traslación", "traslacion"],
+      "hint": { "en": "The +b part.", "es": "La parte +b." },
+      "solution": [ { "tex": "T(x)=Ax+b", "en": "Plus a translation.", "es": "Más una traslación." } ]
+    },
+    {
+      "id": "linmaps-15-e2",
+      "answerType": "number",
+      "prompt": { "en": "For the affine map $T(x)=2x+1$, find $T(3)$.", "es": "Para la aplicación afín $T(x)=2x+1$, halla $T(3)$." },
+      "answer": "7",
+      "acceptedAlt": ["2*3+1"],
+      "hint": { "en": "Substitute 3.", "es": "Sustituye 3." },
+      "solution": [ { "tex": "2\\cdot3 + 1 = 7", "en": "Evaluate.", "es": "Evalúa." } ]
+    },
+    {
+      "id": "linmaps-15-e3",
+      "answerType": "text",
+      "prompt": { "en": "Do affine transformations keep the origin fixed in general? (yes / no)", "es": "¿Las transformaciones afines dejan fijo el origen en general? (sí / no)" },
+      "answer": "no",
+      "acceptedAlt": ["no"],
+      "hint": { "en": "The translation moves it.", "es": "La traslación lo mueve." },
+      "solution": [ { "tex": "T(\\mathbf0)=\\mathbf b", "en": "Origin moves unless b = 0.", "es": "El origen se mueve salvo que b = 0." } ]
+    },
+    {
+      "id": "linmaps-15-e4",
+      "answerType": "number",
+      "prompt": { "en": "For $T(x)=3x-2$, find $T(0)$.", "es": "Para $T(x)=3x-2$, halla $T(0)$." },
+      "answer": "-2",
+      "acceptedAlt": ["3*0-2"],
+      "hint": { "en": "Substitute 0.", "es": "Sustituye 0." },
+      "solution": [ { "tex": "3\\cdot0 - 2 = -2", "en": "The translation part.", "es": "La parte de traslación." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Transformaciones geométricas (PID_00269008)", "detail": { "en": "Affine transformations in 2D", "es": "Transformaciones afines en 2D" } }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "linmaps-06-eigenvalues",
+  "subjectId": "linear-maps",
+  "order": 6,
+  "estimatedMinutes": 50,
+  "title": { "en": "Eigenvalues & Eigenvectors", "es": "Valores y vectores propios" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Most vectors change direction when a matrix acts on them. But for special directions, the matrix only stretches or shrinks — without rotating. A nonzero vector $v$ with $A v = \\lambda v$ is an **eigenvector**, and the scalar $\\lambda$ is its **eigenvalue**. Eigen- means 'own' in German: these are the matrix's *own* directions.",
+        "es": "La mayoría de los vectores cambian de dirección cuando una matriz actúa sobre ellos. Pero para direcciones especiales, la matriz solo estira o encoge — sin rotar. Un vector no nulo $v$ con $A v = \\lambda v$ es un **vector propio (autovector)**, y el escalar $\\lambda$ su **valor propio (autovalor)**. *Eigen-* significa 'propio' en alemán: son las direcciones *propias* de la matriz."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Eigenvalues are the most important numbers attached to a matrix. They reveal stability of dynamical systems, the principal axes of data (PCA), the resonant frequencies of structures, and the behavior of Markov chains and PageRank. They are found by solving the **characteristic equation** $\\det(A - \\lambda I) = 0$ — the values of $\\lambda$ that make $A - \\lambda I$ singular.",
+        "es": "Los autovalores son los números más importantes asociados a una matriz. Revelan la estabilidad de sistemas dinámicos, los ejes principales de los datos (PCA), las frecuencias de resonancia de estructuras y el comportamiento de cadenas de Markov y del PageRank. Se hallan resolviendo la **ecuación característica** $\\det(A - \\lambda I) = 0$ — los valores de $\\lambda$ que hacen singular a $A - \\lambda I$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two shortcuts make small cases easy. For a **triangular** (or diagonal) matrix, the eigenvalues are simply the **diagonal entries**. And in general, the eigenvalues satisfy: their **sum equals the trace** and their **product equals the determinant** — fast checks on any computation.",
+        "es": "Dos atajos facilitan los casos pequeños. Para una matriz **triangular** (o diagonal), los autovalores son simplemente los **elementos de la diagonal**. Y en general, los autovalores cumplen: su **suma es la traza** y su **producto es el determinante** — comprobaciones rápidas de cualquier cálculo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Eigenvalues of $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$? It is triangular, so read the diagonal: $\\lambda = 2$ and $\\lambda = 3$. Check: their sum $5$ equals the trace, and their product $6$ equals the determinant ✓.",
+        "es": "¿Autovalores de $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$? Es triangular, así que lee la diagonal: $\\lambda = 2$ y $\\lambda = 3$. Comprueba: su suma $5$ es la traza, y su producto $6$ el determinante ✓."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-06-e1",
+      "answerType": "text",
+      "prompt": { "en": "In $Av = \\lambda v$, the scalar $\\lambda$ is called an ___ (one word).", "es": "En $Av = \\lambda v$, el escalar $\\lambda$ se llama ___ (una palabra)." },
+      "answer": "eigenvalue",
+      "acceptedAlt": ["autovalor", "valor propio", "valor-propio"],
+      "hint": { "en": "Eigen-value.", "es": "Valor propio." },
+      "solution": [ { "tex": "Av = \\lambda v", "en": "λ is an eigenvalue.", "es": "λ es un autovalor." } ]
+    },
+    {
+      "id": "linmaps-06-e2",
+      "answerType": "set",
+      "prompt": { "en": "Eigenvalues of $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?", "es": "¿Autovalores de $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?" },
+      "answer": "2, 3",
+      "acceptedAlt": ["3, 2"],
+      "hint": { "en": "Diagonal matrix: read the diagonal.", "es": "Matriz diagonal: lee la diagonal." },
+      "solution": [ { "tex": "\\lambda = 2, 3", "en": "Diagonal entries.", "es": "Elementos de la diagonal." } ]
+    },
+    {
+      "id": "linmaps-06-e3",
+      "answerType": "set",
+      "prompt": { "en": "Eigenvalues of the triangular $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$?", "es": "¿Autovalores de la triangular $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$?" },
+      "answer": "2, 3",
+      "acceptedAlt": ["3, 2"],
+      "hint": { "en": "Triangular: diagonal entries.", "es": "Triangular: elementos de la diagonal." },
+      "solution": [ { "tex": "\\lambda = 2, 3", "en": "From the diagonal.", "es": "De la diagonal." } ]
+    },
+    {
+      "id": "linmaps-06-e4",
+      "answerType": "number",
+      "prompt": { "en": "The characteristic equation sets $\\det(A-\\lambda I)$ equal to ___?", "es": "La ecuación característica iguala $\\det(A-\\lambda I)$ a ___?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "A − λI must be singular.", "es": "A − λI debe ser singular." },
+      "solution": [ { "tex": "\\det(A-\\lambda I) = 0", "en": "Characteristic equation.", "es": "Ecuación característica." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Eigenvalues and eigenvectors", "es": "Valores y vectores propios" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 6.1, introduction to eigenvalues", "es": "Cap. 6.1, introducción a los autovalores" } }
+  ]
+}

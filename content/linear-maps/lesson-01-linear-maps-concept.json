@@ -1,0 +1,80 @@
+{
+  "id": "linmaps-01-concept",
+  "subjectId": "linear-maps",
+  "order": 1,
+  "estimatedMinutes": 40,
+  "title": { "en": "Linear Maps: The Concept", "es": "Aplicaciones lineales: el concepto" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **linear map** (or linear transformation) is a function $T$ between vector spaces that **respects the vector operations**: $T(u + v) = T(u) + T(v)$ and $T(c\\,v) = c\\,T(v)$. In words, it doesn't matter whether you combine vectors first and then transform, or transform first and then combine — the result is the same. This is the single property that makes linear algebra *linear*.",
+        "es": "Una **aplicación lineal** (o transformación lineal) es una función $T$ entre espacios vectoriales que **respeta las operaciones vectoriales**: $T(u + v) = T(u) + T(v)$ y $T(c\\,v) = c\\,T(v)$. En palabras, da igual combinar los vectores y luego transformar, o transformar y luego combinar — el resultado es el mismo. Esta única propiedad es lo que hace *lineal* al álgebra lineal."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "An immediate consequence: a linear map must send the zero vector to the zero vector, $T(\\mathbf{0}) = \\mathbf{0}$. This gives a quick test. $T(x) = 2x$ is linear (it scales). But $T(x) = x + 1$ is **not** linear — it moves the origin to $1$, violating $T(0)=0$. Maps like $x+1$ are *affine*, a close cousin we study later.",
+        "es": "Una consecuencia inmediata: una aplicación lineal debe enviar el vector cero al vector cero, $T(\\mathbf{0}) = \\mathbf{0}$. Esto da una prueba rápida. $T(x) = 2x$ es lineal (escala). Pero $T(x) = x + 1$ **no** es lineal — mueve el origen a $1$, violando $T(0)=0$. Las aplicaciones como $x+1$ son *afines*, una prima cercana que estudiaremos después."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Linear maps are everywhere: rotations, reflections, projections, scalings, and — crucially for machine learning — every layer of a neural network applies a linear map (a matrix multiply) before a nonlinearity. Understanding linear maps is understanding the backbone of these systems.",
+        "es": "Las aplicaciones lineales están por todas partes: rotaciones, reflexiones, proyecciones, escalados y — crucial para el aprendizaje automático — cada capa de una red neuronal aplica una aplicación lineal (una multiplicación por matriz) antes de una no linealidad. Entender las aplicaciones lineales es entender el esqueleto de estos sistemas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Is $T(x) = 3x$ linear? Check: $T(a+b) = 3(a+b) = 3a + 3b = T(a)+T(b)$ ✓, and $T(0) = 0$ ✓. Yes. Evaluate $T(2) = 6$. Is $T(x) = x+1$ linear? $T(0) = 1 \\neq 0$, so no.",
+        "es": "¿Es $T(x) = 3x$ lineal? Comprueba: $T(a+b) = 3(a+b) = 3a + 3b = T(a)+T(b)$ ✓, y $T(0) = 0$ ✓. Sí. Evalúa $T(2) = 6$. ¿Es $T(x) = x+1$ lineal? $T(0) = 1 \\neq 0$, así que no."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-01-e1",
+      "answerType": "text",
+      "prompt": { "en": "Is $T(x) = 2x$ a linear map? (yes / no)", "es": "¿Es $T(x) = 2x$ una aplicación lineal? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Check T(0)=0 and scaling.", "es": "Comprueba T(0)=0 y el escalado." },
+      "solution": [ { "tex": "T(0)=0,\\; T(cu)=cT(u)", "en": "Both conditions hold.", "es": "Se cumplen ambas condiciones." } ]
+    },
+    {
+      "id": "linmaps-01-e2",
+      "answerType": "text",
+      "prompt": { "en": "Is $T(x) = x + 1$ a linear map? (yes / no)", "es": "¿Es $T(x) = x + 1$ una aplicación lineal? (sí / no)" },
+      "answer": "no",
+      "acceptedAlt": ["no"],
+      "hint": { "en": "What is T(0)?", "es": "¿Cuánto vale T(0)?" },
+      "solution": [ { "tex": "T(0) = 1 \\neq 0", "en": "Fails T(0)=0 → not linear.", "es": "Falla T(0)=0 → no lineal." } ]
+    },
+    {
+      "id": "linmaps-01-e3",
+      "answerType": "number",
+      "prompt": { "en": "For the linear map $T(x) = 3x$, find $T(2)$.", "es": "Para la aplicación lineal $T(x) = 3x$, halla $T(2)$." },
+      "answer": "6",
+      "acceptedAlt": ["3*2"],
+      "hint": { "en": "Substitute 2.", "es": "Sustituye 2." },
+      "solution": [ { "tex": "T(2) = 3\\cdot 2 = 6", "en": "Evaluate.", "es": "Evalúa." } ]
+    },
+    {
+      "id": "linmaps-01-e4",
+      "answerType": "number",
+      "prompt": { "en": "Every linear map sends the zero vector to which vector? (its single component)", "es": "Toda aplicación lineal envía el vector cero a qué vector? (su componente)" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "T(0) = ?", "es": "T(0) = ?" },
+      "solution": [ { "tex": "T(\\mathbf{0}) = \\mathbf{0}", "en": "Always zero.", "es": "Siempre cero." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Concept of a linear map between vector spaces", "es": "Concepto de aplicación lineal entre espacios vectoriales" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 8.1, the idea of a linear transformation", "es": "Cap. 8.1, la idea de transformación lineal" } }
+  ]
+}

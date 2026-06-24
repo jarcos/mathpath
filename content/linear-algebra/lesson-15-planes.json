@@ -1,0 +1,80 @@
+{
+  "id": "linalg-15-planes",
+  "subjectId": "linear-algebra",
+  "order": 15,
+  "estimatedMinutes": 40,
+  "title": { "en": "Planes in Space", "es": "Planos en el espacio" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "In $\\mathbb{R}^3$ the analog of a line is a **plane**, with implicit equation $Ax + By + Cz = D$. The vector of coefficients $(A, B, C)$ is the **normal vector** — it points perpendicular to the plane and completely determines the plane's orientation. So $x + 2y + 3z = 0$ has normal $(1, 2, 3)$.",
+        "es": "En $\\mathbb{R}^3$ el análogo de una recta es un **plano**, con ecuación implícita $Ax + By + Cz = D$. El vector de coeficientes $(A, B, C)$ es el **vector normal** — apunta perpendicular al plano y determina por completo su orientación. Así $x + 2y + 3z = 0$ tiene normal $(1, 2, 3)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The constant $D$ shifts the plane away from the origin: $D = 0$ means the plane passes **through the origin** (a subspace). A point lies on the plane exactly when it satisfies the equation. The normal vector is what lets us measure angles between planes and distances from points — the workhorse of 3D geometry and computer graphics.",
+        "es": "La constante $D$ desplaza el plano respecto al origen: $D = 0$ significa que el plano pasa **por el origen** (un subespacio). Un punto está en el plano justo cuando cumple la ecuación. El vector normal es lo que permite medir ángulos entre planos y distancias desde puntos — el caballo de batalla de la geometría 3D y los gráficos por computador."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **coordinate planes** are the simplest: $z = 0$ is the $xy$-plane (it contains the $x$- and $y$-axes), $y = 0$ the $xz$-plane, $x = 0$ the $yz$-plane. Two non-parallel planes meet in a line; three generic planes meet in a single point — the geometry behind a $3\\times3$ system.",
+        "es": "Los **planos coordenados** son los más simples: $z = 0$ es el plano $xy$ (contiene los ejes $x$ e $y$), $y = 0$ el plano $xz$, $x = 0$ el plano $yz$. Dos planos no paralelos se cortan en una recta; tres planos genéricos se cortan en un punto — la geometría tras un sistema $3\\times3$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Does $(0,0,0)$ lie on $x + 2y + 3z = 0$? Substitute: $0 + 0 + 0 = 0$ ✓ — yes, the plane passes through the origin. Its normal vector is $(1, 2, 3)$, read straight off the coefficients.",
+        "es": "¿Está $(0,0,0)$ en $x + 2y + 3z = 0$? Sustituye: $0 + 0 + 0 = 0$ ✓ — sí, el plano pasa por el origen. Su vector normal es $(1, 2, 3)$, leído directamente de los coeficientes."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-15-e1",
+      "answerType": "number",
+      "prompt": { "en": "First component of the normal to $x + 2y + 3z = 0$?", "es": "¿Primera componente del normal a $x + 2y + 3z = 0$?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "Coefficients give the normal.", "es": "Los coeficientes dan el normal." },
+      "solution": [ { "tex": "(A,B,C) = (1,2,3)", "en": "First is 1.", "es": "El primero es 1." } ]
+    },
+    {
+      "id": "linalg-15-e2",
+      "answerType": "text",
+      "prompt": { "en": "Does $(0,0,0)$ satisfy $x + 2y + 3z = 0$? (yes / no)", "es": "¿Cumple $(0,0,0)$ la ecuación $x + 2y + 3z = 0$? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Substitute zeros.", "es": "Sustituye ceros." },
+      "solution": [ { "tex": "0 + 0 + 0 = 0", "en": "Yes, the plane passes through the origin.", "es": "Sí, el plano pasa por el origen." } ]
+    },
+    {
+      "id": "linalg-15-e3",
+      "answerType": "number",
+      "prompt": { "en": "On the plane $z = 5$, what is $z$ when $x = y = 0$?", "es": "En el plano $z = 5$, ¿cuánto vale $z$ cuando $x = y = 0$?" },
+      "answer": "5",
+      "acceptedAlt": [],
+      "hint": { "en": "z is fixed.", "es": "z es fijo." },
+      "solution": [ { "tex": "z = 5", "en": "Constant plane.", "es": "Plano constante." } ]
+    },
+    {
+      "id": "linalg-15-e4",
+      "answerType": "text",
+      "prompt": { "en": "The plane $z = 0$ is which coordinate plane? (two letters, e.g. xy)", "es": "El plano $z = 0$ es qué plano coordenado? (dos letras, p. ej. xy)" },
+      "answer": "xy",
+      "acceptedAlt": ["yx"],
+      "hint": { "en": "It contains the x and y axes.", "es": "Contiene los ejes x e y." },
+      "solution": [ { "tex": "z = 0 \\to xy\\text{-plane}", "en": "The xy-plane.", "es": "El plano xy." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 1 & 4, planes, normals and the dot product", "es": "Cap. 1 y 4, planos, normales y producto escalar" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Equations of a plane in space", "es": "Ecuaciones de un plano en el espacio" } }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "calculus-08-monotonicity-extrema",
+  "subjectId": "calculus",
+  "order": 8,
+  "estimatedMinutes": 45,
+  "title": { "en": "Monotonicity & Extrema", "es": "Monotonía y extremos" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The derivative is a lens for understanding shape. Its **sign** tells you direction: where $f' > 0$ the function is **increasing**, where $f' < 0$ it is **decreasing**. The places where the behavior turns around — peaks and valleys — are the **extrema**, and they are where the search for \"the best\" outcome (maximum profit, minimum cost, shortest path) always begins.",
+        "es": "La derivada es una lente para entender la forma. Su **signo** indica el sentido: donde $f' > 0$ la función es **creciente**, donde $f' < 0$ es **decreciente**. Los puntos donde el comportamiento se invierte — cimas y valles — son los **extremos**, y son donde empieza siempre la búsqueda de \"lo mejor\" (máximo beneficio, mínimo coste, camino más corto)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "At a smooth peak or valley the tangent is horizontal, so $f'(x) = 0$. Such points are **critical points** — candidates for extrema. To classify a candidate, use the **second derivative**: if $f'' > 0$ the curve is concave up, giving a **minimum**; if $f'' < 0$ it is concave down, a **maximum**. (You can also check the sign of $f'$ on either side.)",
+        "es": "En una cima o valle suave la tangente es horizontal, así $f'(x) = 0$. Esos puntos son **puntos críticos** — candidatos a extremo. Para clasificar un candidato, usa la **segunda derivada**: si $f'' > 0$ la curva es cóncava hacia arriba, dando un **mínimo**; si $f'' < 0$ es cóncava hacia abajo, un **máximo**. (También puedes mirar el signo de $f'$ a cada lado.)"
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This is the engine of **optimization**, the most applied part of calculus and the heart of how machine-learning models are trained: gradient descent walks downhill by following $-f'$ toward a minimum of a loss function. The same logic that finds the lowest point of a parabola finds the best parameters of a model.",
+        "es": "Este es el motor de la **optimización**, la parte más aplicada del cálculo y el corazón de cómo se entrenan los modelos de aprendizaje automático: el descenso de gradiente baja siguiendo $-f'$ hacia un mínimo de una función de pérdida. La misma lógica que halla el punto más bajo de una parábola halla los mejores parámetros de un modelo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — find and classify", "es": "Ejemplo resuelto — hallar y clasificar" },
+      "content": {
+        "en": "For $f(x) = x^2 - 4x + 3$: $f'(x) = 2x - 4$. Set $f'(x) = 0$: $x = 2$, the critical point. Second derivative $f''(x) = 2 > 0$, so it is a **minimum**. Its value is $f(2) = -1$ — exactly the vertex of the parabola, now found by calculus.",
+        "es": "Para $f(x) = x^2 - 4x + 3$: $f'(x) = 2x - 4$. Iguala $f'(x) = 0$: $x = 2$, el punto crítico. Segunda derivada $f''(x) = 2 > 0$, así es un **mínimo**. Su valor es $f(2) = -1$ — justo el vértice de la parábola, ahora hallado con cálculo."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "calculus-08-e1",
+      "answerType": "number",
+      "prompt": { "en": "Find the critical point of $f(x)=x^2-4x+3$.", "es": "Halla el punto crítico de $f(x)=x^2-4x+3$." },
+      "answer": "2",
+      "acceptedAlt": ["4/2"],
+      "hint": { "en": "Solve f'(x) = 2x − 4 = 0.", "es": "Resuelve f'(x) = 2x − 4 = 0." },
+      "solution": [ { "tex": "2x - 4 = 0 \\Rightarrow x = 2", "en": "Set the derivative to zero.", "es": "Iguala la derivada a cero." } ]
+    },
+    {
+      "id": "calculus-08-e2",
+      "answerType": "number",
+      "prompt": { "en": "At a local extremum, what is the value of $f'(x)$?", "es": "En un extremo local, ¿cuánto vale $f'(x)$?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "The tangent is horizontal.", "es": "La tangente es horizontal." },
+      "solution": [ { "tex": "f'(x) = 0", "en": "Horizontal tangent.", "es": "Tangente horizontal." } ]
+    },
+    {
+      "id": "calculus-08-e3",
+      "answerType": "text",
+      "prompt": { "en": "Is the critical point of $f(x)=x^2-4x+3$ a minimum or maximum?", "es": "¿El punto crítico de $f(x)=x^2-4x+3$ es un mínimo o un máximo?" },
+      "answer": "minimum",
+      "acceptedAlt": ["min", "mínimo", "minimo"],
+      "hint": { "en": "The parabola opens upward (f'' > 0).", "es": "La parábola abre hacia arriba (f'' > 0)." },
+      "solution": [ { "tex": "f''(x) = 2 > 0", "en": "Positive second derivative → minimum.", "es": "Segunda derivada positiva → mínimo." } ]
+    },
+    {
+      "id": "calculus-08-e4",
+      "answerType": "number",
+      "prompt": { "en": "Find the critical point of $f(x)=x^2-6x+1$.", "es": "Halla el punto crítico de $f(x)=x^2-6x+1$." },
+      "answer": "3",
+      "acceptedAlt": ["6/2"],
+      "hint": { "en": "Solve 2x − 6 = 0.", "es": "Resuelve 2x − 6 = 0." },
+      "solution": [ { "tex": "2x - 6 = 0 \\Rightarrow x = 3", "en": "Set the derivative to zero.", "es": "Iguala la derivada a cero." } ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 4.1–4.3, Maximum/Minimum Values; derivatives and shape", "es": "Cap. 4.1–4.3, máximos y mínimos; derivadas y forma" } },
+    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 4, applications of the derivative", "es": "Cap. 4, aplicaciones de la derivada" } },
+    { "source": "UOC — Derivación: el problema de la tangente (PID_00284285)", "detail": { "en": "Local extrema; curve sketching", "es": "Extremos locales; esbozo de gráficas" } }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "id": "algebra-17-factoring-polynomials",
+  "subjectId": "algebra",
+  "order": 15,
+  "estimatedMinutes": 45,
+  "title": { "en": "Factoring Polynomials", "es": "Descomposición de polinomios" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Factoring** rewrites a polynomial as a **product** of simpler polynomials — the reverse of expanding. It is the master key to solving polynomial equations, because of the zero-product property: once you have $(x-r)(x-s) = 0$, the roots are immediate. A skilled solver scans for several recognizable patterns in order.",
+        "es": "**Factorizar** reescribe un polinomio como **producto** de polinomios más simples — lo inverso de desarrollar. Es la llave maestra para resolver ecuaciones polinómicas, por la propiedad del producto nulo: una vez tienes $(x-r)(x-s) = 0$, las raíces son inmediatas. Quien resuelve con destreza busca varios patrones reconocibles en orden."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**(1) Common factor first.** Always pull out the greatest factor shared by all terms: $2x^2 + 4x = 2x(x + 2)$. This simplifies everything that follows and is the step most often skipped.",
+        "es": "**(1) Factor común primero.** Saca siempre el mayor factor compartido por todos los términos: $2x^2 + 4x = 2x(x + 2)$. Esto simplifica todo lo que sigue y es el paso que más se olvida."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**(2) Difference of squares.** $a^2 - b^2 = (a-b)(a+b)$, so $x^2 - 9 = (x-3)(x+3)$. **(3) Trinomials** $x^2 + px + q$: look for two numbers multiplying to $q$ and adding to $p$, then write $(x + m)(x + n)$. For $x^2 + 5x + 6$, the pair $2$ and $3$ gives $(x+2)(x+3)$.",
+        "es": "**(2) Diferencia de cuadrados.** $a^2 - b^2 = (a-b)(a+b)$, así $x^2 - 9 = (x-3)(x+3)$. **(3) Trinomios** $x^2 + px + q$: busca dos números que multipliquen $q$ y sumen $p$, y escribe $(x + m)(x + n)$. Para $x^2 + 5x + 6$, la pareja $2$ y $3$ da $(x+2)(x+3)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**(4) Ruffini's rule (synthetic division)** handles higher degrees: test a candidate root $r$ (a divisor of the constant term); if the remainder is zero, $(x - r)$ is a factor and Ruffini hands you the quotient to factor further. This connects directly to roots: each linear factor $(x - r)$ corresponds to a root $r$, by the **Factor Theorem**.",
+        "es": "**(4) Regla de Ruffini (división sintética)** maneja grados altos: prueba una raíz candidata $r$ (un divisor del término independiente); si el resto es cero, $(x - r)$ es factor y Ruffini te da el cociente para seguir factorizando. Esto conecta directamente con las raíces: cada factor lineal $(x - r)$ corresponde a una raíz $r$, por el **Teorema del Factor**."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — factor to find roots", "es": "Ejemplo resuelto — factorizar para hallar raíces" },
+      "content": {
+        "en": "Solve $x^2 - x - 6 = 0$. Seek two numbers multiplying to $-6$ and adding to $-1$: that's $-3$ and $+2$. So $(x-3)(x+2) = 0$, giving roots $x = 3$ and $x = -2$. **Check:** $3^2 - 3 - 6 = 0$ ✓.",
+        "es": "Resuelve $x^2 - x - 6 = 0$. Busca dos números que multipliquen $-6$ y sumen $-1$: son $-3$ y $+2$. Así $(x-3)(x+2) = 0$, dando raíces $x = 3$ y $x = -2$. **Comprobación:** $3^2 - 3 - 6 = 0$ ✓."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-17-e1",
+      "answerType": "expression",
+      "prompt": { "en": "Factor:  $x^2 - 9$", "es": "Factoriza:  $x^2 - 9$" },
+      "answer": "(x-3)*(x+3)",
+      "acceptedAlt": ["(x+3)*(x-3)"],
+      "hint": { "en": "Difference of squares.", "es": "Diferencia de cuadrados." },
+      "solution": [
+        { "tex": "x^2 - 9 = x^2 - 3^2", "en": "Recognize the squares.", "es": "Reconoce los cuadrados." },
+        { "tex": "= (x-3)(x+3)", "en": "Apply the formula.", "es": "Aplica la fórmula." }
+      ]
+    },
+    {
+      "id": "algebra-17-e2",
+      "answerType": "expression",
+      "prompt": { "en": "Factor:  $x^2 + 5x + 6$", "es": "Factoriza:  $x^2 + 5x + 6$" },
+      "answer": "(x+2)*(x+3)",
+      "acceptedAlt": ["(x+3)*(x+2)"],
+      "hint": { "en": "Two numbers multiplying to 6, adding to 5.", "es": "Dos números que multiplican 6 y suman 5." },
+      "solution": [
+        { "tex": "6 = 2\\cdot 3,\\; 2 + 3 = 5", "en": "Find the pair.", "es": "Encuentra la pareja." },
+        { "tex": "= (x+2)(x+3)", "en": "Write the factors.", "es": "Escribe los factores." }
+      ]
+    },
+    {
+      "id": "algebra-17-e3",
+      "answerType": "set",
+      "prompt": { "en": "Find the roots of $x^2 - x - 6 = 0$.", "es": "Halla las raíces de $x^2 - x - 6 = 0$." },
+      "answer": "3, -2",
+      "acceptedAlt": ["-2, 3"],
+      "hint": { "en": "Factor as (x-3)(x+2).", "es": "Factoriza como (x-3)(x+2)." },
+      "solution": [
+        { "tex": "(x-3)(x+2) = 0", "en": "Factor the quadratic.", "es": "Factoriza la cuadrática." },
+        { "tex": "x = 3 \\text{ or } x = -2", "en": "Set each factor to zero.", "es": "Iguala cada factor a cero." }
+      ]
+    },
+    {
+      "id": "algebra-17-e4",
+      "answerType": "expression",
+      "prompt": { "en": "Take out the common factor:  $2x^2 + 4x$", "es": "Saca factor común:  $2x^2 + 4x$" },
+      "answer": "2*x*(x+2)",
+      "acceptedAlt": ["2x^2+4x", "2*x*(2+x)"],
+      "hint": { "en": "Both terms share 2x.", "es": "Ambos términos comparten 2x." },
+      "solution": [
+        { "tex": "2x^2 + 4x = 2x\\cdot x + 2x\\cdot 2", "en": "Identify 2x in each term.", "es": "Identifica 2x en cada término." },
+        { "tex": "= 2x(x + 2)", "en": "Factor it out.", "es": "Sácalo como factor." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.3 & 3.3, factoring; the Factor Theorem", "es": "Cap. 1.3 y 3.3, factorización; Teorema del Factor" } },
+    { "source": "Long — Painless Algebra", "detail": { "en": "Factoring techniques", "es": "Técnicas de factorización" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Polinomios' — descomposición (Ruffini)", "es": "Apartado 'Polinomios' — descomposición (Ruffini)" } }
+  ]
+}

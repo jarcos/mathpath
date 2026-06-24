@@ -1,0 +1,80 @@
+{
+  "id": "linalg-02-complex-operations",
+  "subjectId": "linear-algebra",
+  "order": 2,
+  "estimatedMinutes": 40,
+  "title": { "en": "Operations with Complex Numbers", "es": "Operaciones con números complejos" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Complex arithmetic follows the ordinary rules of algebra, with the single extra rule $i^2 = -1$. **Add and subtract** by combining real and imaginary parts separately: $(a+bi)\\pm(c+di) = (a\\pm c) + (b\\pm d)i$. It is exactly like combining like terms, treating $i$ as the variable.",
+        "es": "La aritmética compleja sigue las reglas ordinarias del álgebra, con la única regla extra $i^2 = -1$. **Suma y resta** combinando partes reales e imaginarias por separado: $(a+bi)\\pm(c+di) = (a\\pm c) + (b\\pm d)i$. Es igual que agrupar términos semejantes, tratando $i$ como la variable."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Multiply** with the distributive law (FOIL), then replace $i^2$ with $-1$ and collect terms. For instance $(2+3i)\\cdot i = 2i + 3i^2 = -3 + 2i$. The appearance of $i^2 = -1$ is what mixes real and imaginary parts and gives complex multiplication its rotational character.",
+        "es": "**Multiplica** con la distributiva (FOIL), luego sustituye $i^2$ por $-1$ y agrupa. Por ejemplo $(2+3i)\\cdot i = 2i + 3i^2 = -3 + 2i$. La aparición de $i^2 = -1$ es lo que mezcla partes reales e imaginarias y da a la multiplicación compleja su carácter rotacional."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **conjugate** of $z = a + bi$ is $\\bar z = a - bi$. The product $z\\bar z = (a+bi)(a-bi) = a^2 + b^2$ is always a non-negative **real** number — the squared modulus. This is the trick for **division**: to divide by a complex number, multiply numerator and denominator by the conjugate to make the denominator real.",
+        "es": "El **conjugado** de $z = a + bi$ es $\\bar z = a - bi$. El producto $z\\bar z = (a+bi)(a-bi) = a^2 + b^2$ es siempre un número **real** no negativo — el módulo al cuadrado. Este es el truco para **dividir**: para dividir entre un complejo, multiplica numerador y denominador por el conjugado para hacer real el denominador."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — product of conjugates", "es": "Ejemplo resuelto — producto de conjugados" },
+      "content": {
+        "en": "$(1+i)(1-i) = 1 - i + i - i^2 = 1 - i^2 = 1 - (-1) = 2$. The imaginary parts cancel and $-i^2$ becomes $+1$, leaving a real result. This is exactly $z\\bar z$ with $a=b=1$, giving $a^2+b^2 = 2$.",
+        "es": "$(1+i)(1-i) = 1 - i + i - i^2 = 1 - i^2 = 1 - (-1) = 2$. Las partes imaginarias se cancelan y $-i^2$ se vuelve $+1$, dejando un resultado real. Es exactamente $z\\bar z$ con $a=b=1$, dando $a^2+b^2 = 2$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-02-e1",
+      "answerType": "expression",
+      "prompt": { "en": "Compute $(2+3i) + (1-i)$.", "es": "Calcula $(2+3i) + (1-i)$." },
+      "answer": "3+2*i",
+      "acceptedAlt": ["3+2i", "(2+3i)+(1-i)"],
+      "hint": { "en": "Add real and imaginary parts.", "es": "Suma partes reales e imaginarias." },
+      "solution": [ { "tex": "(2+1) + (3-1)i = 3 + 2i", "en": "Part by part.", "es": "Parte a parte." } ]
+    },
+    {
+      "id": "linalg-02-e2",
+      "answerType": "expression",
+      "prompt": { "en": "Compute $(2+3i) - (1-i)$.", "es": "Calcula $(2+3i) - (1-i)$." },
+      "answer": "1+4*i",
+      "acceptedAlt": ["1+4i", "(2+3i)-(1-i)"],
+      "hint": { "en": "Subtract part by part.", "es": "Resta parte a parte." },
+      "solution": [ { "tex": "(2-1) + (3+1)i = 1 + 4i", "en": "Mind the signs.", "es": "Cuida los signos." } ]
+    },
+    {
+      "id": "linalg-02-e3",
+      "answerType": "number",
+      "prompt": { "en": "Compute $(1+i)(1-i)$.", "es": "Calcula $(1+i)(1-i)$." },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Use $i^2 = -1$.", "es": "Usa $i^2 = -1$." },
+      "solution": [ { "tex": "1 - i^2 = 1 + 1 = 2", "en": "Conjugate product.", "es": "Producto del conjugado." } ]
+    },
+    {
+      "id": "linalg-02-e4",
+      "answerType": "expression",
+      "prompt": { "en": "Compute $(2+3i)\\cdot i$.", "es": "Calcula $(2+3i)\\cdot i$." },
+      "answer": "-3+2*i",
+      "acceptedAlt": ["-3+2i"],
+      "hint": { "en": "Distribute, then use 3i² = −3.", "es": "Distribuye y usa 3i² = −3." },
+      "solution": [ { "tex": "2i + 3i^2 = -3 + 2i", "en": "Since 3i² = −3.", "es": "Ya que 3i² = −3." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Los números (PID_00271022)", "detail": { "en": "Operations with complex numbers; conjugate", "es": "Operaciones con números complejos; conjugado" } },
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 3.5, arithmetic of complex numbers", "es": "Cap. 3.5, aritmética de números complejos" } }
+  ]
+}

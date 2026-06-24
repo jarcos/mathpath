@@ -1,0 +1,80 @@
+{
+  "id": "linalg-23-geometric-interpretation",
+  "subjectId": "linear-algebra",
+  "order": 23,
+  "estimatedMinutes": 40,
+  "title": { "en": "Geometric Interpretation of Systems", "es": "Interpretación geométrica de sistemas" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Every algebraic fact about linear systems has a **geometric** shadow, and seeing it makes the whole subject click. In two unknowns, each equation is a **line** in the plane, and a solution is a point lying on all the lines at once — their intersection.",
+        "es": "Todo hecho algebraico sobre sistemas lineales tiene una **sombra** geométrica, y verla hace que toda la asignatura encaje. En dos incógnitas, cada ecuación es una **recta** en el plano, y una solución es un punto que está en todas las rectas a la vez — su intersección."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This explains the three outcomes visually. Two lines that **cross once** give a unique solution. Two **parallel, distinct** lines never meet — no solution (inconsistent). Two **identical** lines share every point — infinitely many solutions. There is no way for two straight lines to meet in exactly two points, which is why a linear system never has exactly two solutions.",
+        "es": "Esto explica los tres resultados visualmente. Dos rectas que **se cruzan una vez** dan solución única. Dos rectas **paralelas y distintas** nunca se encuentran — sin solución (incompatible). Dos rectas **idénticas** comparten todos los puntos — infinitas soluciones. No hay forma de que dos rectas se corten en exactamente dos puntos, por eso un sistema lineal nunca tiene exactamente dos soluciones."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "In three unknowns the picture lifts to **planes**: three planes meeting at a single point give a unique solution; meeting in a line give infinitely many; with no common point (like a triangular prism) give none. This geometry is exactly what the Rouché-Fröbenius ranks measure algebraically — the same truth seen two ways.",
+        "es": "En tres incógnitas la imagen sube a **planos**: tres planos que se cortan en un punto dan solución única; que se cortan en una recta dan infinitas; sin punto común (como un prisma triangular) dan ninguna. Esta geometría es justo lo que miden algebraicamente los rangos de Rouché-Fröbenius — la misma verdad vista de dos formas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Two lines crossing once → exactly $1$ solution. Two parallel distinct lines → $0$ solutions. Two identical lines → infinitely many. And three planes meeting at one point in space → exactly $1$ solution. Match each algebraic verdict to its geometry and the theory becomes intuition.",
+        "es": "Dos rectas que se cruzan una vez → exactamente $1$ solución. Dos rectas paralelas distintas → $0$ soluciones. Dos rectas idénticas → infinitas. Y tres planos que se cortan en un punto del espacio → exactamente $1$ solución. Asocia cada veredicto algebraico a su geometría y la teoría se vuelve intuición."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-23-e1",
+      "answerType": "number",
+      "prompt": { "en": "Two lines that intersect at one point → how many solutions?", "es": "Dos rectas que se cortan en un punto → ¿cuántas soluciones?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "One intersection point.", "es": "Un punto de corte." },
+      "solution": [ { "tex": "1 \\text{ solution}", "en": "Single intersection.", "es": "Única intersección." } ]
+    },
+    {
+      "id": "linalg-23-e2",
+      "answerType": "number",
+      "prompt": { "en": "Two parallel, distinct lines → how many solutions?", "es": "Dos rectas paralelas y distintas → ¿cuántas soluciones?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "They never meet.", "es": "Nunca se cortan." },
+      "solution": [ { "tex": "0 \\text{ solutions}", "en": "No intersection.", "es": "Sin intersección." } ]
+    },
+    {
+      "id": "linalg-23-e3",
+      "answerType": "text",
+      "prompt": { "en": "Two identical lines → how many solutions? (a word)", "es": "Dos rectas idénticas → ¿cuántas soluciones? (una palabra)" },
+      "answer": "infinite",
+      "acceptedAlt": ["infinitas", "infinitely many", "infinitas soluciones"],
+      "hint": { "en": "Every point is shared.", "es": "Comparten todos los puntos." },
+      "solution": [ { "tex": "\\infty", "en": "Infinitely many.", "es": "Infinitas." } ]
+    },
+    {
+      "id": "linalg-23-e4",
+      "answerType": "number",
+      "prompt": { "en": "Three planes meeting at a single point → how many solutions?", "es": "Tres planos que se cortan en un punto → ¿cuántas soluciones?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "A single common point.", "es": "Un único punto común." },
+      "solution": [ { "tex": "1 \\text{ solution}", "en": "Unique intersection.", "es": "Intersección única." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)", "detail": { "en": "Geometric interpretation of linear systems", "es": "Interpretación geométrica de los sistemas lineales" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 1, the geometry of linear equations", "es": "Cap. 1, la geometría de las ecuaciones lineales" } }
+  ]
+}

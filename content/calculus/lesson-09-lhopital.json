@@ -1,0 +1,81 @@
+{
+  "id": "calculus-09-lhopital",
+  "subjectId": "calculus",
+  "order": 9,
+  "estimatedMinutes": 40,
+  "title": { "en": "L'Hôpital's Rule", "es": "Regla de L'Hôpital" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Earlier we resolved indeterminate forms by factoring. But factoring fails for limits like $\\lim_{x\\to0}\\tfrac{\\sin x}{x}$ or $\\lim_{x\\to0}\\tfrac{e^x-1}{x}$, which mix different kinds of functions. **L'Hôpital's rule** is the powerful general tool, and it is a beautiful payoff of the derivative.",
+        "es": "Antes resolvimos indeterminaciones factorizando. Pero factorizar falla con límites como $\\lim_{x\\to0}\\tfrac{\\sin x}{x}$ o $\\lim_{x\\to0}\\tfrac{e^x-1}{x}$, que mezclan tipos distintos de funciones. La **regla de L'Hôpital** es la herramienta general potente, y es un hermoso fruto de la derivada."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The rule: if $\\lim \\tfrac{f}{g}$ has the indeterminate form $\\tfrac00$ or $\\tfrac{\\infty}{\\infty}$, then $\\lim \\tfrac{f}{g} = \\lim \\tfrac{f'}{g'}$ — **differentiate the numerator and denominator separately** (not as a quotient!) and try the limit again. Repeat if it is still indeterminate. The intuition: near the trouble point, each function looks like its tangent line, and the ratio of the functions approaches the ratio of their slopes.",
+        "es": "La regla: si $\\lim \\tfrac{f}{g}$ tiene la indeterminación $\\tfrac00$ o $\\tfrac{\\infty}{\\infty}$, entonces $\\lim \\tfrac{f}{g} = \\lim \\tfrac{f'}{g'}$ — **deriva por separado numerador y denominador** (¡no como cociente!) y vuelve a intentar el límite. Repite si sigue indeterminado. La intuición: cerca del punto problemático, cada función se parece a su tangente, y el cociente de funciones se acerca al cociente de pendientes."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two cautions. First, **check** the form is really $\\tfrac00$ or $\\tfrac{\\infty}{\\infty}$ before applying it — using it on a determinate limit gives wrong answers. Second, differentiate top and bottom **independently**; do not use the quotient rule. Other indeterminate forms ($0\\cdot\\infty$, $\\infty-\\infty$, $1^\\infty$) can often be rearranged into a fraction so the rule applies.",
+        "es": "Dos advertencias. Primero, **comprueba** que la forma es realmente $\\tfrac00$ o $\\tfrac{\\infty}{\\infty}$ antes de aplicarla — usarla en un límite determinado da respuestas erróneas. Segundo, deriva arriba y abajo **por separado**; no uses la regla del cociente. Otras indeterminaciones ($0\\cdot\\infty$, $\\infty-\\infty$, $1^\\infty$) suelen reescribirse como fracción para poder aplicarla."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "$\\lim_{x\\to0}\\tfrac{\\sin x}{x}$ is $\\tfrac00$. Differentiate top and bottom: $\\tfrac{\\cos x}{1}$. Now substitute: $\\tfrac{\\cos 0}{1} = 1$. This recovers the fundamental trig limit instantly — and confirms it.",
+        "es": "$\\lim_{x\\to0}\\tfrac{\\sin x}{x}$ es $\\tfrac00$. Deriva arriba y abajo: $\\tfrac{\\cos x}{1}$. Ahora sustituye: $\\tfrac{\\cos 0}{1} = 1$. Esto recupera al instante el límite trigonométrico fundamental — y lo confirma."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "calculus-09-e1",
+      "answerType": "number",
+      "prompt": { "en": "Use L'Hôpital: $\\displaystyle\\lim_{x\\to0}\\tfrac{\\sin x}{x}$.", "es": "Usa L'Hôpital: $\\displaystyle\\lim_{x\\to0}\\tfrac{\\sin x}{x}$." },
+      "answer": "1",
+      "acceptedAlt": ["cos(0)"],
+      "hint": { "en": "Derivative of sin is cos.", "es": "La derivada de sen es cos." },
+      "solution": [ { "tex": "\\tfrac{\\cos x}{1}\\to\\cos 0 = 1", "en": "Differentiate top and bottom.", "es": "Deriva arriba y abajo." } ]
+    },
+    {
+      "id": "calculus-09-e2",
+      "answerType": "number",
+      "prompt": { "en": "Use L'Hôpital: $\\displaystyle\\lim_{x\\to0}\\tfrac{e^x-1}{x}$.", "es": "Usa L'Hôpital: $\\displaystyle\\lim_{x\\to0}\\tfrac{e^x-1}{x}$." },
+      "answer": "1",
+      "acceptedAlt": ["e^0"],
+      "hint": { "en": "Derivative of eˣ is eˣ.", "es": "La derivada de eˣ es eˣ." },
+      "solution": [ { "tex": "\\tfrac{e^x}{1}\\to e^0 = 1", "en": "Differentiate.", "es": "Deriva." } ]
+    },
+    {
+      "id": "calculus-09-e3",
+      "answerType": "number",
+      "prompt": { "en": "Evaluate $\\displaystyle\\lim_{x\\to1}\\tfrac{x^2-1}{x-1}$ (any method).", "es": "Evalúa $\\displaystyle\\lim_{x\\to1}\\tfrac{x^2-1}{x-1}$ (cualquier método)." },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Derivative of top is 2x → 2.", "es": "La derivada de arriba es 2x → 2." },
+      "solution": [ { "tex": "\\tfrac{2x}{1}\\to 2", "en": "L'Hôpital gives 2.", "es": "L'Hôpital da 2." } ]
+    },
+    {
+      "id": "calculus-09-e4",
+      "answerType": "text",
+      "prompt": { "en": "L'Hôpital differentiates the numerator and the ___ (one word).", "es": "L'Hôpital deriva el numerador y el ___ (una palabra)." },
+      "answer": "denominator",
+      "acceptedAlt": ["denominador"],
+      "hint": { "en": "The bottom of the fraction.", "es": "La parte de abajo de la fracción." },
+      "solution": [ { "tex": "\\lim\\tfrac{f'}{g'}", "en": "Both top and bottom.", "es": "Arriba y abajo." } ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 4.4, Indeterminate Forms and l'Hospital's Rule", "es": "Cap. 4.4, indeterminaciones y la regla de l'Hôpital" } },
+    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 11, L'Hôpital's rule", "es": "Cap. 11, regla de L'Hôpital" } },
+    { "source": "UOC — Derivación: el problema de la tangente (PID_00284285)", "detail": { "en": "L'Hôpital's rule for indeterminate limits", "es": "Regla de L'Hôpital para límites indeterminados" } }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "id": "functions-08-polynomial",
+  "subjectId": "functions",
+  "order": 8,
+  "estimatedMinutes": 40,
+  "title": { "en": "Polynomial Functions", "es": "Funciones polinómicas" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **polynomial function** $f(x) = a_n x^n + \\dots + a_1 x + a_0$ generalizes lines and parabolas to any degree. They are smooth, continuous everywhere, and flexible enough to approximate almost any curve — which is why they are the workhorses of numerical methods and the building blocks of Taylor series in calculus.",
+        "es": "Una **función polinómica** $f(x) = a_n x^n + \\dots + a_1 x + a_0$ generaliza rectas y parábolas a cualquier grado. Son suaves, continuas en todas partes y lo bastante flexibles para aproximar casi cualquier curva — por eso son el caballo de batalla de los métodos numéricos y los ladrillos de las series de Taylor en cálculo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **degree** $n$ governs the global shape. It bounds the number of **real roots** (at most $n$) and the number of **turning points** (at most $n-1$). The **leading term** $a_n x^n$ dictates the **end behavior** — what happens as $x \\to \\pm\\infty$: odd-degree polynomials run from $-\\infty$ to $+\\infty$ (opposite ends), even-degree ones head the same way at both ends.",
+        "es": "El **grado** $n$ gobierna la forma global. Acota el número de **raíces reales** (como mucho $n$) y de **puntos de giro** (como mucho $n-1$). El **término principal** $a_n x^n$ dicta el **comportamiento en los extremos** — qué ocurre cuando $x \\to \\pm\\infty$: los polinomios de grado impar van de $-\\infty$ a $+\\infty$ (extremos opuestos), los de grado par van igual por ambos extremos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Each **real root** is an x-intercept, and the **multiplicity** of a root controls how the curve behaves there: odd multiplicity crosses the axis, even multiplicity just touches it. Factoring a polynomial into linear and irreducible quadratic factors reveals all its real roots at once.",
+        "es": "Cada **raíz real** es un corte con el eje x, y la **multiplicidad** de una raíz controla cómo se comporta la curva allí: multiplicidad impar cruza el eje, multiplicidad par solo lo toca. Factorizar un polinomio en factores lineales y cuadráticos irreducibles revela de golpe todas sus raíces reales."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "x^3 - 2*x",
+      "domain": [-2.5, 2.5],
+      "caption": {
+        "en": "$f(x) = x^3 - 2x$, a cubic (odd degree): it falls from the lower left, wiggles through three real roots, and rises to the upper right — the classic odd end behavior.",
+        "es": "$f(x) = x^3 - 2x$, una cúbica (grado impar): baja por abajo a la izquierda, ondula por tres raíces reales y sube arriba a la derecha — el típico comportamiento impar en los extremos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "For $f(x) = x^3 - 2x + 1$: degree $3$, leading coefficient $1$. At most $3$ real roots. Test $x = 1$: $1 - 2 + 1 = 0$, so $x = 1$ is a root and $(x-1)$ a factor. The end behavior is set by $x^3$: down on the left, up on the right.",
+        "es": "Para $f(x) = x^3 - 2x + 1$: grado $3$, coeficiente principal $1$. Como mucho $3$ raíces reales. Prueba $x = 1$: $1 - 2 + 1 = 0$, así $x = 1$ es raíz y $(x-1)$ un factor. El comportamiento en los extremos lo fija $x^3$: baja a la izquierda, sube a la derecha."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "functions-08-e1",
+      "answerType": "number",
+      "prompt": { "en": "What is the degree of $f(x) = x^3 - 2x + 1$?", "es": "¿Cuál es el grado de $f(x) = x^3 - 2x + 1$?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "Highest power.", "es": "Mayor potencia." },
+      "solution": [ { "tex": "\\deg f = 3", "en": "The highest exponent.", "es": "El mayor exponente." } ]
+    },
+    {
+      "id": "functions-08-e2",
+      "answerType": "number",
+      "prompt": { "en": "For $f(x) = x^3 - 2x + 1$, find $f(1)$.", "es": "Para $f(x) = x^3 - 2x + 1$, halla $f(1)$." },
+      "answer": "0",
+      "acceptedAlt": ["1^3-2*1+1"],
+      "hint": { "en": "Substitute x = 1.", "es": "Sustituye x = 1." },
+      "solution": [ { "tex": "1 - 2 + 1 = 0", "en": "So x = 1 is a root.", "es": "Por tanto x = 1 es raíz." } ]
+    },
+    {
+      "id": "functions-08-e3",
+      "answerType": "number",
+      "prompt": { "en": "At most how many real roots can $f(x) = x^3 - 2x + 1$ have?", "es": "¿Como máximo cuántas raíces reales puede tener $f(x) = x^3 - 2x + 1$?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "Bounded by the degree.", "es": "Acotado por el grado." },
+      "solution": [ { "tex": "\\le \\deg f = 3", "en": "At most 3.", "es": "Como mucho 3." } ]
+    },
+    {
+      "id": "functions-08-e4",
+      "answerType": "number",
+      "prompt": { "en": "What is the leading coefficient of $f(x) = 4x^3 - x + 2$?", "es": "¿Cuál es el coeficiente principal de $f(x) = 4x^3 - x + 2$?" },
+      "answer": "4",
+      "acceptedAlt": [],
+      "hint": { "en": "Coefficient of the highest term.", "es": "Coeficiente del término mayor." },
+      "solution": [ { "tex": "4x^3 \\Rightarrow 4", "en": "Leading coefficient.", "es": "Coeficiente principal." } ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 3.2, Polynomial Functions and Their Graphs", "es": "Cap. 3.2, Funciones polinómicas y sus gráficas" } },
+    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 2.2, polynomial functions of higher degree", "es": "Cap. 2.2, funciones polinómicas de grado superior" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones polinómicas'", "es": "Apartado 'Funciones polinómicas'" } }
+  ]
+}

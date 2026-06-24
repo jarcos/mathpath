@@ -1,0 +1,80 @@
+{
+  "id": "linmaps-05-change-of-basis",
+  "subjectId": "linear-maps",
+  "order": 5,
+  "estimatedMinutes": 40,
+  "title": { "en": "Change of Basis for a Map", "es": "Cambio de base en una aplicación lineal" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The matrix of a linear map depends on the basis you choose. Change the basis and the *same* map gets a *different* matrix. If $P$ is the change-of-basis matrix, the new matrix is $B = P^{-1} A P$. Two matrices related this way are called **similar** — they represent the same underlying map in different coordinates.",
+        "es": "La matriz de una aplicación lineal depende de la base elegida. Cambia la base y la *misma* aplicación recibe una matriz *distinta*. Si $P$ es la matriz de cambio de base, la nueva matriz es $B = P^{-1} A P$. Dos matrices relacionadas así se llaman **semejantes** — representan la misma aplicación subyacente en distintas coordenadas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Because $B$ and $A$ are the same map, they must agree on every property that is intrinsic to the map and not the coordinates. These **invariants** include the **determinant**, the **trace**, the **rank**, and — most importantly for what follows — the **eigenvalues**. So $\\det B = \\det A$ and $\\text{tr}\\,B = \\text{tr}\\,A$ for any similarity.",
+        "es": "Como $B$ y $A$ son la misma aplicación, deben coincidir en toda propiedad intrínseca a la aplicación y no a las coordenadas. Estos **invariantes** incluyen el **determinante**, la **traza**, el **rango** y — lo más importante para lo que sigue — los **autovalores**. Así $\\det B = \\det A$ y $\\text{tr}\\,B = \\text{tr}\\,A$ para cualquier semejanza."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This is the strategic idea behind **diagonalization** (next lessons): among all the matrices similar to $A$, can we find one that is **diagonal**? If so, the map becomes trivially simple in that basis, and hard computations like matrix powers collapse to raising numbers to a power.",
+        "es": "Esta es la idea estratégica tras la **diagonalización** (próximas lecciones): entre todas las matrices semejantes a $A$, ¿podemos hallar una que sea **diagonal**? Si es así, la aplicación se vuelve trivialmente simple en esa base, y cálculos difíciles como las potencias de matrices se reducen a elevar números a una potencia."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — invariants", "es": "Ejemplo resuelto — invariantes" },
+      "content": {
+        "en": "For $A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$: $\\det A = 6$ and $\\text{tr}\\,A = 5$. Any similar matrix $P^{-1}AP$ — however ugly its entries — will still have determinant $6$ and trace $5$. These invariants are quick sanity checks when computing a change of basis.",
+        "es": "Para $A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$: $\\det A = 6$ y $\\text{tr}\\,A = 5$. Cualquier matriz semejante $P^{-1}AP$ — por feos que sean sus elementos — seguirá teniendo determinante $6$ y traza $5$. Estos invariantes son comprobaciones rápidas al calcular un cambio de base."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-05-e1",
+      "answerType": "number",
+      "prompt": { "en": "$\\det\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ (a similarity invariant)?", "es": "¿$\\det\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ (un invariante por semejanza)?" },
+      "answer": "6",
+      "acceptedAlt": ["2*3", "det([[2,0],[0,3]])"],
+      "hint": { "en": "Diagonal product.", "es": "Producto de la diagonal." },
+      "solution": [ { "tex": "2\\cdot3 = 6", "en": "Determinant.", "es": "Determinante." } ]
+    },
+    {
+      "id": "linmaps-05-e2",
+      "answerType": "number",
+      "prompt": { "en": "Trace of $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ (also invariant)?", "es": "¿Traza de $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ (también invariante)?" },
+      "answer": "5",
+      "acceptedAlt": ["2+3", "trace([[2,0],[0,3]])"],
+      "hint": { "en": "Sum of the diagonal.", "es": "Suma de la diagonal." },
+      "solution": [ { "tex": "2 + 3 = 5", "en": "Trace.", "es": "Traza." } ]
+    },
+    {
+      "id": "linmaps-05-e3",
+      "answerType": "text",
+      "prompt": { "en": "Matrices related by $B = P^{-1}AP$ are called ___ matrices. (one word)", "es": "Las matrices relacionadas por $B = P^{-1}AP$ se llaman matrices ___. (una palabra)" },
+      "answer": "similar",
+      "acceptedAlt": ["semejantes", "semejante", "similares"],
+      "hint": { "en": "Same map, different basis.", "es": "Misma aplicación, distinta base." },
+      "solution": [ { "tex": "B = P^{-1}AP", "en": "Similar matrices.", "es": "Matrices semejantes." } ]
+    },
+    {
+      "id": "linmaps-05-e4",
+      "answerType": "text",
+      "prompt": { "en": "Name one quantity preserved under change of basis (determinant / trace / rank are all valid).", "es": "Nombra una cantidad conservada bajo cambio de base (determinante / traza / rango son válidas)." },
+      "answer": "determinant",
+      "acceptedAlt": ["determinante", "trace", "traza", "rank", "rango"],
+      "hint": { "en": "An invariant of similarity.", "es": "Un invariante de la semejanza." },
+      "solution": [ { "tex": "\\det, \\text{tr}, \\text{rank}", "en": "All are invariants.", "es": "Todos son invariantes." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Change of basis for a linear map; similar matrices", "es": "Cambio de base en una aplicación lineal; matrices semejantes" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 6.2 & 8.2, similar matrices", "es": "Cap. 6.2 y 8.2, matrices semejantes" } }
+  ]
+}

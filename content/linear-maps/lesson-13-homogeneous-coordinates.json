@@ -1,0 +1,79 @@
+{
+  "id": "linmaps-13-homogeneous",
+  "subjectId": "linear-maps",
+  "order": 13,
+  "estimatedMinutes": 40,
+  "title": { "en": "Homogeneous Coordinates", "es": "Coordenadas homogéneas" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "We saw that translation cannot be a $2\\times 2$ matrix because it moves the origin. **Homogeneous coordinates** fix this with a clever trick: represent the 2D point $(x, y)$ as the 3-vector $(x, y, 1)$, adding a third coordinate set to $1$. Now translation *can* be written as a matrix multiplication.",
+        "es": "Vimos que la traslación no puede ser una matriz $2\\times 2$ porque mueve el origen. Las **coordenadas homogéneas** lo arreglan con un truco ingenioso: representar el punto 2D $(x, y)$ como el vector de 3 componentes $(x, y, 1)$, añadiendo una tercera coordenada fijada a $1$. Ahora la traslación *sí* puede escribirse como una multiplicación por matriz."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "In this scheme, a 2D translation by $(a,b)$ becomes the $3\\times 3$ matrix $\\begin{pmatrix}1&0&a\\\\0&1&b\\\\0&0&1\\end{pmatrix}$. Rotation and scaling get $3\\times 3$ forms too (with the geometric part in the top-left $2\\times 2$ block). The crucial win: **translation, rotation, and scaling are now all matrix multiplications** — uniform, composable, and hardware-friendly.",
+        "es": "En este esquema, una traslación 2D por $(a,b)$ se convierte en la matriz $3\\times 3$ $\\begin{pmatrix}1&0&a\\\\0&1&b\\\\0&0&1\\end{pmatrix}$. La rotación y el escalado también obtienen formas $3\\times 3$ (con la parte geométrica en el bloque superior izquierdo $2\\times 2$). La ventaja clave: **traslación, rotación y escalado son ahora todas multiplicaciones por matriz** — uniformes, componibles y eficientes en hardware."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This is why every GPU and graphics library (OpenGL, game engines) works with $4\\times 4$ homogeneous matrices in 3D: a single matrix multiply can apply an entire chain of moves, rotations, scales, and even perspective projection. Homogeneous coordinates are the unsung hero of modern computer graphics.",
+        "es": "Por eso toda GPU y biblioteca gráfica (OpenGL, motores de juego) trabaja con matrices homogéneas $4\\times 4$ en 3D: una sola multiplicación de matriz puede aplicar toda una cadena de movimientos, rotaciones, escalados e incluso proyección en perspectiva. Las coordenadas homogéneas son el héroe anónimo de los gráficos modernos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The 2D point $(3, 5)$ becomes $(3, 5, 1)$ in homogeneous coordinates — the added third coordinate is $1$. A 2D translation uses a $3\\times 3$ matrix (3 rows). In 3D, the same idea uses $4\\times 4$ matrices.",
+        "es": "El punto 2D $(3, 5)$ se convierte en $(3, 5, 1)$ en coordenadas homogéneas — la tercera coordenada añadida es $1$. Una traslación 2D usa una matriz $3\\times 3$ (3 filas). En 3D, la misma idea usa matrices $4\\times 4$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-13-e1",
+      "answerType": "number",
+      "prompt": { "en": "In homogeneous coordinates, the 2D point $(x,y)$ becomes $(x,y,c)$. What is $c$?", "es": "En coordenadas homogéneas, el punto 2D $(x,y)$ se convierte en $(x,y,c)$. ¿Cuánto vale $c$?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "A fixed extra coordinate.", "es": "Una coordenada extra fija." },
+      "solution": [ { "tex": "(x,y) \\to (x,y,1)", "en": "The extra coordinate is 1.", "es": "La coordenada extra es 1." } ]
+    },
+    {
+      "id": "linmaps-13-e2",
+      "answerType": "number",
+      "prompt": { "en": "A 2D homogeneous translation matrix has how many rows?", "es": "¿Cuántas filas tiene una matriz de traslación homogénea 2D?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "3×3 matrix.", "es": "Matriz 3×3." },
+      "solution": [ { "tex": "3\\times 3", "en": "Three rows.", "es": "Tres filas." } ]
+    },
+    {
+      "id": "linmaps-13-e3",
+      "answerType": "text",
+      "prompt": { "en": "Homogeneous coordinates turn translation into a matrix ___. (one word)", "es": "Las coordenadas homogéneas convierten la traslación en una ___ por matriz. (una palabra)" },
+      "answer": "multiplication",
+      "acceptedAlt": ["multiplicación", "multiplicacion"],
+      "hint": { "en": "The matrix operation.", "es": "La operación de matrices." },
+      "solution": [ { "tex": "Mv", "en": "Matrix multiplication.", "es": "Multiplicación por matriz." } ]
+    },
+    {
+      "id": "linmaps-13-e4",
+      "answerType": "number",
+      "prompt": { "en": "3D homogeneous transformations use matrices with how many rows?", "es": "Las transformaciones homogéneas 3D usan matrices con cuántas filas?" },
+      "answer": "4",
+      "acceptedAlt": [],
+      "hint": { "en": "4×4 matrices.", "es": "Matrices 4×4." },
+      "solution": [ { "tex": "4\\times 4", "en": "Four rows.", "es": "Cuatro filas." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Transformaciones geométricas (PID_00269008)", "detail": { "en": "Efficient matrix notation; homogeneous coordinates", "es": "Notación matricial eficiente; coordenadas homogéneas" } }
+  ]
+}

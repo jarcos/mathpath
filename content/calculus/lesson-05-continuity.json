@@ -1,0 +1,81 @@
+{
+  "id": "calculus-05-continuity",
+  "subjectId": "calculus",
+  "order": 5,
+  "estimatedMinutes": 40,
+  "title": { "en": "Continuity", "es": "Continuidad" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Intuitively, a function is **continuous** if you can draw its graph without lifting your pen — no holes, jumps, or breaks. This intuition is made precise with limits: $f$ is **continuous at $a$** when three conditions all hold: $f(a)$ exists, $\\lim_{x\\to a} f(x)$ exists, and the two are equal.",
+        "es": "Intuitivamente, una función es **continua** si puedes dibujar su gráfica sin levantar el lápiz — sin huecos, saltos ni roturas. Esta intuición se precisa con límites: $f$ es **continua en $a$** cuando se cumplen tres condiciones: existe $f(a)$, existe $\\lim_{x\\to a} f(x)$, y ambos coinciden."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Most familiar functions are continuous on their domains: polynomials everywhere; rational functions except where the denominator is zero ($\\tfrac1x$ is discontinuous at $x=0$); roots, exponentials, sines and cosines wherever defined. Discontinuities come in flavors — **removable** (a single hole you could plug), **jump** (the two sides disagree), and **infinite** (an asymptote).",
+        "es": "La mayoría de funciones conocidas son continuas en su dominio: los polinomios en todas partes; las racionales salvo donde el denominador es cero ($\\tfrac1x$ es discontinua en $x=0$); raíces, exponenciales, senos y cosenos donde están definidos. Las discontinuidades tienen tipos — **evitable** (un único hueco que podrías tapar), **de salto** (los dos lados no coinciden) e **infinita** (una asíntota)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Continuity matters because it guarantees good behavior. The **Intermediate Value Theorem** says a continuous function on $[a,b]$ takes every value between $f(a)$ and $f(b)$ — which is why a continuous function that is negative somewhere and positive elsewhere must have a root in between. This is the foundation of root-finding methods.",
+        "es": "La continuidad importa porque garantiza buen comportamiento. El **Teorema del Valor Intermedio** dice que una función continua en $[a,b]$ toma todo valor entre $f(a)$ y $f(b)$ — por eso una función continua que es negativa en un punto y positiva en otro debe tener una raíz entre medias. Es la base de los métodos de búsqueda de raíces."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — checking continuity", "es": "Ejemplo resuelto — comprobar continuidad" },
+      "content": {
+        "en": "Is $f(x) = x^2$ continuous at $x = 0$? Check the three conditions: $f(0) = 0$ exists; $\\lim_{x\\to 0} x^2 = 0$ exists; and they are equal. Yes — continuous. By contrast $\\tfrac1x$ fails the first condition at $x=0$ (undefined), so it is discontinuous there.",
+        "es": "¿Es $f(x) = x^2$ continua en $x = 0$? Comprueba las tres condiciones: $f(0) = 0$ existe; $\\lim_{x\\to 0} x^2 = 0$ existe; y coinciden. Sí — continua. En cambio $\\tfrac1x$ falla la primera condición en $x=0$ (indefinida), así que es discontinua allí."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "calculus-05-e1",
+      "answerType": "text",
+      "prompt": { "en": "Is $f(x) = x^2$ continuous at $x = 0$? (yes / no)", "es": "¿Es $f(x) = x^2$ continua en $x = 0$? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Polynomials are continuous everywhere.", "es": "Los polinomios son continuos en todas partes." },
+      "solution": [ { "tex": "\\lim_{x\\to0} x^2 = 0 = f(0)", "en": "All three conditions hold.", "es": "Se cumplen las tres condiciones." } ]
+    },
+    {
+      "id": "calculus-05-e2",
+      "answerType": "number",
+      "prompt": { "en": "At which $x$ is $f(x) = \\tfrac1x$ discontinuous?", "es": "¿En qué $x$ es discontinua $f(x) = \\tfrac1x$?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Where the denominator is zero.", "es": "Donde el denominador es cero." },
+      "solution": [ { "tex": "x = 0", "en": "Division by zero.", "es": "División entre cero." } ]
+    },
+    {
+      "id": "calculus-05-e3",
+      "answerType": "number",
+      "prompt": { "en": "For continuous $f(x) = 2x$, continuity at $a = 3$ requires $f(3) = ?$", "es": "Para $f(x) = 2x$ continua, la continuidad en $a = 3$ exige $f(3) = ?$" },
+      "answer": "6",
+      "acceptedAlt": ["2*3"],
+      "hint": { "en": "Evaluate f(3).", "es": "Evalúa f(3)." },
+      "solution": [ { "tex": "f(3) = 2\\cdot3 = 6", "en": "Equals the limit there.", "es": "Igual al límite allí." } ]
+    },
+    {
+      "id": "calculus-05-e4",
+      "answerType": "text",
+      "prompt": { "en": "Can you draw a continuous function without lifting the pen? (yes / no)", "es": "¿Se puede dibujar una función continua sin levantar el lápiz? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "That is the intuitive definition.", "es": "Esa es la definición intuitiva." },
+      "solution": [ { "tex": "\\text{no breaks}", "en": "Continuous = no gaps.", "es": "Continua = sin saltos." } ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 2.5, Continuity; the Intermediate Value Theorem", "es": "Cap. 2.5, Continuidad; el Teorema del Valor Intermedio" } },
+    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 2, continuity", "es": "Cap. 2, continuidad" } },
+    { "source": "UOC — Límites de funciones y continuidad (PID_00284288)", "detail": { "en": "Continuity of functions", "es": "Continuidad de funciones" } }
+  ]
+}

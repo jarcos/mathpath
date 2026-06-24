@@ -1,0 +1,120 @@
+{
+  "id": "algebra-07-real-numbers-powers-roots",
+  "subjectId": "algebra",
+  "order": 3,
+  "estimatedMinutes": 45,
+  "title": { "en": "Real Numbers, Powers & Roots", "es": "Números reales, potencias y raíces" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The rationals leave gaps. The diagonal of a unit square has length $\\sqrt2$, a number that is provably **not** a ratio of integers — its decimal $1.41421356\\dots$ never repeats. Numbers like this are **irrational**. Together the rationals and irrationals form the **real numbers** $\\mathbb{R}$, which fill the number line completely, with no gaps. Famous irrationals include $\\sqrt2$, $\\pi$ and $e$.",
+        "es": "Los racionales dejan huecos. La diagonal de un cuadrado de lado $1$ mide $\\sqrt2$, un número que demostrablemente **no** es cociente de enteros — su decimal $1.41421356\\dots$ no es periódico. Números así son **irracionales**. Juntos, racionales e irracionales forman los **números reales** $\\mathbb{R}$, que llenan la recta por completo, sin huecos. Irracionales famosos: $\\sqrt2$, $\\pi$ y $e$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **power** $a^n$ is repeated multiplication: $a^n = a\\cdot a\\cdots a$ ($n$ times). The number $a$ is the **base**, $n$ the **exponent**. Three laws follow immediately from this definition and do almost all the work: the **product law** $a^m a^n = a^{m+n}$, the **quotient law** $\\dfrac{a^m}{a^n} = a^{m-n}$, and the **power law** $(a^m)^n = a^{mn}$.",
+        "es": "Una **potencia** $a^n$ es multiplicación repetida: $a^n = a\\cdot a\\cdots a$ ($n$ veces). El número $a$ es la **base**, $n$ el **exponente**. De esta definición salen de inmediato tres leyes que hacen casi todo el trabajo: la **ley del producto** $a^m a^n = a^{m+n}$, la **ley del cociente** $\\dfrac{a^m}{a^n} = a^{m-n}$ y la **ley de la potencia** $(a^m)^n = a^{mn}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two special cases extend powers beyond counting numbers. Setting $m = n$ in the quotient law forces $a^0 = 1$ (for $a\\neq 0$). And a **negative exponent** means a reciprocal: $a^{-n} = \\dfrac{1}{a^n}$, so $3^{-2} = \\dfrac19$. These are not arbitrary conventions — they are the only definitions that keep the three laws consistent.",
+        "es": "Dos casos especiales extienden las potencias más allá de los naturales. Poner $m = n$ en la ley del cociente obliga a $a^0 = 1$ (para $a\\neq 0$). Y un **exponente negativo** indica un inverso: $a^{-n} = \\dfrac{1}{a^n}$, así $3^{-2} = \\dfrac19$. No son convenios arbitrarios — son las únicas definiciones que mantienen coherentes las tres leyes."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **root** undoes a power. The square root $\\sqrt{a}$ is the non-negative number whose square is $a$; the $n$-th root $\\sqrt[n]{a}$ is the number whose $n$-th power is $a$. Roots are really **fractional exponents**: $\\sqrt[n]{a} = a^{1/n}$, and more generally $a^{m/n} = \\sqrt[n]{a^m}$. This unifies powers and roots into one system obeying the same three laws. So $\\sqrt{144} = 12$ and $\\sqrt[3]{27} = 27^{1/3} = 3$.",
+        "es": "Una **raíz** deshace una potencia. La raíz cuadrada $\\sqrt{a}$ es el número no negativo cuyo cuadrado es $a$; la raíz $n$-ésima $\\sqrt[n]{a}$ es el número cuya potencia $n$-ésima es $a$. Las raíces son en realidad **exponentes fraccionarios**: $\\sqrt[n]{a} = a^{1/n}$, y en general $a^{m/n} = \\sqrt[n]{a^m}$. Esto unifica potencias y raíces en un sistema que obedece las mismas tres leyes. Así $\\sqrt{144} = 12$ y $\\sqrt[3]{27} = 27^{1/3} = 3$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — exponent laws", "es": "Ejemplo resuelto — leyes de exponentes" },
+      "content": {
+        "en": "Simplify $\\dfrac{2^5 \\cdot 2^{-2}}{2^{0}}$. Product law on top: $2^{5+(-2)} = 2^3$. Denominator $2^0 = 1$. Result $2^3 = 8$. Notice how negative and zero exponents drop in seamlessly.",
+        "es": "Simplifica $\\dfrac{2^5 \\cdot 2^{-2}}{2^{0}}$. Ley del producto arriba: $2^{5+(-2)} = 2^3$. Denominador $2^0 = 1$. Resultado $2^3 = 8$. Observa cómo encajan sin esfuerzo los exponentes negativos y el cero."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Common pitfall", "es": "Error frecuente" },
+      "content": {
+        "en": "$\\sqrt{a^2} = |a|$, not simply $a$ — the root returns the non-negative value, so $\\sqrt{(-5)^2} = 5$. Also, roots do **not** distribute over sums: $\\sqrt{9 + 16} = \\sqrt{25} = 5$, which is **not** $\\sqrt9 + \\sqrt{16} = 7$.",
+        "es": "$\\sqrt{a^2} = |a|$, no simplemente $a$ — la raíz devuelve el valor no negativo, así $\\sqrt{(-5)^2} = 5$. Además, las raíces **no** se reparten sobre sumas: $\\sqrt{9 + 16} = \\sqrt{25} = 5$, que **no** es $\\sqrt9 + \\sqrt{16} = 7$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-07-e1",
+      "answerType": "number",
+      "prompt": { "en": "Compute:  $2^5$", "es": "Calcula:  $2^5$" },
+      "answer": "32",
+      "acceptedAlt": ["2^5"],
+      "hint": { "en": "Multiply 2 by itself five times.", "es": "Multiplica 2 por sí mismo cinco veces." },
+      "solution": [
+        { "tex": "2^5 = 2\\cdot2\\cdot2\\cdot2\\cdot2", "en": "Expand the power.", "es": "Desarrolla la potencia." },
+        { "tex": "= 32", "en": "Multiply.", "es": "Multiplica." }
+      ]
+    },
+    {
+      "id": "algebra-07-e2",
+      "answerType": "number",
+      "prompt": { "en": "Compute:  $\\sqrt{144}$", "es": "Calcula:  $\\sqrt{144}$" },
+      "answer": "12",
+      "acceptedAlt": ["sqrt(144)"],
+      "hint": { "en": "What number squared gives 144?", "es": "¿Qué número al cuadrado da 144?" },
+      "solution": [
+        { "tex": "12^2 = 144", "en": "12 squared is 144.", "es": "12 al cuadrado es 144." },
+        { "tex": "\\sqrt{144} = 12", "en": "So the square root is 12.", "es": "Por tanto la raíz es 12." }
+      ]
+    },
+    {
+      "id": "algebra-07-e3",
+      "answerType": "number",
+      "prompt": { "en": "Compute:  $3^{-2}$", "es": "Calcula:  $3^{-2}$" },
+      "answer": "1/9",
+      "acceptedAlt": ["3^(-2)"],
+      "hint": { "en": "A negative exponent is a reciprocal.", "es": "Un exponente negativo es un inverso." },
+      "solution": [
+        { "tex": "3^{-2} = \\frac{1}{3^2}", "en": "Move to the denominator.", "es": "Pásalo al denominador." },
+        { "tex": "= \\frac{1}{9}", "en": "Square the 3.", "es": "Eleva al cuadrado el 3." }
+      ]
+    },
+    {
+      "id": "algebra-07-e4",
+      "answerType": "number",
+      "prompt": { "en": "Compute:  $\\sqrt[3]{27}$", "es": "Calcula:  $\\sqrt[3]{27}$" },
+      "answer": "3",
+      "acceptedAlt": ["27^(1/3)", "cbrt(27)"],
+      "hint": { "en": "What number cubed gives 27?", "es": "¿Qué número al cubo da 27?" },
+      "solution": [
+        { "tex": "3^3 = 27", "en": "3 cubed is 27.", "es": "3 al cubo es 27." },
+        { "tex": "\\sqrt[3]{27} = 3", "en": "So the cube root is 3.", "es": "Por tanto la raíz cúbica es 3." }
+      ]
+    },
+    {
+      "id": "algebra-07-e5",
+      "answerType": "number",
+      "prompt": { "en": "Simplify:  $\\dfrac{2^5 \\cdot 2^{-2}}{2^{0}}$", "es": "Simplifica:  $\\dfrac{2^5 \\cdot 2^{-2}}{2^{0}}$" },
+      "answer": "8",
+      "acceptedAlt": ["2^3", "2^5*2^(-2)/2^0"],
+      "hint": { "en": "Add exponents on top; 2⁰ = 1.", "es": "Suma exponentes arriba; 2⁰ = 1." },
+      "solution": [
+        { "tex": "\\frac{2^{3}}{1} = 2^3", "en": "Product law, and 2⁰ = 1.", "es": "Ley del producto, y 2⁰ = 1." },
+        { "tex": "= 8", "en": "Evaluate.", "es": "Evalúa." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.2, Exponents and Radicals", "es": "Cap. 1.2, Exponentes y radicales" } },
+    { "source": "Long — Painless Algebra", "detail": { "en": "Exponents and roots", "es": "Exponentes y raíces" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Números' — números reales, potencias", "es": "Apartado 'Números' — números reales, potencias" } }
+  ]
+}

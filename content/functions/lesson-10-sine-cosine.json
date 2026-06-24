@@ -1,0 +1,90 @@
+{
+  "id": "functions-10-sine-cosine",
+  "subjectId": "functions",
+  "order": 10,
+  "estimatedMinutes": 40,
+  "title": { "en": "Sine & Cosine Functions", "es": "Funciones seno y coseno" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "To turn the triangle ratios into **functions** defined for every real number, we use the **unit circle**: for an angle $x$, the point on the circle of radius $1$ is $(\\cos x, \\sin x)$. As $x$ sweeps around, the coordinates trace smooth waves. This frees sine and cosine from acute angles — they now accept any input, positive or negative, large or small.",
+        "es": "Para convertir las razones del triángulo en **funciones** definidas para todo número real, usamos la **circunferencia unidad**: para un ángulo $x$, el punto en la circunferencia de radio $1$ es $(\\cos x, \\sin x)$. Al recorrer $x$ toda la vuelta, las coordenadas trazan ondas suaves. Esto libera al seno y al coseno de los ángulos agudos — ahora aceptan cualquier entrada, positiva o negativa, grande o pequeña."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Both $\\sin x$ and $\\cos x$ are **periodic** with period $2\\pi$: their values repeat every full turn, $f(x + 2\\pi) = f(x)$. Both oscillate between $-1$ and $1$ — that range is the **amplitude** $1$. The cosine wave is just the sine wave shifted left by $\\tfrac{\\pi}{2}$: $\\cos x = \\sin(x + \\tfrac{\\pi}{2})$.",
+        "es": "Tanto $\\sin x$ como $\\cos x$ son **periódicas** de período $2\\pi$: sus valores se repiten cada vuelta completa, $f(x + 2\\pi) = f(x)$. Ambas oscilan entre $-1$ y $1$ — ese recorrido es la **amplitud** $1$. La onda coseno es la onda seno desplazada $\\tfrac{\\pi}{2}$ a la izquierda: $\\cos x = \\sin(x + \\tfrac{\\pi}{2})$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Periodic waves model everything that repeats: sound, light, alternating current, tides, seasons. A general sinusoid $A\\sin(Bx + C) + D$ stretches the amplitude ($A$), changes the period ($2\\pi/B$), shifts horizontally (phase $C$) and vertically ($D$) — the vocabulary of signal processing.",
+        "es": "Las ondas periódicas modelan todo lo que se repite: sonido, luz, corriente alterna, mareas, estaciones. Una sinusoide general $A\\sin(Bx + C) + D$ estira la amplitud ($A$), cambia el período ($2\\pi/B$), desplaza en horizontal (fase $C$) y en vertical ($D$) — el vocabulario del procesamiento de señales."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "sin(x)",
+      "domain": [-6.5, 6.5],
+      "caption": {
+        "en": "$f(x) = \\sin x$: a smooth wave of period $2\\pi$ and amplitude $1$, crossing zero at every multiple of $\\pi$ and peaking at $\\pm 1$.",
+        "es": "$f(x) = \\sin x$: una onda suave de período $2\\pi$ y amplitud $1$, que cruza el cero en cada múltiplo de $\\pi$ y alcanza picos en $\\pm 1$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — reading the wave", "es": "Ejemplo resuelto — leer la onda" },
+      "content": {
+        "en": "$\\sin 0 = 0$ (the wave starts at the origin), $\\sin \\tfrac{\\pi}{2} = 1$ (first peak), $\\sin \\pi = 0$, $\\sin \\tfrac{3\\pi}{2} = -1$ (trough), and $\\sin 2\\pi = 0$ — back to start. The maximum of $\\sin x$ is $1$; the minimum of $\\cos x$ is $-1$.",
+        "es": "$\\sin 0 = 0$ (la onda empieza en el origen), $\\sin \\tfrac{\\pi}{2} = 1$ (primer pico), $\\sin \\pi = 0$, $\\sin \\tfrac{3\\pi}{2} = -1$ (valle), y $\\sin 2\\pi = 0$ — vuelta al inicio. El máximo de $\\sin x$ es $1$; el mínimo de $\\cos x$ es $-1$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "functions-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "What is the period of $\\sin x$? (in radians)", "es": "¿Cuál es el período de $\\sin x$? (en radianes)" },
+      "answer": "2*pi",
+      "acceptedAlt": ["2pi"],
+      "hint": { "en": "It repeats every full circle.", "es": "Se repite cada vuelta completa." },
+      "solution": [ { "tex": "T = 2\\pi", "en": "One full cycle.", "es": "Un ciclo completo." } ]
+    },
+    {
+      "id": "functions-10-e2",
+      "answerType": "number",
+      "prompt": { "en": "What is the maximum value of $\\sin x$?", "es": "¿Cuál es el valor máximo de $\\sin x$?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "The amplitude.", "es": "La amplitud." },
+      "solution": [ { "tex": "\\max \\sin x = 1", "en": "Top of the wave.", "es": "Cresta de la onda." } ]
+    },
+    {
+      "id": "functions-10-e3",
+      "answerType": "number",
+      "prompt": { "en": "What is the minimum value of $\\cos x$?", "es": "¿Cuál es el valor mínimo de $\\cos x$?" },
+      "answer": "-1",
+      "acceptedAlt": [],
+      "hint": { "en": "The bottom of the wave.", "es": "El valle de la onda." },
+      "solution": [ { "tex": "\\min \\cos x = -1", "en": "Bottom of the wave.", "es": "Valle de la onda." } ]
+    },
+    {
+      "id": "functions-10-e4",
+      "answerType": "number",
+      "prompt": { "en": "Compute $\\sin 0$.", "es": "Calcula $\\sin 0$." },
+      "answer": "0",
+      "acceptedAlt": ["sin(0)"],
+      "hint": { "en": "Where the sine wave starts.", "es": "Donde empieza la onda seno." },
+      "solution": [ { "tex": "\\sin 0 = 0", "en": "Value at the origin.", "es": "Valor en el origen." } ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 5.2–5.3, trigonometric functions and their graphs", "es": "Cap. 5.2–5.3, funciones trigonométricas y sus gráficas" } },
+    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 4.5, graphs of sine and cosine", "es": "Cap. 4.5, gráficas de seno y coseno" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones trigonométricas' — seno y coseno", "es": "Apartado 'Funciones trigonométricas' — seno y coseno" } }
+  ]
+}

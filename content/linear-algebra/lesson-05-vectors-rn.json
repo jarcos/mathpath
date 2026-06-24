@@ -1,0 +1,80 @@
+{
+  "id": "linalg-05-vectors-rn",
+  "subjectId": "linear-algebra",
+  "order": 5,
+  "estimatedMinutes": 40,
+  "title": { "en": "Vectors in ℝⁿ", "es": "Vectores en ℝⁿ" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **vector** is an ordered list of numbers, such as $(1, 2, 3)$ in $\\mathbb{R}^3$. Geometrically it is an arrow from the origin to that point, carrying both **magnitude** and **direction**. Vectors are the atoms of linear algebra and the native data type of machine learning — a data point with $n$ features is just a vector in $\\mathbb{R}^n$.",
+        "es": "Un **vector** es una lista ordenada de números, como $(1, 2, 3)$ en $\\mathbb{R}^3$. Geométricamente es una flecha del origen a ese punto, con **magnitud** y **dirección**. Los vectores son los átomos del álgebra lineal y el tipo de dato nativo del aprendizaje automático — un dato con $n$ características es un vector en $\\mathbb{R}^n$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two operations define vector algebra. **Addition** is componentwise and corresponds to placing arrows tip-to-tail: $(1,2)+(3,4) = (4,6)$. **Scalar multiplication** stretches or shrinks (and flips, if negative): $2(1,2,3) = (2,4,6)$. From just these two operations, all of linear algebra is built.",
+        "es": "Dos operaciones definen el álgebra vectorial. La **suma** es componente a componente y corresponde a colocar flechas punta con cola: $(1,2)+(3,4) = (4,6)$. La **multiplicación por escalar** estira o encoge (y voltea, si es negativa): $2(1,2,3) = (2,4,6)$. A partir de solo estas dos operaciones se construye todo el álgebra lineal."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **norm** (length) of a vector measures its magnitude via Pythagoras: $\\|v\\| = \\sqrt{v_1^2 + \\dots + v_n^2}$. So $\\|(3,4)\\| = \\sqrt{9+16} = 5$ and $\\|(1,2,2)\\| = \\sqrt{1+4+4} = 3$. A vector of norm $1$ is a **unit vector**, used to capture pure direction.",
+        "es": "La **norma** (longitud) de un vector mide su magnitud por Pitágoras: $\\|v\\| = \\sqrt{v_1^2 + \\dots + v_n^2}$. Así $\\|(3,4)\\| = \\sqrt{9+16} = 5$ y $\\|(1,2,2)\\| = \\sqrt{1+4+4} = 3$. Un vector de norma $1$ es un **vector unitario**, usado para capturar la dirección pura."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — norm", "es": "Ejemplo resuelto — norma" },
+      "content": {
+        "en": "Compute $\\|(1,2,2)\\|$. Square each component: $1 + 4 + 4 = 9$. Take the root: $\\sqrt9 = 3$. To make a unit vector in the same direction, divide by the norm: $\\tfrac13(1,2,2)$ has length $1$.",
+        "es": "Calcula $\\|(1,2,2)\\|$. Eleva al cuadrado cada componente: $1 + 4 + 4 = 9$. Toma la raíz: $\\sqrt9 = 3$. Para obtener un vector unitario en la misma dirección, divide por la norma: $\\tfrac13(1,2,2)$ tiene longitud $1$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-05-e1",
+      "answerType": "number",
+      "prompt": { "en": "First component of $(1,2) + (3,4)$?", "es": "¿Primera componente de $(1,2) + (3,4)$?" },
+      "answer": "4",
+      "acceptedAlt": ["1+3"],
+      "hint": { "en": "Add first components.", "es": "Suma las primeras componentes." },
+      "solution": [ { "tex": "1+3 = 4", "en": "Component-wise.", "es": "Componente a componente." } ]
+    },
+    {
+      "id": "linalg-05-e2",
+      "answerType": "number",
+      "prompt": { "en": "Second component of $2\\cdot(1,2,3)$?", "es": "¿Segunda componente de $2\\cdot(1,2,3)$?" },
+      "answer": "4",
+      "acceptedAlt": ["2*2"],
+      "hint": { "en": "Scale each component.", "es": "Escala cada componente." },
+      "solution": [ { "tex": "2\\cdot 2 = 4", "en": "Scalar multiply.", "es": "Multiplicación escalar." } ]
+    },
+    {
+      "id": "linalg-05-e3",
+      "answerType": "number",
+      "prompt": { "en": "Compute the norm $\\|(3,4)\\|$.", "es": "Calcula la norma $\\|(3,4)\\|$." },
+      "answer": "5",
+      "acceptedAlt": ["norm([3,4])", "sqrt(3^2+4^2)"],
+      "hint": { "en": "√(3² + 4²).", "es": "√(3² + 4²)." },
+      "solution": [ { "tex": "\\sqrt{9+16} = 5", "en": "Length.", "es": "Longitud." } ]
+    },
+    {
+      "id": "linalg-05-e4",
+      "answerType": "number",
+      "prompt": { "en": "Compute the norm $\\|(1,2,2)\\|$.", "es": "Calcula la norma $\\|(1,2,2)\\|$." },
+      "answer": "3",
+      "acceptedAlt": ["norm([1,2,2])", "sqrt(1+4+4)"],
+      "hint": { "en": "√(1 + 4 + 4).", "es": "√(1 + 4 + 4)." },
+      "solution": [ { "tex": "\\sqrt{9} = 3", "en": "Length.", "es": "Longitud." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 1.1, vectors and linear combinations", "es": "Cap. 1.1, vectores y combinaciones lineales" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Vectors in Rⁿ", "es": "Vectores en Rⁿ" } }
+  ]
+}

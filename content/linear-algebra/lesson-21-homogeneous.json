@@ -1,0 +1,80 @@
+{
+  "id": "linalg-21-homogeneous",
+  "subjectId": "linear-algebra",
+  "order": 21,
+  "estimatedMinutes": 40,
+  "title": { "en": "Homogeneous Systems", "es": "Sistemas homogéneos" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **homogeneous system** is one where the right-hand side is all zeros: $A\\mathbf{x} = \\mathbf{0}$. These are special and central. They always have at least the **trivial solution** $\\mathbf{x} = \\mathbf{0}$ (every unknown zero), so a homogeneous system is **never inconsistent** — the only question is whether other solutions exist.",
+        "es": "Un **sistema homogéneo** es aquel cuyo término de la derecha es todo ceros: $A\\mathbf{x} = \\mathbf{0}$. Son especiales y centrales. Siempre tienen al menos la **solución trivial** $\\mathbf{x} = \\mathbf{0}$ (todas las incógnitas cero), así que un sistema homogéneo **nunca es incompatible** — la única pregunta es si existen otras soluciones."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Nontrivial solutions exist **exactly when** $\\det A = 0$ (the matrix is singular, rank below the number of unknowns). If $\\det A \\neq 0$, the only solution is the trivial one. The set of all solutions forms a subspace — the **null space** (kernel) of $A$ — a structure that becomes the heart of the Linear Maps subject.",
+        "es": "Existen soluciones no triviales **justo cuando** $\\det A = 0$ (la matriz es singular, con rango menor que el número de incógnitas). Si $\\det A \\neq 0$, la única solución es la trivial. El conjunto de todas las soluciones forma un subespacio — el **núcleo** (kernel) de $A$ — una estructura que será el corazón de la asignatura de Aplicaciones lineales."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Homogeneous systems matter because the **general solution** of *any* system $A\\mathbf{x}=\\mathbf{b}$ is one particular solution plus the entire solution set of the associated homogeneous system. Understand the homogeneous case and you understand them all.",
+        "es": "Los sistemas homogéneos importan porque la **solución general** de *cualquier* sistema $A\\mathbf{x}=\\mathbf{b}$ es una solución particular más todo el conjunto solución del sistema homogéneo asociado. Entiende el caso homogéneo y los entiendes todos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Does $x = 0, y = 0$ solve $x + y = 0$, $x - y = 0$? Substitute: $0 + 0 = 0$ ✓ and $0 - 0 = 0$ ✓ — yes, the trivial solution always works. Here $\\det\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix} = -2 \\neq 0$, so the trivial solution is the *only* one.",
+        "es": "¿Cumple $x = 0, y = 0$ el sistema $x + y = 0$, $x - y = 0$? Sustituye: $0 + 0 = 0$ ✓ y $0 - 0 = 0$ ✓ — sí, la solución trivial siempre funciona. Aquí $\\det\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix} = -2 \\neq 0$, así que la trivial es la *única*."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-21-e1",
+      "answerType": "number",
+      "prompt": { "en": "In the trivial solution of a homogeneous system, each unknown equals ___?", "es": "En la solución trivial de un sistema homogéneo, cada incógnita vale ___?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "All zeros.", "es": "Todo ceros." },
+      "solution": [ { "tex": "\\mathbf{x} = \\mathbf{0}", "en": "All components zero.", "es": "Todas las componentes cero." } ]
+    },
+    {
+      "id": "linalg-21-e2",
+      "answerType": "text",
+      "prompt": { "en": "Does $x=0, y=0$ solve $x+y=0$, $x-y=0$? (yes / no)", "es": "¿Cumple $x=0, y=0$ el sistema $x+y=0$, $x-y=0$? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Substitute zeros.", "es": "Sustituye ceros." },
+      "solution": [ { "tex": "0+0=0,\\;0-0=0", "en": "Trivial solution works.", "es": "La solución trivial funciona." } ]
+    },
+    {
+      "id": "linalg-21-e3",
+      "answerType": "number",
+      "prompt": { "en": "If $\\det A \\neq 0$, how many nontrivial solutions does $A\\mathbf{x}=\\mathbf{0}$ have?", "es": "Si $\\det A \\neq 0$, ¿cuántas soluciones no triviales tiene $A\\mathbf{x}=\\mathbf{0}$?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Only the trivial one exists.", "es": "Solo existe la trivial." },
+      "solution": [ { "tex": "\\det A\\neq0 \\Rightarrow \\text{only } \\mathbf{0}", "en": "No nontrivial solutions.", "es": "Sin soluciones no triviales." } ]
+    },
+    {
+      "id": "linalg-21-e4",
+      "answerType": "number",
+      "prompt": { "en": "Nontrivial solutions require the determinant to equal ___?", "es": "Las soluciones no triviales requieren que el determinante valga ___?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Singular matrix.", "es": "Matriz singular." },
+      "solution": [ { "tex": "\\det A = 0", "en": "Singular → nontrivial solutions.", "es": "Singular → soluciones no triviales." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)", "detail": { "en": "Homogeneous systems and their solutions", "es": "Sistemas homogéneos y sus soluciones" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 3.2, the null space of A; solving Ax = 0", "es": "Cap. 3.2, el espacio nulo de A; resolver Ax = 0" } }
+  ]
+}

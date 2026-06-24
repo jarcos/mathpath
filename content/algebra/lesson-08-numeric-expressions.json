@@ -1,0 +1,112 @@
+{
+  "id": "algebra-08-numeric-expressions",
+  "subjectId": "algebra",
+  "order": 4,
+  "estimatedMinutes": 40,
+  "title": { "en": "Numeric Expressions & Scientific Notation", "es": "Expresiones numéricas y notación científica" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **numeric expression** combines numbers with operations. To get a single, unambiguous value, everyone must evaluate it in the same order — the **order of operations**. The agreed priority is: (1) **P**arentheses and other grouping; (2) **E**xponents and roots; (3) **M**ultiplication and **D**ivision, left to right; (4) **A**ddition and **S**ubtraction, left to right. (PEMDAS, or BODMAS in some countries.)",
+        "es": "Una **expresión numérica** combina números con operaciones. Para obtener un único valor sin ambigüedad, todos deben evaluarla en el mismo orden — la **jerarquía de operaciones**. La prioridad acordada es: (1) **P**aréntesis y otros agrupamientos; (2) **E**xponentes y raíces; (3) **M**ultiplicación y **D**ivisión, de izquierda a derecha; (4) **A**dición y **S**ustracción, de izquierda a derecha."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This is why $2 + 3\\cdot 4 = 14$, not $20$: the multiplication binds tighter than the addition. Parentheses override the default — $(2+3)\\cdot 4 = 20$ — so they are your tool for forcing a different order. When expressions nest, work from the innermost grouping outward.",
+        "es": "Por eso $2 + 3\\cdot 4 = 14$, no $20$: la multiplicación es más prioritaria que la suma. Los paréntesis anulan el orden por defecto — $(2+3)\\cdot 4 = 20$ — así que son tu herramienta para forzar otro orden. Cuando las expresiones se anidan, trabaja del paréntesis más interno hacia afuera."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Scientific notation** writes a number as $a \\times 10^{n}$ with $1 \\le |a| < 10$ and $n$ an integer. It tames very large or very small quantities and makes their scale obvious: the speed of light is $3\\times 10^{8}$ m/s; a typical atom is about $1\\times 10^{-10}$ m across. A positive $n$ shifts the decimal point right (big numbers); a negative $n$ shifts it left (small numbers).",
+        "es": "La **notación científica** escribe un número como $a \\times 10^{n}$ con $1 \\le |a| < 10$ y $n$ entero. Domestica cantidades muy grandes o muy pequeñas y hace evidente su escala: la velocidad de la luz es $3\\times 10^{8}$ m/s; un átomo típico mide unos $1\\times 10^{-10}$ m. Un $n$ positivo mueve la coma a la derecha (números grandes); un $n$ negativo, a la izquierda (números pequeños)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Notable identities** are shortcuts worth memorizing because they appear everywhere: $(a+b)^2 = a^2 + 2ab + b^2$, $(a-b)^2 = a^2 - 2ab + b^2$, and $(a+b)(a-b) = a^2 - b^2$. They let you expand or factor instantly and reappear throughout polynomials and quadratics.",
+        "es": "Las **igualdades notables** son atajos que conviene memorizar porque aparecen por todas partes: $(a+b)^2 = a^2 + 2ab + b^2$, $(a-b)^2 = a^2 - 2ab + b^2$ y $(a+b)(a-b) = a^2 - b^2$. Permiten desarrollar o factorizar al instante y reaparecen en polinomios y cuadráticas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Evaluate $2\\cdot(5-3)^2$. Innermost first: $5-3 = 2$. Exponent: $2^2 = 4$. Multiply: $2\\cdot 4 = 8$. Skipping straight to $2\\cdot 5 - 3$ would be wrong — respect the grouping and the exponent before multiplying.",
+        "es": "Evalúa $2\\cdot(5-3)^2$. Lo más interno primero: $5-3 = 2$. Exponente: $2^2 = 4$. Multiplica: $2\\cdot 4 = 8$. Saltar directo a $2\\cdot 5 - 3$ sería un error — respeta el paréntesis y el exponente antes de multiplicar."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-08-e1",
+      "answerType": "number",
+      "prompt": { "en": "Evaluate:  $2 + 3\\cdot 4 - 1$", "es": "Evalúa:  $2 + 3\\cdot 4 - 1$" },
+      "answer": "13",
+      "acceptedAlt": ["2+3*4-1"],
+      "hint": { "en": "Multiplication before addition.", "es": "La multiplicación antes que la suma." },
+      "solution": [
+        { "tex": "2 + 3\\cdot 4 - 1 = 2 + 12 - 1", "en": "Do the multiplication first.", "es": "Haz primero la multiplicación." },
+        { "tex": "= 13", "en": "Then add and subtract.", "es": "Luego suma y resta." }
+      ]
+    },
+    {
+      "id": "algebra-08-e2",
+      "answerType": "number",
+      "prompt": { "en": "Evaluate:  $(2 + 3)\\cdot 4$", "es": "Evalúa:  $(2 + 3)\\cdot 4$" },
+      "answer": "20",
+      "acceptedAlt": ["(2+3)*4"],
+      "hint": { "en": "Parentheses come first.", "es": "Los paréntesis van primero." },
+      "solution": [
+        { "tex": "(2+3)\\cdot 4 = 5\\cdot 4", "en": "Evaluate the parentheses.", "es": "Evalúa el paréntesis." },
+        { "tex": "= 20", "en": "Multiply.", "es": "Multiplica." }
+      ]
+    },
+    {
+      "id": "algebra-08-e3",
+      "answerType": "number",
+      "prompt": { "en": "Evaluate:  $3.2\\times 10^{3} + 800$", "es": "Evalúa:  $3.2\\times 10^{3} + 800$" },
+      "answer": "4000",
+      "acceptedAlt": ["3.2*10^3+800", "4*10^3"],
+      "hint": { "en": "First convert the scientific notation to a plain number.", "es": "Primero convierte la notación científica a número normal." },
+      "solution": [
+        { "tex": "3.2\\times 10^{3} = 3200", "en": "Expand the power of ten.", "es": "Desarrolla la potencia de diez." },
+        { "tex": "3200 + 800 = 4000", "en": "Add.", "es": "Suma." }
+      ]
+    },
+    {
+      "id": "algebra-08-e4",
+      "answerType": "number",
+      "prompt": { "en": "Evaluate:  $2\\cdot(5 - 3)^{2}$", "es": "Evalúa:  $2\\cdot(5 - 3)^{2}$" },
+      "answer": "8",
+      "acceptedAlt": ["2*(5-3)^2"],
+      "hint": { "en": "Parentheses, then the power, then multiply.", "es": "Paréntesis, luego la potencia, luego multiplica." },
+      "solution": [
+        { "tex": "2\\cdot(5-3)^2 = 2\\cdot 2^2", "en": "Evaluate the parentheses.", "es": "Evalúa el paréntesis." },
+        { "tex": "= 2\\cdot 4 = 8", "en": "Power, then multiply.", "es": "Potencia y luego multiplica." }
+      ]
+    },
+    {
+      "id": "algebra-08-e5",
+      "answerType": "number",
+      "prompt": { "en": "Use a notable identity to evaluate $(10+1)^2$.", "es": "Usa una igualdad notable para evaluar $(10+1)^2$." },
+      "answer": "121",
+      "acceptedAlt": ["10^2+2*10*1+1^2", "11^2"],
+      "hint": { "en": "(a+b)² = a² + 2ab + b².", "es": "(a+b)² = a² + 2ab + b²." },
+      "solution": [
+        { "tex": "100 + 2\\cdot10 + 1", "en": "Apply (a+b)².", "es": "Aplica (a+b)²." },
+        { "tex": "= 121", "en": "Sum the parts.", "es": "Suma las partes." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.1–1.3, real numbers, order of operations, special product formulas", "es": "Cap. 1.1–1.3, números reales, jerarquía, productos notables" } },
+    { "source": "Long — Painless Algebra", "detail": { "en": "Order of operations", "es": "Jerarquía de operaciones" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Números' — expresiones numéricas, notación científica", "es": "Apartado 'Números' — expresiones numéricas, notación científica" } }
+  ]
+}

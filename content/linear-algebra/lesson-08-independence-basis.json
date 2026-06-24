@@ -1,0 +1,80 @@
+{
+  "id": "linalg-08-independence-basis",
+  "subjectId": "linear-algebra",
+  "order": 8,
+  "estimatedMinutes": 45,
+  "title": { "en": "Independence, Basis & Dimension", "es": "Independencia, base y dimensión" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Vectors are **linearly independent** if none of them can be written as a linear combination of the others — none is redundant. Equivalently, the only way to combine them to get the zero vector is with all-zero weights. $(1,2)$ and $(2,4)$ are **dependent** because the second is just twice the first; $(1,0)$ and $(0,1)$ are independent.",
+        "es": "Los vectores son **linealmente independientes** si ninguno puede escribirse como combinación lineal de los demás — ninguno es redundante. Equivalentemente, la única forma de combinarlos para obtener el vector cero es con todos los pesos nulos. $(1,2)$ y $(2,4)$ son **dependientes** porque el segundo es el doble del primero; $(1,0)$ y $(0,1)$ son independientes."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **basis** is a set of vectors that is both **independent** (no redundancy) and **spanning** (reaches everything). It is a minimal, efficient coordinate system: every vector has *exactly one* expression in terms of the basis. The standard basis of $\\mathbb{R}^n$ is $e_1, \\dots, e_n$ (ones and zeros).",
+        "es": "Una **base** es un conjunto de vectores que es a la vez **independiente** (sin redundancia) y **generador** (alcanza todo). Es un sistema de coordenadas mínimo y eficiente: cada vector tiene *exactamente una* expresión en términos de la base. La base canónica de $\\mathbb{R}^n$ es $e_1, \\dots, e_n$ (unos y ceros)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A fundamental theorem: **every basis of a given space has the same number of vectors**. That number is the **dimension**. So every basis of $\\mathbb{R}^3$ has exactly $3$ vectors, of $\\mathbb{R}^2$ exactly $2$. Dimension is the intrinsic 'size' of a space, independent of which basis you choose.",
+        "es": "Un teorema fundamental: **toda base de un espacio dado tiene el mismo número de vectores**. Ese número es la **dimensión**. Así toda base de $\\mathbb{R}^3$ tiene exactamente $3$ vectores, y de $\\mathbb{R}^2$ exactamente $2$. La dimensión es el 'tamaño' intrínseco de un espacio, independiente de la base elegida."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — testing independence", "es": "Ejemplo resuelto — probar independencia" },
+      "content": {
+        "en": "Are $(1,2)$ and $(2,4)$ independent? Check whether one is a multiple of the other: $(2,4) = 2\\cdot(1,2)$ — yes, so they are **dependent**. Geometrically they lie on the same line, spanning only a $1$-dimensional space, not all of $\\mathbb{R}^2$.",
+        "es": "¿Son $(1,2)$ y $(2,4)$ independientes? Comprueba si uno es múltiplo del otro: $(2,4) = 2\\cdot(1,2)$ — sí, así que son **dependientes**. Geométricamente están en la misma recta, generando solo un espacio de dimensión $1$, no todo $\\mathbb{R}^2$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-08-e1",
+      "answerType": "text",
+      "prompt": { "en": "Are $(1,0)$ and $(0,1)$ linearly independent? (yes / no)", "es": "¿Son $(1,0)$ y $(0,1)$ linealmente independientes? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Is either a multiple of the other?", "es": "¿Es uno múltiplo del otro?" },
+      "solution": [ { "tex": "\\text{independent}", "en": "Neither is a multiple of the other.", "es": "Ninguno es múltiplo del otro." } ]
+    },
+    {
+      "id": "linalg-08-e2",
+      "answerType": "text",
+      "prompt": { "en": "Are $(1,2)$ and $(2,4)$ linearly independent? (yes / no)", "es": "¿Son $(1,2)$ y $(2,4)$ linealmente independientes? (sí / no)" },
+      "answer": "no",
+      "acceptedAlt": ["no"],
+      "hint": { "en": "(2,4) = 2·(1,2).", "es": "(2,4) = 2·(1,2)." },
+      "solution": [ { "tex": "(2,4) = 2(1,2)", "en": "Dependent.", "es": "Dependientes." } ]
+    },
+    {
+      "id": "linalg-08-e3",
+      "answerType": "number",
+      "prompt": { "en": "How many vectors are in a basis of $\\mathbb{R}^3$?", "es": "¿Cuántos vectores tiene una base de $\\mathbb{R}^3$?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "Equals the dimension.", "es": "Igual a la dimensión." },
+      "solution": [ { "tex": "\\dim = 3", "en": "Three vectors.", "es": "Tres vectores." } ]
+    },
+    {
+      "id": "linalg-08-e4",
+      "answerType": "number",
+      "prompt": { "en": "How many vectors are in the standard basis of $\\mathbb{R}^2$?", "es": "¿Cuántos vectores tiene la base canónica de $\\mathbb{R}^2$?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "e₁ and e₂.", "es": "e₁ y e₂." },
+      "solution": [ { "tex": "\\{(1,0),(0,1)\\}", "en": "Two vectors.", "es": "Dos vectores." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 3.4, independence, basis and dimension", "es": "Cap. 3.4, independencia, base y dimensión" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Linear (in)dependence; basis and dimension", "es": "(In)dependencia lineal; base y dimensión" } }
+  ]
+}

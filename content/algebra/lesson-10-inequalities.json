@@ -1,0 +1,100 @@
+{
+  "id": "algebra-10-inequalities",
+  "subjectId": "algebra",
+  "order": 8,
+  "estimatedMinutes": 40,
+  "title": { "en": "Inequalities", "es": "Inecuaciones" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Not every question asks for exact equality. \"How many units must we sell to make a *profit*?\" or \"for which speeds is the braking distance *under* 50 m?\" call for **inequalities**, which compare with $<$ (less than), $\\le$ (at most), $>$ (greater than) or $\\ge$ (at least). Their solution is usually not a single number but a whole **range** of values.",
+        "es": "No toda pregunta pide igualdad exacta. \"¿Cuántas unidades hay que vender para tener *beneficio*?\" o \"¿para qué velocidades la distancia de frenado es *menor* de 50 m?\" piden **inecuaciones**, que comparan con $<$ (menor), $\\le$ (a lo sumo), $>$ (mayor) o $\\ge$ (al menos). Su solución no suele ser un único número sino todo un **intervalo** de valores."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "We solve them almost like equations, isolating the variable with the same balanced moves — with **one crucial exception**: multiplying or dividing both sides by a **negative** number **reverses** the inequality sign. The reason is concrete: $2 < 3$, but multiply by $-1$ and $-2 > -3$. Forgetting to flip is the defining mistake of this topic.",
+        "es": "Las resolvemos casi como ecuaciones, despejando la variable con los mismos movimientos equilibrados — con **una excepción crucial**: multiplicar o dividir ambos lados por un número **negativo invierte** el signo de la desigualdad. La razón es concreta: $2 < 3$, pero multiplica por $-1$ y $-2 > -3$. Olvidar invertir es el error característico de este tema."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The solution set is written as an **interval**. $x > 2$ is $(2, \\infty)$; $x \\le -2$ is $(-\\infty, -2]$. A round bracket excludes the endpoint (strict $<, >$), a square bracket includes it ($\\le, \\ge$). The **boundary value** — where the expression equals zero — splits the line into a region that satisfies the inequality and one that does not.",
+        "es": "El conjunto solución se escribe como **intervalo**. $x > 2$ es $(2, \\infty)$; $x \\le -2$ es $(-\\infty, -2]$. Un paréntesis excluye el extremo (estricto $<, >$), un corchete lo incluye ($\\le, \\ge$). El **valor frontera** — donde la expresión vale cero — divide la recta en una región que cumple la inecuación y otra que no."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — the sign flip", "es": "Ejemplo resuelto — la inversión del signo" },
+      "content": {
+        "en": "Solve $-2x < 8$. Divide both sides by $-2$ **and flip**: $x > -4$, i.e. the interval $(-4, \\infty)$. Test a point to be safe: $x = 0$ gives $-2(0) = 0 < 8$ ✓, and $0$ is indeed greater than $-4$.",
+        "es": "Resuelve $-2x < 8$. Divide ambos lados entre $-2$ **e invierte**: $x > -4$, es decir el intervalo $(-4, \\infty)$. Prueba un punto por seguridad: $x = 0$ da $-2(0) = 0 < 8$ ✓, y $0$ es en efecto mayor que $-4$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **double inequality** like $1 < x \\le 5$ means both conditions hold at once — the interval $(1, 5]$. You operate on all three parts together. Testing a single point from your claimed solution region (as above) is a cheap, reliable way to catch a flipped sign.",
+        "es": "Una **doble desigualdad** como $1 < x \\le 5$ significa que ambas condiciones se cumplen a la vez — el intervalo $(1, 5]$. Operas sobre las tres partes juntas. Probar un único punto de la región solución (como antes) es una forma barata y fiable de detectar un signo invertido."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "Solve $2x - 4 > 0$. Enter the boundary value of $x$.", "es": "Resuelve $2x - 4 > 0$. Escribe el valor frontera de $x$." },
+      "answer": "2",
+      "acceptedAlt": ["4/2"],
+      "hint": { "en": "Solve 2x - 4 = 0 for the boundary.", "es": "Resuelve 2x - 4 = 0 para la frontera." },
+      "solution": [
+        { "tex": "2x - 4 = 0 \\Rightarrow x = 2", "en": "The boundary is at x = 2.", "es": "La frontera está en x = 2." },
+        { "tex": "x > 2", "en": "Positive coefficient, so the solution is x > 2.", "es": "Coeficiente positivo, así que la solución es x > 2." }
+      ]
+    },
+    {
+      "id": "algebra-10-e2",
+      "answerType": "number",
+      "prompt": { "en": "Solve $3x + 6 \\le 0$. Enter the boundary value of $x$.", "es": "Resuelve $3x + 6 \\le 0$. Escribe el valor frontera de $x$." },
+      "answer": "-2",
+      "acceptedAlt": ["-6/3"],
+      "hint": { "en": "Set 3x + 6 = 0.", "es": "Iguala 3x + 6 = 0." },
+      "solution": [
+        { "tex": "3x + 6 = 0 \\Rightarrow x = -2", "en": "Boundary at x = -2.", "es": "Frontera en x = -2." },
+        { "tex": "x \\le -2", "en": "Solution set.", "es": "Conjunto solución." }
+      ]
+    },
+    {
+      "id": "algebra-10-e3",
+      "answerType": "number",
+      "prompt": { "en": "Solve $-2x < 8$. Enter the boundary value of $x$ (where the sign flips).", "es": "Resuelve $-2x < 8$. Escribe el valor frontera de $x$ (donde se invierte el signo)." },
+      "answer": "-4",
+      "acceptedAlt": ["8/-2"],
+      "hint": { "en": "Divide by -2 and flip the inequality.", "es": "Divide entre -2 e invierte la desigualdad." },
+      "solution": [
+        { "tex": "-2x < 8 \\Rightarrow x > -4", "en": "Divide by -2, flip the sign.", "es": "Divide entre -2, invierte el signo." },
+        { "tex": "x > -4", "en": "Boundary at x = -4.", "es": "Frontera en x = -4." }
+      ]
+    },
+    {
+      "id": "algebra-10-e4",
+      "answerType": "text",
+      "prompt": { "en": "Is $x = 5$ a solution of $x - 3 > 0$? Answer yes or no.", "es": "¿Es $x = 5$ solución de $x - 3 > 0$? Responde sí o no." },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Substitute 5 and check.", "es": "Sustituye 5 y comprueba." },
+      "solution": [
+        { "tex": "5 - 3 = 2 > 0", "en": "The inequality holds.", "es": "La desigualdad se cumple." },
+        { "tex": "\\text{yes}", "en": "So x = 5 is a solution.", "es": "Por tanto x = 5 es solución." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.7, Inequalities", "es": "Cap. 1.7, Desigualdades" } },
+    { "source": "Long — Painless Algebra", "detail": { "en": "Inequalities and the sign-flip rule", "es": "Inecuaciones y la regla de inversión del signo" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Ecuaciones' — inecuaciones", "es": "Apartado 'Ecuaciones' — inecuaciones" } }
+  ]
+}

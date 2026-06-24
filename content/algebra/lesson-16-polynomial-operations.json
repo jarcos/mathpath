@@ -1,0 +1,104 @@
+{
+  "id": "algebra-16-polynomial-operations",
+  "subjectId": "algebra",
+  "order": 14,
+  "estimatedMinutes": 40,
+  "title": { "en": "Polynomial Operations", "es": "Operaciones con polinomios" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Polynomials can be added, subtracted, multiplied and divided much like numbers, and they form a self-contained algebraic system. **Adding or subtracting** is just combining **like terms** — those with the same power of $x$. Line up matching degrees and add their coefficients; with subtraction, distribute the minus sign across every term first.",
+        "es": "Los polinomios se suman, restan, multiplican y dividen de forma muy parecida a los números, y forman un sistema algebraico cerrado. **Sumar o restar** es solo combinar **términos semejantes** — los de la misma potencia de $x$. Alinea los grados que coinciden y suma sus coeficientes; al restar, distribuye primero el signo menos por todos los términos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Multiplying** uses the distributive property repeatedly: every term of the first factor multiplies every term of the second, then you collect like terms. For two binomials this is the **FOIL** pattern (First, Outer, Inner, Last). For monomials, multiply coefficients and **add exponents**: $(2x)(3x^2) = 6x^3$.",
+        "es": "**Multiplicar** usa la distributiva repetidamente: cada término del primer factor multiplica a cada término del segundo, y luego agrupas semejantes. Para dos binomios es el patrón **FOIL** (primeros, externos, internos, últimos). Para monomios, multiplica coeficientes y **suma exponentes**: $(2x)(3x^2) = 6x^3$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **special products** from earlier are huge time-savers here: $(a+b)^2 = a^2 + 2ab + b^2$, $(a-b)^2 = a^2 - 2ab + b^2$, and the difference of squares $(a+b)(a-b) = a^2 - b^2$. Recognizing them lets you expand — or, run in reverse, factor — in a single step.",
+        "es": "Los **productos notables** de antes ahorran mucho tiempo aquí: $(a+b)^2 = a^2 + 2ab + b^2$, $(a-b)^2 = a^2 - 2ab + b^2$ y la diferencia de cuadrados $(a+b)(a-b) = a^2 - b^2$. Reconocerlos te permite desarrollar — o, al revés, factorizar — en un solo paso."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — FOIL", "es": "Ejemplo resuelto — FOIL" },
+      "content": {
+        "en": "Expand $(x + 1)(x + 3)$. First: $x\\cdot x = x^2$. Outer: $x\\cdot 3 = 3x$. Inner: $1\\cdot x = x$. Last: $1\\cdot 3 = 3$. Combine the middle terms: $x^2 + 4x + 3$. The middle coefficient $4$ is the **sum** of the constants, and the last term $3$ is their **product** — the same pattern you use to factor.",
+        "es": "Desarrolla $(x + 1)(x + 3)$. Primeros: $x\\cdot x = x^2$. Externos: $x\\cdot 3 = 3x$. Internos: $1\\cdot x = x$. Últimos: $1\\cdot 3 = 3$. Agrupa los centrales: $x^2 + 4x + 3$. El coeficiente central $4$ es la **suma** de las constantes y el término final $3$ su **producto** — el mismo patrón que usas para factorizar."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-16-e1",
+      "answerType": "expression",
+      "prompt": { "en": "Simplify:  $(x^2 + 2x) + (3x^2 - x)$", "es": "Simplifica:  $(x^2 + 2x) + (3x^2 - x)$" },
+      "answer": "4*x^2 + x",
+      "acceptedAlt": ["x+4x^2"],
+      "hint": { "en": "Combine x² terms and x terms separately.", "es": "Agrupa los términos en x² y en x por separado." },
+      "solution": [
+        { "tex": "(x^2 + 3x^2) + (2x - x)", "en": "Group like terms.", "es": "Agrupa semejantes." },
+        { "tex": "= 4x^2 + x", "en": "Result.", "es": "Resultado." }
+      ]
+    },
+    {
+      "id": "algebra-16-e2",
+      "answerType": "expression",
+      "prompt": { "en": "Expand:  $(x + 1)(x + 3)$", "es": "Desarrolla:  $(x + 1)(x + 3)$" },
+      "answer": "x^2 + 4*x + 3",
+      "acceptedAlt": ["(x+1)*(x+3)"],
+      "hint": { "en": "Distribute each term (FOIL).", "es": "Distribuye cada término (FOIL)." },
+      "solution": [
+        { "tex": "x^2 + 3x + x + 3", "en": "Multiply out.", "es": "Multiplica." },
+        { "tex": "= x^2 + 4x + 3", "en": "Combine the middle terms.", "es": "Agrupa los términos centrales." }
+      ]
+    },
+    {
+      "id": "algebra-16-e3",
+      "answerType": "expression",
+      "prompt": { "en": "Multiply:  $(2x)(3x^2)$", "es": "Multiplica:  $(2x)(3x^2)$" },
+      "answer": "6*x^3",
+      "acceptedAlt": ["6x^3"],
+      "hint": { "en": "Multiply coefficients and add exponents.", "es": "Multiplica coeficientes y suma exponentes." },
+      "solution": [
+        { "tex": "(2x)(3x^2) = 6x^{1+2}", "en": "Multiply and add exponents.", "es": "Multiplica y suma exponentes." },
+        { "tex": "= 6x^3", "en": "Result.", "es": "Resultado." }
+      ]
+    },
+    {
+      "id": "algebra-16-e4",
+      "answerType": "expression",
+      "prompt": { "en": "Simplify:  $(x^2 - 1) - (x^2 - x)$", "es": "Simplifica:  $(x^2 - 1) - (x^2 - x)$" },
+      "answer": "x - 1",
+      "acceptedAlt": ["-1+x"],
+      "hint": { "en": "Distribute the minus sign first.", "es": "Distribuye primero el signo menos." },
+      "solution": [
+        { "tex": "x^2 - 1 - x^2 + x", "en": "Subtract term by term.", "es": "Resta término a término." },
+        { "tex": "= x - 1", "en": "The x² terms cancel.", "es": "Los términos x² se cancelan." }
+      ]
+    },
+    {
+      "id": "algebra-16-e5",
+      "answerType": "expression",
+      "prompt": { "en": "Use the difference of squares:  $(x+5)(x-5)$", "es": "Usa la diferencia de cuadrados:  $(x+5)(x-5)$" },
+      "answer": "x^2 - 25",
+      "acceptedAlt": ["(x+5)*(x-5)"],
+      "hint": { "en": "(a+b)(a−b) = a² − b².", "es": "(a+b)(a−b) = a² − b²." },
+      "solution": [
+        { "tex": "(x+5)(x-5) = x^2 - 25", "en": "Apply the formula.", "es": "Aplica la fórmula." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.3, operations and special product formulas", "es": "Cap. 1.3, operaciones y productos notables" } },
+    { "source": "Long — Painless Algebra", "detail": { "en": "Multiplying polynomials; FOIL", "es": "Multiplicar polinomios; FOIL" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Polinomios' — operaciones", "es": "Apartado 'Polinomios' — operaciones" } }
+  ]
+}

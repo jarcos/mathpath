@@ -1,0 +1,79 @@
+{
+  "id": "linmaps-14-composition",
+  "subjectId": "linear-maps",
+  "order": 14,
+  "estimatedMinutes": 40,
+  "title": { "en": "Composition of Transformations", "es": "Composición de transformaciones" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Real graphics pipelines chain many transformations: scale an object, rotate it, then move it into place. **Composing transformations corresponds to multiplying their matrices**. If $T_1$ has matrix $M_1$ and $T_2$ has matrix $M_2$, then doing $T_1$ first and $T_2$ second is the single matrix $M_2 M_1$ (applied right-to-left, like function composition).",
+        "es": "Los pipelines gráficos reales encadenan muchas transformaciones: escalar un objeto, rotarlo y luego moverlo a su sitio. **Componer transformaciones corresponde a multiplicar sus matrices**. Si $T_1$ tiene matriz $M_1$ y $T_2$ tiene matriz $M_2$, entonces hacer $T_1$ primero y $T_2$ después es la única matriz $M_2 M_1$ (aplicada de derecha a izquierda, como la composición de funciones)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Some compositions combine cleanly: two rotations **add their angles** ($90° + 90° = 180°$), and two scalings **multiply their factors** ($\\times 2$ then $\\times 3$ gives $\\times 6$). Homogeneous coordinates make this uniform — even translations fold into the product — so an entire pipeline collapses into one precomputed matrix.",
+        "es": "Algunas composiciones se combinan limpiamente: dos rotaciones **suman sus ángulos** ($90° + 90° = 180°$), y dos escalados **multiplican sus factores** ($\\times 2$ luego $\\times 3$ da $\\times 6$). Las coordenadas homogéneas lo hacen uniforme — incluso las traslaciones se pliegan en el producto — así que todo un pipeline se reduce a una única matriz precalculada."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Critically, because matrix multiplication is **not commutative**, the **order matters**: rotating then translating is generally different from translating then rotating. Getting the order right is one of the most common bugs in graphics and robotics code.",
+        "es": "Fundamental: como la multiplicación de matrices **no es conmutativa**, el **orden importa**: rotar y luego trasladar suele ser distinto de trasladar y luego rotar. Acertar con el orden es uno de los errores más frecuentes en código de gráficos y robótica."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Rotate by $90°$, then rotate by $90°$ again: the combined rotation is $90° + 90° = 180°$. Scale by $2$, then by $3$: the combined factor is $2\\times 3 = 6$. Both are single transformations equivalent to the chain.",
+        "es": "Rota $90°$, luego rota $90°$ otra vez: la rotación combinada es $90° + 90° = 180°$. Escala por $2$, luego por $3$: el factor combinado es $2\\times 3 = 6$. Ambas son transformaciones únicas equivalentes a la cadena."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-14-e1",
+      "answerType": "text",
+      "prompt": { "en": "Composing transformations corresponds to ___ their matrices. (one word)", "es": "Componer transformaciones corresponde a ___ sus matrices. (una palabra)" },
+      "answer": "multiplying",
+      "acceptedAlt": ["multiplicar", "multiplication", "multiplicación"],
+      "hint": { "en": "Matrix product.", "es": "Producto de matrices." },
+      "solution": [ { "tex": "M_2 M_1", "en": "Multiply matrices.", "es": "Multiplica matrices." } ]
+    },
+    {
+      "id": "linmaps-14-e2",
+      "answerType": "number",
+      "prompt": { "en": "Rotate by $90°$ then by $90°$. What is the combined rotation angle (degrees)?", "es": "Rota $90°$ y luego $90°$. ¿Cuál es el ángulo de rotación combinado (grados)?" },
+      "answer": "180",
+      "acceptedAlt": ["90+90"],
+      "hint": { "en": "Rotations add their angles.", "es": "Las rotaciones suman sus ángulos." },
+      "solution": [ { "tex": "90 + 90 = 180", "en": "Combined angle.", "es": "Ángulo combinado." } ]
+    },
+    {
+      "id": "linmaps-14-e3",
+      "answerType": "number",
+      "prompt": { "en": "Scale by 2 then by 3. What is the combined scale factor?", "es": "Escala por 2 y luego por 3. ¿Cuál es el factor de escala combinado?" },
+      "answer": "6",
+      "acceptedAlt": ["2*3"],
+      "hint": { "en": "Scalings multiply their factors.", "es": "Los escalados multiplican sus factores." },
+      "solution": [ { "tex": "2\\times 3 = 6", "en": "Combined factor.", "es": "Factor combinado." } ]
+    },
+    {
+      "id": "linmaps-14-e4",
+      "answerType": "text",
+      "prompt": { "en": "Does the order of composing transformations matter in general? (yes / no)", "es": "¿Importa en general el orden al componer transformaciones? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Matrix multiplication is non-commutative.", "es": "La multiplicación de matrices no es conmutativa." },
+      "solution": [ { "tex": "M_2 M_1 \\neq M_1 M_2", "en": "Order matters.", "es": "El orden importa." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Transformaciones geométricas (PID_00269008)", "detail": { "en": "Composition of transformations", "es": "Composición de transformaciones" } }
+  ]
+}

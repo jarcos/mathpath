@@ -1,0 +1,90 @@
+{
+  "id": "algebra-20-determinant-inverse",
+  "subjectId": "algebra",
+  "order": 19,
+  "estimatedMinutes": 45,
+  "title": { "en": "Determinant & Inverse Matrix", "es": "Determinante y matriz inversa" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **determinant** is a single number extracted from a square matrix that captures, in one value, whether the matrix can be \"undone\". For a $2\\times2$ matrix, $\\det\\begin{pmatrix}a & b\\\\ c & d\\end{pmatrix} = ad - bc$. Geometrically it is the **signed area** of the parallelogram spanned by the rows — and the factor by which the matrix scales areas.",
+        "es": "El **determinante** es un único número extraído de una matriz cuadrada que recoge, en un valor, si la matriz se puede \"deshacer\". Para una matriz $2\\times2$, $\\det\\begin{pmatrix}a & b\\\\ c & d\\end{pmatrix} = ad - bc$. Geométricamente es el **área con signo** del paralelogramo generado por las filas — y el factor por el que la matriz escala las áreas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **inverse** $A^{-1}$ is the matrix that undoes $A$: $A A^{-1} = A^{-1} A = I$. It plays the role of \"dividing by $A$\". A square matrix has an inverse **if and only if its determinant is not zero**. When $\\det A = 0$ the matrix is **singular**: it collapses area to zero, loses information, and cannot be inverted.",
+        "es": "La **inversa** $A^{-1}$ es la matriz que deshace $A$: $A A^{-1} = A^{-1} A = I$. Hace el papel de \"dividir entre $A$\". Una matriz cuadrada tiene inversa **si y solo si su determinante no es cero**. Cuando $\\det A = 0$ la matriz es **singular**: colapsa el área a cero, pierde información y no se puede invertir."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "For a $2\\times2$ matrix with nonzero determinant, the inverse has a tidy formula: $A^{-1} = \\dfrac{1}{ad-bc}\\begin{pmatrix}d & -b\\\\ -c & a\\end{pmatrix}$ — swap the diagonal, negate the off-diagonal, divide by the determinant. This is exactly why a zero determinant is fatal: you would be dividing by zero.",
+        "es": "Para una matriz $2\\times2$ con determinante no nulo, la inversa tiene una fórmula limpia: $A^{-1} = \\dfrac{1}{ad-bc}\\begin{pmatrix}d & -b\\\\ -c & a\\end{pmatrix}$ — intercambia la diagonal, cambia el signo de la antidiagonal, divide entre el determinante. Por eso un determinante cero es fatal: estarías dividiendo entre cero."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — determinant and invertibility", "es": "Ejemplo resuelto — determinante e invertibilidad" },
+      "content": {
+        "en": "For $\\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix}$, $\\det = 1\\cdot4 - 2\\cdot3 = -2 \\neq 0$, so it is invertible. For $\\begin{pmatrix}1 & 1\\\\ 1 & 1\\end{pmatrix}$, $\\det = 1 - 1 = 0$: the rows are identical, the matrix is singular, and no inverse exists.",
+        "es": "Para $\\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix}$, $\\det = 1\\cdot4 - 2\\cdot3 = -2 \\neq 0$, así que es invertible. Para $\\begin{pmatrix}1 & 1\\\\ 1 & 1\\end{pmatrix}$, $\\det = 1 - 1 = 0$: las filas son idénticas, la matriz es singular y no existe inversa."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-20-e1",
+      "answerType": "number",
+      "prompt": { "en": "Compute $\\det\\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix}$.", "es": "Calcula $\\det\\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix}$." },
+      "answer": "-2",
+      "acceptedAlt": ["1*4-2*3", "det([[1,2],[3,4]])"],
+      "hint": { "en": "ad − bc.", "es": "ad − bc." },
+      "solution": [
+        { "tex": "\\det = 1\\cdot 4 - 2\\cdot 3", "en": "Apply ad − bc.", "es": "Aplica ad − bc." },
+        { "tex": "= 4 - 6 = -2", "en": "Result.", "es": "Resultado." }
+      ]
+    },
+    {
+      "id": "algebra-20-e2",
+      "answerType": "number",
+      "prompt": { "en": "Compute $\\det\\begin{pmatrix}2 & 0\\\\ 0 & 3\\end{pmatrix}$.", "es": "Calcula $\\det\\begin{pmatrix}2 & 0\\\\ 0 & 3\\end{pmatrix}$." },
+      "answer": "6",
+      "acceptedAlt": ["2*3-0*0", "det([[2,0],[0,3]])"],
+      "hint": { "en": "Diagonal product minus off-diagonal product.", "es": "Producto de la diagonal menos el de la antidiagonal." },
+      "solution": [
+        { "tex": "\\det = 2\\cdot 3 - 0\\cdot 0", "en": "Apply the formula.", "es": "Aplica la fórmula." },
+        { "tex": "= 6", "en": "Result.", "es": "Resultado." }
+      ]
+    },
+    {
+      "id": "algebra-20-e3",
+      "answerType": "number",
+      "prompt": { "en": "A $2\\times 2$ matrix is invertible iff its determinant is not equal to which number?", "es": "Una matriz $2\\times 2$ es invertible si y solo si su determinante es distinto de qué número?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Think about division by the determinant.", "es": "Piensa en dividir entre el determinante." },
+      "solution": [ { "tex": "\\det \\neq 0", "en": "Invertible exactly when the determinant is non-zero.", "es": "Invertible justo cuando el determinante no es cero." } ]
+    },
+    {
+      "id": "algebra-20-e4",
+      "answerType": "number",
+      "prompt": { "en": "Compute $\\det\\begin{pmatrix}1 & 1\\\\ 1 & 1\\end{pmatrix}$ (is this matrix invertible?).", "es": "Calcula $\\det\\begin{pmatrix}1 & 1\\\\ 1 & 1\\end{pmatrix}$ (¿es invertible?)." },
+      "answer": "0",
+      "acceptedAlt": ["1*1-1*1", "det([[1,1],[1,1]])"],
+      "hint": { "en": "ad − bc with all 1s.", "es": "ad − bc con todo unos." },
+      "solution": [
+        { "tex": "\\det = 1\\cdot 1 - 1\\cdot 1 = 0", "en": "Determinant is 0.", "es": "El determinante es 0." },
+        { "tex": "\\Rightarrow \\text{not invertible}", "en": "So the matrix is singular.", "es": "Por tanto la matriz es singular." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 5, Determinants; Ch. 2.5, inverse matrices", "es": "Cap. 5, determinantes; Cap. 2.5, matrices inversas" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Determinants and the inverse matrix", "es": "Determinantes y matriz inversa" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Matrices' — determinante, matriz inversa", "es": "Apartado 'Matrices' — determinante, matriz inversa" } }
+  ]
+}

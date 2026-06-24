@@ -1,0 +1,20 @@
+# Dependencies & build output
+node_modules/
+out/
+dist/
+*.log
+
+# OS
+.DS_Store
+
+# Local database (created in the OS user-data folder at runtime)
+*.db
+*.sqlite
+
+# Reference source material — copyrighted textbooks & papers.
+# NOT distributed. Each user must supply their own copies locally.
+sources/
+
+# Stray Vite/electron-vite temp configs
+electron.vite.config.*.mjs
+!electron.vite.config.mjs

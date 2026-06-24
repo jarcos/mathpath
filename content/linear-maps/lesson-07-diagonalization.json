@@ -1,0 +1,80 @@
+{
+  "id": "linmaps-07-diagonalization",
+  "subjectId": "linear-maps",
+  "order": 7,
+  "estimatedMinutes": 45,
+  "title": { "en": "Diagonalization", "es": "Diagonalización" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Diagonalization** is the payoff of eigenvalues. A matrix $A$ is **diagonalizable** if we can write $A = P D P^{-1}$, where $D$ is **diagonal** and $P$'s columns are the eigenvectors. In the eigenvector basis, the messy matrix becomes a clean diagonal one — the map just stretches along each eigen-direction independently.",
+        "es": "La **diagonalización** es el fruto de los autovalores. Una matriz $A$ es **diagonalizable** si podemos escribir $A = P D P^{-1}$, donde $D$ es **diagonal** y las columnas de $P$ son los autovectores. En la base de autovectores, la matriz enmarañada se vuelve una diagonal limpia — la aplicación solo estira por cada autodirección de forma independiente."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The diagonal of $D$ contains exactly the **eigenvalues**. A matrix is diagonalizable precisely when it has **enough linearly independent eigenvectors** to fill $P$ (for an $n\\times n$ matrix, $n$ of them). Distinct eigenvalues always guarantee this; repeated eigenvalues sometimes do not.",
+        "es": "La diagonal de $D$ contiene exactamente los **autovalores**. Una matriz es diagonalizable justo cuando tiene **suficientes autovectores linealmente independientes** para llenar $P$ (para una matriz $n\\times n$, $n$ de ellos). Autovalores distintos siempre lo garantizan; autovalores repetidos a veces no."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Why bother? Because in the diagonal world, hard problems become trivial. Computing $A^{100}$ directly is brutal, but $A^{100} = P D^{100} P^{-1}$, and $D^{100}$ just raises each eigenvalue to the $100$th power. Solving differential equations, analyzing stability, and compressing data all exploit this. Since eigenvalues are similarity-invariant, $\\det A$ equals the **product of the eigenvalues**.",
+        "es": "¿Para qué? Porque en el mundo diagonal, los problemas difíciles se vuelven triviales. Calcular $A^{100}$ directamente es brutal, pero $A^{100} = P D^{100} P^{-1}$, y $D^{100}$ solo eleva cada autovalor a la potencia $100$. Resolver ecuaciones diferenciales, analizar estabilidad y comprimir datos explotan esto. Como los autovalores son invariantes por semejanza, $\\det A$ es el **producto de los autovalores**."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "$A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ is already diagonal, so $D = A$ with eigenvalues $2, 3$ on the diagonal. The product of eigenvalues $2\\cdot 3 = 6$ equals $\\det A$ ✓, and their sum $5$ equals the trace.",
+        "es": "$A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ ya es diagonal, así $D = A$ con autovalores $2, 3$ en la diagonal. El producto de autovalores $2\\cdot 3 = 6$ es $\\det A$ ✓, y su suma $5$ es la traza."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-07-e1",
+      "answerType": "text",
+      "prompt": { "en": "A matrix is diagonalizable if it has enough independent ___ (one word).", "es": "Una matriz es diagonalizable si tiene suficientes ___ independientes (una palabra)." },
+      "answer": "eigenvectors",
+      "acceptedAlt": ["autovectores", "autovector", "vectores propios"],
+      "hint": { "en": "The columns of P.", "es": "Las columnas de P." },
+      "solution": [ { "tex": "A = PDP^{-1}", "en": "Eigenvectors fill P.", "es": "Los autovectores llenan P." } ]
+    },
+    {
+      "id": "linmaps-07-e2",
+      "answerType": "set",
+      "prompt": { "en": "The diagonal $D$ for $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ has which entries?", "es": "La diagonal $D$ de $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ tiene qué entradas?" },
+      "answer": "2, 3",
+      "acceptedAlt": ["3, 2"],
+      "hint": { "en": "The eigenvalues.", "es": "Los autovalores." },
+      "solution": [ { "tex": "D = \\text{diag}(2,3)", "en": "Eigenvalues on the diagonal.", "es": "Autovalores en la diagonal." } ]
+    },
+    {
+      "id": "linmaps-07-e3",
+      "answerType": "text",
+      "prompt": { "en": "The diagonal of $D$ contains the ___ (one word).", "es": "La diagonal de $D$ contiene los ___ (una palabra)." },
+      "answer": "eigenvalues",
+      "acceptedAlt": ["autovalores", "autovalor", "valores propios"],
+      "hint": { "en": "λ values.", "es": "Los valores λ." },
+      "solution": [ { "tex": "D = \\text{diag}(\\lambda_1,\\dots)", "en": "Eigenvalues.", "es": "Autovalores." } ]
+    },
+    {
+      "id": "linmaps-07-e4",
+      "answerType": "number",
+      "prompt": { "en": "If the eigenvalues are 2 and 3, what is $\\det A$ (their product)?", "es": "Si los autovalores son 2 y 3, ¿cuánto es $\\det A$ (su producto)?" },
+      "answer": "6",
+      "acceptedAlt": ["2*3"],
+      "hint": { "en": "Determinant = product of eigenvalues.", "es": "Determinante = producto de autovalores." },
+      "solution": [ { "tex": "2\\cdot 3 = 6", "en": "Product of eigenvalues.", "es": "Producto de autovalores." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Diagonalization of endomorphisms", "es": "Diagonalización de endomorfismos" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 6.2, diagonalizing a matrix", "es": "Cap. 6.2, diagonalización de una matriz" } }
+  ]
+}

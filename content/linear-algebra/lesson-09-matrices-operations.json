@@ -1,0 +1,80 @@
+{
+  "id": "linalg-09-matrices-operations",
+  "subjectId": "linear-algebra",
+  "order": 9,
+  "estimatedMinutes": 45,
+  "title": { "en": "Matrices & Operations", "es": "Matrices y operaciones" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **matrix** is a rectangular array of numbers — but its real meaning is as a **linear transformation** and as a compact way to store a system of equations. Matrices add entry by entry and scale entry by entry, just like vectors (which they generalize).",
+        "es": "Una **matriz** es una tabla rectangular de números — pero su significado real es el de una **transformación lineal** y una forma compacta de guardar un sistema de ecuaciones. Las matrices se suman elemento a elemento y se escalan elemento a elemento, igual que los vectores (que generalizan)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Matrix multiplication** is the crucial operation: entry $(i,j)$ of $AB$ is the **dot product** of row $i$ of $A$ with column $j$ of $B$. It is defined only when $A$'s column count equals $B$'s row count. Multiplication encodes the **composition** of transformations — and it is **not commutative** ($AB \\neq BA$ in general), a fact with real consequences.",
+        "es": "La **multiplicación de matrices** es la operación crucial: el elemento $(i,j)$ de $AB$ es el **producto escalar** de la fila $i$ de $A$ con la columna $j$ de $B$. Solo está definida cuando las columnas de $A$ igualan las filas de $B$. La multiplicación codifica la **composición** de transformaciones — y **no es conmutativa** ($AB \\neq BA$ en general), un hecho con consecuencias reales."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **identity matrix** $I$ (ones on the diagonal, zeros elsewhere) acts like the number $1$: $AI = IA = A$. The **trace** of a square matrix is the sum of its diagonal entries — a quantity that, surprisingly, equals the sum of the eigenvalues you will meet in the next subject.",
+        "es": "La matriz **identidad** $I$ (unos en la diagonal, ceros en el resto) actúa como el número $1$: $AI = IA = A$. La **traza** de una matriz cuadrada es la suma de su diagonal — una cantidad que, sorprendentemente, coincide con la suma de los autovalores que verás en la próxima asignatura."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — a product entry", "es": "Ejemplo resuelto — un elemento del producto" },
+      "content": {
+        "en": "The $(1,1)$ entry of $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ is row $1$ of the first matrix dotted with column $1$ of the second: $(1,2)\\cdot(0,1) = 1\\cdot0 + 2\\cdot1 = 2$. (This particular $B$ swaps columns — matrices *do* things.)",
+        "es": "El elemento $(1,1)$ de $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ es la fila $1$ de la primera por la columna $1$ de la segunda: $(1,2)\\cdot(0,1) = 1\\cdot0 + 2\\cdot1 = 2$. (Este $B$ intercambia columnas — las matrices *hacen* cosas.)"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-09-e1",
+      "answerType": "number",
+      "prompt": { "en": "Trace of $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$?", "es": "¿Traza de $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$?" },
+      "answer": "5",
+      "acceptedAlt": ["1+4", "trace([[1,2],[3,4]])"],
+      "hint": { "en": "Sum the diagonal.", "es": "Suma la diagonal." },
+      "solution": [ { "tex": "1 + 4 = 5", "en": "Trace.", "es": "Traza." } ]
+    },
+    {
+      "id": "linalg-09-e2",
+      "answerType": "number",
+      "prompt": { "en": "$(1,1)$ entry of $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix} + \\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$?", "es": "¿Elemento $(1,1)$ de $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix} + \\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$?" },
+      "answer": "2",
+      "acceptedAlt": ["1+1"],
+      "hint": { "en": "Add top-left entries.", "es": "Suma los elementos superiores izquierdos." },
+      "solution": [ { "tex": "1 + 1 = 2", "en": "Entry-wise sum.", "es": "Suma elemento a elemento." } ]
+    },
+    {
+      "id": "linalg-09-e3",
+      "answerType": "number",
+      "prompt": { "en": "$(1,1)$ entry of $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$?", "es": "¿Elemento $(1,1)$ de $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "Multiplying by I keeps A unchanged.", "es": "Multiplicar por I deja A igual." },
+      "solution": [ { "tex": "AI = A \\Rightarrow 1", "en": "Identity leaves entries unchanged.", "es": "La identidad no cambia los elementos." } ]
+    },
+    {
+      "id": "linalg-09-e4",
+      "answerType": "number",
+      "prompt": { "en": "Dot product $(1,2)\\cdot(3,4)$?", "es": "¿Producto escalar $(1,2)\\cdot(3,4)$?" },
+      "answer": "11",
+      "acceptedAlt": ["1*3+2*4", "dot([1,2],[3,4])"],
+      "hint": { "en": "1·3 + 2·4.", "es": "1·3 + 2·4." },
+      "solution": [ { "tex": "3 + 8 = 11", "en": "Dot product.", "es": "Producto escalar." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 2.3–2.4, matrix operations and multiplication", "es": "Cap. 2.3–2.4, operaciones y multiplicación de matrices" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Matrices: types and operations", "es": "Matrices: tipos y operaciones" } }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "id": "algebra-09-algebraic-expressions",
+  "subjectId": "algebra",
+  "order": 5,
+  "estimatedMinutes": 40,
+  "title": { "en": "Algebraic Expressions", "es": "Expresiones algebraicas" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The leap from arithmetic to **algebra** is the use of **letters** to stand for numbers. A **variable** like $x$ is a placeholder for an unknown or changing quantity; a **constant** is a fixed number. An **algebraic expression** combines them with operations, like $3x + 2$ or $5xy - x^2$. Algebra lets us state truths about *all* numbers at once — $a + b = b + a$ holds whatever $a$ and $b$ are.",
+        "es": "El salto de la aritmética al **álgebra** es el uso de **letras** para representar números. Una **variable** como $x$ es un hueco para una cantidad desconocida o cambiante; una **constante** es un número fijo. Una **expresión algebraica** las combina con operaciones, como $3x + 2$ o $5xy - x^2$. El álgebra permite enunciar verdades sobre *todos* los números a la vez — $a + b = b + a$ se cumple sean cuales sean $a$ y $b$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "An expression is built from **terms** separated by $+$ or $-$. Each term has a numeric **coefficient** and a literal part: in $5x^2$, the coefficient is $5$ and the literal part is $x^2$. A single term is a **monomial**, a two-term expression a **binomial**, three a **trinomial**. **Like terms** have *identical* literal parts and can be combined by adding coefficients: $2x + 3x = 5x$, but $2x + 3x^2$ cannot be merged.",
+        "es": "Una expresión se compone de **términos** separados por $+$ o $-$. Cada término tiene un **coeficiente** numérico y una parte literal: en $5x^2$, el coeficiente es $5$ y la parte literal $x^2$. Un solo término es un **monomio**, dos términos un **binomio**, tres un **trinomio**. Los **términos semejantes** tienen parte literal *idéntica* y se agrupan sumando coeficientes: $2x + 3x = 5x$, pero $2x + 3x^2$ no se puede unir."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **distributive property** $a(b + c) = ab + ac$ is the workhorse of algebraic manipulation. It lets you **expand** a product over a sum — $3(x + 2) = 3x + 6$ — and, read backwards, to **factor** a common term out. Distributing a negative flips every sign inside: $-(x - 4) = -x + 4$, a frequent source of errors.",
+        "es": "La **propiedad distributiva** $a(b + c) = ab + ac$ es el caballo de batalla de la manipulación algebraica. Permite **desarrollar** un producto sobre una suma — $3(x + 2) = 3x + 6$ — y, leída al revés, **sacar factor común**. Distribuir un negativo cambia todos los signos dentro: $-(x - 4) = -x + 4$, fuente habitual de errores."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "To **evaluate** an expression, substitute numbers for the variables and compute, respecting the order of operations. Evaluation is the bridge between symbolic algebra and concrete arithmetic, and it is how formulas turn into answers.",
+        "es": "Para **evaluar** una expresión, sustituye las variables por números y calcula, respetando la jerarquía de operaciones. La evaluación es el puente entre el álgebra simbólica y la aritmética concreta, y es como las fórmulas se convierten en respuestas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — simplify then evaluate", "es": "Ejemplo resuelto — simplifica y evalúa" },
+      "content": {
+        "en": "Simplify $2(x-1) + 3$ and evaluate at $x = 4$. Distribute: $2x - 2 + 3 = 2x + 1$. Substitute $x = 4$: $2(4) + 1 = 9$. Simplifying first made the evaluation trivial — a good habit.",
+        "es": "Simplifica $2(x-1) + 3$ y evalúa en $x = 4$. Distribuye: $2x - 2 + 3 = 2x + 1$. Sustituye $x = 4$: $2(4) + 1 = 9$. Simplificar primero hizo trivial la evaluación — un buen hábito."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "algebra-09-e1",
+      "answerType": "expression",
+      "prompt": { "en": "Simplify:  $2x + 3x - x$", "es": "Simplifica:  $2x + 3x - x$" },
+      "answer": "4*x",
+      "acceptedAlt": ["4x"],
+      "hint": { "en": "Combine like terms.", "es": "Agrupa términos semejantes." },
+      "solution": [
+        { "tex": "2x + 3x - x = (2 + 3 - 1)x", "en": "Add the coefficients.", "es": "Suma los coeficientes." },
+        { "tex": "= 4x", "en": "Result.", "es": "Resultado." }
+      ]
+    },
+    {
+      "id": "algebra-09-e2",
+      "answerType": "expression",
+      "prompt": { "en": "Expand:  $3(x + 2)$", "es": "Desarrolla:  $3(x + 2)$" },
+      "answer": "3*x + 6",
+      "acceptedAlt": ["3*(x+2)", "3x+6"],
+      "hint": { "en": "Use the distributive property.", "es": "Usa la propiedad distributiva." },
+      "solution": [
+        { "tex": "3(x+2) = 3\\cdot x + 3\\cdot 2", "en": "Distribute the 3.", "es": "Distribuye el 3." },
+        { "tex": "= 3x + 6", "en": "Result.", "es": "Resultado." }
+      ]
+    },
+    {
+      "id": "algebra-09-e3",
+      "answerType": "expression",
+      "prompt": { "en": "Simplify:  $2(x - 1) + 3$", "es": "Simplifica:  $2(x - 1) + 3$" },
+      "answer": "2*x + 1",
+      "acceptedAlt": ["2x+1"],
+      "hint": { "en": "Distribute first, then combine constants.", "es": "Distribuye primero y luego agrupa las constantes." },
+      "solution": [
+        { "tex": "2(x-1) + 3 = 2x - 2 + 3", "en": "Distribute the 2.", "es": "Distribuye el 2." },
+        { "tex": "= 2x + 1", "en": "Combine the constants.", "es": "Agrupa las constantes." }
+      ]
+    },
+    {
+      "id": "algebra-09-e4",
+      "answerType": "number",
+      "prompt": { "en": "Evaluate $3a - 2$ when $a = 4$.", "es": "Evalúa $3a - 2$ cuando $a = 4$." },
+      "answer": "10",
+      "acceptedAlt": ["3*4-2"],
+      "hint": { "en": "Substitute 4 for a.", "es": "Sustituye a por 4." },
+      "solution": [
+        { "tex": "3\\cdot 4 - 2", "en": "Substitute a = 4.", "es": "Sustituye a = 4." },
+        { "tex": "= 12 - 2 = 10", "en": "Compute.", "es": "Calcula." }
+      ]
+    },
+    {
+      "id": "algebra-09-e5",
+      "answerType": "expression",
+      "prompt": { "en": "Expand and simplify:  $-(x - 4) + 2x$", "es": "Desarrolla y simplifica:  $-(x - 4) + 2x$" },
+      "answer": "x + 4",
+      "acceptedAlt": ["4+x"],
+      "hint": { "en": "The leading minus flips both signs inside.", "es": "El menos inicial cambia ambos signos del interior." },
+      "solution": [
+        { "tex": "-(x-4) + 2x = -x + 4 + 2x", "en": "Distribute the minus.", "es": "Distribuye el menos." },
+        { "tex": "= x + 4", "en": "Combine the x terms.", "es": "Agrupa los términos en x." }
+      ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.3, Algebraic Expressions", "es": "Cap. 1.3, Expresiones algebraicas" } },
+    { "source": "Long — Painless Algebra", "detail": { "en": "Variables, terms and the distributive property", "es": "Variables, términos y la distributiva" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Ecuaciones' — expresiones algebraicas", "es": "Apartado 'Ecuaciones' — expresiones algebraicas" } }
+  ]
+}

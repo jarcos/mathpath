@@ -1,0 +1,81 @@
+{
+  "id": "linalg-01-complex-binomic",
+  "subjectId": "linear-algebra",
+  "order": 1,
+  "estimatedMinutes": 40,
+  "title": { "en": "Complex Numbers: Binomic Form", "es": "Números complejos: forma binómica" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The equation $x^2 = -1$ has no real solution — no real number squares to a negative. Rather than declare it unsolvable, mathematicians **invented** a number that does: the **imaginary unit** $i$, defined by $i^2 = -1$. This single bold move completes the number system and, remarkably, makes *every* polynomial equation solvable (the Fundamental Theorem of Algebra).",
+        "es": "La ecuación $x^2 = -1$ no tiene solución real — ningún número real al cuadrado da un negativo. En lugar de declararla irresoluble, los matemáticos **inventaron** un número que sí la resuelve: la **unidad imaginaria** $i$, definida por $i^2 = -1$. Este audaz paso completa el sistema numérico y, notablemente, hace resoluble *toda* ecuación polinómica (el Teorema Fundamental del Álgebra)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **complex number** in **binomic form** is $z = a + bi$, combining a **real part** $a = \\Re(z)$ and an **imaginary part** $b = \\Im(z)$. Real numbers are just the special case $b = 0$, and pure imaginaries the case $a = 0$. Far from being a mathematical curiosity, complex numbers are indispensable in electrical engineering, signal processing, quantum mechanics — and, in this subject, in finding eigenvalues.",
+        "es": "Un **número complejo** en **forma binómica** es $z = a + bi$, que combina una **parte real** $a = \\Re(z)$ y una **parte imaginaria** $b = \\Im(z)$. Los reales son el caso particular $b = 0$, y los imaginarios puros el caso $a = 0$. Lejos de ser una curiosidad, los complejos son indispensables en ingeniería eléctrica, procesamiento de señales, mecánica cuántica — y, en esta asignatura, para hallar autovalores."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Square roots of negatives now make sense: $\\sqrt{-9} = \\sqrt{9}\\sqrt{-1} = 3i$, since $(3i)^2 = 9i^2 = -9$. Powers of $i$ cycle with period four: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$, then repeat — a pattern worth remembering.",
+        "es": "Las raíces de negativos ya tienen sentido: $\\sqrt{-9} = \\sqrt{9}\\sqrt{-1} = 3i$, pues $(3i)^2 = 9i^2 = -9$. Las potencias de $i$ se repiten con período cuatro: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$, y vuelta a empezar — un patrón que conviene recordar."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Identify parts and roots. For $z = 3 + 2i$: $\\Re(z) = 3$, $\\Im(z) = 2$. For $w = 5 - 4i$: $\\Im(w) = -4$ (keep the sign). And $\\sqrt{-9} = 3i$. Note $\\Im(z)$ is the real number $b$, not $bi$.",
+        "es": "Identifica partes y raíces. Para $z = 3 + 2i$: $\\Re(z) = 3$, $\\Im(z) = 2$. Para $w = 5 - 4i$: $\\Im(w) = -4$ (conserva el signo). Y $\\sqrt{-9} = 3i$. Nota que $\\Im(z)$ es el número real $b$, no $bi$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-01-e1",
+      "answerType": "number",
+      "prompt": { "en": "What is $i^2$?", "es": "¿Cuánto vale $i^2$?" },
+      "answer": "-1",
+      "acceptedAlt": [],
+      "hint": { "en": "Definition of the imaginary unit.", "es": "Definición de la unidad imaginaria." },
+      "solution": [ { "tex": "i^2 = -1", "en": "By definition.", "es": "Por definición." } ]
+    },
+    {
+      "id": "linalg-01-e2",
+      "answerType": "number",
+      "prompt": { "en": "What is the real part of $3 + 2i$?", "es": "¿Cuál es la parte real de $3 + 2i$?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "The term without i.", "es": "El término sin i." },
+      "solution": [ { "tex": "\\Re(3+2i) = 3", "en": "Real part.", "es": "Parte real." } ]
+    },
+    {
+      "id": "linalg-01-e3",
+      "answerType": "number",
+      "prompt": { "en": "What is the imaginary part of $5 - 4i$?", "es": "¿Cuál es la parte imaginaria de $5 - 4i$?" },
+      "answer": "-4",
+      "acceptedAlt": [],
+      "hint": { "en": "The coefficient of i (with its sign).", "es": "El coeficiente de i (con su signo)." },
+      "solution": [ { "tex": "\\Im(5-4i) = -4", "en": "Imaginary part.", "es": "Parte imaginaria." } ]
+    },
+    {
+      "id": "linalg-01-e4",
+      "answerType": "expression",
+      "prompt": { "en": "Write $\\sqrt{-9}$ in the form $bi$.", "es": "Escribe $\\sqrt{-9}$ en la forma $bi$." },
+      "answer": "3*i",
+      "acceptedAlt": ["3i"],
+      "hint": { "en": "√(−9) = √9 · √(−1).", "es": "√(−9) = √9 · √(−1)." },
+      "solution": [ { "tex": "\\sqrt{-9} = 3i", "en": "Since (3i)² = −9.", "es": "Ya que (3i)² = −9." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Los números (PID_00271022)", "detail": { "en": "Complex numbers; binomic form", "es": "Números complejos; forma binómica" } },
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 3.5, Complex Numbers", "es": "Cap. 3.5, Números complejos" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 9, complex numbers in linear algebra", "es": "Cap. 9, números complejos en álgebra lineal" } }
+  ]
+}

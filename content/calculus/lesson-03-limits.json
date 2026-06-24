@@ -1,0 +1,84 @@
+{
+  "id": "calculus-03-limits",
+  "subjectId": "calculus",
+  "order": 3,
+  "estimatedMinutes": 45,
+  "title": { "en": "Limits of Functions", "es": "Límites de funciones" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **limit** is the single most important concept in calculus — derivatives and integrals are both defined as limits. The idea: $\\lim_{x\\to a} f(x) = L$ means $f(x)$ can be made as close to $L$ as we like by taking $x$ sufficiently close to $a$ (but not equal to $a$). Crucially, the limit describes the function's *behavior near* $a$, regardless of whether $f(a)$ itself is defined.",
+        "es": "El **límite** es el concepto más importante del cálculo — derivadas e integrales se definen ambas como límites. La idea: $\\lim_{x\\to a} f(x) = L$ significa que $f(x)$ puede acercarse tanto como queramos a $L$ tomando $x$ suficientemente cerca de $a$ (pero distinto de $a$). Es clave: el límite describe el *comportamiento cercano* a $a$, esté o no definido $f(a)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "For functions built from polynomials, roots and the like — functions that are **continuous** — the limit is found by simple substitution: $\\lim_{x\\to 2} x^2 = 4$. The interesting cases are where substitution fails, giving the indeterminate form $\\tfrac00$. There the function may still have a perfectly good limit, hidden by a removable factor.",
+        "es": "Para funciones formadas por polinomios, raíces y similares — funciones **continuas** — el límite se halla por simple sustitución: $\\lim_{x\\to 2} x^2 = 4$. Los casos interesantes son donde la sustitución falla, dando la indeterminación $\\tfrac00$. Allí la función puede tener un límite perfectamente válido, oculto tras un factor que se cancela."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The technique is to **simplify first, then substitute**. For $\\lim_{x\\to 2}\\tfrac{x^2-4}{x-2}$, factoring gives $\\tfrac{(x-2)(x+2)}{x-2} = x+2$ (valid for $x\\neq 2$), which tends to $4$. Some limits are not algebraic at all: the **fundamental trigonometric limit** $\\lim_{x\\to 0}\\tfrac{\\sin x}{x} = 1$ underpins the derivative of sine.",
+        "es": "La técnica es **simplificar primero y luego sustituir**. Para $\\lim_{x\\to 2}\\tfrac{x^2-4}{x-2}$, factorizar da $\\tfrac{(x-2)(x+2)}{x-2} = x+2$ (válido para $x\\neq 2$), que tiende a $4$. Algunos límites no son algebraicos: el **límite trigonométrico fundamental** $\\lim_{x\\to 0}\\tfrac{\\sin x}{x} = 1$ sustenta la derivada del seno."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — removing a zero factor", "es": "Ejemplo resuelto — eliminar un factor nulo" },
+      "content": {
+        "en": "$\\lim_{x\\to 2}\\tfrac{x^2-4}{x-2}$ gives $\\tfrac00$ on direct substitution — undefined, but not hopeless. Factor the numerator as a difference of squares: $\\tfrac{(x-2)(x+2)}{x-2}$. Cancel the common $(x-2)$ (legitimate since $x\\neq 2$ in a limit), leaving $x+2$, which $\\to 4$.",
+        "es": "$\\lim_{x\\to 2}\\tfrac{x^2-4}{x-2}$ da $\\tfrac00$ al sustituir — indefinido, pero no perdido. Factoriza el numerador como diferencia de cuadrados: $\\tfrac{(x-2)(x+2)}{x-2}$. Cancela el $(x-2)$ común (legítimo pues $x\\neq 2$ en un límite), quedando $x+2$, que $\\to 4$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "calculus-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "Find $\\displaystyle\\lim_{x\\to 2} x^2$.", "es": "Halla $\\displaystyle\\lim_{x\\to 2} x^2$." },
+      "answer": "4",
+      "acceptedAlt": ["2^2"],
+      "hint": { "en": "Substitute directly.", "es": "Sustituye directamente." },
+      "solution": [ { "tex": "\\lim_{x\\to2} x^2 = 4", "en": "Continuous, so substitute.", "es": "Continua, así que sustituye." } ]
+    },
+    {
+      "id": "calculus-03-e2",
+      "answerType": "number",
+      "prompt": { "en": "Find $\\displaystyle\\lim_{x\\to 3} (2x - 1)$.", "es": "Halla $\\displaystyle\\lim_{x\\to 3} (2x - 1)$." },
+      "answer": "5",
+      "acceptedAlt": ["2*3-1"],
+      "hint": { "en": "Substitute x = 3.", "es": "Sustituye x = 3." },
+      "solution": [ { "tex": "2\\cdot3 - 1 = 5", "en": "Evaluate.", "es": "Evalúa." } ]
+    },
+    {
+      "id": "calculus-03-e3",
+      "answerType": "number",
+      "prompt": { "en": "Find $\\displaystyle\\lim_{x\\to 2}\\tfrac{x^2-4}{x-2}$.", "es": "Halla $\\displaystyle\\lim_{x\\to 2}\\tfrac{x^2-4}{x-2}$." },
+      "answer": "4",
+      "acceptedAlt": ["2+2"],
+      "hint": { "en": "Factor the numerator.", "es": "Factoriza el numerador." },
+      "solution": [
+        { "tex": "\\tfrac{(x-2)(x+2)}{x-2} = x+2", "en": "Cancel (x−2).", "es": "Cancela (x−2)." },
+        { "tex": "\\to 4", "en": "Substitute x = 2.", "es": "Sustituye x = 2." }
+      ]
+    },
+    {
+      "id": "calculus-03-e4",
+      "answerType": "number",
+      "prompt": { "en": "Find $\\displaystyle\\lim_{x\\to 0}\\tfrac{\\sin x}{x}$.", "es": "Halla $\\displaystyle\\lim_{x\\to 0}\\tfrac{\\sin x}{x}$." },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "A famous standard limit.", "es": "Un límite estándar famoso." },
+      "solution": [ { "tex": "\\lim_{x\\to0}\\tfrac{\\sin x}{x} = 1", "en": "Fundamental trig limit.", "es": "Límite trigonométrico fundamental." } ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 2.2–2.3, the Limit of a Function; Limit Laws", "es": "Cap. 2.2–2.3, el límite de una función; leyes de los límites" } },
+    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 2, limits", "es": "Cap. 2, límites" } },
+    { "source": "UOC — Límites de funciones y continuidad (PID_00284288)", "detail": { "en": "Limits of functions", "es": "Límites de funciones" } }
+  ]
+}

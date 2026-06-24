@@ -1,0 +1,90 @@
+{
+  "id": "functions-13-exponential",
+  "subjectId": "functions",
+  "order": 13,
+  "estimatedMinutes": 40,
+  "title": { "en": "The Exponential Function", "es": "La función exponencial" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "An **exponential function** $f(x) = a^x$ (with base $a > 0$, $a \\neq 1$) puts the variable in the **exponent** — a profound change from polynomials, where the variable sits in the base. The result is **multiplicative** growth: each unit step in $x$ multiplies the output by the constant factor $a$. This is the mathematics of compound interest, populations, radioactive decay, and Moore's law.",
+        "es": "Una **función exponencial** $f(x) = a^x$ (con base $a > 0$, $a \\neq 1$) pone la variable en el **exponente** — un cambio profundo frente a los polinomios, donde la variable está en la base. El resultado es un crecimiento **multiplicativo**: cada paso unitario en $x$ multiplica la salida por el factor constante $a$. Es la matemática del interés compuesto, las poblaciones, la desintegración radiactiva y la ley de Moore."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "If $a > 1$ the function **grows** (the larger $a$, the faster); if $0 < a < 1$ it **decays** toward zero. Every exponential passes through $(0, 1)$ since $a^0 = 1$, stays strictly positive, and never touches the x-axis — the axis is a **horizontal asymptote**. The exponent laws from Algebra ($a^{m+n}=a^m a^n$, etc.) govern all manipulation.",
+        "es": "Si $a > 1$ la función **crece** (cuanto mayor $a$, más rápido); si $0 < a < 1$ **decae** hacia cero. Toda exponencial pasa por $(0, 1)$ pues $a^0 = 1$, se mantiene estrictamente positiva y nunca toca el eje x — el eje es una **asíntota horizontal**. Las leyes de exponentes del Álgebra ($a^{m+n}=a^m a^n$, etc.) rigen toda manipulación."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "One base is special: **Euler's number** $e \\approx 2.718$. The function $e^x$ is the unique exponential that equals its own rate of change, which makes it the natural language of calculus, differential equations and probability. Exponential growth eventually outpaces **every** polynomial, no matter the degree — a fact with huge consequences in algorithms and complexity.",
+        "es": "Una base es especial: el **número de Euler** $e \\approx 2.718$. La función $e^x$ es la única exponencial que coincide con su propia tasa de cambio, lo que la hace el lenguaje natural del cálculo, las ecuaciones diferenciales y la probabilidad. El crecimiento exponencial acaba superando a **todo** polinomio, sea cual sea su grado — un hecho de enormes consecuencias en algoritmos y complejidad."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "2^x",
+      "domain": [-3, 4],
+      "caption": {
+        "en": "$f(x) = 2^x$: always positive, passing through $(0,1)$, hugging the x-axis on the left and growing explosively on the right.",
+        "es": "$f(x) = 2^x$: siempre positiva, pasa por $(0,1)$, se pega al eje x por la izquierda y crece de forma explosiva por la derecha."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — doubling", "es": "Ejemplo resuelto — duplicación" },
+      "content": {
+        "en": "$2^x$ doubles each step: $2^0 = 1$, $2^1 = 2$, $2^2 = 4$, $2^3 = 8$. A negative exponent gives a reciprocal: $(\\tfrac12)^2 = \\tfrac14$. After only $10$ steps, $2^{10} = 1024$ — the explosive nature of exponential growth.",
+        "es": "$2^x$ se duplica en cada paso: $2^0 = 1$, $2^1 = 2$, $2^2 = 4$, $2^3 = 8$. Un exponente negativo da un inverso: $(\\tfrac12)^2 = \\tfrac14$. Tras solo $10$ pasos, $2^{10} = 1024$ — la naturaleza explosiva del crecimiento exponencial."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "functions-13-e1",
+      "answerType": "number",
+      "prompt": { "en": "Compute $2^3$.", "es": "Calcula $2^3$." },
+      "answer": "8",
+      "acceptedAlt": ["2^3"],
+      "hint": { "en": "2·2·2.", "es": "2·2·2." },
+      "solution": [ { "tex": "2^3 = 8", "en": "Multiply.", "es": "Multiplica." } ]
+    },
+    {
+      "id": "functions-13-e2",
+      "answerType": "number",
+      "prompt": { "en": "Compute $2^0$.", "es": "Calcula $2^0$." },
+      "answer": "1",
+      "acceptedAlt": ["2^0"],
+      "hint": { "en": "Anything to the 0.", "es": "Cualquier base elevada a 0." },
+      "solution": [ { "tex": "2^0 = 1", "en": "Zero exponent rule.", "es": "Regla del exponente cero." } ]
+    },
+    {
+      "id": "functions-13-e3",
+      "answerType": "number",
+      "prompt": { "en": "Compute $\\left(\\tfrac12\\right)^2$.", "es": "Calcula $\\left(\\tfrac12\\right)^2$." },
+      "answer": "1/4",
+      "acceptedAlt": ["(1/2)^2", "0.25"],
+      "hint": { "en": "Square the fraction.", "es": "Eleva la fracción al cuadrado." },
+      "solution": [ { "tex": "(\\tfrac12)^2 = \\tfrac14", "en": "Square numerator and denominator.", "es": "Eleva numerador y denominador." } ]
+    },
+    {
+      "id": "functions-13-e4",
+      "answerType": "number",
+      "prompt": { "en": "Compute $3^2$.", "es": "Calcula $3^2$." },
+      "answer": "9",
+      "acceptedAlt": ["3^2"],
+      "hint": { "en": "3·3.", "es": "3·3." },
+      "solution": [ { "tex": "3^2 = 9", "en": "Multiply.", "es": "Multiplica." } ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 4.1, Exponential Functions; the number e", "es": "Cap. 4.1, Funciones exponenciales; el número e" } },
+    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 3.1, exponential functions and their graphs", "es": "Cap. 3.1, funciones exponenciales y sus gráficas" } },
+    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones exponencial y logarítmica' — la función exponencial", "es": "Apartado 'Funciones exponencial y logarítmica' — la función exponencial" } }
+  ]
+}

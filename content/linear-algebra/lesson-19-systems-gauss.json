@@ -1,0 +1,80 @@
+{
+  "id": "linalg-19-systems-gauss",
+  "subjectId": "linear-algebra",
+  "order": 19,
+  "estimatedMinutes": 45,
+  "title": { "en": "Linear Systems & Gauss", "es": "Sistemas lineales y Gauss" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A linear system is written compactly as $A\\mathbf{x} = \\mathbf{b}$: the coefficient matrix $A$ times the unknown vector $\\mathbf{x}$ equals the right-hand side $\\mathbf{b}$. This packaging is the whole point of matrices — and **Gaussian elimination** is the universal algorithm to solve it, scaling from two unknowns to millions.",
+        "es": "Un sistema lineal se escribe compacto como $A\\mathbf{x} = \\mathbf{b}$: la matriz de coeficientes $A$ por el vector de incógnitas $\\mathbf{x}$ igual al término de la derecha $\\mathbf{b}$. Este empaquetado es la razón de ser de las matrices — y la **eliminación de Gauss** es el algoritmo universal para resolverlo, escalando de dos incógnitas a millones."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The method uses **row operations** on the augmented matrix $[A\\,|\\,\\mathbf{b}]$ to reach an upper-triangular form, then solves by **back-substitution** from the bottom equation up. Each leading nonzero entry is a **pivot**; the number of pivots is the rank, which decides how many solutions exist.",
+        "es": "El método usa **operaciones de fila** sobre la matriz ampliada $[A\\,|\\,\\mathbf{b}]$ para llegar a forma triangular superior, y luego resuelve por **sustitución hacia atrás** desde la última ecuación. Cada entrada principal no nula es un **pivote**; el número de pivotes es el rango, que decide cuántas soluciones hay."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "For a unique solution you need as many pivots as unknowns. The two-unknown case is the familiar one: $x + y = 5$, $x - y = 1$ adds to $2x = 6$, giving $x = 3$ then $y = 2$. Elimination is simply this process made systematic and applied to the rows of numbers.",
+        "es": "Para una solución única necesitas tantos pivotes como incógnitas. El caso de dos incógnitas es el conocido: $x + y = 5$, $x - y = 1$ se suman a $2x = 6$, dando $x = 3$ y luego $y = 2$. La eliminación es este proceso hecho sistemático y aplicado a las filas de números."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Solve $x + y = 5$, $x - y = 1$. Add the equations to eliminate $y$: $2x = 6 \\Rightarrow x = 3$. Back-substitute into the first: $3 + y = 5 \\Rightarrow y = 2$. The solution $(3, 2)$ checks in both equations. With two pivots and two unknowns, it is unique.",
+        "es": "Resuelve $x + y = 5$, $x - y = 1$. Suma las ecuaciones para eliminar $y$: $2x = 6 \\Rightarrow x = 3$. Sustituye en la primera: $3 + y = 5 \\Rightarrow y = 2$. La solución $(3, 2)$ cumple ambas ecuaciones. Con dos pivotes y dos incógnitas, es única."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-19-e1",
+      "answerType": "number",
+      "prompt": { "en": "Solve $x+y=5$, $x-y=1$ — find $x$.", "es": "Resuelve $x+y=5$, $x-y=1$ — halla $x$." },
+      "answer": "3",
+      "acceptedAlt": ["6/2"],
+      "hint": { "en": "Add the equations.", "es": "Suma las ecuaciones." },
+      "solution": [ { "tex": "2x = 6 \\Rightarrow x = 3", "en": "Eliminate y.", "es": "Elimina y." } ]
+    },
+    {
+      "id": "linalg-19-e2",
+      "answerType": "number",
+      "prompt": { "en": "For the same system, find $y$.", "es": "Para el mismo sistema, halla $y$." },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Back-substitute x = 3.", "es": "Sustituye x = 3." },
+      "solution": [ { "tex": "3 + y = 5 \\Rightarrow y = 2", "en": "Solve for y.", "es": "Despeja y." } ]
+    },
+    {
+      "id": "linalg-19-e3",
+      "answerType": "number",
+      "prompt": { "en": "How many pivots does a uniquely-solvable system in 2 unknowns have?", "es": "¿Cuántos pivotes tiene un sistema con solución única en 2 incógnitas?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "One per unknown.", "es": "Uno por incógnita." },
+      "solution": [ { "tex": "\\text{pivots} = 2", "en": "As many as unknowns.", "es": "Tantos como incógnitas." } ]
+    },
+    {
+      "id": "linalg-19-e4",
+      "answerType": "number",
+      "prompt": { "en": "How many independent equations uniquely determine 3 unknowns?", "es": "¿Cuántas ecuaciones independientes determinan 3 incógnitas?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "One per unknown.", "es": "Una por incógnita." },
+      "solution": [ { "tex": "n = 3", "en": "Three equations.", "es": "Tres ecuaciones." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 2.2, solving linear equations by elimination", "es": "Cap. 2.2, resolución de ecuaciones lineales por eliminación" } },
+    { "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)", "detail": { "en": "Matrix form; the Gauss method", "es": "Forma matricial; el método de Gauss" } }
+  ]
+}

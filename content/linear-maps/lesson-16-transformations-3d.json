@@ -1,0 +1,80 @@
+{
+  "id": "linmaps-16-3d",
+  "subjectId": "linear-maps",
+  "order": 16,
+  "estimatedMinutes": 40,
+  "title": { "en": "Geometric Transformations in 3D", "es": "Transformaciones geométricas en 3D" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Everything generalizes to three dimensions, where points have **three coordinates** $(x, y, z)$. Scaling uses a $3\\times 3$ diagonal matrix; translation adds a displacement $(a,b,c)$; and rotation now happens **about an axis** rather than a point — there are basic rotations about the $x$-, $y$-, and $z$-axes, combined to rotate about any axis.",
+        "es": "Todo se generaliza a tres dimensiones, donde los puntos tienen **tres coordenadas** $(x, y, z)$. El escalado usa una matriz diagonal $3\\times 3$; la traslación añade un desplazamiento $(a,b,c)$; y la rotación ahora ocurre **en torno a un eje** en lugar de un punto — hay rotaciones básicas sobre los ejes $x$, $y$ y $z$, que se combinan para rotar sobre cualquier eje."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "As in 2D, **homogeneous coordinates** unify everything: a 3D point becomes $(x, y, z, 1)$, and all transformations — including translation and perspective — become $4\\times 4$ matrix multiplications. This single representation is the literal foundation of every 3D game engine and CAD system.",
+        "es": "Como en 2D, las **coordenadas homogéneas** lo unifican todo: un punto 3D se convierte en $(x, y, z, 1)$, y todas las transformaciones — incluidas traslación y perspectiva — se vuelven multiplicaciones por matriz $4\\times 4$. Esta única representación es la base literal de todo motor de juego 3D y sistema CAD."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The determinant still measures the **volume** scaling factor (now $k^3$ for uniform scaling by $k$), and rotations still have determinant $1$. You have now travelled from the abstract definition of a linear map all the way to the matrices that render every 3D scene you have ever seen on a screen — the bridge from pure algebra to applied AI and graphics.",
+        "es": "El determinante sigue midiendo el factor de escala de **volumen** (ahora $k^3$ para escalado uniforme por $k$), y las rotaciones siguen teniendo determinante $1$. Has viajado desde la definición abstracta de aplicación lineal hasta las matrices que renderizan toda escena 3D que has visto en una pantalla — el puente del álgebra pura a la IA y los gráficos aplicados."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A 3D point needs $3$ coordinates. Scale $(1,2,3)$ by factor $2$: $(2,4,6)$, so the z-component is $6$. In homogeneous form the transformation matrices are $4\\times 4$ (4 rows). Translating $(0,0,0)$ by $(1,2,3)$ gives $(1,2,3)$, z-coordinate $3$.",
+        "es": "Un punto 3D necesita $3$ coordenadas. Escala $(1,2,3)$ por factor $2$: $(2,4,6)$, así la componente z es $6$. En forma homogénea las matrices de transformación son $4\\times 4$ (4 filas). Trasladar $(0,0,0)$ por $(1,2,3)$ da $(1,2,3)$, coordenada z $3$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-16-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many coordinates does a 3D point need?", "es": "¿Cuántas coordenadas necesita un punto 3D?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "x, y, z.", "es": "x, y, z." },
+      "solution": [ { "tex": "(x,y,z)", "en": "Three.", "es": "Tres." } ]
+    },
+    {
+      "id": "linmaps-16-e2",
+      "answerType": "number",
+      "prompt": { "en": "Scale $(1,2,3)$ by factor 2. What is the z-component?", "es": "Escala $(1,2,3)$ por factor 2. ¿Cuál es la componente z?" },
+      "answer": "6",
+      "acceptedAlt": ["2*3"],
+      "hint": { "en": "2 · 3.", "es": "2 · 3." },
+      "solution": [ { "tex": "(2,4,6)", "en": "z-component 6.", "es": "Componente z 6." } ]
+    },
+    {
+      "id": "linmaps-16-e3",
+      "answerType": "number",
+      "prompt": { "en": "3D homogeneous transformation matrices have how many rows?", "es": "¿Cuántas filas tienen las matrices de transformación homogéneas 3D?" },
+      "answer": "4",
+      "acceptedAlt": [],
+      "hint": { "en": "4×4.", "es": "4×4." },
+      "solution": [ { "tex": "4\\times 4", "en": "Four rows.", "es": "Cuatro filas." } ]
+    },
+    {
+      "id": "linmaps-16-e4",
+      "answerType": "number",
+      "prompt": { "en": "Translate $(0,0,0)$ by $(1,2,3)$. What is the z-coordinate?", "es": "Traslada $(0,0,0)$ por $(1,2,3)$. ¿Cuál es la coordenada z?" },
+      "answer": "3",
+      "acceptedAlt": ["0+3"],
+      "hint": { "en": "0 + 3.", "es": "0 + 3." },
+      "solution": [ { "tex": "(1,2,3)", "en": "z-coordinate 3.", "es": "Coordenada z 3." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Transformaciones geométricas (PID_00269008)", "detail": { "en": "Geometric transformations in 3D", "es": "Transformaciones geométricas en 3D" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 8, transformations and their matrices", "es": "Cap. 8, transformaciones y sus matrices" } }
+  ]
+}

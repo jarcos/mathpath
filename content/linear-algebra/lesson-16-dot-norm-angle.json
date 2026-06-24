@@ -1,0 +1,80 @@
+{
+  "id": "linalg-16-dot-norm-angle",
+  "subjectId": "linear-algebra",
+  "order": 16,
+  "estimatedMinutes": 45,
+  "title": { "en": "Dot Product, Norm & Angle", "es": "Producto escalar, módulo y ángulo" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **dot product** $u\\cdot v = u_1v_1 + \\dots + u_nv_n$ multiplies two vectors to produce a single number, and it is the gateway to all of geometry inside a vector space. It powers similarity measures in machine learning (cosine similarity), projections, and the very notion of angle.",
+        "es": "El **producto escalar** $u\\cdot v = u_1v_1 + \\dots + u_nv_n$ multiplica dos vectores para dar un único número, y es la puerta a toda la geometría dentro de un espacio vectorial. Impulsa las medidas de similitud en aprendizaje automático (similitud coseno), las proyecciones y la propia noción de ángulo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Its geometric meaning is captured by $u\\cdot v = \\|u\\|\\,\\|v\\|\\cos\\theta$, where $\\theta$ is the angle between the vectors. Two immediate consequences: the **norm** comes from the dot product, $\\|v\\| = \\sqrt{v\\cdot v}$; and two nonzero vectors are **perpendicular (orthogonal)** exactly when $u\\cdot v = 0$ (since $\\cos 90° = 0$).",
+        "es": "Su significado geométrico lo captura $u\\cdot v = \\|u\\|\\,\\|v\\|\\cos\\theta$, donde $\\theta$ es el ángulo entre los vectores. Dos consecuencias inmediatas: la **norma** proviene del producto escalar, $\\|v\\| = \\sqrt{v\\cdot v}$; y dos vectores no nulos son **perpendiculares (ortogonales)** justo cuando $u\\cdot v = 0$ (pues $\\cos 90° = 0$)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Orthogonality is one of the most useful ideas in the subject: orthogonal directions don't interfere, which makes computations decouple. The standard basis vectors $(1,0)$ and $(0,1)$ are orthogonal — their dot product is $0$ — which is why coordinates work so cleanly.",
+        "es": "La ortogonalidad es una de las ideas más útiles de la asignatura: las direcciones ortogonales no interfieren, lo que desacopla los cálculos. Los vectores de la base canónica $(1,0)$ y $(0,1)$ son ortogonales — su producto escalar es $0$ — por eso las coordenadas funcionan tan limpiamente."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "$(1,2,3)\\cdot(4,5,6) = 1\\cdot4 + 2\\cdot5 + 3\\cdot6 = 4 + 10 + 18 = 32$. And $(1,0)\\cdot(0,1) = 0$, confirming the axes are perpendicular. The norm of $(3,4)$ is $\\sqrt{(3,4)\\cdot(3,4)} = \\sqrt{25} = 5$.",
+        "es": "$(1,2,3)\\cdot(4,5,6) = 1\\cdot4 + 2\\cdot5 + 3\\cdot6 = 4 + 10 + 18 = 32$. Y $(1,0)\\cdot(0,1) = 0$, confirmando que los ejes son perpendiculares. La norma de $(3,4)$ es $\\sqrt{(3,4)\\cdot(3,4)} = \\sqrt{25} = 5$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-16-e1",
+      "answerType": "number",
+      "prompt": { "en": "Dot product $(1,2,3)\\cdot(4,5,6)$?", "es": "¿Producto escalar $(1,2,3)\\cdot(4,5,6)$?" },
+      "answer": "32",
+      "acceptedAlt": ["1*4+2*5+3*6", "dot([1,2,3],[4,5,6])"],
+      "hint": { "en": "Sum of products of components.", "es": "Suma de productos de componentes." },
+      "solution": [ { "tex": "4+10+18 = 32", "en": "Dot product.", "es": "Producto escalar." } ]
+    },
+    {
+      "id": "linalg-16-e2",
+      "answerType": "number",
+      "prompt": { "en": "Norm $\\|(3,4)\\|$?", "es": "¿Norma $\\|(3,4)\\|$?" },
+      "answer": "5",
+      "acceptedAlt": ["norm([3,4])", "sqrt(3^2+4^2)"],
+      "hint": { "en": "√(9 + 16).", "es": "√(9 + 16)." },
+      "solution": [ { "tex": "\\sqrt{25} = 5", "en": "Norm.", "es": "Norma." } ]
+    },
+    {
+      "id": "linalg-16-e3",
+      "answerType": "text",
+      "prompt": { "en": "Are $(1,0)$ and $(0,1)$ perpendicular? (yes / no)", "es": "¿Son $(1,0)$ y $(0,1)$ perpendiculares? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Check if the dot product is 0.", "es": "Comprueba si el producto escalar es 0." },
+      "solution": [ { "tex": "(1,0)\\cdot(0,1) = 0", "en": "Perpendicular.", "es": "Perpendiculares." } ]
+    },
+    {
+      "id": "linalg-16-e4",
+      "answerType": "number",
+      "prompt": { "en": "Dot product $(1,0)\\cdot(0,1)$?", "es": "¿Producto escalar $(1,0)\\cdot(0,1)$?" },
+      "answer": "0",
+      "acceptedAlt": ["dot([1,0],[0,1])"],
+      "hint": { "en": "1·0 + 0·1.", "es": "1·0 + 0·1." },
+      "solution": [ { "tex": "0 + 0 = 0", "en": "Orthogonal.", "es": "Ortogonales." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 1.2, lengths and dot products", "es": "Cap. 1.2, longitudes y productos escalares" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Dot product, norm and angle between vectors", "es": "Producto escalar, módulo y ángulo entre vectores" } }
+  ]
+}

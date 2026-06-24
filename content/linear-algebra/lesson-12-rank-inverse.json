@@ -1,0 +1,80 @@
+{
+  "id": "linalg-12-rank-inverse",
+  "subjectId": "linear-algebra",
+  "order": 12,
+  "estimatedMinutes": 45,
+  "title": { "en": "Rank & Inverse via Determinants", "es": "Rango e inversa mediante determinantes" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **rank** of a matrix is the number of **linearly independent** rows (equivalently, independent columns). It measures how much genuine information the matrix carries. $\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$ has rank $1$ — its second row is just twice the first, so only one row is truly independent. The identity has **full rank**.",
+        "es": "El **rango** de una matriz es el número de filas **linealmente independientes** (equivalentemente, columnas independientes). Mide cuánta información genuina lleva la matriz. $\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$ tiene rango $1$ — su segunda fila es el doble de la primera, así que solo una fila es realmente independiente. La identidad tiene **rango máximo**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Rank, invertibility and the determinant are three views of one idea. For an $n\\times n$ matrix, the following are **equivalent**: it has full rank $n$; its determinant is nonzero; its rows (and columns) are independent; and it has an **inverse** $A^{-1}$ with $AA^{-1} = I$. If any one fails, all fail — the matrix is **singular**.",
+        "es": "Rango, invertibilidad y determinante son tres vistas de una misma idea. Para una matriz $n\\times n$, lo siguiente es **equivalente**: tiene rango máximo $n$; su determinante es no nulo; sus filas (y columnas) son independientes; y tiene **inversa** $A^{-1}$ con $AA^{-1} = I$. Si una falla, fallan todas — la matriz es **singular**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "For a $2\\times2$ matrix the inverse is $A^{-1} = \\dfrac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$ — which is why $\\det A = 0$ is fatal (you would divide by zero). The inverse is the matrix analog of a reciprocal, and it is how we 'divide' in linear algebra to solve $A\\mathbf{x}=\\mathbf{b}$.",
+        "es": "Para una matriz $2\\times2$ la inversa es $A^{-1} = \\dfrac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$ — por eso $\\det A = 0$ es fatal (dividirías entre cero). La inversa es el análogo matricial de un inverso, y es como 'dividimos' en álgebra lineal para resolver $A\\mathbf{x}=\\mathbf{b}$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — rank by inspection", "es": "Ejemplo resuelto — rango por inspección" },
+      "content": {
+        "en": "$\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$: row $2 = 2\\times$ row $1$, so the rows are dependent — rank $1$, determinant $1\\cdot4 - 2\\cdot2 = 0$, no inverse. By contrast the identity has independent rows, rank $2$, determinant $1$, and is invertible.",
+        "es": "$\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$: fila $2 = 2\\times$ fila $1$, así que las filas son dependientes — rango $1$, determinante $1\\cdot4 - 2\\cdot2 = 0$, sin inversa. En cambio la identidad tiene filas independientes, rango $2$, determinante $1$, y es invertible."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-12-e1",
+      "answerType": "number",
+      "prompt": { "en": "Rank of $\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$?", "es": "¿Rango de $\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "Rows are proportional.", "es": "Las filas son proporcionales." },
+      "solution": [ { "tex": "(2,4) = 2(1,2)", "en": "Only one independent row.", "es": "Solo una fila independiente." } ]
+    },
+    {
+      "id": "linalg-12-e2",
+      "answerType": "number",
+      "prompt": { "en": "Rank of $\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$?", "es": "¿Rango de $\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Independent rows.", "es": "Filas independientes." },
+      "solution": [ { "tex": "\\text{rank} = 2", "en": "Full rank.", "es": "Rango máximo." } ]
+    },
+    {
+      "id": "linalg-12-e3",
+      "answerType": "number",
+      "prompt": { "en": "A $2\\times2$ matrix with $\\det \\neq 0$ has what rank?", "es": "Una matriz $2\\times2$ con $\\det \\neq 0$ tiene qué rango?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Nonzero det → full rank.", "es": "Det no nulo → rango máximo." },
+      "solution": [ { "tex": "\\det\\neq0 \\Rightarrow \\text{rank} = 2", "en": "Full rank.", "es": "Rango máximo." } ]
+    },
+    {
+      "id": "linalg-12-e4",
+      "answerType": "number",
+      "prompt": { "en": "A matrix is invertible iff its determinant is different from ___?", "es": "Una matriz es invertible si su determinante es distinto de ___?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "You divide by it.", "es": "Divides entre él." },
+      "solution": [ { "tex": "\\det A \\neq 0", "en": "Nonzero determinant.", "es": "Determinante no nulo." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 2.5 & 3.3, inverse matrices; rank", "es": "Cap. 2.5 y 3.3, matrices inversas; rango" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Rank via determinants; computing the inverse", "es": "Rango mediante determinantes; cálculo de la inversa" } }
+  ]
+}

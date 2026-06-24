@@ -1,0 +1,81 @@
+{
+  "id": "calculus-10-indefinite-integral",
+  "subjectId": "calculus",
+  "order": 10,
+  "estimatedMinutes": 45,
+  "title": { "en": "The Indefinite Integral", "es": "La integral indefinida" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Integration reverses differentiation.** If differentiation asks \"given a function, what is its rate of change?\", integration asks the inverse: \"given a rate of change, what function produced it?\". An **antiderivative** of $f$ is any function $F$ with $F' = f$. Recovering position from velocity, or total cost from marginal cost, is integration.",
+        "es": "**La integración invierte la derivación.** Si derivar pregunta \"dada una función, ¿cuál es su tasa de cambio?\", integrar pregunta lo inverso: \"dada una tasa de cambio, ¿qué función la produjo?\". Una **primitiva** de $f$ es cualquier función $F$ con $F' = f$. Recuperar la posición a partir de la velocidad, o el coste total a partir del marginal, es integrar."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Antiderivatives are not unique: since the derivative of a constant is zero, $F(x)$ and $F(x) + C$ have the same derivative. So we write the **indefinite integral** with an arbitrary **constant of integration**: $\\int f(x)\\,dx = F(x) + C$. The family $F(x) + C$ is a stack of parallel curves, all with the same slope at each $x$.",
+        "es": "Las primitivas no son únicas: como la derivada de una constante es cero, $F(x)$ y $F(x) + C$ tienen la misma derivada. Por eso escribimos la **integral indefinida** con una **constante de integración** arbitraria: $\\int f(x)\\,dx = F(x) + C$. La familia $F(x) + C$ es una pila de curvas paralelas, todas con la misma pendiente en cada $x$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Every derivative rule, read backwards, becomes an integration rule. The **power rule for integration** raises the exponent and divides: $\\int x^n\\,dx = \\dfrac{x^{n+1}}{n+1} + C$ (for $n \\neq -1$). And the standard derivatives reverse: $\\int\\cos x\\,dx = \\sin x + C$, $\\int e^x\\,dx = e^x + C$, $\\int \\tfrac1x\\,dx = \\ln|x| + C$.",
+        "es": "Toda regla de derivación, leída al revés, se convierte en regla de integración. La **regla de la potencia para integrar** sube el exponente y divide: $\\int x^n\\,dx = \\dfrac{x^{n+1}}{n+1} + C$ (para $n \\neq -1$). Y las derivadas estándar se invierten: $\\int\\cos x\\,dx = \\sin x + C$, $\\int e^x\\,dx = e^x + C$, $\\int \\tfrac1x\\,dx = \\ln|x| + C$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Find $\\int x^2\\,dx$. Raise the exponent to $3$ and divide by $3$: $\\tfrac{x^3}{3} + C$. **Check by differentiating:** $\\tfrac{d}{dx}\\tfrac{x^3}{3} = \\tfrac{3x^2}{3} = x^2$ ✓. Differentiation is always the way to verify an integral. (In the exercises below, omit the $+C$.)",
+        "es": "Halla $\\int x^2\\,dx$. Sube el exponente a $3$ y divide entre $3$: $\\tfrac{x^3}{3} + C$. **Comprueba derivando:** $\\tfrac{d}{dx}\\tfrac{x^3}{3} = \\tfrac{3x^2}{3} = x^2$ ✓. Derivar es siempre la forma de verificar una integral. (En los ejercicios siguientes, omite el $+C$.)"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "calculus-10-e1",
+      "answerType": "expression",
+      "prompt": { "en": "Find $\\int 2x\\,dx$ (omit +C).", "es": "Halla $\\int 2x\\,dx$ (omite +C)." },
+      "answer": "x^2",
+      "acceptedAlt": [],
+      "hint": { "en": "What differentiates to 2x?", "es": "¿Qué deriva a 2x?" },
+      "solution": [ { "tex": "\\int 2x\\,dx = x^2 + C", "en": "Since (x²)' = 2x.", "es": "Ya que (x²)' = 2x." } ]
+    },
+    {
+      "id": "calculus-10-e2",
+      "answerType": "expression",
+      "prompt": { "en": "Find $\\int x^2\\,dx$ (omit +C).", "es": "Halla $\\int x^2\\,dx$ (omite +C)." },
+      "answer": "x^3/3",
+      "acceptedAlt": ["(1/3)*x^3"],
+      "hint": { "en": "Raise the power, divide by it.", "es": "Sube el exponente y divide entre él." },
+      "solution": [ { "tex": "\\int x^2\\,dx = \\tfrac{x^3}{3} + C", "en": "Power rule.", "es": "Regla de la potencia." } ]
+    },
+    {
+      "id": "calculus-10-e3",
+      "answerType": "expression",
+      "prompt": { "en": "Find $\\int 1\\,dx$ (omit +C).", "es": "Halla $\\int 1\\,dx$ (omite +C)." },
+      "answer": "x",
+      "acceptedAlt": [],
+      "hint": { "en": "What differentiates to 1?", "es": "¿Qué deriva a 1?" },
+      "solution": [ { "tex": "\\int 1\\,dx = x + C", "en": "Since (x)' = 1.", "es": "Ya que (x)' = 1." } ]
+    },
+    {
+      "id": "calculus-10-e4",
+      "answerType": "expression",
+      "prompt": { "en": "Find $\\int \\cos x\\,dx$ (omit +C).", "es": "Halla $\\int \\cos x\\,dx$ (omite +C)." },
+      "answer": "sin(x)",
+      "acceptedAlt": [],
+      "hint": { "en": "What differentiates to cos x?", "es": "¿Qué deriva a cos x?" },
+      "solution": [ { "tex": "\\int \\cos x\\,dx = \\sin x + C", "en": "Since (sin x)' = cos x.", "es": "Ya que (sen x)' = cos x." } ]
+    }
+  ],
+  "references": [
+    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 4.9 & 5.4, Antiderivatives; Indefinite Integrals", "es": "Cap. 4.9 y 5.4, primitivas; integrales indefinidas" } },
+    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 5, the antiderivative", "es": "Cap. 5, la primitiva" } },
+    { "source": "UOC — Integración (PID_00284290)", "detail": { "en": "Antiderivatives; the indefinite integral", "es": "Primitivas; la integral indefinida" } }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "linalg-17-orthogonal-projections",
+  "subjectId": "linear-algebra",
+  "order": 17,
+  "estimatedMinutes": 45,
+  "title": { "en": "Orthogonal Bases & Projections", "es": "Bases ortogonales y proyecciones" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A basis is **orthogonal** if its vectors are mutually perpendicular (every pairwise dot product is $0$), and **orthonormal** if they are additionally unit length. Such bases are the gold standard: coordinates become trivial to compute (just take dot products), and the messy interference between directions disappears.",
+        "es": "Una base es **ortogonal** si sus vectores son mutuamente perpendiculares (todo producto escalar por pares es $0$), y **ortonormal** si además tienen longitud unidad. Estas bases son el patrón oro: las coordenadas se calculan trivialmente (basta tomar productos escalares) y desaparece la interferencia entre direcciones."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **projection** of a vector $v$ onto a unit vector $u$ is the 'shadow' $v$ casts along $u$, with signed length $v\\cdot u$. Projection answers \"how much of $v$ points in the direction of $u$?\" — the basis of least-squares fitting, where we project data onto the space of models to find the best approximation.",
+        "es": "La **proyección** de un vector $v$ sobre un vector unitario $u$ es la 'sombra' que $v$ proyecta sobre $u$, con longitud con signo $v\\cdot u$. La proyección responde \"¿cuánto de $v$ apunta en la dirección de $u$?\" — la base del ajuste por mínimos cuadrados, donde proyectamos los datos sobre el espacio de modelos para hallar la mejor aproximación."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Examples make it concrete: projecting $(3,0)$ onto the x-axis $(1,0)$ gives length $3$ — all of it lies along $x$. Projecting $(0,5)$ onto $(1,0)$ gives $0$ — it has no $x$-component. And the vectors $(1,1)$ and $(1,-1)$ are orthogonal, since $(1,1)\\cdot(1,-1) = 0$.",
+        "es": "Los ejemplos lo hacen concreto: proyectar $(3,0)$ sobre el eje x $(1,0)$ da longitud $3$ — todo él está sobre $x$. Proyectar $(0,5)$ sobre $(1,0)$ da $0$ — no tiene componente $x$. Y los vectores $(1,1)$ y $(1,-1)$ son ortogonales, pues $(1,1)\\cdot(1,-1) = 0$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Project $(3,0)$ onto the unit vector $(1,0)$: the scalar projection is $(3,0)\\cdot(1,0) = 3$. Check orthogonality of $(1,1)$ and $(1,-1)$: $1\\cdot1 + 1\\cdot(-1) = 0$, so they are perpendicular and could serve as an orthogonal basis of $\\mathbb{R}^2$.",
+        "es": "Proyecta $(3,0)$ sobre el vector unitario $(1,0)$: la proyección escalar es $(3,0)\\cdot(1,0) = 3$. Comprueba la ortogonalidad de $(1,1)$ y $(1,-1)$: $1\\cdot1 + 1\\cdot(-1) = 0$, así que son perpendiculares y podrían servir de base ortogonal de $\\mathbb{R}^2$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-17-e1",
+      "answerType": "number",
+      "prompt": { "en": "Scalar projection of $(3,0)$ onto $(1,0)$?", "es": "¿Proyección escalar de $(3,0)$ sobre $(1,0)$?" },
+      "answer": "3",
+      "acceptedAlt": ["dot([3,0],[1,0])"],
+      "hint": { "en": "v·u with unit u.", "es": "v·u con u unitario." },
+      "solution": [ { "tex": "(3,0)\\cdot(1,0) = 3", "en": "Projection length.", "es": "Longitud de proyección." } ]
+    },
+    {
+      "id": "linalg-17-e2",
+      "answerType": "text",
+      "prompt": { "en": "Are $(1,1)$ and $(1,-1)$ orthogonal? (yes / no)", "es": "¿Son $(1,1)$ y $(1,-1)$ ortogonales? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Compute the dot product.", "es": "Calcula el producto escalar." },
+      "solution": [ { "tex": "1 - 1 = 0", "en": "Orthogonal.", "es": "Ortogonales." } ]
+    },
+    {
+      "id": "linalg-17-e3",
+      "answerType": "number",
+      "prompt": { "en": "Dot product $(1,1)\\cdot(1,-1)$?", "es": "¿Producto escalar $(1,1)\\cdot(1,-1)$?" },
+      "answer": "0",
+      "acceptedAlt": ["dot([1,1],[1,-1])"],
+      "hint": { "en": "1·1 + 1·(−1).", "es": "1·1 + 1·(−1)." },
+      "solution": [ { "tex": "1 - 1 = 0", "en": "Zero → orthogonal.", "es": "Cero → ortogonales." } ]
+    },
+    {
+      "id": "linalg-17-e4",
+      "answerType": "number",
+      "prompt": { "en": "Scalar projection of $(0,5)$ onto $(1,0)$?", "es": "¿Proyección escalar de $(0,5)$ sobre $(1,0)$?" },
+      "answer": "0",
+      "acceptedAlt": ["dot([0,5],[1,0])"],
+      "hint": { "en": "No x-component.", "es": "Sin componente x." },
+      "solution": [ { "tex": "(0,5)\\cdot(1,0) = 0", "en": "No projection.", "es": "Sin proyección." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 4.2, projections onto lines and subspaces", "es": "Cap. 4.2, proyecciones sobre rectas y subespacios" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Orthogonal bases; orthogonal projections", "es": "Bases ortogonales; proyecciones ortogonales" } }
+  ]
+}

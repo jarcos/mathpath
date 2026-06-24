@@ -1,0 +1,80 @@
+{
+  "id": "linalg-03-complex-polar",
+  "subjectId": "linear-algebra",
+  "order": 3,
+  "estimatedMinutes": 40,
+  "title": { "en": "Polar Form & Modulus", "es": "Forma polar y módulo" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Complex numbers live in a plane: plot $z = a + bi$ as the point $(a, b)$ on the **Argand diagram**. This geometric view unlocks a second description. The **modulus** $|z| = \\sqrt{a^2 + b^2}$ is the distance from the origin (by Pythagoras), and the **argument** $\\theta$ is the angle from the positive real axis.",
+        "es": "Los complejos viven en un plano: representa $z = a + bi$ como el punto $(a, b)$ en el **diagrama de Argand**. Esta visión geométrica abre una segunda descripción. El **módulo** $|z| = \\sqrt{a^2 + b^2}$ es la distancia al origen (por Pitágoras), y el **argumento** $\\theta$ es el ángulo desde el eje real positivo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "These give the **polar form** $z = |z|(\\cos\\theta + i\\sin\\theta)$, often written $|z|\\,e^{i\\theta}$ via Euler's formula. Polar form makes multiplication beautifully simple: **moduli multiply and arguments add**. Multiplying by a complex number of modulus $1$ is therefore a pure **rotation** — the deep link between complex numbers and geometry.",
+        "es": "Estas dan la **forma polar** $z = |z|(\\cos\\theta + i\\sin\\theta)$, a menudo escrita $|z|\\,e^{i\\theta}$ por la fórmula de Euler. La forma polar hace la multiplicación bellamente simple: **los módulos se multiplican y los argumentos se suman**. Multiplicar por un complejo de módulo $1$ es por tanto una **rotación** pura — el vínculo profundo entre números complejos y geometría."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The modulus satisfies $|3+4i| = \\sqrt{9+16} = 5$ — a $3$-$4$-$5$ right triangle. The number $i$ sits straight up the imaginary axis, so $|i| = 1$ and its argument is $90°$. Multiplying by $i$ rotates a point $90°$ counterclockwise — try it on $1$, getting $i$, then $-1$, then $-i$.",
+        "es": "El módulo cumple $|3+4i| = \\sqrt{9+16} = 5$ — un triángulo rectángulo $3$-$4$-$5$. El número $i$ está sobre el eje imaginario, así $|i| = 1$ y su argumento es $90°$. Multiplicar por $i$ rota un punto $90°$ en sentido antihorario — pruébalo en $1$, obteniendo $i$, luego $-1$, luego $-i$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example — modulus", "es": "Ejemplo resuelto — módulo" },
+      "content": {
+        "en": "Find $|1+i|$. Apply $\\sqrt{a^2+b^2} = \\sqrt{1^2 + 1^2} = \\sqrt2 \\approx 1.41$. Its argument is $45°$ (equal real and imaginary parts), so in polar form $1+i = \\sqrt2\\,(\\cos 45° + i\\sin 45°)$.",
+        "es": "Halla $|1+i|$. Aplica $\\sqrt{a^2+b^2} = \\sqrt{1^2 + 1^2} = \\sqrt2 \\approx 1.41$. Su argumento es $45°$ (partes real e imaginaria iguales), así en forma polar $1+i = \\sqrt2\\,(\\cos 45° + i\\sin 45°)$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "Compute the modulus $|3+4i|$.", "es": "Calcula el módulo $|3+4i|$." },
+      "answer": "5",
+      "acceptedAlt": ["abs(3+4i)", "sqrt(3^2+4^2)"],
+      "hint": { "en": "√(a² + b²).", "es": "√(a² + b²)." },
+      "solution": [ { "tex": "\\sqrt{9+16} = 5", "en": "Pythagorean modulus.", "es": "Módulo pitagórico." } ]
+    },
+    {
+      "id": "linalg-03-e2",
+      "answerType": "number",
+      "prompt": { "en": "Compute the modulus $|1+i|$.", "es": "Calcula el módulo $|1+i|$." },
+      "answer": "sqrt(2)",
+      "acceptedAlt": ["abs(1+i)"],
+      "hint": { "en": "√(1 + 1).", "es": "√(1 + 1)." },
+      "solution": [ { "tex": "\\sqrt{1+1} = \\sqrt2", "en": "Modulus.", "es": "Módulo." } ]
+    },
+    {
+      "id": "linalg-03-e3",
+      "answerType": "number",
+      "prompt": { "en": "What is the argument of $i$ in degrees?", "es": "¿Cuál es el argumento de $i$ en grados?" },
+      "answer": "90",
+      "acceptedAlt": [],
+      "hint": { "en": "It points straight up.", "es": "Apunta hacia arriba." },
+      "solution": [ { "tex": "\\arg(i) = 90°", "en": "On the imaginary axis.", "es": "Sobre el eje imaginario." } ]
+    },
+    {
+      "id": "linalg-03-e4",
+      "answerType": "number",
+      "prompt": { "en": "Compute the modulus $|i|$.", "es": "Calcula el módulo $|i|$." },
+      "answer": "1",
+      "acceptedAlt": ["abs(i)"],
+      "hint": { "en": "Distance of i from the origin.", "es": "Distancia de i al origen." },
+      "solution": [ { "tex": "|i| = 1", "en": "Unit distance.", "es": "Distancia unidad." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Los números (PID_00271022)", "detail": { "en": "Polar/trigonometric form; modulus and argument", "es": "Forma polar/trigonométrica; módulo y argumento" } },
+    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 8.3, polar form of complex numbers", "es": "Cap. 8.3, forma polar de números complejos" } }
+  ]
+}

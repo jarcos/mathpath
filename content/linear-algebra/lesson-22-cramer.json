@@ -1,0 +1,80 @@
+{
+  "id": "linalg-22-cramer",
+  "subjectId": "linear-algebra",
+  "order": 22,
+  "estimatedMinutes": 40,
+  "title": { "en": "Cramer's Method", "es": "Método de Cramer" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Cramer's rule** is an elegant closed-form formula for the solution of $A\\mathbf{x} = \\mathbf{b}$ using only determinants — no elimination steps. When $\\det A \\neq 0$, each unknown is $x_i = \\dfrac{\\det A_i}{\\det A}$, where $A_i$ is the matrix $A$ with its $i$-th column replaced by the vector $\\mathbf{b}$.",
+        "es": "La **regla de Cramer** es una elegante fórmula cerrada para la solución de $A\\mathbf{x} = \\mathbf{b}$ usando solo determinantes — sin pasos de eliminación. Cuando $\\det A \\neq 0$, cada incógnita es $x_i = \\dfrac{\\det A_i}{\\det A}$, donde $A_i$ es la matriz $A$ con su columna $i$ sustituida por el vector $\\mathbf{b}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "It is beautiful and theoretically important — it shows solutions depend continuously on the data and proves the link between invertibility ($\\det A \\neq 0$) and unique solvability. But it is computationally expensive for large systems (many determinants), so in practice Gaussian elimination is preferred beyond $3\\times3$.",
+        "es": "Es bella y teóricamente importante — muestra que las soluciones dependen de forma continua de los datos y prueba el vínculo entre invertibilidad ($\\det A \\neq 0$) y solución única. Pero es costosa computacionalmente para sistemas grandes (muchos determinantes), así que en la práctica se prefiere la eliminación de Gauss más allá de $3\\times3$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The rule **fails when** $\\det A = 0$: division by zero is undefined, reflecting that the system then has no unique solution (it is inconsistent or indeterminate). So the determinant again acts as the gatekeeper between the three solution worlds.",
+        "es": "La regla **falla cuando** $\\det A = 0$: la división entre cero no está definida, reflejando que el sistema entonces no tiene solución única (es incompatible o indeterminado). Así el determinante vuelve a actuar de guardián entre los tres mundos de soluciones."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Solve $x+y=5$, $x-y=1$. Coefficient determinant $\\det\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix} = -2$. Replace column 1 with $\\mathbf{b}=(5,1)$: $\\det\\begin{pmatrix}5&1\\\\1&-1\\end{pmatrix} = -6$, so $x = \\tfrac{-6}{-2} = 3$. Replace column 2: $\\det\\begin{pmatrix}1&5\\\\1&1\\end{pmatrix} = -4$, so $y = \\tfrac{-4}{-2} = 2$.",
+        "es": "Resuelve $x+y=5$, $x-y=1$. Determinante de coeficientes $\\det\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix} = -2$. Sustituye la columna 1 por $\\mathbf{b}=(5,1)$: $\\det\\begin{pmatrix}5&1\\\\1&-1\\end{pmatrix} = -6$, así $x = \\tfrac{-6}{-2} = 3$. Sustituye la columna 2: $\\det\\begin{pmatrix}1&5\\\\1&1\\end{pmatrix} = -4$, así $y = \\tfrac{-4}{-2} = 2$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-22-e1",
+      "answerType": "number",
+      "prompt": { "en": "Coefficient determinant $\\det\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$?", "es": "¿Determinante de coeficientes $\\det\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$?" },
+      "answer": "-2",
+      "acceptedAlt": ["det([[1,1],[1,-1]])", "1*(-1)-1*1"],
+      "hint": { "en": "ad − bc.", "es": "ad − bc." },
+      "solution": [ { "tex": "(1)(-1) - (1)(1) = -2", "en": "Determinant.", "es": "Determinante." } ]
+    },
+    {
+      "id": "linalg-22-e2",
+      "answerType": "number",
+      "prompt": { "en": "$x = \\det\\begin{pmatrix}5&1\\\\1&-1\\end{pmatrix}/(-2)$. Find $x$.", "es": "$x = \\det\\begin{pmatrix}5&1\\\\1&-1\\end{pmatrix}/(-2)$. Halla $x$." },
+      "answer": "3",
+      "acceptedAlt": ["det([[5,1],[1,-1]])/-2", "-6/-2"],
+      "hint": { "en": "Numerator det = −6.", "es": "Determinante del numerador = −6." },
+      "solution": [ { "tex": "\\tfrac{-6}{-2} = 3", "en": "x = 3.", "es": "x = 3." } ]
+    },
+    {
+      "id": "linalg-22-e3",
+      "answerType": "number",
+      "prompt": { "en": "$y = \\det\\begin{pmatrix}1&5\\\\1&1\\end{pmatrix}/(-2)$. Find $y$.", "es": "$y = \\det\\begin{pmatrix}1&5\\\\1&1\\end{pmatrix}/(-2)$. Halla $y$." },
+      "answer": "2",
+      "acceptedAlt": ["det([[1,5],[1,1]])/-2", "-4/-2"],
+      "hint": { "en": "Numerator det = −4.", "es": "Determinante del numerador = −4." },
+      "solution": [ { "tex": "\\tfrac{-4}{-2} = 2", "en": "y = 2.", "es": "y = 2." } ]
+    },
+    {
+      "id": "linalg-22-e4",
+      "answerType": "number",
+      "prompt": { "en": "Cramer's rule fails when $\\det A$ equals ___?", "es": "La regla de Cramer falla cuando $\\det A$ vale ___?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Division by it.", "es": "Divides entre él." },
+      "solution": [ { "tex": "\\det A = 0", "en": "No unique solution.", "es": "Sin solución única." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 5.3, Cramer's rule, inverses and volumes", "es": "Cap. 5.3, regla de Cramer, inversas y volúmenes" } },
+    { "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)", "detail": { "en": "Cramer's method", "es": "Método de Cramer" } }
+  ]
+}

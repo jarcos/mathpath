@@ -1,0 +1,80 @@
+{
+  "id": "linalg-11-determinants-properties",
+  "subjectId": "linear-algebra",
+  "order": 11,
+  "estimatedMinutes": 40,
+  "title": { "en": "Determinants: Higher Order & Properties", "es": "Determinantes: orden superior y propiedades" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Cofactor expansion works for any size but becomes expensive fast. In practice we lean on a handful of **properties** that make determinants tractable, and that often let you read off the answer without grinding through the formula.",
+        "es": "El desarrollo por cofactores funciona para cualquier tamaño pero se vuelve costoso rápido. En la práctica nos apoyamos en unas pocas **propiedades** que hacen manejables los determinantes y que a menudo permiten leer la respuesta sin moler la fórmula."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The essential properties: (1) $\\det I = 1$; (2) **swapping two rows** multiplies the determinant by $-1$; (3) a matrix with **two equal rows** (or any linearly dependent rows) has determinant $0$; (4) adding a multiple of one row to another **does not change** the determinant; (5) $\\det(AB) = \\det A \\cdot \\det B$.",
+        "es": "Las propiedades esenciales: (1) $\\det I = 1$; (2) **intercambiar dos filas** multiplica el determinante por $-1$; (3) una matriz con **dos filas iguales** (o filas linealmente dependientes) tiene determinante $0$; (4) sumar a una fila un múltiplo de otra **no cambia** el determinante; (5) $\\det(AB) = \\det A \\cdot \\det B$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Property (4) is the key to efficient computation: use row operations (like Gaussian elimination) to reach triangular form **without changing the determinant**, then multiply the diagonal. Property (3) gives the central test — a **zero determinant means the rows are dependent**, the matrix is singular, and it is not invertible.",
+        "es": "La propiedad (4) es la clave del cálculo eficiente: usa operaciones de fila (como la eliminación de Gauss) para llegar a forma triangular **sin cambiar el determinante**, y luego multiplica la diagonal. La propiedad (3) da la prueba central — un **determinante cero significa que las filas son dependientes**, la matriz es singular y no es invertible."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "$\\det I_4 = 1$ by property (1). The matrix $\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$ is diagonal, so its determinant is the diagonal product $2\\cdot1\\cdot1\\cdot1 = 2$. And any matrix with two identical rows has determinant $0$ — no computation needed.",
+        "es": "$\\det I_4 = 1$ por la propiedad (1). La matriz $\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$ es diagonal, así que su determinante es el producto diagonal $2\\cdot1\\cdot1\\cdot1 = 2$. Y cualquier matriz con dos filas idénticas tiene determinante $0$ — sin cálculo."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-11-e1",
+      "answerType": "number",
+      "prompt": { "en": "$\\det$ of the $4\\times4$ identity matrix?", "es": "¿$\\det$ de la matriz identidad $4\\times4$?" },
+      "answer": "1",
+      "acceptedAlt": ["det(identity(4))"],
+      "hint": { "en": "Product of diagonal 1s.", "es": "Producto de unos en la diagonal." },
+      "solution": [ { "tex": "\\det I_4 = 1", "en": "Identity determinant.", "es": "Determinante de la identidad." } ]
+    },
+    {
+      "id": "linalg-11-e2",
+      "answerType": "number",
+      "prompt": { "en": "A matrix has two identical rows. Its determinant is ___?", "es": "Una matriz tiene dos filas iguales. Su determinante es ___?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Repeated rows → dependent.", "es": "Filas repetidas → dependientes." },
+      "solution": [ { "tex": "\\det = 0", "en": "Linearly dependent rows.", "es": "Filas linealmente dependientes." } ]
+    },
+    {
+      "id": "linalg-11-e3",
+      "answerType": "number",
+      "prompt": { "en": "$\\det\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$?", "es": "¿$\\det\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$?" },
+      "answer": "2",
+      "acceptedAlt": ["2*1*1*1"],
+      "hint": { "en": "Product of the diagonal.", "es": "Producto de la diagonal." },
+      "solution": [ { "tex": "2\\cdot1\\cdot1\\cdot1 = 2", "en": "Diagonal product.", "es": "Producto de la diagonal." } ]
+    },
+    {
+      "id": "linalg-11-e4",
+      "answerType": "number",
+      "prompt": { "en": "Swapping two rows multiplies the determinant by ___?", "es": "Intercambiar dos filas multiplica el determinante por ___?" },
+      "answer": "-1",
+      "acceptedAlt": [],
+      "hint": { "en": "A sign change.", "es": "Un cambio de signo." },
+      "solution": [ { "tex": "\\det \\to -\\det", "en": "Sign flips.", "es": "Cambia de signo." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 5.1, the properties of determinants", "es": "Cap. 5.1, las propiedades de los determinantes" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Determinants of order ≥4; properties", "es": "Determinantes de orden ≥4; propiedades" } }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "linmaps-12-scaling",
+  "subjectId": "linear-maps",
+  "order": 12,
+  "estimatedMinutes": 35,
+  "title": { "en": "Scaling in 2D", "es": "Escalado en 2D" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Scaling** stretches or shrinks space along each axis. Uniform scaling by a factor $k$ multiplies every coordinate: $(x,y)\\mapsto(kx, ky)$, with matrix $\\begin{pmatrix}k&0\\\\0&k\\end{pmatrix}$. Non-uniform scaling uses different factors per axis, $\\begin{pmatrix}k_x&0\\\\0&k_y\\end{pmatrix}$, which can squash a circle into an ellipse.",
+        "es": "El **escalado** estira o encoge el espacio a lo largo de cada eje. El escalado uniforme por un factor $k$ multiplica cada coordenada: $(x,y)\\mapsto(kx, ky)$, con matriz $\\begin{pmatrix}k&0\\\\0&k\\end{pmatrix}$. El escalado no uniforme usa factores distintos por eje, $\\begin{pmatrix}k_x&0\\\\0&k_y\\end{pmatrix}$, que puede aplastar un círculo en una elipse."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Scaling is a linear map (it fixes the origin), and its determinant tells you the **area factor**: $\\det\\begin{pmatrix}k_x&0\\\\0&k_y\\end{pmatrix} = k_x k_y$. So uniform scaling by $k$ changes areas by $k^2$ in 2D (and volumes by $k^3$ in 3D) — the geometric meaning of the determinant in action.",
+        "es": "El escalado es una aplicación lineal (deja fijo el origen), y su determinante da el **factor de área**: $\\det\\begin{pmatrix}k_x&0\\\\0&k_y\\end{pmatrix} = k_x k_y$. Así el escalado uniforme por $k$ cambia las áreas por $k^2$ en 2D (y los volúmenes por $k^3$ en 3D) — el significado geométrico del determinante en acción."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Factors greater than $1$ enlarge, between $0$ and $1$ shrink, and negative factors also **reflect** across an axis. Together with rotation and translation, scaling is one of the basic building blocks every graphics transformation is assembled from.",
+        "es": "Los factores mayores que $1$ agrandan, entre $0$ y $1$ encogen, y los factores negativos además **reflejan** respecto a un eje. Junto con la rotación y la traslación, el escalado es uno de los ladrillos básicos con los que se ensambla toda transformación gráfica."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Scale $(2,3)$ by factor $2$: $(2\\cdot2, 2\\cdot3) = (4,6)$, first component $4$. The scaling matrix $\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}$ has determinant $4$, so areas quadruple — consistent with $k^2 = 2^2 = 4$.",
+        "es": "Escala $(2,3)$ por factor $2$: $(2\\cdot2, 2\\cdot3) = (4,6)$, primera componente $4$. La matriz de escalado $\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}$ tiene determinante $4$, así las áreas se cuadruplican — coherente con $k^2 = 2^2 = 4$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-12-e1",
+      "answerType": "number",
+      "prompt": { "en": "Scale $(2,3)$ by factor 2. What is the first component?", "es": "Escala $(2,3)$ por factor 2. ¿Cuál es la primera componente?" },
+      "answer": "4",
+      "acceptedAlt": ["2*2"],
+      "hint": { "en": "Multiply each coordinate by 2.", "es": "Multiplica cada coordenada por 2." },
+      "solution": [ { "tex": "(4,6)", "en": "First component 4.", "es": "Primera componente 4." } ]
+    },
+    {
+      "id": "linmaps-12-e2",
+      "answerType": "number",
+      "prompt": { "en": "Determinant of the scaling matrix $\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}$ (the area factor)?", "es": "¿Determinante de la matriz de escalado $\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}$ (el factor de área)?" },
+      "answer": "4",
+      "acceptedAlt": ["2*2", "det([[2,0],[0,2]])"],
+      "hint": { "en": "kₓ · k_y.", "es": "kₓ · k_y." },
+      "solution": [ { "tex": "2\\cdot 2 = 4", "en": "Area factor 4.", "es": "Factor de área 4." } ]
+    },
+    {
+      "id": "linmaps-12-e3",
+      "answerType": "number",
+      "prompt": { "en": "Uniform scaling by $k=3$ changes area by which factor in 2D?", "es": "El escalado uniforme por $k=3$ cambia el área por qué factor en 2D?" },
+      "answer": "9",
+      "acceptedAlt": ["3^2"],
+      "hint": { "en": "k².", "es": "k²." },
+      "solution": [ { "tex": "k^2 = 9", "en": "Area factor.", "es": "Factor de área." } ]
+    },
+    {
+      "id": "linmaps-12-e4",
+      "answerType": "number",
+      "prompt": { "en": "Scale $(1,1)$ by factors $(3,5)$. What is the second component?", "es": "Escala $(1,1)$ por factores $(3,5)$. ¿Cuál es la segunda componente?" },
+      "answer": "5",
+      "acceptedAlt": ["5*1"],
+      "hint": { "en": "y · k_y.", "es": "y · k_y." },
+      "solution": [ { "tex": "(3,5)", "en": "Second component 5.", "es": "Segunda componente 5." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Transformaciones geométricas (PID_00269008)", "detail": { "en": "Scaling in 2D from the origin and a fixed point", "es": "Escalado en 2D desde el origen y un punto fijo" } }
+  ]
+}

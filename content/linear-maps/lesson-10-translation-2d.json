@@ -1,0 +1,79 @@
+{
+  "id": "linmaps-10-translation",
+  "subjectId": "linear-maps",
+  "order": 10,
+  "estimatedMinutes": 35,
+  "title": { "en": "Translation in 2D", "es": "Traslación en 2D" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "We now turn to the **geometric transformations** that drive computer graphics, robotics, and animation. The simplest is **translation**: sliding every point by a fixed displacement vector $(a, b)$, so $(x, y) \\mapsto (x + a, y + b)$. It moves objects without rotating, stretching, or distorting them.",
+        "es": "Pasamos ahora a las **transformaciones geométricas** que impulsan los gráficos por computador, la robótica y la animación. La más simple es la **traslación**: deslizar cada punto un desplazamiento fijo $(a, b)$, de modo que $(x, y) \\mapsto (x + a, y + b)$. Mueve objetos sin rotarlos, estirarlos ni distorsionarlos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Here is a subtlety that motivates the next lessons: **translation is not a linear map**. It moves the origin ($(0,0)$ goes to $(a,b)$), violating $T(\\mathbf 0)=\\mathbf 0$. So a plain $2\\times 2$ matrix cannot represent it. This is exactly the gap that **homogeneous coordinates** will close, letting us fold translation into matrix multiplication.",
+        "es": "Aquí hay una sutileza que motiva las próximas lecciones: **la traslación no es una aplicación lineal**. Mueve el origen ($(0,0)$ va a $(a,b)$), violando $T(\\mathbf 0)=\\mathbf 0$. Así una simple matriz $2\\times 2$ no puede representarla. Es justo el hueco que cerrarán las **coordenadas homogéneas**, permitiendo plegar la traslación en la multiplicación por matriz."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Translations compose by adding their displacement vectors, and the inverse of translating by $(a,b)$ is translating by $(-a,-b)$. They are the foundation of positioning objects in a scene.",
+        "es": "Las traslaciones se componen sumando sus vectores de desplazamiento, y la inversa de trasladar por $(a,b)$ es trasladar por $(-a,-b)$. Son la base para posicionar objetos en una escena."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Translate the point $(1,1)$ by $(3,2)$: $(1+3,\\,1+2) = (4,3)$, first component $4$. Translating $(2,2)$ by $(-2,-2)$ gives $(0,0)$ — back to the origin. Check linearity: translating $(0,0)$ by $(5,-2)$ gives $(5,-2)\\neq(0,0)$, confirming it is not linear.",
+        "es": "Traslada el punto $(1,1)$ por $(3,2)$: $(1+3,\\,1+2) = (4,3)$, primera componente $4$. Trasladar $(2,2)$ por $(-2,-2)$ da $(0,0)$ — de vuelta al origen. Comprueba la linealidad: trasladar $(0,0)$ por $(5,-2)$ da $(5,-2)\\neq(0,0)$, confirmando que no es lineal."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linmaps-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "Translate $(1,1)$ by $(3,2)$. What is the first component?", "es": "Traslada $(1,1)$ por $(3,2)$. ¿Cuál es la primera componente?" },
+      "answer": "4",
+      "acceptedAlt": ["1+3"],
+      "hint": { "en": "x + a.", "es": "x + a." },
+      "solution": [ { "tex": "(1+3, 1+2) = (4,3)", "en": "First component 4.", "es": "Primera componente 4." } ]
+    },
+    {
+      "id": "linmaps-10-e2",
+      "answerType": "number",
+      "prompt": { "en": "Translate $(0,0)$ by $(5,-2)$. What is the x-coordinate?", "es": "Traslada $(0,0)$ por $(5,-2)$. ¿Cuál es la coordenada x?" },
+      "answer": "5",
+      "acceptedAlt": ["0+5"],
+      "hint": { "en": "0 + 5.", "es": "0 + 5." },
+      "solution": [ { "tex": "(0+5, 0-2) = (5,-2)", "en": "x-coordinate 5.", "es": "Coordenada x 5." } ]
+    },
+    {
+      "id": "linmaps-10-e3",
+      "answerType": "text",
+      "prompt": { "en": "Is translation a linear map? (yes / no)", "es": "¿Es la traslación una aplicación lineal? (sí / no)" },
+      "answer": "no",
+      "acceptedAlt": ["no"],
+      "hint": { "en": "Does it fix the origin?", "es": "¿Deja fijo el origen?" },
+      "solution": [ { "tex": "T(\\mathbf0)\\neq\\mathbf0", "en": "Moves the origin → not linear.", "es": "Mueve el origen → no lineal." } ]
+    },
+    {
+      "id": "linmaps-10-e4",
+      "answerType": "number",
+      "prompt": { "en": "Translate $(2,2)$ by $(-2,-2)$. What is the first component?", "es": "Traslada $(2,2)$ por $(-2,-2)$. ¿Cuál es la primera componente?" },
+      "answer": "0",
+      "acceptedAlt": ["2-2"],
+      "hint": { "en": "2 + (−2).", "es": "2 + (−2)." },
+      "solution": [ { "tex": "(2-2, 2-2) = (0,0)", "en": "Back to the origin.", "es": "De vuelta al origen." } ]
+    }
+  ],
+  "references": [
+    { "source": "UOC — Transformaciones geométricas (PID_00269008)", "detail": { "en": "Translation in 2D", "es": "Traslación en 2D" } }
+  ]
+}

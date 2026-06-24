@@ -1,0 +1,82 @@
+{
+  "id": "linalg-14-lines",
+  "subjectId": "linear-algebra",
+  "order": 14,
+  "estimatedMinutes": 40,
+  "title": { "en": "Lines in the Plane & Space", "es": "Rectas en el plano y el espacio" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Linear algebra and geometry meet in the equation of a **line**. In the plane a line can be written three ways: **explicit** $y = mx + b$, **implicit** $Ax + By = C$, and **parametric** $P + t\\,\\vec{d}$ — a fixed point $P$ plus a multiple of a direction vector $\\vec{d}$. The parametric form is the one that generalizes to space and higher dimensions.",
+        "es": "El álgebra lineal y la geometría se encuentran en la ecuación de una **recta**. En el plano una recta se escribe de tres formas: **explícita** $y = mx + b$, **implícita** $Ax + By = C$ y **paramétrica** $P + t\\,\\vec{d}$ — un punto fijo $P$ más un múltiplo de un vector director $\\vec{d}$. La forma paramétrica es la que se generaliza al espacio y a dimensiones superiores."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The parametric view is pure vector thinking: as the parameter $t$ runs over all reals, $P + t\\,\\vec{d}$ traces every point of the line. The direction vector $\\vec{d}$ encodes the slope; in the plane, $\\vec{d} = (1, m)$ corresponds to slope $m$. In $\\mathbb{R}^3$ explicit form no longer works, but parametric and implicit forms carry over.",
+        "es": "La visión paramétrica es pensamiento vectorial puro: cuando el parámetro $t$ recorre todos los reales, $P + t\\,\\vec{d}$ traza cada punto de la recta. El vector director $\\vec{d}$ codifica la pendiente; en el plano, $\\vec{d} = (1, m)$ corresponde a pendiente $m$. En $\\mathbb{R}^3$ la forma explícita ya no sirve, pero las formas paramétrica e implícita se conservan."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "2*x + 1",
+      "domain": [-4, 4],
+      "caption": {
+        "en": "The line $y = 2x + 1$ has slope $2$ and passes through $(0,1)$. As a parametric line: $(0,1) + t(1,2)$ — start at $(0,1)$ and step in direction $(1,2)$.",
+        "es": "La recta $y = 2x + 1$ tiene pendiente $2$ y pasa por $(0,1)$. Como recta paramétrica: $(0,1) + t(1,2)$ — parte de $(0,1)$ y avanza en dirección $(1,2)$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A point lies on a line if it satisfies the equation. Does $(0,1)$ lie on $y = 2x+1$? Substitute: $2(0)+1 = 1$ ✓ — yes. For the line through the origin with direction $(1,2)$, the rule is $y = 2x$, so at $x = 3$, $y = 6$.",
+        "es": "Un punto está en una recta si cumple la ecuación. ¿Está $(0,1)$ en $y = 2x+1$? Sustituye: $2(0)+1 = 1$ ✓ — sí. Para la recta por el origen con dirección $(1,2)$, la regla es $y = 2x$, así en $x = 3$, $y = 6$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "linalg-14-e1",
+      "answerType": "number",
+      "prompt": { "en": "Slope of the line $y = 2x + 1$?", "es": "¿Pendiente de la recta $y = 2x + 1$?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "The coefficient of x.", "es": "El coeficiente de x." },
+      "solution": [ { "tex": "m = 2", "en": "Slope.", "es": "Pendiente." } ]
+    },
+    {
+      "id": "linalg-14-e2",
+      "answerType": "text",
+      "prompt": { "en": "Does $(0,1)$ lie on $y = 2x + 1$? (yes / no)", "es": "¿Está $(0,1)$ en $y = 2x + 1$? (sí / no)" },
+      "answer": "yes",
+      "acceptedAlt": ["sí", "si"],
+      "hint": { "en": "Substitute x = 0.", "es": "Sustituye x = 0." },
+      "solution": [ { "tex": "2\\cdot0 + 1 = 1", "en": "Yes, it satisfies the equation.", "es": "Sí, cumple la ecuación." } ]
+    },
+    {
+      "id": "linalg-14-e3",
+      "answerType": "number",
+      "prompt": { "en": "For the line through the origin with direction $(1,2)$, find $y$ when $x = 3$.", "es": "Para la recta por el origen con dirección $(1,2)$, halla $y$ cuando $x = 3$." },
+      "answer": "6",
+      "acceptedAlt": ["2*3"],
+      "hint": { "en": "y = 2x.", "es": "y = 2x." },
+      "solution": [ { "tex": "y = 2x = 6", "en": "Direction gives slope 2.", "es": "La dirección da pendiente 2." } ]
+    },
+    {
+      "id": "linalg-14-e4",
+      "answerType": "number",
+      "prompt": { "en": "On the parametric line $(1,0) + t(0,1)$, the x-coordinate equals?", "es": "En la recta paramétrica $(1,0) + t(0,1)$, la coordenada x es?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "The direction has no x-part.", "es": "La dirección no tiene parte x." },
+      "solution": [ { "tex": "x = 1 \\text{ for all } t", "en": "A vertical line x = 1.", "es": "Una recta vertical x = 1." } ]
+    }
+  ],
+  "references": [
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 1, lines, vectors and parametric form", "es": "Cap. 1, rectas, vectores y forma paramétrica" } },
+    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Equations of a line in the plane and in space", "es": "Ecuaciones de una recta en el plano y en el espacio" } }
+  ]
+}
