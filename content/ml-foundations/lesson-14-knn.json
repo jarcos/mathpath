@@ -1,0 +1,80 @@
+{
+  "id": "mlf-14-knn",
+  "subjectId": "ml-foundations",
+  "order": 14,
+  "estimatedMinutes": 35,
+  "title": { "en": "k-Nearest Neighbors", "es": "k vecinos más cercanos" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**k-Nearest Neighbors (kNN)** is the most intuitive classifier: to label a new point, find the $k$ training points **closest** to it and take a **majority vote** of their labels. There is no training phase at all — the data *is* the model. It embodies the assumption that nearby points tend to share a class.",
+        "es": "**k vecinos más cercanos (kNN)** es el clasificador más intuitivo: para etiquetar un punto nuevo, halla los $k$ puntos de entrenamiento **más cercanos** y toma un **voto mayoritario** de sus etiquetas. No hay fase de entrenamiento — los datos *son* el modelo. Encarna la suposición de que los puntos cercanos tienden a compartir clase."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "'Closest' is measured by a **distance**, usually the **Euclidean distance** $\\|\\mathbf{a} - \\mathbf{b}\\| = \\sqrt{\\sum (a_i - b_i)^2}$ — the straight-line distance from the Vectors lesson. So the choice of distance and feature scaling directly shapes the predictions.",
+        "es": "'Más cercano' se mide con una **distancia**, normalmente la **distancia euclídea** $\\|\\mathbf{a} - \\mathbf{b}\\| = \\sqrt{\\sum (a_i - b_i)^2}$ — la distancia en línea recta de la lección de Vectores. Así, la elección de distancia y el escalado de características moldean directamente las predicciones."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The hyperparameter $k$ controls the bias-variance balance: $k = 1$ follows every point exactly and tends to **overfit** (jagged boundaries, sensitive to noise); large $k$ smooths the boundary but may underfit. kNN is simple and surprisingly strong, but slow at prediction time on big datasets, since it must compare to every stored point.",
+        "es": "El hiperparámetro $k$ controla el equilibrio sesgo-varianza: $k = 1$ sigue cada punto exactamente y tiende a **sobreajustar** (fronteras dentadas, sensible al ruido); un $k$ grande suaviza la frontera pero puede subajustar. kNN es simple y sorprendentemente potente, pero lento al predecir en grandes conjuntos, pues debe compararse con cada punto almacenado."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With $k = 3$ and neighbor labels $[A, A, B]$, the majority vote is **A**. The Euclidean distance between $(0,0)$ and $(3,4)$ is $\\sqrt{3^2 + 4^2} = 5$ — a classic 3-4-5 triangle.",
+        "es": "Con $k = 3$ y etiquetas de los vecinos $[A, A, B]$, el voto mayoritario es **A**. La distancia euclídea entre $(0,0)$ y $(3,4)$ es $\\sqrt{3^2 + 4^2} = 5$ — un clásico triángulo 3-4-5."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-14-e1",
+      "answerType": "text",
+      "prompt": { "en": "kNN classifies by the majority vote of the k ___ neighbors. (one word)", "es": "kNN clasifica por el voto mayoritario de los k vecinos más ___. (una palabra)" },
+      "answer": "nearest",
+      "acceptedAlt": ["cercanos", "near", "próximos", "proximos"],
+      "hint": { "en": "Closest in distance.", "es": "Más próximos en distancia." },
+      "solution": [ { "tex": "k\\text{-NN}", "en": "Nearest.", "es": "Más cercanos." } ]
+    },
+    {
+      "id": "mlf-14-e2",
+      "answerType": "text",
+      "prompt": { "en": "With $k=3$ neighbor labels $[A, A, B]$, what is the predicted class?", "es": "Con $k=3$ y etiquetas $[A, A, B]$, ¿cuál es la clase predicha?" },
+      "answer": "A",
+      "acceptedAlt": ["a"],
+      "hint": { "en": "Majority vote.", "es": "Voto mayoritario." },
+      "solution": [ { "tex": "2A > 1B", "en": "Class A.", "es": "Clase A." } ]
+    },
+    {
+      "id": "mlf-14-e3",
+      "answerType": "number",
+      "prompt": { "en": "Euclidean distance between $(0,0)$ and $(3,4)$?", "es": "¿Distancia euclídea entre $(0,0)$ y $(3,4)$?" },
+      "answer": "5",
+      "acceptedAlt": ["sqrt(3^2+4^2)", "norm([3,4])"],
+      "hint": { "en": "√(3² + 4²).", "es": "√(3² + 4²)." },
+      "solution": [ { "tex": "\\sqrt{9+16} = 5", "en": "Distance.", "es": "Distancia." } ]
+    },
+    {
+      "id": "mlf-14-e4",
+      "answerType": "text",
+      "prompt": { "en": "kNN with $k=1$ tends to ___ (one word: overfit).", "es": "kNN con $k=1$ tiende a ___ (una palabra: sobreajustar)." },
+      "answer": "overfit",
+      "acceptedAlt": ["sobreajustar", "overfitting", "sobreajuste"],
+      "hint": { "en": "Follows every point.", "es": "Sigue cada punto." },
+      "solution": [ { "tex": "k=1", "en": "Overfits.", "es": "Sobreajusta." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, nearest-neighbor models", "es": "Cap. 18, modelos de vecinos más cercanos" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, k-nearest neighbors", "es": "Cap. 5, k vecinos más cercanos" } }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "mlf-04-loss",
+  "subjectId": "ml-foundations",
+  "order": 4,
+  "estimatedMinutes": 40,
+  "title": { "en": "Loss Functions", "es": "Funciones de pérdida" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "To train a model we must first define what 'good' means. A **loss function** measures how wrong a prediction is — the gap between the prediction $\\hat{y}$ and the true target $y$. Training is then simply **minimizing the loss** over the data. A loss of zero means a perfect fit on those points.",
+        "es": "Para entrenar un modelo primero debemos definir qué significa 'bueno'. Una **función de pérdida** mide cuán equivocada está una predicción — la distancia entre la predicción $\\hat{y}$ y el objetivo real $y$. Entrenar es entonces simplemente **minimizar la pérdida** sobre los datos. Una pérdida de cero significa un ajuste perfecto en esos puntos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "For regression, the workhorse is **squared error** $(\\hat{y} - y)^2$, averaged over the dataset to give the **Mean Squared Error (MSE)**. Squaring punishes big mistakes heavily and is smooth (easy to differentiate). The **absolute error** $|\\hat{y} - y|$ is a robust alternative, less sensitive to outliers.",
+        "es": "Para regresión, el caballo de batalla es el **error cuadrático** $(\\hat{y} - y)^2$, promediado sobre el conjunto para dar el **Error Cuadrático Medio (MSE)**. Elevar al cuadrado castiga mucho los errores grandes y es suave (fácil de derivar). El **error absoluto** $|\\hat{y} - y|$ es una alternativa robusta, menos sensible a los atípicos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "For classification, we use **cross-entropy** loss instead, which measures the distance between predicted probabilities and the true class. The right loss depends on the task — but the principle is universal: define a loss, then push the parameters to make it as small as possible.",
+        "es": "Para clasificación usamos en cambio la pérdida de **entropía cruzada**, que mide la distancia entre las probabilidades predichas y la clase verdadera. La pérdida adecuada depende de la tarea — pero el principio es universal: define una pérdida y luego ajusta los parámetros para hacerla lo más pequeña posible."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A model predicts $\\hat{y} = 5$ when the target is $y = 3$. Squared error: $(5-3)^2 = 4$. Absolute error: $|5-3| = 2$. If a prediction equals the target, the squared error is $0$ — a perfect fit on that point.",
+        "es": "Un modelo predice $\\hat{y} = 5$ cuando el objetivo es $y = 3$. Error cuadrático: $(5-3)^2 = 4$. Error absoluto: $|5-3| = 2$. Si una predicción coincide con el objetivo, el error cuadrático es $0$ — ajuste perfecto en ese punto."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-04-e1",
+      "answerType": "number",
+      "prompt": { "en": "Squared error for prediction $\\hat{y}=5$, target $y=3$: $(\\hat{y}-y)^2$?", "es": "Error cuadrático para predicción $\\hat{y}=5$, objetivo $y=3$: $(\\hat{y}-y)^2$?" },
+      "answer": "4",
+      "acceptedAlt": ["(5-3)^2"],
+      "hint": { "en": "(5−3)².", "es": "(5−3)²." },
+      "solution": [ { "tex": "(5-3)^2 = 4", "en": "Squared error.", "es": "Error cuadrático." } ]
+    },
+    {
+      "id": "mlf-04-e2",
+      "answerType": "number",
+      "prompt": { "en": "Absolute error for prediction $5$, target $8$: $|\\hat{y}-y|$?", "es": "Error absoluto para predicción $5$, objetivo $8$: $|\\hat{y}-y|$?" },
+      "answer": "3",
+      "acceptedAlt": ["abs(5-8)"],
+      "hint": { "en": "|5−8|.", "es": "|5−8|." },
+      "solution": [ { "tex": "|5-8| = 3", "en": "Absolute error.", "es": "Error absoluto." } ]
+    },
+    {
+      "id": "mlf-04-e3",
+      "answerType": "number",
+      "prompt": { "en": "If the squared error is 0 and the target is 7, what was the prediction?", "es": "Si el error cuadrático es 0 y el objetivo es 7, ¿cuál fue la predicción?" },
+      "answer": "7",
+      "acceptedAlt": [],
+      "hint": { "en": "Zero error means a perfect match.", "es": "Error cero significa coincidencia perfecta." },
+      "solution": [ { "tex": "(\\hat{y}-7)^2 = 0 \\Rightarrow \\hat{y}=7", "en": "Prediction equals target.", "es": "Predicción igual al objetivo." } ]
+    },
+    {
+      "id": "mlf-04-e4",
+      "answerType": "text",
+      "prompt": { "en": "A loss function measures the ___ between prediction and target. (one word)", "es": "Una función de pérdida mide el ___ entre la predicción y el objetivo. (una palabra)" },
+      "answer": "error",
+      "acceptedAlt": ["error"],
+      "hint": { "en": "How wrong we are.", "es": "Cuán equivocados estamos." },
+      "solution": [ { "tex": "L(\\hat{y}, y)", "en": "The error.", "es": "El error." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, cost functions; MSE and cross-entropy", "es": "Cap. 5, funciones de coste; MSE y entropía cruzada" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Loss and empirical risk", "es": "Pérdida y riesgo empírico" } }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "mlf-09-regularization",
+  "subjectId": "ml-foundations",
+  "order": 9,
+  "estimatedMinutes": 40,
+  "title": { "en": "Regularization", "es": "Regularización" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Regularization** fights overfitting by discouraging the model from becoming too complex. The idea: add a **penalty on the size of the weights** to the loss, so the optimizer must balance fitting the data against keeping the weights small. Large weights often signal a model contorting itself to memorize noise.",
+        "es": "La **regularización** combate el sobreajuste desalentando que el modelo se vuelva demasiado complejo. La idea: añadir a la pérdida una **penalización sobre el tamaño de los pesos**, de modo que el optimizador deba equilibrar ajustar los datos con mantener pequeños los pesos. Pesos grandes suelen indicar un modelo que se contorsiona para memorizar ruido."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two classic penalties. **L2 regularization (ridge)** adds the sum of squared weights $\\sum w_i^2$, shrinking all weights smoothly toward zero. **L1 regularization (lasso)** adds the sum of absolute values $\\sum |w_i|$, which drives some weights exactly to zero — performing automatic **feature selection**.",
+        "es": "Dos penalizaciones clásicas. La **regularización L2 (ridge)** añade la suma de pesos al cuadrado $\\sum w_i^2$, encogiendo todos los pesos suavemente hacia cero. La **regularización L1 (lasso)** añade la suma de valores absolutos $\\sum |w_i|$, que lleva algunos pesos exactamente a cero — realizando una **selección de características** automática."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A strength hyperparameter $\\lambda$ controls the trade-off: larger $\\lambda$ means stronger penalty, simpler model, less overfitting (but too much causes underfitting). Regularization is everywhere in modern ML — and dropout and weight decay in deep learning are its descendants.",
+        "es": "Un hiperparámetro de fuerza $\\lambda$ controla el compromiso: $\\lambda$ mayor significa penalización más fuerte, modelo más simple, menos sobreajuste (pero demasiado causa subajuste). La regularización está por todas partes en el ML moderno — y el dropout y la disminución de pesos del aprendizaje profundo son sus descendientes."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "For weights $\\mathbf{w} = [3, 4]$, the **L2** penalty is $3^2 + 4^2 = 25$. For $\\mathbf{w} = [3, -4]$, the **L1** penalty is $|3| + |-4| = 7$. L1 sums magnitudes; L2 sums squares.",
+        "es": "Para pesos $\\mathbf{w} = [3, 4]$, la penalización **L2** es $3^2 + 4^2 = 25$. Para $\\mathbf{w} = [3, -4]$, la penalización **L1** es $|3| + |-4| = 7$. L1 suma magnitudes; L2 suma cuadrados."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-09-e1",
+      "answerType": "text",
+      "prompt": { "en": "Adding a penalty on weight size to reduce overfitting is called ___. (one word)", "es": "Añadir una penalización al tamaño de los pesos para reducir el sobreajuste se llama ___. (una palabra)" },
+      "answer": "regularization",
+      "acceptedAlt": ["regularización", "regularizacion"],
+      "hint": { "en": "Penalize complexity.", "es": "Penalizar la complejidad." },
+      "solution": [ { "tex": "L + \\lambda\\,\\Omega(w)", "en": "Regularization.", "es": "Regularización." } ]
+    },
+    {
+      "id": "mlf-09-e2",
+      "answerType": "number",
+      "prompt": { "en": "L2 penalty for weights $[3,4]$: $\\sum w_i^2$?", "es": "Penalización L2 para pesos $[3,4]$: $\\sum w_i^2$?" },
+      "answer": "25",
+      "acceptedAlt": ["3^2+4^2"],
+      "hint": { "en": "9 + 16.", "es": "9 + 16." },
+      "solution": [ { "tex": "9 + 16 = 25", "en": "Sum of squares.", "es": "Suma de cuadrados." } ]
+    },
+    {
+      "id": "mlf-09-e3",
+      "answerType": "number",
+      "prompt": { "en": "L1 penalty for weights $[3,-4]$: $\\sum |w_i|$?", "es": "Penalización L1 para pesos $[3,-4]$: $\\sum |w_i|$?" },
+      "answer": "7",
+      "acceptedAlt": ["abs(3)+abs(-4)"],
+      "hint": { "en": "|3| + |−4|.", "es": "|3| + |−4|." },
+      "solution": [ { "tex": "3 + 4 = 7", "en": "Sum of magnitudes.", "es": "Suma de magnitudes." } ]
+    },
+    {
+      "id": "mlf-09-e4",
+      "answerType": "text",
+      "prompt": { "en": "L2 regularization is also known as ___ regression. (one word)", "es": "La regularización L2 también se conoce como regresión ___. (una palabra)" },
+      "answer": "ridge",
+      "acceptedAlt": [],
+      "hint": { "en": "The sum-of-squares penalty.", "es": "La penalización de suma de cuadrados." },
+      "solution": [ { "tex": "\\sum w_i^2", "en": "Ridge.", "es": "Ridge." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5 & 7, regularization for deep learning", "es": "Cap. 5 y 7, regularización para aprendizaje profundo" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, regularization", "es": "Cap. 18, regularización" } }
+  ]
+}

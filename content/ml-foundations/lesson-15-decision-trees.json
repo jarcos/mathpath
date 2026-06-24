@@ -1,0 +1,80 @@
+{
+  "id": "mlf-15-decision-trees",
+  "subjectId": "ml-foundations",
+  "order": 15,
+  "estimatedMinutes": 40,
+  "title": { "en": "Decision Trees", "es": "Árboles de decisión" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **decision tree** classifies by asking a sequence of simple yes/no **questions** about the features, following branches until it reaches a leaf with a prediction. 'Is income > €30k? If yes, is age < 25?' — exactly how a human might reason, which makes trees wonderfully **interpretable**.",
+        "es": "Un **árbol de decisión** clasifica haciendo una secuencia de **preguntas** simples sí/no sobre las características, siguiendo ramas hasta llegar a una hoja con una predicción. '¿Ingreso > 30k€? Si sí, ¿edad < 25?' — justo como razonaría una persona, lo que hace a los árboles maravillosamente **interpretables**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The tree is built top-down: at each node, the algorithm picks the feature and threshold that best **splits** the data into purer groups (measured by Gini impurity or information gain/entropy). The top node is the **root**; the bottom prediction nodes are **leaves**. A balanced binary tree of depth $d$ has up to $2^d$ leaves.",
+        "es": "El árbol se construye de arriba abajo: en cada nodo, el algoritmo elige la característica y el umbral que mejor **dividen** los datos en grupos más puros (medido con la impureza de Gini o la ganancia de información/entropía). El nodo superior es la **raíz**; los nodos de predicción inferiores son **hojas**. Un árbol binario equilibrado de profundidad $d$ tiene hasta $2^d$ hojas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Single trees that grow too deep **overfit** badly. The fix that made them dominate tabular ML is the **ensemble**: combining many trees into a **random forest** or **gradient-boosted** model averages away the overfitting and yields state-of-the-art accuracy on structured data.",
+        "es": "Los árboles individuales que crecen demasiado **sobreajustan** mucho. El remedio que los hizo dominar el ML tabular es el **conjunto (ensemble)**: combinar muchos árboles en un **bosque aleatorio** o un modelo de **boosting de gradiente** promedia el sobreajuste y da una exactitud puntera en datos estructurados."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A balanced binary decision tree of depth $2$ has at most $2^2 = 4$ leaves. The top node where the first question is asked is the **root**. Trees grown too deep tend to **overfit** the training data.",
+        "es": "Un árbol de decisión binario equilibrado de profundidad $2$ tiene como mucho $2^2 = 4$ hojas. El nodo superior donde se hace la primera pregunta es la **raíz**. Los árboles demasiado profundos tienden a **sobreajustar** los datos de entrenamiento."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-15-e1",
+      "answerType": "text",
+      "prompt": { "en": "A decision tree makes decisions by asking yes/no ___ about features. (one word)", "es": "Un árbol de decisión decide haciendo ___ sí/no sobre las características. (una palabra)" },
+      "answer": "questions",
+      "acceptedAlt": ["preguntas"],
+      "hint": { "en": "At each node.", "es": "En cada nodo." },
+      "solution": [ { "tex": "x_i > t?", "en": "Questions.", "es": "Preguntas." } ]
+    },
+    {
+      "id": "mlf-15-e2",
+      "answerType": "text",
+      "prompt": { "en": "The top node of a decision tree is the ___. (one word)", "es": "El nodo superior de un árbol de decisión es la ___. (una palabra)" },
+      "answer": "root",
+      "acceptedAlt": ["raíz", "raiz"],
+      "hint": { "en": "Where it starts.", "es": "Donde empieza." },
+      "solution": [ { "tex": "\\text{root node}", "en": "Root.", "es": "Raíz." } ]
+    },
+    {
+      "id": "mlf-15-e3",
+      "answerType": "number",
+      "prompt": { "en": "At most how many leaves does a balanced binary tree of depth 2 have?", "es": "¿Como máximo cuántas hojas tiene un árbol binario equilibrado de profundidad 2?" },
+      "answer": "4",
+      "acceptedAlt": ["2^2"],
+      "hint": { "en": "2 to the depth.", "es": "2 elevado a la profundidad." },
+      "solution": [ { "tex": "2^2 = 4", "en": "Four leaves.", "es": "Cuatro hojas." } ]
+    },
+    {
+      "id": "mlf-15-e4",
+      "answerType": "text",
+      "prompt": { "en": "Trees that grow too deep tend to ___ (one word: overfit).", "es": "Los árboles demasiado profundos tienden a ___ (una palabra: sobreajustar)." },
+      "answer": "overfit",
+      "acceptedAlt": ["sobreajustar", "overfitting", "sobreajuste"],
+      "hint": { "en": "Memorize the training data.", "es": "Memorizar los datos de entrenamiento." },
+      "solution": [ { "tex": "\\text{deep} \\Rightarrow \\text{overfit}", "en": "Overfit.", "es": "Sobreajustar." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, learning decision trees", "es": "Cap. 18, aprendizaje de árboles de decisión" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, decision trees and their limits", "es": "Cap. 5, árboles de decisión y sus límites" } }
+  ]
+}

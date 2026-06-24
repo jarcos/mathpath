@@ -1,0 +1,80 @@
+{
+  "id": "mlf-03-model-parameters",
+  "subjectId": "ml-foundations",
+  "order": 3,
+  "estimatedMinutes": 35,
+  "title": { "en": "Models & Parameters", "es": "Modelos y parámetros" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **model** is a family of functions with adjustable knobs. The simplest is the linear model $f(x) = wx + b$, with **parameters** $w$ (weight) and $b$ (bias). Training means searching for the parameter values that make the model fit the data best. The model *form* is chosen by us; the *parameters* are learned from data.",
+        "es": "Un **modelo** es una familia de funciones con perillas ajustables. El más simple es el modelo lineal $f(x) = wx + b$, con **parámetros** $w$ (peso) y $b$ (sesgo). Entrenar es buscar los valores de los parámetros que hacen que el modelo se ajuste mejor a los datos. La *forma* del modelo la elegimos nosotros; los *parámetros* se aprenden de los datos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "With many features, the linear model generalizes to $f(\\mathbf{x}) = \\mathbf{w}\\cdot\\mathbf{x} + b$ — a dot product of a weight vector with the feature vector, plus a bias. This is exactly the linear-algebra operation from earlier, now doing the work of prediction. Each weight says how much its feature pushes the output up or down.",
+        "es": "Con muchas características, el modelo lineal se generaliza a $f(\\mathbf{x}) = \\mathbf{w}\\cdot\\mathbf{x} + b$ — un producto escalar de un vector de pesos con el vector de características, más un sesgo. Es exactamente la operación de álgebra lineal de antes, ahora haciendo el trabajo de predecir. Cada peso indica cuánto empuja su característica la salida hacia arriba o abajo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Parameters** (learned from data, like $w$ and $b$) are distinct from **hyperparameters** (set by us before training, like the learning rate or the model size). Telling them apart is essential to the whole training workflow.",
+        "es": "Los **parámetros** (aprendidos de los datos, como $w$ y $b$) se distinguen de los **hiperparámetros** (fijados por nosotros antes de entrenar, como la tasa de aprendizaje o el tamaño del modelo). Distinguirlos es esencial para todo el flujo de entrenamiento."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The model $f(x) = wx + b$ with $w = 2$, $b = 1$ predicts $f(3) = 2\\cdot 3 + 1 = 7$. It has $2$ parameters. The pure model $f(x) = 3x$ predicts $f(4) = 12$.",
+        "es": "El modelo $f(x) = wx + b$ con $w = 2$, $b = 1$ predice $f(3) = 2\\cdot 3 + 1 = 7$. Tiene $2$ parámetros. El modelo puro $f(x) = 3x$ predice $f(4) = 12$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "For $f(x)=wx+b$ with $w=2$, $b=1$, find $f(3)$.", "es": "Para $f(x)=wx+b$ con $w=2$, $b=1$, halla $f(3)$." },
+      "answer": "7",
+      "acceptedAlt": ["2*3+1"],
+      "hint": { "en": "Substitute.", "es": "Sustituye." },
+      "solution": [ { "tex": "2\\cdot3+1 = 7", "en": "Prediction.", "es": "Predicción." } ]
+    },
+    {
+      "id": "mlf-03-e2",
+      "answerType": "text",
+      "prompt": { "en": "The values learned during training (like w and b) are the ___. (one word)", "es": "Los valores aprendidos durante el entrenamiento (como w y b) son los ___. (una palabra)" },
+      "answer": "parameters",
+      "acceptedAlt": ["parámetros", "parametros"],
+      "hint": { "en": "The knobs the model tunes.", "es": "Las perillas que el modelo ajusta." },
+      "solution": [ { "tex": "w, b", "en": "Parameters.", "es": "Parámetros." } ]
+    },
+    {
+      "id": "mlf-03-e3",
+      "answerType": "number",
+      "prompt": { "en": "How many parameters does $f(x)=wx+b$ have?", "es": "¿Cuántos parámetros tiene $f(x)=wx+b$?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Count w and b.", "es": "Cuenta w y b." },
+      "solution": [ { "tex": "w, b \\Rightarrow 2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "mlf-03-e4",
+      "answerType": "number",
+      "prompt": { "en": "Model $f(x)=3x$. Predict $f(4)$.", "es": "Modelo $f(x)=3x$. Predice $f(4)$." },
+      "answer": "12",
+      "acceptedAlt": ["3*4"],
+      "hint": { "en": "Substitute 4.", "es": "Sustituye 4." },
+      "solution": [ { "tex": "3\\cdot4 = 12", "en": "Prediction.", "es": "Predicción." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, capacity, parameters and hyperparameters", "es": "Cap. 5, capacidad, parámetros e hiperparámetros" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Linear models", "es": "Modelos lineales" } }
+  ]
+}

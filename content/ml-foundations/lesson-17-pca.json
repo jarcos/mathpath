@@ -1,0 +1,80 @@
+{
+  "id": "mlf-17-pca",
+  "subjectId": "ml-foundations",
+  "order": 17,
+  "estimatedMinutes": 40,
+  "title": { "en": "Dimensionality Reduction (PCA)", "es": "Reducción de dimensionalidad (PCA)" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Real data often has hundreds or thousands of features, many redundant or noisy — the 'curse of dimensionality'. **Dimensionality reduction** compresses the data into far fewer features while keeping most of the information. The classic method is **Principal Component Analysis (PCA)**.",
+        "es": "Los datos reales suelen tener cientos o miles de características, muchas redundantes o ruidosas — la 'maldición de la dimensionalidad'. La **reducción de dimensionalidad** comprime los datos en muchas menos características conservando la mayor parte de la información. El método clásico es el **Análisis de Componentes Principales (PCA)**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "PCA is linear algebra in action: it finds new axes — the **principal components** — along which the data varies most. These are exactly the **eigenvectors of the covariance matrix** (from the Linear Maps subject), and their eigenvalues measure how much variance each captures. The **first principal component** captures the most variance, the second the next-most, and so on.",
+        "es": "PCA es álgebra lineal en acción: halla nuevos ejes — las **componentes principales** — a lo largo de los cuales los datos varían más. Son exactamente los **autovectores de la matriz de covarianza** (de la asignatura de Aplicaciones lineales), y sus autovalores miden cuánta varianza captura cada uno. La **primera componente principal** captura la mayor varianza, la segunda la siguiente, y así."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "To reduce from many features to a few, keep only the top components (the ones with the largest eigenvalues) and project the data onto them. This is the same projection idea from the Linear Algebra subject. PCA powers visualization (squeezing data to 2-D), denoising, and faster downstream models.",
+        "es": "Para reducir de muchas características a unas pocas, conserva solo las componentes principales (las de mayores autovalores) y proyecta los datos sobre ellas. Es la misma idea de proyección de la asignatura de Álgebra lineal. PCA impulsa la visualización (comprimir datos a 2-D), la eliminación de ruido y modelos posteriores más rápidos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Reducing $10$ features down to $2$ principal components **drops** $10 - 2 = 8$ dimensions while keeping the directions of greatest variance. The principal components are the eigenvectors of the data's covariance matrix.",
+        "es": "Reducir $10$ características a $2$ componentes principales **elimina** $10 - 2 = 8$ dimensiones conservando las direcciones de mayor varianza. Las componentes principales son los autovectores de la matriz de covarianza de los datos."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-17-e1",
+      "answerType": "text",
+      "prompt": { "en": "PCA reduces ___ while keeping most variance. (one word)", "es": "PCA reduce la ___ conservando la mayor varianza. (una palabra)" },
+      "answer": "dimensionality",
+      "acceptedAlt": ["dimensions", "dimensionalidad", "dimensiones"],
+      "hint": { "en": "Number of features.", "es": "Número de características." },
+      "solution": [ { "tex": "\\mathbb{R}^{n}\\to\\mathbb{R}^{k}", "en": "Dimensionality.", "es": "Dimensionalidad." } ]
+    },
+    {
+      "id": "mlf-17-e2",
+      "answerType": "text",
+      "prompt": { "en": "PCA's principal components are the ___ of the covariance matrix. (one word)", "es": "Las componentes principales de PCA son los ___ de la matriz de covarianza. (una palabra)" },
+      "answer": "eigenvectors",
+      "acceptedAlt": ["autovectores", "autovector", "vectores propios"],
+      "hint": { "en": "From the Linear Maps subject.", "es": "De la asignatura de Aplicaciones lineales." },
+      "solution": [ { "tex": "C v = \\lambda v", "en": "Eigenvectors.", "es": "Autovectores." } ]
+    },
+    {
+      "id": "mlf-17-e3",
+      "answerType": "number",
+      "prompt": { "en": "Reducing 10 features to 2 components drops how many dimensions?", "es": "Reducir 10 características a 2 componentes elimina cuántas dimensiones?" },
+      "answer": "8",
+      "acceptedAlt": ["10-2"],
+      "hint": { "en": "10 − 2.", "es": "10 − 2." },
+      "solution": [ { "tex": "10 - 2 = 8", "en": "Dropped dimensions.", "es": "Dimensiones eliminadas." } ]
+    },
+    {
+      "id": "mlf-17-e4",
+      "answerType": "text",
+      "prompt": { "en": "The first principal component captures the most ___. (one word)", "es": "La primera componente principal captura la mayor ___. (una palabra)" },
+      "answer": "variance",
+      "acceptedAlt": ["varianza"],
+      "hint": { "en": "Largest eigenvalue direction.", "es": "Dirección de mayor autovalor." },
+      "solution": [ { "tex": "\\max \\text{var}", "en": "Variance.", "es": "Varianza." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 2 & 5, PCA via eigendecomposition", "es": "Cap. 2 y 5, PCA por descomposición en autovectores" } },
+    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 7, PCA and the SVD", "es": "Cap. 7, PCA y la SVD" } }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "mlf-08-overfitting",
+  "subjectId": "ml-foundations",
+  "order": 8,
+  "estimatedMinutes": 40,
+  "title": { "en": "Overfitting & the Bias-Variance Trade-off", "es": "Sobreajuste y el compromiso sesgo-varianza" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The central failure mode of machine learning is **overfitting**: a model that learns the training data *too* well — memorizing its noise and quirks — and then fails on new data. A telltale sign is a large gap: high training accuracy but low test accuracy. The opposite is **underfitting**: a model too simple to capture the real pattern, performing poorly even on training data.",
+        "es": "El modo de fallo central del aprendizaje automático es el **sobreajuste**: un modelo que aprende los datos de entrenamiento *demasiado* bien — memorizando su ruido y rarezas — y luego falla con datos nuevos. Una señal clara es una gran brecha: alta precisión en entrenamiento pero baja en prueba. Lo contrario es el **subajuste**: un modelo demasiado simple para captar el patrón real, que rinde mal incluso en entrenamiento."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This is framed as the **bias-variance trade-off**. **Bias** is error from wrong assumptions (too-simple models underfit — high bias). **Variance** is error from sensitivity to the particular training set (too-complex models overfit — high variance). Total error balances the two: you cannot drive both to zero, so you seek the sweet spot.",
+        "es": "Esto se enmarca como el **compromiso sesgo-varianza**. El **sesgo** es el error por suposiciones erróneas (los modelos demasiado simples subajustan — sesgo alto). La **varianza** es el error por sensibilidad al conjunto de entrenamiento concreto (los modelos demasiado complejos sobreajustan — varianza alta). El error total equilibra ambos: no puedes llevar los dos a cero, así que buscas el punto óptimo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The cures for overfitting are the rest of this subject: more data, simpler models, regularization, and honest validation. Recognizing the train/test gap is the first diagnostic skill every practitioner must develop.",
+        "es": "Los remedios contra el sobreajuste son el resto de esta asignatura: más datos, modelos más simples, regularización y validación honesta. Reconocer la brecha train/test es la primera destreza de diagnóstico que todo profesional debe desarrollar."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A model scores $99\\%$ on training but $60\\%$ on test. The gap is $99 - 60 = 39$ points — a strong sign of **overfitting**. A model that scores $60\\%$ on *both* is more likely **underfitting** (high bias).",
+        "es": "Un modelo obtiene $99\\%$ en entrenamiento pero $60\\%$ en prueba. La brecha es $99 - 60 = 39$ puntos — una fuerte señal de **sobreajuste**. Un modelo que obtiene $60\\%$ en *ambos* probablemente está **subajustando** (sesgo alto)."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-08-e1",
+      "answerType": "text",
+      "prompt": { "en": "A model that memorizes training data but fails on new data is ___. (one word)", "es": "Un modelo que memoriza los datos de entrenamiento pero falla con datos nuevos hace ___. (una palabra)" },
+      "answer": "overfitting",
+      "acceptedAlt": ["sobreajuste", "overfit", "sobreajustar"],
+      "hint": { "en": "Big train/test gap.", "es": "Gran brecha train/test." },
+      "solution": [ { "tex": "\\text{overfitting}", "en": "Overfitting.", "es": "Sobreajuste." } ]
+    },
+    {
+      "id": "mlf-08-e2",
+      "answerType": "text",
+      "prompt": { "en": "A model too simple to capture the pattern is ___. (one word)", "es": "Un modelo demasiado simple para captar el patrón hace ___. (una palabra)" },
+      "answer": "underfitting",
+      "acceptedAlt": ["subajuste", "underfit", "subajustar"],
+      "hint": { "en": "High bias.", "es": "Sesgo alto." },
+      "solution": [ { "tex": "\\text{underfitting}", "en": "Underfitting.", "es": "Subajuste." } ]
+    },
+    {
+      "id": "mlf-08-e3",
+      "answerType": "number",
+      "prompt": { "en": "Training accuracy 99%, test accuracy 60%. What is the gap (in points)?", "es": "Precisión de entrenamiento 99%, de prueba 60%. ¿Cuál es la brecha (en puntos)?" },
+      "answer": "39",
+      "acceptedAlt": ["99-60"],
+      "hint": { "en": "99 − 60.", "es": "99 − 60." },
+      "solution": [ { "tex": "99 - 60 = 39", "en": "Overfitting gap.", "es": "Brecha de sobreajuste." } ]
+    },
+    {
+      "id": "mlf-08-e4",
+      "answerType": "text",
+      "prompt": { "en": "Error from overly simple assumptions is called ___. (one word)", "es": "El error por suposiciones demasiado simples se llama ___. (una palabra)" },
+      "answer": "bias",
+      "acceptedAlt": ["sesgo"],
+      "hint": { "en": "The bias of bias-variance.", "es": "El sesgo de sesgo-varianza." },
+      "solution": [ { "tex": "\\text{bias}", "en": "Bias.", "es": "Sesgo." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, capacity, overfitting and the bias-variance trade-off", "es": "Cap. 5, capacidad, sobreajuste y compromiso sesgo-varianza" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, overfitting and model selection", "es": "Cap. 18, sobreajuste y selección de modelos" } }
+  ]
+}

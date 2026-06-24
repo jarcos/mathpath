@@ -1,0 +1,80 @@
+{
+  "id": "mlf-18-workflow",
+  "subjectId": "ml-foundations",
+  "order": 18,
+  "estimatedMinutes": 35,
+  "title": { "en": "Feature Scaling & the ML Workflow", "es": "Escalado de características y el flujo de trabajo de ML" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Features often live on wildly different scales — age in years (0–100), income in euros (0–100000). Many algorithms (gradient descent, kNN, PCA) are derailed by this, letting the large-scale feature dominate. **Feature scaling** fixes it by putting features on comparable ranges, a routine but essential preprocessing step.",
+        "es": "Las características suelen vivir en escalas muy distintas — edad en años (0–100), ingreso en euros (0–100000). Muchos algoritmos (descenso de gradiente, kNN, PCA) se descarrilan por esto, dejando que la característica de gran escala domine. El **escalado de características** lo arregla poniendo las características en rangos comparables, un paso de preprocesamiento rutinario pero esencial."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two common methods. **Min-max normalization** rescales to $[0,1]$: $x' = \\dfrac{x - \\min}{\\max - \\min}$. **Standardization** centers and scales to zero mean and unit variance: $z = \\dfrac{x - \\mu}{\\sigma}$ — the z-score from statistics. Always fit the scaling on the *training* set and apply it to the test set, never the reverse.",
+        "es": "Dos métodos comunes. La **normalización min-max** reescala a $[0,1]$: $x' = \\dfrac{x - \\min}{\\max - \\min}$. La **estandarización** centra y escala a media cero y varianza unidad: $z = \\dfrac{x - \\mu}{\\sigma}$ — la puntuación z de estadística. Ajusta siempre el escalado en el conjunto de *entrenamiento* y aplícalo al de prueba, nunca al revés."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Stepping back, the full **ML workflow** is a loop: gather and clean **data** → split → choose a model and **train** it → **evaluate** on validation/test → tune and iterate → **deploy** and monitor. Most real effort goes into data and evaluation, not the model itself. Everything you have learned in this subject is one stage of that loop.",
+        "es": "Dando un paso atrás, el **flujo de trabajo de ML** completo es un bucle: reunir y limpiar **datos** → dividir → elegir un modelo y **entrenarlo** → **evaluar** en validación/prueba → ajustar e iterar → **desplegar** y monitorizar. El grueso del esfuerzo real va a los datos y la evaluación, no al modelo. Todo lo que has aprendido en esta asignatura es una etapa de ese bucle."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Min-max normalizing $x = 5$ in the range $[0, 10]$: $\\tfrac{5 - 0}{10 - 0} = 0.5$. Standardizing $x = 8$ with mean $\\mu = 5$ and standard deviation $\\sigma = 3$: $z = \\tfrac{8 - 5}{3} = 1$ — one standard deviation above the mean.",
+        "es": "Normalizando min-max $x = 5$ en el rango $[0, 10]$: $\\tfrac{5 - 0}{10 - 0} = 0.5$. Estandarizando $x = 8$ con media $\\mu = 5$ y desviación típica $\\sigma = 3$: $z = \\tfrac{8 - 5}{3} = 1$ — una desviación típica por encima de la media."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-18-e1",
+      "answerType": "text",
+      "prompt": { "en": "Rescaling features to comparable ranges is feature ___. (one word)", "es": "Reescalar las características a rangos comparables es ___ de características. (una palabra)" },
+      "answer": "scaling",
+      "acceptedAlt": ["escalado", "scaling"],
+      "hint": { "en": "Min-max or standardization.", "es": "Min-max o estandarización." },
+      "solution": [ { "tex": "x' = \\tfrac{x-\\min}{\\max-\\min}", "en": "Feature scaling.", "es": "Escalado de características." } ]
+    },
+    {
+      "id": "mlf-18-e2",
+      "answerType": "number",
+      "prompt": { "en": "Min-max normalize $x=5$ in range $[0,10]$: $(x-0)/(10-0)$?", "es": "Normaliza min-max $x=5$ en el rango $[0,10]$: $(x-0)/(10-0)$?" },
+      "answer": "0.5",
+      "acceptedAlt": ["5/10", "1/2"],
+      "hint": { "en": "5 / 10.", "es": "5 / 10." },
+      "solution": [ { "tex": "\\tfrac{5}{10} = 0.5", "en": "Normalized value.", "es": "Valor normalizado." } ]
+    },
+    {
+      "id": "mlf-18-e3",
+      "answerType": "number",
+      "prompt": { "en": "Standardize $x=8$ with $\\mu=5$, $\\sigma=3$: $z=(x-\\mu)/\\sigma$?", "es": "Estandariza $x=8$ con $\\mu=5$, $\\sigma=3$: $z=(x-\\mu)/\\sigma$?" },
+      "answer": "1",
+      "acceptedAlt": ["(8-5)/3"],
+      "hint": { "en": "(8 − 5) / 3.", "es": "(8 − 5) / 3." },
+      "solution": [ { "tex": "\\tfrac{8-5}{3} = 1", "en": "z-score.", "es": "Puntuación z." } ]
+    },
+    {
+      "id": "mlf-18-e4",
+      "answerType": "text",
+      "prompt": { "en": "The ML workflow: data → train → ___ → deploy. (one word)", "es": "El flujo de ML: datos → entrenar → ___ → desplegar. (una palabra)" },
+      "answer": "evaluate",
+      "acceptedAlt": ["evaluar", "evaluation", "evaluación", "evaluacion"],
+      "hint": { "en": "Measure performance.", "es": "Medir el rendimiento." },
+      "solution": [ { "tex": "\\text{evaluate}", "en": "Evaluate.", "es": "Evaluar." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5 & 11, preprocessing and ML methodology", "es": "Cap. 5 y 11, preprocesamiento y metodología de ML" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18–19, the machine-learning pipeline", "es": "Cap. 18–19, el pipeline de aprendizaje automático" } }
+  ]
+}

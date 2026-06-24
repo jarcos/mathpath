@@ -1,0 +1,80 @@
+{
+  "id": "mlf-16-kmeans",
+  "subjectId": "ml-foundations",
+  "order": 16,
+  "estimatedMinutes": 40,
+  "title": { "en": "k-Means Clustering", "es": "Agrupamiento k-means" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "So far the data has been labeled. **Clustering** is **unsupervised**: it finds natural groupings in data with **no labels at all**. The most popular method is **k-means**, which partitions points into $k$ clusters, each represented by its **centroid** (the mean of its members).",
+        "es": "Hasta ahora los datos estaban etiquetados. El **agrupamiento (clustering)** es **no supervisado**: halla agrupaciones naturales en datos **sin etiquetas**. El método más popular es **k-means**, que reparte los puntos en $k$ grupos, cada uno representado por su **centroide** (la media de sus miembros)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The algorithm alternates two steps until stable: **(1) assign** each point to the nearest centroid, then **(2) update** each centroid to the mean of the points assigned to it. Repeat. This iterative refinement is guaranteed to converge (to a local optimum), and it is fast and simple.",
+        "es": "El algoritmo alterna dos pasos hasta estabilizarse: **(1) asignar** cada punto al centroide más cercano, y luego **(2) actualizar** cada centroide a la media de los puntos asignados. Repetir. Este refinamiento iterativo garantiza la convergencia (a un óptimo local), y es rápido y simple."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "You must choose $k$ in advance (the elbow method helps), and results depend on the random initial centroids. k-means powers customer segmentation, image color quantization, and document grouping — anywhere you want to discover structure without being told the categories.",
+        "es": "Debes elegir $k$ de antemano (el método del codo ayuda), y los resultados dependen de los centroides iniciales aleatorios. k-means impulsa la segmentación de clientes, la cuantización de color de imágenes y la agrupación de documentos — donde quieras descubrir estructura sin que te digan las categorías."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "k-means with $k = 3$ produces $3$ clusters. Each cluster's centroid is the mean of its points; the centroid of the 1-D points $\\{2, 4\\}$ is $\\tfrac{2+4}{2} = 3$. Because there are no labels, k-means is an unsupervised method.",
+        "es": "k-means con $k = 3$ produce $3$ grupos. El centroide de cada grupo es la media de sus puntos; el centroide de los puntos 1-D $\\{2, 4\\}$ es $\\tfrac{2+4}{2} = 3$. Como no hay etiquetas, k-means es un método no supervisado."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-16-e1",
+      "answerType": "text",
+      "prompt": { "en": "k-means is an ___ learning algorithm (no labels). (one word)", "es": "k-means es un algoritmo de aprendizaje ___ (sin etiquetas). (una palabra)" },
+      "answer": "unsupervised",
+      "acceptedAlt": ["no supervisado", "no-supervisado"],
+      "hint": { "en": "No labels needed.", "es": "Sin etiquetas." },
+      "solution": [ { "tex": "\\{x_i\\}", "en": "Unsupervised.", "es": "No supervisado." } ]
+    },
+    {
+      "id": "mlf-16-e2",
+      "answerType": "number",
+      "prompt": { "en": "k-means with $k=3$ finds how many clusters?", "es": "k-means con $k=3$ halla cuántos grupos?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "k clusters.", "es": "k grupos." },
+      "solution": [ { "tex": "k = 3", "en": "Three clusters.", "es": "Tres grupos." } ]
+    },
+    {
+      "id": "mlf-16-e3",
+      "answerType": "text",
+      "prompt": { "en": "Each cluster is represented by its ___ (the mean point). (one word)", "es": "Cada grupo se representa por su ___ (el punto medio). (una palabra)" },
+      "answer": "centroid",
+      "acceptedAlt": ["centroide"],
+      "hint": { "en": "The mean of its members.", "es": "La media de sus miembros." },
+      "solution": [ { "tex": "\\mu_c", "en": "Centroid.", "es": "Centroide." } ]
+    },
+    {
+      "id": "mlf-16-e4",
+      "answerType": "number",
+      "prompt": { "en": "The centroid (mean) of the 1-D points $\\{2, 4\\}$?", "es": "¿El centroide (media) de los puntos 1-D $\\{2, 4\\}$?" },
+      "answer": "3",
+      "acceptedAlt": ["(2+4)/2", "mean([2,4])"],
+      "hint": { "en": "Average them.", "es": "Promédialos." },
+      "solution": [ { "tex": "\\tfrac{2+4}{2} = 3", "en": "Centroid.", "es": "Centroide." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 19, unsupervised learning and clustering", "es": "Cap. 19, aprendizaje no supervisado y agrupamiento" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, k-means clustering", "es": "Cap. 5, agrupamiento k-means" } }
+  ]
+}

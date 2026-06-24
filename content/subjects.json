@@ -197,7 +197,7 @@
       "id": "ml-foundations",
       "icon": "⚙",
       "targetDays": 30,
-      "status": "coming-soon",
+      "status": "available",
       "plannedLessons": 18,
       "source": "Russell & Norvig, AIMA (1995); Goodfellow et al., Part II",
       "name": { "en": "Machine Learning Foundations", "es": "Fundamentos de aprendizaje automático" },
@@ -205,7 +205,26 @@
         "en": "Supervised/unsupervised learning, regression, classification, loss and gradient descent.",
         "es": "Aprendizaje supervisado/no supervisado, regresión, clasificación, función de pérdida y descenso de gradiente."
       },
-      "lessons": []
+      "lessons": [
+        "ml-foundations/lesson-01-what-is-ml.json",
+        "ml-foundations/lesson-02-supervised.json",
+        "ml-foundations/lesson-03-model-parameters.json",
+        "ml-foundations/lesson-04-loss-functions.json",
+        "ml-foundations/lesson-05-linear-regression.json",
+        "ml-foundations/lesson-06-gradient-descent.json",
+        "ml-foundations/lesson-07-learning-rate.json",
+        "ml-foundations/lesson-08-overfitting.json",
+        "ml-foundations/lesson-09-regularization.json",
+        "ml-foundations/lesson-10-train-val-test.json",
+        "ml-foundations/lesson-11-classification-sigmoid.json",
+        "ml-foundations/lesson-12-decision-boundary-accuracy.json",
+        "ml-foundations/lesson-13-metrics.json",
+        "ml-foundations/lesson-14-knn.json",
+        "ml-foundations/lesson-15-decision-trees.json",
+        "ml-foundations/lesson-16-kmeans.json",
+        "ml-foundations/lesson-17-pca.json",
+        "ml-foundations/lesson-18-feature-scaling-workflow.json"
+      ]
     },
     {
       "id": "neural-networks",

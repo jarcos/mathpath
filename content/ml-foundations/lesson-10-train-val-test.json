@@ -1,0 +1,80 @@
+{
+  "id": "mlf-10-train-val-test",
+  "subjectId": "ml-foundations",
+  "order": 10,
+  "estimatedMinutes": 35,
+  "title": { "en": "Train / Validation / Test & Cross-Validation", "es": "Train / validación / test y validación cruzada" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Honest evaluation needs **three** splits, not two. The **training set** fits the parameters. The **validation set** tunes hyperparameters and picks models (learning rate, regularization strength, which algorithm). The **test set** is touched **only once**, at the very end, to estimate real-world performance. Peeking at the test set during development quietly inflates your results.",
+        "es": "La evaluación honesta necesita **tres** particiones, no dos. El **conjunto de entrenamiento** ajusta los parámetros. El **conjunto de validación** ajusta los hiperparámetros y elige modelos (tasa de aprendizaje, fuerza de regularización, qué algoritmo). El **conjunto de prueba** se toca **solo una vez**, al final, para estimar el rendimiento real. Espiar el test durante el desarrollo infla silenciosamente tus resultados."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "When data is scarce, **k-fold cross-validation** makes the most of it: split the data into $k$ equal folds, then train $k$ times, each time holding out a different fold for validation and training on the other $k-1$. Averaging the $k$ scores gives a more stable estimate than a single split.",
+        "es": "Cuando hay pocos datos, la **validación cruzada de k pliegues** los aprovecha al máximo: divide los datos en $k$ pliegues iguales, y entrena $k$ veces, reservando cada vez un pliegue distinto para validar y entrenando en los otros $k-1$. Promediar las $k$ puntuaciones da una estimación más estable que una única división."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A common split is $70/15/15$ (train/validation/test). The discipline of never letting test data influence training decisions is what separates trustworthy results from self-deception — a lesson learned painfully across the whole field.",
+        "es": "Una división común es $70/15/15$ (entrenamiento/validación/prueba). La disciplina de nunca dejar que los datos de prueba influyan en las decisiones de entrenamiento es lo que separa los resultados fiables del autoengaño — una lección aprendida con dolor en todo el campo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With $1000$ examples split $70/15/15$, the test set has $0.15\\times 1000 = 150$ examples. Five-fold cross-validation splits the data into $5$ parts and trains the model $5$ times, each on a different $4/5$ of the data.",
+        "es": "Con $1000$ ejemplos divididos $70/15/15$, el conjunto de prueba tiene $0.15\\times 1000 = 150$ ejemplos. La validación cruzada de cinco pliegues divide los datos en $5$ partes y entrena el modelo $5$ veces, cada una en un $4/5$ distinto."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "With 1000 examples and a 70/15/15 split, how many are in the test set?", "es": "Con 1000 ejemplos y una división 70/15/15, ¿cuántos hay en el conjunto de prueba?" },
+      "answer": "150",
+      "acceptedAlt": ["0.15*1000"],
+      "hint": { "en": "15% of 1000.", "es": "15% de 1000." },
+      "solution": [ { "tex": "0.15\\times 1000 = 150", "en": "Test set.", "es": "Conjunto de prueba." } ]
+    },
+    {
+      "id": "mlf-10-e2",
+      "answerType": "number",
+      "prompt": { "en": "k-fold cross-validation with $k=5$ splits the data into how many parts?", "es": "La validación cruzada con $k=5$ divide los datos en cuántas partes?" },
+      "answer": "5",
+      "acceptedAlt": [],
+      "hint": { "en": "k folds.", "es": "k pliegues." },
+      "solution": [ { "tex": "k = 5", "en": "Five folds.", "es": "Cinco pliegues." } ]
+    },
+    {
+      "id": "mlf-10-e3",
+      "answerType": "text",
+      "prompt": { "en": "We tune hyperparameters on the ___ set. (one word)", "es": "Ajustamos los hiperparámetros en el conjunto de ___. (una palabra)" },
+      "answer": "validation",
+      "acceptedAlt": ["validación", "validacion"],
+      "hint": { "en": "Not train, not test.", "es": "Ni train ni test." },
+      "solution": [ { "tex": "\\text{validation set}", "en": "Validation.", "es": "Validación." } ]
+    },
+    {
+      "id": "mlf-10-e4",
+      "answerType": "number",
+      "prompt": { "en": "5-fold cross-validation trains the model how many times?", "es": "La validación cruzada de 5 pliegues entrena el modelo cuántas veces?" },
+      "answer": "5",
+      "acceptedAlt": [],
+      "hint": { "en": "Once per fold.", "es": "Una vez por pliegue." },
+      "solution": [ { "tex": "5 \\text{ times}", "en": "Five times.", "es": "Cinco veces." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, model selection and cross-validation", "es": "Cap. 18, selección de modelos y validación cruzada" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, estimators, validation sets", "es": "Cap. 5, estimadores, conjuntos de validación" } }
+  ]
+}

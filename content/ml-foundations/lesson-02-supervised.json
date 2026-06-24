@@ -1,0 +1,80 @@
+{
+  "id": "mlf-02-supervised",
+  "subjectId": "ml-foundations",
+  "order": 2,
+  "estimatedMinutes": 35,
+  "title": { "en": "Supervised Learning Setup", "es": "El marco del aprendizaje supervisado" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "In **supervised learning** we have a dataset of examples, each a pair (input, output). The inputs are **features** (the measured attributes — pixels, words, measurements), gathered in a vector $\\mathbf{x}$. The output is the **label** or **target** $y$. The model's job is to learn a function $f$ such that $f(\\mathbf{x}) \\approx y$ on new data.",
+        "es": "En el **aprendizaje supervisado** tenemos un conjunto de ejemplos, cada uno un par (entrada, salida). Las entradas son **características** (los atributos medidos — píxeles, palabras, medidas), reunidas en un vector $\\mathbf{x}$. La salida es la **etiqueta** o **objetivo** $y$. El modelo debe aprender una función $f$ tal que $f(\\mathbf{x}) \\approx y$ con datos nuevos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two flavors: **regression** predicts a continuous number (a price, a temperature), and **classification** predicts a category (spam/not-spam, cat/dog/bird). Both share the same machinery — only the output type and loss differ.",
+        "es": "Dos sabores: la **regresión** predice un número continuo (un precio, una temperatura), y la **clasificación** predice una categoría (spam/no-spam, gato/perro/pájaro). Ambas comparten la misma maquinaria — solo difieren el tipo de salida y la pérdida."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Crucially, we split the data: the model **learns on the training set** and is **judged on a held-out test set** it never saw during training. Measuring accuracy on the training data would be cheating — it rewards memorization, not the generalization we actually want.",
+        "es": "Fundamental: dividimos los datos: el modelo **aprende en el conjunto de entrenamiento** y se **juzga en un conjunto de prueba** que nunca vio durante el entrenamiento. Medir la precisión en los datos de entrenamiento sería hacer trampa — premia la memorización, no la generalización que de verdad queremos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With 100 labeled examples and an 80/20 split, $80$ go to training and $20$ to testing. To predict house price (a number) is regression; to predict 'will it sell? yes/no' is classification.",
+        "es": "Con 100 ejemplos etiquetados y una división 80/20, $80$ van a entrenamiento y $20$ a prueba. Predecir el precio de una casa (un número) es regresión; predecir '¿se venderá? sí/no' es clasificación."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-02-e1",
+      "answerType": "text",
+      "prompt": { "en": "In supervised learning, the measured input attributes are called ___. (one word)", "es": "En aprendizaje supervisado, los atributos de entrada medidos se llaman ___. (una palabra)" },
+      "answer": "features",
+      "acceptedAlt": ["características", "caracteristicas", "atributos"],
+      "hint": { "en": "The components of x.", "es": "Las componentes de x." },
+      "solution": [ { "tex": "\\mathbf{x}", "en": "Features.", "es": "Características." } ]
+    },
+    {
+      "id": "mlf-02-e2",
+      "answerType": "text",
+      "prompt": { "en": "The known output we predict is the ___ (target). (one word)", "es": "La salida conocida que predecimos es la ___ (objetivo). (una palabra)" },
+      "answer": "label",
+      "acceptedAlt": ["etiqueta", "target", "objetivo"],
+      "hint": { "en": "The y value.", "es": "El valor y." },
+      "solution": [ { "tex": "y", "en": "Label / target.", "es": "Etiqueta / objetivo." } ]
+    },
+    {
+      "id": "mlf-02-e3",
+      "answerType": "number",
+      "prompt": { "en": "With 100 examples and an 80/20 train/test split, how many are in the training set?", "es": "Con 100 ejemplos y una división 80/20, ¿cuántos hay en el conjunto de entrenamiento?" },
+      "answer": "80",
+      "acceptedAlt": ["0.8*100"],
+      "hint": { "en": "80% of 100.", "es": "80% de 100." },
+      "solution": [ { "tex": "0.8\\times 100 = 80", "en": "Training set.", "es": "Conjunto de entrenamiento." } ]
+    },
+    {
+      "id": "mlf-02-e4",
+      "answerType": "text",
+      "prompt": { "en": "We measure true performance on the ___ set, not the training set. (one word)", "es": "Medimos el rendimiento real en el conjunto de ___, no en el de entrenamiento. (una palabra)" },
+      "answer": "test",
+      "acceptedAlt": ["prueba"],
+      "hint": { "en": "Held-out, unseen data.", "es": "Datos reservados, no vistos." },
+      "solution": [ { "tex": "\\text{test set}", "en": "Test set.", "es": "Conjunto de prueba." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, supervised learning; training and test sets", "es": "Cap. 18, aprendizaje supervisado; conjuntos de entrenamiento y prueba" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, the task, the experience, the performance measure", "es": "Cap. 5, la tarea, la experiencia, la medida de rendimiento" } }
+  ]
+}

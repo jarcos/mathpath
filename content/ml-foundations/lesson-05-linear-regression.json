@@ -1,0 +1,80 @@
+{
+  "id": "mlf-05-linear-regression",
+  "subjectId": "ml-foundations",
+  "order": 5,
+  "estimatedMinutes": 40,
+  "title": { "en": "Linear Regression", "es": "Regresión lineal" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Linear regression** is the 'hello world' of machine learning: fit a straight line $\\hat{y} = wx + b$ to data so it predicts a continuous output. We choose $w$ and $b$ to **minimize the mean squared error** between the line and the points — the line of best fit, or least-squares line.",
+        "es": "La **regresión lineal** es el 'hola mundo' del aprendizaje automático: ajustar una recta $\\hat{y} = wx + b$ a los datos para predecir una salida continua. Elegimos $w$ y $b$ para **minimizar el error cuadrático medio** entre la recta y los puntos — la recta de mejor ajuste, o recta de mínimos cuadrados."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **residual** is the leftover error at one point, $y - \\hat{y}$: how far the actual value sits above or below the line. Least-squares chooses the line that makes the sum of squared residuals as small as possible. With several features it becomes $\\hat{y} = \\mathbf{w}\\cdot\\mathbf{x} + b$ — a hyperplane fit.",
+        "es": "Un **residuo** es el error sobrante en un punto, $y - \\hat{y}$: cuánto queda el valor real por encima o por debajo de la recta. Los mínimos cuadrados eligen la recta que hace mínima la suma de los residuos al cuadrado. Con varias características se convierte en $\\hat{y} = \\mathbf{w}\\cdot\\mathbf{x} + b$ — un ajuste por hiperplano."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Despite its simplicity, linear regression is everywhere — forecasting, trend analysis, and as the final layer of many deep models. It is interpretable (each weight is a clear 'effect per unit'), fast, and the foundation on which logistic regression and neural networks build.",
+        "es": "Pese a su simplicidad, la regresión lineal está por todas partes — predicción, análisis de tendencias y como capa final de muchos modelos profundos. Es interpretable (cada peso es un claro 'efecto por unidad'), rápida, y la base sobre la que se construyen la regresión logística y las redes neuronales."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The points $(0,0), (1,2), (2,4)$ lie perfectly on the line $\\hat{y} = 2x$ (slope $2$, intercept $0$). Predicting at $x = 5$ gives $\\hat{y} = 10$. If the actual value there were $11$, the residual would be $11 - 10 = 1$.",
+        "es": "Los puntos $(0,0), (1,2), (2,4)$ están perfectamente en la recta $\\hat{y} = 2x$ (pendiente $2$, ordenada $0$). Predecir en $x = 5$ da $\\hat{y} = 10$. Si el valor real allí fuera $11$, el residuo sería $11 - 10 = 1$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-05-e1",
+      "answerType": "number",
+      "prompt": { "en": "Find the slope of the best-fit line through $(0,0),(1,2),(2,4)$.", "es": "Halla la pendiente de la recta de mejor ajuste por $(0,0),(1,2),(2,4)$." },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "They lie on y = 2x.", "es": "Están sobre y = 2x." },
+      "solution": [ { "tex": "\\hat{y} = 2x", "en": "Slope 2.", "es": "Pendiente 2." } ]
+    },
+    {
+      "id": "mlf-05-e2",
+      "answerType": "number",
+      "prompt": { "en": "Using $\\hat{y}=2x$, predict the value at $x=5$.", "es": "Usando $\\hat{y}=2x$, predice el valor en $x=5$." },
+      "answer": "10",
+      "acceptedAlt": ["2*5"],
+      "hint": { "en": "2 · 5.", "es": "2 · 5." },
+      "solution": [ { "tex": "2\\cdot5 = 10", "en": "Prediction.", "es": "Predicción." } ]
+    },
+    {
+      "id": "mlf-05-e3",
+      "answerType": "number",
+      "prompt": { "en": "If actual $=5$ and predicted $=4$, what is the residual $y-\\hat{y}$?", "es": "Si real $=5$ y predicho $=4$, ¿cuál es el residuo $y-\\hat{y}$?" },
+      "answer": "1",
+      "acceptedAlt": ["5-4"],
+      "hint": { "en": "Actual minus predicted.", "es": "Real menos predicho." },
+      "solution": [ { "tex": "5 - 4 = 1", "en": "Residual.", "es": "Residuo." } ]
+    },
+    {
+      "id": "mlf-05-e4",
+      "answerType": "number",
+      "prompt": { "en": "The best-fit line through $(0,0),(1,2),(2,4)$ has what y-intercept?", "es": "La recta de mejor ajuste por $(0,0),(1,2),(2,4)$ tiene qué ordenada en el origen?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "It passes through the origin.", "es": "Pasa por el origen." },
+      "solution": [ { "tex": "b = 0", "en": "Intercept 0.", "es": "Ordenada 0." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, univariate and multivariate linear regression", "es": "Cap. 18, regresión lineal univariante y multivariante" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, linear regression example", "es": "Cap. 5, ejemplo de regresión lineal" } }
+  ]
+}

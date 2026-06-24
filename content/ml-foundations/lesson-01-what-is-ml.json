@@ -1,0 +1,80 @@
+{
+  "id": "mlf-01-what-is-ml",
+  "subjectId": "ml-foundations",
+  "order": 1,
+  "estimatedMinutes": 35,
+  "title": { "en": "What Is Machine Learning?", "es": "¿Qué es el aprendizaje automático?" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Traditional programming hand-codes rules: *if this, then that*. **Machine learning** flips the script — instead of writing rules, we feed a program **data** and let it **learn the rules itself**. A spam filter is not told what spam looks like; it infers the pattern from thousands of labeled emails. This is the technology behind recommendations, translation, and image recognition.",
+        "es": "La programación tradicional codifica reglas a mano: *si esto, entonces aquello*. El **aprendizaje automático** invierte el guion — en lugar de escribir reglas, alimentamos un programa con **datos** y dejamos que **aprenda las reglas por sí mismo**. Un filtro de spam no recibe la definición de spam; infiere el patrón de miles de correos etiquetados. Es la tecnología tras las recomendaciones, la traducción y el reconocimiento de imágenes."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "There are three broad paradigms. **Supervised learning** learns from **labeled** examples (input → known output): predicting house prices, classifying images. **Unsupervised learning** finds structure in **unlabeled** data: grouping customers, compressing features. **Reinforcement learning** learns by trial and error from **rewards**: game-playing agents, robotics.",
+        "es": "Hay tres grandes paradigmas. El **aprendizaje supervisado** aprende de ejemplos **etiquetados** (entrada → salida conocida): predecir precios de casas, clasificar imágenes. El **aprendizaje no supervisado** halla estructura en datos **sin etiquetar**: agrupar clientes, comprimir características. El **aprendizaje por refuerzo** aprende por ensayo y error a partir de **recompensas**: agentes que juegan, robótica."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The common thread is **generalization**: the goal is not to memorize the training data, but to perform well on **new, unseen** data. Everything that follows — loss functions, regularization, train/test splits — exists to serve that single goal.",
+        "es": "El hilo común es la **generalización**: el objetivo no es memorizar los datos de entrenamiento, sino rendir bien con datos **nuevos, no vistos**. Todo lo que sigue — funciones de pérdida, regularización, división train/test — existe para servir a ese único objetivo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Predicting tomorrow's temperature from labeled past data is **supervised**. Grouping news articles by topic without labels is **unsupervised**. A robot learning to walk by rewards is **reinforcement** learning. The clue is always: are there labels, structure to find, or rewards?",
+        "es": "Predecir la temperatura de mañana a partir de datos pasados etiquetados es **supervisado**. Agrupar noticias por tema sin etiquetas es **no supervisado**. Un robot que aprende a caminar por recompensas es aprendizaje por **refuerzo**. La pista siempre es: ¿hay etiquetas, estructura por descubrir o recompensas?"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-01-e1",
+      "answerType": "text",
+      "prompt": { "en": "Learning from labeled data is called ___ learning. (one word)", "es": "Aprender de datos etiquetados es aprendizaje ___. (una palabra)" },
+      "answer": "supervised",
+      "acceptedAlt": ["supervisado"],
+      "hint": { "en": "Input → known output.", "es": "Entrada → salida conocida." },
+      "solution": [ { "tex": "(x_i, y_i)", "en": "Supervised.", "es": "Supervisado." } ]
+    },
+    {
+      "id": "mlf-01-e2",
+      "answerType": "text",
+      "prompt": { "en": "Learning from unlabeled data is ___ learning. (one word)", "es": "Aprender de datos sin etiquetar es aprendizaje ___. (una palabra)" },
+      "answer": "unsupervised",
+      "acceptedAlt": ["no supervisado", "no-supervisado"],
+      "hint": { "en": "Find structure.", "es": "Hallar estructura." },
+      "solution": [ { "tex": "\\{x_i\\}", "en": "Unsupervised.", "es": "No supervisado." } ]
+    },
+    {
+      "id": "mlf-01-e3",
+      "answerType": "text",
+      "prompt": { "en": "Learning from rewards is ___ learning. (one word)", "es": "Aprender de recompensas es aprendizaje por ___. (una palabra)" },
+      "answer": "reinforcement",
+      "acceptedAlt": ["refuerzo"],
+      "hint": { "en": "Trial and error.", "es": "Ensayo y error." },
+      "solution": [ { "tex": "r_t", "en": "Reinforcement.", "es": "Refuerzo." } ]
+    },
+    {
+      "id": "mlf-01-e4",
+      "answerType": "text",
+      "prompt": { "en": "Machine learning learns patterns from ___ rather than explicit rules. (one word)", "es": "El aprendizaje automático aprende patrones de ___ en vez de reglas explícitas. (una palabra)" },
+      "answer": "data",
+      "acceptedAlt": ["datos"],
+      "hint": { "en": "The raw material of ML.", "es": "La materia prima del ML." },
+      "solution": [ { "tex": "\\text{data} \\to \\text{model}", "en": "From data.", "es": "De los datos." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, learning from examples", "es": "Cap. 18, aprender de ejemplos" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, machine learning basics", "es": "Cap. 5, fundamentos del aprendizaje automático" } }
+  ]
+}

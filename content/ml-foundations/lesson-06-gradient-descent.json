@@ -1,0 +1,80 @@
+{
+  "id": "mlf-06-gradient-descent",
+  "subjectId": "ml-foundations",
+  "order": 6,
+  "estimatedMinutes": 45,
+  "title": { "en": "Gradient Descent", "es": "Descenso de gradiente" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "How do we actually find the parameters that minimize the loss? **Gradient descent** — the optimization algorithm at the heart of nearly all modern machine learning. Picture the loss as a hilly landscape over the parameters; gradient descent walks **downhill** to the lowest point by repeatedly stepping opposite to the gradient (the direction of steepest ascent).",
+        "es": "¿Cómo hallamos en la práctica los parámetros que minimizan la pérdida? El **descenso de gradiente** — el algoritmo de optimización en el corazón de casi todo el aprendizaje automático moderno. Imagina la pérdida como un paisaje montañoso sobre los parámetros; el descenso de gradiente baja **cuesta abajo** hacia el punto más bajo dando pasos repetidos en sentido opuesto al gradiente (la dirección de máximo ascenso)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The update rule is $w \\leftarrow w - \\eta\\,\\nabla L$, where $\\nabla L$ is the gradient (the derivative of the loss with respect to the parameters, from the Calculus subject) and $\\eta$ is the **learning rate**, the step size. The gradient points uphill, so we subtract it to go down.",
+        "es": "La regla de actualización es $w \\leftarrow w - \\eta\\,\\nabla L$, donde $\\nabla L$ es el gradiente (la derivada de la pérdida respecto a los parámetros, de la asignatura de Cálculo) y $\\eta$ es la **tasa de aprendizaje**, el tamaño del paso. El gradiente apunta cuesta arriba, así que lo restamos para bajar."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "At a minimum the gradient is **zero**, so the updates stop — the algorithm has converged. This is the same condition ($f' = 0$) you used to find extrema in calculus, now applied in millions of dimensions. Variants like stochastic gradient descent (SGD) use small random batches to scale this to huge datasets.",
+        "es": "En un mínimo el gradiente es **cero**, así que las actualizaciones se detienen — el algoritmo ha convergido. Es la misma condición ($f' = 0$) que usaste para hallar extremos en cálculo, ahora aplicada en millones de dimensiones. Variantes como el descenso de gradiente estocástico (SGD) usan pequeños lotes aleatorios para escalar esto a conjuntos enormes."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "One gradient-descent step with $w = 1$, learning rate $\\eta = 0.1$, gradient $\\nabla L = 2$: $w \\leftarrow 1 - 0.1\\times 2 = 0.8$. With $w = 5$, $\\eta = 0.5$, gradient $4$: $w \\leftarrow 5 - 0.5\\times 4 = 3$. At a minimum the gradient is $0$, so $w$ stops moving.",
+        "es": "Un paso de descenso de gradiente con $w = 1$, tasa $\\eta = 0.1$, gradiente $\\nabla L = 2$: $w \\leftarrow 1 - 0.1\\times 2 = 0.8$. Con $w = 5$, $\\eta = 0.5$, gradiente $4$: $w \\leftarrow 5 - 0.5\\times 4 = 3$. En un mínimo el gradiente es $0$, así que $w$ deja de moverse."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-06-e1",
+      "answerType": "number",
+      "prompt": { "en": "Gradient-descent step: $w=1$, $\\eta=0.1$, gradient $=2$. New $w = w - \\eta\\cdot\\text{grad}$?", "es": "Paso de descenso: $w=1$, $\\eta=0.1$, gradiente $=2$. Nuevo $w = w - \\eta\\cdot\\text{grad}$?" },
+      "answer": "0.8",
+      "acceptedAlt": ["1-0.1*2"],
+      "hint": { "en": "1 − 0.1·2.", "es": "1 − 0.1·2." },
+      "solution": [ { "tex": "1 - 0.2 = 0.8", "en": "Updated weight.", "es": "Peso actualizado." } ]
+    },
+    {
+      "id": "mlf-06-e2",
+      "answerType": "text",
+      "prompt": { "en": "Gradient descent moves in the direction of steepest ___. (one word)", "es": "El descenso de gradiente se mueve en la dirección de máximo ___. (una palabra)" },
+      "answer": "descent",
+      "acceptedAlt": ["descenso", "decrease"],
+      "hint": { "en": "Opposite the gradient.", "es": "En sentido opuesto al gradiente." },
+      "solution": [ { "tex": "-\\nabla L", "en": "Steepest descent.", "es": "Máximo descenso." } ]
+    },
+    {
+      "id": "mlf-06-e3",
+      "answerType": "number",
+      "prompt": { "en": "At a minimum of the loss, what is the value of the gradient?", "es": "En un mínimo de la pérdida, ¿cuál es el valor del gradiente?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Flat tangent, like f'(x)=0.", "es": "Tangente horizontal, como f'(x)=0." },
+      "solution": [ { "tex": "\\nabla L = 0", "en": "Zero at the minimum.", "es": "Cero en el mínimo." } ]
+    },
+    {
+      "id": "mlf-06-e4",
+      "answerType": "number",
+      "prompt": { "en": "Step with $w=5$, $\\eta=0.5$, gradient $=4$. New $w$?", "es": "Paso con $w=5$, $\\eta=0.5$, gradiente $=4$. ¿Nuevo $w$?" },
+      "answer": "3",
+      "acceptedAlt": ["5-0.5*4"],
+      "hint": { "en": "5 − 0.5·4.", "es": "5 − 0.5·4." },
+      "solution": [ { "tex": "5 - 2 = 3", "en": "Updated weight.", "es": "Peso actualizado." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 4 & 5, gradient-based optimization", "es": "Cap. 4 y 5, optimización basada en gradiente" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Gradient descent for learning", "es": "Descenso de gradiente para el aprendizaje" } }
+  ]
+}

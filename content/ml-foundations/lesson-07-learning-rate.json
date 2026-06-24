@@ -1,0 +1,79 @@
+{
+  "id": "mlf-07-learning-rate",
+  "subjectId": "ml-foundations",
+  "order": 7,
+  "estimatedMinutes": 35,
+  "title": { "en": "Learning Rate & Convergence", "es": "Tasa de aprendizaje y convergencia" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **learning rate** $\\eta$ controls how big each gradient-descent step is. It is the single most important hyperparameter, and getting it wrong is the most common reason training fails. The step taken is $\\eta\\times\\text{gradient}$, so the learning rate scales every move.",
+        "es": "La **tasa de aprendizaje** $\\eta$ controla cuán grande es cada paso del descenso de gradiente. Es el hiperparámetro más importante, y equivocarse con él es la causa más común de que el entrenamiento falle. El paso dado es $\\eta\\times\\text{gradiente}$, así que la tasa escala cada movimiento."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Too **large** and the steps overshoot the minimum, bouncing around or even **diverging** to infinity. Too **small** and training crawls, taking forever to converge (and risking getting stuck). The sweet spot is a rate large enough to make progress but small enough to settle — often found by trying a few values or using a schedule that shrinks $\\eta$ over time.",
+        "es": "Demasiado **grande** y los pasos se pasan del mínimo, rebotando o incluso **divergiendo** a infinito. Demasiado **pequeña** y el entrenamiento se arrastra, tardando una eternidad en converger (y arriesgando quedarse atascado). El punto óptimo es una tasa lo bastante grande para avanzar pero lo bastante pequeña para asentarse — a menudo se halla probando varios valores o usando un programa que reduce $\\eta$ con el tiempo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A revealing edge case: with learning rate $0$, the update $\\eta\\times\\text{gradient}$ is $0$ — the weights never change and nothing is learned. Modern optimizers (Adam, RMSProp) adapt the effective learning rate per parameter to ease this tuning burden.",
+        "es": "Un caso límite revelador: con tasa de aprendizaje $0$, la actualización $\\eta\\times\\text{gradiente}$ es $0$ — los pesos nunca cambian y no se aprende nada. Los optimizadores modernos (Adam, RMSProp) adaptan la tasa efectiva por parámetro para aliviar esta tarea de ajuste."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With learning rate $\\eta = 0.1$ and gradient $10$, the step size is $0.1\\times 10 = 1$. With $\\eta = 0$, the step is $0\\times 10 = 0$ — no learning happens at all.",
+        "es": "Con tasa $\\eta = 0.1$ y gradiente $10$, el tamaño del paso es $0.1\\times 10 = 1$. Con $\\eta = 0$, el paso es $0\\times 10 = 0$ — no ocurre ningún aprendizaje."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mlf-07-e1",
+      "answerType": "number",
+      "prompt": { "en": "Step size with learning rate $0.1$ and gradient $10$?", "es": "¿Tamaño del paso con tasa $0.1$ y gradiente $10$?" },
+      "answer": "1",
+      "acceptedAlt": ["0.1*10"],
+      "hint": { "en": "η · gradient.", "es": "η · gradiente." },
+      "solution": [ { "tex": "0.1\\times 10 = 1", "en": "Step size.", "es": "Tamaño del paso." } ]
+    },
+    {
+      "id": "mlf-07-e2",
+      "answerType": "text",
+      "prompt": { "en": "Too large a learning rate can make the loss ___ (one word: diverge).", "es": "Una tasa demasiado grande puede hacer que la pérdida ___ (una palabra: divergir)." },
+      "answer": "diverge",
+      "acceptedAlt": ["divergir", "diverger"],
+      "hint": { "en": "Overshoot to infinity.", "es": "Pasarse hacia el infinito." },
+      "solution": [ { "tex": "\\eta \\text{ too big}", "en": "Diverge.", "es": "Divergir." } ]
+    },
+    {
+      "id": "mlf-07-e3",
+      "answerType": "number",
+      "prompt": { "en": "With learning rate $0$, what is the update step ($\\eta\\times$gradient)?", "es": "Con tasa $0$, ¿cuál es el paso de actualización ($\\eta\\times$gradiente)?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Zero times anything.", "es": "Cero por cualquier cosa." },
+      "solution": [ { "tex": "0\\times g = 0", "en": "No update.", "es": "Sin actualización." } ]
+    },
+    {
+      "id": "mlf-07-e4",
+      "answerType": "text",
+      "prompt": { "en": "Too small a learning rate makes training ___ (one word: slow).", "es": "Una tasa demasiado pequeña hace el entrenamiento ___ (una palabra: lento)." },
+      "answer": "slow",
+      "acceptedAlt": ["lento", "lenta"],
+      "hint": { "en": "Tiny steps.", "es": "Pasos diminutos." },
+      "solution": [ { "tex": "\\eta \\text{ too small}", "en": "Slow.", "es": "Lento." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8, optimization; learning-rate schedules", "es": "Cap. 8, optimización; programas de tasa de aprendizaje" } }
+  ]
+}
