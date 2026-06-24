@@ -1,0 +1,80 @@
+{
+  "id": "nn-04-activation",
+  "subjectId": "neural-networks",
+  "order": 4,
+  "estimatedMinutes": 40,
+  "title": { "en": "Activation Functions", "es": "Funciones de activación" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "After the weighted sum $z$, a neuron applies an **activation function** $\\phi(z)$. This nonlinearity is what gives networks their power — without it, no matter how many layers, the whole network would collapse to a single linear map. The activation decides how strongly the neuron 'fires'.",
+        "es": "Tras la suma ponderada $z$, una neurona aplica una **función de activación** $\\phi(z)$. Esta no linealidad es lo que da poder a las redes — sin ella, por muchas capas que haya, toda la red colapsaría a una única aplicación lineal. La activación decide con qué fuerza 'dispara' la neurona."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The classic choices: the **step** function (0 or 1, used by the perceptron), the **sigmoid** $\\sigma(z) = \\tfrac{1}{1+e^{-z}}$ (smooth, outputs in $(0,1)$), **tanh** (like sigmoid but outputs in $(-1, 1)$), and the modern favorite **ReLU** $\\text{ReLU}(z) = \\max(0, z)$, which passes positives unchanged and zeroes out negatives.",
+        "es": "Las opciones clásicas: la función **escalón** (0 o 1, usada por el perceptrón), la **sigmoide** $\\sigma(z) = \\tfrac{1}{1+e^{-z}}$ (suave, salida en $(0,1)$), **tanh** (como la sigmoide pero con salida en $(-1, 1)$), y la favorita moderna **ReLU** $\\text{ReLU}(z) = \\max(0, z)$, que deja pasar los positivos sin cambios y anula los negativos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**ReLU** dominates modern deep learning: it is cheap to compute, and its derivative is simply $1$ for positive inputs, which helps gradients flow through deep networks (avoiding the vanishing-gradient problem of sigmoid/tanh). Different tasks favor different activations, but ReLU and its variants are the default first choice.",
+        "es": "**ReLU** domina el aprendizaje profundo moderno: es barata de calcular, y su derivada es simplemente $1$ para entradas positivas, lo que ayuda a que los gradientes fluyan por redes profundas (evitando el problema del gradiente que se desvanece de sigmoide/tanh). Distintas tareas prefieren distintas activaciones, pero ReLU y sus variantes son la primera opción por defecto."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "$\\text{ReLU}(-3) = \\max(0, -3) = 0$ (negatives become zero). $\\text{ReLU}(5) = \\max(0, 5) = 5$ (positives pass through). $\\sigma(0) = 0.5$. tanh ranges from $-1$ to $1$.",
+        "es": "$\\text{ReLU}(-3) = \\max(0, -3) = 0$ (los negativos se vuelven cero). $\\text{ReLU}(5) = \\max(0, 5) = 5$ (los positivos pasan). $\\sigma(0) = 0.5$. tanh va de $-1$ a $1$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-04-e1",
+      "answerType": "number",
+      "prompt": { "en": "Compute $\\text{ReLU}(-3) = \\max(0,-3)$.", "es": "Calcula $\\text{ReLU}(-3) = \\max(0,-3)$." },
+      "answer": "0",
+      "acceptedAlt": ["max(0,-3)"],
+      "hint": { "en": "Negatives become 0.", "es": "Los negativos se vuelven 0." },
+      "solution": [ { "tex": "\\max(0,-3)=0", "en": "ReLU of a negative.", "es": "ReLU de un negativo." } ]
+    },
+    {
+      "id": "nn-04-e2",
+      "answerType": "number",
+      "prompt": { "en": "Compute $\\text{ReLU}(5) = \\max(0,5)$.", "es": "Calcula $\\text{ReLU}(5) = \\max(0,5)$." },
+      "answer": "5",
+      "acceptedAlt": ["max(0,5)"],
+      "hint": { "en": "Positives pass through.", "es": "Los positivos pasan." },
+      "solution": [ { "tex": "\\max(0,5)=5", "en": "ReLU of a positive.", "es": "ReLU de un positivo." } ]
+    },
+    {
+      "id": "nn-04-e3",
+      "answerType": "number",
+      "prompt": { "en": "Compute the sigmoid $\\sigma(0)=\\tfrac{1}{1+e^{0}}$.", "es": "Calcula la sigmoide $\\sigma(0)=\\tfrac{1}{1+e^{0}}$." },
+      "answer": "0.5",
+      "acceptedAlt": ["1/(1+e^0)", "1/2"],
+      "hint": { "en": "e⁰ = 1.", "es": "e⁰ = 1." },
+      "solution": [ { "tex": "\\tfrac{1}{2}=0.5", "en": "Sigmoid at 0.", "es": "Sigmoide en 0." } ]
+    },
+    {
+      "id": "nn-04-e4",
+      "answerType": "number",
+      "prompt": { "en": "tanh outputs range from $-1$ to ___?", "es": "tanh tiene salida de $-1$ a ___?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "Symmetric around 0.", "es": "Simétrica en torno a 0." },
+      "solution": [ { "tex": "\\tanh \\in (-1,1)", "en": "Up to 1.", "es": "Hasta 1." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.3, hidden units; ReLU and alternatives", "es": "Cap. 6.3, unidades ocultas; ReLU y alternativas" } },
+    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Activation functions of units", "es": "Funciones de activación de las unidades" } }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "nn-03-weighted-sum",
+  "subjectId": "neural-networks",
+  "order": 3,
+  "estimatedMinutes": 30,
+  "title": { "en": "Weights, Bias & the Weighted Sum", "es": "Pesos, sesgo y la suma ponderada" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The core computation inside every neuron is the **weighted sum** $z = \\mathbf{w}\\cdot\\mathbf{x} + b = w_1 x_1 + w_2 x_2 + \\dots + b$. This is precisely the dot product from linear algebra. Each weight $w_i$ says how strongly its input $x_i$ pushes the neuron, and the bias $b$ shifts the whole sum up or down.",
+        "es": "El cálculo central de toda neurona es la **suma ponderada** $z = \\mathbf{w}\\cdot\\mathbf{x} + b = w_1 x_1 + w_2 x_2 + \\dots + b$. Es precisamente el producto escalar del álgebra lineal. Cada peso $w_i$ indica con qué fuerza empuja su entrada $x_i$ a la neurona, y el sesgo $b$ desplaza toda la suma hacia arriba o abajo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Because it is a dot product, a whole **layer** of neurons is one **matrix-vector multiplication**: stack the weight vectors as rows of a matrix $W$ and compute $W\\mathbf{x} + \\mathbf{b}$ in a single step. This is why GPUs — built for fast matrix math — power deep learning, and why the Linear Algebra subject is the foundation here.",
+        "es": "Como es un producto escalar, toda una **capa** de neuronas es una **multiplicación matriz-vector**: apila los vectores de pesos como filas de una matriz $W$ y calcula $W\\mathbf{x} + \\mathbf{b}$ en un solo paso. Por eso las GPU — hechas para el cálculo matricial rápido — impulsan el aprendizaje profundo, y por eso el álgebra lineal es la base aquí."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The bias is what lets a neuron fire even when all inputs are zero, or stay silent until inputs are large enough — it sets the activation **threshold**. Without it, every decision boundary would be forced through the origin.",
+        "es": "El sesgo es lo que permite a una neurona activarse aunque todas las entradas sean cero, o quedar en silencio hasta que las entradas sean lo bastante grandes — fija el **umbral** de activación. Sin él, toda frontera de decisión pasaría obligatoriamente por el origen."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With $\\mathbf{w} = [2, 3]$, $\\mathbf{x} = [1, 1]$, $b = 0$: $z = 2\\cdot1 + 3\\cdot1 + 0 = 5$. With $\\mathbf{w} = [1,2,3]$, $\\mathbf{x} = [1,1,1]$, $b = 1$: $z = 1+2+3+1 = 7$.",
+        "es": "Con $\\mathbf{w} = [2, 3]$, $\\mathbf{x} = [1, 1]$, $b = 0$: $z = 2\\cdot1 + 3\\cdot1 + 0 = 5$. Con $\\mathbf{w} = [1,2,3]$, $\\mathbf{x} = [1,1,1]$, $b = 1$: $z = 1+2+3+1 = 7$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "Weighted sum $z=\\mathbf{w}\\cdot\\mathbf{x}+b$ with $\\mathbf{w}=[2,3]$, $\\mathbf{x}=[1,1]$, $b=0$?", "es": "Suma ponderada $z=\\mathbf{w}\\cdot\\mathbf{x}+b$ con $\\mathbf{w}=[2,3]$, $\\mathbf{x}=[1,1]$, $b=0$?" },
+      "answer": "5",
+      "acceptedAlt": ["2*1+3*1"],
+      "hint": { "en": "2+3.", "es": "2+3." },
+      "solution": [ { "tex": "2+3 = 5", "en": "Weighted sum.", "es": "Suma ponderada." } ]
+    },
+    {
+      "id": "nn-03-e2",
+      "answerType": "number",
+      "prompt": { "en": "$z$ with $\\mathbf{w}=[1,2,3]$, $\\mathbf{x}=[1,1,1]$, $b=1$?", "es": "$z$ con $\\mathbf{w}=[1,2,3]$, $\\mathbf{x}=[1,1,1]$, $b=1$?" },
+      "answer": "7",
+      "acceptedAlt": ["1+2+3+1"],
+      "hint": { "en": "Sum the products plus bias.", "es": "Suma los productos más el sesgo." },
+      "solution": [ { "tex": "6 + 1 = 7", "en": "Weighted sum.", "es": "Suma ponderada." } ]
+    },
+    {
+      "id": "nn-03-e3",
+      "answerType": "text",
+      "prompt": { "en": "The constant added to the weighted sum is the ___. (one word)", "es": "La constante que se suma a la suma ponderada es el ___. (una palabra)" },
+      "answer": "bias",
+      "acceptedAlt": ["sesgo"],
+      "hint": { "en": "Sets the threshold.", "es": "Fija el umbral." },
+      "solution": [ { "tex": "+b", "en": "Bias.", "es": "Sesgo." } ]
+    },
+    {
+      "id": "nn-03-e4",
+      "answerType": "number",
+      "prompt": { "en": "Dot product $[0.5, 0.5]\\cdot[2, 4]$?", "es": "Producto escalar $[0.5, 0.5]\\cdot[2, 4]$?" },
+      "answer": "3",
+      "acceptedAlt": ["0.5*2+0.5*4", "dot([0.5,0.5],[2,4])"],
+      "hint": { "en": "1 + 2.", "es": "1 + 2." },
+      "solution": [ { "tex": "1 + 2 = 3", "en": "Dot product.", "es": "Producto escalar." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6, affine transformations in networks", "es": "Cap. 6, transformaciones afines en redes" } },
+    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Net input to a unit", "es": "Entrada neta a una unidad" } }
+  ]
+}

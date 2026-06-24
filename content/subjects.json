@@ -230,7 +230,7 @@
       "id": "neural-networks",
       "icon": "🧠",
       "targetDays": 30,
-      "status": "coming-soon",
+      "status": "available",
       "plannedLessons": 16,
       "source": "Rumelhart & McClelland, PDP (1986); Goodfellow et al., ch. 6",
       "name": { "en": "Neural Networks", "es": "Redes neuronales" },
@@ -238,7 +238,24 @@
         "en": "Perceptrons, multilayer networks, backpropagation and gradient descent.",
         "es": "Perceptrones, redes multicapa, retropropagación y descenso de gradiente."
       },
-      "lessons": []
+      "lessons": [
+        "neural-networks/lesson-01-artificial-neuron.json",
+        "neural-networks/lesson-02-perceptron.json",
+        "neural-networks/lesson-03-weighted-sum.json",
+        "neural-networks/lesson-04-activation-functions.json",
+        "neural-networks/lesson-05-nonlinearity-xor.json",
+        "neural-networks/lesson-06-mlp-architecture.json",
+        "neural-networks/lesson-07-forward-propagation.json",
+        "neural-networks/lesson-08-output-softmax.json",
+        "neural-networks/lesson-09-backpropagation.json",
+        "neural-networks/lesson-10-weight-updates.json",
+        "neural-networks/lesson-11-vanishing-gradients.json",
+        "neural-networks/lesson-12-initialization.json",
+        "neural-networks/lesson-13-dropout-regularization.json",
+        "neural-networks/lesson-14-universal-approximation.json",
+        "neural-networks/lesson-15-training-loop.json",
+        "neural-networks/lesson-16-to-deep-learning.json"
+      ]
     },
     {
       "id": "deep-learning",

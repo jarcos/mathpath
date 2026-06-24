@@ -1,0 +1,79 @@
+{
+  "id": "nn-13-dropout",
+  "subjectId": "neural-networks",
+  "order": 13,
+  "estimatedMinutes": 30,
+  "title": { "en": "Regularization in Networks (Dropout)", "es": "Regularización en redes (dropout)" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Neural networks have enormous capacity, so they **overfit** readily. Besides the L1/L2 weight penalties from ML Foundations, deep learning has its own signature technique: **dropout**. During training it **randomly disables** a fraction of neurons on each step, forcing the network not to rely on any single unit.",
+        "es": "Las redes neuronales tienen una capacidad enorme, así que **sobreajustan** con facilidad. Además de las penalizaciones L1/L2 de Fundamentos de ML, el aprendizaje profundo tiene su técnica característica: el **dropout**. Durante el entrenamiento **desactiva aleatoriamente** una fracción de neuronas en cada paso, forzando a la red a no depender de ninguna unidad concreta."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **dropout rate** is the fraction dropped: a rate of $0.2$ drops $20\\%$ of neurons and keeps $80\\%$; a rate of $0.5$ keeps half. Each training step thus trains a slightly different 'thinned' network, and the result behaves like an **ensemble** of many networks — averaging away overfitting. Dropout is turned off at test time.",
+        "es": "La **tasa de dropout** es la fracción descartada: una tasa de $0.2$ descarta el $20\\%$ de las neuronas y conserva el $80\\%$; una tasa de $0.5$ conserva la mitad. Cada paso entrena así una red 'adelgazada' algo distinta, y el resultado se comporta como un **conjunto** de muchas redes — promediando el sobreajuste. El dropout se desactiva en la fase de prueba."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Other deep-learning regularizers include **weight decay** (L2 by another name), **early stopping** (halt before the validation loss rises), **data augmentation** (synthetically expand the data), and **batch normalization**. They all serve the same goal you met earlier: better generalization to unseen data.",
+        "es": "Otros regularizadores del aprendizaje profundo incluyen la **disminución de pesos** (L2 con otro nombre), la **parada temprana** (detener antes de que suba la pérdida de validación), el **aumento de datos** (expandir sintéticamente los datos) y la **normalización por lotes**. Todos sirven al mismo objetivo de antes: mejor generalización a datos no vistos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A dropout rate of $0.5$ keeps a fraction of $0.5$ of the neurons active. A rate of $0.2$ drops a fraction of $0.2$. Dropout exists to reduce **overfitting**.",
+        "es": "Una tasa de dropout de $0.5$ mantiene activa una fracción de $0.5$ de las neuronas. Una tasa de $0.2$ descarta una fracción de $0.2$. El dropout existe para reducir el **sobreajuste**."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-13-e1",
+      "answerType": "text",
+      "prompt": { "en": "Randomly disabling neurons during training is called ___. (one word)", "es": "Desactivar neuronas al azar durante el entrenamiento se llama ___. (una palabra)" },
+      "answer": "dropout",
+      "acceptedAlt": [],
+      "hint": { "en": "Signature deep-learning regularizer.", "es": "Regularizador característico del DL." },
+      "solution": [ { "tex": "\\text{dropout}", "en": "Dropout.", "es": "Dropout." } ]
+    },
+    {
+      "id": "nn-13-e2",
+      "answerType": "number",
+      "prompt": { "en": "A dropout rate of $0.5$ keeps what fraction of neurons?", "es": "Una tasa de dropout de $0.5$ conserva qué fracción de neuronas?" },
+      "answer": "0.5",
+      "acceptedAlt": ["1-0.5", "1/2"],
+      "hint": { "en": "1 − rate.", "es": "1 − tasa." },
+      "solution": [ { "tex": "1 - 0.5 = 0.5", "en": "Half kept.", "es": "Se conserva la mitad." } ]
+    },
+    {
+      "id": "nn-13-e3",
+      "answerType": "text",
+      "prompt": { "en": "Dropout is used to reduce ___. (one word)", "es": "El dropout se usa para reducir el ___. (una palabra)" },
+      "answer": "overfitting",
+      "acceptedAlt": ["sobreajuste", "overfit", "sobreajustar"],
+      "hint": { "en": "The generalization enemy.", "es": "El enemigo de la generalización." },
+      "solution": [ { "tex": "\\text{overfitting}", "en": "Overfitting.", "es": "Sobreajuste." } ]
+    },
+    {
+      "id": "nn-13-e4",
+      "answerType": "number",
+      "prompt": { "en": "With dropout rate $0.2$, what fraction of neurons is dropped?", "es": "Con tasa de dropout $0.2$, ¿qué fracción de neuronas se descarta?" },
+      "answer": "0.2",
+      "acceptedAlt": ["1/5"],
+      "hint": { "en": "The rate itself.", "es": "La propia tasa." },
+      "solution": [ { "tex": "0.2", "en": "Fraction dropped.", "es": "Fracción descartada." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 7, regularization; dropout", "es": "Cap. 7, regularización; dropout" } }
+  ]
+}

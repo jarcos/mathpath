@@ -1,0 +1,79 @@
+{
+  "id": "nn-11-vanishing-gradients",
+  "subjectId": "neural-networks",
+  "order": 11,
+  "estimatedMinutes": 35,
+  "title": { "en": "Vanishing & Exploding Gradients", "es": "Gradientes que se desvanecen y explotan" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Backpropagation multiplies many derivatives together as it travels back through the layers. If those factors are consistently **less than 1**, their product shrinks toward zero — the **vanishing gradient** problem, where early layers barely learn. If they are consistently **greater than 1**, the product blows up — **exploding gradients**, where training becomes unstable.",
+        "es": "La retropropagación multiplica muchas derivadas al viajar hacia atrás por las capas. Si esos factores son consistentemente **menores que 1**, su producto se encoge hacia cero — el problema del **gradiente que se desvanece**, donde las capas iniciales apenas aprenden. Si son consistentemente **mayores que 1**, el producto explota — **gradientes que explotan**, donde el entrenamiento se vuelve inestable."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The sigmoid and tanh activations are prone to vanishing gradients: the sigmoid's derivative peaks at only **$0.25$** (at $z=0$) and is tiny far from zero. Multiply many such factors through a deep network and the signal vanishes. This is why deep nets were so hard to train before the 2010s.",
+        "es": "Las activaciones sigmoide y tanh son propensas al gradiente que se desvanece: la derivada de la sigmoide alcanza como máximo solo **$0.25$** (en $z=0$) y es minúscula lejos de cero. Multiplica muchos de esos factores en una red profunda y la señal se desvanece. Por eso las redes profundas eran tan difíciles de entrenar antes de la década de 2010."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The cures changed the field: **ReLU** (whose derivative is exactly $1$ for positive inputs, so it doesn't shrink), careful **weight initialization**, **batch normalization**, and architectures with **skip connections** (ResNets). Exploding gradients are tamed by **gradient clipping**. Together these unlocked truly deep learning.",
+        "es": "Los remedios cambiaron el campo: **ReLU** (cuya derivada es exactamente $1$ para entradas positivas, así que no encoge), una **inicialización de pesos** cuidadosa, la **normalización por lotes** y arquitecturas con **conexiones de salto** (ResNets). Los gradientes que explotan se domestican con el **recorte de gradiente**. Juntos desbloquearon el aprendizaje verdaderamente profundo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The sigmoid derivative is $\\sigma(z)(1-\\sigma(z))$; at $z=0$ it is $0.5\\times 0.5 = 0.25$ — its maximum. Multiply a factor of $0.5$ across $10$ layers and the gradient is $0.5^{10} \\approx 0.00098$ — almost gone. ReLU's derivative is $1$ for positive inputs, avoiding this.",
+        "es": "La derivada de la sigmoide es $\\sigma(z)(1-\\sigma(z))$; en $z=0$ vale $0.5\\times 0.5 = 0.25$ — su máximo. Multiplica un factor de $0.5$ a lo largo de $10$ capas y el gradiente es $0.5^{10} \\approx 0.00098$ — casi desaparecido. La derivada de ReLU es $1$ para entradas positivas, evitando esto."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-11-e1",
+      "answerType": "text",
+      "prompt": { "en": "When gradients shrink toward zero in deep nets, they ___ (one word: vanish).", "es": "Cuando los gradientes se encogen hacia cero en redes profundas, se ___ (una palabra: desvanecen)." },
+      "answer": "vanish",
+      "acceptedAlt": ["desvanecen", "desvanecer", "vanishing"],
+      "hint": { "en": "Product of small numbers.", "es": "Producto de números pequeños." },
+      "solution": [ { "tex": "\\prod (<1) \\to 0", "en": "Vanish.", "es": "Se desvanecen." } ]
+    },
+    {
+      "id": "nn-11-e2",
+      "answerType": "number",
+      "prompt": { "en": "Maximum value of the sigmoid's derivative $\\sigma(1-\\sigma)$ (at z=0)?", "es": "¿Valor máximo de la derivada de la sigmoide $\\sigma(1-\\sigma)$ (en z=0)?" },
+      "answer": "0.25",
+      "acceptedAlt": ["0.5*0.5", "1/4"],
+      "hint": { "en": "0.5 · 0.5.", "es": "0.5 · 0.5." },
+      "solution": [ { "tex": "0.5\\times 0.5 = 0.25", "en": "Max derivative.", "es": "Derivada máxima." } ]
+    },
+    {
+      "id": "nn-11-e3",
+      "answerType": "number",
+      "prompt": { "en": "Multiplying a factor of $0.5$ across 10 layers: $0.5^{10}$?", "es": "Multiplicar un factor de $0.5$ por 10 capas: $0.5^{10}$?" },
+      "answer": "0.5^10",
+      "acceptedAlt": ["1/1024", "2^(-10)"],
+      "hint": { "en": "0.5 to the 10th.", "es": "0.5 a la 10." },
+      "solution": [ { "tex": "0.5^{10} \\approx 0.00098", "en": "Tiny gradient.", "es": "Gradiente diminuto." } ]
+    },
+    {
+      "id": "nn-11-e4",
+      "answerType": "number",
+      "prompt": { "en": "ReLU's derivative for positive inputs equals?", "es": "¿La derivada de ReLU para entradas positivas vale?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "Slope of y = x.", "es": "Pendiente de y = x." },
+      "solution": [ { "tex": "\\tfrac{d}{dz}\\max(0,z)=1", "en": "Derivative 1.", "es": "Derivada 1." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8 & 10, vanishing/exploding gradients", "es": "Cap. 8 y 10, gradientes que se desvanecen/explotan" } }
+  ]
+}

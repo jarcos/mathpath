@@ -1,0 +1,80 @@
+{
+  "id": "nn-01-artificial-neuron",
+  "subjectId": "neural-networks",
+  "order": 1,
+  "estimatedMinutes": 35,
+  "title": { "en": "The Artificial Neuron", "es": "La neurona artificial" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Neural networks take loose inspiration from the brain, where billions of **neurons** pass signals through weighted connections. An **artificial neuron** is a simple mathematical unit: it takes several inputs, multiplies each by a **weight**, adds them up with a **bias**, and passes the result through an **activation function** to produce its output.",
+        "es": "Las redes neuronales se inspiran libremente en el cerebro, donde miles de millones de **neuronas** transmiten señales por conexiones ponderadas. Una **neurona artificial** es una unidad matemática simple: toma varias entradas, multiplica cada una por un **peso**, las suma con un **sesgo** y pasa el resultado por una **función de activación** para producir su salida."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "In symbols, the neuron computes $z = \\mathbf{w}\\cdot\\mathbf{x} + b$ — a dot product of weights and inputs plus a bias — and then outputs $a = \\phi(z)$, where $\\phi$ is the activation. The **weights** encode what the neuron has learned; large positive weights amplify an input, negative ones suppress it. There is exactly **one bias** per neuron, shifting its threshold.",
+        "es": "En símbolos, la neurona calcula $z = \\mathbf{w}\\cdot\\mathbf{x} + b$ — un producto escalar de pesos y entradas más un sesgo — y luego da $a = \\phi(z)$, donde $\\phi$ es la activación. Los **pesos** codifican lo que la neurona ha aprendido; pesos positivos grandes amplifican una entrada, los negativos la suprimen. Hay exactamente **un sesgo** por neurona, que desplaza su umbral."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This tiny unit is the atom of every neural network, from a single perceptron to a giant language model. Notice it is exactly the **logistic regression** model from the ML Foundations subject when the activation is the sigmoid — neural networks are built by wiring many of these together.",
+        "es": "Esta diminuta unidad es el átomo de toda red neuronal, desde un único perceptrón hasta un gran modelo de lenguaje. Observa que es exactamente el modelo de **regresión logística** de la asignatura de Fundamentos de ML cuando la activación es la sigmoide — las redes neuronales se construyen conectando muchas de estas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A neuron with a step activation (output $1$ if $z > 0$, else $0$) and $z = 2$ outputs $1$. Each neuron carries exactly $1$ bias term. The weighted connections are scaled by the **weights**.",
+        "es": "Una neurona con activación escalón (salida $1$ si $z > 0$, si no $0$) y $z = 2$ da $1$. Cada neurona lleva exactamente $1$ término de sesgo. Las conexiones ponderadas se escalan por los **pesos**."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-01-e1",
+      "answerType": "text",
+      "prompt": { "en": "An artificial neuron loosely models a biological ___. (one word)", "es": "Una neurona artificial modela libremente una ___ biológica. (una palabra)" },
+      "answer": "neuron",
+      "acceptedAlt": ["neurona"],
+      "hint": { "en": "Brain cell.", "es": "Célula del cerebro." },
+      "solution": [ { "tex": "\\text{neuron}", "en": "Neuron.", "es": "Neurona." } ]
+    },
+    {
+      "id": "nn-01-e2",
+      "answerType": "number",
+      "prompt": { "en": "A step neuron outputs 1 if $z>0$. With $z=2$, what is the output?", "es": "Una neurona escalón da 1 si $z>0$. Con $z=2$, ¿cuál es la salida?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "2 > 0.", "es": "2 > 0." },
+      "solution": [ { "tex": "z=2>0 \\Rightarrow 1", "en": "Fires.", "es": "Se activa." } ]
+    },
+    {
+      "id": "nn-01-e3",
+      "answerType": "text",
+      "prompt": { "en": "The connections carrying signals are scaled by ___. (one word)", "es": "Las conexiones que llevan señales se escalan por ___. (una palabra)" },
+      "answer": "weights",
+      "acceptedAlt": ["pesos", "weight", "peso"],
+      "hint": { "en": "What the neuron learns.", "es": "Lo que la neurona aprende." },
+      "solution": [ { "tex": "\\mathbf{w}", "en": "Weights.", "es": "Pesos." } ]
+    },
+    {
+      "id": "nn-01-e4",
+      "answerType": "number",
+      "prompt": { "en": "How many bias terms does a single neuron have?", "es": "¿Cuántos términos de sesgo tiene una sola neurona?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "One shift per neuron.", "es": "Un desplazamiento por neurona." },
+      "solution": [ { "tex": "z = \\mathbf{w}\\cdot\\mathbf{x} + b", "en": "One bias.", "es": "Un sesgo." } ]
+    }
+  ],
+  "references": [
+    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "The processing unit", "es": "La unidad de procesamiento" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6, deep feedforward networks", "es": "Cap. 6, redes profundas hacia delante" } }
+  ]
+}

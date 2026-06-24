@@ -1,0 +1,80 @@
+{
+  "id": "nn-02-perceptron",
+  "subjectId": "neural-networks",
+  "order": 2,
+  "estimatedMinutes": 35,
+  "title": { "en": "The Perceptron", "es": "El perceptrón" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **perceptron** (Rosenblatt, 1958) was the first trainable neural unit. It is a single neuron with a **step activation**: it computes $z = \\mathbf{w}\\cdot\\mathbf{x} + b$ and fires $1$ if $z > 0$, else $0$. Geometrically it draws a straight dividing line and classifies points by which side they fall on — a **linear classifier**.",
+        "es": "El **perceptrón** (Rosenblatt, 1958) fue la primera unidad neuronal entrenable. Es una sola neurona con **activación escalón**: calcula $z = \\mathbf{w}\\cdot\\mathbf{x} + b$ y dispara $1$ si $z > 0$, si no $0$. Geométricamente traza una recta divisoria y clasifica los puntos según de qué lado caen — un **clasificador lineal**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Its training rule is beautifully simple: when it misclassifies a point, nudge the weights toward the correct answer. For linearly separable data the perceptron is guaranteed to converge. It can learn logic gates like AND and OR by finding a separating line.",
+        "es": "Su regla de entrenamiento es bellamente simple: cuando clasifica mal un punto, ajusta los pesos hacia la respuesta correcta. Para datos linealmente separables, el perceptrón tiene convergencia garantizada. Puede aprender puertas lógicas como AND y OR hallando una recta separadora."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "But it has a famous limitation, exposed by Minsky and Papert (1969): it **cannot solve XOR**, because XOR is not linearly separable — no single straight line separates its classes. This 'XOR problem' stalled neural-network research for years, until multilayer networks and backpropagation revived it.",
+        "es": "Pero tiene una limitación famosa, expuesta por Minsky y Papert (1969): **no puede resolver XOR**, porque XOR no es linealmente separable — ninguna recta separa sus clases. Este 'problema XOR' estancó la investigación en redes neuronales durante años, hasta que las redes multicapa y la retropropagación la revivieron."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Perceptron with $\\mathbf{w} = [1,1]$, $b = -1$ on input $\\mathbf{x} = [1,1]$: $z = 1+1-1 = 1 > 0$, so it outputs $1$. With $b = -3$: $z = 1+1-3 = -1 < 0$, output $0$. By tuning $b$ we slide the decision line.",
+        "es": "Perceptrón con $\\mathbf{w} = [1,1]$, $b = -1$ en la entrada $\\mathbf{x} = [1,1]$: $z = 1+1-1 = 1 > 0$, así da $1$. Con $b = -3$: $z = 1+1-3 = -1 < 0$, salida $0$. Ajustando $b$ deslizamos la recta de decisión."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-02-e1",
+      "answerType": "number",
+      "prompt": { "en": "Perceptron $\\mathbf{w}=[1,1]$, $b=-1$, $\\mathbf{x}=[1,1]$, step output ($1$ if $z>0$)?", "es": "Perceptrón $\\mathbf{w}=[1,1]$, $b=-1$, $\\mathbf{x}=[1,1]$, salida escalón ($1$ si $z>0$)?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "z = 1+1−1 = 1 > 0.", "es": "z = 1+1−1 = 1 > 0." },
+      "solution": [ { "tex": "z = 1 > 0 \\Rightarrow 1", "en": "Fires.", "es": "Se activa." } ]
+    },
+    {
+      "id": "nn-02-e2",
+      "answerType": "number",
+      "prompt": { "en": "Same weights but $b=-3$, $\\mathbf{x}=[1,1]$. Step output?", "es": "Mismos pesos pero $b=-3$, $\\mathbf{x}=[1,1]$. ¿Salida escalón?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "z = 1+1−3 = −1 < 0.", "es": "z = 1+1−3 = −1 < 0." },
+      "solution": [ { "tex": "z = -1 < 0 \\Rightarrow 0", "en": "Does not fire.", "es": "No se activa." } ]
+    },
+    {
+      "id": "nn-02-e3",
+      "answerType": "text",
+      "prompt": { "en": "The perceptron is a linear ___. (one word)", "es": "El perceptrón es un ___ lineal. (una palabra)" },
+      "answer": "classifier",
+      "acceptedAlt": ["clasificador"],
+      "hint": { "en": "Draws a separating line.", "es": "Traza una recta separadora." },
+      "solution": [ { "tex": "\\mathbf{w}\\cdot\\mathbf{x}+b=0", "en": "Linear classifier.", "es": "Clasificador lineal." } ]
+    },
+    {
+      "id": "nn-02-e4",
+      "answerType": "text",
+      "prompt": { "en": "A single perceptron cannot solve the ___ problem. (one word)", "es": "Un solo perceptrón no puede resolver el problema ___. (una palabra)" },
+      "answer": "XOR",
+      "acceptedAlt": ["xor"],
+      "hint": { "en": "Not linearly separable.", "es": "No linealmente separable." },
+      "solution": [ { "tex": "\\text{XOR}", "en": "Not linearly separable.", "es": "No separable linealmente." } ]
+    }
+  ],
+  "references": [
+    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "The perceptron and its limits", "es": "El perceptrón y sus límites" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.1, the XOR problem", "es": "Cap. 6.1, el problema XOR" } }
+  ]
+}

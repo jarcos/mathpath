@@ -1,0 +1,80 @@
+{
+  "id": "nn-08-output-softmax",
+  "subjectId": "neural-networks",
+  "order": 8,
+  "estimatedMinutes": 35,
+  "title": { "en": "Output Layers & Softmax", "es": "Capas de salida y softmax" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **output layer** is shaped by the task. For **regression**, a single linear neuron outputs a number. For **binary classification**, one neuron with a **sigmoid** outputs a probability in $(0,1)$. For **multi-class classification**, we use the **softmax** function over several output neurons.",
+        "es": "La **capa de salida** se adapta a la tarea. Para **regresión**, una sola neurona lineal da un número. Para **clasificación binaria**, una neurona con **sigmoide** da una probabilidad en $(0,1)$. Para **clasificación multiclase**, usamos la función **softmax** sobre varias neuronas de salida."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Softmax** takes a vector of raw scores and turns it into a probability distribution: each output is positive and **they all sum to $1$**. The largest score becomes the most probable class. For a $k$-class problem, softmax produces $k$ values — one probability per class.",
+        "es": "**Softmax** toma un vector de puntuaciones brutas y lo convierte en una distribución de probabilidad: cada salida es positiva y **todas suman $1$**. La mayor puntuación se vuelve la clase más probable. Para un problema de $k$ clases, softmax produce $k$ valores — una probabilidad por clase."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Matching the output layer to the loss is essential: sigmoid pairs with binary cross-entropy, softmax with categorical cross-entropy, linear output with mean squared error. Getting this pairing right is one of the first things to check when a network won't train.",
+        "es": "Emparejar la capa de salida con la pérdida es esencial: sigmoide con entropía cruzada binaria, softmax con entropía cruzada categórica, salida lineal con error cuadrático medio. Acertar este emparejamiento es de lo primero que comprobar cuando una red no entrena."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A $3$-class classifier has a softmax output layer producing $3$ probabilities, which always sum to $1$ (e.g. $0.7 + 0.2 + 0.1 = 1$). A binary classifier uses a single sigmoid output instead.",
+        "es": "Un clasificador de $3$ clases tiene una capa de salida softmax que produce $3$ probabilidades, que siempre suman $1$ (p. ej. $0.7 + 0.2 + 0.1 = 1$). Un clasificador binario usa en cambio una única salida sigmoide."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-08-e1",
+      "answerType": "text",
+      "prompt": { "en": "For multi-class output, the ___ function gives probabilities that sum to 1. (one word)", "es": "Para salida multiclase, la función ___ da probabilidades que suman 1. (una palabra)" },
+      "answer": "softmax",
+      "acceptedAlt": [],
+      "hint": { "en": "Generalizes the sigmoid.", "es": "Generaliza la sigmoide." },
+      "solution": [ { "tex": "\\text{softmax}", "en": "Softmax.", "es": "Softmax." } ]
+    },
+    {
+      "id": "nn-08-e2",
+      "answerType": "number",
+      "prompt": { "en": "Softmax outputs always sum to ___?", "es": "Las salidas softmax siempre suman ___?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "A probability distribution.", "es": "Una distribución de probabilidad." },
+      "solution": [ { "tex": "\\sum_i p_i = 1", "en": "Sum to 1.", "es": "Suman 1." } ]
+    },
+    {
+      "id": "nn-08-e3",
+      "answerType": "text",
+      "prompt": { "en": "For a binary output we use the ___ activation. (one word)", "es": "Para una salida binaria usamos la activación ___. (una palabra)" },
+      "answer": "sigmoid",
+      "acceptedAlt": ["sigmoide"],
+      "hint": { "en": "Outputs one probability.", "es": "Da una probabilidad." },
+      "solution": [ { "tex": "\\sigma(z)", "en": "Sigmoid.", "es": "Sigmoide." } ]
+    },
+    {
+      "id": "nn-08-e4",
+      "answerType": "number",
+      "prompt": { "en": "A 3-class softmax layer outputs how many values?", "es": "Una capa softmax de 3 clases produce cuántos valores?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "One per class.", "es": "Uno por clase." },
+      "solution": [ { "tex": "k = 3", "en": "Three.", "es": "Tres." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.2, output units; softmax", "es": "Cap. 6.2, unidades de salida; softmax" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Output representations", "es": "Representaciones de salida" } }
+  ]
+}

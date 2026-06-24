@@ -1,0 +1,80 @@
+{
+  "id": "nn-06-mlp",
+  "subjectId": "neural-networks",
+  "order": 6,
+  "estimatedMinutes": 40,
+  "title": { "en": "The Multilayer Perceptron", "es": "El perceptrón multicapa" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **multilayer perceptron (MLP)** wires neurons into layers: an **input layer** (the features), one or more **hidden layers** that transform the data, and an **output layer** that produces the prediction. Each neuron in a layer connects to every neuron in the next — a 'fully connected' or 'dense' network.",
+        "es": "Un **perceptrón multicapa (MLP)** conecta neuronas en capas: una **capa de entrada** (las características), una o más **capas ocultas** que transforman los datos, y una **capa de salida** que produce la predicción. Cada neurona de una capa se conecta con todas las de la siguiente — una red 'totalmente conectada' o 'densa'."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **hidden layers** are where the magic happens: each learns to detect increasingly useful combinations of the previous layer's signals. The weights between two layers form a **matrix** — for a layer of $m$ inputs feeding $n$ neurons, that is an $n\\times m$ weight matrix ($n\\cdot m$ weights), plus $n$ biases.",
+        "es": "Las **capas ocultas** son donde ocurre la magia: cada una aprende a detectar combinaciones cada vez más útiles de las señales de la capa anterior. Los pesos entre dos capas forman una **matriz** — para una capa de $m$ entradas que alimenta $n$ neuronas, es una matriz de pesos $n\\times m$ ($n\\cdot m$ pesos), más $n$ sesgos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The whole network is then just an alternation of matrix multiplications and nonlinear activations. The **architecture** — how many layers, how many neurons each — is a design choice (a set of hyperparameters) that trades capacity against the risk of overfitting and the cost of training.",
+        "es": "Toda la red es entonces solo una alternancia de multiplicaciones de matrices y activaciones no lineales. La **arquitectura** — cuántas capas, cuántas neuronas cada una — es una decisión de diseño (un conjunto de hiperparámetros) que equilibra la capacidad con el riesgo de sobreajuste y el coste de entrenar."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A network with $3$ inputs feeding a hidden layer of $4$ neurons uses a $4\\times 3$ weight matrix — $3\\times 4 = 12$ weights. A network with one hidden layer has $2$ weight matrices (input→hidden and hidden→output).",
+        "es": "Una red con $3$ entradas que alimenta una capa oculta de $4$ neuronas usa una matriz de pesos $4\\times 3$ — $3\\times 4 = 12$ pesos. Una red con una capa oculta tiene $2$ matrices de pesos (entrada→oculta y oculta→salida)."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-06-e1",
+      "answerType": "text",
+      "prompt": { "en": "Layers between the input and output are called ___ layers. (one word)", "es": "Las capas entre la entrada y la salida se llaman capas ___. (una palabra)" },
+      "answer": "hidden",
+      "acceptedAlt": ["ocultas", "oculta"],
+      "hint": { "en": "Not input, not output.", "es": "Ni entrada ni salida." },
+      "solution": [ { "tex": "\\text{hidden layers}", "en": "Hidden.", "es": "Ocultas." } ]
+    },
+    {
+      "id": "nn-06-e2",
+      "answerType": "number",
+      "prompt": { "en": "How many weights connect 3 inputs to a hidden layer of 4 neurons?", "es": "¿Cuántos pesos conectan 3 entradas con una capa oculta de 4 neuronas?" },
+      "answer": "12",
+      "acceptedAlt": ["3*4"],
+      "hint": { "en": "inputs × neurons.", "es": "entradas × neuronas." },
+      "solution": [ { "tex": "3\\times 4 = 12", "en": "Weight count.", "es": "Número de pesos." } ]
+    },
+    {
+      "id": "nn-06-e3",
+      "answerType": "number",
+      "prompt": { "en": "A network with one hidden layer has how many weight matrices?", "es": "Una red con una capa oculta tiene cuántas matrices de pesos?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "input→hidden, hidden→output.", "es": "entrada→oculta, oculta→salida." },
+      "solution": [ { "tex": "2 \\text{ matrices}", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "nn-06-e4",
+      "answerType": "number",
+      "prompt": { "en": "How many bias terms does a hidden layer of 4 neurons have?", "es": "¿Cuántos sesgos tiene una capa oculta de 4 neuronas?" },
+      "answer": "4",
+      "acceptedAlt": [],
+      "hint": { "en": "One per neuron.", "es": "Uno por neurona." },
+      "solution": [ { "tex": "4 \\text{ biases}", "en": "Four.", "es": "Cuatro." } ]
+    }
+  ],
+  "references": [
+    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Multilayer network architecture", "es": "Arquitectura de redes multicapa" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6, deep feedforward networks", "es": "Cap. 6, redes profundas hacia delante" } }
+  ]
+}

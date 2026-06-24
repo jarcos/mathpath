@@ -1,0 +1,80 @@
+{
+  "id": "nn-10-weight-updates",
+  "subjectId": "neural-networks",
+  "order": 10,
+  "estimatedMinutes": 35,
+  "title": { "en": "Weight Updates & Training", "es": "Actualización de pesos y entrenamiento" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Once backpropagation has produced the gradient of the loss with respect to every weight, **gradient descent** updates them — exactly the algorithm from ML Foundations, now applied across the whole network. Each weight is nudged opposite its gradient: $w \\leftarrow w - \\eta\\,\\dfrac{\\partial L}{\\partial w}$, where $\\eta$ is the learning rate.",
+        "es": "Una vez que la retropropagación produce el gradiente de la pérdida respecto a cada peso, el **descenso de gradiente** los actualiza — exactamente el algoritmo de Fundamentos de ML, ahora aplicado a toda la red. Cada peso se ajusta en sentido opuesto a su gradiente: $w \\leftarrow w - \\eta\\,\\dfrac{\\partial L}{\\partial w}$, donde $\\eta$ es la tasa de aprendizaje."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Repeat the cycle — forward pass, compute loss, backward pass, update weights — over and over, and the network gradually descends the loss landscape toward a good solution. When training converges, the gradients approach **zero** and the weights stop changing meaningfully.",
+        "es": "Repite el ciclo — pasada hacia delante, calcular pérdida, pasada hacia atrás, actualizar pesos — una y otra vez, y la red desciende gradualmente el paisaje de pérdida hacia una buena solución. Cuando el entrenamiento converge, los gradientes se acercan a **cero** y los pesos dejan de cambiar de forma significativa."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "In practice we use **stochastic** or **mini-batch** gradient descent — updating on small random batches rather than the whole dataset each step — which is far faster and adds helpful noise. Optimizers like **Adam** adapt the per-weight step size to speed convergence further.",
+        "es": "En la práctica usamos descenso de gradiente **estocástico** o por **mini-lotes** — actualizando con pequeños lotes aleatorios en lugar de todo el conjunto en cada paso — que es mucho más rápido y añade ruido útil. Optimizadores como **Adam** adaptan el tamaño del paso por peso para acelerar aún más la convergencia."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Update a weight: $w = 0.5$, learning rate $\\eta = 0.1$, gradient $2$: $w \\leftarrow 0.5 - 0.1\\times 2 = 0.3$. With $w = 1$, $\\eta = 0.2$, gradient $5$: $w \\leftarrow 1 - 1 = 0$. At a minimum the gradient is $0$, so $w$ stops moving.",
+        "es": "Actualiza un peso: $w = 0.5$, tasa $\\eta = 0.1$, gradiente $2$: $w \\leftarrow 0.5 - 0.1\\times 2 = 0.3$. Con $w = 1$, $\\eta = 0.2$, gradiente $5$: $w \\leftarrow 1 - 1 = 0$. En un mínimo el gradiente es $0$, así que $w$ deja de moverse."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "Update: $w=0.5$, $\\eta=0.1$, gradient $=2$. New $w = w - \\eta\\cdot\\text{grad}$?", "es": "Actualización: $w=0.5$, $\\eta=0.1$, gradiente $=2$. ¿Nuevo $w = w - \\eta\\cdot\\text{grad}$?" },
+      "answer": "0.3",
+      "acceptedAlt": ["0.5-0.1*2"],
+      "hint": { "en": "0.5 − 0.2.", "es": "0.5 − 0.2." },
+      "solution": [ { "tex": "0.5 - 0.2 = 0.3", "en": "Updated weight.", "es": "Peso actualizado." } ]
+    },
+    {
+      "id": "nn-10-e2",
+      "answerType": "text",
+      "prompt": { "en": "Weights are updated in the direction opposite the ___. (one word)", "es": "Los pesos se actualizan en sentido opuesto al ___. (una palabra)" },
+      "answer": "gradient",
+      "acceptedAlt": ["gradiente"],
+      "hint": { "en": "−η∇L.", "es": "−η∇L." },
+      "solution": [ { "tex": "w - \\eta\\nabla L", "en": "Gradient.", "es": "Gradiente." } ]
+    },
+    {
+      "id": "nn-10-e3",
+      "answerType": "number",
+      "prompt": { "en": "At convergence, the gradient approaches what value?", "es": "En la convergencia, ¿a qué valor se acerca el gradiente?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Like f'(x)=0.", "es": "Como f'(x)=0." },
+      "solution": [ { "tex": "\\nabla L \\to 0", "en": "Zero.", "es": "Cero." } ]
+    },
+    {
+      "id": "nn-10-e4",
+      "answerType": "number",
+      "prompt": { "en": "Update: $w=1$, $\\eta=0.2$, gradient $=5$. New $w$?", "es": "Actualización: $w=1$, $\\eta=0.2$, gradiente $=5$. ¿Nuevo $w$?" },
+      "answer": "0",
+      "acceptedAlt": ["1-0.2*5"],
+      "hint": { "en": "1 − 1.", "es": "1 − 1." },
+      "solution": [ { "tex": "1 - 1 = 0", "en": "Updated weight.", "es": "Peso actualizado." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8, optimization for training deep models", "es": "Cap. 8, optimización para entrenar modelos profundos" } },
+    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "The generalized delta rule", "es": "La regla delta generalizada" } }
+  ]
+}

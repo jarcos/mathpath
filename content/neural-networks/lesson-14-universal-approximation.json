@@ -1,0 +1,79 @@
+{
+  "id": "nn-14-universal-approximation",
+  "subjectId": "neural-networks",
+  "order": 14,
+  "estimatedMinutes": 30,
+  "title": { "en": "Universal Approximation", "es": "Aproximación universal" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "How powerful are neural networks, in principle? The **Universal Approximation Theorem** gives a striking answer: a network with just **one hidden layer** (and enough neurons) can approximate **any continuous function** to arbitrary accuracy. There is, in theory, no continuous input-output mapping a neural network cannot represent.",
+        "es": "¿Cuán potentes son las redes neuronales, en principio? El **Teorema de Aproximación Universal** da una respuesta sorprendente: una red con solo **una capa oculta** (y suficientes neuronas) puede aproximar **cualquier función continua** con precisión arbitraria. En teoría, no hay ninguna correspondencia entrada-salida continua que una red neuronal no pueda representar."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The catch: the theorem says such a network **exists**, not that it is easy to find or efficient. A single wide hidden layer might need an astronomically large number of neurons. Approximation improves as you add more hidden **neurons**, but width alone is costly.",
+        "es": "La trampa: el teorema dice que tal red **existe**, no que sea fácil de hallar ni eficiente. Una sola capa oculta ancha podría necesitar un número astronómico de neuronas. La aproximación mejora al añadir más **neuronas** ocultas, pero la anchura por sí sola es costosa."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This is exactly why **depth** matters in practice. Deep networks (many hidden layers) represent complex functions far more **efficiently** than shallow wide ones, building features hierarchically — edges, then shapes, then objects. The theorem promises possibility; depth delivers practicality. That motivates the Deep Learning subject that follows.",
+        "es": "Por esto importa la **profundidad** en la práctica. Las redes profundas (muchas capas ocultas) representan funciones complejas de forma mucho más **eficiente** que las anchas y poco profundas, construyendo características de forma jerárquica — bordes, luego formas, luego objetos. El teorema promete la posibilidad; la profundidad aporta la practicidad. Eso motiva la asignatura de Aprendizaje profundo que sigue."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The Universal Approximation Theorem requires a minimum of $1$ hidden layer to approximate any continuous function. A network with exactly $1$ hidden layer is 'shallow'; adding more makes it 'deep'.",
+        "es": "El Teorema de Aproximación Universal requiere un mínimo de $1$ capa oculta para aproximar cualquier función continua. Una red con exactamente $1$ capa oculta es 'poco profunda'; añadir más la hace 'profunda'."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-14-e1",
+      "answerType": "text",
+      "prompt": { "en": "A one-hidden-layer net can approximate any continuous function — the ___ approximation theorem. (one word)", "es": "Una red de una capa oculta puede aproximar cualquier función continua — el teorema de aproximación ___. (una palabra)" },
+      "answer": "universal",
+      "acceptedAlt": ["universal"],
+      "hint": { "en": "Works for any function.", "es": "Vale para cualquier función." },
+      "solution": [ { "tex": "\\text{universal}", "en": "Universal.", "es": "Universal." } ]
+    },
+    {
+      "id": "nn-14-e2",
+      "answerType": "number",
+      "prompt": { "en": "Minimum number of hidden layers for the universal approximation theorem?", "es": "¿Número mínimo de capas ocultas para el teorema de aproximación universal?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "One is enough in theory.", "es": "Una basta en teoría." },
+      "solution": [ { "tex": "1 \\text{ hidden layer}", "en": "One.", "es": "Una." } ]
+    },
+    {
+      "id": "nn-14-e3",
+      "answerType": "text",
+      "prompt": { "en": "Approximation improves with more hidden ___. (one word)", "es": "La aproximación mejora con más ___ ocultas. (una palabra)" },
+      "answer": "neurons",
+      "acceptedAlt": ["neuronas", "units", "unidades"],
+      "hint": { "en": "Wider layer.", "es": "Capa más ancha." },
+      "solution": [ { "tex": "\\uparrow \\text{neurons}", "en": "Neurons.", "es": "Neuronas." } ]
+    },
+    {
+      "id": "nn-14-e4",
+      "answerType": "text",
+      "prompt": { "en": "Deep networks represent complex functions more ___ than shallow ones. (one word)", "es": "Las redes profundas representan funciones complejas de forma más ___ que las poco profundas. (una palabra)" },
+      "answer": "efficiently",
+      "acceptedAlt": ["eficiente", "eficientemente", "efficient"],
+      "hint": { "en": "Fewer neurons needed.", "es": "Se necesitan menos neuronas." },
+      "solution": [ { "tex": "\\text{depth} > \\text{width}", "en": "More efficiently.", "es": "Más eficientemente." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.4, universal approximation and depth", "es": "Cap. 6.4, aproximación universal y profundidad" } }
+  ]
+}

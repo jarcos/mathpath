@@ -1,0 +1,80 @@
+{
+  "id": "nn-07-forward",
+  "subjectId": "neural-networks",
+  "order": 7,
+  "estimatedMinutes": 35,
+  "title": { "en": "Forward Propagation", "es": "Propagación hacia delante" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Forward propagation** is how a network turns an input into a prediction: feed the input through each layer in turn, computing weighted sum then activation, until the output layer. Layer by layer, $\\mathbf{a}^{(l)} = \\phi(W^{(l)}\\mathbf{a}^{(l-1)} + \\mathbf{b}^{(l)})$, with the input as $\\mathbf{a}^{(0)}$.",
+        "es": "La **propagación hacia delante** es cómo una red convierte una entrada en una predicción: pasa la entrada por cada capa por turno, calculando suma ponderada y luego activación, hasta la capa de salida. Capa a capa, $\\mathbf{a}^{(l)} = \\phi(W^{(l)}\\mathbf{a}^{(l-1)} + \\mathbf{b}^{(l)})$, con la entrada como $\\mathbf{a}^{(0)}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "It is purely mechanical — multiply, add bias, apply activation, repeat. Each hidden layer produces a new **representation** of the input, and by the output layer the network has (hopefully) transformed raw features into something directly useful for the prediction.",
+        "es": "Es puramente mecánico — multiplica, suma sesgo, aplica activación, repite. Cada capa oculta produce una nueva **representación** de la entrada, y para la capa de salida la red ha (con suerte) transformado las características brutas en algo directamente útil para la predicción."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Forward propagation is also the **prediction** (inference) step once a model is trained. During training it runs first — to compute the output and hence the loss — and is then followed by backpropagation, which works in the opposite direction to compute how to improve the weights.",
+        "es": "La propagación hacia delante es también el paso de **predicción** (inferencia) una vez entrenado el modelo. Durante el entrenamiento se ejecuta primero — para calcular la salida y por tanto la pérdida — y luego le sigue la retropropagación, que actúa en sentido opuesto para calcular cómo mejorar los pesos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Tiny 2-layer net: hidden neuron $h = \\text{ReLU}(2\\cdot 1) = 2$; output $= 3\\cdot h = 6$. A single ReLU neuron with $\\mathbf{w}=[1,1]$, $\\mathbf{x}=[2,3]$, $b=0$: $\\text{ReLU}(2+3) = \\text{ReLU}(5) = 5$.",
+        "es": "Red diminuta de 2 capas: neurona oculta $h = \\text{ReLU}(2\\cdot 1) = 2$; salida $= 3\\cdot h = 6$. Una sola neurona ReLU con $\\mathbf{w}=[1,1]$, $\\mathbf{x}=[2,3]$, $b=0$: $\\text{ReLU}(2+3) = \\text{ReLU}(5) = 5$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nn-07-e1",
+      "answerType": "text",
+      "prompt": { "en": "Computing outputs from inputs layer by layer is ___ propagation. (one word)", "es": "Calcular las salidas desde las entradas capa a capa es propagación hacia ___. (una palabra)" },
+      "answer": "forward",
+      "acceptedAlt": ["delante", "hacia delante", "adelante"],
+      "hint": { "en": "Opposite of backward.", "es": "Opuesto de hacia atrás." },
+      "solution": [ { "tex": "\\mathbf{a}^{(l)} = \\phi(W\\mathbf{a}^{(l-1)}+b)", "en": "Forward.", "es": "Hacia delante." } ]
+    },
+    {
+      "id": "nn-07-e2",
+      "answerType": "number",
+      "prompt": { "en": "ReLU neuron, $\\mathbf{w}=[1,1]$, $\\mathbf{x}=[2,3]$, $b=0$: output $\\text{ReLU}(\\mathbf{w}\\cdot\\mathbf{x}+b)$?", "es": "Neurona ReLU, $\\mathbf{w}=[1,1]$, $\\mathbf{x}=[2,3]$, $b=0$: salida $\\text{ReLU}(\\mathbf{w}\\cdot\\mathbf{x}+b)$?" },
+      "answer": "5",
+      "acceptedAlt": ["max(0,5)"],
+      "hint": { "en": "ReLU(2+3).", "es": "ReLU(2+3)." },
+      "solution": [ { "tex": "\\text{ReLU}(5)=5", "en": "Output.", "es": "Salida." } ]
+    },
+    {
+      "id": "nn-07-e3",
+      "answerType": "number",
+      "prompt": { "en": "Hidden $h=\\text{ReLU}(2\\cdot1)=2$, output $=3h$. What is the output?", "es": "Oculta $h=\\text{ReLU}(2\\cdot1)=2$, salida $=3h$. ¿Cuál es la salida?" },
+      "answer": "6",
+      "acceptedAlt": ["3*2"],
+      "hint": { "en": "3 · 2.", "es": "3 · 2." },
+      "solution": [ { "tex": "3\\cdot 2 = 6", "en": "Output.", "es": "Salida." } ]
+    },
+    {
+      "id": "nn-07-e4",
+      "answerType": "number",
+      "prompt": { "en": "Linear output neuron $w=2$, $b=1$, input $3$: $wx+b$?", "es": "Neurona de salida lineal $w=2$, $b=1$, entrada $3$: $wx+b$?" },
+      "answer": "7",
+      "acceptedAlt": ["2*3+1"],
+      "hint": { "en": "2·3+1.", "es": "2·3+1." },
+      "solution": [ { "tex": "2\\cdot3+1=7", "en": "Output.", "es": "Salida." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.5, forward propagation", "es": "Cap. 6.5, propagación hacia delante" } },
+    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Spreading activation forward", "es": "Propagación de la activación hacia delante" } }
+  ]
+}
