@@ -166,15 +166,32 @@
       "id": "statistics",
       "icon": "σ",
       "targetDays": 30,
-      "status": "coming-soon",
+      "status": "available",
       "plannedLessons": 16,
-      "source": "Pearl, Probabilistic Reasoning (1988); general statistics",
+      "source": "Pearl, Probabilistic Reasoning (1988); Russell & Norvig (AIMA); Goodfellow ch. 3",
       "name": { "en": "Statistics & Probability", "es": "Estadística y probabilidad" },
       "description": {
         "en": "Descriptive statistics, probability, distributions, Bayes and inference.",
         "es": "Estadística descriptiva, probabilidad, distribuciones, Bayes e inferencia."
       },
-      "lessons": []
+      "lessons": [
+        "statistics/lesson-01-descriptive.json",
+        "statistics/lesson-02-spread.json",
+        "statistics/lesson-03-data-visualization.json",
+        "statistics/lesson-04-counting.json",
+        "statistics/lesson-05-probability-basics.json",
+        "statistics/lesson-06-conditional-independence.json",
+        "statistics/lesson-07-bayes.json",
+        "statistics/lesson-08-random-variables.json",
+        "statistics/lesson-09-variance-rv.json",
+        "statistics/lesson-10-bernoulli-binomial.json",
+        "statistics/lesson-11-poisson.json",
+        "statistics/lesson-12-normal.json",
+        "statistics/lesson-13-clt-sampling.json",
+        "statistics/lesson-14-confidence-intervals.json",
+        "statistics/lesson-15-hypothesis-testing.json",
+        "statistics/lesson-16-correlation-covariance.json"
+      ]
     },
     {
       "id": "ml-foundations",

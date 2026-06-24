@@ -1,0 +1,80 @@
+{
+  "id": "stats-04-counting",
+  "subjectId": "statistics",
+  "order": 4,
+  "estimatedMinutes": 40,
+  "title": { "en": "Counting: Permutations & Combinations", "es": "Combinatoria: permutaciones y combinaciones" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Probability often reduces to **counting** — how many ways can something happen? The starting point is the **factorial** $n! = n\\cdot(n-1)\\cdots 2\\cdot 1$, the number of ways to arrange $n$ distinct items in a row. So $5! = 120$, and by convention $0! = 1$.",
+        "es": "La probabilidad a menudo se reduce a **contar** — ¿de cuántas formas puede ocurrir algo? El punto de partida es el **factorial** $n! = n\\cdot(n-1)\\cdots 2\\cdot 1$, el número de formas de ordenar $n$ objetos distintos en fila. Así $5! = 120$, y por convenio $0! = 1$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Permutations** count ordered selections: choosing $k$ from $n$ where order matters is $P(n,k) = \\tfrac{n!}{(n-k)!}$. **Combinations** count unordered selections, where order does *not* matter: $C(n,k) = \\binom{n}{k} = \\tfrac{n!}{k!(n-k)!}$. The single question to ask is always: **does order matter?**",
+        "es": "Las **permutaciones** cuentan selecciones ordenadas: elegir $k$ de $n$ donde el orden importa es $P(n,k) = \\tfrac{n!}{(n-k)!}$. Las **combinaciones** cuentan selecciones no ordenadas, donde el orden *no* importa: $C(n,k) = \\binom{n}{k} = \\tfrac{n!}{k!(n-k)!}$. La única pregunta que hacerse es siempre: **¿importa el orden?**"
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Combinations are everywhere in machine learning and probability — the binomial coefficient $\\binom{n}{k}$ counts the ways to get $k$ successes in $n$ trials, the heart of the binomial distribution. Note $\\binom{n}{n} = \\binom{n}{0} = 1$: there is exactly one way to choose everything, or nothing.",
+        "es": "Las combinaciones están por todas partes en el aprendizaje automático y la probabilidad — el coeficiente binomial $\\binom{n}{k}$ cuenta las formas de obtener $k$ éxitos en $n$ ensayos, el corazón de la distribución binomial. Nota que $\\binom{n}{n} = \\binom{n}{0} = 1$: hay exactamente una forma de elegir todo, o nada."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "From 5 people, choose 2 for a *ranked* podium (order matters): $P(5,2) = \\tfrac{5!}{3!} = 5\\cdot 4 = 20$. Choose 2 for an *unordered* team: $C(5,2) = \\tfrac{5!}{2!\\,3!} = 10$. Order halves... actually it divides by $2! = 2$, giving $20/2 = 10$.",
+        "es": "De 5 personas, elige 2 para un podio *ordenado* (importa el orden): $P(5,2) = \\tfrac{5!}{3!} = 5\\cdot 4 = 20$. Elige 2 para un equipo *sin orden*: $C(5,2) = \\tfrac{5!}{2!\\,3!} = 10$. El orden divide por $2! = 2$, dando $20/2 = 10$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-04-e1",
+      "answerType": "number",
+      "prompt": { "en": "Compute the permutations $P(5,2) = \\tfrac{5!}{3!}$.", "es": "Calcula las permutaciones $P(5,2) = \\tfrac{5!}{3!}$." },
+      "answer": "20",
+      "acceptedAlt": ["5*4", "permutations(5,2)"],
+      "hint": { "en": "5 · 4.", "es": "5 · 4." },
+      "solution": [ { "tex": "\\tfrac{5!}{3!} = 5\\cdot 4 = 20", "en": "Ordered.", "es": "Ordenado." } ]
+    },
+    {
+      "id": "stats-04-e2",
+      "answerType": "number",
+      "prompt": { "en": "Compute the combinations $C(5,2) = \\binom{5}{2}$.", "es": "Calcula las combinaciones $C(5,2) = \\binom{5}{2}$." },
+      "answer": "10",
+      "acceptedAlt": ["combinations(5,2)"],
+      "hint": { "en": "5!/(2!·3!).", "es": "5!/(2!·3!)." },
+      "solution": [ { "tex": "\\tfrac{5!}{2!\\,3!} = 10", "en": "Unordered.", "es": "Sin orden." } ]
+    },
+    {
+      "id": "stats-04-e3",
+      "answerType": "number",
+      "prompt": { "en": "Compute $5!$.", "es": "Calcula $5!$." },
+      "answer": "120",
+      "acceptedAlt": ["factorial(5)", "5*4*3*2*1"],
+      "hint": { "en": "5·4·3·2·1.", "es": "5·4·3·2·1." },
+      "solution": [ { "tex": "5! = 120", "en": "Factorial.", "es": "Factorial." } ]
+    },
+    {
+      "id": "stats-04-e4",
+      "answerType": "number",
+      "prompt": { "en": "Compute $\\binom{4}{4}$.", "es": "Calcula $\\binom{4}{4}$." },
+      "answer": "1",
+      "acceptedAlt": ["combinations(4,4)"],
+      "hint": { "en": "One way to choose all.", "es": "Una forma de elegir todo." },
+      "solution": [ { "tex": "\\binom{4}{4} = 1", "en": "Exactly one way.", "es": "Exactamente una forma." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Combinatorics for probability", "es": "Combinatoria para la probabilidad" } },
+    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Foundations of probability", "es": "Fundamentos de la probabilidad" } }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "stats-01-descriptive",
+  "subjectId": "statistics",
+  "order": 1,
+  "estimatedMinutes": 40,
+  "title": { "en": "Descriptive Statistics", "es": "Estadística descriptiva" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Statistics begins with **summarizing data** — replacing a long list of numbers with a few that capture its essence. The most important summaries are measures of **central tendency**: where is the 'middle' of the data? Three answers matter: the **mean**, the **median**, and the **mode**.",
+        "es": "La estadística empieza por **resumir datos** — reemplazar una larga lista de números por unos pocos que capturen su esencia. Los resúmenes más importantes son las medidas de **tendencia central**: ¿dónde está el 'centro' de los datos? Importan tres respuestas: la **media**, la **mediana** y la **moda**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **mean** (average) is the sum divided by the count: $\\bar{x} = \\tfrac{1}{n}\\sum x_i$. The **median** is the middle value when the data is sorted (the average of the two middle values if $n$ is even). The **mode** is the most frequent value. Each tells a different story.",
+        "es": "La **media** (promedio) es la suma dividida por el número de datos: $\\bar{x} = \\tfrac{1}{n}\\sum x_i$. La **mediana** es el valor central con los datos ordenados (la media de los dos centrales si $n$ es par). La **moda** es el valor más frecuente. Cada una cuenta una historia distinta."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Why three? Because the mean is **sensitive to outliers** — one billionaire raises the *mean* income of a room dramatically, while the *median* barely moves. Knowing which summary to trust is a core data-literacy skill, and the foundation of every machine-learning preprocessing step.",
+        "es": "¿Por qué tres? Porque la media es **sensible a los valores atípicos** — un multimillonario eleva drásticamente la *media* de renta de una sala, mientras que la *mediana* apenas se mueve. Saber en qué resumen confiar es una destreza básica de alfabetización de datos, y la base de todo preprocesamiento en aprendizaje automático."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "For the data $\\{2, 4, 6\\}$: mean $= \\tfrac{2+4+6}{3} = 4$, median $= 4$ (the middle value), mode $=$ none (all appear once). For $\\{1, 3, 5, 7\\}$ the median is the average of the two middle values: $\\tfrac{3+5}{2} = 4$.",
+        "es": "Para los datos $\\{2, 4, 6\\}$: media $= \\tfrac{2+4+6}{3} = 4$, mediana $= 4$ (el valor central), moda $=$ ninguna (todos aparecen una vez). Para $\\{1, 3, 5, 7\\}$ la mediana es la media de los dos centrales: $\\tfrac{3+5}{2} = 4$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-01-e1",
+      "answerType": "number",
+      "prompt": { "en": "Find the mean of $\\{2, 4, 6\\}$.", "es": "Halla la media de $\\{2, 4, 6\\}$." },
+      "answer": "4",
+      "acceptedAlt": ["(2+4+6)/3", "mean([2,4,6])"],
+      "hint": { "en": "Sum divided by 3.", "es": "Suma dividida entre 3." },
+      "solution": [ { "tex": "\\tfrac{2+4+6}{3} = 4", "en": "Mean.", "es": "Media." } ]
+    },
+    {
+      "id": "stats-01-e2",
+      "answerType": "number",
+      "prompt": { "en": "Find the median of $\\{1, 3, 5, 7\\}$.", "es": "Halla la mediana de $\\{1, 3, 5, 7\\}$." },
+      "answer": "4",
+      "acceptedAlt": ["(3+5)/2", "median([1,3,5,7])"],
+      "hint": { "en": "Average the two middle values.", "es": "Promedia los dos valores centrales." },
+      "solution": [ { "tex": "\\tfrac{3+5}{2} = 4", "en": "Median.", "es": "Mediana." } ]
+    },
+    {
+      "id": "stats-01-e3",
+      "answerType": "number",
+      "prompt": { "en": "Find the mode of $\\{2, 2, 3\\}$.", "es": "Halla la moda de $\\{2, 2, 3\\}$." },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "The most frequent value.", "es": "El valor más frecuente." },
+      "solution": [ { "tex": "2 \\text{ appears twice}", "en": "Mode is 2.", "es": "La moda es 2." } ]
+    },
+    {
+      "id": "stats-01-e4",
+      "answerType": "number",
+      "prompt": { "en": "Find the mean of $\\{10, 20\\}$.", "es": "Halla la media de $\\{10, 20\\}$." },
+      "answer": "15",
+      "acceptedAlt": ["(10+20)/2"],
+      "hint": { "en": "Sum over 2.", "es": "Suma entre 2." },
+      "solution": [ { "tex": "\\tfrac{10+20}{2} = 15", "en": "Mean.", "es": "Media." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, Probability and Information Theory (expectation, summaries)", "es": "Cap. 3, probabilidad y teoría de la información" } },
+    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Quantifying uncertainty: basic statistics", "es": "Cuantificar la incertidumbre: estadística básica" } }
+  ]
+}

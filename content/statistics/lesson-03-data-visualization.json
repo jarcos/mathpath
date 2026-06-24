@@ -1,0 +1,80 @@
+{
+  "id": "stats-03-data-viz",
+  "subjectId": "statistics",
+  "order": 3,
+  "estimatedMinutes": 35,
+  "title": { "en": "Data Visualization & Quartiles", "es": "Visualización de datos y cuartiles" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A picture reveals what a single number hides. A **histogram** groups data into bins and shows the shape of its **distribution** — symmetric, skewed, bimodal. The shape tells you which summary statistics are trustworthy and hints at the underlying process.",
+        "es": "Una imagen revela lo que un único número oculta. Un **histograma** agrupa los datos en intervalos y muestra la forma de su **distribución** — simétrica, sesgada, bimodal. La forma indica qué estadísticos de resumen son fiables y sugiere el proceso subyacente."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Quartiles** split sorted data into four equal parts: $Q_1$ (25th percentile), $Q_2$ (the median, 50th), and $Q_3$ (75th). The **interquartile range** $\\text{IQR} = Q_3 - Q_1$ measures the spread of the middle half and is robust to outliers. A **box plot** draws these five numbers (min, $Q_1$, median, $Q_3$, max) at a glance.",
+        "es": "Los **cuartiles** dividen los datos ordenados en cuatro partes iguales: $Q_1$ (percentil 25), $Q_2$ (la mediana, 50) y $Q_3$ (75). El **rango intercuartílico** $\\text{IQR} = Q_3 - Q_1$ mide la dispersión de la mitad central y es robusto frente a atípicos. Un **diagrama de caja** dibuja estos cinco números (mín, $Q_1$, mediana, $Q_3$, máx) de un vistazo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "More generally, a **percentile** is the value below which a given percentage of data falls. Percentiles and the IQR are the standard tools for spotting outliers (often flagged beyond $1.5\\times\\text{IQR}$ from the quartiles) — a routine step before training any model.",
+        "es": "Más en general, un **percentil** es el valor por debajo del cual cae un porcentaje dado de los datos. Los percentiles y el IQR son las herramientas estándar para detectar atípicos (a menudo marcados más allá de $1.5\\times\\text{IQR}$ desde los cuartiles) — un paso rutinario antes de entrenar cualquier modelo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If $Q_1 = 2$ and $Q_3 = 6$, the IQR is $6 - 2 = 4$. For sorted data $\\{2, 4, 6, 8\\}$ the median is the average of the two middle values, $\\tfrac{4+6}{2} = 5$.",
+        "es": "Si $Q_1 = 2$ y $Q_3 = 6$, el IQR es $6 - 2 = 4$. Para los datos ordenados $\\{2, 4, 6, 8\\}$ la mediana es la media de los dos centrales, $\\tfrac{4+6}{2} = 5$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "Find the median of $\\{1, 2, 3, 4, 5\\}$.", "es": "Halla la mediana de $\\{1, 2, 3, 4, 5\\}$." },
+      "answer": "3",
+      "acceptedAlt": ["median([1,2,3,4,5])"],
+      "hint": { "en": "The middle value.", "es": "El valor central." },
+      "solution": [ { "tex": "\\text{median} = 3", "en": "Middle of five.", "es": "Centro de cinco." } ]
+    },
+    {
+      "id": "stats-03-e2",
+      "answerType": "number",
+      "prompt": { "en": "If $Q_1 = 2$ and $Q_3 = 6$, find the IQR.", "es": "Si $Q_1 = 2$ y $Q_3 = 6$, halla el IQR." },
+      "answer": "4",
+      "acceptedAlt": ["6-2"],
+      "hint": { "en": "Q3 − Q1.", "es": "Q3 − Q1." },
+      "solution": [ { "tex": "6 - 2 = 4", "en": "Interquartile range.", "es": "Rango intercuartílico." } ]
+    },
+    {
+      "id": "stats-03-e3",
+      "answerType": "text",
+      "prompt": { "en": "A histogram shows the ___ of the data. (one word)", "es": "Un histograma muestra la ___ de los datos. (una palabra)" },
+      "answer": "distribution",
+      "acceptedAlt": ["distribución", "distribucion"],
+      "hint": { "en": "Its shape across bins.", "es": "Su forma a lo largo de los intervalos." },
+      "solution": [ { "tex": "\\text{distribution}", "en": "The distribution.", "es": "La distribución." } ]
+    },
+    {
+      "id": "stats-03-e4",
+      "answerType": "number",
+      "prompt": { "en": "Find the median of $\\{2, 4, 6, 8\\}$.", "es": "Halla la mediana de $\\{2, 4, 6, 8\\}$." },
+      "answer": "5",
+      "acceptedAlt": ["(4+6)/2", "median([2,4,6,8])"],
+      "hint": { "en": "Average the two middle values.", "es": "Promedia los dos centrales." },
+      "solution": [ { "tex": "\\tfrac{4+6}{2} = 5", "en": "Median.", "es": "Mediana." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Describing data distributions", "es": "Descripción de distribuciones de datos" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, distributions", "es": "Cap. 3, distribuciones" } }
+  ]
+}

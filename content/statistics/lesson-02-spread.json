@@ -1,0 +1,80 @@
+{
+  "id": "stats-02-spread",
+  "subjectId": "statistics",
+  "order": 2,
+  "estimatedMinutes": 40,
+  "title": { "en": "Spread: Variance & Standard Deviation", "es": "Dispersión: varianza y desviación típica" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The center of the data is only half the story; we also need its **spread**. Two datasets can share a mean yet be wildly different — $\\{50, 50\\}$ and $\\{0, 100\\}$ both average $50$. The crudest measure of spread is the **range** (max − min); the most important is the **variance** and its square root, the **standard deviation**.",
+        "es": "El centro de los datos es solo media historia; también necesitamos su **dispersión**. Dos conjuntos pueden compartir media y ser muy distintos — $\\{50, 50\\}$ y $\\{0, 100\\}$ ambos promedian $50$. La medida más burda de dispersión es el **rango** (máx − mín); la más importante es la **varianza** y su raíz, la **desviación típica**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Variance** averages the squared distances from the mean: $\\sigma^2 = \\tfrac{1}{N}\\sum (x_i - \\bar{x})^2$. Squaring makes all deviations positive and punishes large ones. The **standard deviation** $\\sigma = \\sqrt{\\sigma^2}$ brings the units back to the original scale, which is why it is the spread measure people actually report.",
+        "es": "La **varianza** promedia las distancias al cuadrado respecto a la media: $\\sigma^2 = \\tfrac{1}{N}\\sum (x_i - \\bar{x})^2$. Elevar al cuadrado hace positivas todas las desviaciones y castiga las grandes. La **desviación típica** $\\sigma = \\sqrt{\\sigma^2}$ devuelve las unidades a la escala original, por eso es la medida de dispersión que la gente realmente reporta."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A subtlety: dividing by $N$ gives the **population** variance; dividing by $N-1$ gives the **sample** variance (Bessel's correction), used when estimating from a sample. Standard deviation underpins the normal distribution, z-scores, and the loss functions of regression.",
+        "es": "Un matiz: dividir por $N$ da la varianza **poblacional**; dividir por $N-1$ da la varianza **muestral** (corrección de Bessel), usada al estimar desde una muestra. La desviación típica sustenta la distribución normal, las puntuaciones z y las funciones de pérdida de la regresión."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Population variance of $\\{1, 3\\}$: mean $= 2$, deviations $-1$ and $+1$, squared $1$ and $1$, average $\\tfrac{1+1}{2} = 1$. So $\\sigma^2 = 1$ and $\\sigma = \\sqrt{1} = 1$. The range of $\\{3, 7, 2, 9\\}$ is $9 - 2 = 7$.",
+        "es": "Varianza poblacional de $\\{1, 3\\}$: media $= 2$, desviaciones $-1$ y $+1$, al cuadrado $1$ y $1$, promedio $\\tfrac{1+1}{2} = 1$. Así $\\sigma^2 = 1$ y $\\sigma = \\sqrt{1} = 1$. El rango de $\\{3, 7, 2, 9\\}$ es $9 - 2 = 7$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-02-e1",
+      "answerType": "number",
+      "prompt": { "en": "Find the range of $\\{3, 7, 2, 9\\}$.", "es": "Halla el rango de $\\{3, 7, 2, 9\\}$." },
+      "answer": "7",
+      "acceptedAlt": ["9-2"],
+      "hint": { "en": "Max minus min.", "es": "Máximo menos mínimo." },
+      "solution": [ { "tex": "9 - 2 = 7", "en": "Range.", "es": "Rango." } ]
+    },
+    {
+      "id": "stats-02-e2",
+      "answerType": "number",
+      "prompt": { "en": "If the variance is $9$, what is the standard deviation?", "es": "Si la varianza es $9$, ¿cuál es la desviación típica?" },
+      "answer": "3",
+      "acceptedAlt": ["sqrt(9)"],
+      "hint": { "en": "Square root of the variance.", "es": "Raíz cuadrada de la varianza." },
+      "solution": [ { "tex": "\\sigma = \\sqrt{9} = 3", "en": "Standard deviation.", "es": "Desviación típica." } ]
+    },
+    {
+      "id": "stats-02-e3",
+      "answerType": "number",
+      "prompt": { "en": "Find the population variance of $\\{1, 3\\}$ (mean is 2).", "es": "Halla la varianza poblacional de $\\{1, 3\\}$ (la media es 2)." },
+      "answer": "1",
+      "acceptedAlt": ["((1)+(1))/2"],
+      "hint": { "en": "Average of squared deviations.", "es": "Promedio de las desviaciones al cuadrado." },
+      "solution": [ { "tex": "\\tfrac{(-1)^2+(1)^2}{2} = 1", "en": "Variance.", "es": "Varianza." } ]
+    },
+    {
+      "id": "stats-02-e4",
+      "answerType": "text",
+      "prompt": { "en": "Standard deviation is the square root of the ___. (one word)", "es": "La desviación típica es la raíz cuadrada de la ___. (una palabra)" },
+      "answer": "variance",
+      "acceptedAlt": ["varianza"],
+      "hint": { "en": "σ = √(σ²).", "es": "σ = √(σ²)." },
+      "solution": [ { "tex": "\\sigma = \\sqrt{\\sigma^2}", "en": "Variance.", "es": "Varianza." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, variance and standard deviation", "es": "Cap. 3, varianza y desviación típica" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Basic statistics for uncertainty", "es": "Estadística básica para la incertidumbre" } }
+  ]
+}

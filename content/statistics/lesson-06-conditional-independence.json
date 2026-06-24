@@ -1,0 +1,80 @@
+{
+  "id": "stats-06-conditional",
+  "subjectId": "statistics",
+  "order": 6,
+  "estimatedMinutes": 45,
+  "title": { "en": "Conditional Probability & Independence", "es": "Probabilidad condicional e independencia" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "New information changes the odds. **Conditional probability** $P(A\\mid B)$ is the probability of $A$ **given that** $B$ has occurred: $P(A\\mid B) = \\dfrac{P(A\\cap B)}{P(B)}$. Conditioning on $B$ shrinks the sample space to just the outcomes where $B$ is true.",
+        "es": "La nueva información cambia las probabilidades. La **probabilidad condicional** $P(A\\mid B)$ es la probabilidad de $A$ **dado que** ha ocurrido $B$: $P(A\\mid B) = \\dfrac{P(A\\cap B)}{P(B)}$. Condicionar a $B$ reduce el espacio muestral solo a los resultados donde $B$ es cierto."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two events are **independent** when knowing one tells you nothing about the other: $P(A\\mid B) = P(A)$, equivalently $P(A\\cap B) = P(A)\\cdot P(B)$. So for two independent events of probability $0.5$ each, the chance both happen is $0.5\\times 0.5 = 0.25$. Independence is the assumption that makes 'naive Bayes' classifiers naive — and fast.",
+        "es": "Dos sucesos son **independientes** cuando conocer uno no dice nada del otro: $P(A\\mid B) = P(A)$, equivalentemente $P(A\\cap B) = P(A)\\cdot P(B)$. Así, para dos sucesos independientes de probabilidad $0.5$ cada uno, la probabilidad de que ocurran ambos es $0.5\\times 0.5 = 0.25$. La independencia es la suposición que hace 'ingenuos' — y rápidos — a los clasificadores naive Bayes."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Conditional probability is the engine of reasoning under uncertainty, from medical diagnosis to spam filtering. It is also the gateway to **Bayes' theorem** (next lesson), which lets us reverse the conditioning — turning $P(\\text{symptom}\\mid\\text{disease})$ into the $P(\\text{disease}\\mid\\text{symptom})$ a doctor actually wants.",
+        "es": "La probabilidad condicional es el motor del razonamiento bajo incertidumbre, del diagnóstico médico al filtrado de spam. Es también la puerta al **teorema de Bayes** (próxima lección), que permite invertir el condicionamiento — convertir $P(\\text{síntoma}\\mid\\text{enfermedad})$ en el $P(\\text{enfermedad}\\mid\\text{síntoma})$ que un médico realmente quiere."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If $P(A\\cap B) = 0.2$ and $P(B) = 0.5$, then $P(A\\mid B) = \\tfrac{0.2}{0.5} = 0.4$. And if $A, B$ are independent with $P(A)=0.5$, $P(B)=0.4$, then $P(A\\cap B) = 0.5\\times 0.4 = 0.2$.",
+        "es": "Si $P(A\\cap B) = 0.2$ y $P(B) = 0.5$, entonces $P(A\\mid B) = \\tfrac{0.2}{0.5} = 0.4$. Y si $A, B$ son independientes con $P(A)=0.5$, $P(B)=0.4$, entonces $P(A\\cap B) = 0.5\\times 0.4 = 0.2$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-06-e1",
+      "answerType": "number",
+      "prompt": { "en": "If $P(A\\cap B)=0.2$ and $P(B)=0.5$, find $P(A\\mid B)$.", "es": "Si $P(A\\cap B)=0.2$ y $P(B)=0.5$, halla $P(A\\mid B)$." },
+      "answer": "0.4",
+      "acceptedAlt": ["0.2/0.5", "2/5"],
+      "hint": { "en": "Divide the joint by P(B).", "es": "Divide la conjunta entre P(B)." },
+      "solution": [ { "tex": "\\tfrac{0.2}{0.5} = 0.4", "en": "Conditional probability.", "es": "Probabilidad condicional." } ]
+    },
+    {
+      "id": "stats-06-e2",
+      "answerType": "number",
+      "prompt": { "en": "Independent events $P(A)=0.5$, $P(B)=0.4$. Find $P(A\\cap B)$.", "es": "Sucesos independientes $P(A)=0.5$, $P(B)=0.4$. Halla $P(A\\cap B)$." },
+      "answer": "0.2",
+      "acceptedAlt": ["0.5*0.4"],
+      "hint": { "en": "Multiply the two probabilities.", "es": "Multiplica las dos probabilidades." },
+      "solution": [ { "tex": "0.5\\times 0.4 = 0.2", "en": "Independence.", "es": "Independencia." } ]
+    },
+    {
+      "id": "stats-06-e3",
+      "answerType": "number",
+      "prompt": { "en": "Two independent events each have probability $0.5$. Find $P(\\text{both})$.", "es": "Dos sucesos independientes con probabilidad $0.5$ cada uno. Halla $P(\\text{ambos})$." },
+      "answer": "0.25",
+      "acceptedAlt": ["0.5*0.5", "1/4"],
+      "hint": { "en": "0.5 · 0.5.", "es": "0.5 · 0.5." },
+      "solution": [ { "tex": "0.5\\times 0.5 = 0.25", "en": "Both happen.", "es": "Ocurren ambos." } ]
+    },
+    {
+      "id": "stats-06-e4",
+      "answerType": "number",
+      "prompt": { "en": "If $P(A\\cap B)=0.1$ and $P(B)=0.2$, find $P(A\\mid B)$.", "es": "Si $P(A\\cap B)=0.1$ y $P(B)=0.2$, halla $P(A\\mid B)$." },
+      "answer": "0.5",
+      "acceptedAlt": ["0.1/0.2", "1/2"],
+      "hint": { "en": "Joint over P(B).", "es": "Conjunta entre P(B)." },
+      "solution": [ { "tex": "\\tfrac{0.1}{0.2} = 0.5", "en": "Conditional probability.", "es": "Probabilidad condicional." } ]
+    }
+  ],
+  "references": [
+    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Conditional probability and independence", "es": "Probabilidad condicional e independencia" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 12, independence", "es": "Cap. 12, independencia" } }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "stats-11-poisson",
+  "subjectId": "statistics",
+  "order": 11,
+  "estimatedMinutes": 35,
+  "title": { "en": "The Poisson Distribution", "es": "La distribución de Poisson" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **Poisson distribution** counts how many independent events happen in a fixed interval of time or space, when events occur at a constant average rate. Calls to a help desk per hour, typos per page, photons hitting a sensor — all are Poisson. It is governed by a single parameter $\\lambda$, the average number of events per interval.",
+        "es": "La distribución de **Poisson** cuenta cuántos sucesos independientes ocurren en un intervalo fijo de tiempo o espacio, cuando los sucesos ocurren a una tasa media constante. Llamadas a un centro de atención por hora, erratas por página, fotones que llegan a un sensor — todos son Poisson. La gobierna un único parámetro $\\lambda$, el número medio de sucesos por intervalo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Its probability of exactly $k$ events is $P(k) = \\dfrac{\\lambda^k e^{-\\lambda}}{k!}$. A striking feature: for the Poisson, the **mean and the variance are both equal to $\\lambda$**. This identity is a quick diagnostic — count data whose variance roughly equals its mean is plausibly Poisson.",
+        "es": "Su probabilidad de exactamente $k$ sucesos es $P(k) = \\dfrac{\\lambda^k e^{-\\lambda}}{k!}$. Un rasgo llamativo: para la Poisson, la **media y la varianza son ambas iguales a $\\lambda$**. Esta identidad es un diagnóstico rápido — datos de conteo cuya varianza es aproximadamente su media son plausiblemente Poisson."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The Poisson arises as the limit of a binomial with many trials ($n\\to\\infty$) and small success probability ($p\\to 0$) with $np = \\lambda$ fixed — the law of rare events. The probability of **zero** events is especially clean: $P(0) = e^{-\\lambda}$.",
+        "es": "La Poisson surge como límite de una binomial con muchos ensayos ($n\\to\\infty$) y probabilidad de éxito pequeña ($p\\to 0$) con $np = \\lambda$ fijo — la ley de los sucesos raros. La probabilidad de **cero** sucesos es especialmente limpia: $P(0) = e^{-\\lambda}$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A counter averages $\\lambda = 4$ events per minute. Its mean is $4$ and its variance is also $4$. For $\\lambda = 2$, the probability of zero events in an interval is $P(0) = e^{-2} \\approx 0.135$.",
+        "es": "Un contador promedia $\\lambda = 4$ sucesos por minuto. Su media es $4$ y su varianza también $4$. Para $\\lambda = 2$, la probabilidad de cero sucesos en un intervalo es $P(0) = e^{-2} \\approx 0.135$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-11-e1",
+      "answerType": "number",
+      "prompt": { "en": "A Poisson distribution has $\\lambda = 4$. What is its mean?", "es": "Una Poisson tiene $\\lambda = 4$. ¿Cuál es su media?" },
+      "answer": "4",
+      "acceptedAlt": [],
+      "hint": { "en": "Mean equals λ.", "es": "La media es λ." },
+      "solution": [ { "tex": "E[X] = \\lambda = 4", "en": "Mean.", "es": "Media." } ]
+    },
+    {
+      "id": "stats-11-e2",
+      "answerType": "number",
+      "prompt": { "en": "For a Poisson with $\\lambda = 4$, what is the variance?", "es": "Para una Poisson con $\\lambda = 4$, ¿cuál es la varianza?" },
+      "answer": "4",
+      "acceptedAlt": [],
+      "hint": { "en": "Variance equals λ too.", "es": "La varianza también es λ." },
+      "solution": [ { "tex": "\\text{Var}(X) = \\lambda = 4", "en": "Variance.", "es": "Varianza." } ]
+    },
+    {
+      "id": "stats-11-e3",
+      "answerType": "number",
+      "prompt": { "en": "For a Poisson with $\\lambda = 2$, find $P(0) = e^{-\\lambda}$.", "es": "Para una Poisson con $\\lambda = 2$, halla $P(0) = e^{-\\lambda}$." },
+      "answer": "e^(-2)",
+      "acceptedAlt": ["exp(-2)"],
+      "hint": { "en": "e to the minus lambda.", "es": "e elevado a menos lambda." },
+      "solution": [ { "tex": "P(0) = e^{-2} \\approx 0.135", "en": "Zero events.", "es": "Cero sucesos." } ]
+    },
+    {
+      "id": "stats-11-e4",
+      "answerType": "number",
+      "prompt": { "en": "For a Poisson with $\\lambda = 3$, what is the variance?", "es": "Para una Poisson con $\\lambda = 3$, ¿cuál es la varianza?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "Mean and variance both equal λ.", "es": "Media y varianza son ambas λ." },
+      "solution": [ { "tex": "\\text{Var}(X) = 3", "en": "Equals λ.", "es": "Igual a λ." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Common distributions: Poisson", "es": "Distribuciones comunes: Poisson" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, common probability distributions", "es": "Cap. 3, distribuciones de probabilidad comunes" } }
+  ]
+}

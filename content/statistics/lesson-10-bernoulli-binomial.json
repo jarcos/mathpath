@@ -1,0 +1,80 @@
+{
+  "id": "stats-10-bernoulli-binomial",
+  "subjectId": "statistics",
+  "order": 10,
+  "estimatedMinutes": 40,
+  "title": { "en": "Bernoulli & Binomial Distributions", "es": "Distribuciones de Bernoulli y binomial" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The simplest random variable is a single yes/no trial: the **Bernoulli** distribution, with probability $p$ of success and $1-p$ of failure. A coin flip, a click, a correct prediction — all are Bernoulli. Its mean is $p$ and its variance is $p(1-p)$ (largest at $p = 0.5$, where uncertainty peaks).",
+        "es": "La variable aleatoria más simple es un único ensayo sí/no: la distribución de **Bernoulli**, con probabilidad $p$ de éxito y $1-p$ de fracaso. Una moneda, un clic, una predicción correcta — todos son Bernoulli. Su media es $p$ y su varianza $p(1-p)$ (máxima en $p = 0.5$, donde la incertidumbre es mayor)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Repeat $n$ independent Bernoulli trials and count the successes: that count follows the **Binomial** distribution $B(n, p)$. Its probability of exactly $k$ successes is $\\binom{n}{k} p^k (1-p)^{n-k}$ — the combinations from the counting lesson meet probability. Its mean is $np$ and variance $np(1-p)$.",
+        "es": "Repite $n$ ensayos de Bernoulli independientes y cuenta los éxitos: ese recuento sigue la distribución **binomial** $B(n, p)$. Su probabilidad de exactamente $k$ éxitos es $\\binom{n}{k} p^k (1-p)^{n-k}$ — las combinaciones de la lección de conteo se encuentran con la probabilidad. Su media es $np$ y su varianza $np(1-p)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The binomial models anything that counts successes in fixed independent trials: defective items in a batch, heads in $n$ flips, conversions among $n$ visitors. The probability that **all** $n$ trials succeed is simply $p^n$ — the special case $k = n$.",
+        "es": "La binomial modela cualquier cosa que cuente éxitos en ensayos fijos e independientes: piezas defectuosas en un lote, caras en $n$ lanzamientos, conversiones entre $n$ visitantes. La probabilidad de que **todos** los $n$ ensayos tengan éxito es simplemente $p^n$ — el caso especial $k = n$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "For $B(10, 0.5)$ (ten fair coin flips): mean $= np = 10\\times 0.5 = 5$, variance $= np(1-p) = 10\\times 0.5\\times 0.5 = 2.5$. The probability of $3$ heads in $3$ flips ($p^n$ with $p=0.5$) is $0.5^3 = 0.125$.",
+        "es": "Para $B(10, 0.5)$ (diez lanzamientos justos): media $= np = 10\\times 0.5 = 5$, varianza $= np(1-p) = 10\\times 0.5\\times 0.5 = 2.5$. La probabilidad de $3$ caras en $3$ lanzamientos ($p^n$ con $p=0.5$) es $0.5^3 = 0.125$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "A Bernoulli variable has $p=0.3$. What is its mean?", "es": "Una variable de Bernoulli tiene $p=0.3$. ¿Cuál es su media?" },
+      "answer": "0.3",
+      "acceptedAlt": [],
+      "hint": { "en": "Mean of Bernoulli is p.", "es": "La media de Bernoulli es p." },
+      "solution": [ { "tex": "E[X] = p = 0.3", "en": "Mean.", "es": "Media." } ]
+    },
+    {
+      "id": "stats-10-e2",
+      "answerType": "number",
+      "prompt": { "en": "For $B(10, 0.5)$, find the mean $np$.", "es": "Para $B(10, 0.5)$, halla la media $np$." },
+      "answer": "5",
+      "acceptedAlt": ["10*0.5"],
+      "hint": { "en": "n times p.", "es": "n por p." },
+      "solution": [ { "tex": "10\\times 0.5 = 5", "en": "Mean.", "es": "Media." } ]
+    },
+    {
+      "id": "stats-10-e3",
+      "answerType": "number",
+      "prompt": { "en": "For $B(10, 0.5)$, find the variance $np(1-p)$.", "es": "Para $B(10, 0.5)$, halla la varianza $np(1-p)$." },
+      "answer": "2.5",
+      "acceptedAlt": ["10*0.5*0.5"],
+      "hint": { "en": "np(1−p).", "es": "np(1−p)." },
+      "solution": [ { "tex": "10\\cdot 0.5\\cdot 0.5 = 2.5", "en": "Variance.", "es": "Varianza." } ]
+    },
+    {
+      "id": "stats-10-e4",
+      "answerType": "number",
+      "prompt": { "en": "Probability all 3 of 3 trials succeed with $p=0.5$ (i.e. $p^3$)?", "es": "¿Probabilidad de que los 3 de 3 ensayos tengan éxito con $p=0.5$ (es decir $p^3$)?" },
+      "answer": "0.125",
+      "acceptedAlt": ["0.5^3", "1/8"],
+      "hint": { "en": "0.5 cubed.", "es": "0.5 al cubo." },
+      "solution": [ { "tex": "0.5^3 = 0.125", "en": "All succeed.", "es": "Todos con éxito." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, Bernoulli and multinoulli distributions", "es": "Cap. 3, distribuciones de Bernoulli y multinoulli" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Common probability distributions", "es": "Distribuciones de probabilidad comunes" } }
+  ]
+}

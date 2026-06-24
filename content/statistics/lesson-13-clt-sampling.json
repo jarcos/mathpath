@@ -1,0 +1,80 @@
+{
+  "id": "stats-13-clt",
+  "subjectId": "statistics",
+  "order": 13,
+  "estimatedMinutes": 40,
+  "title": { "en": "Central Limit Theorem & Sampling", "es": "Teorema central del límite y muestreo" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "We rarely measure a whole population; we take a **sample** and estimate. The key insight is that a **statistic** computed from a sample (like the sample mean) is itself random — take a different sample, get a slightly different value. The distribution of that statistic over all possible samples is its **sampling distribution**.",
+        "es": "Rara vez medimos una población entera; tomamos una **muestra** y estimamos. La idea clave es que un **estadístico** calculado de una muestra (como la media muestral) es a su vez aleatorio — toma otra muestra y obtienes un valor algo distinto. La distribución de ese estadístico sobre todas las muestras posibles es su **distribución muestral**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **Central Limit Theorem (CLT)** is one of the deepest results in all of statistics: the sampling distribution of the mean approaches a **normal** distribution as the sample size grows — *regardless of the shape of the original population*. This is why the normal curve is everywhere, and why averaging tames randomness.",
+        "es": "El **Teorema Central del Límite (TCL)** es uno de los resultados más profundos de toda la estadística: la distribución muestral de la media se aproxima a una **normal** cuando crece el tamaño de la muestra — *sea cual sea la forma de la población original*. Por eso la campana está en todas partes, y por eso promediar domestica la aleatoriedad."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The spread of the sample mean is the **standard error**, $\\text{SE} = \\dfrac{\\sigma}{\\sqrt{n}}$. Notice the $\\sqrt{n}$: as the sample size $n$ grows, the standard error **decreases**, so larger samples give more precise estimates — but with diminishing returns (you must quadruple $n$ to halve the error).",
+        "es": "La dispersión de la media muestral es el **error estándar**, $\\text{SE} = \\dfrac{\\sigma}{\\sqrt{n}}$. Observa el $\\sqrt{n}$: al crecer el tamaño $n$, el error estándar **disminuye**, así que muestras mayores dan estimaciones más precisas — pero con rendimientos decrecientes (debes cuadruplicar $n$ para reducir el error a la mitad)."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A population has $\\sigma = 10$. With a sample of $n = 100$, the standard error of the mean is $\\text{SE} = \\tfrac{10}{\\sqrt{100}} = \\tfrac{10}{10} = 1$. With $\\sigma = 4$ and $n = 16$, $\\text{SE} = \\tfrac{4}{4} = 1$.",
+        "es": "Una población tiene $\\sigma = 10$. Con una muestra de $n = 100$, el error estándar de la media es $\\text{SE} = \\tfrac{10}{\\sqrt{100}} = \\tfrac{10}{10} = 1$. Con $\\sigma = 4$ y $n = 16$, $\\text{SE} = \\tfrac{4}{4} = 1$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-13-e1",
+      "answerType": "text",
+      "prompt": { "en": "The CLT says the sample mean's distribution approaches a ___ distribution. (one word)", "es": "El TCL dice que la distribución de la media muestral se aproxima a una distribución ___. (una palabra)" },
+      "answer": "normal",
+      "acceptedAlt": ["gaussian", "gaussiana"],
+      "hint": { "en": "The bell curve.", "es": "La campana." },
+      "solution": [ { "tex": "\\to \\mathcal{N}", "en": "Normal.", "es": "Normal." } ]
+    },
+    {
+      "id": "stats-13-e2",
+      "answerType": "number",
+      "prompt": { "en": "Standard error with $\\sigma = 10$, $n = 100$: $\\sigma/\\sqrt{n}$?", "es": "Error estándar con $\\sigma = 10$, $n = 100$: $\\sigma/\\sqrt{n}$?" },
+      "answer": "1",
+      "acceptedAlt": ["10/sqrt(100)", "10/10"],
+      "hint": { "en": "10 / √100.", "es": "10 / √100." },
+      "solution": [ { "tex": "\\tfrac{10}{10} = 1", "en": "Standard error.", "es": "Error estándar." } ]
+    },
+    {
+      "id": "stats-13-e3",
+      "answerType": "text",
+      "prompt": { "en": "As sample size grows, the standard error ___ (increases / decreases).", "es": "Al crecer el tamaño muestral, el error estándar ___ (aumenta / disminuye)." },
+      "answer": "decreases",
+      "acceptedAlt": ["disminuye"],
+      "hint": { "en": "There is a √n in the denominator.", "es": "Hay un √n en el denominador." },
+      "solution": [ { "tex": "\\text{SE} = \\tfrac{\\sigma}{\\sqrt n}\\downarrow", "en": "Decreases.", "es": "Disminuye." } ]
+    },
+    {
+      "id": "stats-13-e4",
+      "answerType": "number",
+      "prompt": { "en": "Standard error with $\\sigma = 4$, $n = 16$?", "es": "Error estándar con $\\sigma = 4$, $n = 16$?" },
+      "answer": "1",
+      "acceptedAlt": ["4/sqrt(16)", "4/4"],
+      "hint": { "en": "4 / √16.", "es": "4 / √16." },
+      "solution": [ { "tex": "\\tfrac{4}{4} = 1", "en": "Standard error.", "es": "Error estándar." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Sampling and estimation", "es": "Muestreo y estimación" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3 & 5, estimators and sampling", "es": "Cap. 3 y 5, estimadores y muestreo" } }
+  ]
+}

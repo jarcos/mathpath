@@ -1,0 +1,80 @@
+{
+  "id": "stats-05-probability-basics",
+  "subjectId": "statistics",
+  "order": 5,
+  "estimatedMinutes": 40,
+  "title": { "en": "Probability Basics", "es": "Fundamentos de probabilidad" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Probability** quantifies uncertainty on a scale from $0$ (impossible) to $1$ (certain). The set of all possible outcomes is the **sample space** $\\Omega$; an **event** is a subset of it. For equally likely outcomes, $P(\\text{event}) = \\tfrac{\\text{favorable outcomes}}{\\text{total outcomes}}$.",
+        "es": "La **probabilidad** cuantifica la incertidumbre en una escala de $0$ (imposible) a $1$ (seguro). El conjunto de todos los resultados posibles es el **espacio muestral** $\\Omega$; un **suceso** es un subconjunto suyo. Para resultados equiprobables, $P(\\text{suceso}) = \\tfrac{\\text{casos favorables}}{\\text{casos totales}}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Three axioms (Kolmogorov) govern everything: probabilities are non-negative, the whole sample space has probability $1$, and the probability of mutually exclusive events adds. From these follow the rules: $P(\\text{not }A) = 1 - P(A)$, and for any two events $P(A\\cup B) = P(A) + P(B) - P(A\\cap B)$.",
+        "es": "Tres axiomas (Kolmogórov) lo gobiernan todo: las probabilidades son no negativas, todo el espacio muestral tiene probabilidad $1$, y la probabilidad de sucesos mutuamente excluyentes se suma. De ahí salen las reglas: $P(\\text{no }A) = 1 - P(A)$, y para dos sucesos cualesquiera $P(A\\cup B) = P(A) + P(B) - P(A\\cap B)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A fair six-sided die makes this concrete: the sample space is $\\{1,2,3,4,5,6\\}$. The event 'even' is $\\{2,4,6\\}$, so $P(\\text{even}) = \\tfrac{3}{6} = \\tfrac12$. An impossible event like 'roll a 7' has probability $0$; a certain event like 'roll ≤ 6' has probability $1$.",
+        "es": "Un dado justo de seis caras lo concreta: el espacio muestral es $\\{1,2,3,4,5,6\\}$. El suceso 'par' es $\\{2,4,6\\}$, así $P(\\text{par}) = \\tfrac{3}{6} = \\tfrac12$. Un suceso imposible como 'sacar un 7' tiene probabilidad $0$; uno seguro como 'sacar ≤ 6' tiene probabilidad $1$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Rolling a fair die, $P(\\text{even}) = \\tfrac{3}{6} = \\tfrac12$. Flipping a fair coin, $P(\\text{heads}) = \\tfrac12$. The probability of an impossible outcome is $0$; of a certain one, $1$ — every probability lives between these bounds.",
+        "es": "Al lanzar un dado justo, $P(\\text{par}) = \\tfrac{3}{6} = \\tfrac12$. Al lanzar una moneda justa, $P(\\text{cara}) = \\tfrac12$. La probabilidad de un resultado imposible es $0$; de uno seguro, $1$ — toda probabilidad vive entre estas cotas."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-05-e1",
+      "answerType": "number",
+      "prompt": { "en": "A fair die: what is $P(\\text{even})$?", "es": "Un dado justo: ¿cuánto es $P(\\text{par})$?" },
+      "answer": "1/2",
+      "acceptedAlt": ["3/6", "0.5"],
+      "hint": { "en": "3 even faces out of 6.", "es": "3 caras pares de 6." },
+      "solution": [ { "tex": "\\tfrac{3}{6} = \\tfrac12", "en": "Half.", "es": "Mitad." } ]
+    },
+    {
+      "id": "stats-05-e2",
+      "answerType": "number",
+      "prompt": { "en": "A fair coin: what is $P(\\text{heads})$?", "es": "Una moneda justa: ¿cuánto es $P(\\text{cara})$?" },
+      "answer": "1/2",
+      "acceptedAlt": ["0.5"],
+      "hint": { "en": "Two equally likely sides.", "es": "Dos caras equiprobables." },
+      "solution": [ { "tex": "P = \\tfrac12", "en": "Half.", "es": "Mitad." } ]
+    },
+    {
+      "id": "stats-05-e3",
+      "answerType": "number",
+      "prompt": { "en": "A fair die: what is $P(\\text{rolling a 7})$?", "es": "Un dado justo: ¿cuánto es $P(\\text{sacar un 7})$?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Impossible event.", "es": "Suceso imposible." },
+      "solution": [ { "tex": "P = 0", "en": "Impossible.", "es": "Imposible." } ]
+    },
+    {
+      "id": "stats-05-e4",
+      "answerType": "number",
+      "prompt": { "en": "What is the probability of a certain event?", "es": "¿Cuál es la probabilidad de un suceso seguro?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "It always happens.", "es": "Siempre ocurre." },
+      "solution": [ { "tex": "P = 1", "en": "Certain.", "es": "Seguro." } ]
+    }
+  ],
+  "references": [
+    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Axioms and the language of probability", "es": "Axiomas y el lenguaje de la probabilidad" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 12, quantifying uncertainty", "es": "Cap. 12, cuantificar la incertidumbre" } }
+  ]
+}

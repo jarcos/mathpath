@@ -1,0 +1,80 @@
+{
+  "id": "stats-12-normal",
+  "subjectId": "statistics",
+  "order": 12,
+  "estimatedMinutes": 40,
+  "title": { "en": "Continuous Distributions & the Normal", "es": "Distribuciones continuas y la normal" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "When a variable can take any value in a range (heights, temperatures, errors), it is **continuous**, described by a **probability density function**. For continuous variables, probability is **area under the curve**: $P(a \\le X \\le b)$ is the area between $a$ and $b$, and the total area is $1$. The probability of any single exact value is $0$.",
+        "es": "Cuando una variable puede tomar cualquier valor en un rango (alturas, temperaturas, errores), es **continua**, descrita por una **función de densidad de probabilidad**. Para variables continuas, la probabilidad es **área bajo la curva**: $P(a \\le X \\le b)$ es el área entre $a$ y $b$, y el área total es $1$. La probabilidad de un único valor exacto es $0$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The most important continuous distribution is the **normal** (Gaussian), the famous symmetric **bell curve**. It is defined by its mean $\\mu$ (center) and standard deviation $\\sigma$ (width). The **standard normal** has $\\mu = 0$ and $\\sigma = 1$; any normal can be converted to it by the **z-score** $z = \\tfrac{x - \\mu}{\\sigma}$.",
+        "es": "La distribución continua más importante es la **normal** (gaussiana), la famosa **campana** simétrica. Se define por su media $\\mu$ (centro) y su desviación típica $\\sigma$ (anchura). La **normal estándar** tiene $\\mu = 0$ y $\\sigma = 1$; cualquier normal se convierte a ella mediante la **puntuación z** $z = \\tfrac{x - \\mu}{\\sigma}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **empirical (68-95-99.7) rule** is worth memorizing: about $68\\%$ of a normal's data lies within $1$ standard deviation of the mean, about $95\\%$ within $2$, and about $99.7\\%$ within $3$. The normal appears everywhere — measurement error, exam scores, and (thanks to the next lesson) the average of almost anything.",
+        "es": "Conviene memorizar la **regla empírica (68-95-99.7)**: alrededor del $68\\%$ de los datos de una normal está a $1$ desviación típica de la media, alrededor del $95\\%$ a $2$, y alrededor del $99.7\\%$ a $3$. La normal aparece por todas partes — error de medición, notas de examen y (gracias a la próxima lección) el promedio de casi cualquier cosa."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The standard normal has mean $0$ and standard deviation $1$. By the empirical rule, about $95\\%$ of its values lie within $2$ standard deviations of the mean. A z-score of $z = \\tfrac{x-\\mu}{\\sigma}$ tells you how many standard deviations $x$ is from the mean.",
+        "es": "La normal estándar tiene media $0$ y desviación típica $1$. Por la regla empírica, alrededor del $95\\%$ de sus valores está a $2$ desviaciones típicas de la media. Una puntuación z $z = \\tfrac{x-\\mu}{\\sigma}$ dice a cuántas desviaciones típicas está $x$ de la media."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-12-e1",
+      "answerType": "number",
+      "prompt": { "en": "What is the mean of the standard normal distribution?", "es": "¿Cuál es la media de la normal estándar?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "It is centered at zero.", "es": "Está centrada en cero." },
+      "solution": [ { "tex": "\\mu = 0", "en": "Mean zero.", "es": "Media cero." } ]
+    },
+    {
+      "id": "stats-12-e2",
+      "answerType": "number",
+      "prompt": { "en": "What is the standard deviation of the standard normal?", "es": "¿Cuál es la desviación típica de la normal estándar?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "Unit width.", "es": "Anchura unidad." },
+      "solution": [ { "tex": "\\sigma = 1", "en": "Standard deviation 1.", "es": "Desviación típica 1." } ]
+    },
+    {
+      "id": "stats-12-e3",
+      "answerType": "text",
+      "prompt": { "en": "The normal distribution graph is called a ___ curve. (one word)", "es": "La gráfica de la normal se llama curva de ___. (una palabra)" },
+      "answer": "bell",
+      "acceptedAlt": ["campana", "gaussian", "gaussiana"],
+      "hint": { "en": "Its symmetric shape.", "es": "Su forma simétrica." },
+      "solution": [ { "tex": "\\text{bell curve}", "en": "Bell curve.", "es": "Campana." } ]
+    },
+    {
+      "id": "stats-12-e4",
+      "answerType": "number",
+      "prompt": { "en": "By the empirical rule, about what percent of data is within 2 standard deviations? (number only)", "es": "Por la regla empírica, ¿qué porcentaje aprox. de los datos está a 2 desviaciones típicas? (solo el número)" },
+      "answer": "95",
+      "acceptedAlt": [],
+      "hint": { "en": "68-95-99.7 rule.", "es": "Regla 68-95-99.7." },
+      "solution": [ { "tex": "\\approx 95\\%", "en": "Within 2σ.", "es": "Dentro de 2σ." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, the Gaussian distribution", "es": "Cap. 3, la distribución gaussiana" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Continuous distributions", "es": "Distribuciones continuas" } }
+  ]
+}

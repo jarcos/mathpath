@@ -1,0 +1,80 @@
+{
+  "id": "stats-08-random-variables",
+  "subjectId": "statistics",
+  "order": 8,
+  "estimatedMinutes": 40,
+  "title": { "en": "Random Variables & Expectation", "es": "Variables aleatorias y esperanza" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **random variable** $X$ assigns a number to each outcome of a random experiment — the result of a die roll, tomorrow's temperature, a model's prediction error. It turns messy outcomes into numbers we can average, add, and analyze.",
+        "es": "Una **variable aleatoria** $X$ asigna un número a cada resultado de un experimento aleatorio — el resultado de un dado, la temperatura de mañana, el error de predicción de un modelo. Convierte resultados dispares en números que podemos promediar, sumar y analizar."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **expectation** (or expected value, mean) $E[X]$ is the long-run average, weighting each value by its probability: $E[X] = \\sum x_i\\, P(x_i)$. It is the 'center of mass' of the distribution. For a fair die, $E[X] = \\tfrac{1+2+3+4+5+6}{6} = 3.5$ — a value the die can never actually show, yet the average of many rolls.",
+        "es": "La **esperanza** (o valor esperado, media) $E[X]$ es el promedio a largo plazo, ponderando cada valor por su probabilidad: $E[X] = \\sum x_i\\, P(x_i)$. Es el 'centro de masas' de la distribución. Para un dado justo, $E[X] = \\tfrac{1+2+3+4+5+6}{6} = 3.5$ — un valor que el dado nunca muestra, pero el promedio de muchas tiradas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Expectation is **linear**, which makes it wonderfully easy to work with: $E[aX + b] = a\\,E[X] + b$, and $E[X + Y] = E[X] + E[Y]$ even when $X$ and $Y$ are dependent. This linearity is used constantly in analyzing algorithms and the expected loss of machine-learning models.",
+        "es": "La esperanza es **lineal**, lo que la hace maravillosamente fácil de manejar: $E[aX + b] = a\\,E[X] + b$, y $E[X + Y] = E[X] + E[Y]$ incluso cuando $X$ e $Y$ son dependientes. Esta linealidad se usa constantemente al analizar algoritmos y la pérdida esperada de los modelos de aprendizaje automático."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Fair die: $E[X] = \\tfrac{21}{6} = 3.5$. A variable taking values $0$ and $1$ with probability $0.5$ each has $E[X] = 0\\cdot 0.5 + 1\\cdot 0.5 = 0.5$. By linearity, if $E[X] = 3$ then $E[2X] = 6$.",
+        "es": "Dado justo: $E[X] = \\tfrac{21}{6} = 3.5$. Una variable que toma valores $0$ y $1$ con probabilidad $0.5$ cada uno tiene $E[X] = 0\\cdot 0.5 + 1\\cdot 0.5 = 0.5$. Por linealidad, si $E[X] = 3$ entonces $E[2X] = 6$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "stats-08-e1",
+      "answerType": "number",
+      "prompt": { "en": "Find $E[X]$ for a fair six-sided die.", "es": "Halla $E[X]$ para un dado justo de seis caras." },
+      "answer": "3.5",
+      "acceptedAlt": ["(1+2+3+4+5+6)/6", "21/6"],
+      "hint": { "en": "Average of 1..6.", "es": "Promedio de 1..6." },
+      "solution": [ { "tex": "\\tfrac{21}{6} = 3.5", "en": "Expectation.", "es": "Esperanza." } ]
+    },
+    {
+      "id": "stats-08-e2",
+      "answerType": "number",
+      "prompt": { "en": "$X$ takes values 0 and 1 with probability 0.5 each. Find $E[X]$.", "es": "$X$ toma valores 0 y 1 con probabilidad 0.5 cada uno. Halla $E[X]$." },
+      "answer": "0.5",
+      "acceptedAlt": ["0*0.5+1*0.5"],
+      "hint": { "en": "Weight values by probability.", "es": "Pondera los valores por la probabilidad." },
+      "solution": [ { "tex": "0(0.5)+1(0.5)=0.5", "en": "Expectation.", "es": "Esperanza." } ]
+    },
+    {
+      "id": "stats-08-e3",
+      "answerType": "number",
+      "prompt": { "en": "What is $E[5]$ (the expectation of the constant 5)?", "es": "¿Cuánto es $E[5]$ (la esperanza de la constante 5)?" },
+      "answer": "5",
+      "acceptedAlt": [],
+      "hint": { "en": "A constant equals its own average.", "es": "Una constante es su propio promedio." },
+      "solution": [ { "tex": "E[c] = c", "en": "Equals 5.", "es": "Igual a 5." } ]
+    },
+    {
+      "id": "stats-08-e4",
+      "answerType": "number",
+      "prompt": { "en": "If $E[X]=3$, find $E[2X]$ (linearity).", "es": "Si $E[X]=3$, halla $E[2X]$ (linealidad)." },
+      "answer": "6",
+      "acceptedAlt": ["2*3"],
+      "hint": { "en": "E[2X] = 2E[X].", "es": "E[2X] = 2E[X]." },
+      "solution": [ { "tex": "2\\cdot 3 = 6", "en": "Linearity.", "es": "Linealidad." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, random variables and expectation", "es": "Cap. 3, variables aleatorias y esperanza" } },
+    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Random variables", "es": "Variables aleatorias" } }
+  ]
+}

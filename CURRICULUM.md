@@ -155,7 +155,7 @@ The `sources/Foundations/` corpus turns the old placeholder ML track into a real
 
 | # | Subject · id | Lessons | Primary sources |
 |---|--------------|---------|-----------------|
-| 6 | ⚪ **Statistics & Probability** · `statistics` | ~16 | Pearl *Probabilistic Reasoning* (1988); general stats |
+| 6 | 🟢 **Statistics & Probability** · `statistics` **(DONE — 16 lessons)** | 16 | Pearl *Probabilistic Reasoning* (1988); AIMA; Goodfellow ch. 3 |
 | 7 | ⚪ **Machine Learning Foundations** · `ml-foundations` | ~18 | Russell & Norvig *AIMA* (1995); Goodfellow Part II |
 | 8 | ⚪ **Neural Networks** · `neural-networks` | ~16 | Rumelhart & McClelland *PDP* (1986); Goodfellow ch. 6 |
 | 9 | ⚪ **Deep Learning** · `deep-learning` | ~18 | Goodfellow, Bengio, Courville *Deep Learning* (2016) |
