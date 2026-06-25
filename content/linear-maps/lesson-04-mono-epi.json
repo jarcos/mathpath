@@ -3,7 +3,10 @@
   "subjectId": "linear-maps",
   "order": 4,
   "estimatedMinutes": 40,
-  "title": { "en": "Monomorphisms & Epimorphisms", "es": "Monomorfismos y epimorfismos" },
+  "title": {
+    "en": "Monomorphisms & Epimorphisms",
+    "es": "Monomorfismos y epimorfismos"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Is $T:\\mathbb{R}^2\\to\\mathbb{R}^2$ given by $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ an isomorphism? Its determinant is $-2 \\neq 0$, so yes — it is injective, surjective, and invertible all at once. Its kernel is just $\\{\\mathbf{0}\\}$, so nullity $= 0$.",
         "es": "¿Es $T:\\mathbb{R}^2\\to\\mathbb{R}^2$ dada por $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ un isomorfismo? Su determinante es $-2 \\neq 0$, así que sí — es inyectiva, suprayectiva e invertible a la vez. Su núcleo es solo $\\{\\mathbf{0}\\}$, así la nulidad $= 0$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# injective (mono) iff full column rank (trivial kernel)\nA = np.array([[1, 0], [0, 1], [1, 1]])\nprint(np.linalg.matrix_rank(A))",
+        "es": "import numpy as np\n# inyectivo (mono) sii rango completo por columnas (nucleo trivial)\nA = np.array([[1, 0], [0, 1], [1, 1]])\nprint(np.linalg.matrix_rank(A))"
+      },
+      "expectedOutput": "2",
+      "caption": {
+        "en": "Full column rank (2 of 2) means the map is injective.",
+        "es": "Rango completo por columnas (2 de 2) significa que el mapa es inyectivo."
       }
     }
   ],
@@ -39,42 +61,105 @@
     {
       "id": "linmaps-04-e1",
       "answerType": "number",
-      "prompt": { "en": "A linear map is injective iff its kernel is just the zero vector, i.e. nullity equals?", "es": "Una aplicación lineal es inyectiva si su núcleo es solo el vector cero, es decir, la nulidad vale?" },
+      "prompt": {
+        "en": "A linear map is injective iff its kernel is just the zero vector, i.e. nullity equals?",
+        "es": "Una aplicación lineal es inyectiva si su núcleo es solo el vector cero, es decir, la nulidad vale?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Trivial kernel.", "es": "Núcleo trivial." },
-      "solution": [ { "tex": "\\ker T = \\{\\mathbf{0}\\}", "en": "Nullity 0.", "es": "Nulidad 0." } ]
+      "hint": {
+        "en": "Trivial kernel.",
+        "es": "Núcleo trivial."
+      },
+      "solution": [
+        {
+          "tex": "\\ker T = \\{\\mathbf{0}\\}",
+          "en": "Nullity 0.",
+          "es": "Nulidad 0."
+        }
+      ]
     },
     {
       "id": "linmaps-04-e2",
       "answerType": "text",
-      "prompt": { "en": "If rank = dimension of the codomain, is the map surjective? (yes / no)", "es": "Si rango = dimensión del codominio, ¿es suprayectiva? (sí / no)" },
+      "prompt": {
+        "en": "If rank = dimension of the codomain, is the map surjective? (yes / no)",
+        "es": "Si rango = dimensión del codominio, ¿es suprayectiva? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Image fills the codomain.", "es": "La imagen llena el codominio." },
-      "solution": [ { "tex": "\\text{im }T = \\text{codomain}", "en": "Surjective.", "es": "Suprayectiva." } ]
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Image fills the codomain.",
+        "es": "La imagen llena el codominio."
+      },
+      "solution": [
+        {
+          "tex": "\\text{im }T = \\text{codomain}",
+          "en": "Surjective.",
+          "es": "Suprayectiva."
+        }
+      ]
     },
     {
       "id": "linmaps-04-e3",
       "answerType": "number",
-      "prompt": { "en": "For an injective $T:\\mathbb{R}^2\\to\\mathbb{R}^2$, what is the nullity?", "es": "Para una $T:\\mathbb{R}^2\\to\\mathbb{R}^2$ inyectiva, ¿cuál es la nulidad?" },
+      "prompt": {
+        "en": "For an injective $T:\\mathbb{R}^2\\to\\mathbb{R}^2$, what is the nullity?",
+        "es": "Para una $T:\\mathbb{R}^2\\to\\mathbb{R}^2$ inyectiva, ¿cuál es la nulidad?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Injective ⇒ trivial kernel.", "es": "Inyectiva ⇒ núcleo trivial." },
-      "solution": [ { "tex": "\\text{nullity} = 0", "en": "Trivial kernel.", "es": "Núcleo trivial." } ]
+      "hint": {
+        "en": "Injective ⇒ trivial kernel.",
+        "es": "Inyectiva ⇒ núcleo trivial."
+      },
+      "solution": [
+        {
+          "tex": "\\text{nullity} = 0",
+          "en": "Trivial kernel.",
+          "es": "Núcleo trivial."
+        }
+      ]
     },
     {
       "id": "linmaps-04-e4",
       "answerType": "number",
-      "prompt": { "en": "A square matrix gives an isomorphism iff its determinant differs from ___?", "es": "Una matriz cuadrada da un isomorfismo si su determinante es distinto de ___?" },
+      "prompt": {
+        "en": "A square matrix gives an isomorphism iff its determinant differs from ___?",
+        "es": "Una matriz cuadrada da un isomorfismo si su determinante es distinto de ___?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Invertibility condition.", "es": "Condición de invertibilidad." },
-      "solution": [ { "tex": "\\det A \\neq 0", "en": "Nonzero determinant.", "es": "Determinante no nulo." } ]
+      "hint": {
+        "en": "Invertibility condition.",
+        "es": "Condición de invertibilidad."
+      },
+      "solution": [
+        {
+          "tex": "\\det A \\neq 0",
+          "en": "Nonzero determinant.",
+          "es": "Determinante no nulo."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Monomorphisms and epimorphisms", "es": "Monomorfismos y epimorfismos" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 8, invertible transformations", "es": "Cap. 8, transformaciones invertibles" } }
+    {
+      "source": "UOC — Aplicaciones lineales (PID_00269006)",
+      "detail": {
+        "en": "Monomorphisms and epimorphisms",
+        "es": "Monomorfismos y epimorfismos"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 8, invertible transformations",
+        "es": "Cap. 8, transformaciones invertibles"
+      }
+    }
   ]
 }

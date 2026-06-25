@@ -3,13 +3,26 @@
   "subjectId": "linear-maps",
   "order": 9,
   "estimatedMinutes": 40,
-  "title": { "en": "Dynamical Systems (Case Study)", "es": "Sistemas dinámicos (caso de estudio)" },
+  "title": {
+    "en": "Dynamical Systems (Case Study)",
+    "es": "Sistemas dinámicos (caso de estudio)"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A **discrete linear dynamical system** evolves by repeatedly applying a matrix: $\\mathbf{x}_{k+1} = A\\,\\mathbf{x}_k$, so $\\mathbf{x}_k = A^k \\mathbf{x}_0$. This models population growth, the spread of information, economic input-output (Leontief) models, and the iterations of PageRank. Diagonalization is the tool that predicts the long-run outcome.",
         "es": "Un **sistema dinámico lineal discreto** evoluciona aplicando repetidamente una matriz: $\\mathbf{x}_{k+1} = A\\,\\mathbf{x}_k$, así $\\mathbf{x}_k = A^k \\mathbf{x}_0$. Modela crecimiento de poblaciones, difusión de información, modelos económicos de entrada-salida (Leontief) y las iteraciones del PageRank. La diagonalización es la herramienta que predice el resultado a largo plazo."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linmaps-08-powers"
+      ],
+      "note": {
+        "en": "Dynamical systems iterate matrix powers.",
+        "es": "Los sistemas dinamicos iteran potencias de matrices."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "The system $x_{k+1} = 2x_k$ with $x_0 = 1$: $x_1 = 2$, $x_2 = 4$, $x_3 = 8$. After three steps the value is $8 = 2^3$. Because the eigenvalue $2 > 1$, the system grows without bound.",
         "es": "El sistema $x_{k+1} = 2x_k$ con $x_0 = 1$: $x_1 = 2$, $x_2 = 4$, $x_3 = 8$. Tras tres pasos el valor es $8 = 2^3$. Como el autovalor $2 > 1$, el sistema crece sin límite."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# Fibonacci as a dynamical system: state evolves by repeated A\nA = np.array([[1, 1], [1, 0]])\nprint((np.linalg.matrix_power(A, 10) @ np.array([1, 0])).tolist())",
+        "es": "import numpy as np\n# Fibonacci como sistema dinamico: el estado evoluciona aplicando A\nA = np.array([[1, 1], [1, 0]])\nprint((np.linalg.matrix_power(A, 10) @ np.array([1, 0])).tolist())"
+      },
+      "expectedOutput": "[89, 55]",
+      "caption": {
+        "en": "Iterating a matrix models a discrete dynamical system.",
+        "es": "Iterar una matriz modela un sistema dinamico discreto."
       }
     }
   ],
@@ -39,42 +71,104 @@
     {
       "id": "linmaps-09-e1",
       "answerType": "number",
-      "prompt": { "en": "If the dominant eigenvalue is $0.5$ ($<1$), the system decays to which value?", "es": "Si el autovalor dominante es $0.5$ ($<1$), ¿a qué valor decae el sistema?" },
+      "prompt": {
+        "en": "If the dominant eigenvalue is $0.5$ ($<1$), the system decays to which value?",
+        "es": "Si el autovalor dominante es $0.5$ ($<1$), ¿a qué valor decae el sistema?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "|λ| < 1 means decay.", "es": "|λ| < 1 significa decaimiento." },
-      "solution": [ { "tex": "0.5^k \\to 0", "en": "Decays to zero.", "es": "Decae a cero." } ]
+      "hint": {
+        "en": "|λ| < 1 means decay.",
+        "es": "|λ| < 1 significa decaimiento."
+      },
+      "solution": [
+        {
+          "tex": "0.5^k \\to 0",
+          "en": "Decays to zero.",
+          "es": "Decae a cero."
+        }
+      ]
     },
     {
       "id": "linmaps-09-e2",
       "answerType": "number",
-      "prompt": { "en": "For $x_{k+1}=2x_k$ with $x_0=1$, find $x_3$.", "es": "Para $x_{k+1}=2x_k$ con $x_0=1$, halla $x_3$." },
+      "prompt": {
+        "en": "For $x_{k+1}=2x_k$ with $x_0=1$, find $x_3$.",
+        "es": "Para $x_{k+1}=2x_k$ con $x_0=1$, halla $x_3$."
+      },
       "answer": "8",
-      "acceptedAlt": ["2^3"],
-      "hint": { "en": "Double three times.", "es": "Duplica tres veces." },
-      "solution": [ { "tex": "x_3 = 2^3 = 8", "en": "Growth.", "es": "Crecimiento." } ]
+      "acceptedAlt": [
+        "2^3"
+      ],
+      "hint": {
+        "en": "Double three times.",
+        "es": "Duplica tres veces."
+      },
+      "solution": [
+        {
+          "tex": "x_3 = 2^3 = 8",
+          "en": "Growth.",
+          "es": "Crecimiento."
+        }
+      ]
     },
     {
       "id": "linmaps-09-e3",
       "answerType": "number",
-      "prompt": { "en": "A steady state requires the dominant eigenvalue to equal which value?", "es": "Un estado estacionario requiere que el autovalor dominante valga qué valor?" },
+      "prompt": {
+        "en": "A steady state requires the dominant eigenvalue to equal which value?",
+        "es": "Un estado estacionario requiere que el autovalor dominante valga qué valor?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "Neither growth nor decay.", "es": "Ni crecimiento ni decaimiento." },
-      "solution": [ { "tex": "|\\lambda| = 1", "en": "Steady state.", "es": "Estado estacionario." } ]
+      "hint": {
+        "en": "Neither growth nor decay.",
+        "es": "Ni crecimiento ni decaimiento."
+      },
+      "solution": [
+        {
+          "tex": "|\\lambda| = 1",
+          "en": "Steady state.",
+          "es": "Estado estacionario."
+        }
+      ]
     },
     {
       "id": "linmaps-09-e4",
       "answerType": "number",
-      "prompt": { "en": "For $x_{k+1}=2x_k$, multiplying by which factor advances one step?", "es": "Para $x_{k+1}=2x_k$, ¿por qué factor se multiplica para avanzar un paso?" },
+      "prompt": {
+        "en": "For $x_{k+1}=2x_k$, multiplying by which factor advances one step?",
+        "es": "Para $x_{k+1}=2x_k$, ¿por qué factor se multiplica para avanzar un paso?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "The eigenvalue.", "es": "El autovalor." },
-      "solution": [ { "tex": "x_{k+1} = 2x_k", "en": "Factor 2.", "es": "Factor 2." } ]
+      "hint": {
+        "en": "The eigenvalue.",
+        "es": "El autovalor."
+      },
+      "solution": [
+        {
+          "tex": "x_{k+1} = 2x_k",
+          "en": "Factor 2.",
+          "es": "Factor 2."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Application to dynamical systems (case study)", "es": "Aplicación al estudio de sistemas dinámicos (caso)" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 6.2 & 10.3, difference equations and Markov matrices", "es": "Cap. 6.2 y 10.3, ecuaciones en diferencias y matrices de Markov" } }
+    {
+      "source": "UOC — Aplicaciones lineales (PID_00269006)",
+      "detail": {
+        "en": "Application to dynamical systems (case study)",
+        "es": "Aplicación al estudio de sistemas dinámicos (caso)"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 6.2 & 10.3, difference equations and Markov matrices",
+        "es": "Cap. 6.2 y 10.3, ecuaciones en diferencias y matrices de Markov"
+      }
+    }
   ]
 }

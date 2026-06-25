@@ -3,13 +3,27 @@
   "subjectId": "neural-networks",
   "order": 7,
   "estimatedMinutes": 35,
-  "title": { "en": "Forward Propagation", "es": "Propagación hacia delante" },
+  "title": {
+    "en": "Forward Propagation",
+    "es": "Propagación hacia delante"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "**Forward propagation** is how a network turns an input into a prediction: feed the input through each layer in turn, computing weighted sum then activation, until the output layer. Layer by layer, $\\mathbf{a}^{(l)} = \\phi(W^{(l)}\\mathbf{a}^{(l-1)} + \\mathbf{b}^{(l)})$, with the input as $\\mathbf{a}^{(0)}$.",
         "es": "La **propagación hacia delante** es cómo una red convierte una entrada en una predicción: pasa la entrada por cada capa por turno, calculando suma ponderada y luego activación, hasta la capa de salida. Capa a capa, $\\mathbf{a}^{(l)} = \\phi(W^{(l)}\\mathbf{a}^{(l-1)} + \\mathbf{b}^{(l)})$, con la entrada como $\\mathbf{a}^{(0)}$."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "nn-03-weighted-sum",
+        "nn-04-activation"
+      ],
+      "note": {
+        "en": "Forward propagation combines the weighted sum and activation.",
+        "es": "La propagacion combina la suma ponderada y la activacion."
       }
     },
     {
@@ -28,10 +42,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Tiny 2-layer net: hidden neuron $h = \\text{ReLU}(2\\cdot 1) = 2$; output $= 3\\cdot h = 6$. A single ReLU neuron with $\\mathbf{w}=[1,1]$, $\\mathbf{x}=[2,3]$, $b=0$: $\\text{ReLU}(2+3) = \\text{ReLU}(5) = 5$.",
         "es": "Red diminuta de 2 capas: neurona oculta $h = \\text{ReLU}(2\\cdot 1) = 2$; salida $= 3\\cdot h = 6$. Una sola neurona ReLU con $\\mathbf{w}=[1,1]$, $\\mathbf{x}=[2,3]$, $b=0$: $\\text{ReLU}(2+3) = \\text{ReLU}(5) = 5$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\ndef sigmoid(z): return 1 / (1 + np.exp(-z))\nx = np.array([1.0, 2.0])\nW = np.array([[0.5, 0.5], [1.0, -1.0]]); b = np.array([0, 1])\n# forward pass: linear step, then activation\nprint(np.round(sigmoid(W @ x + b), 4).tolist())",
+        "es": "import numpy as np\ndef sigmoid(z): return 1 / (1 + np.exp(-z))\nx = np.array([1.0, 2.0])\nW = np.array([[0.5, 0.5], [1.0, -1.0]]); b = np.array([0, 1])\n# paso hacia adelante: parte lineal, luego activacion\nprint(np.round(sigmoid(W @ x + b), 4).tolist())"
+      },
+      "expectedOutput": "[0.8176, 0.5]",
+      "caption": {
+        "en": "Forward propagation is matrix multiply then activation.",
+        "es": "La propagacion hacia adelante es multiplicar matrices y luego activar."
       }
     }
   ],
@@ -39,42 +72,112 @@
     {
       "id": "nn-07-e1",
       "answerType": "text",
-      "prompt": { "en": "Computing outputs from inputs layer by layer is ___ propagation. (one word)", "es": "Calcular las salidas desde las entradas capa a capa es propagación hacia ___. (una palabra)" },
+      "prompt": {
+        "en": "Computing outputs from inputs layer by layer is ___ propagation. (one word)",
+        "es": "Calcular las salidas desde las entradas capa a capa es propagación hacia ___. (una palabra)"
+      },
       "answer": "forward",
-      "acceptedAlt": ["delante", "hacia delante", "adelante"],
-      "hint": { "en": "Opposite of backward.", "es": "Opuesto de hacia atrás." },
-      "solution": [ { "tex": "\\mathbf{a}^{(l)} = \\phi(W\\mathbf{a}^{(l-1)}+b)", "en": "Forward.", "es": "Hacia delante." } ]
+      "acceptedAlt": [
+        "delante",
+        "hacia delante",
+        "adelante"
+      ],
+      "hint": {
+        "en": "Opposite of backward.",
+        "es": "Opuesto de hacia atrás."
+      },
+      "solution": [
+        {
+          "tex": "\\mathbf{a}^{(l)} = \\phi(W\\mathbf{a}^{(l-1)}+b)",
+          "en": "Forward.",
+          "es": "Hacia delante."
+        }
+      ]
     },
     {
       "id": "nn-07-e2",
       "answerType": "number",
-      "prompt": { "en": "ReLU neuron, $\\mathbf{w}=[1,1]$, $\\mathbf{x}=[2,3]$, $b=0$: output $\\text{ReLU}(\\mathbf{w}\\cdot\\mathbf{x}+b)$?", "es": "Neurona ReLU, $\\mathbf{w}=[1,1]$, $\\mathbf{x}=[2,3]$, $b=0$: salida $\\text{ReLU}(\\mathbf{w}\\cdot\\mathbf{x}+b)$?" },
+      "prompt": {
+        "en": "ReLU neuron, $\\mathbf{w}=[1,1]$, $\\mathbf{x}=[2,3]$, $b=0$: output $\\text{ReLU}(\\mathbf{w}\\cdot\\mathbf{x}+b)$?",
+        "es": "Neurona ReLU, $\\mathbf{w}=[1,1]$, $\\mathbf{x}=[2,3]$, $b=0$: salida $\\text{ReLU}(\\mathbf{w}\\cdot\\mathbf{x}+b)$?"
+      },
       "answer": "5",
-      "acceptedAlt": ["max(0,5)"],
-      "hint": { "en": "ReLU(2+3).", "es": "ReLU(2+3)." },
-      "solution": [ { "tex": "\\text{ReLU}(5)=5", "en": "Output.", "es": "Salida." } ]
+      "acceptedAlt": [
+        "max(0,5)"
+      ],
+      "hint": {
+        "en": "ReLU(2+3).",
+        "es": "ReLU(2+3)."
+      },
+      "solution": [
+        {
+          "tex": "\\text{ReLU}(5)=5",
+          "en": "Output.",
+          "es": "Salida."
+        }
+      ]
     },
     {
       "id": "nn-07-e3",
       "answerType": "number",
-      "prompt": { "en": "Hidden $h=\\text{ReLU}(2\\cdot1)=2$, output $=3h$. What is the output?", "es": "Oculta $h=\\text{ReLU}(2\\cdot1)=2$, salida $=3h$. ¿Cuál es la salida?" },
+      "prompt": {
+        "en": "Hidden $h=\\text{ReLU}(2\\cdot1)=2$, output $=3h$. What is the output?",
+        "es": "Oculta $h=\\text{ReLU}(2\\cdot1)=2$, salida $=3h$. ¿Cuál es la salida?"
+      },
       "answer": "6",
-      "acceptedAlt": ["3*2"],
-      "hint": { "en": "3 · 2.", "es": "3 · 2." },
-      "solution": [ { "tex": "3\\cdot 2 = 6", "en": "Output.", "es": "Salida." } ]
+      "acceptedAlt": [
+        "3*2"
+      ],
+      "hint": {
+        "en": "3 · 2.",
+        "es": "3 · 2."
+      },
+      "solution": [
+        {
+          "tex": "3\\cdot 2 = 6",
+          "en": "Output.",
+          "es": "Salida."
+        }
+      ]
     },
     {
       "id": "nn-07-e4",
       "answerType": "number",
-      "prompt": { "en": "Linear output neuron $w=2$, $b=1$, input $3$: $wx+b$?", "es": "Neurona de salida lineal $w=2$, $b=1$, entrada $3$: $wx+b$?" },
+      "prompt": {
+        "en": "Linear output neuron $w=2$, $b=1$, input $3$: $wx+b$?",
+        "es": "Neurona de salida lineal $w=2$, $b=1$, entrada $3$: $wx+b$?"
+      },
       "answer": "7",
-      "acceptedAlt": ["2*3+1"],
-      "hint": { "en": "2·3+1.", "es": "2·3+1." },
-      "solution": [ { "tex": "2\\cdot3+1=7", "en": "Output.", "es": "Salida." } ]
+      "acceptedAlt": [
+        "2*3+1"
+      ],
+      "hint": {
+        "en": "2·3+1.",
+        "es": "2·3+1."
+      },
+      "solution": [
+        {
+          "tex": "2\\cdot3+1=7",
+          "en": "Output.",
+          "es": "Salida."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.5, forward propagation", "es": "Cap. 6.5, propagación hacia delante" } },
-    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Spreading activation forward", "es": "Propagación de la activación hacia delante" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 6.5, forward propagation",
+        "es": "Cap. 6.5, propagación hacia delante"
+      }
+    },
+    {
+      "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)",
+      "detail": {
+        "en": "Spreading activation forward",
+        "es": "Propagación de la activación hacia delante"
+      }
+    }
   ]
 }

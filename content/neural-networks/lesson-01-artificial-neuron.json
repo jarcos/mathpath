@@ -3,7 +3,10 @@
   "subjectId": "neural-networks",
   "order": 1,
   "estimatedMinutes": 35,
-  "title": { "en": "The Artificial Neuron", "es": "La neurona artificial" },
+  "title": {
+    "en": "The Artificial Neuron",
+    "es": "La neurona artificial"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A neuron with a step activation (output $1$ if $z > 0$, else $0$) and $z = 2$ outputs $1$. Each neuron carries exactly $1$ bias term. The weighted connections are scaled by the **weights**.",
         "es": "Una neurona con activación escalón (salida $1$ si $z > 0$, si no $0$) y $z = 2$ da $1$. Cada neurona lleva exactamente $1$ término de sesgo. Las conexiones ponderadas se escalan por los **pesos**."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# a neuron computes activation(w . x + b); here just the weighted sum + bias\nw = np.array([0.5, -0.5]); x = np.array([2, 1]); b = 0.1\nprint(round(float(w @ x + b), 2))",
+        "es": "import numpy as np\n# una neurona calcula activacion(w . x + b); aqui solo la suma ponderada + sesgo\nw = np.array([0.5, -0.5]); x = np.array([2, 1]); b = 0.1\nprint(round(float(w @ x + b), 2))"
+      },
+      "expectedOutput": "0.6",
+      "caption": {
+        "en": "A neuron is a dot product plus a bias, then an activation.",
+        "es": "Una neurona es un producto escalar mas un sesgo, luego una activacion."
       }
     }
   ],
@@ -39,42 +61,170 @@
     {
       "id": "nn-01-e1",
       "answerType": "text",
-      "prompt": { "en": "An artificial neuron loosely models a biological ___. (one word)", "es": "Una neurona artificial modela libremente una ___ biológica. (una palabra)" },
+      "prompt": {
+        "en": "An artificial neuron loosely models a biological ___. (one word)",
+        "es": "Una neurona artificial modela libremente una ___ biológica. (una palabra)"
+      },
       "answer": "neuron",
-      "acceptedAlt": ["neurona"],
-      "hint": { "en": "Brain cell.", "es": "Célula del cerebro." },
-      "solution": [ { "tex": "\\text{neuron}", "en": "Neuron.", "es": "Neurona." } ]
+      "acceptedAlt": [
+        "neurona"
+      ],
+      "hint": {
+        "en": "Brain cell.",
+        "es": "Célula del cerebro."
+      },
+      "solution": [
+        {
+          "tex": "\\text{neuron}",
+          "en": "Neuron.",
+          "es": "Neurona."
+        }
+      ]
     },
     {
       "id": "nn-01-e2",
       "answerType": "number",
-      "prompt": { "en": "A step neuron outputs 1 if $z>0$. With $z=2$, what is the output?", "es": "Una neurona escalón da 1 si $z>0$. Con $z=2$, ¿cuál es la salida?" },
+      "prompt": {
+        "en": "A step neuron outputs 1 if $z>0$. With $z=2$, what is the output?",
+        "es": "Una neurona escalón da 1 si $z>0$. Con $z=2$, ¿cuál es la salida?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "2 > 0.", "es": "2 > 0." },
-      "solution": [ { "tex": "z=2>0 \\Rightarrow 1", "en": "Fires.", "es": "Se activa." } ]
+      "hint": {
+        "en": "2 > 0.",
+        "es": "2 > 0."
+      },
+      "solution": [
+        {
+          "tex": "z=2>0 \\Rightarrow 1",
+          "en": "Fires.",
+          "es": "Se activa."
+        }
+      ]
     },
     {
       "id": "nn-01-e3",
       "answerType": "text",
-      "prompt": { "en": "The connections carrying signals are scaled by ___. (one word)", "es": "Las conexiones que llevan señales se escalan por ___. (una palabra)" },
+      "prompt": {
+        "en": "The connections carrying signals are scaled by ___. (one word)",
+        "es": "Las conexiones que llevan señales se escalan por ___. (una palabra)"
+      },
       "answer": "weights",
-      "acceptedAlt": ["pesos", "weight", "peso"],
-      "hint": { "en": "What the neuron learns.", "es": "Lo que la neurona aprende." },
-      "solution": [ { "tex": "\\mathbf{w}", "en": "Weights.", "es": "Pesos." } ]
+      "acceptedAlt": [
+        "pesos",
+        "weight",
+        "peso"
+      ],
+      "hint": {
+        "en": "What the neuron learns.",
+        "es": "Lo que la neurona aprende."
+      },
+      "solution": [
+        {
+          "tex": "\\mathbf{w}",
+          "en": "Weights.",
+          "es": "Pesos."
+        }
+      ]
     },
     {
       "id": "nn-01-e4",
       "answerType": "number",
-      "prompt": { "en": "How many bias terms does a single neuron have?", "es": "¿Cuántos términos de sesgo tiene una sola neurona?" },
+      "prompt": {
+        "en": "How many bias terms does a single neuron have?",
+        "es": "¿Cuántos términos de sesgo tiene una sola neurona?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "One shift per neuron.", "es": "Un desplazamiento por neurona." },
-      "solution": [ { "tex": "z = \\mathbf{w}\\cdot\\mathbf{x} + b", "en": "One bias.", "es": "Un sesgo." } ]
+      "hint": {
+        "en": "One shift per neuron.",
+        "es": "Un desplazamiento por neurona."
+      },
+      "solution": [
+        {
+          "tex": "z = \\mathbf{w}\\cdot\\mathbf{x} + b",
+          "en": "One bias.",
+          "es": "Un sesgo."
+        }
+      ]
+    },
+    {
+      "id": "nn-01-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `neuron(w, x, b)` = (w . x) + b (the pre-activation).",
+        "es": "Completa `neuron(w, x, b)` = (w . x) + b (la preactivacion)."
+      },
+      "funcName": "neuron",
+      "starter": {
+        "en": "def neuron(w, x, b):\n    # dot product of w and x, plus b\n    pass",
+        "es": "def neuron(w, x, b):\n    # producto escalar de w y x, mas b\n    pass"
+      },
+      "solution": "def neuron(w, x, b):\n    return sum(a * c for a, c in zip(w, x)) + b",
+      "tests": [
+        {
+          "args": [
+            [
+              0.5,
+              -0.5
+            ],
+            [
+              2,
+              1
+            ],
+            0.1
+          ],
+          "expected": 0.6,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            -1
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            [
+              0
+            ],
+            [
+              5
+            ],
+            0
+          ],
+          "expected": 0
+        }
+      ],
+      "hint": {
+        "en": "zip(w, x), multiply, sum, add b.",
+        "es": "zip(w, x), multiplica, suma, anade b."
+      }
     }
   ],
   "references": [
-    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "The processing unit", "es": "La unidad de procesamiento" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6, deep feedforward networks", "es": "Cap. 6, redes profundas hacia delante" } }
+    {
+      "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)",
+      "detail": {
+        "en": "The processing unit",
+        "es": "La unidad de procesamiento"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 6, deep feedforward networks",
+        "es": "Cap. 6, redes profundas hacia delante"
+      }
+    }
   ]
 }

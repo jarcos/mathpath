@@ -3,7 +3,10 @@
   "subjectId": "linear-maps",
   "order": 10,
   "estimatedMinutes": 35,
-  "title": { "en": "Translation in 2D", "es": "Traslación en 2D" },
+  "title": {
+    "en": "Translation in 2D",
+    "es": "Traslación en 2D"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Translate the point $(1,1)$ by $(3,2)$: $(1+3,\\,1+2) = (4,3)$, first component $4$. Translating $(2,2)$ by $(-2,-2)$ gives $(0,0)$ — back to the origin. Check linearity: translating $(0,0)$ by $(5,-2)$ gives $(5,-2)\\neq(0,0)$, confirming it is not linear.",
         "es": "Traslada el punto $(1,1)$ por $(3,2)$: $(1+3,\\,1+2) = (4,3)$, primera componente $4$. Trasladar $(2,2)$ por $(-2,-2)$ da $(0,0)$ — de vuelta al origen. Comprueba la linealidad: trasladar $(0,0)$ por $(5,-2)$ da $(5,-2)\\neq(0,0)$, confirmando que no es lineal."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# translation needs homogeneous coordinates (the extra 1)\nT = np.array([[1, 0, 5], [0, 1, 3], [0, 0, 1]])\nprint((T @ np.array([1, 2, 1])).tolist())",
+        "es": "import numpy as np\n# la traslacion necesita coordenadas homogeneas (el 1 extra)\nT = np.array([[1, 0, 5], [0, 1, 3], [0, 0, 1]])\nprint((T @ np.array([1, 2, 1])).tolist())"
+      },
+      "expectedOutput": "[6, 5, 1]",
+      "caption": {
+        "en": "Translation isn't linear — homogeneous coordinates fix that.",
+        "es": "La traslacion no es lineal — las coordenadas homogeneas lo arreglan."
       }
     }
   ],
@@ -39,41 +61,103 @@
     {
       "id": "linmaps-10-e1",
       "answerType": "number",
-      "prompt": { "en": "Translate $(1,1)$ by $(3,2)$. What is the first component?", "es": "Traslada $(1,1)$ por $(3,2)$. ¿Cuál es la primera componente?" },
+      "prompt": {
+        "en": "Translate $(1,1)$ by $(3,2)$. What is the first component?",
+        "es": "Traslada $(1,1)$ por $(3,2)$. ¿Cuál es la primera componente?"
+      },
       "answer": "4",
-      "acceptedAlt": ["1+3"],
-      "hint": { "en": "x + a.", "es": "x + a." },
-      "solution": [ { "tex": "(1+3, 1+2) = (4,3)", "en": "First component 4.", "es": "Primera componente 4." } ]
+      "acceptedAlt": [
+        "1+3"
+      ],
+      "hint": {
+        "en": "x + a.",
+        "es": "x + a."
+      },
+      "solution": [
+        {
+          "tex": "(1+3, 1+2) = (4,3)",
+          "en": "First component 4.",
+          "es": "Primera componente 4."
+        }
+      ]
     },
     {
       "id": "linmaps-10-e2",
       "answerType": "number",
-      "prompt": { "en": "Translate $(0,0)$ by $(5,-2)$. What is the x-coordinate?", "es": "Traslada $(0,0)$ por $(5,-2)$. ¿Cuál es la coordenada x?" },
+      "prompt": {
+        "en": "Translate $(0,0)$ by $(5,-2)$. What is the x-coordinate?",
+        "es": "Traslada $(0,0)$ por $(5,-2)$. ¿Cuál es la coordenada x?"
+      },
       "answer": "5",
-      "acceptedAlt": ["0+5"],
-      "hint": { "en": "0 + 5.", "es": "0 + 5." },
-      "solution": [ { "tex": "(0+5, 0-2) = (5,-2)", "en": "x-coordinate 5.", "es": "Coordenada x 5." } ]
+      "acceptedAlt": [
+        "0+5"
+      ],
+      "hint": {
+        "en": "0 + 5.",
+        "es": "0 + 5."
+      },
+      "solution": [
+        {
+          "tex": "(0+5, 0-2) = (5,-2)",
+          "en": "x-coordinate 5.",
+          "es": "Coordenada x 5."
+        }
+      ]
     },
     {
       "id": "linmaps-10-e3",
       "answerType": "text",
-      "prompt": { "en": "Is translation a linear map? (yes / no)", "es": "¿Es la traslación una aplicación lineal? (sí / no)" },
+      "prompt": {
+        "en": "Is translation a linear map? (yes / no)",
+        "es": "¿Es la traslación una aplicación lineal? (sí / no)"
+      },
       "answer": "no",
-      "acceptedAlt": ["no"],
-      "hint": { "en": "Does it fix the origin?", "es": "¿Deja fijo el origen?" },
-      "solution": [ { "tex": "T(\\mathbf0)\\neq\\mathbf0", "en": "Moves the origin → not linear.", "es": "Mueve el origen → no lineal." } ]
+      "acceptedAlt": [
+        "no"
+      ],
+      "hint": {
+        "en": "Does it fix the origin?",
+        "es": "¿Deja fijo el origen?"
+      },
+      "solution": [
+        {
+          "tex": "T(\\mathbf0)\\neq\\mathbf0",
+          "en": "Moves the origin → not linear.",
+          "es": "Mueve el origen → no lineal."
+        }
+      ]
     },
     {
       "id": "linmaps-10-e4",
       "answerType": "number",
-      "prompt": { "en": "Translate $(2,2)$ by $(-2,-2)$. What is the first component?", "es": "Traslada $(2,2)$ por $(-2,-2)$. ¿Cuál es la primera componente?" },
+      "prompt": {
+        "en": "Translate $(2,2)$ by $(-2,-2)$. What is the first component?",
+        "es": "Traslada $(2,2)$ por $(-2,-2)$. ¿Cuál es la primera componente?"
+      },
       "answer": "0",
-      "acceptedAlt": ["2-2"],
-      "hint": { "en": "2 + (−2).", "es": "2 + (−2)." },
-      "solution": [ { "tex": "(2-2, 2-2) = (0,0)", "en": "Back to the origin.", "es": "De vuelta al origen." } ]
+      "acceptedAlt": [
+        "2-2"
+      ],
+      "hint": {
+        "en": "2 + (−2).",
+        "es": "2 + (−2)."
+      },
+      "solution": [
+        {
+          "tex": "(2-2, 2-2) = (0,0)",
+          "en": "Back to the origin.",
+          "es": "De vuelta al origen."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "UOC — Transformaciones geométricas (PID_00269008)", "detail": { "en": "Translation in 2D", "es": "Traslación en 2D" } }
+    {
+      "source": "UOC — Transformaciones geométricas (PID_00269008)",
+      "detail": {
+        "en": "Translation in 2D",
+        "es": "Traslación en 2D"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "computer-vision",
   "order": 7,
   "estimatedMinutes": 35,
-  "title": { "en": "Image Transformations & Geometry", "es": "Transformaciones e geometría de imágenes" },
+  "title": {
+    "en": "Image Transformations & Geometry",
+    "es": "Transformaciones e geometría de imágenes"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Scaling the point $x=4$ by factor $1.5$ gives $4\\cdot 1.5 = 6$. Translating $x=4$ by $+3$ gives $7$ — easy with homogeneous coordinates as one matrix multiply.",
         "es": "Escalar el punto $x=4$ por factor $1.5$ da $4\\cdot 1.5 = 6$. Trasladar $x=4$ en $+3$ da $7$ — fácil con coordenadas homogéneas como una multiplicación de matrices."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# a homography maps image points; here a translation in homogeneous coords\nH = np.array([[1, 0, 2], [0, 1, 3], [0, 0, 1]])\nprint((H @ np.array([1, 1, 1])).tolist())",
+        "es": "import numpy as np\n# una homografia transforma puntos; aqui una traslacion en coordenadas homogeneas\nH = np.array([[1, 0, 2], [0, 1, 3], [0, 0, 1]])\nprint((H @ np.array([1, 1, 1])).tolist())"
+      },
+      "expectedOutput": "[3, 4, 1]",
+      "caption": {
+        "en": "Geometric transforms (warps, homographies) are matrix multiplies.",
+        "es": "Las transformaciones geometricas (warps, homografias) son multiplicaciones de matrices."
       }
     }
   ],
@@ -39,41 +61,105 @@
     {
       "id": "cv-07-e1",
       "answerType": "number",
-      "prompt": { "en": "Scale point 4 by factor 1.5: $4\\cdot 1.5$?", "es": "Escala el punto 4 por factor 1.5: $4\\cdot 1.5$?" },
+      "prompt": {
+        "en": "Scale point 4 by factor 1.5: $4\\cdot 1.5$?",
+        "es": "Escala el punto 4 por factor 1.5: $4\\cdot 1.5$?"
+      },
       "answer": "6",
-      "acceptedAlt": ["4*1.5"],
-      "hint": { "en": "4 × 1.5.", "es": "4 × 1.5." },
-      "solution": [ { "tex": "4\\cdot 1.5 = 6", "en": "Six.", "es": "Seis." } ]
+      "acceptedAlt": [
+        "4*1.5"
+      ],
+      "hint": {
+        "en": "4 × 1.5.",
+        "es": "4 × 1.5."
+      },
+      "solution": [
+        {
+          "tex": "4\\cdot 1.5 = 6",
+          "en": "Six.",
+          "es": "Seis."
+        }
+      ]
     },
     {
       "id": "cv-07-e2",
       "answerType": "number",
-      "prompt": { "en": "Translate point 4 by +3: $4+3$?", "es": "Traslada el punto 4 en +3: $4+3$?" },
+      "prompt": {
+        "en": "Translate point 4 by +3: $4+3$?",
+        "es": "Traslada el punto 4 en +3: $4+3$?"
+      },
       "answer": "7",
-      "acceptedAlt": ["4+3"],
-      "hint": { "en": "4 + 3.", "es": "4 + 3." },
-      "solution": [ { "tex": "4+3 = 7", "en": "Seven.", "es": "Siete." } ]
+      "acceptedAlt": [
+        "4+3"
+      ],
+      "hint": {
+        "en": "4 + 3.",
+        "es": "4 + 3."
+      },
+      "solution": [
+        {
+          "tex": "4+3 = 7",
+          "en": "Seven.",
+          "es": "Siete."
+        }
+      ]
     },
     {
       "id": "cv-07-e3",
       "answerType": "text",
-      "prompt": { "en": "Appending a 1 so translation becomes a matrix multiply uses ___ coordinates. (one word)", "es": "Añadir un 1 para que la traslación sea multiplicación matricial usa coordenadas ___. (una palabra)" },
+      "prompt": {
+        "en": "Appending a 1 so translation becomes a matrix multiply uses ___ coordinates. (one word)",
+        "es": "Añadir un 1 para que la traslación sea multiplicación matricial usa coordenadas ___. (una palabra)"
+      },
       "answer": "homogeneous",
-      "acceptedAlt": ["homogéneas", "homogeneas"],
-      "hint": { "en": "Projective trick.", "es": "Truco proyectivo." },
-      "solution": [ { "tex": "[x,y,1]", "en": "Homogeneous.", "es": "Homogéneas." } ]
+      "acceptedAlt": [
+        "homogéneas",
+        "homogeneas"
+      ],
+      "hint": {
+        "en": "Projective trick.",
+        "es": "Truco proyectivo."
+      },
+      "solution": [
+        {
+          "tex": "[x,y,1]",
+          "en": "Homogeneous.",
+          "es": "Homogéneas."
+        }
+      ]
     },
     {
       "id": "cv-07-e4",
       "answerType": "text",
-      "prompt": { "en": "The general plane-to-plane transform behind panorama stitching is a ___. (one word)", "es": "La transformación general plano-a-plano tras el cosido de panoramas es una ___. (una palabra)" },
+      "prompt": {
+        "en": "The general plane-to-plane transform behind panorama stitching is a ___. (one word)",
+        "es": "La transformación general plano-a-plano tras el cosido de panoramas es una ___. (una palabra)"
+      },
       "answer": "homography",
-      "acceptedAlt": ["homografía", "homografia"],
-      "hint": { "en": "3×3 projective matrix.", "es": "Matriz proyectiva 3×3." },
-      "solution": [ { "tex": "H", "en": "Homography.", "es": "Homografía." } ]
+      "acceptedAlt": [
+        "homografía",
+        "homografia"
+      ],
+      "hint": {
+        "en": "3×3 projective matrix.",
+        "es": "Matriz proyectiva 3×3."
+      },
+      "solution": [
+        {
+          "tex": "H",
+          "en": "Homography.",
+          "es": "Homografía."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Hartley & Zisserman — Multiple View Geometry in Computer Vision (2004)", "detail": { "en": "Homogeneous coordinates, homographies, camera model", "es": "Coordenadas homogéneas, homografías, modelo de cámara" } }
+    {
+      "source": "Hartley & Zisserman — Multiple View Geometry in Computer Vision (2004)",
+      "detail": {
+        "en": "Homogeneous coordinates, homographies, camera model",
+        "es": "Coordenadas homogéneas, homografías, modelo de cámara"
+      }
+    }
   ]
 }

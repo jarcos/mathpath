@@ -3,13 +3,26 @@
   "subjectId": "knowledge-representation",
   "order": 3,
   "estimatedMinutes": 30,
-  "title": { "en": "Truth Tables", "es": "Tablas de verdad" },
+  "title": {
+    "en": "Truth Tables",
+    "es": "Tablas de verdad"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A **truth table** lists the truth value of a formula for **every** combination of its variables. With $n$ propositional variables there are $2^n$ rows, because each variable independently is true or false. Truth tables give a mechanical, exhaustive way to test validity, equivalence, and satisfiability.",
         "es": "Una **tabla de verdad** lista el valor de verdad de una fórmula para **cada** combinación de sus variables. Con $n$ variables proposicionales hay $2^n$ filas, porque cada variable es independientemente verdadera o falsa. Las tablas de verdad dan una forma mecánica y exhaustiva de probar validez, equivalencia y satisfacibilidad."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "kr-02-prop-logic"
+      ],
+      "note": {
+        "en": "Truth tables enumerate all assignments of the propositions.",
+        "es": "Las tablas de verdad enumeran todas las asignaciones de las proposiciones."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A formula with $3$ variables has $2^3 = 8$ rows. By De Morgan, $\\neg(P \\wedge Q)$ with $P=1, Q=1$ equals $\\neg P \\vee \\neg Q = 0 \\vee 0 = 0$.",
         "es": "Una fórmula con $3$ variables tiene $2^3 = 8$ filas. Por De Morgan, $\\neg(P \\wedge Q)$ con $P=1, Q=1$ es igual a $\\neg P \\vee \\neg Q = 0 \\vee 0 = 0$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "import itertools\n# a truth table for implication p -> q over all p,q\nrows = [(a, b, (not a) or b) for a, b in itertools.product([False, True], repeat=2)]\nprint(rows)",
+        "es": "import itertools\n# tabla de verdad de la implicacion p -> q para todo p,q\nrows = [(a, b, (not a) or b) for a, b in itertools.product([False, True], repeat=2)]\nprint(rows)"
+      },
+      "expectedOutput": "[(False, False, True), (False, True, True), (True, False, False), (True, True, True)]",
+      "caption": {
+        "en": "p -> q is false only when p is true and q is false.",
+        "es": "p -> q es falsa solo cuando p es verdadera y q falsa."
       }
     }
   ],
@@ -39,41 +69,146 @@
     {
       "id": "kr-03-e1",
       "answerType": "number",
-      "prompt": { "en": "Rows in a truth table with 3 variables: $2^3$?", "es": "Filas en una tabla de verdad con 3 variables: $2^3$?" },
+      "prompt": {
+        "en": "Rows in a truth table with 3 variables: $2^3$?",
+        "es": "Filas en una tabla de verdad con 3 variables: $2^3$?"
+      },
       "answer": "8",
-      "acceptedAlt": ["2^3"],
-      "hint": { "en": "2 to the 3rd.", "es": "2 a la 3." },
-      "solution": [ { "tex": "2^3 = 8", "en": "Eight.", "es": "Ocho." } ]
+      "acceptedAlt": [
+        "2^3"
+      ],
+      "hint": {
+        "en": "2 to the 3rd.",
+        "es": "2 a la 3."
+      },
+      "solution": [
+        {
+          "tex": "2^3 = 8",
+          "en": "Eight.",
+          "es": "Ocho."
+        }
+      ]
     },
     {
       "id": "kr-03-e2",
       "answerType": "number",
-      "prompt": { "en": "Rows for 5 variables: $2^5$?", "es": "Filas para 5 variables: $2^5$?" },
+      "prompt": {
+        "en": "Rows for 5 variables: $2^5$?",
+        "es": "Filas para 5 variables: $2^5$?"
+      },
       "answer": "32",
-      "acceptedAlt": ["2^5"],
-      "hint": { "en": "2 to the 5th.", "es": "2 a la 5." },
-      "solution": [ { "tex": "2^5 = 32", "en": "32.", "es": "32." } ]
+      "acceptedAlt": [
+        "2^5"
+      ],
+      "hint": {
+        "en": "2 to the 5th.",
+        "es": "2 a la 5."
+      },
+      "solution": [
+        {
+          "tex": "2^5 = 32",
+          "en": "32.",
+          "es": "32."
+        }
+      ]
     },
     {
       "id": "kr-03-e3",
       "answerType": "number",
-      "prompt": { "en": "De Morgan: $\\neg(P\\wedge Q)$ with $P=1,Q=1$ equals $\\neg P\\vee\\neg Q = \\max(0,0)$?", "es": "De Morgan: $\\neg(P\\wedge Q)$ con $P=1,Q=1$ es $\\neg P\\vee\\neg Q = \\max(0,0)$?" },
+      "prompt": {
+        "en": "De Morgan: $\\neg(P\\wedge Q)$ with $P=1,Q=1$ equals $\\neg P\\vee\\neg Q = \\max(0,0)$?",
+        "es": "De Morgan: $\\neg(P\\wedge Q)$ con $P=1,Q=1$ es $\\neg P\\vee\\neg Q = \\max(0,0)$?"
+      },
       "answer": "0",
-      "acceptedAlt": ["max(0,0)"],
-      "hint": { "en": "Both negations are 0.", "es": "Ambas negaciones son 0." },
-      "solution": [ { "tex": "\\max(0,0)=0", "en": "False.", "es": "Falso." } ]
+      "acceptedAlt": [
+        "max(0,0)"
+      ],
+      "hint": {
+        "en": "Both negations are 0.",
+        "es": "Ambas negaciones son 0."
+      },
+      "solution": [
+        {
+          "tex": "\\max(0,0)=0",
+          "en": "False.",
+          "es": "Falso."
+        }
+      ]
     },
     {
       "id": "kr-03-e4",
       "answerType": "text",
-      "prompt": { "en": "The laws relating $\\neg(P\\wedge Q)$ to $\\neg P\\vee\\neg Q$ are ___ De Morgan's laws (surname). (one word)", "es": "Las leyes que relacionan $\\neg(P\\wedge Q)$ con $\\neg P\\vee\\neg Q$ son las leyes de ___ (apellido). (una palabra)" },
+      "prompt": {
+        "en": "The laws relating $\\neg(P\\wedge Q)$ to $\\neg P\\vee\\neg Q$ are ___ De Morgan's laws (surname). (one word)",
+        "es": "Las leyes que relacionan $\\neg(P\\wedge Q)$ con $\\neg P\\vee\\neg Q$ son las leyes de ___ (apellido). (una palabra)"
+      },
       "answer": "morgan",
-      "acceptedAlt": ["de morgan", "demorgan"],
-      "hint": { "en": "De ___.", "es": "De ___." },
-      "solution": [ { "tex": "\\text{De Morgan}", "en": "Morgan.", "es": "Morgan." } ]
+      "acceptedAlt": [
+        "de morgan",
+        "demorgan"
+      ],
+      "hint": {
+        "en": "De ___.",
+        "es": "De ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{De Morgan}",
+          "en": "Morgan.",
+          "es": "Morgan."
+        }
+      ]
+    },
+    {
+      "id": "kr-03-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `implies(p, q)` for logical implication p -> q.",
+        "es": "Completa `implies(p, q)` para la implicacion logica p -> q."
+      },
+      "funcName": "implies",
+      "starter": {
+        "en": "def implies(p, q):\n    # p -> q is (not p) or q\n    pass",
+        "es": "def implies(p, q):\n    # p -> q es (not p) or q\n    pass"
+      },
+      "solution": "def implies(p, q):\n    return (not p) or q",
+      "tests": [
+        {
+          "args": [
+            true,
+            false
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            false,
+            false
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            true,
+            true
+          ],
+          "expected": true
+        }
+      ],
+      "hint": {
+        "en": "Only False when p True and q False.",
+        "es": "Solo Falso cuando p Verdadero y q Falso."
+      }
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 7.4, propositional theorem proving; logical equivalences", "es": "Cap. 7.4, demostración de teoremas proposicionales; equivalencias lógicas" } }
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Ch. 7.4, propositional theorem proving; logical equivalences",
+        "es": "Cap. 7.4, demostración de teoremas proposicionales; equivalencias lógicas"
+      }
+    }
   ]
 }

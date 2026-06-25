@@ -3,7 +3,10 @@
   "subjectId": "ai-foundations",
   "order": 8,
   "estimatedMinutes": 35,
-  "title": { "en": "Consciousness & the Hard Problem", "es": "Conciencia y el problema difícil" },
+  "title": {
+    "en": "Consciousness & the Hard Problem",
+    "es": "Conciencia y el problema difícil"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "The felt qualities of experience are called qualia. The question of why subjective experience exists at all is the hard problem of consciousness, named by Chalmers.",
         "es": "Las cualidades sentidas de la experiencia se llaman qualia. La pregunta de por qué existe la experiencia subjetiva es el problema difícil de la conciencia, nombrado por Chalmers."
@@ -39,42 +45,156 @@
     {
       "id": "aif-08-e1",
       "answerType": "text",
-      "prompt": { "en": "The felt qualities of experience (the redness of red) are ___. (one word)", "es": "Las cualidades sentidas de la experiencia (el rojo del rojo) son los ___. (una palabra)" },
+      "prompt": {
+        "en": "The felt qualities of experience (the redness of red) are ___. (one word)",
+        "es": "Las cualidades sentidas de la experiencia (el rojo del rojo) son los ___. (una palabra)"
+      },
       "answer": "qualia",
       "acceptedAlt": [],
-      "hint": { "en": "Singular: quale.", "es": "Singular: quale." },
-      "solution": [ { "tex": "\\text{qualia}", "en": "Qualia.", "es": "Qualia." } ]
+      "hint": {
+        "en": "Singular: quale.",
+        "es": "Singular: quale."
+      },
+      "solution": [
+        {
+          "tex": "\\text{qualia}",
+          "en": "Qualia.",
+          "es": "Qualia."
+        }
+      ]
     },
     {
       "id": "aif-08-e2",
       "answerType": "text",
-      "prompt": { "en": "Why subjective experience exists at all is the ___ problem. (one word)", "es": "Por qué existe la experiencia subjetiva es el problema ___. (una palabra)" },
+      "prompt": {
+        "en": "Why subjective experience exists at all is the ___ problem. (one word)",
+        "es": "Por qué existe la experiencia subjetiva es el problema ___. (una palabra)"
+      },
       "answer": "hard",
-      "acceptedAlt": ["difícil", "dificil"],
-      "hint": { "en": "Hard vs easy.", "es": "Difícil vs fácil." },
-      "solution": [ { "tex": "\\text{hard problem}", "en": "Hard.", "es": "Difícil." } ]
+      "acceptedAlt": [
+        "difícil",
+        "dificil"
+      ],
+      "hint": {
+        "en": "Hard vs easy.",
+        "es": "Difícil vs fácil."
+      },
+      "solution": [
+        {
+          "tex": "\\text{hard problem}",
+          "en": "Hard.",
+          "es": "Difícil."
+        }
+      ]
     },
     {
       "id": "aif-08-e3",
       "answerType": "text",
-      "prompt": { "en": "A being functionally identical to us but with no inner experience is a philosophical ___. (one word)", "es": "Un ser funcionalmente idéntico a nosotros pero sin experiencia interna es un ___ filosófico. (una palabra)" },
+      "prompt": {
+        "en": "A being functionally identical to us but with no inner experience is a philosophical ___. (one word)",
+        "es": "Un ser funcionalmente idéntico a nosotros pero sin experiencia interna es un ___ filosófico. (una palabra)"
+      },
       "answer": "zombie",
-      "acceptedAlt": ["zombi"],
-      "hint": { "en": "No qualia inside.", "es": "Sin qualia dentro." },
-      "solution": [ { "tex": "\\text{zombie}", "en": "Zombie.", "es": "Zombi." } ]
+      "acceptedAlt": [
+        "zombi"
+      ],
+      "hint": {
+        "en": "No qualia inside.",
+        "es": "Sin qualia dentro."
+      },
+      "solution": [
+        {
+          "tex": "\\text{zombie}",
+          "en": "Zombie.",
+          "es": "Zombi."
+        }
+      ]
     },
     {
       "id": "aif-08-e4",
       "answerType": "text",
-      "prompt": { "en": "The view that the right functional organization suffices for mind is ___. (one word)", "es": "La visión de que la organización funcional correcta basta para una mente es el ___. (una palabra)" },
+      "prompt": {
+        "en": "The view that the right functional organization suffices for mind is ___. (one word)",
+        "es": "La visión de que la organización funcional correcta basta para una mente es el ___. (una palabra)"
+      },
       "answer": "functionalism",
-      "acceptedAlt": ["funcionalismo"],
-      "hint": { "en": "Function over substrate.", "es": "Función sobre sustrato." },
-      "solution": [ { "tex": "\\text{functionalism}", "en": "Functionalism.", "es": "Funcionalismo." } ]
+      "acceptedAlt": [
+        "funcionalismo"
+      ],
+      "hint": {
+        "en": "Function over substrate.",
+        "es": "Función sobre sustrato."
+      },
+      "solution": [
+        {
+          "tex": "\\text{functionalism}",
+          "en": "Functionalism.",
+          "es": "Funcionalismo."
+        }
+      ]
+    },
+    {
+      "id": "aif-08-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The 'hard problem' of consciousness is...",
+        "es": "El 'problema dificil' de la conciencia es..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Why physical processes give rise to subjective experience at all",
+            "es": "Por que los procesos fisicos dan lugar a experiencia subjetiva siquiera"
+          },
+          "correct": true,
+          "why": {
+            "en": "Chalmers: explaining function is 'easy'; explaining felt experience is hard.",
+            "es": "Chalmers: explicar la funcion es 'facil'; explicar la experiencia vivida es dificil."
+          }
+        },
+        {
+          "text": {
+            "en": "Building faster processors",
+            "es": "Construir procesadores mas rapidos"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's an engineering problem, not the hard problem.",
+            "es": "Eso es ingenieria, no el problema dificil."
+          }
+        },
+        {
+          "text": {
+            "en": "Getting AI to pass exams",
+            "es": "Lograr que la IA apruebe examenes"
+          },
+          "correct": false,
+          "why": {
+            "en": "Task performance is unrelated to subjective experience.",
+            "es": "El rendimiento en tareas no se relaciona con la experiencia subjetiva."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Function vs felt experience.",
+        "es": "Funcion vs experiencia vivida."
+      }
     }
   ],
   "references": [
-    { "source": "Chalmers — Facing Up to the Problem of Consciousness (1995)", "detail": { "en": "Hard problem; qualia", "es": "Problema difícil; qualia" } },
-    { "source": "Nagel — What Is It Like to Be a Bat? (1974)", "detail": { "en": "Subjective experience", "es": "Experiencia subjetiva" } }
+    {
+      "source": "Chalmers — Facing Up to the Problem of Consciousness (1995)",
+      "detail": {
+        "en": "Hard problem; qualia",
+        "es": "Problema difícil; qualia"
+      }
+    },
+    {
+      "source": "Nagel — What Is It Like to Be a Bat? (1974)",
+      "detail": {
+        "en": "Subjective experience",
+        "es": "Experiencia subjetiva"
+      }
+    }
   ]
 }

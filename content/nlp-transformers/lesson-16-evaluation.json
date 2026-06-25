@@ -3,13 +3,26 @@
   "subjectId": "nlp-transformers",
   "order": 16,
   "estimatedMinutes": 35,
-  "title": { "en": "Evaluation: Perplexity & BLEU", "es": "Evaluación: perplejidad y BLEU" },
+  "title": {
+    "en": "Evaluation: Perplexity & BLEU",
+    "es": "Evaluación: perplejidad y BLEU"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "How good is a language model? The intrinsic measure is **perplexity**: the exponential of the average per-token cross-entropy, $\\text{PP} = 2^{H}$ (with $H$ in bits) or $e^{H}$ in nats. Intuitively it is the model's effective 'branching factor' — how many equally likely next words it is, on average, choosing among. **Lower perplexity is better.**",
         "es": "¿Qué tan bueno es un modelo de lenguaje? La medida intrínseca es la **perplejidad**: la exponencial de la entropía cruzada media por token, $\\text{PP} = 2^{H}$ (con $H$ en bits) o $e^{H}$ en nats. Intuitivamente es el 'factor de ramificación' efectivo del modelo — entre cuántas siguientes palabras igualmente probables elige en promedio. **Menor perplejidad es mejor.**"
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "nlp-14-gpt"
+      ],
+      "note": {
+        "en": "Evaluation scores the language model's predictions.",
+        "es": "La evaluacion puntua las predicciones del modelo de lenguaje."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A model assigning probability $1/8$ to each of $8$ equally likely words has perplexity $8$. Cross-entropy here is $\\log_2 8 = 3$ bits, and $2^3 = 8$ confirms the perplexity.",
         "es": "Un modelo que asigna probabilidad $1/8$ a cada una de $8$ palabras igualmente probables tiene perplejidad $8$. La entropía cruzada aquí es $\\log_2 8 = 3$ bits, y $2^3 = 8$ confirma la perplejidad."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# perplexity = exp(average negative log-likelihood); lower is better\nprobs = [0.5, 0.5, 0.25]\nppl = np.exp(-np.mean(np.log(probs)))\nprint(round(float(ppl), 4))",
+        "es": "import numpy as np\n# perplejidad = exp(media de la log-verosimilitud negativa); menor es mejor\nprobs = [0.5, 0.5, 0.25]\nppl = np.exp(-np.mean(np.log(probs)))\nprint(round(float(ppl), 4))"
+      },
+      "expectedOutput": "2.5198",
+      "caption": {
+        "en": "Perplexity measures how surprised a language model is.",
+        "es": "La perplejidad mide cuanto se sorprende un modelo de lenguaje."
       }
     }
   ],
@@ -39,42 +71,109 @@
     {
       "id": "nlp-16-e1",
       "answerType": "number",
-      "prompt": { "en": "Perplexity of a model giving each of 8 equally likely words prob 1/8?", "es": "¿Perplejidad de un modelo que da a cada una de 8 palabras igual prob. 1/8?" },
+      "prompt": {
+        "en": "Perplexity of a model giving each of 8 equally likely words prob 1/8?",
+        "es": "¿Perplejidad de un modelo que da a cada una de 8 palabras igual prob. 1/8?"
+      },
       "answer": "8",
-      "acceptedAlt": ["2^3"],
-      "hint": { "en": "Equals the branching factor.", "es": "Igual al factor de ramificación." },
-      "solution": [ { "tex": "PP = 8", "en": "Eight.", "es": "Ocho." } ]
+      "acceptedAlt": [
+        "2^3"
+      ],
+      "hint": {
+        "en": "Equals the branching factor.",
+        "es": "Igual al factor de ramificación."
+      },
+      "solution": [
+        {
+          "tex": "PP = 8",
+          "en": "Eight.",
+          "es": "Ocho."
+        }
+      ]
     },
     {
       "id": "nlp-16-e2",
       "answerType": "number",
-      "prompt": { "en": "Cross-entropy in bits for that model: $\\log_2 8$?", "es": "Entropía cruzada en bits de ese modelo: $\\log_2 8$?" },
+      "prompt": {
+        "en": "Cross-entropy in bits for that model: $\\log_2 8$?",
+        "es": "Entropía cruzada en bits de ese modelo: $\\log_2 8$?"
+      },
       "answer": "3",
-      "acceptedAlt": ["log(8,2)", "log2(8)"],
-      "hint": { "en": "log2(8).", "es": "log2(8)." },
-      "solution": [ { "tex": "\\log_2 8 = 3", "en": "3 bits.", "es": "3 bits." } ]
+      "acceptedAlt": [
+        "log(8,2)",
+        "log2(8)"
+      ],
+      "hint": {
+        "en": "log2(8).",
+        "es": "log2(8)."
+      },
+      "solution": [
+        {
+          "tex": "\\log_2 8 = 3",
+          "en": "3 bits.",
+          "es": "3 bits."
+        }
+      ]
     },
     {
       "id": "nlp-16-e3",
       "answerType": "number",
-      "prompt": { "en": "Perplexity from cross-entropy $H=1$ bit: $2^1$?", "es": "Perplejidad desde entropía cruzada $H=1$ bit: $2^1$?" },
+      "prompt": {
+        "en": "Perplexity from cross-entropy $H=1$ bit: $2^1$?",
+        "es": "Perplejidad desde entropía cruzada $H=1$ bit: $2^1$?"
+      },
       "answer": "2",
-      "acceptedAlt": ["2^1"],
-      "hint": { "en": "2^H.", "es": "2^H." },
-      "solution": [ { "tex": "2^1 = 2", "en": "Two (fair coin).", "es": "Dos (moneda justa)." } ]
+      "acceptedAlt": [
+        "2^1"
+      ],
+      "hint": {
+        "en": "2^H.",
+        "es": "2^H."
+      },
+      "solution": [
+        {
+          "tex": "2^1 = 2",
+          "en": "Two (fair coin).",
+          "es": "Dos (moneda justa)."
+        }
+      ]
     },
     {
       "id": "nlp-16-e4",
       "answerType": "text",
-      "prompt": { "en": "The standard n-gram-overlap metric for translation is ___. (one word)", "es": "La métrica estándar de solapamiento de n-gramas para traducción es ___. (una palabra)" },
+      "prompt": {
+        "en": "The standard n-gram-overlap metric for translation is ___. (one word)",
+        "es": "La métrica estándar de solapamiento de n-gramas para traducción es ___. (una palabra)"
+      },
       "answer": "bleu",
       "acceptedAlt": [],
-      "hint": { "en": "Four letters.", "es": "Cuatro letras." },
-      "solution": [ { "tex": "\\text{BLEU}", "en": "BLEU.", "es": "BLEU." } ]
+      "hint": {
+        "en": "Four letters.",
+        "es": "Cuatro letras."
+      },
+      "solution": [
+        {
+          "tex": "\\text{BLEU}",
+          "en": "BLEU.",
+          "es": "BLEU."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Jurafsky & Martin — Speech and Language Processing", "detail": { "en": "Ch. 3, perplexity; evaluation of language models", "es": "Cap. 3, perplejidad; evaluación de modelos de lenguaje" } },
-    { "source": "Papineni et al. — BLEU: a Method for Automatic Evaluation of Machine Translation (2002)", "detail": { "en": "BLEU metric", "es": "Métrica BLEU" } }
+    {
+      "source": "Jurafsky & Martin — Speech and Language Processing",
+      "detail": {
+        "en": "Ch. 3, perplexity; evaluation of language models",
+        "es": "Cap. 3, perplejidad; evaluación de modelos de lenguaje"
+      }
+    },
+    {
+      "source": "Papineni et al. — BLEU: a Method for Automatic Evaluation of Machine Translation (2002)",
+      "detail": {
+        "en": "BLEU metric",
+        "es": "Métrica BLEU"
+      }
+    }
   ]
 }

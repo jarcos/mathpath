@@ -3,13 +3,26 @@
   "subjectId": "reinforcement-learning",
   "order": 3,
   "estimatedMinutes": 35,
-  "title": { "en": "Returns & Discounting", "es": "Retornos y descuento" },
+  "title": {
+    "en": "Returns & Discounting",
+    "es": "Retornos y descuento"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "The agent maximizes the **return** $G_t$ — the total reward from time $t$ onward. To keep this finite in ongoing tasks and to prefer sooner rewards, future rewards are **discounted** by a factor $\\gamma \\in [0,1)$ per step: $G_t = r_{t+1} + \\gamma r_{t+2} + \\gamma^2 r_{t+3} + \\cdots$",
         "es": "El agente maximiza el **retorno** $G_t$ — la recompensa total desde el instante $t$ en adelante. Para mantenerlo finito en tareas continuas y para preferir recompensas más cercanas, las recompensas futuras se **descuentan** por un factor $\\gamma \\in [0,1)$ por paso: $G_t = r_{t+1} + \\gamma r_{t+2} + \\gamma^2 r_{t+3} + \\cdots$"
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "rl-02-mdp"
+      ],
+      "note": {
+        "en": "Returns are defined over the trajectories an MDP produces.",
+        "es": "Los retornos se definen sobre las trayectorias que produce un MDP."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Rewards $r_1=1, r_2=2, r_3=4$ with $\\gamma=0.5$: $G = 1 + 0.5\\cdot2 + 0.25\\cdot4 = 1 + 1 + 1 = 3$. An infinite stream of $+1$ with $\\gamma=0.9$ totals $1/(1-0.9) = 10$.",
         "es": "Recompensas $r_1=1, r_2=2, r_3=4$ con $\\gamma=0.5$: $G = 1 + 0.5\\cdot2 + 0.25\\cdot4 = 1 + 1 + 1 = 3$. Un flujo infinito de $+1$ con $\\gamma=0.9$ suma $1/(1-0.9) = 10$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "rewards = [1, 0, 2, 0, 1]\ngamma = 0.9   # discount factor: future rewards count less\nG = sum(r * gamma**t for t, r in enumerate(rewards))\nprint(round(G, 4))",
+        "es": "rewards = [1, 0, 2, 0, 1]\ngamma = 0.9   # factor de descuento: las recompensas futuras valen menos\nG = sum(r * gamma**t for t, r in enumerate(rewards))\nprint(round(G, 4))"
+      },
+      "expectedOutput": "3.2761",
+      "caption": {
+        "en": "The return G is the discounted sum of future rewards.",
+        "es": "El retorno G es la suma descontada de las recompensas futuras."
       }
     }
   ],
@@ -39,41 +69,159 @@
     {
       "id": "rl-03-e1",
       "answerType": "number",
-      "prompt": { "en": "Discounted return $1 + 0.5\\cdot2 + 0.25\\cdot4$?", "es": "Retorno descontado $1 + 0.5\\cdot2 + 0.25\\cdot4$?" },
+      "prompt": {
+        "en": "Discounted return $1 + 0.5\\cdot2 + 0.25\\cdot4$?",
+        "es": "Retorno descontado $1 + 0.5\\cdot2 + 0.25\\cdot4$?"
+      },
       "answer": "3",
-      "acceptedAlt": ["1+0.5*2+0.25*4"],
-      "hint": { "en": "1 + 1 + 1.", "es": "1 + 1 + 1." },
-      "solution": [ { "tex": "1+1+1 = 3", "en": "Three.", "es": "Tres." } ]
+      "acceptedAlt": [
+        "1+0.5*2+0.25*4"
+      ],
+      "hint": {
+        "en": "1 + 1 + 1.",
+        "es": "1 + 1 + 1."
+      },
+      "solution": [
+        {
+          "tex": "1+1+1 = 3",
+          "en": "Three.",
+          "es": "Tres."
+        }
+      ]
     },
     {
       "id": "rl-03-e2",
       "answerType": "number",
-      "prompt": { "en": "Infinite $+1$ per step, $\\gamma=0.9$: $\\frac{1}{1-0.9}$?", "es": "Infinito $+1$ por paso, $\\gamma=0.9$: $\\frac{1}{1-0.9}$?" },
+      "prompt": {
+        "en": "Infinite $+1$ per step, $\\gamma=0.9$: $\\frac{1}{1-0.9}$?",
+        "es": "Infinito $+1$ por paso, $\\gamma=0.9$: $\\frac{1}{1-0.9}$?"
+      },
       "answer": "10",
-      "acceptedAlt": ["1/(1-0.9)", "1/0.1"],
-      "hint": { "en": "1 / 0.1.", "es": "1 / 0.1." },
-      "solution": [ { "tex": "\\frac{1}{0.1} = 10", "en": "Ten.", "es": "Diez." } ]
+      "acceptedAlt": [
+        "1/(1-0.9)",
+        "1/0.1"
+      ],
+      "hint": {
+        "en": "1 / 0.1.",
+        "es": "1 / 0.1."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{1}{0.1} = 10",
+          "en": "Ten.",
+          "es": "Diez."
+        }
+      ]
     },
     {
       "id": "rl-03-e3",
       "answerType": "number",
-      "prompt": { "en": "Present value of reward 8 received 2 steps later with $\\gamma=0.5$: $0.5^2\\cdot 8$?", "es": "Valor presente de recompensa 8 recibida 2 pasos después con $\\gamma=0.5$: $0.5^2\\cdot 8$?" },
+      "prompt": {
+        "en": "Present value of reward 8 received 2 steps later with $\\gamma=0.5$: $0.5^2\\cdot 8$?",
+        "es": "Valor presente de recompensa 8 recibida 2 pasos después con $\\gamma=0.5$: $0.5^2\\cdot 8$?"
+      },
       "answer": "2",
-      "acceptedAlt": ["0.5^2*8"],
-      "hint": { "en": "0.25 × 8.", "es": "0.25 × 8." },
-      "solution": [ { "tex": "0.25\\cdot 8 = 2", "en": "Two.", "es": "Dos." } ]
+      "acceptedAlt": [
+        "0.5^2*8"
+      ],
+      "hint": {
+        "en": "0.25 × 8.",
+        "es": "0.25 × 8."
+      },
+      "solution": [
+        {
+          "tex": "0.25\\cdot 8 = 2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "rl-03-e4",
       "answerType": "text",
-      "prompt": { "en": "The factor $\\gamma$ that weights future rewards is the ___ factor. (one word)", "es": "El factor $\\gamma$ que pondera las recompensas futuras es el factor de ___. (una palabra)" },
+      "prompt": {
+        "en": "The factor $\\gamma$ that weights future rewards is the ___ factor. (one word)",
+        "es": "El factor $\\gamma$ que pondera las recompensas futuras es el factor de ___. (una palabra)"
+      },
       "answer": "discount",
-      "acceptedAlt": ["descuento"],
-      "hint": { "en": "γ.", "es": "γ." },
-      "solution": [ { "tex": "\\gamma", "en": "Discount.", "es": "Descuento." } ]
+      "acceptedAlt": [
+        "descuento"
+      ],
+      "hint": {
+        "en": "γ.",
+        "es": "γ."
+      },
+      "solution": [
+        {
+          "tex": "\\gamma",
+          "en": "Discount.",
+          "es": "Descuento."
+        }
+      ]
+    },
+    {
+      "id": "rl-03-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `discounted_return(rewards, gamma)` = Σ rewards[t]·gamma^t.",
+        "es": "Completa `discounted_return(rewards, gamma)` = Σ rewards[t]·gamma^t."
+      },
+      "funcName": "discounted_return",
+      "starter": {
+        "en": "def discounted_return(rewards, gamma):\n    # sum of reward[t] * gamma**t\n    pass",
+        "es": "def discounted_return(rewards, gamma):\n    # suma de reward[t] * gamma**t\n    pass"
+      },
+      "solution": "def discounted_return(rewards, gamma):\n    return sum(r * gamma**t for t, r in enumerate(rewards))",
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              0,
+              2,
+              0,
+              1
+            ],
+            0.9
+          ],
+          "expected": 3.2761,
+          "tol": 0.0001
+        },
+        {
+          "args": [
+            [
+              1,
+              1,
+              1
+            ],
+            1.0
+          ],
+          "expected": 3.0
+        },
+        {
+          "args": [
+            [
+              5
+            ],
+            0.5
+          ],
+          "expected": 5
+        }
+      ],
+      "hint": {
+        "en": "enumerate gives (t, reward); raise gamma to t.",
+        "es": "enumerate da (t, recompensa); eleva gamma a t."
+      }
     }
   ],
   "references": [
-    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 3.3–3.4, returns and discounting", "es": "Cap. 3.3–3.4, retornos y descuento" } }
+    {
+      "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)",
+      "detail": {
+        "en": "Ch. 3.3–3.4, returns and discounting",
+        "es": "Cap. 3.3–3.4, retornos y descuento"
+      }
+    }
   ]
 }

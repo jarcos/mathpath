@@ -3,13 +3,26 @@
   "subjectId": "knowledge-representation",
   "order": 12,
   "estimatedMinutes": 40,
-  "title": { "en": "Bayesian Networks", "es": "Redes bayesianas" },
+  "title": {
+    "en": "Bayesian Networks",
+    "es": "Redes bayesianas"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A full joint distribution over $n$ binary variables needs $2^n$ numbers — hopeless for many variables. A **Bayesian network** (Pearl) compresses it by exploiting **conditional independence**. It is a **directed acyclic graph (DAG)** where nodes are variables and edges denote direct influence; each node stores $P(\\text{node}\\mid\\text{parents})$.",
         "es": "Una distribución conjunta completa sobre $n$ variables binarias necesita $2^n$ números — imposible para muchas variables. Una **red bayesiana** (Pearl) la comprime explotando la **independencia condicional**. Es un **grafo dirigido acíclico (DAG)** donde los nodos son variables y las aristas denotan influencia directa; cada nodo guarda $P(\\text{nodo}\\mid\\text{padres})$."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "kr-11-uncertainty"
+      ],
+      "note": {
+        "en": "Bayesian networks structure reasoning under uncertainty.",
+        "es": "Las redes bayesianas estructuran el razonamiento bajo incertidumbre."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A full joint over $4$ binary variables needs $2^4 = 16$ entries. If two independent causes each fire with probability $0.5$, the chance both fire is $0.5\\cdot 0.5 = 0.25$.",
         "es": "Una conjunta completa sobre $4$ variables binarias necesita $2^4 = 16$ entradas. Si dos causas independientes se activan cada una con probabilidad $0.5$, la probabilidad de que ambas se activen es $0.5\\cdot 0.5 = 0.25$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# a Bayes net factorizes a joint; here marginalize P(B)\np_a = 0.2\np_b_given_a = 0.8\np_b_given_not_a = 0.1\np_b = p_a * p_b_given_a + (1 - p_a) * p_b_given_not_a\nprint(round(p_b, 4))",
+        "es": "# una red bayesiana factoriza la conjunta; aqui marginalizamos P(B)\np_a = 0.2\np_b_given_a = 0.8\np_b_given_not_a = 0.1\np_b = p_a * p_b_given_a + (1 - p_a) * p_b_given_not_a\nprint(round(p_b, 4))"
+      },
+      "expectedOutput": "0.24",
+      "caption": {
+        "en": "Bayes nets compute marginals from conditional probability tables.",
+        "es": "Las redes bayesianas calculan marginales desde tablas de probabilidad condicional."
       }
     }
   ],
@@ -39,42 +69,112 @@
     {
       "id": "kr-12-e1",
       "answerType": "number",
-      "prompt": { "en": "Entries in a full joint over 4 binary variables: $2^4$?", "es": "Entradas en una conjunta completa sobre 4 variables binarias: $2^4$?" },
+      "prompt": {
+        "en": "Entries in a full joint over 4 binary variables: $2^4$?",
+        "es": "Entradas en una conjunta completa sobre 4 variables binarias: $2^4$?"
+      },
       "answer": "16",
-      "acceptedAlt": ["2^4"],
-      "hint": { "en": "2 to the 4th.", "es": "2 a la 4." },
-      "solution": [ { "tex": "2^4 = 16", "en": "16.", "es": "16." } ]
+      "acceptedAlt": [
+        "2^4"
+      ],
+      "hint": {
+        "en": "2 to the 4th.",
+        "es": "2 a la 4."
+      },
+      "solution": [
+        {
+          "tex": "2^4 = 16",
+          "en": "16.",
+          "es": "16."
+        }
+      ]
     },
     {
       "id": "kr-12-e2",
       "answerType": "number",
-      "prompt": { "en": "Two independent causes each at 0.5: probability both fire $0.5\\cdot 0.5$?", "es": "Dos causas independientes cada una a 0.5: probabilidad de que ambas se activen $0.5\\cdot 0.5$?" },
+      "prompt": {
+        "en": "Two independent causes each at 0.5: probability both fire $0.5\\cdot 0.5$?",
+        "es": "Dos causas independientes cada una a 0.5: probabilidad de que ambas se activen $0.5\\cdot 0.5$?"
+      },
       "answer": "0.25",
-      "acceptedAlt": ["0.5*0.5", "1/4"],
-      "hint": { "en": "Multiply.", "es": "Multiplica." },
-      "solution": [ { "tex": "0.25", "en": "0.25.", "es": "0.25." } ]
+      "acceptedAlt": [
+        "0.5*0.5",
+        "1/4"
+      ],
+      "hint": {
+        "en": "Multiply.",
+        "es": "Multiplica."
+      },
+      "solution": [
+        {
+          "tex": "0.25",
+          "en": "0.25.",
+          "es": "0.25."
+        }
+      ]
     },
     {
       "id": "kr-12-e3",
       "answerType": "text",
-      "prompt": { "en": "A Bayesian network is a directed ___ graph (DAG). (one word)", "es": "Una red bayesiana es un grafo dirigido ___ (DAG). (una palabra)" },
+      "prompt": {
+        "en": "A Bayesian network is a directed ___ graph (DAG). (one word)",
+        "es": "Una red bayesiana es un grafo dirigido ___ (DAG). (una palabra)"
+      },
       "answer": "acyclic",
-      "acceptedAlt": ["acíclico", "aciclico"],
-      "hint": { "en": "No cycles.", "es": "Sin ciclos." },
-      "solution": [ { "tex": "\\text{DAG}", "en": "Acyclic.", "es": "Acíclico." } ]
+      "acceptedAlt": [
+        "acíclico",
+        "aciclico"
+      ],
+      "hint": {
+        "en": "No cycles.",
+        "es": "Sin ciclos."
+      },
+      "solution": [
+        {
+          "tex": "\\text{DAG}",
+          "en": "Acyclic.",
+          "es": "Acíclico."
+        }
+      ]
     },
     {
       "id": "kr-12-e4",
       "answerType": "text",
-      "prompt": { "en": "Bayes nets compress the joint by exploiting conditional ___. (one word)", "es": "Las redes bayesianas comprimen la conjunta explotando la ___ condicional. (una palabra)" },
+      "prompt": {
+        "en": "Bayes nets compress the joint by exploiting conditional ___. (one word)",
+        "es": "Las redes bayesianas comprimen la conjunta explotando la ___ condicional. (una palabra)"
+      },
       "answer": "independence",
-      "acceptedAlt": ["independencia"],
-      "hint": { "en": "Nodes given parents.", "es": "Nodos dados los padres." },
-      "solution": [ { "tex": "\\text{conditional independence}", "en": "Independence.", "es": "Independencia." } ]
+      "acceptedAlt": [
+        "independencia"
+      ],
+      "hint": {
+        "en": "Nodes given parents.",
+        "es": "Nodos dados los padres."
+      },
+      "solution": [
+        {
+          "tex": "\\text{conditional independence}",
+          "en": "Independence.",
+          "es": "Independencia."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Bayesian networks", "es": "Redes bayesianas" } },
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 13, probabilistic reasoning (Bayesian networks)", "es": "Cap. 13, razonamiento probabilístico (redes bayesianas)" } }
+    {
+      "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)",
+      "detail": {
+        "en": "Bayesian networks",
+        "es": "Redes bayesianas"
+      }
+    },
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Ch. 13, probabilistic reasoning (Bayesian networks)",
+        "es": "Cap. 13, razonamiento probabilístico (redes bayesianas)"
+      }
+    }
   ]
 }

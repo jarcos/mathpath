@@ -3,13 +3,26 @@
   "subjectId": "ml-foundations",
   "order": 13,
   "estimatedMinutes": 45,
-  "title": { "en": "Evaluation Metrics", "es": "Métricas de evaluación" },
+  "title": {
+    "en": "Evaluation Metrics",
+    "es": "Métricas de evaluación"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "When accuracy lies, we turn to metrics built from the **confusion matrix** — the $2\\times 2$ table of true positives (TP), false positives (FP), true negatives (TN), and false negatives (FN). These four counts capture exactly *how* a classifier succeeds and fails.",
         "es": "Cuando la exactitud miente, recurrimos a métricas construidas a partir de la **matriz de confusión** — la tabla $2\\times 2$ de verdaderos positivos (TP), falsos positivos (FP), verdaderos negativos (TN) y falsos negativos (FN). Estos cuatro recuentos capturan exactamente *cómo* acierta y falla un clasificador."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "mlf-12-accuracy"
+      ],
+      "note": {
+        "en": "These metrics go beyond plain accuracy.",
+        "es": "Estas metricas van mas alla de la exactitud simple."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With $TP = 8$, $FP = 2$, $FN = 2$: precision $= \\tfrac{8}{8+2} = 0.8$, recall $= \\tfrac{8}{8+2} = 0.8$. Since both are $0.8$, the $F_1$ score is also $0.8$. A binary confusion matrix has $4$ cells (TP, FP, FN, TN).",
         "es": "Con $TP = 8$, $FP = 2$, $FN = 2$: precisión $= \\tfrac{8}{8+2} = 0.8$, recall $= \\tfrac{8}{8+2} = 0.8$. Como ambas son $0.8$, la puntuación $F_1$ también es $0.8$. Una matriz de confusión binaria tiene $4$ celdas (TP, FP, FN, TN)."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "scikit-learn"
+      ],
+      "code": {
+        "en": "from sklearn.metrics import precision_score, recall_score\ny_true = [1, 1, 0, 0]\ny_pred = [1, 0, 0, 0]\n# precision: of predicted positives, how many were right; recall: of actual positives, how many found\nprint(round(precision_score(y_true, y_pred), 3), round(recall_score(y_true, y_pred), 3))",
+        "es": "from sklearn.metrics import precision_score, recall_score\ny_true = [1, 1, 0, 0]\ny_pred = [1, 0, 0, 0]\n# precision: de los positivos predichos, cuantos acertados; recall: de los positivos reales, cuantos hallados\nprint(round(precision_score(y_true, y_pred), 3), round(recall_score(y_true, y_pred), 3))"
+      },
+      "expectedOutput": "1.0 0.5",
+      "caption": {
+        "en": "Precision and recall reveal what accuracy hides.",
+        "es": "La precision y el recall revelan lo que la exactitud oculta."
       }
     }
   ],
@@ -39,42 +71,112 @@
     {
       "id": "mlf-13-e1",
       "answerType": "number",
-      "prompt": { "en": "Precision with $TP=8$, $FP=2$: $TP/(TP+FP)$?", "es": "Precisión con $TP=8$, $FP=2$: $TP/(TP+FP)$?" },
+      "prompt": {
+        "en": "Precision with $TP=8$, $FP=2$: $TP/(TP+FP)$?",
+        "es": "Precisión con $TP=8$, $FP=2$: $TP/(TP+FP)$?"
+      },
       "answer": "0.8",
-      "acceptedAlt": ["8/(8+2)", "8/10"],
-      "hint": { "en": "8 / 10.", "es": "8 / 10." },
-      "solution": [ { "tex": "\\tfrac{8}{10} = 0.8", "en": "Precision.", "es": "Precisión." } ]
+      "acceptedAlt": [
+        "8/(8+2)",
+        "8/10"
+      ],
+      "hint": {
+        "en": "8 / 10.",
+        "es": "8 / 10."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{8}{10} = 0.8",
+          "en": "Precision.",
+          "es": "Precisión."
+        }
+      ]
     },
     {
       "id": "mlf-13-e2",
       "answerType": "number",
-      "prompt": { "en": "Recall with $TP=8$, $FN=2$: $TP/(TP+FN)$?", "es": "Recall con $TP=8$, $FN=2$: $TP/(TP+FN)$?" },
+      "prompt": {
+        "en": "Recall with $TP=8$, $FN=2$: $TP/(TP+FN)$?",
+        "es": "Recall con $TP=8$, $FN=2$: $TP/(TP+FN)$?"
+      },
       "answer": "0.8",
-      "acceptedAlt": ["8/(8+2)", "8/10"],
-      "hint": { "en": "8 / 10.", "es": "8 / 10." },
-      "solution": [ { "tex": "\\tfrac{8}{10} = 0.8", "en": "Recall.", "es": "Exhaustividad." } ]
+      "acceptedAlt": [
+        "8/(8+2)",
+        "8/10"
+      ],
+      "hint": {
+        "en": "8 / 10.",
+        "es": "8 / 10."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{8}{10} = 0.8",
+          "en": "Recall.",
+          "es": "Exhaustividad."
+        }
+      ]
     },
     {
       "id": "mlf-13-e3",
       "answerType": "number",
-      "prompt": { "en": "If precision = recall = 0.8, what is the F1 score?", "es": "Si precisión = recall = 0.8, ¿cuál es la puntuación F1?" },
+      "prompt": {
+        "en": "If precision = recall = 0.8, what is the F1 score?",
+        "es": "Si precisión = recall = 0.8, ¿cuál es la puntuación F1?"
+      },
       "answer": "0.8",
-      "acceptedAlt": ["2*0.8*0.8/(0.8+0.8)"],
-      "hint": { "en": "Harmonic mean of equals is that value.", "es": "La media armónica de iguales es ese valor." },
-      "solution": [ { "tex": "F_1 = 0.8", "en": "Equals the common value.", "es": "Igual al valor común." } ]
+      "acceptedAlt": [
+        "2*0.8*0.8/(0.8+0.8)"
+      ],
+      "hint": {
+        "en": "Harmonic mean of equals is that value.",
+        "es": "La media armónica de iguales es ese valor."
+      },
+      "solution": [
+        {
+          "tex": "F_1 = 0.8",
+          "en": "Equals the common value.",
+          "es": "Igual al valor común."
+        }
+      ]
     },
     {
       "id": "mlf-13-e4",
       "answerType": "number",
-      "prompt": { "en": "How many cells does a binary confusion matrix have?", "es": "¿Cuántas celdas tiene una matriz de confusión binaria?" },
+      "prompt": {
+        "en": "How many cells does a binary confusion matrix have?",
+        "es": "¿Cuántas celdas tiene una matriz de confusión binaria?"
+      },
       "answer": "4",
-      "acceptedAlt": ["2*2"],
-      "hint": { "en": "2×2: TP, FP, FN, TN.", "es": "2×2: TP, FP, FN, TN." },
-      "solution": [ { "tex": "2\\times 2 = 4", "en": "Four cells.", "es": "Cuatro celdas." } ]
+      "acceptedAlt": [
+        "2*2"
+      ],
+      "hint": {
+        "en": "2×2: TP, FP, FN, TN.",
+        "es": "2×2: TP, FP, FN, TN."
+      },
+      "solution": [
+        {
+          "tex": "2\\times 2 = 4",
+          "en": "Four cells.",
+          "es": "Cuatro celdas."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Evaluation: precision, recall, F1", "es": "Evaluación: precisión, exhaustividad, F1" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 11, performance metrics", "es": "Cap. 11, métricas de rendimiento" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Evaluation: precision, recall, F1",
+        "es": "Evaluación: precisión, exhaustividad, F1"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 11, performance metrics",
+        "es": "Cap. 11, métricas de rendimiento"
+      }
+    }
   ]
 }

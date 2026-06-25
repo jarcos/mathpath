@@ -3,7 +3,10 @@
   "subjectId": "linear-algebra",
   "order": 14,
   "estimatedMinutes": 40,
-  "title": { "en": "Lines in the Plane & Space", "es": "Rectas en el plano y el espacio" },
+  "title": {
+    "en": "Lines in the Plane & Space",
+    "es": "Rectas en el plano y el espacio"
+  },
   "sections": [
     {
       "type": "prose",
@@ -22,7 +25,10 @@
     {
       "type": "graph",
       "fn": "2*x + 1",
-      "domain": [-4, 4],
+      "domain": [
+        -4,
+        4
+      ],
       "caption": {
         "en": "The line $y = 2x + 1$ has slope $2$ and passes through $(0,1)$. As a parametric line: $(0,1) + t(1,2)$ — start at $(0,1)$ and step in direction $(1,2)$.",
         "es": "La recta $y = 2x + 1$ tiene pendiente $2$ y pasa por $(0,1)$. Como recta paramétrica: $(0,1) + t(1,2)$ — parte de $(0,1)$ y avanza en dirección $(1,2)$."
@@ -30,10 +36,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A point lies on a line if it satisfies the equation. Does $(0,1)$ lie on $y = 2x+1$? Substitute: $2(0)+1 = 1$ ✓ — yes. For the line through the origin with direction $(1,2)$, the rule is $y = 2x$, so at $x = 3$, $y = 6$.",
         "es": "Un punto está en una recta si cumple la ecuación. ¿Está $(0,1)$ en $y = 2x+1$? Sustituye: $2(0)+1 = 1$ ✓ — sí. Para la recta por el origen con dirección $(1,2)$, la regla es $y = 2x$, así en $x = 3$, $y = 6$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\npoint = np.array([1, 2])\ndirection = np.array([3, 4])\n# a point on the line at parameter t = 2\nprint((point + 2 * direction).tolist())",
+        "es": "import numpy as np\npoint = np.array([1, 2])\ndirection = np.array([3, 4])\n# un punto de la recta en el parametro t = 2\nprint((point + 2 * direction).tolist())"
+      },
+      "expectedOutput": "[7, 10]",
+      "caption": {
+        "en": "A line is a point plus t times a direction vector.",
+        "es": "Una recta es un punto mas t por un vector director."
       }
     }
   ],
@@ -41,42 +66,107 @@
     {
       "id": "linalg-14-e1",
       "answerType": "number",
-      "prompt": { "en": "Slope of the line $y = 2x + 1$?", "es": "¿Pendiente de la recta $y = 2x + 1$?" },
+      "prompt": {
+        "en": "Slope of the line $y = 2x + 1$?",
+        "es": "¿Pendiente de la recta $y = 2x + 1$?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "The coefficient of x.", "es": "El coeficiente de x." },
-      "solution": [ { "tex": "m = 2", "en": "Slope.", "es": "Pendiente." } ]
+      "hint": {
+        "en": "The coefficient of x.",
+        "es": "El coeficiente de x."
+      },
+      "solution": [
+        {
+          "tex": "m = 2",
+          "en": "Slope.",
+          "es": "Pendiente."
+        }
+      ]
     },
     {
       "id": "linalg-14-e2",
       "answerType": "text",
-      "prompt": { "en": "Does $(0,1)$ lie on $y = 2x + 1$? (yes / no)", "es": "¿Está $(0,1)$ en $y = 2x + 1$? (sí / no)" },
+      "prompt": {
+        "en": "Does $(0,1)$ lie on $y = 2x + 1$? (yes / no)",
+        "es": "¿Está $(0,1)$ en $y = 2x + 1$? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Substitute x = 0.", "es": "Sustituye x = 0." },
-      "solution": [ { "tex": "2\\cdot0 + 1 = 1", "en": "Yes, it satisfies the equation.", "es": "Sí, cumple la ecuación." } ]
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Substitute x = 0.",
+        "es": "Sustituye x = 0."
+      },
+      "solution": [
+        {
+          "tex": "2\\cdot0 + 1 = 1",
+          "en": "Yes, it satisfies the equation.",
+          "es": "Sí, cumple la ecuación."
+        }
+      ]
     },
     {
       "id": "linalg-14-e3",
       "answerType": "number",
-      "prompt": { "en": "For the line through the origin with direction $(1,2)$, find $y$ when $x = 3$.", "es": "Para la recta por el origen con dirección $(1,2)$, halla $y$ cuando $x = 3$." },
+      "prompt": {
+        "en": "For the line through the origin with direction $(1,2)$, find $y$ when $x = 3$.",
+        "es": "Para la recta por el origen con dirección $(1,2)$, halla $y$ cuando $x = 3$."
+      },
       "answer": "6",
-      "acceptedAlt": ["2*3"],
-      "hint": { "en": "y = 2x.", "es": "y = 2x." },
-      "solution": [ { "tex": "y = 2x = 6", "en": "Direction gives slope 2.", "es": "La dirección da pendiente 2." } ]
+      "acceptedAlt": [
+        "2*3"
+      ],
+      "hint": {
+        "en": "y = 2x.",
+        "es": "y = 2x."
+      },
+      "solution": [
+        {
+          "tex": "y = 2x = 6",
+          "en": "Direction gives slope 2.",
+          "es": "La dirección da pendiente 2."
+        }
+      ]
     },
     {
       "id": "linalg-14-e4",
       "answerType": "number",
-      "prompt": { "en": "On the parametric line $(1,0) + t(0,1)$, the x-coordinate equals?", "es": "En la recta paramétrica $(1,0) + t(0,1)$, la coordenada x es?" },
+      "prompt": {
+        "en": "On the parametric line $(1,0) + t(0,1)$, the x-coordinate equals?",
+        "es": "En la recta paramétrica $(1,0) + t(0,1)$, la coordenada x es?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "The direction has no x-part.", "es": "La dirección no tiene parte x." },
-      "solution": [ { "tex": "x = 1 \\text{ for all } t", "en": "A vertical line x = 1.", "es": "Una recta vertical x = 1." } ]
+      "hint": {
+        "en": "The direction has no x-part.",
+        "es": "La dirección no tiene parte x."
+      },
+      "solution": [
+        {
+          "tex": "x = 1 \\text{ for all } t",
+          "en": "A vertical line x = 1.",
+          "es": "Una recta vertical x = 1."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 1, lines, vectors and parametric form", "es": "Cap. 1, rectas, vectores y forma paramétrica" } },
-    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Equations of a line in the plane and in space", "es": "Ecuaciones de una recta en el plano y en el espacio" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 1, lines, vectors and parametric form",
+        "es": "Cap. 1, rectas, vectores y forma paramétrica"
+      }
+    },
+    {
+      "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)",
+      "detail": {
+        "en": "Equations of a line in the plane and in space",
+        "es": "Ecuaciones de una recta en el plano y en el espacio"
+      }
+    }
   ]
 }

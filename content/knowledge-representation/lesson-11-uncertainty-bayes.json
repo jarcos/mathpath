@@ -3,7 +3,10 @@
   "subjectId": "knowledge-representation",
   "order": 11,
   "estimatedMinutes": 40,
-  "title": { "en": "Reasoning Under Uncertainty", "es": "Razonamiento bajo incertidumbre" },
+  "title": {
+    "en": "Reasoning Under Uncertainty",
+    "es": "Razonamiento bajo incertidumbre"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With $P(E\\mid H)=0.8$, $P(H)=0.25$, $P(E)=0.4$: $P(H\\mid E) = \\dfrac{0.8\\cdot 0.25}{0.4} = \\dfrac{0.2}{0.4} = 0.5$. The posterior $0.5$ doubled the prior $0.25$.",
         "es": "Con $P(E\\mid H)=0.8$, $P(H)=0.25$, $P(E)=0.4$: $P(H\\mid E) = \\dfrac{0.8\\cdot 0.25}{0.4} = \\dfrac{0.2}{0.4} = 0.5$. La posterior $0.5$ duplicó la previa $0.25$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# uncertainty: combine probabilities with the product rule\np_rain = 0.3\np_wet_given_rain = 0.9\nprint(round(p_rain * p_wet_given_rain, 4))",
+        "es": "# incertidumbre: combina probabilidades con la regla del producto\np_rain = 0.3\np_wet_given_rain = 0.9\nprint(round(p_rain * p_wet_given_rain, 4))"
+      },
+      "expectedOutput": "0.27",
+      "caption": {
+        "en": "Probabilities let logic handle uncertain knowledge.",
+        "es": "Las probabilidades permiten a la logica manejar conocimiento incierto."
       }
     }
   ],
@@ -39,42 +59,113 @@
     {
       "id": "kr-11-e1",
       "answerType": "number",
-      "prompt": { "en": "Bayes: $P(H\\mid E) = \\frac{0.8\\cdot 0.25}{0.4}$?", "es": "Bayes: $P(H\\mid E) = \\frac{0.8\\cdot 0.25}{0.4}$?" },
+      "prompt": {
+        "en": "Bayes: $P(H\\mid E) = \\frac{0.8\\cdot 0.25}{0.4}$?",
+        "es": "Bayes: $P(H\\mid E) = \\frac{0.8\\cdot 0.25}{0.4}$?"
+      },
       "answer": "0.5",
-      "acceptedAlt": ["0.8*0.25/0.4", "1/2"],
-      "hint": { "en": "0.2 / 0.4.", "es": "0.2 / 0.4." },
-      "solution": [ { "tex": "\\frac{0.2}{0.4} = 0.5", "en": "0.5.", "es": "0.5." } ]
+      "acceptedAlt": [
+        "0.8*0.25/0.4",
+        "1/2"
+      ],
+      "hint": {
+        "en": "0.2 / 0.4.",
+        "es": "0.2 / 0.4."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{0.2}{0.4} = 0.5",
+          "en": "0.5.",
+          "es": "0.5."
+        }
+      ]
     },
     {
       "id": "kr-11-e2",
       "answerType": "text",
-      "prompt": { "en": "In Bayes' rule, belief before seeing evidence is the ___. (one word)", "es": "En la regla de Bayes, la creencia antes de ver evidencia es la ___. (una palabra)" },
+      "prompt": {
+        "en": "In Bayes' rule, belief before seeing evidence is the ___. (one word)",
+        "es": "En la regla de Bayes, la creencia antes de ver evidencia es la ___. (una palabra)"
+      },
       "answer": "prior",
-      "acceptedAlt": ["previa", "priori"],
-      "hint": { "en": "P(H).", "es": "P(H)." },
-      "solution": [ { "tex": "P(H)", "en": "Prior.", "es": "Previa." } ]
+      "acceptedAlt": [
+        "previa",
+        "priori"
+      ],
+      "hint": {
+        "en": "P(H).",
+        "es": "P(H)."
+      },
+      "solution": [
+        {
+          "tex": "P(H)",
+          "en": "Prior.",
+          "es": "Previa."
+        }
+      ]
     },
     {
       "id": "kr-11-e3",
       "answerType": "text",
-      "prompt": { "en": "The updated belief $P(H\\mid E)$ is the ___. (one word)", "es": "La creencia actualizada $P(H\\mid E)$ es la ___. (una palabra)" },
+      "prompt": {
+        "en": "The updated belief $P(H\\mid E)$ is the ___. (one word)",
+        "es": "La creencia actualizada $P(H\\mid E)$ es la ___. (una palabra)"
+      },
       "answer": "posterior",
-      "acceptedAlt": ["posteriori"],
-      "hint": { "en": "After evidence.", "es": "Tras la evidencia." },
-      "solution": [ { "tex": "P(H\\mid E)", "en": "Posterior.", "es": "Posterior." } ]
+      "acceptedAlt": [
+        "posteriori"
+      ],
+      "hint": {
+        "en": "After evidence.",
+        "es": "Tras la evidencia."
+      },
+      "solution": [
+        {
+          "tex": "P(H\\mid E)",
+          "en": "Posterior.",
+          "es": "Posterior."
+        }
+      ]
     },
     {
       "id": "kr-11-e4",
       "answerType": "number",
-      "prompt": { "en": "$P(E\\mid H)=0.9$, $P(H)=0.1$, $P(E)=0.3$: posterior $\\frac{0.9\\cdot0.1}{0.3}$?", "es": "$P(E\\mid H)=0.9$, $P(H)=0.1$, $P(E)=0.3$: posterior $\\frac{0.9\\cdot0.1}{0.3}$?" },
+      "prompt": {
+        "en": "$P(E\\mid H)=0.9$, $P(H)=0.1$, $P(E)=0.3$: posterior $\\frac{0.9\\cdot0.1}{0.3}$?",
+        "es": "$P(E\\mid H)=0.9$, $P(H)=0.1$, $P(E)=0.3$: posterior $\\frac{0.9\\cdot0.1}{0.3}$?"
+      },
       "answer": "0.3",
-      "acceptedAlt": ["0.9*0.1/0.3", "3/10"],
-      "hint": { "en": "0.09 / 0.3.", "es": "0.09 / 0.3." },
-      "solution": [ { "tex": "\\frac{0.09}{0.3} = 0.3", "en": "0.3.", "es": "0.3." } ]
+      "acceptedAlt": [
+        "0.9*0.1/0.3",
+        "3/10"
+      ],
+      "hint": {
+        "en": "0.09 / 0.3.",
+        "es": "0.09 / 0.3."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{0.09}{0.3} = 0.3",
+          "en": "0.3.",
+          "es": "0.3."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Bayesian updating", "es": "Actualización bayesiana" } },
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 12, quantifying uncertainty", "es": "Cap. 12, cuantificar la incertidumbre" } }
+    {
+      "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)",
+      "detail": {
+        "en": "Bayesian updating",
+        "es": "Actualización bayesiana"
+      }
+    },
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Ch. 12, quantifying uncertainty",
+        "es": "Cap. 12, cuantificar la incertidumbre"
+      }
+    }
   ]
 }

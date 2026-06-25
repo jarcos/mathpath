@@ -3,7 +3,10 @@
   "subjectId": "reinforcement-learning",
   "order": 12,
   "estimatedMinutes": 35,
-  "title": { "en": "Function Approximation", "es": "Aproximación de funciones" },
+  "title": {
+    "en": "Function Approximation",
+    "es": "Aproximación de funciones"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Linear value with weights $w=[2,3]$ and features $x=[1,4]$: $\\hat{V} = 2\\cdot1 + 3\\cdot4 = 2 + 12 = 14$. A tabular method would instead need one stored number per state.",
         "es": "Valor lineal con pesos $w=[2,3]$ y características $x=[1,4]$: $\\hat{V} = 2\\cdot1 + 3\\cdot4 = 2 + 12 = 14$. Un método tabular necesitaría en cambio un número almacenado por estado."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# function approximation: Q(s,a) = w . features(s,a)\nw = np.array([0.5, -0.2])\nfeatures = np.array([2, 3])\nprint(round(float(w @ features), 4))",
+        "es": "import numpy as np\n# aproximacion de funciones: Q(s,a) = w . caracteristicas(s,a)\nw = np.array([0.5, -0.2])\nfeatures = np.array([2, 3])\nprint(round(float(w @ features), 4))"
+      },
+      "expectedOutput": "0.4",
+      "caption": {
+        "en": "Approximation lets RL scale to huge or continuous state spaces.",
+        "es": "La aproximacion permite a RL escalar a espacios de estados enormes o continuos."
       }
     }
   ],
@@ -39,41 +61,105 @@
     {
       "id": "rl-12-e1",
       "answerType": "number",
-      "prompt": { "en": "Linear value $w\\cdot x$ with $w=[2,3]$, $x=[1,4]$?", "es": "Valor lineal $w\\cdot x$ con $w=[2,3]$, $x=[1,4]$?" },
+      "prompt": {
+        "en": "Linear value $w\\cdot x$ with $w=[2,3]$, $x=[1,4]$?",
+        "es": "Valor lineal $w\\cdot x$ con $w=[2,3]$, $x=[1,4]$?"
+      },
       "answer": "14",
-      "acceptedAlt": ["2*1+3*4", "dot([2,3],[1,4])"],
-      "hint": { "en": "2 + 12.", "es": "2 + 12." },
-      "solution": [ { "tex": "2+12 = 14", "en": "14.", "es": "14." } ]
+      "acceptedAlt": [
+        "2*1+3*4",
+        "dot([2,3],[1,4])"
+      ],
+      "hint": {
+        "en": "2 + 12.",
+        "es": "2 + 12."
+      },
+      "solution": [
+        {
+          "tex": "2+12 = 14",
+          "en": "14.",
+          "es": "14."
+        }
+      ]
     },
     {
       "id": "rl-12-e2",
       "answerType": "text",
-      "prompt": { "en": "Storing one value per state in a table is the ___ approach. (one word)", "es": "Guardar un valor por estado en una tabla es el enfoque ___. (una palabra)" },
+      "prompt": {
+        "en": "Storing one value per state in a table is the ___ approach. (one word)",
+        "es": "Guardar un valor por estado en una tabla es el enfoque ___. (una palabra)"
+      },
       "answer": "tabular",
-      "acceptedAlt": ["tabular"],
-      "hint": { "en": "Like a lookup table.", "es": "Como tabla de búsqueda." },
-      "solution": [ { "tex": "\\text{tabular}", "en": "Tabular.", "es": "Tabular." } ]
+      "acceptedAlt": [
+        "tabular"
+      ],
+      "hint": {
+        "en": "Like a lookup table.",
+        "es": "Como tabla de búsqueda."
+      },
+      "solution": [
+        {
+          "tex": "\\text{tabular}",
+          "en": "Tabular.",
+          "es": "Tabular."
+        }
+      ]
     },
     {
       "id": "rl-12-e3",
       "answerType": "text",
-      "prompt": { "en": "Function approximation lets the agent ___ across similar states. (one word)", "es": "La aproximación de funciones permite al agente ___ entre estados similares. (una palabra)" },
+      "prompt": {
+        "en": "Function approximation lets the agent ___ across similar states. (one word)",
+        "es": "La aproximación de funciones permite al agente ___ entre estados similares. (una palabra)"
+      },
       "answer": "generalize",
-      "acceptedAlt": ["generalizar", "generalise"],
-      "hint": { "en": "Transfer knowledge.", "es": "Transferir conocimiento." },
-      "solution": [ { "tex": "\\text{generalize}", "en": "Generalize.", "es": "Generalizar." } ]
+      "acceptedAlt": [
+        "generalizar",
+        "generalise"
+      ],
+      "hint": {
+        "en": "Transfer knowledge.",
+        "es": "Transferir conocimiento."
+      },
+      "solution": [
+        {
+          "tex": "\\text{generalize}",
+          "en": "Generalize.",
+          "es": "Generalizar."
+        }
+      ]
     },
     {
       "id": "rl-12-e4",
       "answerType": "text",
-      "prompt": { "en": "Using a neural network as the approximator gives ___ RL. (one word)", "es": "Usar una red neuronal como aproximador da el RL ___. (una palabra)" },
+      "prompt": {
+        "en": "Using a neural network as the approximator gives ___ RL. (one word)",
+        "es": "Usar una red neuronal como aproximador da el RL ___. (una palabra)"
+      },
       "answer": "deep",
-      "acceptedAlt": ["profundo"],
-      "hint": { "en": "Deep ___.", "es": "RL ___." },
-      "solution": [ { "tex": "\\text{deep RL}", "en": "Deep.", "es": "Profundo." } ]
+      "acceptedAlt": [
+        "profundo"
+      ],
+      "hint": {
+        "en": "Deep ___.",
+        "es": "RL ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{deep RL}",
+          "en": "Deep.",
+          "es": "Profundo."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 9–11, on-policy and off-policy function approximation; the deadly triad", "es": "Cap. 9–11, aproximación de funciones on/off-policy; la tríada mortal" } }
+    {
+      "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)",
+      "detail": {
+        "en": "Ch. 9–11, on-policy and off-policy function approximation; the deadly triad",
+        "es": "Cap. 9–11, aproximación de funciones on/off-policy; la tríada mortal"
+      }
+    }
   ]
 }

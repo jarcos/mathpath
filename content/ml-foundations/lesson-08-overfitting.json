@@ -3,13 +3,27 @@
   "subjectId": "ml-foundations",
   "order": 8,
   "estimatedMinutes": 40,
-  "title": { "en": "Overfitting & the Bias-Variance Trade-off", "es": "Sobreajuste y el compromiso sesgo-varianza" },
+  "title": {
+    "en": "Overfitting & the Bias-Variance Trade-off",
+    "es": "Sobreajuste y el compromiso sesgo-varianza"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "The central failure mode of machine learning is **overfitting**: a model that learns the training data *too* well — memorizing its noise and quirks — and then fails on new data. A telltale sign is a large gap: high training accuracy but low test accuracy. The opposite is **underfitting**: a model too simple to capture the real pattern, performing poorly even on training data.",
         "es": "El modo de fallo central del aprendizaje automático es el **sobreajuste**: un modelo que aprende los datos de entrenamiento *demasiado* bien — memorizando su ruido y rarezas — y luego falla con datos nuevos. Una señal clara es una gran brecha: alta precisión en entrenamiento pero baja en prueba. Lo contrario es el **subajuste**: un modelo demasiado simple para captar el patrón real, que rinde mal incluso en entrenamiento."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "mlf-06-gradient-descent",
+        "mlf-04-loss"
+      ],
+      "note": {
+        "en": "This lesson builds on how models are trained to minimize a loss.",
+        "es": "Esta lección se apoya en cómo se entrenan los modelos para minimizar una pérdida."
       }
     },
     {
@@ -28,7 +42,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A model scores $99\\%$ on training but $60\\%$ on test. The gap is $99 - 60 = 39$ points — a strong sign of **overfitting**. A model that scores $60\\%$ on *both* is more likely **underfitting** (high bias).",
         "es": "Un modelo obtiene $99\\%$ en entrenamiento pero $60\\%$ en prueba. La brecha es $99 - 60 = 39$ puntos — una fuerte señal de **sobreajuste**. Un modelo que obtiene $60\\%$ en *ambos* probablemente está **subajustando** (sesgo alto)."
@@ -39,42 +56,161 @@
     {
       "id": "mlf-08-e1",
       "answerType": "text",
-      "prompt": { "en": "A model that memorizes training data but fails on new data is ___. (one word)", "es": "Un modelo que memoriza los datos de entrenamiento pero falla con datos nuevos hace ___. (una palabra)" },
+      "prompt": {
+        "en": "A model that memorizes training data but fails on new data is ___. (one word)",
+        "es": "Un modelo que memoriza los datos de entrenamiento pero falla con datos nuevos hace ___. (una palabra)"
+      },
       "answer": "overfitting",
-      "acceptedAlt": ["sobreajuste", "overfit", "sobreajustar"],
-      "hint": { "en": "Big train/test gap.", "es": "Gran brecha train/test." },
-      "solution": [ { "tex": "\\text{overfitting}", "en": "Overfitting.", "es": "Sobreajuste." } ]
+      "acceptedAlt": [
+        "sobreajuste",
+        "overfit",
+        "sobreajustar"
+      ],
+      "hint": {
+        "en": "Big train/test gap.",
+        "es": "Gran brecha train/test."
+      },
+      "solution": [
+        {
+          "tex": "\\text{overfitting}",
+          "en": "Overfitting.",
+          "es": "Sobreajuste."
+        }
+      ]
     },
     {
       "id": "mlf-08-e2",
       "answerType": "text",
-      "prompt": { "en": "A model too simple to capture the pattern is ___. (one word)", "es": "Un modelo demasiado simple para captar el patrón hace ___. (una palabra)" },
+      "prompt": {
+        "en": "A model too simple to capture the pattern is ___. (one word)",
+        "es": "Un modelo demasiado simple para captar el patrón hace ___. (una palabra)"
+      },
       "answer": "underfitting",
-      "acceptedAlt": ["subajuste", "underfit", "subajustar"],
-      "hint": { "en": "High bias.", "es": "Sesgo alto." },
-      "solution": [ { "tex": "\\text{underfitting}", "en": "Underfitting.", "es": "Subajuste." } ]
+      "acceptedAlt": [
+        "subajuste",
+        "underfit",
+        "subajustar"
+      ],
+      "hint": {
+        "en": "High bias.",
+        "es": "Sesgo alto."
+      },
+      "solution": [
+        {
+          "tex": "\\text{underfitting}",
+          "en": "Underfitting.",
+          "es": "Subajuste."
+        }
+      ]
     },
     {
       "id": "mlf-08-e3",
       "answerType": "number",
-      "prompt": { "en": "Training accuracy 99%, test accuracy 60%. What is the gap (in points)?", "es": "Precisión de entrenamiento 99%, de prueba 60%. ¿Cuál es la brecha (en puntos)?" },
+      "prompt": {
+        "en": "Training accuracy 99%, test accuracy 60%. What is the gap (in points)?",
+        "es": "Precisión de entrenamiento 99%, de prueba 60%. ¿Cuál es la brecha (en puntos)?"
+      },
       "answer": "39",
-      "acceptedAlt": ["99-60"],
-      "hint": { "en": "99 − 60.", "es": "99 − 60." },
-      "solution": [ { "tex": "99 - 60 = 39", "en": "Overfitting gap.", "es": "Brecha de sobreajuste." } ]
+      "acceptedAlt": [
+        "99-60"
+      ],
+      "hint": {
+        "en": "99 − 60.",
+        "es": "99 − 60."
+      },
+      "solution": [
+        {
+          "tex": "99 - 60 = 39",
+          "en": "Overfitting gap.",
+          "es": "Brecha de sobreajuste."
+        }
+      ]
     },
     {
       "id": "mlf-08-e4",
       "answerType": "text",
-      "prompt": { "en": "Error from overly simple assumptions is called ___. (one word)", "es": "El error por suposiciones demasiado simples se llama ___. (una palabra)" },
+      "prompt": {
+        "en": "Error from overly simple assumptions is called ___. (one word)",
+        "es": "El error por suposiciones demasiado simples se llama ___. (una palabra)"
+      },
       "answer": "bias",
-      "acceptedAlt": ["sesgo"],
-      "hint": { "en": "The bias of bias-variance.", "es": "El sesgo de sesgo-varianza." },
-      "solution": [ { "tex": "\\text{bias}", "en": "Bias.", "es": "Sesgo." } ]
+      "acceptedAlt": [
+        "sesgo"
+      ],
+      "hint": {
+        "en": "The bias of bias-variance.",
+        "es": "El sesgo de sesgo-varianza."
+      },
+      "solution": [
+        {
+          "tex": "\\text{bias}",
+          "en": "Bias.",
+          "es": "Sesgo."
+        }
+      ]
+    },
+    {
+      "id": "mlf-08-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which pattern most clearly signals **overfitting**?",
+        "es": "¿Qué patrón señala más claramente el **sobreajuste**?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "High training accuracy but low validation accuracy",
+            "es": "Alta exactitud en entrenamiento pero baja en validación"
+          },
+          "correct": true,
+          "why": {
+            "en": "The model memorized the training data and fails to generalize — the definition of overfitting.",
+            "es": "El modelo memorizó los datos de entrenamiento y no generaliza — la definición de sobreajuste."
+          }
+        },
+        {
+          "text": {
+            "en": "Low training and low validation accuracy",
+            "es": "Baja exactitud en entrenamiento y en validación"
+          },
+          "correct": false,
+          "why": {
+            "en": "That is underfitting — the model is too simple to learn even the training data.",
+            "es": "Eso es subajuste — el modelo es demasiado simple para aprender ni los datos de entrenamiento."
+          }
+        },
+        {
+          "text": {
+            "en": "High training and high validation accuracy",
+            "es": "Alta exactitud en entrenamiento y en validación"
+          },
+          "correct": false,
+          "why": {
+            "en": "That is a well-fit model that generalizes — exactly what we want.",
+            "es": "Eso es un modelo bien ajustado que generaliza — justo lo que queremos."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Look for a big gap between training and validation performance.",
+        "es": "Busca una gran diferencia entre el rendimiento en entrenamiento y validación."
+      }
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, capacity, overfitting and the bias-variance trade-off", "es": "Cap. 5, capacidad, sobreajuste y compromiso sesgo-varianza" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, overfitting and model selection", "es": "Cap. 18, sobreajuste y selección de modelos" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, capacity, overfitting and the bias-variance trade-off",
+        "es": "Cap. 5, capacidad, sobreajuste y compromiso sesgo-varianza"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 18, overfitting and model selection",
+        "es": "Cap. 18, sobreajuste y selección de modelos"
+      }
+    }
   ]
 }

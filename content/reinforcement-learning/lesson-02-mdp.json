@@ -3,7 +3,10 @@
   "subjectId": "reinforcement-learning",
   "order": 2,
   "estimatedMinutes": 35,
-  "title": { "en": "Markov Decision Processes", "es": "Procesos de decisión de Markov" },
+  "title": {
+    "en": "Markov Decision Processes",
+    "es": "Procesos de decisión de Markov"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "If from state $s$ action $a$ leads to $s_1$ with probability $0.7$ and $s_2$ with probability $p$, then $0.7 + p = 1$, so $p = 0.3$. The property that only the current state matters is the Markov property.",
         "es": "Si desde el estado $s$ la acción $a$ lleva a $s_1$ con probabilidad $0.7$ y a $s_2$ con probabilidad $p$, entonces $0.7 + p = 1$, así que $p = 0.3$. La propiedad de que solo importa el estado actual es la propiedad de Markov."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# an MDP: transition and reward functions over (state, action)\nP = {(\"s0\", \"a\"): \"s1\"}\nR = {(\"s0\", \"a\"): 5}\nprint(P[(\"s0\", \"a\")], R[(\"s0\", \"a\")])",
+        "es": "# un MDP: funciones de transicion y recompensa sobre (estado, accion)\nP = {(\"s0\", \"a\"): \"s1\"}\nR = {(\"s0\", \"a\"): 5}\nprint(P[(\"s0\", \"a\")], R[(\"s0\", \"a\")])"
+      },
+      "expectedOutput": "s1 5",
+      "caption": {
+        "en": "An MDP defines states, actions, transitions and rewards.",
+        "es": "Un MDP define estados, acciones, transiciones y recompensas."
       }
     }
   ],
@@ -39,41 +59,98 @@
     {
       "id": "rl-02-e1",
       "answerType": "number",
-      "prompt": { "en": "Transitions to $s_1$ (0.7) and $s_2$ ($p$) must sum to 1. Find $p$.", "es": "Las transiciones a $s_1$ (0.7) y $s_2$ ($p$) deben sumar 1. Halla $p$." },
+      "prompt": {
+        "en": "Transitions to $s_1$ (0.7) and $s_2$ ($p$) must sum to 1. Find $p$.",
+        "es": "Las transiciones a $s_1$ (0.7) y $s_2$ ($p$) deben sumar 1. Halla $p$."
+      },
       "answer": "0.3",
-      "acceptedAlt": ["1-0.7", "3/10"],
-      "hint": { "en": "1 − 0.7.", "es": "1 − 0.7." },
-      "solution": [ { "tex": "1-0.7 = 0.3", "en": "0.3.", "es": "0.3." } ]
+      "acceptedAlt": [
+        "1-0.7",
+        "3/10"
+      ],
+      "hint": {
+        "en": "1 − 0.7.",
+        "es": "1 − 0.7."
+      },
+      "solution": [
+        {
+          "tex": "1-0.7 = 0.3",
+          "en": "0.3.",
+          "es": "0.3."
+        }
+      ]
     },
     {
       "id": "rl-02-e2",
       "answerType": "text",
-      "prompt": { "en": "The assumption that the future depends only on the current state is the ___ property. (one word)", "es": "La hipótesis de que el futuro depende solo del estado actual es la propiedad de ___. (una palabra)" },
+      "prompt": {
+        "en": "The assumption that the future depends only on the current state is the ___ property. (one word)",
+        "es": "La hipótesis de que el futuro depende solo del estado actual es la propiedad de ___. (una palabra)"
+      },
       "answer": "markov",
       "acceptedAlt": [],
-      "hint": { "en": "Named after a mathematician.", "es": "Por un matemático." },
-      "solution": [ { "tex": "\\text{Markov}", "en": "Markov.", "es": "Markov." } ]
+      "hint": {
+        "en": "Named after a mathematician.",
+        "es": "Por un matemático."
+      },
+      "solution": [
+        {
+          "tex": "\\text{Markov}",
+          "en": "Markov.",
+          "es": "Markov."
+        }
+      ]
     },
     {
       "id": "rl-02-e3",
       "answerType": "number",
-      "prompt": { "en": "Transition probabilities from one state-action over all next states sum to?", "es": "Las probabilidades de transición desde un par estado-acción sobre todos los siguientes suman?" },
+      "prompt": {
+        "en": "Transition probabilities from one state-action over all next states sum to?",
+        "es": "Las probabilidades de transición desde un par estado-acción sobre todos los siguientes suman?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "It's a distribution.", "es": "Es una distribución." },
-      "solution": [ { "tex": "\\sum_{s'} P(s'\\mid s,a) = 1", "en": "One.", "es": "Uno." } ]
+      "hint": {
+        "en": "It's a distribution.",
+        "es": "Es una distribución."
+      },
+      "solution": [
+        {
+          "tex": "\\sum_{s'} P(s'\\mid s,a) = 1",
+          "en": "One.",
+          "es": "Uno."
+        }
+      ]
     },
     {
       "id": "rl-02-e4",
       "answerType": "number",
-      "prompt": { "en": "How many elements are in the MDP tuple $(S,A,P,R,\\gamma)$?", "es": "¿Cuántos elementos tiene la tupla MDP $(S,A,P,R,\\gamma)$?" },
+      "prompt": {
+        "en": "How many elements are in the MDP tuple $(S,A,P,R,\\gamma)$?",
+        "es": "¿Cuántos elementos tiene la tupla MDP $(S,A,P,R,\\gamma)$?"
+      },
       "answer": "5",
       "acceptedAlt": [],
-      "hint": { "en": "Count them.", "es": "Cuéntalos." },
-      "solution": [ { "tex": "5", "en": "Five.", "es": "Cinco." } ]
+      "hint": {
+        "en": "Count them.",
+        "es": "Cuéntalos."
+      },
+      "solution": [
+        {
+          "tex": "5",
+          "en": "Five.",
+          "es": "Cinco."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 3, finite Markov decision processes", "es": "Cap. 3, procesos de decisión de Markov finitos" } }
+    {
+      "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)",
+      "detail": {
+        "en": "Ch. 3, finite Markov decision processes",
+        "es": "Cap. 3, procesos de decisión de Markov finitos"
+      }
+    }
   ]
 }

@@ -3,13 +3,26 @@
   "subjectId": "active-inference",
   "order": 7,
   "estimatedMinutes": 35,
-  "title": { "en": "Precision & Attention", "es": "Precisión y atención" },
+  "title": {
+    "en": "Precision & Attention",
+    "es": "Precisión y atención"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Not all prediction errors deserve equal weight. **Precision** is the **inverse variance** of a signal, $\\pi = 1/\\sigma^2$ — a measure of confidence or reliability. Active inference weights each prediction error by its precision, so reliable (low-variance) signals influence beliefs more than noisy ones.",
         "es": "No todos los errores de predicción merecen igual peso. La **precisión** es la **inversa de la varianza** de una señal, $\\pi = 1/\\sigma^2$ — una medida de confianza o fiabilidad. La inferencia activa pondera cada error de predicción por su precisión, así que las señales fiables (de baja varianza) influyen más en las creencias que las ruidosas."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "ai-06-predictive-coding"
+      ],
+      "note": {
+        "en": "Precision weights the prediction errors of predictive coding.",
+        "es": "La precision pondera los errores de la codificacion predictiva."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Precision is the inverse variance: for variance $\\sigma^2 = 0.25$, precision $\\pi = 1/0.25 = 4$. A very noisy signal (large variance) has low precision and is down-weighted.",
         "es": "La precisión es la inversa de la varianza: para varianza $\\sigma^2 = 0.25$, precisión $\\pi = 1/0.25 = 4$. Una señal muy ruidosa (varianza grande) tiene baja precisión y se subpondera."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# precision weights how much a prediction error counts (attention)\nerror = 1.5\nprecision = 2.0\nprint(round(error * precision, 4))",
+        "es": "# la precision pondera cuanto cuenta un error de prediccion (atencion)\nerror = 1.5\nprecision = 2.0\nprint(round(error * precision, 4))"
+      },
+      "expectedOutput": "3.0",
+      "caption": {
+        "en": "Precision is the brain's gain control — the basis of attention.",
+        "es": "La precision es el control de ganancia del cerebro — la base de la atencion."
       }
     }
   ],
@@ -39,42 +69,111 @@
     {
       "id": "ai-07-e1",
       "answerType": "number",
-      "prompt": { "en": "Precision $\\pi = 1/\\sigma^2$ for variance $\\sigma^2 = 0.25$?", "es": "Precisión $\\pi = 1/\\sigma^2$ para varianza $\\sigma^2 = 0.25$?" },
+      "prompt": {
+        "en": "Precision $\\pi = 1/\\sigma^2$ for variance $\\sigma^2 = 0.25$?",
+        "es": "Precisión $\\pi = 1/\\sigma^2$ para varianza $\\sigma^2 = 0.25$?"
+      },
       "answer": "4",
-      "acceptedAlt": ["1/0.25"],
-      "hint": { "en": "1 / 0.25.", "es": "1 / 0.25." },
-      "solution": [ { "tex": "1/0.25 = 4", "en": "Four.", "es": "Cuatro." } ]
+      "acceptedAlt": [
+        "1/0.25"
+      ],
+      "hint": {
+        "en": "1 / 0.25.",
+        "es": "1 / 0.25."
+      },
+      "solution": [
+        {
+          "tex": "1/0.25 = 4",
+          "en": "Four.",
+          "es": "Cuatro."
+        }
+      ]
     },
     {
       "id": "ai-07-e2",
       "answerType": "number",
-      "prompt": { "en": "Precision for variance $\\sigma^2 = 2$ (as a fraction or decimal): $1/2$?", "es": "Precisión para varianza $\\sigma^2 = 2$ (fracción o decimal): $1/2$?" },
+      "prompt": {
+        "en": "Precision for variance $\\sigma^2 = 2$ (as a fraction or decimal): $1/2$?",
+        "es": "Precisión para varianza $\\sigma^2 = 2$ (fracción o decimal): $1/2$?"
+      },
       "answer": "0.5",
-      "acceptedAlt": ["1/2"],
-      "hint": { "en": "1 / 2.", "es": "1 / 2." },
-      "solution": [ { "tex": "1/2 = 0.5", "en": "0.5.", "es": "0.5." } ]
+      "acceptedAlt": [
+        "1/2"
+      ],
+      "hint": {
+        "en": "1 / 2.",
+        "es": "1 / 2."
+      },
+      "solution": [
+        {
+          "tex": "1/2 = 0.5",
+          "en": "0.5.",
+          "es": "0.5."
+        }
+      ]
     },
     {
       "id": "ai-07-e3",
       "answerType": "text",
-      "prompt": { "en": "In active inference, attention is the optimization of ___. (one word)", "es": "En la inferencia activa, la atención es la optimización de la ___. (una palabra)" },
+      "prompt": {
+        "en": "In active inference, attention is the optimization of ___. (one word)",
+        "es": "En la inferencia activa, la atención es la optimización de la ___. (una palabra)"
+      },
       "answer": "precision",
-      "acceptedAlt": ["precisión", "precision"],
-      "hint": { "en": "Inverse variance.", "es": "Inversa de la varianza." },
-      "solution": [ { "tex": "\\pi = 1/\\sigma^2", "en": "Precision.", "es": "Precisión." } ]
+      "acceptedAlt": [
+        "precisión",
+        "precision"
+      ],
+      "hint": {
+        "en": "Inverse variance.",
+        "es": "Inversa de la varianza."
+      },
+      "solution": [
+        {
+          "tex": "\\pi = 1/\\sigma^2",
+          "en": "Precision.",
+          "es": "Precisión."
+        }
+      ]
     },
     {
       "id": "ai-07-e4",
       "answerType": "text",
-      "prompt": { "en": "Precision is the inverse of ___. (one word)", "es": "La precisión es la inversa de la ___. (una palabra)" },
+      "prompt": {
+        "en": "Precision is the inverse of ___. (one word)",
+        "es": "La precisión es la inversa de la ___. (una palabra)"
+      },
       "answer": "variance",
-      "acceptedAlt": ["varianza"],
-      "hint": { "en": "π = 1/σ².", "es": "π = 1/σ²." },
-      "solution": [ { "tex": "\\sigma^2", "en": "Variance.", "es": "Varianza." } ]
+      "acceptedAlt": [
+        "varianza"
+      ],
+      "hint": {
+        "en": "π = 1/σ².",
+        "es": "π = 1/σ²."
+      },
+      "solution": [
+        {
+          "tex": "\\sigma^2",
+          "en": "Variance.",
+          "es": "Varianza."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 5, precision and attention", "es": "Cap. 5, precisión y atención" } },
-    { "source": "Feldman & Friston — Attention, uncertainty, and free-energy (2010)", "detail": { "en": "Precision as attention", "es": "Precisión como atención" } }
+    {
+      "source": "Parr, Pezzulo & Friston — Active Inference (2022)",
+      "detail": {
+        "en": "Ch. 5, precision and attention",
+        "es": "Cap. 5, precisión y atención"
+      }
+    },
+    {
+      "source": "Feldman & Friston — Attention, uncertainty, and free-energy (2010)",
+      "detail": {
+        "en": "Precision as attention",
+        "es": "Precisión como atención"
+      }
+    }
   ]
 }

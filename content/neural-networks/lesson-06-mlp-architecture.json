@@ -3,13 +3,26 @@
   "subjectId": "neural-networks",
   "order": 6,
   "estimatedMinutes": 40,
-  "title": { "en": "The Multilayer Perceptron", "es": "El perceptrón multicapa" },
+  "title": {
+    "en": "The Multilayer Perceptron",
+    "es": "El perceptrón multicapa"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A **multilayer perceptron (MLP)** wires neurons into layers: an **input layer** (the features), one or more **hidden layers** that transform the data, and an **output layer** that produces the prediction. Each neuron in a layer connects to every neuron in the next — a 'fully connected' or 'dense' network.",
         "es": "Un **perceptrón multicapa (MLP)** conecta neuronas en capas: una **capa de entrada** (las características), una o más **capas ocultas** que transforman los datos, y una **capa de salida** que produce la predicción. Cada neurona de una capa se conecta con todas las de la siguiente — una red 'totalmente conectada' o 'densa'."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "nn-01-artificial-neuron"
+      ],
+      "note": {
+        "en": "A multilayer perceptron stacks many neurons.",
+        "es": "Un perceptron multicapa apila muchas neuronas."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A network with $3$ inputs feeding a hidden layer of $4$ neurons uses a $4\\times 3$ weight matrix — $3\\times 4 = 12$ weights. A network with one hidden layer has $2$ weight matrices (input→hidden and hidden→output).",
         "es": "Una red con $3$ entradas que alimenta una capa oculta de $4$ neuronas usa una matriz de pesos $4\\times 3$ — $3\\times 4 = 12$ pesos. Una red con una capa oculta tiene $2$ matrices de pesos (entrada→oculta y oculta→salida)."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nnp.random.seed(0)\n# an MLP is a stack of weight matrices: 3 -> 4 -> 1\nW1 = np.random.randn(3, 4)\nW2 = np.random.randn(4, 1)\nprint(W1.shape, W2.shape, W1.size + W2.size)",
+        "es": "import numpy as np\nnp.random.seed(0)\n# un MLP es una pila de matrices de pesos: 3 -> 4 -> 1\nW1 = np.random.randn(3, 4)\nW2 = np.random.randn(4, 1)\nprint(W1.shape, W2.shape, W1.size + W2.size)"
+      },
+      "expectedOutput": "(3, 4) (4, 1) 16",
+      "caption": {
+        "en": "An MLP chains layers; its weights are the parameters to learn.",
+        "es": "Un MLP encadena capas; sus pesos son los parametros a aprender."
       }
     }
   ],
@@ -39,42 +71,107 @@
     {
       "id": "nn-06-e1",
       "answerType": "text",
-      "prompt": { "en": "Layers between the input and output are called ___ layers. (one word)", "es": "Las capas entre la entrada y la salida se llaman capas ___. (una palabra)" },
+      "prompt": {
+        "en": "Layers between the input and output are called ___ layers. (one word)",
+        "es": "Las capas entre la entrada y la salida se llaman capas ___. (una palabra)"
+      },
       "answer": "hidden",
-      "acceptedAlt": ["ocultas", "oculta"],
-      "hint": { "en": "Not input, not output.", "es": "Ni entrada ni salida." },
-      "solution": [ { "tex": "\\text{hidden layers}", "en": "Hidden.", "es": "Ocultas." } ]
+      "acceptedAlt": [
+        "ocultas",
+        "oculta"
+      ],
+      "hint": {
+        "en": "Not input, not output.",
+        "es": "Ni entrada ni salida."
+      },
+      "solution": [
+        {
+          "tex": "\\text{hidden layers}",
+          "en": "Hidden.",
+          "es": "Ocultas."
+        }
+      ]
     },
     {
       "id": "nn-06-e2",
       "answerType": "number",
-      "prompt": { "en": "How many weights connect 3 inputs to a hidden layer of 4 neurons?", "es": "¿Cuántos pesos conectan 3 entradas con una capa oculta de 4 neuronas?" },
+      "prompt": {
+        "en": "How many weights connect 3 inputs to a hidden layer of 4 neurons?",
+        "es": "¿Cuántos pesos conectan 3 entradas con una capa oculta de 4 neuronas?"
+      },
       "answer": "12",
-      "acceptedAlt": ["3*4"],
-      "hint": { "en": "inputs × neurons.", "es": "entradas × neuronas." },
-      "solution": [ { "tex": "3\\times 4 = 12", "en": "Weight count.", "es": "Número de pesos." } ]
+      "acceptedAlt": [
+        "3*4"
+      ],
+      "hint": {
+        "en": "inputs × neurons.",
+        "es": "entradas × neuronas."
+      },
+      "solution": [
+        {
+          "tex": "3\\times 4 = 12",
+          "en": "Weight count.",
+          "es": "Número de pesos."
+        }
+      ]
     },
     {
       "id": "nn-06-e3",
       "answerType": "number",
-      "prompt": { "en": "A network with one hidden layer has how many weight matrices?", "es": "Una red con una capa oculta tiene cuántas matrices de pesos?" },
+      "prompt": {
+        "en": "A network with one hidden layer has how many weight matrices?",
+        "es": "Una red con una capa oculta tiene cuántas matrices de pesos?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "input→hidden, hidden→output.", "es": "entrada→oculta, oculta→salida." },
-      "solution": [ { "tex": "2 \\text{ matrices}", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "input→hidden, hidden→output.",
+        "es": "entrada→oculta, oculta→salida."
+      },
+      "solution": [
+        {
+          "tex": "2 \\text{ matrices}",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "nn-06-e4",
       "answerType": "number",
-      "prompt": { "en": "How many bias terms does a hidden layer of 4 neurons have?", "es": "¿Cuántos sesgos tiene una capa oculta de 4 neuronas?" },
+      "prompt": {
+        "en": "How many bias terms does a hidden layer of 4 neurons have?",
+        "es": "¿Cuántos sesgos tiene una capa oculta de 4 neuronas?"
+      },
       "answer": "4",
       "acceptedAlt": [],
-      "hint": { "en": "One per neuron.", "es": "Uno por neurona." },
-      "solution": [ { "tex": "4 \\text{ biases}", "en": "Four.", "es": "Cuatro." } ]
+      "hint": {
+        "en": "One per neuron.",
+        "es": "Uno por neurona."
+      },
+      "solution": [
+        {
+          "tex": "4 \\text{ biases}",
+          "en": "Four.",
+          "es": "Cuatro."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Multilayer network architecture", "es": "Arquitectura de redes multicapa" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6, deep feedforward networks", "es": "Cap. 6, redes profundas hacia delante" } }
+    {
+      "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)",
+      "detail": {
+        "en": "Multilayer network architecture",
+        "es": "Arquitectura de redes multicapa"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 6, deep feedforward networks",
+        "es": "Cap. 6, redes profundas hacia delante"
+      }
+    }
   ]
 }

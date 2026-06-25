@@ -3,7 +3,10 @@
   "subjectId": "ai-foundations",
   "order": 7,
   "estimatedMinutes": 30,
-  "title": { "en": "Brooks & Situated Robotics", "es": "Brooks y la robótica situada" },
+  "title": {
+    "en": "Brooks & Situated Robotics",
+    "es": "Brooks y la robótica situada"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Brooks's slogan was 'intelligence without representation' (1991). His design that layers reactive behaviors is the subsumption architecture. Cognition shaped by acting in the world is called situated.",
         "es": "El lema de Brooks fue 'inteligencia sin representación' (1991). Su diseño que apila comportamientos reactivos es la arquitectura de subsunción. La cognición moldeada por actuar en el mundo se llama situada."
@@ -39,41 +45,153 @@
     {
       "id": "aif-07-e1",
       "answerType": "text",
-      "prompt": { "en": "Brooks argued for intelligence without ___. (one word)", "es": "Brooks abogó por la inteligencia sin ___. (una palabra)" },
+      "prompt": {
+        "en": "Brooks argued for intelligence without ___. (one word)",
+        "es": "Brooks abogó por la inteligencia sin ___. (una palabra)"
+      },
       "answer": "representation",
-      "acceptedAlt": ["representación", "representacion"],
-      "hint": { "en": "No internal world model.", "es": "Sin modelo interno del mundo." },
-      "solution": [ { "tex": "\\text{representation}", "en": "Representation.", "es": "Representación." } ]
+      "acceptedAlt": [
+        "representación",
+        "representacion"
+      ],
+      "hint": {
+        "en": "No internal world model.",
+        "es": "Sin modelo interno del mundo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{representation}",
+          "en": "Representation.",
+          "es": "Representación."
+        }
+      ]
     },
     {
       "id": "aif-07-e2",
       "answerType": "text",
-      "prompt": { "en": "Brooks's layered reactive design is the ___ architecture. (one word)", "es": "El diseño reactivo por capas de Brooks es la arquitectura de ___. (una palabra)" },
+      "prompt": {
+        "en": "Brooks's layered reactive design is the ___ architecture. (one word)",
+        "es": "El diseño reactivo por capas de Brooks es la arquitectura de ___. (una palabra)"
+      },
       "answer": "subsumption",
-      "acceptedAlt": ["subsunción", "subsuncion"],
-      "hint": { "en": "Higher layers subsume lower.", "es": "Las capas altas subsumen a las bajas." },
-      "solution": [ { "tex": "\\text{subsumption}", "en": "Subsumption.", "es": "Subsunción." } ]
+      "acceptedAlt": [
+        "subsunción",
+        "subsuncion"
+      ],
+      "hint": {
+        "en": "Higher layers subsume lower.",
+        "es": "Las capas altas subsumen a las bajas."
+      },
+      "solution": [
+        {
+          "tex": "\\text{subsumption}",
+          "en": "Subsumption.",
+          "es": "Subsunción."
+        }
+      ]
     },
     {
       "id": "aif-07-e3",
       "answerType": "text",
-      "prompt": { "en": "Cognition shaped by a body acting in a real environment is ___. (one word)", "es": "La cognición moldeada por un cuerpo que actúa en un entorno real es ___. (una palabra)" },
+      "prompt": {
+        "en": "Cognition shaped by a body acting in a real environment is ___. (one word)",
+        "es": "La cognición moldeada por un cuerpo que actúa en un entorno real es ___. (una palabra)"
+      },
       "answer": "situated",
-      "acceptedAlt": ["situada"],
-      "hint": { "en": "Situated cognition.", "es": "Cognición situada." },
-      "solution": [ { "tex": "\\text{situated}", "en": "Situated.", "es": "Situada." } ]
+      "acceptedAlt": [
+        "situada"
+      ],
+      "hint": {
+        "en": "Situated cognition.",
+        "es": "Cognición situada."
+      },
+      "solution": [
+        {
+          "tex": "\\text{situated}",
+          "en": "Situated.",
+          "es": "Situada."
+        }
+      ]
     },
     {
       "id": "aif-07-e4",
       "answerType": "text",
-      "prompt": { "en": "In Brooks's view, coherent intelligence ___ from simple behaviors. (one word)", "es": "Según Brooks, la inteligencia coherente ___ de comportamientos simples. (una palabra)" },
+      "prompt": {
+        "en": "In Brooks's view, coherent intelligence ___ from simple behaviors. (one word)",
+        "es": "Según Brooks, la inteligencia coherente ___ de comportamientos simples. (una palabra)"
+      },
       "answer": "emerges",
-      "acceptedAlt": ["emerge", "emerger"],
-      "hint": { "en": "Emergence.", "es": "Emergencia." },
-      "solution": [ { "tex": "\\text{emerges}", "en": "Emerges.", "es": "Emerge." } ]
+      "acceptedAlt": [
+        "emerge",
+        "emerger"
+      ],
+      "hint": {
+        "en": "Emergence.",
+        "es": "Emergencia."
+      },
+      "solution": [
+        {
+          "tex": "\\text{emerges}",
+          "en": "Emerges.",
+          "es": "Emerge."
+        }
+      ]
+    },
+    {
+      "id": "aif-07-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Brooks' situated robotics emphasized that...",
+        "es": "La robotica situada de Brooks subrayo que..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Intelligence emerges from interaction with the world, needing less central representation",
+            "es": "La inteligencia emerge de la interaccion con el mundo, con menos representacion central"
+          },
+          "correct": true,
+          "why": {
+            "en": "'The world is its own best model' — behavior from tight sensing-acting loops.",
+            "es": "'El mundo es su mejor modelo' — conducta desde bucles percepcion-accion."
+          }
+        },
+        {
+          "text": {
+            "en": "Robots must first build a complete world model",
+            "es": "Los robots deben construir primero un modelo completo del mundo"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's the classical approach Brooks reacted against.",
+            "es": "Ese es el enfoque clasico contra el que reacciono Brooks."
+          }
+        },
+        {
+          "text": {
+            "en": "Symbolic planning is always required",
+            "es": "La planificacion simbolica siempre es necesaria"
+          },
+          "correct": false,
+          "why": {
+            "en": "His subsumption architecture minimized central planning.",
+            "es": "Su arquitectura de subsuncion minimizaba la planificacion central."
+          }
+        }
+      ],
+      "hint": {
+        "en": "How much internal model do you need?",
+        "es": "¿Cuanto modelo interno hace falta?"
+      }
     }
   ],
   "references": [
-    { "source": "Brooks — Intelligence Without Representation (1991)", "detail": { "en": "Subsumption architecture; situated robotics", "es": "Arquitectura de subsunción; robótica situada" } }
+    {
+      "source": "Brooks — Intelligence Without Representation (1991)",
+      "detail": {
+        "en": "Subsumption architecture; situated robotics",
+        "es": "Arquitectura de subsunción; robótica situada"
+      }
+    }
   ]
 }

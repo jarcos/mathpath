@@ -3,7 +3,10 @@
   "subjectId": "ai-foundations",
   "order": 2,
   "estimatedMinutes": 30,
-  "title": { "en": "The Turing Test", "es": "El test de Turing" },
+  "title": {
+    "en": "The Turing Test",
+    "es": "El test de Turing"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Turing proposed his test in $1950$. The game involves $3$ participants: a judge, a human, and a machine. The test judges intelligence by behavior alone.",
         "es": "Turing propuso su test en $1950$. El juego involucra $3$ participantes: un juez, un humano y una máquina. El test juzga la inteligencia solo por el comportamiento."
@@ -39,41 +45,149 @@
     {
       "id": "aif-02-e1",
       "answerType": "number",
-      "prompt": { "en": "Year Turing published 'Computing Machinery and Intelligence'?", "es": "¿Año en que Turing publicó 'Computing Machinery and Intelligence'?" },
+      "prompt": {
+        "en": "Year Turing published 'Computing Machinery and Intelligence'?",
+        "es": "¿Año en que Turing publicó 'Computing Machinery and Intelligence'?"
+      },
       "answer": "1950",
       "acceptedAlt": [],
-      "hint": { "en": "1950.", "es": "1950." },
-      "solution": [ { "tex": "1950", "en": "1950.", "es": "1950." } ]
+      "hint": {
+        "en": "1950.",
+        "es": "1950."
+      },
+      "solution": [
+        {
+          "tex": "1950",
+          "en": "1950.",
+          "es": "1950."
+        }
+      ]
     },
     {
       "id": "aif-02-e2",
       "answerType": "number",
-      "prompt": { "en": "How many participants are in the imitation game (judge + human + machine)?", "es": "¿Cuántos participantes hay en el juego de imitación (juez + humano + máquina)?" },
+      "prompt": {
+        "en": "How many participants are in the imitation game (judge + human + machine)?",
+        "es": "¿Cuántos participantes hay en el juego de imitación (juez + humano + máquina)?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "Count the roles.", "es": "Cuenta los roles." },
-      "solution": [ { "tex": "3", "en": "Three.", "es": "Tres." } ]
+      "hint": {
+        "en": "Count the roles.",
+        "es": "Cuenta los roles."
+      },
+      "solution": [
+        {
+          "tex": "3",
+          "en": "Three.",
+          "es": "Tres."
+        }
+      ]
     },
     {
       "id": "aif-02-e3",
       "answerType": "text",
-      "prompt": { "en": "Turing's test judges intelligence by ___ alone (not inner essence). (one word)", "es": "El test de Turing juzga la inteligencia solo por el ___ (no la esencia interna). (una palabra)" },
+      "prompt": {
+        "en": "Turing's test judges intelligence by ___ alone (not inner essence). (one word)",
+        "es": "El test de Turing juzga la inteligencia solo por el ___ (no la esencia interna). (una palabra)"
+      },
       "answer": "behavior",
-      "acceptedAlt": ["behaviour", "comportamiento", "conducta"],
-      "hint": { "en": "Observable performance.", "es": "Desempeño observable." },
-      "solution": [ { "tex": "\\text{behavior}", "en": "Behavior.", "es": "Comportamiento." } ]
+      "acceptedAlt": [
+        "behaviour",
+        "comportamiento",
+        "conducta"
+      ],
+      "hint": {
+        "en": "Observable performance.",
+        "es": "Desempeño observable."
+      },
+      "solution": [
+        {
+          "tex": "\\text{behavior}",
+          "en": "Behavior.",
+          "es": "Comportamiento."
+        }
+      ]
     },
     {
       "id": "aif-02-e4",
       "answerType": "text",
-      "prompt": { "en": "Turing's original name for the test was the ___ game. (one word)", "es": "El nombre original de Turing para el test era el juego de ___. (una palabra)" },
+      "prompt": {
+        "en": "Turing's original name for the test was the ___ game. (one word)",
+        "es": "El nombre original de Turing para el test era el juego de ___. (una palabra)"
+      },
       "answer": "imitation",
-      "acceptedAlt": ["imitación", "imitacion"],
-      "hint": { "en": "Imitating a human.", "es": "Imitar a un humano." },
-      "solution": [ { "tex": "\\text{imitation game}", "en": "Imitation.", "es": "Imitación." } ]
+      "acceptedAlt": [
+        "imitación",
+        "imitacion"
+      ],
+      "hint": {
+        "en": "Imitating a human.",
+        "es": "Imitar a un humano."
+      },
+      "solution": [
+        {
+          "tex": "\\text{imitation game}",
+          "en": "Imitation.",
+          "es": "Imitación."
+        }
+      ]
+    },
+    {
+      "id": "aif-02-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The Turing Test judges a machine by whether...",
+        "es": "El test de Turing juzga a una maquina segun si..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Its conversation is indistinguishable from a human's to an interrogator",
+            "es": "Su conversacion es indistinguible de la de un humano para un interrogador"
+          },
+          "correct": true,
+          "why": {
+            "en": "Turing replaced 'can machines think?' with this imitation game.",
+            "es": "Turing sustituyo '¿pueden pensar las maquinas?' por este juego de imitacion."
+          }
+        },
+        {
+          "text": {
+            "en": "It can solve mathematics faster than a person",
+            "es": "Puede resolver matematicas mas rapido que una persona"
+          },
+          "correct": false,
+          "why": {
+            "en": "Speed at calculation isn't what the test measures.",
+            "es": "La velocidad de calculo no es lo que mide el test."
+          }
+        },
+        {
+          "text": {
+            "en": "It has a biological brain",
+            "es": "Tiene un cerebro biologico"
+          },
+          "correct": false,
+          "why": {
+            "en": "The test is behavioral; internal makeup is irrelevant to it.",
+            "es": "El test es conductual; la composicion interna le es irrelevante."
+          }
+        }
+      ],
+      "hint": {
+        "en": "It's a behavioral, conversational test.",
+        "es": "Es un test conductual y conversacional."
+      }
     }
   ],
   "references": [
-    { "source": "Turing — Computing Machinery and Intelligence (1950)", "detail": { "en": "The imitation game", "es": "El juego de imitación" } }
+    {
+      "source": "Turing — Computing Machinery and Intelligence (1950)",
+      "detail": {
+        "en": "The imitation game",
+        "es": "El juego de imitación"
+      }
+    }
   ]
 }

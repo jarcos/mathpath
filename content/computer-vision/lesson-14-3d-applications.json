@@ -3,7 +3,10 @@
   "subjectId": "computer-vision",
   "order": 14,
   "estimatedMinutes": 35,
-  "title": { "en": "3-D Vision & Applications", "es": "Visión 3-D y aplicaciones" },
+  "title": {
+    "en": "3-D Vision & Applications",
+    "es": "Visión 3-D y aplicaciones"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Stereo depth with focal $f=800$, baseline $b=0.1$ m, disparity $d=40$ px: $Z = \\dfrac{800\\cdot 0.1}{40} = \\dfrac{80}{40} = 2$ m. Doubling the disparity to $80$ would halve the depth to $1$ m — closer.",
         "es": "Profundidad estéreo con focal $f=800$, línea base $b=0.1$ m, disparidad $d=40$ px: $Z = \\dfrac{800\\cdot 0.1}{40} = \\dfrac{80}{40} = 2$ m. Duplicar la disparidad a $80$ reduciría la profundidad a $1$ m — más cerca."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# stereo depth from disparity: Z = focal * baseline / disparity\nfocal, baseline, disparity = 700, 0.1, 35\nprint(round(focal * baseline / disparity, 4))",
+        "es": "# profundidad estereo por disparidad: Z = focal * base / disparidad\nfocal, baseline, disparity = 700, 0.1, 35\nprint(round(focal * baseline / disparity, 4))"
+      },
+      "expectedOutput": "2.0",
+      "caption": {
+        "en": "Two cameras recover depth from the disparity between views.",
+        "es": "Dos camaras recuperan la profundidad a partir de la disparidad entre vistas."
       }
     }
   ],
@@ -39,42 +59,109 @@
     {
       "id": "cv-14-e1",
       "answerType": "number",
-      "prompt": { "en": "Stereo depth $Z = \\frac{800\\cdot 0.1}{40}$?", "es": "Profundidad estéreo $Z = \\frac{800\\cdot 0.1}{40}$?" },
+      "prompt": {
+        "en": "Stereo depth $Z = \\frac{800\\cdot 0.1}{40}$?",
+        "es": "Profundidad estéreo $Z = \\frac{800\\cdot 0.1}{40}$?"
+      },
       "answer": "2",
-      "acceptedAlt": ["800*0.1/40", "80/40"],
-      "hint": { "en": "80 / 40.", "es": "80 / 40." },
-      "solution": [ { "tex": "\\frac{80}{40} = 2", "en": "2 m.", "es": "2 m." } ]
+      "acceptedAlt": [
+        "800*0.1/40",
+        "80/40"
+      ],
+      "hint": {
+        "en": "80 / 40.",
+        "es": "80 / 40."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{80}{40} = 2",
+          "en": "2 m.",
+          "es": "2 m."
+        }
+      ]
     },
     {
       "id": "cv-14-e2",
       "answerType": "number",
-      "prompt": { "en": "Same setup but disparity 80: $Z = \\frac{80}{80}$?", "es": "Mismo caso pero disparidad 80: $Z = \\frac{80}{80}$?" },
+      "prompt": {
+        "en": "Same setup but disparity 80: $Z = \\frac{80}{80}$?",
+        "es": "Mismo caso pero disparidad 80: $Z = \\frac{80}{80}$?"
+      },
       "answer": "1",
-      "acceptedAlt": ["80/80"],
-      "hint": { "en": "Bigger disparity = closer.", "es": "Mayor disparidad = más cerca." },
-      "solution": [ { "tex": "\\frac{80}{80} = 1", "en": "1 m.", "es": "1 m." } ]
+      "acceptedAlt": [
+        "80/80"
+      ],
+      "hint": {
+        "en": "Bigger disparity = closer.",
+        "es": "Mayor disparidad = más cerca."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{80}{80} = 1",
+          "en": "1 m.",
+          "es": "1 m."
+        }
+      ]
     },
     {
       "id": "cv-14-e3",
       "answerType": "text",
-      "prompt": { "en": "The horizontal shift of a point between two stereo images is its ___. (one word)", "es": "El desplazamiento horizontal de un punto entre dos imágenes estéreo es su ___. (una palabra)" },
+      "prompt": {
+        "en": "The horizontal shift of a point between two stereo images is its ___. (one word)",
+        "es": "El desplazamiento horizontal de un punto entre dos imágenes estéreo es su ___. (una palabra)"
+      },
       "answer": "disparity",
-      "acceptedAlt": ["disparidad"],
-      "hint": { "en": "Inversely related to depth.", "es": "Inversa a la profundidad." },
-      "solution": [ { "tex": "d", "en": "Disparity.", "es": "Disparidad." } ]
+      "acceptedAlt": [
+        "disparidad"
+      ],
+      "hint": {
+        "en": "Inversely related to depth.",
+        "es": "Inversa a la profundidad."
+      },
+      "solution": [
+        {
+          "tex": "d",
+          "en": "Disparity.",
+          "es": "Disparidad."
+        }
+      ]
     },
     {
       "id": "cv-14-e4",
       "answerType": "text",
-      "prompt": { "en": "The neural method learning a 3-D scene to render new views is ___ (acronym).", "es": "El método neuronal que aprende una escena 3-D para renderizar nuevas vistas es ___ (siglas)." },
+      "prompt": {
+        "en": "The neural method learning a 3-D scene to render new views is ___ (acronym).",
+        "es": "El método neuronal que aprende una escena 3-D para renderizar nuevas vistas es ___ (siglas)."
+      },
       "answer": "nerf",
       "acceptedAlt": [],
-      "hint": { "en": "Neural Radiance Fields.", "es": "Campos de radiancia neuronales." },
-      "solution": [ { "tex": "\\text{NeRF}", "en": "NeRF.", "es": "NeRF." } ]
+      "hint": {
+        "en": "Neural Radiance Fields.",
+        "es": "Campos de radiancia neuronales."
+      },
+      "solution": [
+        {
+          "tex": "\\text{NeRF}",
+          "en": "NeRF.",
+          "es": "NeRF."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Hartley & Zisserman — Multiple View Geometry (2004)", "detail": { "en": "Stereo and structure from motion", "es": "Estéreo y estructura a partir del movimiento" } },
-    { "source": "Mildenhall et al. — NeRF (2020)", "detail": { "en": "Neural radiance fields", "es": "Campos de radiancia neuronales" } }
+    {
+      "source": "Hartley & Zisserman — Multiple View Geometry (2004)",
+      "detail": {
+        "en": "Stereo and structure from motion",
+        "es": "Estéreo y estructura a partir del movimiento"
+      }
+    },
+    {
+      "source": "Mildenhall et al. — NeRF (2020)",
+      "detail": {
+        "en": "Neural radiance fields",
+        "es": "Campos de radiancia neuronales"
+      }
+    }
   ]
 }

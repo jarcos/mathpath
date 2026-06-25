@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 17,
   "estimatedMinutes": 30,
-  "title": { "en": "Hardware & Scale", "es": "Hardware y escala" },
+  "title": {
+    "en": "Hardware & Scale",
+    "es": "Hardware y escala"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Training $60{,}000$ examples with batch size $128$ takes $\\lceil 60000/128\\rceil = 469$ steps per epoch. Data parallelism across $4$ GPUs with per-GPU batch $128$ gives an effective batch of $4\\cdot 128 = 512$.",
         "es": "Entrenar $60{,}000$ ejemplos con tamaño de lote $128$ requiere $\\lceil 60000/128\\rceil = 469$ pasos por época. El paralelismo de datos en $4$ GPU con lote por GPU $128$ da un lote efectivo de $4\\cdot 128 = 512$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# a matmul of n x n matrices costs about 2 n^3 floating-point ops\nn = 1000\nprint(2 * n**3)",
+        "es": "# multiplicar matrices n x n cuesta unas 2 n^3 operaciones en coma flotante\nn = 1000\nprint(2 * n**3)"
+      },
+      "expectedOutput": "2000000000",
+      "caption": {
+        "en": "GPUs exist because deep nets need billions of these ops.",
+        "es": "Las GPU existen porque las redes profundas necesitan miles de millones de estas operaciones."
       }
     }
   ],
@@ -39,42 +59,108 @@
     {
       "id": "dl-17-e1",
       "answerType": "text",
-      "prompt": { "en": "The parallel hardware that accelerates deep learning is the ___. (acronym)", "es": "El hardware paralelo que acelera el aprendizaje profundo es la ___. (siglas)" },
+      "prompt": {
+        "en": "The parallel hardware that accelerates deep learning is the ___. (acronym)",
+        "es": "El hardware paralelo que acelera el aprendizaje profundo es la ___. (siglas)"
+      },
       "answer": "gpu",
       "acceptedAlt": [],
-      "hint": { "en": "Graphics processing unit.", "es": "Unidad de procesamiento gráfico." },
-      "solution": [ { "tex": "\\text{GPU}", "en": "GPU.", "es": "GPU." } ]
+      "hint": {
+        "en": "Graphics processing unit.",
+        "es": "Unidad de procesamiento gráfico."
+      },
+      "solution": [
+        {
+          "tex": "\\text{GPU}",
+          "en": "GPU.",
+          "es": "GPU."
+        }
+      ]
     },
     {
       "id": "dl-17-e2",
       "answerType": "number",
-      "prompt": { "en": "Effective batch with 4 GPUs, per-GPU batch 128: $4\\cdot 128$?", "es": "Lote efectivo con 4 GPU, lote por GPU 128: $4\\cdot 128$?" },
+      "prompt": {
+        "en": "Effective batch with 4 GPUs, per-GPU batch 128: $4\\cdot 128$?",
+        "es": "Lote efectivo con 4 GPU, lote por GPU 128: $4\\cdot 128$?"
+      },
       "answer": "512",
-      "acceptedAlt": ["4*128"],
-      "hint": { "en": "4 × 128.", "es": "4 × 128." },
-      "solution": [ { "tex": "4\\cdot 128 = 512", "en": "512.", "es": "512." } ]
+      "acceptedAlt": [
+        "4*128"
+      ],
+      "hint": {
+        "en": "4 × 128.",
+        "es": "4 × 128."
+      },
+      "solution": [
+        {
+          "tex": "4\\cdot 128 = 512",
+          "en": "512.",
+          "es": "512."
+        }
+      ]
     },
     {
       "id": "dl-17-e3",
       "answerType": "number",
-      "prompt": { "en": "Steps per epoch: 60000 examples, batch 128, rounded up?", "es": "Pasos por época: 60000 ejemplos, lote 128, redondeado hacia arriba?" },
+      "prompt": {
+        "en": "Steps per epoch: 60000 examples, batch 128, rounded up?",
+        "es": "Pasos por época: 60000 ejemplos, lote 128, redondeado hacia arriba?"
+      },
       "answer": "469",
-      "acceptedAlt": ["ceil(60000/128)"],
-      "hint": { "en": "⌈60000/128⌉.", "es": "⌈60000/128⌉." },
-      "solution": [ { "tex": "\\lceil 468.75\\rceil = 469", "en": "469.", "es": "469." } ]
+      "acceptedAlt": [
+        "ceil(60000/128)"
+      ],
+      "hint": {
+        "en": "⌈60000/128⌉.",
+        "es": "⌈60000/128⌉."
+      },
+      "solution": [
+        {
+          "tex": "\\lceil 468.75\\rceil = 469",
+          "en": "469.",
+          "es": "469."
+        }
+      ]
     },
     {
       "id": "dl-17-e4",
       "answerType": "text",
-      "prompt": { "en": "Splitting the same model over data shards on many devices is ___ parallelism. (one word)", "es": "Repartir el mismo modelo sobre fragmentos de datos en muchos dispositivos es paralelismo de ___. (una palabra)" },
+      "prompt": {
+        "en": "Splitting the same model over data shards on many devices is ___ parallelism. (one word)",
+        "es": "Repartir el mismo modelo sobre fragmentos de datos en muchos dispositivos es paralelismo de ___. (una palabra)"
+      },
       "answer": "data",
-      "acceptedAlt": ["datos"],
-      "hint": { "en": "Data vs model parallelism.", "es": "Paralelismo de datos vs de modelo." },
-      "solution": [ { "tex": "\\text{data parallelism}", "en": "Data.", "es": "Datos." } ]
+      "acceptedAlt": [
+        "datos"
+      ],
+      "hint": {
+        "en": "Data vs model parallelism.",
+        "es": "Paralelismo de datos vs de modelo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{data parallelism}",
+          "en": "Data.",
+          "es": "Datos."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 12.1, large-scale deep learning and hardware", "es": "Cap. 12.1, aprendizaje profundo a gran escala y hardware" } },
-    { "source": "Kaplan et al. — Scaling Laws for Neural Language Models (2020)", "detail": { "en": "Empirical scaling laws", "es": "Leyes de escalado empíricas" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 12.1, large-scale deep learning and hardware",
+        "es": "Cap. 12.1, aprendizaje profundo a gran escala y hardware"
+      }
+    },
+    {
+      "source": "Kaplan et al. — Scaling Laws for Neural Language Models (2020)",
+      "detail": {
+        "en": "Empirical scaling laws",
+        "es": "Leyes de escalado empíricas"
+      }
+    }
   ]
 }

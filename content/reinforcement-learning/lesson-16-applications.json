@@ -3,7 +3,10 @@
   "subjectId": "reinforcement-learning",
   "order": 16,
   "estimatedMinutes": 35,
-  "title": { "en": "Applications & Frontiers", "es": "Aplicaciones y fronteras" },
+  "title": {
+    "en": "Applications & Frontiers",
+    "es": "Aplicaciones y fronteras"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "In RLHF, if humans rank $4$ candidate responses, there are $4! = 24$ possible full orderings. AlphaZero learned with zero human game data — it used pure self-play.",
         "es": "En RLHF, si los humanos ordenan $4$ respuestas candidatas, hay $4! = 24$ ordenaciones completas posibles. AlphaZero aprendió con cero datos humanos de partidas — usó autojuego puro."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# an episode return is the total reward the agent collected\nrewards = [1, -1, 2, 3]\nprint(sum(rewards))",
+        "es": "# el retorno de un episodio es la recompensa total que recogio el agente\nrewards = [1, -1, 2, 3]\nprint(sum(rewards))"
+      },
+      "expectedOutput": "5",
+      "caption": {
+        "en": "From games to robotics, RL maximizes cumulative reward.",
+        "es": "De los juegos a la robotica, RL maximiza la recompensa acumulada."
       }
     }
   ],
@@ -39,42 +59,111 @@
     {
       "id": "rl-16-e1",
       "answerType": "number",
-      "prompt": { "en": "Number of full orderings of 4 ranked responses: $4!$?", "es": "Número de ordenaciones completas de 4 respuestas ordenadas: $4!$?" },
+      "prompt": {
+        "en": "Number of full orderings of 4 ranked responses: $4!$?",
+        "es": "Número de ordenaciones completas de 4 respuestas ordenadas: $4!$?"
+      },
       "answer": "24",
-      "acceptedAlt": ["4!", "factorial(4)"],
-      "hint": { "en": "4 × 3 × 2 × 1.", "es": "4 × 3 × 2 × 1." },
-      "solution": [ { "tex": "4! = 24", "en": "24.", "es": "24." } ]
+      "acceptedAlt": [
+        "4!",
+        "factorial(4)"
+      ],
+      "hint": {
+        "en": "4 × 3 × 2 × 1.",
+        "es": "4 × 3 × 2 × 1."
+      },
+      "solution": [
+        {
+          "tex": "4! = 24",
+          "en": "24.",
+          "es": "24."
+        }
+      ]
     },
     {
       "id": "rl-16-e2",
       "answerType": "text",
-      "prompt": { "en": "Fine-tuning LLMs with RL from ranked human preferences is ___ (acronym).", "es": "Ajustar LLMs con RL a partir de preferencias humanas ordenadas es ___ (siglas)." },
+      "prompt": {
+        "en": "Fine-tuning LLMs with RL from ranked human preferences is ___ (acronym).",
+        "es": "Ajustar LLMs con RL a partir de preferencias humanas ordenadas es ___ (siglas)."
+      },
       "answer": "rlhf",
       "acceptedAlt": [],
-      "hint": { "en": "RL from human feedback.", "es": "RL de retroalimentación humana." },
-      "solution": [ { "tex": "\\text{RLHF}", "en": "RLHF.", "es": "RLHF." } ]
+      "hint": {
+        "en": "RL from human feedback.",
+        "es": "RL de retroalimentación humana."
+      },
+      "solution": [
+        {
+          "tex": "\\text{RLHF}",
+          "en": "RLHF.",
+          "es": "RLHF."
+        }
+      ]
     },
     {
       "id": "rl-16-e3",
       "answerType": "text",
-      "prompt": { "en": "AlphaZero learned from scratch using ___-play. (one word)", "es": "AlphaZero aprendió desde cero usando ___-juego. (una palabra)" },
+      "prompt": {
+        "en": "AlphaZero learned from scratch using ___-play. (one word)",
+        "es": "AlphaZero aprendió desde cero usando ___-juego. (una palabra)"
+      },
       "answer": "self",
-      "acceptedAlt": ["auto", "self-play", "autojuego"],
-      "hint": { "en": "Plays itself.", "es": "Juega contra sí mismo." },
-      "solution": [ { "tex": "\\text{self-play}", "en": "Self.", "es": "Auto (self)." } ]
+      "acceptedAlt": [
+        "auto",
+        "self-play",
+        "autojuego"
+      ],
+      "hint": {
+        "en": "Plays itself.",
+        "es": "Juega contra sí mismo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{self-play}",
+          "en": "Self.",
+          "es": "Auto (self)."
+        }
+      ]
     },
     {
       "id": "rl-16-e4",
       "answerType": "text",
-      "prompt": { "en": "In RLHF, the learned model of human preferences is the ___ model. (one word)", "es": "En RLHF, el modelo aprendido de las preferencias humanas es el modelo de ___. (una palabra)" },
+      "prompt": {
+        "en": "In RLHF, the learned model of human preferences is the ___ model. (one word)",
+        "es": "En RLHF, el modelo aprendido de las preferencias humanas es el modelo de ___. (una palabra)"
+      },
       "answer": "reward",
-      "acceptedAlt": ["recompensa"],
-      "hint": { "en": "It scores outputs.", "es": "Puntúa las salidas." },
-      "solution": [ { "tex": "\\text{reward model}", "en": "Reward.", "es": "Recompensa." } ]
+      "acceptedAlt": [
+        "recompensa"
+      ],
+      "hint": {
+        "en": "It scores outputs.",
+        "es": "Puntúa las salidas."
+      },
+      "solution": [
+        {
+          "tex": "\\text{reward model}",
+          "en": "Reward.",
+          "es": "Recompensa."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Silver et al. — Mastering the game of Go without human knowledge (AlphaGo Zero, 2017)", "detail": { "en": "Self-play and MCTS", "es": "Autojuego y MCTS" } },
-    { "source": "Christiano et al. — Deep RL from Human Preferences (2017)", "detail": { "en": "RLHF foundations", "es": "Fundamentos de RLHF" } }
+    {
+      "source": "Silver et al. — Mastering the game of Go without human knowledge (AlphaGo Zero, 2017)",
+      "detail": {
+        "en": "Self-play and MCTS",
+        "es": "Autojuego y MCTS"
+      }
+    },
+    {
+      "source": "Christiano et al. — Deep RL from Human Preferences (2017)",
+      "detail": {
+        "en": "RLHF foundations",
+        "es": "Fundamentos de RLHF"
+      }
+    }
   ]
 }

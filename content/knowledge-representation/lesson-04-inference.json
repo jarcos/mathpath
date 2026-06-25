@@ -3,13 +3,26 @@
   "subjectId": "knowledge-representation",
   "order": 4,
   "estimatedMinutes": 35,
-  "title": { "en": "Inference & Entailment", "es": "Inferencia y consecuencia lógica" },
+  "title": {
+    "en": "Inference & Entailment",
+    "es": "Inferencia y consecuencia lógica"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "**Entailment** is the core semantic relation: a knowledge base $KB$ **entails** a sentence $\\alpha$ (written $KB \\models \\alpha$) if $\\alpha$ is true in **every** model where $KB$ is true. **Inference** is the syntactic process of deriving entailed sentences mechanically. We want inference that is **sound** (derives only true things) and **complete** (can derive everything entailed).",
         "es": "La **consecuencia lógica (entailment)** es la relación semántica central: una base de conocimiento $KB$ **implica** una sentencia $\\alpha$ (escrito $KB \\models \\alpha$) si $\\alpha$ es verdadera en **todo** modelo donde $KB$ es verdadera. La **inferencia** es el proceso sintáctico de derivar sentencias implicadas mecánicamente. Queremos inferencia **correcta (sound)** (deriva solo cosas verdaderas) y **completa** (puede derivar todo lo implicado)."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "kr-03-truth-tables"
+      ],
+      "note": {
+        "en": "Entailment is checked across the rows of a truth table.",
+        "es": "La implicacion se comprueba sobre las filas de una tabla de verdad."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Modus ponens: given $P=1$ (raining) and $P \\rightarrow Q$ true, $Q$ must be $1$ (wet). Modus tollens: given $Q=0$ and $P \\rightarrow Q$, then $P=0$.",
         "es": "Modus ponens: dado $P=1$ (lloviendo) y $P \\rightarrow Q$ verdadero, $Q$ debe ser $1$ (mojado). Modus tollens: dado $Q=0$ y $P \\rightarrow Q$, entonces $P=0$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "import itertools\n# entailment: in every model where the KB holds, does Q hold?\nimplies = lambda a, b: (not a) or b\nmodels = [(p, q) for p, q in itertools.product([0, 1], repeat=2) if p and implies(p, q)]\nprint(all(q for p, q in models))",
+        "es": "import itertools\n# implicacion logica: en todo modelo donde se cumple la KB, se cumple Q?\nimplies = lambda a, b: (not a) or b\nmodels = [(p, q) for p, q in itertools.product([0, 1], repeat=2) if p and implies(p, q)]\nprint(all(q for p, q in models))"
+      },
+      "expectedOutput": "True",
+      "caption": {
+        "en": "KB = {P, P->Q} entails Q: Q is true in every model of the KB.",
+        "es": "KB = {P, P->Q} implica Q: Q es verdadera en todo modelo de la KB."
       }
     }
   ],
@@ -39,41 +69,102 @@
     {
       "id": "kr-04-e1",
       "answerType": "number",
-      "prompt": { "en": "Modus ponens: $P=1$ and $P\\rightarrow Q$ true. What is $Q$?", "es": "Modus ponens: $P=1$ y $P\\rightarrow Q$ verdadero. ¿Cuánto vale $Q$?" },
+      "prompt": {
+        "en": "Modus ponens: $P=1$ and $P\\rightarrow Q$ true. What is $Q$?",
+        "es": "Modus ponens: $P=1$ y $P\\rightarrow Q$ verdadero. ¿Cuánto vale $Q$?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "The conclusion follows.", "es": "La conclusión se sigue." },
-      "solution": [ { "tex": "Q=1", "en": "True.", "es": "Verdadero." } ]
+      "hint": {
+        "en": "The conclusion follows.",
+        "es": "La conclusión se sigue."
+      },
+      "solution": [
+        {
+          "tex": "Q=1",
+          "en": "True.",
+          "es": "Verdadero."
+        }
+      ]
     },
     {
       "id": "kr-04-e2",
       "answerType": "number",
-      "prompt": { "en": "Modus tollens: $Q=0$ and $P\\rightarrow Q$ true. What is $P$?", "es": "Modus tollens: $Q=0$ y $P\\rightarrow Q$ verdadero. ¿Cuánto vale $P$?" },
+      "prompt": {
+        "en": "Modus tollens: $Q=0$ and $P\\rightarrow Q$ true. What is $P$?",
+        "es": "Modus tollens: $Q=0$ y $P\\rightarrow Q$ verdadero. ¿Cuánto vale $P$?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "If P were 1, Q would be 1.", "es": "Si P fuera 1, Q sería 1." },
-      "solution": [ { "tex": "P=0", "en": "False.", "es": "Falso." } ]
+      "hint": {
+        "en": "If P were 1, Q would be 1.",
+        "es": "Si P fuera 1, Q sería 1."
+      },
+      "solution": [
+        {
+          "tex": "P=0",
+          "en": "False.",
+          "es": "Falso."
+        }
+      ]
     },
     {
       "id": "kr-04-e3",
       "answerType": "text",
-      "prompt": { "en": "Inference that derives only true conclusions is ___. (one word)", "es": "La inferencia que deriva solo conclusiones verdaderas es ___. (una palabra)" },
+      "prompt": {
+        "en": "Inference that derives only true conclusions is ___. (one word)",
+        "es": "La inferencia que deriva solo conclusiones verdaderas es ___. (una palabra)"
+      },
       "answer": "sound",
-      "acceptedAlt": ["correcta", "válida", "valida"],
-      "hint": { "en": "Sound vs complete.", "es": "Correcta vs completa." },
-      "solution": [ { "tex": "\\text{sound}", "en": "Sound.", "es": "Correcta." } ]
+      "acceptedAlt": [
+        "correcta",
+        "válida",
+        "valida"
+      ],
+      "hint": {
+        "en": "Sound vs complete.",
+        "es": "Correcta vs completa."
+      },
+      "solution": [
+        {
+          "tex": "\\text{sound}",
+          "en": "Sound.",
+          "es": "Correcta."
+        }
+      ]
     },
     {
       "id": "kr-04-e4",
       "answerType": "text",
-      "prompt": { "en": "The refutation-complete rule used by Prolog and theorem provers is ___. (one word)", "es": "La regla completa por refutación usada por Prolog y demostradores es la ___. (una palabra)" },
+      "prompt": {
+        "en": "The refutation-complete rule used by Prolog and theorem provers is ___. (one word)",
+        "es": "La regla completa por refutación usada por Prolog y demostradores es la ___. (una palabra)"
+      },
       "answer": "resolution",
-      "acceptedAlt": ["resolución", "resolucion"],
-      "hint": { "en": "Derives the empty clause.", "es": "Deriva la cláusula vacía." },
-      "solution": [ { "tex": "\\text{resolution}", "en": "Resolution.", "es": "Resolución." } ]
+      "acceptedAlt": [
+        "resolución",
+        "resolucion"
+      ],
+      "hint": {
+        "en": "Derives the empty clause.",
+        "es": "Deriva la cláusula vacía."
+      },
+      "solution": [
+        {
+          "tex": "\\text{resolution}",
+          "en": "Resolution.",
+          "es": "Resolución."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 7.5, propositional inference and resolution", "es": "Cap. 7.5, inferencia proposicional y resolución" } }
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Ch. 7.5, propositional inference and resolution",
+        "es": "Cap. 7.5, inferencia proposicional y resolución"
+      }
+    }
   ]
 }

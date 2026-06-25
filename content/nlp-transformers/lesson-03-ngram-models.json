@@ -3,7 +3,10 @@
   "subjectId": "nlp-transformers",
   "order": 3,
   "estimatedMinutes": 35,
-  "title": { "en": "N-gram Language Models", "es": "Modelos de lenguaje de n-gramas" },
+  "title": {
+    "en": "N-gram Language Models",
+    "es": "Modelos de lenguaje de n-gramas"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "If 'the' appears $100$ times and is followed by 'cat' $20$ times, the bigram probability $P(\\text{cat}\\mid\\text{the}) = 20/100 = 0.2$. A trigram model conditions on the previous $3-1 = 2$ words.",
         "es": "Si 'the' aparece $100$ veces y le sigue 'cat' $20$ veces, la probabilidad bigrama $P(\\text{cat}\\mid\\text{the}) = 20/100 = 0.2$. Un modelo trigrama condiciona sobre las $3-1 = 2$ palabras previas."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "toks = \"the cat sat down\".split()\n# a bigram model looks at consecutive token pairs\nprint([list(b) for b in zip(toks, toks[1:])])",
+        "es": "toks = \"the cat sat down\".split()\n# un modelo de bigramas mira pares de tokens consecutivos\nprint([list(b) for b in zip(toks, toks[1:])])"
+      },
+      "expectedOutput": "[['the', 'cat'], ['cat', 'sat'], ['sat', 'down']]",
+      "caption": {
+        "en": "n-grams capture local word order.",
+        "es": "Los n-gramas capturan el orden local de las palabras."
       }
     }
   ],
@@ -39,41 +59,168 @@
     {
       "id": "nlp-03-e1",
       "answerType": "number",
-      "prompt": { "en": "$P(\\text{cat}\\mid\\text{the})$ if 'the cat' count 20, 'the' count 100: $20/100$?", "es": "$P(\\text{cat}\\mid\\text{the})$ si 'the cat' cuenta 20, 'the' cuenta 100: $20/100$?" },
+      "prompt": {
+        "en": "$P(\\text{cat}\\mid\\text{the})$ if 'the cat' count 20, 'the' count 100: $20/100$?",
+        "es": "$P(\\text{cat}\\mid\\text{the})$ si 'the cat' cuenta 20, 'the' cuenta 100: $20/100$?"
+      },
       "answer": "0.2",
-      "acceptedAlt": ["20/100", "1/5"],
-      "hint": { "en": "20 / 100.", "es": "20 / 100." },
-      "solution": [ { "tex": "20/100 = 0.2", "en": "0.2.", "es": "0.2." } ]
+      "acceptedAlt": [
+        "20/100",
+        "1/5"
+      ],
+      "hint": {
+        "en": "20 / 100.",
+        "es": "20 / 100."
+      },
+      "solution": [
+        {
+          "tex": "20/100 = 0.2",
+          "en": "0.2.",
+          "es": "0.2."
+        }
+      ]
     },
     {
       "id": "nlp-03-e2",
       "answerType": "number",
-      "prompt": { "en": "How many words of history does a trigram ($n=3$) use? ($n-1$)", "es": "¿Cuántas palabras de historia usa un trigrama ($n=3$)? ($n-1$)" },
+      "prompt": {
+        "en": "How many words of history does a trigram ($n=3$) use? ($n-1$)",
+        "es": "¿Cuántas palabras de historia usa un trigrama ($n=3$)? ($n-1$)"
+      },
       "answer": "2",
-      "acceptedAlt": ["3-1"],
-      "hint": { "en": "n − 1.", "es": "n − 1." },
-      "solution": [ { "tex": "3-1 = 2", "en": "Two.", "es": "Dos." } ]
+      "acceptedAlt": [
+        "3-1"
+      ],
+      "hint": {
+        "en": "n − 1.",
+        "es": "n − 1."
+      },
+      "solution": [
+        {
+          "tex": "3-1 = 2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "nlp-03-e3",
       "answerType": "number",
-      "prompt": { "en": "Sentence prob as product: $P=0.5\\cdot 0.4$. Compute.", "es": "Prob. de frase como producto: $P=0.5\\cdot 0.4$. Calcula." },
+      "prompt": {
+        "en": "Sentence prob as product: $P=0.5\\cdot 0.4$. Compute.",
+        "es": "Prob. de frase como producto: $P=0.5\\cdot 0.4$. Calcula."
+      },
       "answer": "0.2",
-      "acceptedAlt": ["0.5*0.4", "1/5"],
-      "hint": { "en": "0.5 × 0.4.", "es": "0.5 × 0.4." },
-      "solution": [ { "tex": "0.5\\cdot 0.4 = 0.2", "en": "0.2.", "es": "0.2." } ]
+      "acceptedAlt": [
+        "0.5*0.4",
+        "1/5"
+      ],
+      "hint": {
+        "en": "0.5 × 0.4.",
+        "es": "0.5 × 0.4."
+      },
+      "solution": [
+        {
+          "tex": "0.5\\cdot 0.4 = 0.2",
+          "en": "0.2.",
+          "es": "0.2."
+        }
+      ]
     },
     {
       "id": "nlp-03-e4",
       "answerType": "text",
-      "prompt": { "en": "Giving unseen n-grams non-zero probability is called ___. (one word)", "es": "Dar probabilidad no nula a n-gramas no vistos se llama ___. (una palabra)" },
+      "prompt": {
+        "en": "Giving unseen n-grams non-zero probability is called ___. (one word)",
+        "es": "Dar probabilidad no nula a n-gramas no vistos se llama ___. (una palabra)"
+      },
       "answer": "smoothing",
-      "acceptedAlt": ["suavizado", "suavizar"],
-      "hint": { "en": "e.g. add-one.", "es": "p. ej. suma de uno." },
-      "solution": [ { "tex": "\\text{smoothing}", "en": "Smoothing.", "es": "Suavizado." } ]
+      "acceptedAlt": [
+        "suavizado",
+        "suavizar"
+      ],
+      "hint": {
+        "en": "e.g. add-one.",
+        "es": "p. ej. suma de uno."
+      },
+      "solution": [
+        {
+          "tex": "\\text{smoothing}",
+          "en": "Smoothing.",
+          "es": "Suavizado."
+        }
+      ]
+    },
+    {
+      "id": "nlp-03-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `bigrams(tokens)` returning consecutive pairs as [a, b] lists.",
+        "es": "Completa `bigrams(tokens)` que devuelve pares consecutivos como listas [a, b]."
+      },
+      "funcName": "bigrams",
+      "starter": {
+        "en": "def bigrams(tokens):\n    # list of [tokens[i], tokens[i+1]]\n    pass",
+        "es": "def bigrams(tokens):\n    # lista de [tokens[i], tokens[i+1]]\n    pass"
+      },
+      "solution": "def bigrams(tokens):\n    return [[tokens[i], tokens[i+1]] for i in range(len(tokens) - 1)]",
+      "tests": [
+        {
+          "args": [
+            [
+              "a",
+              "b",
+              "c"
+            ]
+          ],
+          "expected": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              "x",
+              "y"
+            ]
+          ],
+          "expected": [
+            [
+              "x",
+              "y"
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              "solo"
+            ]
+          ],
+          "expected": []
+        }
+      ],
+      "hint": {
+        "en": "Pair index i with i+1 up to len-1.",
+        "es": "Empareja el indice i con i+1 hasta len-1."
+      }
     }
   ],
   "references": [
-    { "source": "Jurafsky & Martin — Speech and Language Processing", "detail": { "en": "Ch. 3, n-gram language models", "es": "Cap. 3, modelos de lenguaje de n-gramas" } }
+    {
+      "source": "Jurafsky & Martin — Speech and Language Processing",
+      "detail": {
+        "en": "Ch. 3, n-gram language models",
+        "es": "Cap. 3, modelos de lenguaje de n-gramas"
+      }
+    }
   ]
 }

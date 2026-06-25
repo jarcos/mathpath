@@ -3,7 +3,10 @@
   "subjectId": "knowledge-representation",
   "order": 7,
   "estimatedMinutes": 30,
-  "title": { "en": "Semantic Networks & Frames", "es": "Redes semánticas y marcos" },
+  "title": {
+    "en": "Semantic Networks & Frames",
+    "es": "Redes semánticas y marcos"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A 'Car' frame with the slot wheels = $4$ gives the value $4$ for any car by default. In a semantic network, the path Robin —is-a→ Bird —has→ Wings lets us infer a Robin has wings.",
         "es": "Un marco 'Coche' con la ranura ruedas = $4$ da el valor $4$ para cualquier coche por defecto. En una red semántica, el camino Petirrojo —es-un→ Pájaro —tiene→ Alas nos permite inferir que un Petirrojo tiene alas."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "net = {\"dog\": \"mammal\", \"mammal\": \"animal\"}\n# follow is-a links to inherit properties up the hierarchy\ndef root(x):\n    while x in net:\n        x = net[x]\n    return x\nprint(root(\"dog\"))",
+        "es": "net = {\"dog\": \"mammal\", \"mammal\": \"animal\"}\n# sigue los enlaces is-a para heredar propiedades en la jerarquia\ndef root(x):\n    while x in net:\n        x = net[x]\n    return x\nprint(root(\"dog\"))"
+      },
+      "expectedOutput": "animal",
+      "caption": {
+        "en": "Semantic networks inherit properties along is-a links.",
+        "es": "Las redes semanticas heredan propiedades por enlaces is-a."
       }
     }
   ],
@@ -39,42 +59,114 @@
     {
       "id": "kr-07-e1",
       "answerType": "number",
-      "prompt": { "en": "A Car frame has slot wheels = 4. Default wheel count for a car?", "es": "Un marco Coche tiene la ranura ruedas = 4. ¿Número de ruedas por defecto de un coche?" },
+      "prompt": {
+        "en": "A Car frame has slot wheels = 4. Default wheel count for a car?",
+        "es": "Un marco Coche tiene la ranura ruedas = 4. ¿Número de ruedas por defecto de un coche?"
+      },
       "answer": "4",
       "acceptedAlt": [],
-      "hint": { "en": "The slot value.", "es": "El valor de la ranura." },
-      "solution": [ { "tex": "4", "en": "Four.", "es": "Cuatro." } ]
+      "hint": {
+        "en": "The slot value.",
+        "es": "El valor de la ranura."
+      },
+      "solution": [
+        {
+          "tex": "4",
+          "en": "Four.",
+          "es": "Cuatro."
+        }
+      ]
     },
     {
       "id": "kr-07-e2",
       "answerType": "text",
-      "prompt": { "en": "In a semantic network, concepts are nodes and relations are ___. (one word)", "es": "En una red semántica, los conceptos son nodos y las relaciones son ___. (una palabra)" },
+      "prompt": {
+        "en": "In a semantic network, concepts are nodes and relations are ___. (one word)",
+        "es": "En una red semántica, los conceptos son nodos y las relaciones son ___. (una palabra)"
+      },
       "answer": "edges",
-      "acceptedAlt": ["aristas", "enlaces", "links"],
-      "hint": { "en": "Graph links.", "es": "Enlaces del grafo." },
-      "solution": [ { "tex": "\\text{edges}", "en": "Edges.", "es": "Aristas." } ]
+      "acceptedAlt": [
+        "aristas",
+        "enlaces",
+        "links"
+      ],
+      "hint": {
+        "en": "Graph links.",
+        "es": "Enlaces del grafo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{edges}",
+          "en": "Edges.",
+          "es": "Aristas."
+        }
+      ]
     },
     {
       "id": "kr-07-e3",
       "answerType": "text",
-      "prompt": { "en": "In a frame, an attribute slot can hold a ___ value used unless overridden. (one word)", "es": "En un marco, una ranura puede contener un valor ___ usado salvo sobreescritura. (una palabra)" },
+      "prompt": {
+        "en": "In a frame, an attribute slot can hold a ___ value used unless overridden. (one word)",
+        "es": "En un marco, una ranura puede contener un valor ___ usado salvo sobreescritura. (una palabra)"
+      },
       "answer": "default",
-      "acceptedAlt": ["por defecto", "defecto", "predeterminado"],
-      "hint": { "en": "Used unless changed.", "es": "Usado salvo cambio." },
-      "solution": [ { "tex": "\\text{default}", "en": "Default.", "es": "Por defecto." } ]
+      "acceptedAlt": [
+        "por defecto",
+        "defecto",
+        "predeterminado"
+      ],
+      "hint": {
+        "en": "Used unless changed.",
+        "es": "Usado salvo cambio."
+      },
+      "solution": [
+        {
+          "tex": "\\text{default}",
+          "en": "Default.",
+          "es": "Por defecto."
+        }
+      ]
     },
     {
       "id": "kr-07-e4",
       "answerType": "text",
-      "prompt": { "en": "The attributes of a frame are called ___. (one word)", "es": "Los atributos de un marco se llaman ___. (una palabra)" },
+      "prompt": {
+        "en": "The attributes of a frame are called ___. (one word)",
+        "es": "Los atributos de un marco se llaman ___. (una palabra)"
+      },
       "answer": "slots",
-      "acceptedAlt": ["ranuras", "slot", "ranura"],
-      "hint": { "en": "Slot and value.", "es": "Ranura y valor." },
-      "solution": [ { "tex": "\\text{slots}", "en": "Slots.", "es": "Ranuras." } ]
+      "acceptedAlt": [
+        "ranuras",
+        "slot",
+        "ranura"
+      ],
+      "hint": {
+        "en": "Slot and value.",
+        "es": "Ranura y valor."
+      },
+      "solution": [
+        {
+          "tex": "\\text{slots}",
+          "en": "Slots.",
+          "es": "Ranuras."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Minsky — A Framework for Representing Knowledge (1974)", "detail": { "en": "Frames", "es": "Marcos" } },
-    { "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)", "detail": { "en": "Semantic networks and frames", "es": "Redes semánticas y marcos" } }
+    {
+      "source": "Minsky — A Framework for Representing Knowledge (1974)",
+      "detail": {
+        "en": "Frames",
+        "es": "Marcos"
+      }
+    },
+    {
+      "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)",
+      "detail": {
+        "en": "Semantic networks and frames",
+        "es": "Redes semánticas y marcos"
+      }
+    }
   ]
 }

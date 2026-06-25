@@ -3,13 +3,26 @@
   "subjectId": "reinforcement-learning",
   "order": 8,
   "estimatedMinutes": 40,
-  "title": { "en": "Temporal-Difference Learning", "es": "Aprendizaje por diferencia temporal" },
+  "title": {
+    "en": "Temporal-Difference Learning",
+    "es": "Aprendizaje por diferencia temporal"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "**Temporal-difference (TD)** learning blends the best of DP and MC. Like MC it learns from raw experience with no model; like DP it **bootstraps** — it updates a value estimate using another value estimate, without waiting for the episode to finish. This makes TD the workhorse of modern RL.",
         "es": "El aprendizaje por **diferencia temporal (TD)** combina lo mejor de DP y MC. Como MC aprende de la experiencia cruda sin modelo; como DP hace **bootstrapping** — actualiza una estimación de valor usando otra estimación, sin esperar a que el episodio termine. Esto convierte a TD en el caballo de batalla del RL moderno."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "rl-05-bellman"
+      ],
+      "note": {
+        "en": "TD learning approximates the Bellman update from experience.",
+        "es": "El aprendizaje TD aproxima la actualizacion de Bellman desde la experiencia."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With $V(s)=5$, reward $r=2$, $V(s')=10$, $\\gamma=0.9$: TD error $\\delta = 2 + 0.9\\cdot10 - 5 = 11 - 5 = 6$. Update with $\\alpha=0.1$: $5 + 0.1\\cdot 6 = 5.6$.",
         "es": "Con $V(s)=5$, recompensa $r=2$, $V(s')=10$, $\\gamma=0.9$: error TD $\\delta = 2 + 0.9\\cdot10 - 5 = 11 - 5 = 6$. Actualización con $\\alpha=0.1$: $5 + 0.1\\cdot 6 = 5.6$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# TD(0) update: bootstrap from the next state estimate\nV, alpha, r, gamma, V_next = 0.0, 0.5, 1, 0.9, 2\nV = V + alpha * (r + gamma * V_next - V)\nprint(round(V, 4))",
+        "es": "# actualizacion TD(0): se apoya en la estimacion del siguiente estado\nV, alpha, r, gamma, V_next = 0.0, 0.5, 1, 0.9, 2\nV = V + alpha * (r + gamma * V_next - V)\nprint(round(V, 4))"
+      },
+      "expectedOutput": "1.4",
+      "caption": {
+        "en": "TD blends sampling with bootstrapping — learn each step.",
+        "es": "TD mezcla muestreo y bootstrapping — aprende en cada paso."
       }
     }
   ],
@@ -39,41 +69,104 @@
     {
       "id": "rl-08-e1",
       "answerType": "number",
-      "prompt": { "en": "TD error $\\delta = 2 + 0.9\\cdot 10 - 5$?", "es": "Error TD $\\delta = 2 + 0.9\\cdot 10 - 5$?" },
+      "prompt": {
+        "en": "TD error $\\delta = 2 + 0.9\\cdot 10 - 5$?",
+        "es": "Error TD $\\delta = 2 + 0.9\\cdot 10 - 5$?"
+      },
       "answer": "6",
-      "acceptedAlt": ["2+0.9*10-5"],
-      "hint": { "en": "11 − 5.", "es": "11 − 5." },
-      "solution": [ { "tex": "11-5 = 6", "en": "Six.", "es": "Seis." } ]
+      "acceptedAlt": [
+        "2+0.9*10-5"
+      ],
+      "hint": {
+        "en": "11 − 5.",
+        "es": "11 − 5."
+      },
+      "solution": [
+        {
+          "tex": "11-5 = 6",
+          "en": "Six.",
+          "es": "Seis."
+        }
+      ]
     },
     {
       "id": "rl-08-e2",
       "answerType": "number",
-      "prompt": { "en": "TD update $5 + 0.1\\cdot 6$?", "es": "Actualización TD $5 + 0.1\\cdot 6$?" },
+      "prompt": {
+        "en": "TD update $5 + 0.1\\cdot 6$?",
+        "es": "Actualización TD $5 + 0.1\\cdot 6$?"
+      },
       "answer": "5.6",
-      "acceptedAlt": ["5+0.1*6", "28/5"],
-      "hint": { "en": "5 + 0.6.", "es": "5 + 0.6." },
-      "solution": [ { "tex": "5+0.6 = 5.6", "en": "5.6.", "es": "5.6." } ]
+      "acceptedAlt": [
+        "5+0.1*6",
+        "28/5"
+      ],
+      "hint": {
+        "en": "5 + 0.6.",
+        "es": "5 + 0.6."
+      },
+      "solution": [
+        {
+          "tex": "5+0.6 = 5.6",
+          "en": "5.6.",
+          "es": "5.6."
+        }
+      ]
     },
     {
       "id": "rl-08-e3",
       "answerType": "text",
-      "prompt": { "en": "Updating an estimate from another estimate is called ___. (one word)", "es": "Actualizar una estimación a partir de otra estimación se llama ___. (una palabra)" },
+      "prompt": {
+        "en": "Updating an estimate from another estimate is called ___. (one word)",
+        "es": "Actualizar una estimación a partir de otra estimación se llama ___. (una palabra)"
+      },
       "answer": "bootstrapping",
-      "acceptedAlt": ["bootstrap"],
-      "hint": { "en": "DP does it too.", "es": "DP también lo hace." },
-      "solution": [ { "tex": "r+\\gamma V(s')", "en": "Bootstrapping.", "es": "Bootstrapping." } ]
+      "acceptedAlt": [
+        "bootstrap"
+      ],
+      "hint": {
+        "en": "DP does it too.",
+        "es": "DP también lo hace."
+      },
+      "solution": [
+        {
+          "tex": "r+\\gamma V(s')",
+          "en": "Bootstrapping.",
+          "es": "Bootstrapping."
+        }
+      ]
     },
     {
       "id": "rl-08-e4",
       "answerType": "text",
-      "prompt": { "en": "$\\delta = r + \\gamma V(s') - V(s)$ is the TD ___. (one word)", "es": "$\\delta = r + \\gamma V(s') - V(s)$ es el ___ TD. (una palabra)" },
+      "prompt": {
+        "en": "$\\delta = r + \\gamma V(s') - V(s)$ is the TD ___. (one word)",
+        "es": "$\\delta = r + \\gamma V(s') - V(s)$ es el ___ TD. (una palabra)"
+      },
       "answer": "error",
-      "acceptedAlt": ["error"],
-      "hint": { "en": "δ.", "es": "δ." },
-      "solution": [ { "tex": "\\delta", "en": "Error.", "es": "Error." } ]
+      "acceptedAlt": [
+        "error"
+      ],
+      "hint": {
+        "en": "δ.",
+        "es": "δ."
+      },
+      "solution": [
+        {
+          "tex": "\\delta",
+          "en": "Error.",
+          "es": "Error."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 6, temporal-difference learning", "es": "Cap. 6, aprendizaje por diferencia temporal" } }
+    {
+      "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)",
+      "detail": {
+        "en": "Ch. 6, temporal-difference learning",
+        "es": "Cap. 6, aprendizaje por diferencia temporal"
+      }
+    }
   ]
 }

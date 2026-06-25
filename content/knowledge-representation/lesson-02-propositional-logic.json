@@ -3,7 +3,10 @@
   "subjectId": "knowledge-representation",
   "order": 2,
   "estimatedMinutes": 35,
-  "title": { "en": "Propositional Logic", "es": "Lógica proposicional" },
+  "title": {
+    "en": "Propositional Logic",
+    "es": "Lógica proposicional"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With $1$=true, $0$=false: $P \\wedge Q$ for $P=1, Q=0$ is $\\min(1,0) = 0$. $P \\vee Q$ is $\\max(1,0) = 1$. $\\neg P$ for $P=1$ is $1 - 1 = 0$.",
         "es": "Con $1$=verdadero, $0$=falso: $P \\wedge Q$ para $P=1, Q=0$ es $\\min(1,0) = 0$. $P \\vee Q$ es $\\max(1,0) = 1$. $\\neg P$ para $P=1$ es $1 - 1 = 0$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# propositional logic combines true/false variables with and/or/not\nP, Q = True, False\nprint((P and not Q), (P or Q))",
+        "es": "# la logica proposicional combina variables verdadero/falso con and/or/not\nP, Q = True, False\nprint((P and not Q), (P or Q))"
+      },
+      "expectedOutput": "True True",
+      "caption": {
+        "en": "Propositions are statements that are either true or false.",
+        "es": "Las proposiciones son enunciados verdaderos o falsos."
       }
     }
   ],
@@ -39,41 +59,105 @@
     {
       "id": "kr-02-e1",
       "answerType": "number",
-      "prompt": { "en": "$P \\wedge Q$ with $P=1$, $Q=0$ (use min): $\\min(1,0)$?", "es": "$P \\wedge Q$ con $P=1$, $Q=0$ (usa min): $\\min(1,0)$?" },
+      "prompt": {
+        "en": "$P \\wedge Q$ with $P=1$, $Q=0$ (use min): $\\min(1,0)$?",
+        "es": "$P \\wedge Q$ con $P=1$, $Q=0$ (usa min): $\\min(1,0)$?"
+      },
       "answer": "0",
-      "acceptedAlt": ["min(1,0)", "1*0"],
-      "hint": { "en": "AND needs both true.", "es": "AND necesita ambos verdaderos." },
-      "solution": [ { "tex": "\\min(1,0)=0", "en": "False.", "es": "Falso." } ]
+      "acceptedAlt": [
+        "min(1,0)",
+        "1*0"
+      ],
+      "hint": {
+        "en": "AND needs both true.",
+        "es": "AND necesita ambos verdaderos."
+      },
+      "solution": [
+        {
+          "tex": "\\min(1,0)=0",
+          "en": "False.",
+          "es": "Falso."
+        }
+      ]
     },
     {
       "id": "kr-02-e2",
       "answerType": "number",
-      "prompt": { "en": "$P \\vee Q$ with $P=1$, $Q=0$ (use max): $\\max(1,0)$?", "es": "$P \\vee Q$ con $P=1$, $Q=0$ (usa max): $\\max(1,0)$?" },
+      "prompt": {
+        "en": "$P \\vee Q$ with $P=1$, $Q=0$ (use max): $\\max(1,0)$?",
+        "es": "$P \\vee Q$ con $P=1$, $Q=0$ (usa max): $\\max(1,0)$?"
+      },
       "answer": "1",
-      "acceptedAlt": ["max(1,0)"],
-      "hint": { "en": "OR needs one true.", "es": "OR necesita uno verdadero." },
-      "solution": [ { "tex": "\\max(1,0)=1", "en": "True.", "es": "Verdadero." } ]
+      "acceptedAlt": [
+        "max(1,0)"
+      ],
+      "hint": {
+        "en": "OR needs one true.",
+        "es": "OR necesita uno verdadero."
+      },
+      "solution": [
+        {
+          "tex": "\\max(1,0)=1",
+          "en": "True.",
+          "es": "Verdadero."
+        }
+      ]
     },
     {
       "id": "kr-02-e3",
       "answerType": "number",
-      "prompt": { "en": "$\\neg P$ with $P=1$ (use $1-P$): compute.", "es": "$\\neg P$ con $P=1$ (usa $1-P$): calcula." },
+      "prompt": {
+        "en": "$\\neg P$ with $P=1$ (use $1-P$): compute.",
+        "es": "$\\neg P$ con $P=1$ (usa $1-P$): calcula."
+      },
       "answer": "0",
-      "acceptedAlt": ["1-1"],
-      "hint": { "en": "Flip true to false.", "es": "Invierte verdadero a falso." },
-      "solution": [ { "tex": "1-1=0", "en": "False.", "es": "Falso." } ]
+      "acceptedAlt": [
+        "1-1"
+      ],
+      "hint": {
+        "en": "Flip true to false.",
+        "es": "Invierte verdadero a falso."
+      },
+      "solution": [
+        {
+          "tex": "1-1=0",
+          "en": "False.",
+          "es": "Falso."
+        }
+      ]
     },
     {
       "id": "kr-02-e4",
       "answerType": "text",
-      "prompt": { "en": "A formula true under every assignment is a ___. (one word)", "es": "Una fórmula verdadera bajo toda asignación es una ___. (una palabra)" },
+      "prompt": {
+        "en": "A formula true under every assignment is a ___. (one word)",
+        "es": "Una fórmula verdadera bajo toda asignación es una ___. (una palabra)"
+      },
       "answer": "tautology",
-      "acceptedAlt": ["tautología", "tautologia"],
-      "hint": { "en": "Always true.", "es": "Siempre verdadera." },
-      "solution": [ { "tex": "\\top", "en": "Tautology.", "es": "Tautología." } ]
+      "acceptedAlt": [
+        "tautología",
+        "tautologia"
+      ],
+      "hint": {
+        "en": "Always true.",
+        "es": "Siempre verdadera."
+      },
+      "solution": [
+        {
+          "tex": "\\top",
+          "en": "Tautology.",
+          "es": "Tautología."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 7, propositional logic", "es": "Cap. 7, lógica proposicional" } }
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Ch. 7, propositional logic",
+        "es": "Cap. 7, lógica proposicional"
+      }
+    }
   ]
 }

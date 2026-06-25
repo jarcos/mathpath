@@ -3,13 +3,27 @@
   "subjectId": "linear-algebra",
   "order": 18,
   "estimatedMinutes": 40,
-  "title": { "en": "Gram-Schmidt Orthogonalization", "es": "Ortogonalización de Gram-Schmidt" },
+  "title": {
+    "en": "Gram-Schmidt Orthogonalization",
+    "es": "Ortogonalización de Gram-Schmidt"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Orthogonal bases are wonderful to work with — but the basis you are handed usually is not orthogonal. The **Gram-Schmidt process** is a systematic recipe that converts *any* basis into an orthogonal (or orthonormal) one spanning the same space.",
         "es": "Las bases ortogonales son maravillosas para trabajar — pero la base que te dan normalmente no es ortogonal. El **proceso de Gram-Schmidt** es una receta sistemática que convierte *cualquier* base en una ortogonal (u ortonormal) que genera el mismo espacio."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-16-dot-norm-angle",
+        "linalg-17-orthogonal-projections"
+      ],
+      "note": {
+        "en": "Gram-Schmidt uses dot products and projections.",
+        "es": "Gram-Schmidt usa productos escalares y proyecciones."
       }
     },
     {
@@ -28,10 +42,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Apply Gram-Schmidt to the already-orthogonal pair $(1,0), (0,1)$. The first stays $(1,0)$. The second, $(0,1)$, has projection $0$ onto $(1,0)$ (their dot product is $0$), so nothing is subtracted — it stays $(0,1)$. Both already have norm $1$, so the result is the standard orthonormal basis.",
         "es": "Aplica Gram-Schmidt al par ya ortogonal $(1,0), (0,1)$. El primero queda $(1,0)$. El segundo, $(0,1)$, tiene proyección $0$ sobre $(1,0)$ (su producto escalar es $0$), así que no se resta nada — queda $(0,1)$. Ambos ya tienen norma $1$, así el resultado es la base ortonormal canónica."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nA = np.array([[1., 1.], [1., 0.]])\nQ, R = np.linalg.qr(A)   # QR factorization = Gram-Schmidt under the hood\n# Q has orthonormal columns: Q^T Q = identity\nprint(np.round(np.abs(Q.T @ Q), 4).tolist())",
+        "es": "import numpy as np\nA = np.array([[1., 1.], [1., 0.]])\nQ, R = np.linalg.qr(A)   # factorizacion QR = Gram-Schmidt por dentro\n# Q tiene columnas ortonormales: Q^T Q = identidad\nprint(np.round(np.abs(Q.T @ Q), 4).tolist())"
+      },
+      "expectedOutput": "[[1.0, 0.0], [0.0, 1.0]]",
+      "caption": {
+        "en": "Gram-Schmidt (QR) produces orthonormal columns.",
+        "es": "Gram-Schmidt (QR) produce columnas ortonormales."
       }
     }
   ],
@@ -39,42 +72,106 @@
     {
       "id": "linalg-18-e1",
       "answerType": "text",
-      "prompt": { "en": "Gram-Schmidt produces an ___ basis. (one word)", "es": "Gram-Schmidt produce una base ___. (una palabra)" },
+      "prompt": {
+        "en": "Gram-Schmidt produces an ___ basis. (one word)",
+        "es": "Gram-Schmidt produce una base ___. (una palabra)"
+      },
       "answer": "orthogonal",
-      "acceptedAlt": ["ortogonal"],
-      "hint": { "en": "Mutually perpendicular.", "es": "Mutuamente perpendiculares." },
-      "solution": [ { "tex": "u_i\\cdot u_j = 0", "en": "Orthogonal basis.", "es": "Base ortogonal." } ]
+      "acceptedAlt": [
+        "ortogonal"
+      ],
+      "hint": {
+        "en": "Mutually perpendicular.",
+        "es": "Mutuamente perpendiculares."
+      },
+      "solution": [
+        {
+          "tex": "u_i\\cdot u_j = 0",
+          "en": "Orthogonal basis.",
+          "es": "Base ortogonal."
+        }
+      ]
     },
     {
       "id": "linalg-18-e2",
       "answerType": "number",
-      "prompt": { "en": "Dot product of two orthonormal vectors?", "es": "¿Producto escalar de dos vectores ortonormales?" },
+      "prompt": {
+        "en": "Dot product of two orthonormal vectors?",
+        "es": "¿Producto escalar de dos vectores ortonormales?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Orthonormal ⇒ perpendicular.", "es": "Ortonormal ⇒ perpendiculares." },
-      "solution": [ { "tex": "u_i\\cdot u_j = 0", "en": "Perpendicular.", "es": "Perpendiculares." } ]
+      "hint": {
+        "en": "Orthonormal ⇒ perpendicular.",
+        "es": "Ortonormal ⇒ perpendiculares."
+      },
+      "solution": [
+        {
+          "tex": "u_i\\cdot u_j = 0",
+          "en": "Perpendicular.",
+          "es": "Perpendiculares."
+        }
+      ]
     },
     {
       "id": "linalg-18-e3",
       "answerType": "number",
-      "prompt": { "en": "What is the norm of any orthonormal basis vector?", "es": "¿Cuál es la norma de un vector de una base ortonormal?" },
+      "prompt": {
+        "en": "What is the norm of any orthonormal basis vector?",
+        "es": "¿Cuál es la norma de un vector de una base ortonormal?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "'Normal' means unit length.", "es": "'Normal' significa longitud unidad." },
-      "solution": [ { "tex": "\\|u_i\\| = 1", "en": "Unit length.", "es": "Longitud unidad." } ]
+      "hint": {
+        "en": "'Normal' means unit length.",
+        "es": "'Normal' significa longitud unidad."
+      },
+      "solution": [
+        {
+          "tex": "\\|u_i\\| = 1",
+          "en": "Unit length.",
+          "es": "Longitud unidad."
+        }
+      ]
     },
     {
       "id": "linalg-18-e4",
       "answerType": "number",
-      "prompt": { "en": "Dot product $(1,0)\\cdot(0,1)$ (already orthogonal input)?", "es": "¿Producto escalar $(1,0)\\cdot(0,1)$ (entrada ya ortogonal)?" },
+      "prompt": {
+        "en": "Dot product $(1,0)\\cdot(0,1)$ (already orthogonal input)?",
+        "es": "¿Producto escalar $(1,0)\\cdot(0,1)$ (entrada ya ortogonal)?"
+      },
       "answer": "0",
-      "acceptedAlt": ["dot([1,0],[0,1])"],
-      "hint": { "en": "Already perpendicular.", "es": "Ya perpendiculares." },
-      "solution": [ { "tex": "= 0", "en": "Unchanged by Gram-Schmidt.", "es": "Gram-Schmidt no los cambia." } ]
+      "acceptedAlt": [
+        "dot([1,0],[0,1])"
+      ],
+      "hint": {
+        "en": "Already perpendicular.",
+        "es": "Ya perpendiculares."
+      },
+      "solution": [
+        {
+          "tex": "= 0",
+          "en": "Unchanged by Gram-Schmidt.",
+          "es": "Gram-Schmidt no los cambia."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 4.4, orthogonal bases and Gram-Schmidt; QR", "es": "Cap. 4.4, bases ortogonales y Gram-Schmidt; QR" } },
-    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Gram-Schmidt orthogonalization", "es": "Proceso de ortogonalización de Gram-Schmidt" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 4.4, orthogonal bases and Gram-Schmidt; QR",
+        "es": "Cap. 4.4, bases ortogonales y Gram-Schmidt; QR"
+      }
+    },
+    {
+      "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)",
+      "detail": {
+        "en": "Gram-Schmidt orthogonalization",
+        "es": "Proceso de ortogonalización de Gram-Schmidt"
+      }
+    }
   ]
 }

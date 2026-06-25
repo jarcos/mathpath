@@ -3,7 +3,10 @@
   "subjectId": "knowledge-representation",
   "order": 10,
   "estimatedMinutes": 35,
-  "title": { "en": "Default & Non-Monotonic Reasoning", "es": "Razonamiento por defecto y no monótono" },
+  "title": {
+    "en": "Default & Non-Monotonic Reasoning",
+    "es": "Razonamiento por defecto y no monótono"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Default 'birds fly' lets us conclude Tweety flies. Adding 'Tweety is a penguin' (penguins don't fly) retracts that conclusion — so the number of flying birds among {Tweety} drops from $1$ to $0$. This retraction is impossible in monotonic logic.",
         "es": "El defecto 'las aves vuelan' nos deja concluir que Tweety vuela. Añadir 'Tweety es un pingüino' (los pingüinos no vuelan) retracta esa conclusión — así el número de aves voladoras entre {Tweety} baja de $1$ a $0$. Esta retractación es imposible en lógica monótona."
@@ -39,42 +45,160 @@
     {
       "id": "kr-10-e1",
       "answerType": "number",
-      "prompt": { "en": "After learning Tweety (a bird) is a penguin, how many flying birds remain in {Tweety}?", "es": "Tras saber que Tweety (un ave) es un pingüino, ¿cuántas aves voladoras quedan en {Tweety}?" },
+      "prompt": {
+        "en": "After learning Tweety (a bird) is a penguin, how many flying birds remain in {Tweety}?",
+        "es": "Tras saber que Tweety (un ave) es un pingüino, ¿cuántas aves voladoras quedan en {Tweety}?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Penguins don't fly.", "es": "Los pingüinos no vuelan." },
-      "solution": [ { "tex": "0", "en": "Zero.", "es": "Cero." } ]
+      "hint": {
+        "en": "Penguins don't fly.",
+        "es": "Los pingüinos no vuelan."
+      },
+      "solution": [
+        {
+          "tex": "0",
+          "en": "Zero.",
+          "es": "Cero."
+        }
+      ]
     },
     {
       "id": "kr-10-e2",
       "answerType": "text",
-      "prompt": { "en": "Logic where new facts never retract conclusions is ___. (one word)", "es": "La lógica donde los nuevos hechos nunca retractan conclusiones es ___. (una palabra)" },
+      "prompt": {
+        "en": "Logic where new facts never retract conclusions is ___. (one word)",
+        "es": "La lógica donde los nuevos hechos nunca retractan conclusiones es ___. (una palabra)"
+      },
       "answer": "monotonic",
-      "acceptedAlt": ["monótona", "monotona", "monotonica", "monotónica"],
-      "hint": { "en": "Classical logic.", "es": "Lógica clásica." },
-      "solution": [ { "tex": "\\text{monotonic}", "en": "Monotonic.", "es": "Monótona." } ]
+      "acceptedAlt": [
+        "monótona",
+        "monotona",
+        "monotonica",
+        "monotónica"
+      ],
+      "hint": {
+        "en": "Classical logic.",
+        "es": "Lógica clásica."
+      },
+      "solution": [
+        {
+          "tex": "\\text{monotonic}",
+          "en": "Monotonic.",
+          "es": "Monótona."
+        }
+      ]
     },
     {
       "id": "kr-10-e3",
       "answerType": "text",
-      "prompt": { "en": "'Birds fly' used unless contradicted is a ___ rule. (one word)", "es": "'Las aves vuelan' usado salvo contradicción es una regla por ___. (una palabra)" },
+      "prompt": {
+        "en": "'Birds fly' used unless contradicted is a ___ rule. (one word)",
+        "es": "'Las aves vuelan' usado salvo contradicción es una regla por ___. (una palabra)"
+      },
       "answer": "default",
-      "acceptedAlt": ["defecto", "por defecto"],
-      "hint": { "en": "Default logic.", "es": "Lógica por defecto." },
-      "solution": [ { "tex": "\\text{default}", "en": "Default.", "es": "Defecto." } ]
+      "acceptedAlt": [
+        "defecto",
+        "por defecto"
+      ],
+      "hint": {
+        "en": "Default logic.",
+        "es": "Lógica por defecto."
+      },
+      "solution": [
+        {
+          "tex": "\\text{default}",
+          "en": "Default.",
+          "es": "Defecto."
+        }
+      ]
     },
     {
       "id": "kr-10-e4",
       "answerType": "text",
-      "prompt": { "en": "Treating anything not provable as false is the closed-___ assumption. (one word)", "es": "Tomar todo lo no demostrable como falso es la hipótesis del mundo ___. (una palabra)" },
+      "prompt": {
+        "en": "Treating anything not provable as false is the closed-___ assumption. (one word)",
+        "es": "Tomar todo lo no demostrable como falso es la hipótesis del mundo ___. (una palabra)"
+      },
       "answer": "world",
-      "acceptedAlt": ["mundo", "cerrado"],
-      "hint": { "en": "Closed-___ assumption.", "es": "Mundo ___." },
-      "solution": [ { "tex": "\\text{closed-world}", "en": "World.", "es": "Mundo (cerrado)." } ]
+      "acceptedAlt": [
+        "mundo",
+        "cerrado"
+      ],
+      "hint": {
+        "en": "Closed-___ assumption.",
+        "es": "Mundo ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{closed-world}",
+          "en": "World.",
+          "es": "Mundo (cerrado)."
+        }
+      ]
+    },
+    {
+      "id": "kr-10-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "We conclude 'Tweety flies' from 'Tweety is a bird', then retract it on learning Tweety is a penguin. This is...",
+        "es": "Concluimos 'Tweety vuela' de 'Tweety es un ave', y lo retractamos al saber que es un pinguino. Esto es..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Non-monotonic reasoning",
+            "es": "Razonamiento no monotono"
+          },
+          "correct": true,
+          "why": {
+            "en": "Adding information can withdraw a previous conclusion — non-monotonicity.",
+            "es": "Anadir informacion puede retirar una conclusion previa — no monotonia."
+          }
+        },
+        {
+          "text": {
+            "en": "Monotonic reasoning",
+            "es": "Razonamiento monotono"
+          },
+          "correct": false,
+          "why": {
+            "en": "In monotonic logic, conclusions never get retracted as facts are added.",
+            "es": "En la logica monotona, las conclusiones nunca se retiran al anadir hechos."
+          }
+        },
+        {
+          "text": {
+            "en": "Deductive closure",
+            "es": "Clausura deductiva"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's the set of all consequences, not the retraction behavior.",
+            "es": "Eso es el conjunto de consecuencias, no la retractacion."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Does new evidence ever cancel an old conclusion?",
+        "es": "Puede la evidencia nueva cancelar una conclusion antigua?"
+      }
     }
   ],
   "references": [
-    { "source": "Reiter — A Logic for Default Reasoning (1980)", "detail": { "en": "Default logic", "es": "Lógica por defecto" } },
-    { "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)", "detail": { "en": "Defaults and non-monotonic reasoning", "es": "Defectos y razonamiento no monótono" } }
+    {
+      "source": "Reiter — A Logic for Default Reasoning (1980)",
+      "detail": {
+        "en": "Default logic",
+        "es": "Lógica por defecto"
+      }
+    },
+    {
+      "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)",
+      "detail": {
+        "en": "Defaults and non-monotonic reasoning",
+        "es": "Defectos y razonamiento no monótono"
+      }
+    }
   ]
 }

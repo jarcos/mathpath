@@ -3,7 +3,10 @@
   "subjectId": "ml-foundations",
   "order": 3,
   "estimatedMinutes": 35,
-  "title": { "en": "Models & Parameters", "es": "Modelos y parámetros" },
+  "title": {
+    "en": "Models & Parameters",
+    "es": "Modelos y parámetros"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "The model $f(x) = wx + b$ with $w = 2$, $b = 1$ predicts $f(3) = 2\\cdot 3 + 1 = 7$. It has $2$ parameters. The pure model $f(x) = 3x$ predicts $f(4) = 12$.",
         "es": "El modelo $f(x) = wx + b$ con $w = 2$, $b = 1$ predice $f(3) = 2\\cdot 3 + 1 = 7$. Tiene $2$ parámetros. El modelo puro $f(x) = 3x$ predice $f(4) = 12$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# a model is a function with adjustable parameters (weight w, bias b)\nw, b = 2.0, 1.0\nx = 3\nprint(w * x + b)",
+        "es": "# un modelo es una funcion con parametros ajustables (peso w, sesgo b)\nw, b = 2.0, 1.0\nx = 3\nprint(w * x + b)"
+      },
+      "expectedOutput": "7.0",
+      "caption": {
+        "en": "Parameters (w, b) are the knobs learning tunes.",
+        "es": "Los parametros (w, b) son los mandos que ajusta el aprendizaje."
       }
     }
   ],
@@ -39,42 +59,109 @@
     {
       "id": "mlf-03-e1",
       "answerType": "number",
-      "prompt": { "en": "For $f(x)=wx+b$ with $w=2$, $b=1$, find $f(3)$.", "es": "Para $f(x)=wx+b$ con $w=2$, $b=1$, halla $f(3)$." },
+      "prompt": {
+        "en": "For $f(x)=wx+b$ with $w=2$, $b=1$, find $f(3)$.",
+        "es": "Para $f(x)=wx+b$ con $w=2$, $b=1$, halla $f(3)$."
+      },
       "answer": "7",
-      "acceptedAlt": ["2*3+1"],
-      "hint": { "en": "Substitute.", "es": "Sustituye." },
-      "solution": [ { "tex": "2\\cdot3+1 = 7", "en": "Prediction.", "es": "Predicción." } ]
+      "acceptedAlt": [
+        "2*3+1"
+      ],
+      "hint": {
+        "en": "Substitute.",
+        "es": "Sustituye."
+      },
+      "solution": [
+        {
+          "tex": "2\\cdot3+1 = 7",
+          "en": "Prediction.",
+          "es": "Predicción."
+        }
+      ]
     },
     {
       "id": "mlf-03-e2",
       "answerType": "text",
-      "prompt": { "en": "The values learned during training (like w and b) are the ___. (one word)", "es": "Los valores aprendidos durante el entrenamiento (como w y b) son los ___. (una palabra)" },
+      "prompt": {
+        "en": "The values learned during training (like w and b) are the ___. (one word)",
+        "es": "Los valores aprendidos durante el entrenamiento (como w y b) son los ___. (una palabra)"
+      },
       "answer": "parameters",
-      "acceptedAlt": ["parámetros", "parametros"],
-      "hint": { "en": "The knobs the model tunes.", "es": "Las perillas que el modelo ajusta." },
-      "solution": [ { "tex": "w, b", "en": "Parameters.", "es": "Parámetros." } ]
+      "acceptedAlt": [
+        "parámetros",
+        "parametros"
+      ],
+      "hint": {
+        "en": "The knobs the model tunes.",
+        "es": "Las perillas que el modelo ajusta."
+      },
+      "solution": [
+        {
+          "tex": "w, b",
+          "en": "Parameters.",
+          "es": "Parámetros."
+        }
+      ]
     },
     {
       "id": "mlf-03-e3",
       "answerType": "number",
-      "prompt": { "en": "How many parameters does $f(x)=wx+b$ have?", "es": "¿Cuántos parámetros tiene $f(x)=wx+b$?" },
+      "prompt": {
+        "en": "How many parameters does $f(x)=wx+b$ have?",
+        "es": "¿Cuántos parámetros tiene $f(x)=wx+b$?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Count w and b.", "es": "Cuenta w y b." },
-      "solution": [ { "tex": "w, b \\Rightarrow 2", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "Count w and b.",
+        "es": "Cuenta w y b."
+      },
+      "solution": [
+        {
+          "tex": "w, b \\Rightarrow 2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "mlf-03-e4",
       "answerType": "number",
-      "prompt": { "en": "Model $f(x)=3x$. Predict $f(4)$.", "es": "Modelo $f(x)=3x$. Predice $f(4)$." },
+      "prompt": {
+        "en": "Model $f(x)=3x$. Predict $f(4)$.",
+        "es": "Modelo $f(x)=3x$. Predice $f(4)$."
+      },
       "answer": "12",
-      "acceptedAlt": ["3*4"],
-      "hint": { "en": "Substitute 4.", "es": "Sustituye 4." },
-      "solution": [ { "tex": "3\\cdot4 = 12", "en": "Prediction.", "es": "Predicción." } ]
+      "acceptedAlt": [
+        "3*4"
+      ],
+      "hint": {
+        "en": "Substitute 4.",
+        "es": "Sustituye 4."
+      },
+      "solution": [
+        {
+          "tex": "3\\cdot4 = 12",
+          "en": "Prediction.",
+          "es": "Predicción."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, capacity, parameters and hyperparameters", "es": "Cap. 5, capacidad, parámetros e hiperparámetros" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Linear models", "es": "Modelos lineales" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, capacity, parameters and hyperparameters",
+        "es": "Cap. 5, capacidad, parámetros e hiperparámetros"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Linear models",
+        "es": "Modelos lineales"
+      }
+    }
   ]
 }

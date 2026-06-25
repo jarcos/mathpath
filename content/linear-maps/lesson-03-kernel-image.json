@@ -3,7 +3,10 @@
   "subjectId": "linear-maps",
   "order": 3,
   "estimatedMinutes": 45,
-  "title": { "en": "Kernel & Image", "es": "Núcleo e imagen" },
+  "title": {
+    "en": "Kernel & Image",
+    "es": "Núcleo e imagen"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — rank-nullity", "es": "Ejemplo resuelto — rango-nulidad" },
+      "title": {
+        "en": "Worked example — rank-nullity",
+        "es": "Ejemplo resuelto — rango-nulidad"
+      },
       "content": {
         "en": "A linear map $T:\\mathbb{R}^3 \\to \\mathbb{R}^3$ has rank $2$ (its image is a plane). By rank-nullity, $3 = 2 + \\text{nullity}$, so the nullity is $1$ — the kernel is a line. The map squashes one dimension to zero.",
         "es": "Una aplicación lineal $T:\\mathbb{R}^3 \\to \\mathbb{R}^3$ tiene rango $2$ (su imagen es un plano). Por rango-nulidad, $3 = 2 + \\text{nulidad}$, así la nulidad es $1$ — el núcleo es una recta. La aplicación aplasta una dimensión a cero."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nA = np.array([[1, 2], [2, 4]])\nr = np.linalg.matrix_rank(A)\n# rank-nullity: dim(image) + dim(kernel) = number of columns\nprint(\"rank\", r, \"nullity\", 2 - r)",
+        "es": "import numpy as np\nA = np.array([[1, 2], [2, 4]])\nr = np.linalg.matrix_rank(A)\n# rango-nulidad: dim(imagen) + dim(nucleo) = numero de columnas\nprint(\"rank\", r, \"nullity\", 2 - r)"
+      },
+      "expectedOutput": "rank 1 nullity 1",
+      "caption": {
+        "en": "Image dimension is the rank; kernel dimension is the nullity.",
+        "es": "La dimension de la imagen es el rango; la del nucleo, la nulidad."
       }
     }
   ],
@@ -39,42 +61,104 @@
     {
       "id": "linmaps-03-e1",
       "answerType": "number",
-      "prompt": { "en": "What is the dimension of the kernel of $T(x,y)=(x,0)$?", "es": "¿Cuál es la dimensión del núcleo de $T(x,y)=(x,0)$?" },
+      "prompt": {
+        "en": "What is the dimension of the kernel of $T(x,y)=(x,0)$?",
+        "es": "¿Cuál es la dimensión del núcleo de $T(x,y)=(x,0)$?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "Which vectors map to zero?", "es": "¿Qué vectores van a cero?" },
-      "solution": [ { "tex": "x = 0 \\Rightarrow \\text{the y-axis}", "en": "A line, dimension 1.", "es": "Una recta, dimensión 1." } ]
+      "hint": {
+        "en": "Which vectors map to zero?",
+        "es": "¿Qué vectores van a cero?"
+      },
+      "solution": [
+        {
+          "tex": "x = 0 \\Rightarrow \\text{the y-axis}",
+          "en": "A line, dimension 1.",
+          "es": "Una recta, dimensión 1."
+        }
+      ]
     },
     {
       "id": "linmaps-03-e2",
       "answerType": "number",
-      "prompt": { "en": "For $T:\\mathbb{R}^3\\to\\mathbb{R}^3$ with rank 2, what is the nullity?", "es": "Para $T:\\mathbb{R}^3\\to\\mathbb{R}^3$ con rango 2, ¿cuál es la nulidad?" },
+      "prompt": {
+        "en": "For $T:\\mathbb{R}^3\\to\\mathbb{R}^3$ with rank 2, what is the nullity?",
+        "es": "Para $T:\\mathbb{R}^3\\to\\mathbb{R}^3$ con rango 2, ¿cuál es la nulidad?"
+      },
       "answer": "1",
-      "acceptedAlt": ["3-2"],
-      "hint": { "en": "Rank-nullity: 3 = rank + nullity.", "es": "Rango-nulidad: 3 = rango + nulidad." },
-      "solution": [ { "tex": "3 - 2 = 1", "en": "Nullity is 1.", "es": "La nulidad es 1." } ]
+      "acceptedAlt": [
+        "3-2"
+      ],
+      "hint": {
+        "en": "Rank-nullity: 3 = rank + nullity.",
+        "es": "Rango-nulidad: 3 = rango + nulidad."
+      },
+      "solution": [
+        {
+          "tex": "3 - 2 = 1",
+          "en": "Nullity is 1.",
+          "es": "La nulidad es 1."
+        }
+      ]
     },
     {
       "id": "linmaps-03-e3",
       "answerType": "number",
-      "prompt": { "en": "The kernel always contains which vector? (its component)", "es": "El núcleo siempre contiene qué vector? (su componente)" },
+      "prompt": {
+        "en": "The kernel always contains which vector? (its component)",
+        "es": "El núcleo siempre contiene qué vector? (su componente)"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "T(0) = 0.", "es": "T(0) = 0." },
-      "solution": [ { "tex": "T(\\mathbf{0})=\\mathbf{0}", "en": "Zero is always in the kernel.", "es": "El cero siempre está en el núcleo." } ]
+      "hint": {
+        "en": "T(0) = 0.",
+        "es": "T(0) = 0."
+      },
+      "solution": [
+        {
+          "tex": "T(\\mathbf{0})=\\mathbf{0}",
+          "en": "Zero is always in the kernel.",
+          "es": "El cero siempre está en el núcleo."
+        }
+      ]
     },
     {
       "id": "linmaps-03-e4",
       "answerType": "number",
-      "prompt": { "en": "What is the dimension of the image of $T(x,y)=(x,0)$?", "es": "¿Cuál es la dimensión de la imagen de $T(x,y)=(x,0)$?" },
+      "prompt": {
+        "en": "What is the dimension of the image of $T(x,y)=(x,0)$?",
+        "es": "¿Cuál es la dimensión de la imagen de $T(x,y)=(x,0)$?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "The image is the x-axis.", "es": "La imagen es el eje x." },
-      "solution": [ { "tex": "\\text{rank} = 1", "en": "A line, dimension 1.", "es": "Una recta, dimensión 1." } ]
+      "hint": {
+        "en": "The image is the x-axis.",
+        "es": "La imagen es el eje x."
+      },
+      "solution": [
+        {
+          "tex": "\\text{rank} = 1",
+          "en": "A line, dimension 1.",
+          "es": "Una recta, dimensión 1."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Kernel and image of a linear map", "es": "Núcleo e imagen de una aplicación lineal" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 3.2 & 8.1, null space, column space, rank-nullity", "es": "Cap. 3.2 y 8.1, espacio nulo, espacio columna, rango-nulidad" } }
+    {
+      "source": "UOC — Aplicaciones lineales (PID_00269006)",
+      "detail": {
+        "en": "Kernel and image of a linear map",
+        "es": "Núcleo e imagen de una aplicación lineal"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 3.2 & 8.1, null space, column space, rank-nullity",
+        "es": "Cap. 3.2 y 8.1, espacio nulo, espacio columna, rango-nulidad"
+      }
+    }
   ]
 }

@@ -3,13 +3,26 @@
   "subjectId": "statistics",
   "order": 14,
   "estimatedMinutes": 40,
-  "title": { "en": "Confidence Intervals", "es": "Intervalos de confianza" },
+  "title": {
+    "en": "Confidence Intervals",
+    "es": "Intervalos de confianza"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A single estimate (a **point estimate**) like 'the mean is $10$' hides its own uncertainty. A **confidence interval** reports a range plus a confidence level: 'we are $95\\%$ confident the true mean lies in $[8, 12]$'. It honestly communicates how precise the estimate is.",
         "es": "Una única estimación (una **estimación puntual**) como 'la media es $10$' oculta su propia incertidumbre. Un **intervalo de confianza** reporta un rango más un nivel de confianza: 'tenemos un $95\\%$ de confianza en que la media verdadera está en $[8, 12]$'. Comunica honestamente cuán precisa es la estimación."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "stats-13-clt"
+      ],
+      "note": {
+        "en": "Confidence intervals rest on the sampling distribution from the CLT.",
+        "es": "Los intervalos de confianza se apoyan en la distribucion muestral del TCL."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Sample mean $\\bar{x} = 10$ with margin $z\\cdot\\text{SE} = 2$. The $95\\%$ interval is $10 \\pm 2 = [8, 12]$: lower bound $8$, upper bound $12$. The critical value for $95\\%$ confidence is $z \\approx 1.96$.",
         "es": "Media muestral $\\bar{x} = 10$ con margen $z\\cdot\\text{SE} = 2$. El intervalo del $95\\%$ es $10 \\pm 2 = [8, 12]$: cota inferior $8$, cota superior $12$. El valor crítico para el $95\\%$ de confianza es $z \\approx 1.96$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\ndata = np.array([2, 4, 4, 4, 5, 5, 7, 9])\nmean = data.mean()\nse = data.std(ddof=1) / np.sqrt(len(data))   # sample standard error\nprint(round(float(mean), 2))\nprint(round(float(mean - 1.96 * se), 2), round(float(mean + 1.96 * se), 2))",
+        "es": "import numpy as np\ndata = np.array([2, 4, 4, 4, 5, 5, 7, 9])\nmean = data.mean()\nse = data.std(ddof=1) / np.sqrt(len(data))   # error estandar muestral\nprint(round(float(mean), 2))\nprint(round(float(mean - 1.96 * se), 2), round(float(mean + 1.96 * se), 2))"
+      },
+      "expectedOutput": "5.0\n3.52 6.48",
+      "caption": {
+        "en": "A 95% CI is the mean plus or minus about 1.96 standard errors.",
+        "es": "Un IC del 95% es la media mas o menos unos 1,96 errores estandar."
       }
     }
   ],
@@ -39,42 +71,110 @@
     {
       "id": "stats-14-e1",
       "answerType": "number",
-      "prompt": { "en": "What is the z critical value for a 95% confidence interval? (two decimals)", "es": "¿Cuál es el valor crítico z para un intervalo de confianza del 95%? (dos decimales)" },
+      "prompt": {
+        "en": "What is the z critical value for a 95% confidence interval? (two decimals)",
+        "es": "¿Cuál es el valor crítico z para un intervalo de confianza del 95%? (dos decimales)"
+      },
       "answer": "1.96",
       "acceptedAlt": [],
-      "hint": { "en": "About 2; precisely 1.96.", "es": "Alrededor de 2; exactamente 1.96." },
-      "solution": [ { "tex": "z \\approx 1.96", "en": "95% critical value.", "es": "Valor crítico del 95%." } ]
+      "hint": {
+        "en": "About 2; precisely 1.96.",
+        "es": "Alrededor de 2; exactamente 1.96."
+      },
+      "solution": [
+        {
+          "tex": "z \\approx 1.96",
+          "en": "95% critical value.",
+          "es": "Valor crítico del 95%."
+        }
+      ]
     },
     {
       "id": "stats-14-e2",
       "answerType": "number",
-      "prompt": { "en": "Mean $= 10$, margin $z\\cdot SE = 2$. What is the upper bound?", "es": "Media $= 10$, margen $z\\cdot SE = 2$. ¿Cuál es la cota superior?" },
+      "prompt": {
+        "en": "Mean $= 10$, margin $z\\cdot SE = 2$. What is the upper bound?",
+        "es": "Media $= 10$, margen $z\\cdot SE = 2$. ¿Cuál es la cota superior?"
+      },
       "answer": "12",
-      "acceptedAlt": ["10+2"],
-      "hint": { "en": "Mean + margin.", "es": "Media + margen." },
-      "solution": [ { "tex": "10 + 2 = 12", "en": "Upper bound.", "es": "Cota superior." } ]
+      "acceptedAlt": [
+        "10+2"
+      ],
+      "hint": {
+        "en": "Mean + margin.",
+        "es": "Media + margen."
+      },
+      "solution": [
+        {
+          "tex": "10 + 2 = 12",
+          "en": "Upper bound.",
+          "es": "Cota superior."
+        }
+      ]
     },
     {
       "id": "stats-14-e3",
       "answerType": "number",
-      "prompt": { "en": "Mean $= 10$, margin $= 2$. What is the lower bound?", "es": "Media $= 10$, margen $= 2$. ¿Cuál es la cota inferior?" },
+      "prompt": {
+        "en": "Mean $= 10$, margin $= 2$. What is the lower bound?",
+        "es": "Media $= 10$, margen $= 2$. ¿Cuál es la cota inferior?"
+      },
       "answer": "8",
-      "acceptedAlt": ["10-2"],
-      "hint": { "en": "Mean − margin.", "es": "Media − margen." },
-      "solution": [ { "tex": "10 - 2 = 8", "en": "Lower bound.", "es": "Cota inferior." } ]
+      "acceptedAlt": [
+        "10-2"
+      ],
+      "hint": {
+        "en": "Mean − margin.",
+        "es": "Media − margen."
+      },
+      "solution": [
+        {
+          "tex": "10 - 2 = 8",
+          "en": "Lower bound.",
+          "es": "Cota inferior."
+        }
+      ]
     },
     {
       "id": "stats-14-e4",
       "answerType": "text",
-      "prompt": { "en": "A higher confidence level gives a ___ interval. (wider / narrower)", "es": "Un nivel de confianza mayor da un intervalo más ___. (ancho / estrecho)" },
+      "prompt": {
+        "en": "A higher confidence level gives a ___ interval. (wider / narrower)",
+        "es": "Un nivel de confianza mayor da un intervalo más ___. (ancho / estrecho)"
+      },
       "answer": "wider",
-      "acceptedAlt": ["ancho", "más ancho", "mas ancho"],
-      "hint": { "en": "More certainty needs more room.", "es": "Más certeza necesita más margen." },
-      "solution": [ { "tex": "\\uparrow\\text{conf} \\Rightarrow \\uparrow\\text{width}", "en": "Wider.", "es": "Más ancho." } ]
+      "acceptedAlt": [
+        "ancho",
+        "más ancho",
+        "mas ancho"
+      ],
+      "hint": {
+        "en": "More certainty needs more room.",
+        "es": "Más certeza necesita más margen."
+      },
+      "solution": [
+        {
+          "tex": "\\uparrow\\text{conf} \\Rightarrow \\uparrow\\text{width}",
+          "en": "Wider.",
+          "es": "Más ancho."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Estimation and confidence", "es": "Estimación y confianza" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, estimators, bias and variance", "es": "Cap. 5, estimadores, sesgo y varianza" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Estimation and confidence",
+        "es": "Estimación y confianza"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, estimators, bias and variance",
+        "es": "Cap. 5, estimadores, sesgo y varianza"
+      }
+    }
   ]
 }

@@ -3,13 +3,26 @@
   "subjectId": "ml-foundations",
   "order": 7,
   "estimatedMinutes": 35,
-  "title": { "en": "Learning Rate & Convergence", "es": "Tasa de aprendizaje y convergencia" },
+  "title": {
+    "en": "Learning Rate & Convergence",
+    "es": "Tasa de aprendizaje y convergencia"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "The **learning rate** $\\eta$ controls how big each gradient-descent step is. It is the single most important hyperparameter, and getting it wrong is the most common reason training fails. The step taken is $\\eta\\times\\text{gradient}$, so the learning rate scales every move.",
         "es": "La **tasa de aprendizaje** $\\eta$ controla cuán grande es cada paso del descenso de gradiente. Es el hiperparámetro más importante, y equivocarse con él es la causa más común de que el entrenamiento falle. El paso dado es $\\eta\\times\\text{gradiente}$, así que la tasa escala cada movimiento."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "mlf-06-gradient-descent"
+      ],
+      "note": {
+        "en": "The learning rate is the step size in gradient descent.",
+        "es": "La tasa de aprendizaje es el tamano de paso del descenso de gradiente."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With learning rate $\\eta = 0.1$ and gradient $10$, the step size is $0.1\\times 10 = 1$. With $\\eta = 0$, the step is $0\\times 10 = 0$ — no learning happens at all.",
         "es": "Con tasa $\\eta = 0.1$ y gradiente $10$, el tamaño del paso es $0.1\\times 10 = 1$. Con $\\eta = 0$, el paso es $0\\times 10 = 0$ — no ocurre ningún aprendizaje."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "def run(lr, steps):\n    x = 5.0\n    for _ in range(steps):\n        x -= lr * 2 * x\n    return x\n# a good rate converges; too large a rate diverges\nprint(round(run(0.1, 5), 4), round(run(1.1, 5), 4))",
+        "es": "def run(lr, steps):\n    x = 5.0\n    for _ in range(steps):\n        x -= lr * 2 * x\n    return x\n# una buena tasa converge; una tasa demasiado grande diverge\nprint(round(run(0.1, 5), 4), round(run(1.1, 5), 4))"
+      },
+      "expectedOutput": "1.6384 -12.4416",
+      "caption": {
+        "en": "Too-large a learning rate overshoots and blows up.",
+        "es": "Una tasa de aprendizaje demasiado grande se pasa y diverge."
       }
     }
   ],
@@ -39,41 +69,103 @@
     {
       "id": "mlf-07-e1",
       "answerType": "number",
-      "prompt": { "en": "Step size with learning rate $0.1$ and gradient $10$?", "es": "¿Tamaño del paso con tasa $0.1$ y gradiente $10$?" },
+      "prompt": {
+        "en": "Step size with learning rate $0.1$ and gradient $10$?",
+        "es": "¿Tamaño del paso con tasa $0.1$ y gradiente $10$?"
+      },
       "answer": "1",
-      "acceptedAlt": ["0.1*10"],
-      "hint": { "en": "η · gradient.", "es": "η · gradiente." },
-      "solution": [ { "tex": "0.1\\times 10 = 1", "en": "Step size.", "es": "Tamaño del paso." } ]
+      "acceptedAlt": [
+        "0.1*10"
+      ],
+      "hint": {
+        "en": "η · gradient.",
+        "es": "η · gradiente."
+      },
+      "solution": [
+        {
+          "tex": "0.1\\times 10 = 1",
+          "en": "Step size.",
+          "es": "Tamaño del paso."
+        }
+      ]
     },
     {
       "id": "mlf-07-e2",
       "answerType": "text",
-      "prompt": { "en": "Too large a learning rate can make the loss ___ (one word: diverge).", "es": "Una tasa demasiado grande puede hacer que la pérdida ___ (una palabra: divergir)." },
+      "prompt": {
+        "en": "Too large a learning rate can make the loss ___ (one word: diverge).",
+        "es": "Una tasa demasiado grande puede hacer que la pérdida ___ (una palabra: divergir)."
+      },
       "answer": "diverge",
-      "acceptedAlt": ["divergir", "diverger"],
-      "hint": { "en": "Overshoot to infinity.", "es": "Pasarse hacia el infinito." },
-      "solution": [ { "tex": "\\eta \\text{ too big}", "en": "Diverge.", "es": "Divergir." } ]
+      "acceptedAlt": [
+        "divergir",
+        "diverger"
+      ],
+      "hint": {
+        "en": "Overshoot to infinity.",
+        "es": "Pasarse hacia el infinito."
+      },
+      "solution": [
+        {
+          "tex": "\\eta \\text{ too big}",
+          "en": "Diverge.",
+          "es": "Divergir."
+        }
+      ]
     },
     {
       "id": "mlf-07-e3",
       "answerType": "number",
-      "prompt": { "en": "With learning rate $0$, what is the update step ($\\eta\\times$gradient)?", "es": "Con tasa $0$, ¿cuál es el paso de actualización ($\\eta\\times$gradiente)?" },
+      "prompt": {
+        "en": "With learning rate $0$, what is the update step ($\\eta\\times$gradient)?",
+        "es": "Con tasa $0$, ¿cuál es el paso de actualización ($\\eta\\times$gradiente)?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Zero times anything.", "es": "Cero por cualquier cosa." },
-      "solution": [ { "tex": "0\\times g = 0", "en": "No update.", "es": "Sin actualización." } ]
+      "hint": {
+        "en": "Zero times anything.",
+        "es": "Cero por cualquier cosa."
+      },
+      "solution": [
+        {
+          "tex": "0\\times g = 0",
+          "en": "No update.",
+          "es": "Sin actualización."
+        }
+      ]
     },
     {
       "id": "mlf-07-e4",
       "answerType": "text",
-      "prompt": { "en": "Too small a learning rate makes training ___ (one word: slow).", "es": "Una tasa demasiado pequeña hace el entrenamiento ___ (una palabra: lento)." },
+      "prompt": {
+        "en": "Too small a learning rate makes training ___ (one word: slow).",
+        "es": "Una tasa demasiado pequeña hace el entrenamiento ___ (una palabra: lento)."
+      },
       "answer": "slow",
-      "acceptedAlt": ["lento", "lenta"],
-      "hint": { "en": "Tiny steps.", "es": "Pasos diminutos." },
-      "solution": [ { "tex": "\\eta \\text{ too small}", "en": "Slow.", "es": "Lento." } ]
+      "acceptedAlt": [
+        "lento",
+        "lenta"
+      ],
+      "hint": {
+        "en": "Tiny steps.",
+        "es": "Pasos diminutos."
+      },
+      "solution": [
+        {
+          "tex": "\\eta \\text{ too small}",
+          "en": "Slow.",
+          "es": "Lento."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8, optimization; learning-rate schedules", "es": "Cap. 8, optimización; programas de tasa de aprendizaje" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 8, optimization; learning-rate schedules",
+        "es": "Cap. 8, optimización; programas de tasa de aprendizaje"
+      }
+    }
   ]
 }

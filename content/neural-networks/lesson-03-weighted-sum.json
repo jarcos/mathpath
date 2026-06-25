@@ -3,7 +3,10 @@
   "subjectId": "neural-networks",
   "order": 3,
   "estimatedMinutes": 30,
-  "title": { "en": "Weights, Bias & the Weighted Sum", "es": "Pesos, sesgo y la suma ponderada" },
+  "title": {
+    "en": "Weights, Bias & the Weighted Sum",
+    "es": "Pesos, sesgo y la suma ponderada"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With $\\mathbf{w} = [2, 3]$, $\\mathbf{x} = [1, 1]$, $b = 0$: $z = 2\\cdot1 + 3\\cdot1 + 0 = 5$. With $\\mathbf{w} = [1,2,3]$, $\\mathbf{x} = [1,1,1]$, $b = 1$: $z = 1+2+3+1 = 7$.",
         "es": "Con $\\mathbf{w} = [2, 3]$, $\\mathbf{x} = [1, 1]$, $b = 0$: $z = 2\\cdot1 + 3\\cdot1 + 0 = 5$. Con $\\mathbf{w} = [1,2,3]$, $\\mathbf{x} = [1,1,1]$, $b = 1$: $z = 1+2+3+1 = 7$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# the weighted sum (pre-activation) z = w . x + b\nw = np.array([0.2, 0.8, -0.5]); x = np.array([1, 2, 3]); b = 2\nprint(round(float(w @ x + b), 2))",
+        "es": "import numpy as np\n# la suma ponderada (preactivacion) z = w . x + b\nw = np.array([0.2, 0.8, -0.5]); x = np.array([1, 2, 3]); b = 2\nprint(round(float(w @ x + b), 2))"
+      },
+      "expectedOutput": "2.3",
+      "caption": {
+        "en": "The weighted sum is the linear core of every neuron.",
+        "es": "La suma ponderada es el nucleo lineal de toda neurona."
       }
     }
   ],
@@ -39,42 +61,111 @@
     {
       "id": "nn-03-e1",
       "answerType": "number",
-      "prompt": { "en": "Weighted sum $z=\\mathbf{w}\\cdot\\mathbf{x}+b$ with $\\mathbf{w}=[2,3]$, $\\mathbf{x}=[1,1]$, $b=0$?", "es": "Suma ponderada $z=\\mathbf{w}\\cdot\\mathbf{x}+b$ con $\\mathbf{w}=[2,3]$, $\\mathbf{x}=[1,1]$, $b=0$?" },
+      "prompt": {
+        "en": "Weighted sum $z=\\mathbf{w}\\cdot\\mathbf{x}+b$ with $\\mathbf{w}=[2,3]$, $\\mathbf{x}=[1,1]$, $b=0$?",
+        "es": "Suma ponderada $z=\\mathbf{w}\\cdot\\mathbf{x}+b$ con $\\mathbf{w}=[2,3]$, $\\mathbf{x}=[1,1]$, $b=0$?"
+      },
       "answer": "5",
-      "acceptedAlt": ["2*1+3*1"],
-      "hint": { "en": "2+3.", "es": "2+3." },
-      "solution": [ { "tex": "2+3 = 5", "en": "Weighted sum.", "es": "Suma ponderada." } ]
+      "acceptedAlt": [
+        "2*1+3*1"
+      ],
+      "hint": {
+        "en": "2+3.",
+        "es": "2+3."
+      },
+      "solution": [
+        {
+          "tex": "2+3 = 5",
+          "en": "Weighted sum.",
+          "es": "Suma ponderada."
+        }
+      ]
     },
     {
       "id": "nn-03-e2",
       "answerType": "number",
-      "prompt": { "en": "$z$ with $\\mathbf{w}=[1,2,3]$, $\\mathbf{x}=[1,1,1]$, $b=1$?", "es": "$z$ con $\\mathbf{w}=[1,2,3]$, $\\mathbf{x}=[1,1,1]$, $b=1$?" },
+      "prompt": {
+        "en": "$z$ with $\\mathbf{w}=[1,2,3]$, $\\mathbf{x}=[1,1,1]$, $b=1$?",
+        "es": "$z$ con $\\mathbf{w}=[1,2,3]$, $\\mathbf{x}=[1,1,1]$, $b=1$?"
+      },
       "answer": "7",
-      "acceptedAlt": ["1+2+3+1"],
-      "hint": { "en": "Sum the products plus bias.", "es": "Suma los productos más el sesgo." },
-      "solution": [ { "tex": "6 + 1 = 7", "en": "Weighted sum.", "es": "Suma ponderada." } ]
+      "acceptedAlt": [
+        "1+2+3+1"
+      ],
+      "hint": {
+        "en": "Sum the products plus bias.",
+        "es": "Suma los productos más el sesgo."
+      },
+      "solution": [
+        {
+          "tex": "6 + 1 = 7",
+          "en": "Weighted sum.",
+          "es": "Suma ponderada."
+        }
+      ]
     },
     {
       "id": "nn-03-e3",
       "answerType": "text",
-      "prompt": { "en": "The constant added to the weighted sum is the ___. (one word)", "es": "La constante que se suma a la suma ponderada es el ___. (una palabra)" },
+      "prompt": {
+        "en": "The constant added to the weighted sum is the ___. (one word)",
+        "es": "La constante que se suma a la suma ponderada es el ___. (una palabra)"
+      },
       "answer": "bias",
-      "acceptedAlt": ["sesgo"],
-      "hint": { "en": "Sets the threshold.", "es": "Fija el umbral." },
-      "solution": [ { "tex": "+b", "en": "Bias.", "es": "Sesgo." } ]
+      "acceptedAlt": [
+        "sesgo"
+      ],
+      "hint": {
+        "en": "Sets the threshold.",
+        "es": "Fija el umbral."
+      },
+      "solution": [
+        {
+          "tex": "+b",
+          "en": "Bias.",
+          "es": "Sesgo."
+        }
+      ]
     },
     {
       "id": "nn-03-e4",
       "answerType": "number",
-      "prompt": { "en": "Dot product $[0.5, 0.5]\\cdot[2, 4]$?", "es": "Producto escalar $[0.5, 0.5]\\cdot[2, 4]$?" },
+      "prompt": {
+        "en": "Dot product $[0.5, 0.5]\\cdot[2, 4]$?",
+        "es": "Producto escalar $[0.5, 0.5]\\cdot[2, 4]$?"
+      },
       "answer": "3",
-      "acceptedAlt": ["0.5*2+0.5*4", "dot([0.5,0.5],[2,4])"],
-      "hint": { "en": "1 + 2.", "es": "1 + 2." },
-      "solution": [ { "tex": "1 + 2 = 3", "en": "Dot product.", "es": "Producto escalar." } ]
+      "acceptedAlt": [
+        "0.5*2+0.5*4",
+        "dot([0.5,0.5],[2,4])"
+      ],
+      "hint": {
+        "en": "1 + 2.",
+        "es": "1 + 2."
+      },
+      "solution": [
+        {
+          "tex": "1 + 2 = 3",
+          "en": "Dot product.",
+          "es": "Producto escalar."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6, affine transformations in networks", "es": "Cap. 6, transformaciones afines en redes" } },
-    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Net input to a unit", "es": "Entrada neta a una unidad" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 6, affine transformations in networks",
+        "es": "Cap. 6, transformaciones afines en redes"
+      }
+    },
+    {
+      "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)",
+      "detail": {
+        "en": "Net input to a unit",
+        "es": "Entrada neta a una unidad"
+      }
+    }
   ]
 }

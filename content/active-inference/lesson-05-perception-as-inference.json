@@ -3,7 +3,10 @@
   "subjectId": "active-inference",
   "order": 5,
   "estimatedMinutes": 35,
-  "title": { "en": "Perception as Inference", "es": "La percepción como inferencia" },
+  "title": {
+    "en": "Perception as Inference",
+    "es": "La percepción como inferencia"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A bistable image like the Necker cube has $2$ equally likely interpretations, so perception flips between them. Perception minimizes free energy with respect to beliefs — i.e., it performs Bayesian inference.",
         "es": "Una imagen biestable como el cubo de Necker tiene $2$ interpretaciones igual de probables, así que la percepción alterna entre ellas. La percepción minimiza la energía libre respecto a las creencias — es decir, realiza inferencia bayesiana."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# perception = precision-weighted blend of prior and evidence\nprior_mu, prior_prec = 0, 1\nobs, obs_prec = 4, 3\nposterior_mu = (prior_prec * prior_mu + obs_prec * obs) / (prior_prec + obs_prec)\nprint(round(posterior_mu, 4))",
+        "es": "# percepcion = mezcla ponderada por precision de prior y evidencia\nprior_mu, prior_prec = 0, 1\nobs, obs_prec = 4, 3\nposterior_mu = (prior_prec * prior_mu + obs_prec * obs) / (prior_prec + obs_prec)\nprint(round(posterior_mu, 4))"
+      },
+      "expectedOutput": "3.0",
+      "caption": {
+        "en": "Perception infers the cause that best explains the senses.",
+        "es": "La percepcion infiere la causa que mejor explica los sentidos."
       }
     }
   ],
@@ -39,41 +59,103 @@
     {
       "id": "ai-05-e1",
       "answerType": "number",
-      "prompt": { "en": "How many stable interpretations does a bistable figure (Necker cube) have?", "es": "¿Cuántas interpretaciones estables tiene una figura biestable (cubo de Necker)?" },
+      "prompt": {
+        "en": "How many stable interpretations does a bistable figure (Necker cube) have?",
+        "es": "¿Cuántas interpretaciones estables tiene una figura biestable (cubo de Necker)?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Bi-stable.", "es": "Bi-estable." },
-      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "Bi-stable.",
+        "es": "Bi-estable."
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "ai-05-e2",
       "answerType": "text",
-      "prompt": { "en": "Perception is unconscious ___ of hidden causes. (one word)", "es": "La percepción es ___ inconsciente de causas ocultas. (una palabra)" },
+      "prompt": {
+        "en": "Perception is unconscious ___ of hidden causes. (one word)",
+        "es": "La percepción es ___ inconsciente de causas ocultas. (una palabra)"
+      },
       "answer": "inference",
-      "acceptedAlt": ["inferencia"],
-      "hint": { "en": "Helmholtz's idea.", "es": "La idea de Helmholtz." },
-      "solution": [ { "tex": "\\text{inference}", "en": "Inference.", "es": "Inferencia." } ]
+      "acceptedAlt": [
+        "inferencia"
+      ],
+      "hint": {
+        "en": "Helmholtz's idea.",
+        "es": "La idea de Helmholtz."
+      },
+      "solution": [
+        {
+          "tex": "\\text{inference}",
+          "en": "Inference.",
+          "es": "Inferencia."
+        }
+      ]
     },
     {
       "id": "ai-05-e3",
       "answerType": "text",
-      "prompt": { "en": "When data underdetermines the cause, ___ decide what we see. (one word)", "es": "Cuando los datos no determinan la causa, las ___ deciden lo que vemos. (una palabra)" },
+      "prompt": {
+        "en": "When data underdetermines the cause, ___ decide what we see. (one word)",
+        "es": "Cuando los datos no determinan la causa, las ___ deciden lo que vemos. (una palabra)"
+      },
       "answer": "priors",
-      "acceptedAlt": ["previas", "prior", "previa"],
-      "hint": { "en": "Prior expectations.", "es": "Expectativas previas." },
-      "solution": [ { "tex": "p(s)", "en": "Priors.", "es": "Previas." } ]
+      "acceptedAlt": [
+        "previas",
+        "prior",
+        "previa"
+      ],
+      "hint": {
+        "en": "Prior expectations.",
+        "es": "Expectativas previas."
+      },
+      "solution": [
+        {
+          "tex": "p(s)",
+          "en": "Priors.",
+          "es": "Previas."
+        }
+      ]
     },
     {
       "id": "ai-05-e4",
       "answerType": "text",
-      "prompt": { "en": "Minimizing free energy over beliefs implements ___ updating. (one word)", "es": "Minimizar la energía libre sobre las creencias implementa la actualización ___. (una palabra)" },
+      "prompt": {
+        "en": "Minimizing free energy over beliefs implements ___ updating. (one word)",
+        "es": "Minimizar la energía libre sobre las creencias implementa la actualización ___. (una palabra)"
+      },
       "answer": "bayesian",
-      "acceptedAlt": ["bayesiana"],
-      "hint": { "en": "Bayes.", "es": "Bayes." },
-      "solution": [ { "tex": "\\text{Bayesian}", "en": "Bayesian.", "es": "Bayesiana." } ]
+      "acceptedAlt": [
+        "bayesiana"
+      ],
+      "hint": {
+        "en": "Bayes.",
+        "es": "Bayes."
+      },
+      "solution": [
+        {
+          "tex": "\\text{Bayesian}",
+          "en": "Bayesian.",
+          "es": "Bayesiana."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 4–5, perceptual inference", "es": "Cap. 4–5, inferencia perceptual" } }
+    {
+      "source": "Parr, Pezzulo & Friston — Active Inference (2022)",
+      "detail": {
+        "en": "Ch. 4–5, perceptual inference",
+        "es": "Cap. 4–5, inferencia perceptual"
+      }
+    }
   ]
 }

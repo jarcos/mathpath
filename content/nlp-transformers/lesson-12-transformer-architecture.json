@@ -3,13 +3,27 @@
   "subjectId": "nlp-transformers",
   "order": 12,
   "estimatedMinutes": 40,
-  "title": { "en": "The Transformer Architecture", "es": "La arquitectura Transformer" },
+  "title": {
+    "en": "The Transformer Architecture",
+    "es": "La arquitectura Transformer"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "The **Transformer** (2017) discards recurrence entirely and is built from stacked identical blocks. Each block has two sub-layers: a **multi-head self-attention** layer and a position-wise **feed-forward network**. Around each sub-layer is a **residual connection** plus **layer normalization**, which keep gradients healthy in deep stacks.",
         "es": "El **Transformer** (2017) descarta por completo la recurrencia y se construye con bloques idénticos apilados. Cada bloque tiene dos subcapas: una capa de **autoatención multicabeza** y una **red feed-forward** por posición. Alrededor de cada subcapa hay una **conexión residual** más **normalización por capas**, que mantienen sanos los gradientes en pilas profundas."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "nlp-10-multi-head",
+        "nlp-11-positional"
+      ],
+      "note": {
+        "en": "The transformer combines multi-head attention with positional info.",
+        "es": "El transformer combina atencion multi-cabeza con informacion posicional."
       }
     },
     {
@@ -28,10 +42,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "The original Transformer has $6$ encoder + $6$ decoder layers $= 12$ layers total. Each block has $2$ sub-layers (attention + feed-forward), so one encoder block contributes $2$ sub-layers.",
         "es": "El Transformer original tiene $6$ capas codificadoras + $6$ decodificadoras $= 12$ capas en total. Cada bloque tiene $2$ subcapas (atención + feed-forward), así que un bloque codificador aporta $2$ subcapas."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# a transformer block adds attention output back via a residual\nx = np.array([1.0, 2.0])\nattn_out = np.array([0.1, 0.1])\nprint((x + attn_out).tolist())",
+        "es": "import numpy as np\n# un bloque transformer suma la salida de atencion via una conexion residual\nx = np.array([1.0, 2.0])\nattn_out = np.array([0.1, 0.1])\nprint((x + attn_out).tolist())"
+      },
+      "expectedOutput": "[1.1, 2.1]",
+      "caption": {
+        "en": "Residual connections let deep transformers train.",
+        "es": "Las conexiones residuales permiten entrenar transformers profundos."
       }
     }
   ],
@@ -39,41 +72,103 @@
     {
       "id": "nlp-12-e1",
       "answerType": "number",
-      "prompt": { "en": "Total layers in the original Transformer: 6 encoder + 6 decoder?", "es": "Capas totales en el Transformer original: 6 codificador + 6 decodificador?" },
+      "prompt": {
+        "en": "Total layers in the original Transformer: 6 encoder + 6 decoder?",
+        "es": "Capas totales en el Transformer original: 6 codificador + 6 decodificador?"
+      },
       "answer": "12",
-      "acceptedAlt": ["6+6"],
-      "hint": { "en": "6 + 6.", "es": "6 + 6." },
-      "solution": [ { "tex": "6+6 = 12", "en": "12.", "es": "12." } ]
+      "acceptedAlt": [
+        "6+6"
+      ],
+      "hint": {
+        "en": "6 + 6.",
+        "es": "6 + 6."
+      },
+      "solution": [
+        {
+          "tex": "6+6 = 12",
+          "en": "12.",
+          "es": "12."
+        }
+      ]
     },
     {
       "id": "nlp-12-e2",
       "answerType": "number",
-      "prompt": { "en": "How many sub-layers per Transformer encoder block?", "es": "¿Cuántas subcapas por bloque codificador del Transformer?" },
+      "prompt": {
+        "en": "How many sub-layers per Transformer encoder block?",
+        "es": "¿Cuántas subcapas por bloque codificador del Transformer?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Attention + feed-forward.", "es": "Atención + feed-forward." },
-      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "Attention + feed-forward.",
+        "es": "Atención + feed-forward."
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "nlp-12-e3",
       "answerType": "text",
-      "prompt": { "en": "Decoder self-attention is ___ so it can't see future tokens. (one word)", "es": "La autoatención del decodificador es ___ para no ver tokens futuros. (una palabra)" },
+      "prompt": {
+        "en": "Decoder self-attention is ___ so it can't see future tokens. (one word)",
+        "es": "La autoatención del decodificador es ___ para no ver tokens futuros. (una palabra)"
+      },
       "answer": "masked",
-      "acceptedAlt": ["enmascarada", "masked"],
-      "hint": { "en": "A causal mask.", "es": "Una máscara causal." },
-      "solution": [ { "tex": "\\text{masked}", "en": "Masked.", "es": "Enmascarada." } ]
+      "acceptedAlt": [
+        "enmascarada",
+        "masked"
+      ],
+      "hint": {
+        "en": "A causal mask.",
+        "es": "Una máscara causal."
+      },
+      "solution": [
+        {
+          "tex": "\\text{masked}",
+          "en": "Masked.",
+          "es": "Enmascarada."
+        }
+      ]
     },
     {
       "id": "nlp-12-e4",
       "answerType": "text",
-      "prompt": { "en": "The connection added around each sub-layer for gradient flow is ___. (one word)", "es": "La conexión añadida alrededor de cada subcapa para el flujo de gradiente es ___. (una palabra)" },
+      "prompt": {
+        "en": "The connection added around each sub-layer for gradient flow is ___. (one word)",
+        "es": "La conexión añadida alrededor de cada subcapa para el flujo de gradiente es ___. (una palabra)"
+      },
       "answer": "residual",
-      "acceptedAlt": ["residual", "residuales"],
-      "hint": { "en": "Skip connection.", "es": "Conexión de salto." },
-      "solution": [ { "tex": "x + \\text{Sublayer}(x)", "en": "Residual.", "es": "Residual." } ]
+      "acceptedAlt": [
+        "residual",
+        "residuales"
+      ],
+      "hint": {
+        "en": "Skip connection.",
+        "es": "Conexión de salto."
+      },
+      "solution": [
+        {
+          "tex": "x + \\text{Sublayer}(x)",
+          "en": "Residual.",
+          "es": "Residual."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Vaswani et al. — Attention Is All You Need (2017)", "detail": { "en": "Full encoder-decoder architecture", "es": "Arquitectura codificador-decodificador completa" } }
+    {
+      "source": "Vaswani et al. — Attention Is All You Need (2017)",
+      "detail": {
+        "en": "Full encoder-decoder architecture",
+        "es": "Arquitectura codificador-decodificador completa"
+      }
+    }
   ]
 }

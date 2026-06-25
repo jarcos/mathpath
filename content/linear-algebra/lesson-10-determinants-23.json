@@ -3,7 +3,10 @@
   "subjectId": "linear-algebra",
   "order": 10,
   "estimatedMinutes": 45,
-  "title": { "en": "Determinants (Order 2 & 3)", "es": "Determinantes (orden 2 y 3)" },
+  "title": {
+    "en": "Determinants (Order 2 & 3)",
+    "es": "Determinantes (orden 2 y 3)"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix} = 1\\cdot4 - 2\\cdot3 = 4 - 6 = -2$. The negative sign means this map reverses orientation, and $|{-2}| = 2$ means it doubles areas. For the triangular $\\begin{pmatrix}1&2&3\\\\0&1&4\\\\0&0&1\\end{pmatrix}$, just multiply the diagonal: $1\\cdot1\\cdot1 = 1$.",
         "es": "$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix} = 1\\cdot4 - 2\\cdot3 = 4 - 6 = -2$. El signo negativo indica que esta aplicación invierte la orientación, y $|{-2}| = 2$ que duplica áreas. Para la triangular $\\begin{pmatrix}1&2&3\\\\0&1&4\\\\0&0&1\\end{pmatrix}$, multiplica la diagonal: $1\\cdot1\\cdot1 = 1$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nA = np.array([[1, 2], [3, 4]])\n# det = 1*4 - 2*3 = -2\nprint(int(round(np.linalg.det(A))))",
+        "es": "import numpy as np\nA = np.array([[1, 2], [3, 4]])\n# det = 1*4 - 2*3 = -2  (determinante)\nprint(int(round(np.linalg.det(A))))"
+      },
+      "expectedOutput": "-2",
+      "caption": {
+        "en": "np.linalg.det computes the determinant numerically.",
+        "es": "np.linalg.det calcula el determinante numéricamente."
       }
     }
   ],
@@ -39,42 +61,112 @@
     {
       "id": "linalg-10-e1",
       "answerType": "number",
-      "prompt": { "en": "$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$?", "es": "¿$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$?" },
+      "prompt": {
+        "en": "$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$?",
+        "es": "¿$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$?"
+      },
       "answer": "-2",
-      "acceptedAlt": ["1*4-2*3", "det([[1,2],[3,4]])"],
-      "hint": { "en": "ad − bc.", "es": "ad − bc." },
-      "solution": [ { "tex": "4 - 6 = -2", "en": "Determinant.", "es": "Determinante." } ]
+      "acceptedAlt": [
+        "1*4-2*3",
+        "det([[1,2],[3,4]])"
+      ],
+      "hint": {
+        "en": "ad − bc.",
+        "es": "ad − bc."
+      },
+      "solution": [
+        {
+          "tex": "4 - 6 = -2",
+          "en": "Determinant.",
+          "es": "Determinante."
+        }
+      ]
     },
     {
       "id": "linalg-10-e2",
       "answerType": "number",
-      "prompt": { "en": "$\\det\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?", "es": "¿$\\det\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?" },
+      "prompt": {
+        "en": "$\\det\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?",
+        "es": "¿$\\det\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?"
+      },
       "answer": "6",
-      "acceptedAlt": ["2*3", "det([[2,0],[0,3]])"],
-      "hint": { "en": "Diagonal product.", "es": "Producto de la diagonal." },
-      "solution": [ { "tex": "2\\cdot3 = 6", "en": "Determinant.", "es": "Determinante." } ]
+      "acceptedAlt": [
+        "2*3",
+        "det([[2,0],[0,3]])"
+      ],
+      "hint": {
+        "en": "Diagonal product.",
+        "es": "Producto de la diagonal."
+      },
+      "solution": [
+        {
+          "tex": "2\\cdot3 = 6",
+          "en": "Determinant.",
+          "es": "Determinante."
+        }
+      ]
     },
     {
       "id": "linalg-10-e3",
       "answerType": "number",
-      "prompt": { "en": "$\\det$ of the $3\\times3$ identity matrix?", "es": "¿$\\det$ de la matriz identidad $3\\times3$?" },
+      "prompt": {
+        "en": "$\\det$ of the $3\\times3$ identity matrix?",
+        "es": "¿$\\det$ de la matriz identidad $3\\times3$?"
+      },
       "answer": "1",
-      "acceptedAlt": ["det([[1,0,0],[0,1,0],[0,0,1]])"],
-      "hint": { "en": "Product of diagonal 1s.", "es": "Producto de unos en la diagonal." },
-      "solution": [ { "tex": "1\\cdot1\\cdot1 = 1", "en": "Identity determinant.", "es": "Determinante de la identidad." } ]
+      "acceptedAlt": [
+        "det([[1,0,0],[0,1,0],[0,0,1]])"
+      ],
+      "hint": {
+        "en": "Product of diagonal 1s.",
+        "es": "Producto de unos en la diagonal."
+      },
+      "solution": [
+        {
+          "tex": "1\\cdot1\\cdot1 = 1",
+          "en": "Identity determinant.",
+          "es": "Determinante de la identidad."
+        }
+      ]
     },
     {
       "id": "linalg-10-e4",
       "answerType": "number",
-      "prompt": { "en": "$\\det\\begin{pmatrix}1&2&3\\\\0&1&4\\\\0&0&1\\end{pmatrix}$ (triangular)?", "es": "¿$\\det\\begin{pmatrix}1&2&3\\\\0&1&4\\\\0&0&1\\end{pmatrix}$ (triangular)?" },
+      "prompt": {
+        "en": "$\\det\\begin{pmatrix}1&2&3\\\\0&1&4\\\\0&0&1\\end{pmatrix}$ (triangular)?",
+        "es": "¿$\\det\\begin{pmatrix}1&2&3\\\\0&1&4\\\\0&0&1\\end{pmatrix}$ (triangular)?"
+      },
       "answer": "1",
-      "acceptedAlt": ["det([[1,2,3],[0,1,4],[0,0,1]])"],
-      "hint": { "en": "Product of the diagonal.", "es": "Producto de la diagonal." },
-      "solution": [ { "tex": "1\\cdot1\\cdot1 = 1", "en": "Triangular determinant.", "es": "Determinante triangular." } ]
+      "acceptedAlt": [
+        "det([[1,2,3],[0,1,4],[0,0,1]])"
+      ],
+      "hint": {
+        "en": "Product of the diagonal.",
+        "es": "Producto de la diagonal."
+      },
+      "solution": [
+        {
+          "tex": "1\\cdot1\\cdot1 = 1",
+          "en": "Triangular determinant.",
+          "es": "Determinante triangular."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 5.1–5.2, determinants and their properties", "es": "Cap. 5.1–5.2, determinantes y sus propiedades" } },
-    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Determinant of order 2 or 3", "es": "Determinante de orden 2 o 3" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 5.1–5.2, determinants and their properties",
+        "es": "Cap. 5.1–5.2, determinantes y sus propiedades"
+      }
+    },
+    {
+      "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)",
+      "detail": {
+        "en": "Determinant of order 2 or 3",
+        "es": "Determinante de orden 2 o 3"
+      }
+    }
   ]
 }

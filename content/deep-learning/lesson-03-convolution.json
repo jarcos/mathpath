@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 3,
   "estimatedMinutes": 40,
-  "title": { "en": "Convolutional Networks: Convolution", "es": "Redes convolucionales: la convolución" },
+  "title": {
+    "en": "Convolutional Networks: Convolution",
+    "es": "Redes convolucionales: la convolución"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "1-D convolution of $[1,2,3]$ with filter $[1,1]$: first output $1+2 = 3$, second output $2+3 = 5$. The filter's weights are the same at both positions — that is weight sharing.",
         "es": "Convolución 1-D de $[1,2,3]$ con filtro $[1,1]$: primera salida $1+2 = 3$, segunda salida $2+3 = 5$. Los pesos del filtro son los mismos en ambas posiciones — eso es compartir pesos."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nx = np.array([1, 2, 3, 4, 5])\nk = np.array([1, 0, -1])\n# 1D convolution slides the kernel across the signal\nprint(np.convolve(x, k, mode=\"valid\").tolist())",
+        "es": "import numpy as np\nx = np.array([1, 2, 3, 4, 5])\nk = np.array([1, 0, -1])\n# la convolucion 1D desliza el nucleo sobre la senal\nprint(np.convolve(x, k, mode=\"valid\").tolist())"
+      },
+      "expectedOutput": "[2, 2, 2]",
+      "caption": {
+        "en": "Convolution detects a pattern at every position.",
+        "es": "La convolucion detecta un patron en cada posicion."
       }
     }
   ],
@@ -39,41 +61,106 @@
     {
       "id": "dl-03-e1",
       "answerType": "text",
-      "prompt": { "en": "CNNs apply a small sliding filter — the ___ operation. (one word)", "es": "Las CNN aplican un pequeño filtro deslizante — la operación de ___. (una palabra)" },
+      "prompt": {
+        "en": "CNNs apply a small sliding filter — the ___ operation. (one word)",
+        "es": "Las CNN aplican un pequeño filtro deslizante — la operación de ___. (una palabra)"
+      },
       "answer": "convolution",
-      "acceptedAlt": ["convolución", "convolucion"],
-      "hint": { "en": "Slide and dot.", "es": "Deslizar y producto escalar." },
-      "solution": [ { "tex": "*", "en": "Convolution.", "es": "Convolución." } ]
+      "acceptedAlt": [
+        "convolución",
+        "convolucion"
+      ],
+      "hint": {
+        "en": "Slide and dot.",
+        "es": "Deslizar y producto escalar."
+      },
+      "solution": [
+        {
+          "tex": "*",
+          "en": "Convolution.",
+          "es": "Convolución."
+        }
+      ]
     },
     {
       "id": "dl-03-e2",
       "answerType": "number",
-      "prompt": { "en": "1-D conv of $[1,2,3]$ with filter $[1,1]$: first output ($1{+}2$)?", "es": "Conv 1-D de $[1,2,3]$ con filtro $[1,1]$: primera salida ($1{+}2$)?" },
+      "prompt": {
+        "en": "1-D conv of $[1,2,3]$ with filter $[1,1]$: first output ($1{+}2$)?",
+        "es": "Conv 1-D de $[1,2,3]$ con filtro $[1,1]$: primera salida ($1{+}2$)?"
+      },
       "answer": "3",
-      "acceptedAlt": ["1+2"],
-      "hint": { "en": "1 + 2.", "es": "1 + 2." },
-      "solution": [ { "tex": "1+2 = 3", "en": "First output.", "es": "Primera salida." } ]
+      "acceptedAlt": [
+        "1+2"
+      ],
+      "hint": {
+        "en": "1 + 2.",
+        "es": "1 + 2."
+      },
+      "solution": [
+        {
+          "tex": "1+2 = 3",
+          "en": "First output.",
+          "es": "Primera salida."
+        }
+      ]
     },
     {
       "id": "dl-03-e3",
       "answerType": "number",
-      "prompt": { "en": "Same convolution: second output ($2{+}3$)?", "es": "Misma convolución: segunda salida ($2{+}3$)?" },
+      "prompt": {
+        "en": "Same convolution: second output ($2{+}3$)?",
+        "es": "Misma convolución: segunda salida ($2{+}3$)?"
+      },
       "answer": "5",
-      "acceptedAlt": ["2+3"],
-      "hint": { "en": "2 + 3.", "es": "2 + 3." },
-      "solution": [ { "tex": "2+3 = 5", "en": "Second output.", "es": "Segunda salida." } ]
+      "acceptedAlt": [
+        "2+3"
+      ],
+      "hint": {
+        "en": "2 + 3.",
+        "es": "2 + 3."
+      },
+      "solution": [
+        {
+          "tex": "2+3 = 5",
+          "en": "Second output.",
+          "es": "Segunda salida."
+        }
+      ]
     },
     {
       "id": "dl-03-e4",
       "answerType": "text",
-      "prompt": { "en": "Convolution reuses (shares) the same ___ across positions. (one word)", "es": "La convolución reutiliza (comparte) los mismos ___ entre posiciones. (una palabra)" },
+      "prompt": {
+        "en": "Convolution reuses (shares) the same ___ across positions. (one word)",
+        "es": "La convolución reutiliza (comparte) los mismos ___ entre posiciones. (una palabra)"
+      },
       "answer": "weights",
-      "acceptedAlt": ["pesos", "weight", "peso"],
-      "hint": { "en": "The filter values.", "es": "Los valores del filtro." },
-      "solution": [ { "tex": "\\text{weight sharing}", "en": "Weights.", "es": "Pesos." } ]
+      "acceptedAlt": [
+        "pesos",
+        "weight",
+        "peso"
+      ],
+      "hint": {
+        "en": "The filter values.",
+        "es": "Los valores del filtro."
+      },
+      "solution": [
+        {
+          "tex": "\\text{weight sharing}",
+          "en": "Weights.",
+          "es": "Pesos."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 9, convolutional networks", "es": "Cap. 9, redes convolucionales" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 9, convolutional networks",
+        "es": "Cap. 9, redes convolucionales"
+      }
+    }
   ]
 }

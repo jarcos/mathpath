@@ -3,7 +3,10 @@
   "subjectId": "ml-foundations",
   "order": 10,
   "estimatedMinutes": 35,
-  "title": { "en": "Train / Validation / Test & Cross-Validation", "es": "Train / validación / test y validación cruzada" },
+  "title": {
+    "en": "Train / Validation / Test & Cross-Validation",
+    "es": "Train / validación / test y validación cruzada"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,30 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With $1000$ examples split $70/15/15$, the test set has $0.15\\times 1000 = 150$ examples. Five-fold cross-validation splits the data into $5$ parts and trains the model $5$ times, each on a different $4/5$ of the data.",
         "es": "Con $1000$ ejemplos divididos $70/15/15$, el conjunto de prueba tiene $0.15\\times 1000 = 150$ ejemplos. La validación cruzada de cinco pliegues divide los datos en $5$ partes y entrena el modelo $5$ veces, cada una en un $4/5$ distinto."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy",
+        "scikit-learn"
+      ],
+      "code": {
+        "en": "import numpy as np\nfrom sklearn.model_selection import train_test_split\nX = np.arange(10).reshape(-1, 1); y = np.arange(10)\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, random_state=0)\nprint(len(Xtr), len(Xte))",
+        "es": "import numpy as np\nfrom sklearn.model_selection import train_test_split\nX = np.arange(10).reshape(-1, 1); y = np.arange(10)\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, random_state=0)\nprint(len(Xtr), len(Xte))"
+      },
+      "expectedOutput": "8 2",
+      "caption": {
+        "en": "Hold out a test set to estimate real-world performance.",
+        "es": "Reserva un conjunto de test para estimar el rendimiento real."
       }
     }
   ],
@@ -39,42 +62,107 @@
     {
       "id": "mlf-10-e1",
       "answerType": "number",
-      "prompt": { "en": "With 1000 examples and a 70/15/15 split, how many are in the test set?", "es": "Con 1000 ejemplos y una división 70/15/15, ¿cuántos hay en el conjunto de prueba?" },
+      "prompt": {
+        "en": "With 1000 examples and a 70/15/15 split, how many are in the test set?",
+        "es": "Con 1000 ejemplos y una división 70/15/15, ¿cuántos hay en el conjunto de prueba?"
+      },
       "answer": "150",
-      "acceptedAlt": ["0.15*1000"],
-      "hint": { "en": "15% of 1000.", "es": "15% de 1000." },
-      "solution": [ { "tex": "0.15\\times 1000 = 150", "en": "Test set.", "es": "Conjunto de prueba." } ]
+      "acceptedAlt": [
+        "0.15*1000"
+      ],
+      "hint": {
+        "en": "15% of 1000.",
+        "es": "15% de 1000."
+      },
+      "solution": [
+        {
+          "tex": "0.15\\times 1000 = 150",
+          "en": "Test set.",
+          "es": "Conjunto de prueba."
+        }
+      ]
     },
     {
       "id": "mlf-10-e2",
       "answerType": "number",
-      "prompt": { "en": "k-fold cross-validation with $k=5$ splits the data into how many parts?", "es": "La validación cruzada con $k=5$ divide los datos en cuántas partes?" },
+      "prompt": {
+        "en": "k-fold cross-validation with $k=5$ splits the data into how many parts?",
+        "es": "La validación cruzada con $k=5$ divide los datos en cuántas partes?"
+      },
       "answer": "5",
       "acceptedAlt": [],
-      "hint": { "en": "k folds.", "es": "k pliegues." },
-      "solution": [ { "tex": "k = 5", "en": "Five folds.", "es": "Cinco pliegues." } ]
+      "hint": {
+        "en": "k folds.",
+        "es": "k pliegues."
+      },
+      "solution": [
+        {
+          "tex": "k = 5",
+          "en": "Five folds.",
+          "es": "Cinco pliegues."
+        }
+      ]
     },
     {
       "id": "mlf-10-e3",
       "answerType": "text",
-      "prompt": { "en": "We tune hyperparameters on the ___ set. (one word)", "es": "Ajustamos los hiperparámetros en el conjunto de ___. (una palabra)" },
+      "prompt": {
+        "en": "We tune hyperparameters on the ___ set. (one word)",
+        "es": "Ajustamos los hiperparámetros en el conjunto de ___. (una palabra)"
+      },
       "answer": "validation",
-      "acceptedAlt": ["validación", "validacion"],
-      "hint": { "en": "Not train, not test.", "es": "Ni train ni test." },
-      "solution": [ { "tex": "\\text{validation set}", "en": "Validation.", "es": "Validación." } ]
+      "acceptedAlt": [
+        "validación",
+        "validacion"
+      ],
+      "hint": {
+        "en": "Not train, not test.",
+        "es": "Ni train ni test."
+      },
+      "solution": [
+        {
+          "tex": "\\text{validation set}",
+          "en": "Validation.",
+          "es": "Validación."
+        }
+      ]
     },
     {
       "id": "mlf-10-e4",
       "answerType": "number",
-      "prompt": { "en": "5-fold cross-validation trains the model how many times?", "es": "La validación cruzada de 5 pliegues entrena el modelo cuántas veces?" },
+      "prompt": {
+        "en": "5-fold cross-validation trains the model how many times?",
+        "es": "La validación cruzada de 5 pliegues entrena el modelo cuántas veces?"
+      },
       "answer": "5",
       "acceptedAlt": [],
-      "hint": { "en": "Once per fold.", "es": "Una vez por pliegue." },
-      "solution": [ { "tex": "5 \\text{ times}", "en": "Five times.", "es": "Cinco veces." } ]
+      "hint": {
+        "en": "Once per fold.",
+        "es": "Una vez por pliegue."
+      },
+      "solution": [
+        {
+          "tex": "5 \\text{ times}",
+          "en": "Five times.",
+          "es": "Cinco veces."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, model selection and cross-validation", "es": "Cap. 18, selección de modelos y validación cruzada" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, estimators, validation sets", "es": "Cap. 5, estimadores, conjuntos de validación" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 18, model selection and cross-validation",
+        "es": "Cap. 18, selección de modelos y validación cruzada"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, estimators, validation sets",
+        "es": "Cap. 5, estimadores, conjuntos de validación"
+      }
+    }
   ]
 }

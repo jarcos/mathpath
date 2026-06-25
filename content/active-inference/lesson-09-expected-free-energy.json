@@ -3,13 +3,26 @@
   "subjectId": "active-inference",
   "order": 9,
   "estimatedMinutes": 40,
-  "title": { "en": "Expected Free Energy & Planning", "es": "Energía libre esperada y planificación" },
+  "title": {
+    "en": "Expected Free Energy & Planning",
+    "es": "Energía libre esperada y planificación"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Acting requires choosing among future courses of action, called **policies**. Active inference scores each policy by its **expected free energy** $G$ — free energy anticipated for the future, since outcomes aren't observed yet. The agent prefers policies with **low** expected free energy and selects them probabilistically (a softmax over $-G$).",
         "es": "Actuar requiere elegir entre cursos de acción futuros, llamados **políticas**. La inferencia activa puntúa cada política por su **energía libre esperada** $G$ — la energía libre anticipada para el futuro, ya que los resultados aún no se observan. El agente prefiere políticas con **baja** energía libre esperada y las selecciona probabilísticamente (un softmax sobre $-G$)."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "ai-04-vfe"
+      ],
+      "note": {
+        "en": "EFE extends free energy to future, counterfactual actions.",
+        "es": "La ELE extiende la energia libre a acciones futuras y contrafactuales."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Expected free energy has $2$ components: pragmatic and epistemic value. If policy A has $G=3$ and policy B has $G=5$, the agent prefers policy A (lower expected free energy).",
         "es": "La energía libre esperada tiene $2$ componentes: valor pragmático y epistémico. Si la política A tiene $G=3$ y la B tiene $G=5$, el agente prefiere la política A (menor energía libre esperada)."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# expected free energy = pragmatic value + epistemic value\npragmatic = 2.0   # progress toward preferred outcomes\nepistemic = 1.5   # information gained\nprint(round(pragmatic + epistemic, 4))",
+        "es": "# energia libre esperada = valor pragmatico + valor epistemico\npragmatic = 2.0   # avance hacia resultados preferidos\nepistemic = 1.5   # informacion ganada\nprint(round(pragmatic + epistemic, 4))"
+      },
+      "expectedOutput": "3.5",
+      "caption": {
+        "en": "Planning minimizes expected free energy over future actions.",
+        "es": "La planificacion minimiza la energia libre esperada sobre acciones futuras."
       }
     }
   ],
@@ -39,41 +69,102 @@
     {
       "id": "ai-09-e1",
       "answerType": "number",
-      "prompt": { "en": "How many components does expected free energy split into (pragmatic + epistemic)?", "es": "¿En cuántos componentes se divide la energía libre esperada (pragmático + epistémico)?" },
+      "prompt": {
+        "en": "How many components does expected free energy split into (pragmatic + epistemic)?",
+        "es": "¿En cuántos componentes se divide la energía libre esperada (pragmático + epistémico)?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Goals + information.", "es": "Metas + información." },
-      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "Goals + information.",
+        "es": "Metas + información."
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "ai-09-e2",
       "answerType": "number",
-      "prompt": { "en": "Policies A ($G=3$) and B ($G=5$): which G is preferred (the minimum)?", "es": "Políticas A ($G=3$) y B ($G=5$): ¿qué G se prefiere (el mínimo)?" },
+      "prompt": {
+        "en": "Policies A ($G=3$) and B ($G=5$): which G is preferred (the minimum)?",
+        "es": "Políticas A ($G=3$) y B ($G=5$): ¿qué G se prefiere (el mínimo)?"
+      },
       "answer": "3",
-      "acceptedAlt": ["min(3,5)"],
-      "hint": { "en": "Lower G wins.", "es": "Gana la G menor." },
-      "solution": [ { "tex": "\\min(3,5)=3", "en": "Three (policy A).", "es": "Tres (política A)." } ]
+      "acceptedAlt": [
+        "min(3,5)"
+      ],
+      "hint": {
+        "en": "Lower G wins.",
+        "es": "Gana la G menor."
+      },
+      "solution": [
+        {
+          "tex": "\\min(3,5)=3",
+          "en": "Three (policy A).",
+          "es": "Tres (política A)."
+        }
+      ]
     },
     {
       "id": "ai-09-e3",
       "answerType": "text",
-      "prompt": { "en": "The value of gaining information to reduce uncertainty is the ___ value. (one word)", "es": "El valor de ganar información para reducir la incertidumbre es el valor ___. (una palabra)" },
+      "prompt": {
+        "en": "The value of gaining information to reduce uncertainty is the ___ value. (one word)",
+        "es": "El valor de ganar información para reducir la incertidumbre es el valor ___. (una palabra)"
+      },
       "answer": "epistemic",
-      "acceptedAlt": ["epistémico", "epistemico"],
-      "hint": { "en": "Knowledge value.", "es": "Valor de conocimiento." },
-      "solution": [ { "tex": "\\text{epistemic}", "en": "Epistemic.", "es": "Epistémico." } ]
+      "acceptedAlt": [
+        "epistémico",
+        "epistemico"
+      ],
+      "hint": {
+        "en": "Knowledge value.",
+        "es": "Valor de conocimiento."
+      },
+      "solution": [
+        {
+          "tex": "\\text{epistemic}",
+          "en": "Epistemic.",
+          "es": "Epistémico."
+        }
+      ]
     },
     {
       "id": "ai-09-e4",
       "answerType": "text",
-      "prompt": { "en": "Future-anticipated free energy used to score policies is ___ free energy. (one word)", "es": "La energía libre anticipada para el futuro que puntúa las políticas es la energía libre ___. (una palabra)" },
+      "prompt": {
+        "en": "Future-anticipated free energy used to score policies is ___ free energy. (one word)",
+        "es": "La energía libre anticipada para el futuro que puntúa las políticas es la energía libre ___. (una palabra)"
+      },
       "answer": "expected",
-      "acceptedAlt": ["esperada"],
-      "hint": { "en": "G.", "es": "G." },
-      "solution": [ { "tex": "G", "en": "Expected.", "es": "Esperada." } ]
+      "acceptedAlt": [
+        "esperada"
+      ],
+      "hint": {
+        "en": "G.",
+        "es": "G."
+      },
+      "solution": [
+        {
+          "tex": "G",
+          "en": "Expected.",
+          "es": "Esperada."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 7, expected free energy and policy selection", "es": "Cap. 7, energía libre esperada y selección de políticas" } }
+    {
+      "source": "Parr, Pezzulo & Friston — Active Inference (2022)",
+      "detail": {
+        "en": "Ch. 7, expected free energy and policy selection",
+        "es": "Cap. 7, energía libre esperada y selección de políticas"
+      }
+    }
   ]
 }

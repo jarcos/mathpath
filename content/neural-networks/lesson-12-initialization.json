@@ -3,7 +3,10 @@
   "subjectId": "neural-networks",
   "order": 12,
   "estimatedMinutes": 30,
-  "title": { "en": "Weight Initialization", "es": "Inicialización de pesos" },
+  "title": {
+    "en": "Weight Initialization",
+    "es": "Inicialización de pesos"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Initializing all weights to $0$ breaks learning (the value to avoid is $0$). Xavier scale for a layer with $n = 4$ inputs is $\\tfrac{1}{\\sqrt{4}} = \\tfrac{1}{2}$. So weights are drawn randomly around that scale.",
         "es": "Inicializar todos los pesos a $0$ rompe el aprendizaje (el valor a evitar es $0$). La escala de Xavier para una capa con $n = 4$ entradas es $\\tfrac{1}{\\sqrt{4}} = \\tfrac{1}{2}$. Así, los pesos se sortean aleatoriamente en torno a esa escala."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nnp.random.seed(0)\nn_in = 100\n# He initialization scales weights by sqrt(2 / n_in)\nW = np.random.randn(500, n_in) * np.sqrt(2 / n_in)\nprint(round(float(W.std()), 3))",
+        "es": "import numpy as np\nnp.random.seed(0)\nn_in = 100\n# la inicializacion He escala los pesos por sqrt(2 / n_in)\nW = np.random.randn(500, n_in) * np.sqrt(2 / n_in)\nprint(round(float(W.std()), 3))"
+      },
+      "expectedOutput": "0.141",
+      "caption": {
+        "en": "Good initialization keeps activations from exploding or vanishing.",
+        "es": "Una buena inicializacion evita que las activaciones exploten o se desvanezcan."
       }
     }
   ],
@@ -39,41 +61,105 @@
     {
       "id": "nn-12-e1",
       "answerType": "number",
-      "prompt": { "en": "Initializing all weights to which value breaks learning (symmetry)?", "es": "¿Inicializar todos los pesos a qué valor rompe el aprendizaje (simetría)?" },
+      "prompt": {
+        "en": "Initializing all weights to which value breaks learning (symmetry)?",
+        "es": "¿Inicializar todos los pesos a qué valor rompe el aprendizaje (simetría)?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Every neuron identical.", "es": "Toda neurona idéntica." },
-      "solution": [ { "tex": "w_i = 0", "en": "All zeros.", "es": "Todo ceros." } ]
+      "hint": {
+        "en": "Every neuron identical.",
+        "es": "Toda neurona idéntica."
+      },
+      "solution": [
+        {
+          "tex": "w_i = 0",
+          "en": "All zeros.",
+          "es": "Todo ceros."
+        }
+      ]
     },
     {
       "id": "nn-12-e2",
       "answerType": "text",
-      "prompt": { "en": "To break symmetry, we initialize weights ___. (one word)", "es": "Para romper la simetría, inicializamos los pesos de forma ___. (una palabra)" },
+      "prompt": {
+        "en": "To break symmetry, we initialize weights ___. (one word)",
+        "es": "Para romper la simetría, inicializamos los pesos de forma ___. (una palabra)"
+      },
       "answer": "randomly",
-      "acceptedAlt": ["aleatoriamente", "random", "aleatoria"],
-      "hint": { "en": "Not all equal.", "es": "No todos iguales." },
-      "solution": [ { "tex": "w \\sim \\mathcal{N}", "en": "Randomly.", "es": "Aleatoriamente." } ]
+      "acceptedAlt": [
+        "aleatoriamente",
+        "random",
+        "aleatoria"
+      ],
+      "hint": {
+        "en": "Not all equal.",
+        "es": "No todos iguales."
+      },
+      "solution": [
+        {
+          "tex": "w \\sim \\mathcal{N}",
+          "en": "Randomly.",
+          "es": "Aleatoriamente."
+        }
+      ]
     },
     {
       "id": "nn-12-e3",
       "answerType": "number",
-      "prompt": { "en": "Xavier scale $1/\\sqrt{n}$ for $n=4$ inputs?", "es": "¿Escala de Xavier $1/\\sqrt{n}$ para $n=4$ entradas?" },
+      "prompt": {
+        "en": "Xavier scale $1/\\sqrt{n}$ for $n=4$ inputs?",
+        "es": "¿Escala de Xavier $1/\\sqrt{n}$ para $n=4$ entradas?"
+      },
       "answer": "0.5",
-      "acceptedAlt": ["1/sqrt(4)", "1/2"],
-      "hint": { "en": "1 / √4.", "es": "1 / √4." },
-      "solution": [ { "tex": "\\tfrac{1}{\\sqrt4} = 0.5", "en": "Scale.", "es": "Escala." } ]
+      "acceptedAlt": [
+        "1/sqrt(4)",
+        "1/2"
+      ],
+      "hint": {
+        "en": "1 / √4.",
+        "es": "1 / √4."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{1}{\\sqrt4} = 0.5",
+          "en": "Scale.",
+          "es": "Escala."
+        }
+      ]
     },
     {
       "id": "nn-12-e4",
       "answerType": "text",
-      "prompt": { "en": "Setting all weights equal makes neurons learn the ___ thing. (one word)", "es": "Poner todos los pesos iguales hace que las neuronas aprendan lo ___. (una palabra)" },
+      "prompt": {
+        "en": "Setting all weights equal makes neurons learn the ___ thing. (one word)",
+        "es": "Poner todos los pesos iguales hace que las neuronas aprendan lo ___. (una palabra)"
+      },
       "answer": "same",
-      "acceptedAlt": ["mismo", "misma"],
-      "hint": { "en": "Symmetry not broken.", "es": "Simetría no rota." },
-      "solution": [ { "tex": "\\text{same}", "en": "The same.", "es": "Lo mismo." } ]
+      "acceptedAlt": [
+        "mismo",
+        "misma"
+      ],
+      "hint": {
+        "en": "Symmetry not broken.",
+        "es": "Simetría no rota."
+      },
+      "solution": [
+        {
+          "tex": "\\text{same}",
+          "en": "The same.",
+          "es": "Lo mismo."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8.4, parameter initialization strategies", "es": "Cap. 8.4, estrategias de inicialización de parámetros" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 8.4, parameter initialization strategies",
+        "es": "Cap. 8.4, estrategias de inicialización de parámetros"
+      }
+    }
   ]
 }

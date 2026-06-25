@@ -3,7 +3,10 @@
   "subjectId": "linear-algebra",
   "order": 17,
   "estimatedMinutes": 45,
-  "title": { "en": "Orthogonal Bases & Projections", "es": "Bases ortogonales y proyecciones" },
+  "title": {
+    "en": "Orthogonal Bases & Projections",
+    "es": "Bases ortogonales y proyecciones"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Project $(3,0)$ onto the unit vector $(1,0)$: the scalar projection is $(3,0)\\cdot(1,0) = 3$. Check orthogonality of $(1,1)$ and $(1,-1)$: $1\\cdot1 + 1\\cdot(-1) = 0$, so they are perpendicular and could serve as an orthogonal basis of $\\mathbb{R}^2$.",
         "es": "Proyecta $(3,0)$ sobre el vector unitario $(1,0)$: la proyección escalar es $(3,0)\\cdot(1,0) = 3$. Comprueba la ortogonalidad de $(1,1)$ y $(1,-1)$: $1\\cdot1 + 1\\cdot(-1) = 0$, así que son perpendiculares y podrían servir de base ortogonal de $\\mathbb{R}^2$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\na = np.array([2, 3])\nb = np.array([1, 0])\n# orthogonal projection of a onto b\nprint(((a @ b / (b @ b)) * b).tolist())",
+        "es": "import numpy as np\na = np.array([2, 3])\nb = np.array([1, 0])\n# proyeccion ortogonal de a sobre b\nprint(((a @ b / (b @ b)) * b).tolist())"
+      },
+      "expectedOutput": "[2.0, 0.0]",
+      "caption": {
+        "en": "Projection drops a onto the direction of b.",
+        "es": "La proyeccion lleva a sobre la direccion de b."
       }
     }
   ],
@@ -39,42 +61,111 @@
     {
       "id": "linalg-17-e1",
       "answerType": "number",
-      "prompt": { "en": "Scalar projection of $(3,0)$ onto $(1,0)$?", "es": "¿Proyección escalar de $(3,0)$ sobre $(1,0)$?" },
+      "prompt": {
+        "en": "Scalar projection of $(3,0)$ onto $(1,0)$?",
+        "es": "¿Proyección escalar de $(3,0)$ sobre $(1,0)$?"
+      },
       "answer": "3",
-      "acceptedAlt": ["dot([3,0],[1,0])"],
-      "hint": { "en": "v·u with unit u.", "es": "v·u con u unitario." },
-      "solution": [ { "tex": "(3,0)\\cdot(1,0) = 3", "en": "Projection length.", "es": "Longitud de proyección." } ]
+      "acceptedAlt": [
+        "dot([3,0],[1,0])"
+      ],
+      "hint": {
+        "en": "v·u with unit u.",
+        "es": "v·u con u unitario."
+      },
+      "solution": [
+        {
+          "tex": "(3,0)\\cdot(1,0) = 3",
+          "en": "Projection length.",
+          "es": "Longitud de proyección."
+        }
+      ]
     },
     {
       "id": "linalg-17-e2",
       "answerType": "text",
-      "prompt": { "en": "Are $(1,1)$ and $(1,-1)$ orthogonal? (yes / no)", "es": "¿Son $(1,1)$ y $(1,-1)$ ortogonales? (sí / no)" },
+      "prompt": {
+        "en": "Are $(1,1)$ and $(1,-1)$ orthogonal? (yes / no)",
+        "es": "¿Son $(1,1)$ y $(1,-1)$ ortogonales? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Compute the dot product.", "es": "Calcula el producto escalar." },
-      "solution": [ { "tex": "1 - 1 = 0", "en": "Orthogonal.", "es": "Ortogonales." } ]
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Compute the dot product.",
+        "es": "Calcula el producto escalar."
+      },
+      "solution": [
+        {
+          "tex": "1 - 1 = 0",
+          "en": "Orthogonal.",
+          "es": "Ortogonales."
+        }
+      ]
     },
     {
       "id": "linalg-17-e3",
       "answerType": "number",
-      "prompt": { "en": "Dot product $(1,1)\\cdot(1,-1)$?", "es": "¿Producto escalar $(1,1)\\cdot(1,-1)$?" },
+      "prompt": {
+        "en": "Dot product $(1,1)\\cdot(1,-1)$?",
+        "es": "¿Producto escalar $(1,1)\\cdot(1,-1)$?"
+      },
       "answer": "0",
-      "acceptedAlt": ["dot([1,1],[1,-1])"],
-      "hint": { "en": "1·1 + 1·(−1).", "es": "1·1 + 1·(−1)." },
-      "solution": [ { "tex": "1 - 1 = 0", "en": "Zero → orthogonal.", "es": "Cero → ortogonales." } ]
+      "acceptedAlt": [
+        "dot([1,1],[1,-1])"
+      ],
+      "hint": {
+        "en": "1·1 + 1·(−1).",
+        "es": "1·1 + 1·(−1)."
+      },
+      "solution": [
+        {
+          "tex": "1 - 1 = 0",
+          "en": "Zero → orthogonal.",
+          "es": "Cero → ortogonales."
+        }
+      ]
     },
     {
       "id": "linalg-17-e4",
       "answerType": "number",
-      "prompt": { "en": "Scalar projection of $(0,5)$ onto $(1,0)$?", "es": "¿Proyección escalar de $(0,5)$ sobre $(1,0)$?" },
+      "prompt": {
+        "en": "Scalar projection of $(0,5)$ onto $(1,0)$?",
+        "es": "¿Proyección escalar de $(0,5)$ sobre $(1,0)$?"
+      },
       "answer": "0",
-      "acceptedAlt": ["dot([0,5],[1,0])"],
-      "hint": { "en": "No x-component.", "es": "Sin componente x." },
-      "solution": [ { "tex": "(0,5)\\cdot(1,0) = 0", "en": "No projection.", "es": "Sin proyección." } ]
+      "acceptedAlt": [
+        "dot([0,5],[1,0])"
+      ],
+      "hint": {
+        "en": "No x-component.",
+        "es": "Sin componente x."
+      },
+      "solution": [
+        {
+          "tex": "(0,5)\\cdot(1,0) = 0",
+          "en": "No projection.",
+          "es": "Sin proyección."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 4.2, projections onto lines and subspaces", "es": "Cap. 4.2, proyecciones sobre rectas y subespacios" } },
-    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Orthogonal bases; orthogonal projections", "es": "Bases ortogonales; proyecciones ortogonales" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 4.2, projections onto lines and subspaces",
+        "es": "Cap. 4.2, proyecciones sobre rectas y subespacios"
+      }
+    },
+    {
+      "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)",
+      "detail": {
+        "en": "Orthogonal bases; orthogonal projections",
+        "es": "Bases ortogonales; proyecciones ortogonales"
+      }
+    }
   ]
 }

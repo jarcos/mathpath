@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 10,
   "estimatedMinutes": 40,
-  "title": { "en": "Optimization: SGD, Momentum, Adam", "es": "Optimización: SGD, momento y Adam" },
+  "title": {
+    "en": "Optimization: SGD, Momentum, Adam",
+    "es": "Optimización: SGD, momento y Adam"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "One SGD step with weight $w=5$, learning rate $\\eta=0.1$, gradient $\\nabla L = 4$: $w \\leftarrow 5 - 0.1\\cdot 4 = 4.6$. A dataset of $1000$ examples with batch size $100$ yields $1000/100 = 10$ mini-batches per epoch.",
         "es": "Un paso de SGD con peso $w=5$, tasa $\\eta=0.1$, gradiente $\\nabla L = 4$: $w \\leftarrow 5 - 0.1\\cdot 4 = 4.6$. Un conjunto de $1000$ ejemplos con tamaño de lote $100$ da $1000/100 = 10$ mini-lotes por época."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# momentum accumulates past gradients to accelerate descent\nv, w, lr, mom = 0.0, 5.0, 0.1, 0.9\ngrad = 2 * w\nfor _ in range(3):\n    v = mom * v - lr * grad\n    w += v\n    grad = 2 * w\nprint(round(w, 4))",
+        "es": "# el momento acumula gradientes pasados para acelerar el descenso\nv, w, lr, mom = 0.0, 5.0, 0.1, 0.9\ngrad = 2 * w\nfor _ in range(3):\n    v = mom * v - lr * grad\n    w += v\n    grad = 2 * w\nprint(round(w, 4))"
+      },
+      "expectedOutput": "0.31",
+      "caption": {
+        "en": "Momentum builds speed in consistent directions (SGD -> Adam).",
+        "es": "El momento gana velocidad en direcciones consistentes (SGD -> Adam)."
       }
     }
   ],
@@ -39,42 +59,157 @@
     {
       "id": "dl-10-e1",
       "answerType": "number",
-      "prompt": { "en": "SGD step: $w=5$, $\\eta=0.1$, gradient $4$: new $w = 5 - 0.1\\cdot 4$?", "es": "Paso SGD: $w=5$, $\\eta=0.1$, gradiente $4$: nuevo $w = 5 - 0.1\\cdot 4$?" },
+      "prompt": {
+        "en": "SGD step: $w=5$, $\\eta=0.1$, gradient $4$: new $w = 5 - 0.1\\cdot 4$?",
+        "es": "Paso SGD: $w=5$, $\\eta=0.1$, gradiente $4$: nuevo $w = 5 - 0.1\\cdot 4$?"
+      },
       "answer": "4.6",
-      "acceptedAlt": ["5-0.1*4", "23/5"],
-      "hint": { "en": "5 − 0.4.", "es": "5 − 0.4." },
-      "solution": [ { "tex": "5 - 0.4 = 4.6", "en": "4.6.", "es": "4.6." } ]
+      "acceptedAlt": [
+        "5-0.1*4",
+        "23/5"
+      ],
+      "hint": {
+        "en": "5 − 0.4.",
+        "es": "5 − 0.4."
+      },
+      "solution": [
+        {
+          "tex": "5 - 0.4 = 4.6",
+          "en": "4.6.",
+          "es": "4.6."
+        }
+      ]
     },
     {
       "id": "dl-10-e2",
       "answerType": "number",
-      "prompt": { "en": "1000 examples, batch size 100: mini-batches per epoch?", "es": "1000 ejemplos, tamaño de lote 100: ¿mini-lotes por época?" },
+      "prompt": {
+        "en": "1000 examples, batch size 100: mini-batches per epoch?",
+        "es": "1000 ejemplos, tamaño de lote 100: ¿mini-lotes por época?"
+      },
       "answer": "10",
-      "acceptedAlt": ["1000/100"],
-      "hint": { "en": "1000 / 100.", "es": "1000 / 100." },
-      "solution": [ { "tex": "1000/100 = 10", "en": "Ten.", "es": "Diez." } ]
+      "acceptedAlt": [
+        "1000/100"
+      ],
+      "hint": {
+        "en": "1000 / 100.",
+        "es": "1000 / 100."
+      },
+      "solution": [
+        {
+          "tex": "1000/100 = 10",
+          "en": "Ten.",
+          "es": "Diez."
+        }
+      ]
     },
     {
       "id": "dl-10-e3",
       "answerType": "text",
-      "prompt": { "en": "The step-size hyperparameter $\\eta$ is the learning ___. (one word)", "es": "El hiperparámetro de tamaño de paso $\\eta$ es la tasa de ___. (una palabra)" },
+      "prompt": {
+        "en": "The step-size hyperparameter $\\eta$ is the learning ___. (one word)",
+        "es": "El hiperparámetro de tamaño de paso $\\eta$ es la tasa de ___. (una palabra)"
+      },
       "answer": "rate",
-      "acceptedAlt": ["aprendizaje", "tasa"],
-      "hint": { "en": "Learning ___.", "es": "Tasa de ___." },
-      "solution": [ { "tex": "\\eta", "en": "Rate.", "es": "Aprendizaje." } ]
+      "acceptedAlt": [
+        "aprendizaje",
+        "tasa"
+      ],
+      "hint": {
+        "en": "Learning ___.",
+        "es": "Tasa de ___."
+      },
+      "solution": [
+        {
+          "tex": "\\eta",
+          "en": "Rate.",
+          "es": "Aprendizaje."
+        }
+      ]
     },
     {
       "id": "dl-10-e4",
       "answerType": "text",
-      "prompt": { "en": "The popular optimizer combining momentum + adaptive rates is ___. (one word)", "es": "El optimizador popular que combina momento + tasas adaptativas es ___. (una palabra)" },
+      "prompt": {
+        "en": "The popular optimizer combining momentum + adaptive rates is ___. (one word)",
+        "es": "El optimizador popular que combina momento + tasas adaptativas es ___. (una palabra)"
+      },
       "answer": "adam",
       "acceptedAlt": [],
-      "hint": { "en": "Four letters.", "es": "Cuatro letras." },
-      "solution": [ { "tex": "\\text{Adam}", "en": "Adam.", "es": "Adam." } ]
+      "hint": {
+        "en": "Four letters.",
+        "es": "Cuatro letras."
+      },
+      "solution": [
+        {
+          "tex": "\\text{Adam}",
+          "en": "Adam.",
+          "es": "Adam."
+        }
+      ]
+    },
+    {
+      "id": "dl-10-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "What does momentum add to plain gradient descent?",
+        "es": "Que anade el momento al descenso de gradiente simple?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It accumulates past gradients to speed up consistent directions",
+            "es": "Acumula gradientes pasados para acelerar las direcciones consistentes"
+          },
+          "correct": true,
+          "why": {
+            "en": "The velocity term carries momentum, smoothing and accelerating descent.",
+            "es": "El termino de velocidad arrastra momento, suavizando y acelerando el descenso."
+          }
+        },
+        {
+          "text": {
+            "en": "It guarantees the global minimum",
+            "es": "Garantiza el minimo global"
+          },
+          "correct": false,
+          "why": {
+            "en": "No optimizer guarantees the global minimum for non-convex losses.",
+            "es": "Ningun optimizador garantiza el minimo global en perdidas no convexas."
+          }
+        },
+        {
+          "text": {
+            "en": "It removes the need for a learning rate",
+            "es": "Elimina la necesidad de tasa de aprendizaje"
+          },
+          "correct": false,
+          "why": {
+            "en": "Momentum still uses a learning rate; it adds a velocity term.",
+            "es": "El momento sigue usando tasa de aprendizaje; anade un termino de velocidad."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think of a ball rolling downhill.",
+        "es": "Piensa en una bola rodando cuesta abajo."
+      }
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8, optimization for training deep models", "es": "Cap. 8, optimización para entrenar modelos profundos" } },
-    { "source": "Kingma & Ba — Adam: A Method for Stochastic Optimization (2015)", "detail": { "en": "The Adam optimizer", "es": "El optimizador Adam" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 8, optimization for training deep models",
+        "es": "Cap. 8, optimización para entrenar modelos profundos"
+      }
+    },
+    {
+      "source": "Kingma & Ba — Adam: A Method for Stochastic Optimization (2015)",
+      "detail": {
+        "en": "The Adam optimizer",
+        "es": "El optimizador Adam"
+      }
+    }
   ]
 }

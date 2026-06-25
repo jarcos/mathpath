@@ -3,7 +3,10 @@
   "subjectId": "ml-foundations",
   "order": 2,
   "estimatedMinutes": 35,
-  "title": { "en": "Supervised Learning Setup", "es": "El marco del aprendizaje supervisado" },
+  "title": {
+    "en": "Supervised Learning Setup",
+    "es": "El marco del aprendizaje supervisado"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With 100 labeled examples and an 80/20 split, $80$ go to training and $20$ to testing. To predict house price (a number) is regression; to predict 'will it sell? yes/no' is classification.",
         "es": "Con 100 ejemplos etiquetados y una división 80/20, $80$ van a entrenamiento y $20$ a prueba. Predecir el precio de una casa (un número) es regresión; predecir '¿se venderá? sí/no' es clasificación."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nX = np.array([[1, 2], [3, 4], [5, 6]])   # 3 samples, 2 features\ny = np.array([0, 1, 0])                   # one label per sample\nprint(X.shape, y.shape)",
+        "es": "import numpy as np\nX = np.array([[1, 2], [3, 4], [5, 6]])   # 3 muestras, 2 caracteristicas\ny = np.array([0, 1, 0])                   # una etiqueta por muestra\nprint(X.shape, y.shape)"
+      },
+      "expectedOutput": "(3, 2) (3,)",
+      "caption": {
+        "en": "Supervised data is a feature matrix X with a label vector y.",
+        "es": "Los datos supervisados son una matriz X de caracteristicas con un vector y de etiquetas."
       }
     }
   ],
@@ -39,42 +61,114 @@
     {
       "id": "mlf-02-e1",
       "answerType": "text",
-      "prompt": { "en": "In supervised learning, the measured input attributes are called ___. (one word)", "es": "En aprendizaje supervisado, los atributos de entrada medidos se llaman ___. (una palabra)" },
+      "prompt": {
+        "en": "In supervised learning, the measured input attributes are called ___. (one word)",
+        "es": "En aprendizaje supervisado, los atributos de entrada medidos se llaman ___. (una palabra)"
+      },
       "answer": "features",
-      "acceptedAlt": ["características", "caracteristicas", "atributos"],
-      "hint": { "en": "The components of x.", "es": "Las componentes de x." },
-      "solution": [ { "tex": "\\mathbf{x}", "en": "Features.", "es": "Características." } ]
+      "acceptedAlt": [
+        "características",
+        "caracteristicas",
+        "atributos"
+      ],
+      "hint": {
+        "en": "The components of x.",
+        "es": "Las componentes de x."
+      },
+      "solution": [
+        {
+          "tex": "\\mathbf{x}",
+          "en": "Features.",
+          "es": "Características."
+        }
+      ]
     },
     {
       "id": "mlf-02-e2",
       "answerType": "text",
-      "prompt": { "en": "The known output we predict is the ___ (target). (one word)", "es": "La salida conocida que predecimos es la ___ (objetivo). (una palabra)" },
+      "prompt": {
+        "en": "The known output we predict is the ___ (target). (one word)",
+        "es": "La salida conocida que predecimos es la ___ (objetivo). (una palabra)"
+      },
       "answer": "label",
-      "acceptedAlt": ["etiqueta", "target", "objetivo"],
-      "hint": { "en": "The y value.", "es": "El valor y." },
-      "solution": [ { "tex": "y", "en": "Label / target.", "es": "Etiqueta / objetivo." } ]
+      "acceptedAlt": [
+        "etiqueta",
+        "target",
+        "objetivo"
+      ],
+      "hint": {
+        "en": "The y value.",
+        "es": "El valor y."
+      },
+      "solution": [
+        {
+          "tex": "y",
+          "en": "Label / target.",
+          "es": "Etiqueta / objetivo."
+        }
+      ]
     },
     {
       "id": "mlf-02-e3",
       "answerType": "number",
-      "prompt": { "en": "With 100 examples and an 80/20 train/test split, how many are in the training set?", "es": "Con 100 ejemplos y una división 80/20, ¿cuántos hay en el conjunto de entrenamiento?" },
+      "prompt": {
+        "en": "With 100 examples and an 80/20 train/test split, how many are in the training set?",
+        "es": "Con 100 ejemplos y una división 80/20, ¿cuántos hay en el conjunto de entrenamiento?"
+      },
       "answer": "80",
-      "acceptedAlt": ["0.8*100"],
-      "hint": { "en": "80% of 100.", "es": "80% de 100." },
-      "solution": [ { "tex": "0.8\\times 100 = 80", "en": "Training set.", "es": "Conjunto de entrenamiento." } ]
+      "acceptedAlt": [
+        "0.8*100"
+      ],
+      "hint": {
+        "en": "80% of 100.",
+        "es": "80% de 100."
+      },
+      "solution": [
+        {
+          "tex": "0.8\\times 100 = 80",
+          "en": "Training set.",
+          "es": "Conjunto de entrenamiento."
+        }
+      ]
     },
     {
       "id": "mlf-02-e4",
       "answerType": "text",
-      "prompt": { "en": "We measure true performance on the ___ set, not the training set. (one word)", "es": "Medimos el rendimiento real en el conjunto de ___, no en el de entrenamiento. (una palabra)" },
+      "prompt": {
+        "en": "We measure true performance on the ___ set, not the training set. (one word)",
+        "es": "Medimos el rendimiento real en el conjunto de ___, no en el de entrenamiento. (una palabra)"
+      },
       "answer": "test",
-      "acceptedAlt": ["prueba"],
-      "hint": { "en": "Held-out, unseen data.", "es": "Datos reservados, no vistos." },
-      "solution": [ { "tex": "\\text{test set}", "en": "Test set.", "es": "Conjunto de prueba." } ]
+      "acceptedAlt": [
+        "prueba"
+      ],
+      "hint": {
+        "en": "Held-out, unseen data.",
+        "es": "Datos reservados, no vistos."
+      },
+      "solution": [
+        {
+          "tex": "\\text{test set}",
+          "en": "Test set.",
+          "es": "Conjunto de prueba."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, supervised learning; training and test sets", "es": "Cap. 18, aprendizaje supervisado; conjuntos de entrenamiento y prueba" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, the task, the experience, the performance measure", "es": "Cap. 5, la tarea, la experiencia, la medida de rendimiento" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 18, supervised learning; training and test sets",
+        "es": "Cap. 18, aprendizaje supervisado; conjuntos de entrenamiento y prueba"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, the task, the experience, the performance measure",
+        "es": "Cap. 5, la tarea, la experiencia, la medida de rendimiento"
+      }
+    }
   ]
 }

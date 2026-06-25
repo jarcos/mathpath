@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 9,
   "estimatedMinutes": 35,
-  "title": { "en": "Embeddings", "es": "Embeddings (representaciones vectoriales)" },
+  "title": {
+    "en": "Embeddings",
+    "es": "Embeddings (representaciones vectoriales)"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Cosine similarity of $u=[1,0]$ and $v=[1,1]$: $u\\cdot v = 1$, $\\lVert u\\rVert = 1$, $\\lVert v\\rVert = \\sqrt2$, so $\\cos\\theta = \\frac{1}{\\sqrt2}\\approx 0.707$. A one-hot vector over a $V=10000$ vocabulary has length $10000$.",
         "es": "Similitud coseno de $u=[1,0]$ y $v=[1,1]$: $u\\cdot v = 1$, $\\lVert u\\rVert = 1$, $\\lVert v\\rVert = \\sqrt2$, así que $\\cos\\theta = \\frac{1}{\\sqrt2}\\approx 0.707$. Un vector one-hot sobre un vocabulario $V=10000$ tiene longitud $10000$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nemb = {\"cat\": np.array([1.0, 0.0]), \"dog\": np.array([0.9, 0.1]), \"car\": np.array([0.0, 1.0])}\ncos = lambda a, b: a @ b / (np.linalg.norm(a) * np.linalg.norm(b))\n# similar meanings -> nearby embeddings (high cosine)\nprint(round(float(cos(emb[\"cat\"], emb[\"dog\"])), 4), round(float(cos(emb[\"cat\"], emb[\"car\"])), 4))",
+        "es": "import numpy as np\nemb = {\"cat\": np.array([1.0, 0.0]), \"dog\": np.array([0.9, 0.1]), \"car\": np.array([0.0, 1.0])}\ncos = lambda a, b: a @ b / (np.linalg.norm(a) * np.linalg.norm(b))\n# significados similares -> embeddings cercanos (coseno alto)\nprint(round(float(cos(emb[\"cat\"], emb[\"dog\"])), 4), round(float(cos(emb[\"cat\"], emb[\"car\"])), 4))"
+      },
+      "expectedOutput": "0.9939 0.0",
+      "caption": {
+        "en": "Embeddings place similar items close in vector space.",
+        "es": "Los embeddings colocan items similares cerca en el espacio vectorial."
       }
     }
   ],
@@ -39,42 +61,174 @@
     {
       "id": "dl-09-e1",
       "answerType": "number",
-      "prompt": { "en": "Length of a one-hot vector for a vocabulary of 10000 words?", "es": "¿Longitud de un vector one-hot para un vocabulario de 10000 palabras?" },
+      "prompt": {
+        "en": "Length of a one-hot vector for a vocabulary of 10000 words?",
+        "es": "¿Longitud de un vector one-hot para un vocabulario de 10000 palabras?"
+      },
       "answer": "10000",
       "acceptedAlt": [],
-      "hint": { "en": "One entry per word.", "es": "Una entrada por palabra." },
-      "solution": [ { "tex": "V = 10000", "en": "10000.", "es": "10000." } ]
+      "hint": {
+        "en": "One entry per word.",
+        "es": "Una entrada por palabra."
+      },
+      "solution": [
+        {
+          "tex": "V = 10000",
+          "en": "10000.",
+          "es": "10000."
+        }
+      ]
     },
     {
       "id": "dl-09-e2",
       "answerType": "expression",
-      "prompt": { "en": "Cosine similarity of $[1,0]$ and $[1,1]$: $\\frac{1}{\\sqrt2}$. Give it as $1/\\sqrt{2}$.", "es": "Similitud coseno de $[1,0]$ y $[1,1]$: $\\frac{1}{\\sqrt2}$. Dalo como $1/\\sqrt{2}$." },
+      "prompt": {
+        "en": "Cosine similarity of $[1,0]$ and $[1,1]$: $\\frac{1}{\\sqrt2}$. Give it as $1/\\sqrt{2}$.",
+        "es": "Similitud coseno de $[1,0]$ y $[1,1]$: $\\frac{1}{\\sqrt2}$. Dalo como $1/\\sqrt{2}$."
+      },
       "answer": "1/sqrt(2)",
-      "acceptedAlt": ["sqrt(2)/2", "0.7071067811865475"],
-      "hint": { "en": "dot/(|u||v|) = 1/√2.", "es": "punto/(|u||v|) = 1/√2." },
-      "solution": [ { "tex": "\\frac{1}{\\sqrt2}", "en": "≈ 0.707.", "es": "≈ 0.707." } ]
+      "acceptedAlt": [
+        "sqrt(2)/2",
+        "0.7071067811865475"
+      ],
+      "hint": {
+        "en": "dot/(|u||v|) = 1/√2.",
+        "es": "punto/(|u||v|) = 1/√2."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{1}{\\sqrt2}",
+          "en": "≈ 0.707.",
+          "es": "≈ 0.707."
+        }
+      ]
     },
     {
       "id": "dl-09-e3",
       "answerType": "number",
-      "prompt": { "en": "Cosine similarity of two identical-direction vectors equals?", "es": "¿La similitud coseno de dos vectores con la misma dirección es?" },
+      "prompt": {
+        "en": "Cosine similarity of two identical-direction vectors equals?",
+        "es": "¿La similitud coseno de dos vectores con la misma dirección es?"
+      },
       "answer": "1",
-      "acceptedAlt": ["cos(0)"],
-      "hint": { "en": "Angle 0.", "es": "Ángulo 0." },
-      "solution": [ { "tex": "\\cos 0 = 1", "en": "One.", "es": "Uno." } ]
+      "acceptedAlt": [
+        "cos(0)"
+      ],
+      "hint": {
+        "en": "Angle 0.",
+        "es": "Ángulo 0."
+      },
+      "solution": [
+        {
+          "tex": "\\cos 0 = 1",
+          "en": "One.",
+          "es": "Uno."
+        }
+      ]
     },
     {
       "id": "dl-09-e4",
       "answerType": "text",
-      "prompt": { "en": "A dense learned vector for a discrete symbol is an ___. (one word)", "es": "Un vector denso aprendido para un símbolo discreto es un ___. (una palabra)" },
+      "prompt": {
+        "en": "A dense learned vector for a discrete symbol is an ___. (one word)",
+        "es": "Un vector denso aprendido para un símbolo discreto es un ___. (una palabra)"
+      },
       "answer": "embedding",
-      "acceptedAlt": ["embeddings", "incrustación", "incrustacion"],
-      "hint": { "en": "Lookup table row.", "es": "Fila de la tabla de búsqueda." },
-      "solution": [ { "tex": "\\text{embedding}", "en": "Embedding.", "es": "Embedding." } ]
+      "acceptedAlt": [
+        "embeddings",
+        "incrustación",
+        "incrustacion"
+      ],
+      "hint": {
+        "en": "Lookup table row.",
+        "es": "Fila de la tabla de búsqueda."
+      },
+      "solution": [
+        {
+          "tex": "\\text{embedding}",
+          "en": "Embedding.",
+          "es": "Embedding."
+        }
+      ]
+    },
+    {
+      "id": "dl-09-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `cosine(a, b)` = (a . b) / (|a| |b|), the cosine similarity.",
+        "es": "Completa `cosine(a, b)` = (a . b) / (|a| |b|), la similitud del coseno."
+      },
+      "funcName": "cosine",
+      "starter": {
+        "en": "import math\ndef cosine(a, b):\n    # dot(a,b) / (norm(a)*norm(b))\n    pass",
+        "es": "import math\ndef cosine(a, b):\n    # dot(a,b) / (norma(a)*norma(b))\n    pass"
+      },
+      "solution": "import math\ndef cosine(a, b):\n    dot = sum(x * y for x, y in zip(a, b))\n    na = math.sqrt(sum(x * x for x in a))\n    nb = math.sqrt(sum(y * y for y in b))\n    return dot / (na * nb)",
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "expected": 1.0,
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "expected": 0.0,
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "expected": 1.0,
+          "tol": 1e-06
+        }
+      ],
+      "hint": {
+        "en": "Dot product over the product of the norms.",
+        "es": "Producto escalar entre el producto de las normas."
+      }
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 12.4, distributed representations and word embeddings", "es": "Cap. 12.4, representaciones distribuidas y embeddings de palabras" } },
-    { "source": "Mikolov et al. — Efficient Estimation of Word Representations (word2vec, 2013)", "detail": { "en": "Word vector arithmetic", "es": "Aritmética de vectores de palabras" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 12.4, distributed representations and word embeddings",
+        "es": "Cap. 12.4, representaciones distribuidas y embeddings de palabras"
+      }
+    },
+    {
+      "source": "Mikolov et al. — Efficient Estimation of Word Representations (word2vec, 2013)",
+      "detail": {
+        "en": "Word vector arithmetic",
+        "es": "Aritmética de vectores de palabras"
+      }
+    }
   ]
 }

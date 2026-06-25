@@ -3,7 +3,10 @@
   "subjectId": "ml-foundations",
   "order": 14,
   "estimatedMinutes": 35,
-  "title": { "en": "k-Nearest Neighbors", "es": "k vecinos más cercanos" },
+  "title": {
+    "en": "k-Nearest Neighbors",
+    "es": "k vecinos más cercanos"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,30 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With $k = 3$ and neighbor labels $[A, A, B]$, the majority vote is **A**. The Euclidean distance between $(0,0)$ and $(3,4)$ is $\\sqrt{3^2 + 4^2} = 5$ — a classic 3-4-5 triangle.",
         "es": "Con $k = 3$ y etiquetas de los vecinos $[A, A, B]$, el voto mayoritario es **A**. La distancia euclídea entre $(0,0)$ y $(3,4)$ es $\\sqrt{3^2 + 4^2} = 5$ — un clásico triángulo 3-4-5."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy",
+        "scikit-learn"
+      ],
+      "code": {
+        "en": "import numpy as np\nfrom sklearn.neighbors import KNeighborsClassifier\nX = np.array([[0], [1], [2], [3]]); y = np.array([0, 0, 1, 1])\nm = KNeighborsClassifier(n_neighbors=1).fit(X, y)\n# 2.1 is closest to 2 (class 1)\nprint(m.predict([[2.1]]).tolist())",
+        "es": "import numpy as np\nfrom sklearn.neighbors import KNeighborsClassifier\nX = np.array([[0], [1], [2], [3]]); y = np.array([0, 0, 1, 1])\nm = KNeighborsClassifier(n_neighbors=1).fit(X, y)\n# 2.1 es lo mas cercano a 2 (clase 1)\nprint(m.predict([[2.1]]).tolist())"
+      },
+      "expectedOutput": "[1]",
+      "caption": {
+        "en": "kNN classifies by the labels of nearest neighbors.",
+        "es": "kNN clasifica por las etiquetas de los vecinos mas cercanos."
       }
     }
   ],
@@ -39,42 +62,116 @@
     {
       "id": "mlf-14-e1",
       "answerType": "text",
-      "prompt": { "en": "kNN classifies by the majority vote of the k ___ neighbors. (one word)", "es": "kNN clasifica por el voto mayoritario de los k vecinos más ___. (una palabra)" },
+      "prompt": {
+        "en": "kNN classifies by the majority vote of the k ___ neighbors. (one word)",
+        "es": "kNN clasifica por el voto mayoritario de los k vecinos más ___. (una palabra)"
+      },
       "answer": "nearest",
-      "acceptedAlt": ["cercanos", "near", "próximos", "proximos"],
-      "hint": { "en": "Closest in distance.", "es": "Más próximos en distancia." },
-      "solution": [ { "tex": "k\\text{-NN}", "en": "Nearest.", "es": "Más cercanos." } ]
+      "acceptedAlt": [
+        "cercanos",
+        "near",
+        "próximos",
+        "proximos"
+      ],
+      "hint": {
+        "en": "Closest in distance.",
+        "es": "Más próximos en distancia."
+      },
+      "solution": [
+        {
+          "tex": "k\\text{-NN}",
+          "en": "Nearest.",
+          "es": "Más cercanos."
+        }
+      ]
     },
     {
       "id": "mlf-14-e2",
       "answerType": "text",
-      "prompt": { "en": "With $k=3$ neighbor labels $[A, A, B]$, what is the predicted class?", "es": "Con $k=3$ y etiquetas $[A, A, B]$, ¿cuál es la clase predicha?" },
+      "prompt": {
+        "en": "With $k=3$ neighbor labels $[A, A, B]$, what is the predicted class?",
+        "es": "Con $k=3$ y etiquetas $[A, A, B]$, ¿cuál es la clase predicha?"
+      },
       "answer": "A",
-      "acceptedAlt": ["a"],
-      "hint": { "en": "Majority vote.", "es": "Voto mayoritario." },
-      "solution": [ { "tex": "2A > 1B", "en": "Class A.", "es": "Clase A." } ]
+      "acceptedAlt": [
+        "a"
+      ],
+      "hint": {
+        "en": "Majority vote.",
+        "es": "Voto mayoritario."
+      },
+      "solution": [
+        {
+          "tex": "2A > 1B",
+          "en": "Class A.",
+          "es": "Clase A."
+        }
+      ]
     },
     {
       "id": "mlf-14-e3",
       "answerType": "number",
-      "prompt": { "en": "Euclidean distance between $(0,0)$ and $(3,4)$?", "es": "¿Distancia euclídea entre $(0,0)$ y $(3,4)$?" },
+      "prompt": {
+        "en": "Euclidean distance between $(0,0)$ and $(3,4)$?",
+        "es": "¿Distancia euclídea entre $(0,0)$ y $(3,4)$?"
+      },
       "answer": "5",
-      "acceptedAlt": ["sqrt(3^2+4^2)", "norm([3,4])"],
-      "hint": { "en": "√(3² + 4²).", "es": "√(3² + 4²)." },
-      "solution": [ { "tex": "\\sqrt{9+16} = 5", "en": "Distance.", "es": "Distancia." } ]
+      "acceptedAlt": [
+        "sqrt(3^2+4^2)",
+        "norm([3,4])"
+      ],
+      "hint": {
+        "en": "√(3² + 4²).",
+        "es": "√(3² + 4²)."
+      },
+      "solution": [
+        {
+          "tex": "\\sqrt{9+16} = 5",
+          "en": "Distance.",
+          "es": "Distancia."
+        }
+      ]
     },
     {
       "id": "mlf-14-e4",
       "answerType": "text",
-      "prompt": { "en": "kNN with $k=1$ tends to ___ (one word: overfit).", "es": "kNN con $k=1$ tiende a ___ (una palabra: sobreajustar)." },
+      "prompt": {
+        "en": "kNN with $k=1$ tends to ___ (one word: overfit).",
+        "es": "kNN con $k=1$ tiende a ___ (una palabra: sobreajustar)."
+      },
       "answer": "overfit",
-      "acceptedAlt": ["sobreajustar", "overfitting", "sobreajuste"],
-      "hint": { "en": "Follows every point.", "es": "Sigue cada punto." },
-      "solution": [ { "tex": "k=1", "en": "Overfits.", "es": "Sobreajusta." } ]
+      "acceptedAlt": [
+        "sobreajustar",
+        "overfitting",
+        "sobreajuste"
+      ],
+      "hint": {
+        "en": "Follows every point.",
+        "es": "Sigue cada punto."
+      },
+      "solution": [
+        {
+          "tex": "k=1",
+          "en": "Overfits.",
+          "es": "Sobreajusta."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, nearest-neighbor models", "es": "Cap. 18, modelos de vecinos más cercanos" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, k-nearest neighbors", "es": "Cap. 5, k vecinos más cercanos" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 18, nearest-neighbor models",
+        "es": "Cap. 18, modelos de vecinos más cercanos"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, k-nearest neighbors",
+        "es": "Cap. 5, k vecinos más cercanos"
+      }
+    }
   ]
 }

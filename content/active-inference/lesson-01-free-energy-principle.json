@@ -3,7 +3,10 @@
   "subjectId": "active-inference",
   "order": 1,
   "estimatedMinutes": 35,
-  "title": { "en": "The Free Energy Principle", "es": "El principio de energía libre" },
+  "title": {
+    "en": "The Free Energy Principle",
+    "es": "El principio de energía libre"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Surprise of an observation with probability $p = 0.5$ (natural log) is $-\\ln(0.5) \\approx 0.693$. A more probable observation ($p=1$) has surprise $-\\ln(1) = 0$ — no surprise at all.",
         "es": "La sorpresa de una observación con probabilidad $p = 0.5$ (logaritmo natural) es $-\\ln(0.5) \\approx 0.693$. Una observación más probable ($p=1$) tiene sorpresa $-\\ln(1) = 0$ — ninguna sorpresa."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "import math\n# \"surprise\" of an observation = -log p(observation)\nprint(round(-math.log(0.1), 4))",
+        "es": "import math\n# la \"sorpresa\" de una observacion = -log p(observacion)\nprint(round(-math.log(0.1), 4))"
+      },
+      "expectedOutput": "2.3026",
+      "caption": {
+        "en": "The FEP says agents act to minimize long-run surprise.",
+        "es": "El PEL dice que los agentes actuan para minimizar la sorpresa a largo plazo."
       }
     }
   ],
@@ -39,41 +59,145 @@
     {
       "id": "ai-01-e1",
       "answerType": "number",
-      "prompt": { "en": "Surprise $-\\ln(p)$ for $p=1$?", "es": "Sorpresa $-\\ln(p)$ para $p=1$?" },
+      "prompt": {
+        "en": "Surprise $-\\ln(p)$ for $p=1$?",
+        "es": "Sorpresa $-\\ln(p)$ para $p=1$?"
+      },
       "answer": "0",
-      "acceptedAlt": ["-log(1)"],
-      "hint": { "en": "ln(1) = 0.", "es": "ln(1) = 0." },
-      "solution": [ { "tex": "-\\ln 1 = 0", "en": "Zero.", "es": "Cero." } ]
+      "acceptedAlt": [
+        "-log(1)"
+      ],
+      "hint": {
+        "en": "ln(1) = 0.",
+        "es": "ln(1) = 0."
+      },
+      "solution": [
+        {
+          "tex": "-\\ln 1 = 0",
+          "en": "Zero.",
+          "es": "Cero."
+        }
+      ]
     },
     {
       "id": "ai-01-e2",
       "answerType": "number",
-      "prompt": { "en": "Surprise $-\\ln(0.5)$ to 3 dp?", "es": "Sorpresa $-\\ln(0.5)$ a 3 cifras?" },
+      "prompt": {
+        "en": "Surprise $-\\ln(0.5)$ to 3 dp?",
+        "es": "Sorpresa $-\\ln(0.5)$ a 3 cifras?"
+      },
       "answer": "0.693",
       "acceptedAlt": [],
-      "hint": { "en": "ln 2.", "es": "ln 2." },
-      "solution": [ { "tex": "-\\ln(0.5) = \\ln 2 \\approx 0.693", "en": "≈ 0.693.", "es": "≈ 0.693." } ]
+      "hint": {
+        "en": "ln 2.",
+        "es": "ln 2."
+      },
+      "solution": [
+        {
+          "tex": "-\\ln(0.5) = \\ln 2 \\approx 0.693",
+          "en": "≈ 0.693.",
+          "es": "≈ 0.693."
+        }
+      ]
     },
     {
       "id": "ai-01-e3",
       "answerType": "text",
-      "prompt": { "en": "Free energy is an upper bound on ___. (one word)", "es": "La energía libre es una cota superior de la ___. (una palabra)" },
+      "prompt": {
+        "en": "Free energy is an upper bound on ___. (one word)",
+        "es": "La energía libre es una cota superior de la ___. (una palabra)"
+      },
       "answer": "surprise",
-      "acceptedAlt": ["sorpresa", "surprisal"],
-      "hint": { "en": "−log p(o).", "es": "−log p(o)." },
-      "solution": [ { "tex": "\\ge \\text{surprise}", "en": "Surprise.", "es": "Sorpresa." } ]
+      "acceptedAlt": [
+        "sorpresa",
+        "surprisal"
+      ],
+      "hint": {
+        "en": "−log p(o).",
+        "es": "−log p(o)."
+      },
+      "solution": [
+        {
+          "tex": "\\ge \\text{surprise}",
+          "en": "Surprise.",
+          "es": "Sorpresa."
+        }
+      ]
     },
     {
       "id": "ai-01-e4",
       "answerType": "text",
-      "prompt": { "en": "Changing beliefs to reduce free energy is ___ (the other route is action). (one word)", "es": "Cambiar creencias para reducir la energía libre es la ___ (la otra vía es la acción). (una palabra)" },
+      "prompt": {
+        "en": "Changing beliefs to reduce free energy is ___ (the other route is action). (one word)",
+        "es": "Cambiar creencias para reducir la energía libre es la ___ (la otra vía es la acción). (una palabra)"
+      },
       "answer": "perception",
-      "acceptedAlt": ["percepción", "percepcion"],
-      "hint": { "en": "Perception vs action.", "es": "Percepción vs acción." },
-      "solution": [ { "tex": "\\text{perception}", "en": "Perception.", "es": "Percepción." } ]
+      "acceptedAlt": [
+        "percepción",
+        "percepcion"
+      ],
+      "hint": {
+        "en": "Perception vs action.",
+        "es": "Percepción vs acción."
+      },
+      "solution": [
+        {
+          "tex": "\\text{perception}",
+          "en": "Perception.",
+          "es": "Percepción."
+        }
+      ]
+    },
+    {
+      "id": "ai-01-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `surprise(p)` = -log(p), the surprisal of a probability p.",
+        "es": "Completa `surprise(p)` = -log(p), la sorpresa de una probabilidad p."
+      },
+      "funcName": "surprise",
+      "starter": {
+        "en": "import math\ndef surprise(p):\n    # -log(p)\n    pass",
+        "es": "import math\ndef surprise(p):\n    # -log(p)\n    pass"
+      },
+      "solution": "import math\ndef surprise(p):\n    return -math.log(p)",
+      "tests": [
+        {
+          "args": [
+            1.0
+          ],
+          "expected": 0.0,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            0.5
+          ],
+          "expected": 0.6931,
+          "tol": 0.0001
+        },
+        {
+          "args": [
+            0.1
+          ],
+          "expected": 2.3026,
+          "tol": 0.0001
+        }
+      ],
+      "hint": {
+        "en": "math.log, negated.",
+        "es": "math.log, con signo negativo."
+      }
     }
   ],
   "references": [
-    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 1–2, the free energy principle", "es": "Cap. 1–2, el principio de energía libre" } }
+    {
+      "source": "Parr, Pezzulo & Friston — Active Inference (2022)",
+      "detail": {
+        "en": "Ch. 1–2, the free energy principle",
+        "es": "Cap. 1–2, el principio de energía libre"
+      }
+    }
   ]
 }

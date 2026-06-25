@@ -3,7 +3,10 @@
   "subjectId": "neural-networks",
   "order": 13,
   "estimatedMinutes": 30,
-  "title": { "en": "Regularization in Networks (Dropout)", "es": "Regularización en redes (dropout)" },
+  "title": {
+    "en": "Regularization in Networks (Dropout)",
+    "es": "Regularización en redes (dropout)"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A dropout rate of $0.5$ keeps a fraction of $0.5$ of the neurons active. A rate of $0.2$ drops a fraction of $0.2$. Dropout exists to reduce **overfitting**.",
         "es": "Una tasa de dropout de $0.5$ mantiene activa una fracción de $0.5$ de las neuronas. Una tasa de $0.2$ descarta una fracción de $0.2$. El dropout existe para reducir el **sobreajuste**."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nnp.random.seed(0)\nx = np.ones(10)\n# dropout randomly zeroes units during training\nmask = (np.random.rand(10) > 0.5)\nprint(int(mask.sum()))",
+        "es": "import numpy as np\nnp.random.seed(0)\nx = np.ones(10)\n# dropout pone a cero unidades al azar durante el entrenamiento\nmask = (np.random.rand(10) > 0.5)\nprint(int(mask.sum()))"
+      },
+      "expectedOutput": "7",
+      "caption": {
+        "en": "Dropout keeps a random subset of units, reducing overfitting.",
+        "es": "El dropout conserva un subconjunto aleatorio de unidades, reduciendo el sobreajuste."
       }
     }
   ],
@@ -39,41 +61,104 @@
     {
       "id": "nn-13-e1",
       "answerType": "text",
-      "prompt": { "en": "Randomly disabling neurons during training is called ___. (one word)", "es": "Desactivar neuronas al azar durante el entrenamiento se llama ___. (una palabra)" },
+      "prompt": {
+        "en": "Randomly disabling neurons during training is called ___. (one word)",
+        "es": "Desactivar neuronas al azar durante el entrenamiento se llama ___. (una palabra)"
+      },
       "answer": "dropout",
       "acceptedAlt": [],
-      "hint": { "en": "Signature deep-learning regularizer.", "es": "Regularizador característico del DL." },
-      "solution": [ { "tex": "\\text{dropout}", "en": "Dropout.", "es": "Dropout." } ]
+      "hint": {
+        "en": "Signature deep-learning regularizer.",
+        "es": "Regularizador característico del DL."
+      },
+      "solution": [
+        {
+          "tex": "\\text{dropout}",
+          "en": "Dropout.",
+          "es": "Dropout."
+        }
+      ]
     },
     {
       "id": "nn-13-e2",
       "answerType": "number",
-      "prompt": { "en": "A dropout rate of $0.5$ keeps what fraction of neurons?", "es": "Una tasa de dropout de $0.5$ conserva qué fracción de neuronas?" },
+      "prompt": {
+        "en": "A dropout rate of $0.5$ keeps what fraction of neurons?",
+        "es": "Una tasa de dropout de $0.5$ conserva qué fracción de neuronas?"
+      },
       "answer": "0.5",
-      "acceptedAlt": ["1-0.5", "1/2"],
-      "hint": { "en": "1 − rate.", "es": "1 − tasa." },
-      "solution": [ { "tex": "1 - 0.5 = 0.5", "en": "Half kept.", "es": "Se conserva la mitad." } ]
+      "acceptedAlt": [
+        "1-0.5",
+        "1/2"
+      ],
+      "hint": {
+        "en": "1 − rate.",
+        "es": "1 − tasa."
+      },
+      "solution": [
+        {
+          "tex": "1 - 0.5 = 0.5",
+          "en": "Half kept.",
+          "es": "Se conserva la mitad."
+        }
+      ]
     },
     {
       "id": "nn-13-e3",
       "answerType": "text",
-      "prompt": { "en": "Dropout is used to reduce ___. (one word)", "es": "El dropout se usa para reducir el ___. (una palabra)" },
+      "prompt": {
+        "en": "Dropout is used to reduce ___. (one word)",
+        "es": "El dropout se usa para reducir el ___. (una palabra)"
+      },
       "answer": "overfitting",
-      "acceptedAlt": ["sobreajuste", "overfit", "sobreajustar"],
-      "hint": { "en": "The generalization enemy.", "es": "El enemigo de la generalización." },
-      "solution": [ { "tex": "\\text{overfitting}", "en": "Overfitting.", "es": "Sobreajuste." } ]
+      "acceptedAlt": [
+        "sobreajuste",
+        "overfit",
+        "sobreajustar"
+      ],
+      "hint": {
+        "en": "The generalization enemy.",
+        "es": "El enemigo de la generalización."
+      },
+      "solution": [
+        {
+          "tex": "\\text{overfitting}",
+          "en": "Overfitting.",
+          "es": "Sobreajuste."
+        }
+      ]
     },
     {
       "id": "nn-13-e4",
       "answerType": "number",
-      "prompt": { "en": "With dropout rate $0.2$, what fraction of neurons is dropped?", "es": "Con tasa de dropout $0.2$, ¿qué fracción de neuronas se descarta?" },
+      "prompt": {
+        "en": "With dropout rate $0.2$, what fraction of neurons is dropped?",
+        "es": "Con tasa de dropout $0.2$, ¿qué fracción de neuronas se descarta?"
+      },
       "answer": "0.2",
-      "acceptedAlt": ["1/5"],
-      "hint": { "en": "The rate itself.", "es": "La propia tasa." },
-      "solution": [ { "tex": "0.2", "en": "Fraction dropped.", "es": "Fracción descartada." } ]
+      "acceptedAlt": [
+        "1/5"
+      ],
+      "hint": {
+        "en": "The rate itself.",
+        "es": "La propia tasa."
+      },
+      "solution": [
+        {
+          "tex": "0.2",
+          "en": "Fraction dropped.",
+          "es": "Fracción descartada."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 7, regularization; dropout", "es": "Cap. 7, regularización; dropout" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 7, regularization; dropout",
+        "es": "Cap. 7, regularización; dropout"
+      }
+    }
   ]
 }

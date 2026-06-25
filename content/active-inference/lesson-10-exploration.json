@@ -3,7 +3,10 @@
   "subjectId": "active-inference",
   "order": 10,
   "estimatedMinutes": 30,
-  "title": { "en": "Curiosity: Epistemic vs Pragmatic Value", "es": "Curiosidad: valor epistémico vs pragmático" },
+  "title": {
+    "en": "Curiosity: Epistemic vs Pragmatic Value",
+    "es": "Curiosidad: valor epistémico vs pragmático"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Epistemic value equals expected information gain. Information gain is prior uncertainty minus posterior uncertainty: if entropy drops from $2$ bits to $0.5$ bits, the gain is $2 - 0.5 = 1.5$ bits.",
         "es": "El valor epistémico es igual a la ganancia de información esperada. La ganancia de información es la incertidumbre previa menos la posterior: si la entropía baja de $2$ bits a $0.5$ bits, la ganancia es $2 - 0.5 = 1.5$ bits."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "import math\n# epistemic value = information gain = drop in entropy\nH_before = math.log(4)\nH_after = math.log(2)\nprint(round(H_before - H_after, 4))",
+        "es": "import math\n# valor epistemico = ganancia de informacion = caida de entropia\nH_before = math.log(4)\nH_after = math.log(2)\nprint(round(H_before - H_after, 4))"
+      },
+      "expectedOutput": "0.6931",
+      "caption": {
+        "en": "Curiosity seeks actions that reduce uncertainty (epistemic value).",
+        "es": "La curiosidad busca acciones que reducen la incertidumbre (valor epistemico)."
       }
     }
   ],
@@ -39,42 +59,112 @@
     {
       "id": "ai-10-e1",
       "answerType": "number",
-      "prompt": { "en": "Information gain if entropy drops from 2 bits to 0.5 bits: $2-0.5$?", "es": "Ganancia de información si la entropía baja de 2 a 0.5 bits: $2-0.5$?" },
+      "prompt": {
+        "en": "Information gain if entropy drops from 2 bits to 0.5 bits: $2-0.5$?",
+        "es": "Ganancia de información si la entropía baja de 2 a 0.5 bits: $2-0.5$?"
+      },
       "answer": "1.5",
-      "acceptedAlt": ["2-0.5", "3/2"],
-      "hint": { "en": "2 − 0.5.", "es": "2 − 0.5." },
-      "solution": [ { "tex": "2-0.5 = 1.5", "en": "1.5 bits.", "es": "1.5 bits." } ]
+      "acceptedAlt": [
+        "2-0.5",
+        "3/2"
+      ],
+      "hint": {
+        "en": "2 − 0.5.",
+        "es": "2 − 0.5."
+      },
+      "solution": [
+        {
+          "tex": "2-0.5 = 1.5",
+          "en": "1.5 bits.",
+          "es": "1.5 bits."
+        }
+      ]
     },
     {
       "id": "ai-10-e2",
       "answerType": "text",
-      "prompt": { "en": "Epistemic value equals expected information ___. (one word)", "es": "El valor epistémico es igual a la ___ de información esperada. (una palabra)" },
+      "prompt": {
+        "en": "Epistemic value equals expected information ___. (one word)",
+        "es": "El valor epistémico es igual a la ___ de información esperada. (una palabra)"
+      },
       "answer": "gain",
-      "acceptedAlt": ["ganancia"],
-      "hint": { "en": "Reduces uncertainty.", "es": "Reduce la incertidumbre." },
-      "solution": [ { "tex": "\\text{information gain}", "en": "Gain.", "es": "Ganancia." } ]
+      "acceptedAlt": [
+        "ganancia"
+      ],
+      "hint": {
+        "en": "Reduces uncertainty.",
+        "es": "Reduce la incertidumbre."
+      },
+      "solution": [
+        {
+          "tex": "\\text{information gain}",
+          "en": "Gain.",
+          "es": "Ganancia."
+        }
+      ]
     },
     {
       "id": "ai-10-e3",
       "answerType": "text",
-      "prompt": { "en": "Active inference makes ___ a derived drive (it falls out of epistemic value). (one word)", "es": "La inferencia activa hace de la ___ un impulso derivado (surge del valor epistémico). (una palabra)" },
+      "prompt": {
+        "en": "Active inference makes ___ a derived drive (it falls out of epistemic value). (one word)",
+        "es": "La inferencia activa hace de la ___ un impulso derivado (surge del valor epistémico). (una palabra)"
+      },
       "answer": "curiosity",
-      "acceptedAlt": ["curiosidad"],
-      "hint": { "en": "Drive to explore.", "es": "Impulso a explorar." },
-      "solution": [ { "tex": "\\text{curiosity}", "en": "Curiosity.", "es": "Curiosidad." } ]
+      "acceptedAlt": [
+        "curiosidad"
+      ],
+      "hint": {
+        "en": "Drive to explore.",
+        "es": "Impulso a explorar."
+      },
+      "solution": [
+        {
+          "tex": "\\text{curiosity}",
+          "en": "Curiosity.",
+          "es": "Curiosidad."
+        }
+      ]
     },
     {
       "id": "ai-10-e4",
       "answerType": "text",
-      "prompt": { "en": "Value favoring preferred goal outcomes is the ___ value. (one word)", "es": "El valor que favorece los resultados-meta preferidos es el valor ___. (una palabra)" },
+      "prompt": {
+        "en": "Value favoring preferred goal outcomes is the ___ value. (one word)",
+        "es": "El valor que favorece los resultados-meta preferidos es el valor ___. (una palabra)"
+      },
       "answer": "pragmatic",
-      "acceptedAlt": ["pragmático", "pragmatico"],
-      "hint": { "en": "Goal-directed.", "es": "Orientado a metas." },
-      "solution": [ { "tex": "\\text{pragmatic}", "en": "Pragmatic.", "es": "Pragmático." } ]
+      "acceptedAlt": [
+        "pragmático",
+        "pragmatico"
+      ],
+      "hint": {
+        "en": "Goal-directed.",
+        "es": "Orientado a metas."
+      },
+      "solution": [
+        {
+          "tex": "\\text{pragmatic}",
+          "en": "Pragmatic.",
+          "es": "Pragmático."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 7, epistemic and pragmatic value", "es": "Cap. 7, valor epistémico y pragmático" } },
-    { "source": "Friston et al. — Active inference and epistemic value (2015)", "detail": { "en": "Curiosity from free energy", "es": "Curiosidad a partir de la energía libre" } }
+    {
+      "source": "Parr, Pezzulo & Friston — Active Inference (2022)",
+      "detail": {
+        "en": "Ch. 7, epistemic and pragmatic value",
+        "es": "Cap. 7, valor epistémico y pragmático"
+      }
+    },
+    {
+      "source": "Friston et al. — Active inference and epistemic value (2015)",
+      "detail": {
+        "en": "Curiosity from free energy",
+        "es": "Curiosidad a partir de la energía libre"
+      }
+    }
   ]
 }

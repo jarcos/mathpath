@@ -3,7 +3,10 @@
   "subjectId": "statistics",
   "order": 6,
   "estimatedMinutes": 45,
-  "title": { "en": "Conditional Probability & Independence", "es": "Probabilidad condicional e independencia" },
+  "title": {
+    "en": "Conditional Probability & Independence",
+    "es": "Probabilidad condicional e independencia"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "If $P(A\\cap B) = 0.2$ and $P(B) = 0.5$, then $P(A\\mid B) = \\tfrac{0.2}{0.5} = 0.4$. And if $A, B$ are independent with $P(A)=0.5$, $P(B)=0.4$, then $P(A\\cap B) = 0.5\\times 0.4 = 0.2$.",
         "es": "Si $P(A\\cap B) = 0.2$ y $P(B) = 0.5$, entonces $P(A\\mid B) = \\tfrac{0.2}{0.5} = 0.4$. Y si $A, B$ son independientes con $P(A)=0.5$, $P(B)=0.4$, entonces $P(A\\cap B) = 0.5\\times 0.4 = 0.2$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# P(A | B) = P(A and B) / P(B)\np_a_and_b = 0.12\np_b = 0.30\nprint(round(p_a_and_b / p_b, 4))",
+        "es": "# P(A | B) = P(A y B) / P(B)\np_a_and_b = 0.12\np_b = 0.30\nprint(round(p_a_and_b / p_b, 4))"
+      },
+      "expectedOutput": "0.4",
+      "caption": {
+        "en": "Conditioning rescales probability to the world where B happened.",
+        "es": "Condicionar reescala la probabilidad al mundo donde ocurrió B."
       }
     }
   ],
@@ -39,42 +59,113 @@
     {
       "id": "stats-06-e1",
       "answerType": "number",
-      "prompt": { "en": "If $P(A\\cap B)=0.2$ and $P(B)=0.5$, find $P(A\\mid B)$.", "es": "Si $P(A\\cap B)=0.2$ y $P(B)=0.5$, halla $P(A\\mid B)$." },
+      "prompt": {
+        "en": "If $P(A\\cap B)=0.2$ and $P(B)=0.5$, find $P(A\\mid B)$.",
+        "es": "Si $P(A\\cap B)=0.2$ y $P(B)=0.5$, halla $P(A\\mid B)$."
+      },
       "answer": "0.4",
-      "acceptedAlt": ["0.2/0.5", "2/5"],
-      "hint": { "en": "Divide the joint by P(B).", "es": "Divide la conjunta entre P(B)." },
-      "solution": [ { "tex": "\\tfrac{0.2}{0.5} = 0.4", "en": "Conditional probability.", "es": "Probabilidad condicional." } ]
+      "acceptedAlt": [
+        "0.2/0.5",
+        "2/5"
+      ],
+      "hint": {
+        "en": "Divide the joint by P(B).",
+        "es": "Divide la conjunta entre P(B)."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{0.2}{0.5} = 0.4",
+          "en": "Conditional probability.",
+          "es": "Probabilidad condicional."
+        }
+      ]
     },
     {
       "id": "stats-06-e2",
       "answerType": "number",
-      "prompt": { "en": "Independent events $P(A)=0.5$, $P(B)=0.4$. Find $P(A\\cap B)$.", "es": "Sucesos independientes $P(A)=0.5$, $P(B)=0.4$. Halla $P(A\\cap B)$." },
+      "prompt": {
+        "en": "Independent events $P(A)=0.5$, $P(B)=0.4$. Find $P(A\\cap B)$.",
+        "es": "Sucesos independientes $P(A)=0.5$, $P(B)=0.4$. Halla $P(A\\cap B)$."
+      },
       "answer": "0.2",
-      "acceptedAlt": ["0.5*0.4"],
-      "hint": { "en": "Multiply the two probabilities.", "es": "Multiplica las dos probabilidades." },
-      "solution": [ { "tex": "0.5\\times 0.4 = 0.2", "en": "Independence.", "es": "Independencia." } ]
+      "acceptedAlt": [
+        "0.5*0.4"
+      ],
+      "hint": {
+        "en": "Multiply the two probabilities.",
+        "es": "Multiplica las dos probabilidades."
+      },
+      "solution": [
+        {
+          "tex": "0.5\\times 0.4 = 0.2",
+          "en": "Independence.",
+          "es": "Independencia."
+        }
+      ]
     },
     {
       "id": "stats-06-e3",
       "answerType": "number",
-      "prompt": { "en": "Two independent events each have probability $0.5$. Find $P(\\text{both})$.", "es": "Dos sucesos independientes con probabilidad $0.5$ cada uno. Halla $P(\\text{ambos})$." },
+      "prompt": {
+        "en": "Two independent events each have probability $0.5$. Find $P(\\text{both})$.",
+        "es": "Dos sucesos independientes con probabilidad $0.5$ cada uno. Halla $P(\\text{ambos})$."
+      },
       "answer": "0.25",
-      "acceptedAlt": ["0.5*0.5", "1/4"],
-      "hint": { "en": "0.5 · 0.5.", "es": "0.5 · 0.5." },
-      "solution": [ { "tex": "0.5\\times 0.5 = 0.25", "en": "Both happen.", "es": "Ocurren ambos." } ]
+      "acceptedAlt": [
+        "0.5*0.5",
+        "1/4"
+      ],
+      "hint": {
+        "en": "0.5 · 0.5.",
+        "es": "0.5 · 0.5."
+      },
+      "solution": [
+        {
+          "tex": "0.5\\times 0.5 = 0.25",
+          "en": "Both happen.",
+          "es": "Ocurren ambos."
+        }
+      ]
     },
     {
       "id": "stats-06-e4",
       "answerType": "number",
-      "prompt": { "en": "If $P(A\\cap B)=0.1$ and $P(B)=0.2$, find $P(A\\mid B)$.", "es": "Si $P(A\\cap B)=0.1$ y $P(B)=0.2$, halla $P(A\\mid B)$." },
+      "prompt": {
+        "en": "If $P(A\\cap B)=0.1$ and $P(B)=0.2$, find $P(A\\mid B)$.",
+        "es": "Si $P(A\\cap B)=0.1$ y $P(B)=0.2$, halla $P(A\\mid B)$."
+      },
       "answer": "0.5",
-      "acceptedAlt": ["0.1/0.2", "1/2"],
-      "hint": { "en": "Joint over P(B).", "es": "Conjunta entre P(B)." },
-      "solution": [ { "tex": "\\tfrac{0.1}{0.2} = 0.5", "en": "Conditional probability.", "es": "Probabilidad condicional." } ]
+      "acceptedAlt": [
+        "0.1/0.2",
+        "1/2"
+      ],
+      "hint": {
+        "en": "Joint over P(B).",
+        "es": "Conjunta entre P(B)."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{0.1}{0.2} = 0.5",
+          "en": "Conditional probability.",
+          "es": "Probabilidad condicional."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Conditional probability and independence", "es": "Probabilidad condicional e independencia" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 12, independence", "es": "Cap. 12, independencia" } }
+    {
+      "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)",
+      "detail": {
+        "en": "Conditional probability and independence",
+        "es": "Probabilidad condicional e independencia"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 12, independence",
+        "es": "Cap. 12, independencia"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "statistics",
   "order": 5,
   "estimatedMinutes": 40,
-  "title": { "en": "Probability Basics", "es": "Fundamentos de probabilidad" },
+  "title": {
+    "en": "Probability Basics",
+    "es": "Fundamentos de probabilidad"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Rolling a fair die, $P(\\text{even}) = \\tfrac{3}{6} = \\tfrac12$. Flipping a fair coin, $P(\\text{heads}) = \\tfrac12$. The probability of an impossible outcome is $0$; of a certain one, $1$ — every probability lives between these bounds.",
         "es": "Al lanzar un dado justo, $P(\\text{par}) = \\tfrac{3}{6} = \\tfrac12$. Al lanzar una moneda justa, $P(\\text{cara}) = \\tfrac12$. La probabilidad de un resultado imposible es $0$; de uno seguro, $1$ — toda probabilidad vive entre estas cotas."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# probability = favorable outcomes / total outcomes\noutcomes = [(i, j) for i in range(1, 7) for j in range(1, 7)]\nfavorable = sum(1 for a, b in outcomes if a + b == 7)\nprint(favorable, len(outcomes), round(favorable / len(outcomes), 4))",
+        "es": "# probabilidad = casos favorables / casos totales\noutcomes = [(i, j) for i in range(1, 7) for j in range(1, 7)]\nfavorable = sum(1 for a, b in outcomes if a + b == 7)\nprint(favorable, len(outcomes), round(favorable / len(outcomes), 4))"
+      },
+      "expectedOutput": "6 36 0.1667",
+      "caption": {
+        "en": "Enumerating the sample space makes the probability concrete.",
+        "es": "Enumerar el espacio muestral hace concreta la probabilidad."
       }
     }
   ],
@@ -39,42 +59,107 @@
     {
       "id": "stats-05-e1",
       "answerType": "number",
-      "prompt": { "en": "A fair die: what is $P(\\text{even})$?", "es": "Un dado justo: ¿cuánto es $P(\\text{par})$?" },
+      "prompt": {
+        "en": "A fair die: what is $P(\\text{even})$?",
+        "es": "Un dado justo: ¿cuánto es $P(\\text{par})$?"
+      },
       "answer": "1/2",
-      "acceptedAlt": ["3/6", "0.5"],
-      "hint": { "en": "3 even faces out of 6.", "es": "3 caras pares de 6." },
-      "solution": [ { "tex": "\\tfrac{3}{6} = \\tfrac12", "en": "Half.", "es": "Mitad." } ]
+      "acceptedAlt": [
+        "3/6",
+        "0.5"
+      ],
+      "hint": {
+        "en": "3 even faces out of 6.",
+        "es": "3 caras pares de 6."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{3}{6} = \\tfrac12",
+          "en": "Half.",
+          "es": "Mitad."
+        }
+      ]
     },
     {
       "id": "stats-05-e2",
       "answerType": "number",
-      "prompt": { "en": "A fair coin: what is $P(\\text{heads})$?", "es": "Una moneda justa: ¿cuánto es $P(\\text{cara})$?" },
+      "prompt": {
+        "en": "A fair coin: what is $P(\\text{heads})$?",
+        "es": "Una moneda justa: ¿cuánto es $P(\\text{cara})$?"
+      },
       "answer": "1/2",
-      "acceptedAlt": ["0.5"],
-      "hint": { "en": "Two equally likely sides.", "es": "Dos caras equiprobables." },
-      "solution": [ { "tex": "P = \\tfrac12", "en": "Half.", "es": "Mitad." } ]
+      "acceptedAlt": [
+        "0.5"
+      ],
+      "hint": {
+        "en": "Two equally likely sides.",
+        "es": "Dos caras equiprobables."
+      },
+      "solution": [
+        {
+          "tex": "P = \\tfrac12",
+          "en": "Half.",
+          "es": "Mitad."
+        }
+      ]
     },
     {
       "id": "stats-05-e3",
       "answerType": "number",
-      "prompt": { "en": "A fair die: what is $P(\\text{rolling a 7})$?", "es": "Un dado justo: ¿cuánto es $P(\\text{sacar un 7})$?" },
+      "prompt": {
+        "en": "A fair die: what is $P(\\text{rolling a 7})$?",
+        "es": "Un dado justo: ¿cuánto es $P(\\text{sacar un 7})$?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Impossible event.", "es": "Suceso imposible." },
-      "solution": [ { "tex": "P = 0", "en": "Impossible.", "es": "Imposible." } ]
+      "hint": {
+        "en": "Impossible event.",
+        "es": "Suceso imposible."
+      },
+      "solution": [
+        {
+          "tex": "P = 0",
+          "en": "Impossible.",
+          "es": "Imposible."
+        }
+      ]
     },
     {
       "id": "stats-05-e4",
       "answerType": "number",
-      "prompt": { "en": "What is the probability of a certain event?", "es": "¿Cuál es la probabilidad de un suceso seguro?" },
+      "prompt": {
+        "en": "What is the probability of a certain event?",
+        "es": "¿Cuál es la probabilidad de un suceso seguro?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "It always happens.", "es": "Siempre ocurre." },
-      "solution": [ { "tex": "P = 1", "en": "Certain.", "es": "Seguro." } ]
+      "hint": {
+        "en": "It always happens.",
+        "es": "Siempre ocurre."
+      },
+      "solution": [
+        {
+          "tex": "P = 1",
+          "en": "Certain.",
+          "es": "Seguro."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Axioms and the language of probability", "es": "Axiomas y el lenguaje de la probabilidad" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 12, quantifying uncertainty", "es": "Cap. 12, cuantificar la incertidumbre" } }
+    {
+      "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)",
+      "detail": {
+        "en": "Axioms and the language of probability",
+        "es": "Axiomas y el lenguaje de la probabilidad"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 12, quantifying uncertainty",
+        "es": "Cap. 12, cuantificar la incertidumbre"
+      }
+    }
   ]
 }

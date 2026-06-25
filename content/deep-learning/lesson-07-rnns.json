@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 7,
   "estimatedMinutes": 35,
-  "title": { "en": "Recurrent Neural Networks", "es": "Redes neuronales recurrentes" },
+  "title": {
+    "en": "Recurrent Neural Networks",
+    "es": "Redes neuronales recurrentes"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Scalar RNN with $h_t = w_h h_{t-1} + w_x x_t$, $w_h = 0.5$, $w_x = 1$, $h_0 = 0$, inputs $x_1 = 2, x_2 = 4$. Then $h_1 = 0.5\\cdot 0 + 1\\cdot 2 = 2$, and $h_2 = 0.5\\cdot 2 + 1\\cdot 4 = 5$.",
         "es": "RNN escalar con $h_t = w_h h_{t-1} + w_x x_t$, $w_h = 0.5$, $w_x = 1$, $h_0 = 0$, entradas $x_1 = 2, x_2 = 4$. Entonces $h_1 = 0.5\\cdot 0 + 1\\cdot 2 = 2$, y $h_2 = 0.5\\cdot 2 + 1\\cdot 4 = 5$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# a simple RNN updates a hidden state h over a sequence\nh, W, U = 0.0, 0.5, 1.0\nfor x in [1, 1, 1]:\n    h = np.tanh(W * h + U * x)\nprint(round(float(h), 4))",
+        "es": "import numpy as np\n# un RNN simple actualiza un estado oculto h sobre una secuencia\nh, W, U = 0.0, 0.5, 1.0\nfor x in [1, 1, 1]:\n    h = np.tanh(W * h + U * x)\nprint(round(float(h), 4))"
+      },
+      "expectedOutput": "0.8938",
+      "caption": {
+        "en": "An RNN carries memory forward through its hidden state.",
+        "es": "Un RNN arrastra memoria hacia adelante en su estado oculto."
       }
     }
   ],
@@ -39,41 +61,103 @@
     {
       "id": "dl-07-e1",
       "answerType": "text",
-      "prompt": { "en": "An RNN keeps a running summary in its hidden ___. (one word)", "es": "Una RNN mantiene un resumen continuo en su ___ oculto. (una palabra)" },
+      "prompt": {
+        "en": "An RNN keeps a running summary in its hidden ___. (one word)",
+        "es": "Una RNN mantiene un resumen continuo en su ___ oculto. (una palabra)"
+      },
       "answer": "state",
-      "acceptedAlt": ["estado"],
-      "hint": { "en": "h_t.", "es": "h_t." },
-      "solution": [ { "tex": "h_t", "en": "State.", "es": "Estado." } ]
+      "acceptedAlt": [
+        "estado"
+      ],
+      "hint": {
+        "en": "h_t.",
+        "es": "h_t."
+      },
+      "solution": [
+        {
+          "tex": "h_t",
+          "en": "State.",
+          "es": "Estado."
+        }
+      ]
     },
     {
       "id": "dl-07-e2",
       "answerType": "number",
-      "prompt": { "en": "$h_t = 0.5 h_{t-1} + x_t$, $h_0=0$, $x_1=2$: compute $h_1$.", "es": "$h_t = 0.5 h_{t-1} + x_t$, $h_0=0$, $x_1=2$: calcula $h_1$." },
+      "prompt": {
+        "en": "$h_t = 0.5 h_{t-1} + x_t$, $h_0=0$, $x_1=2$: compute $h_1$.",
+        "es": "$h_t = 0.5 h_{t-1} + x_t$, $h_0=0$, $x_1=2$: calcula $h_1$."
+      },
       "answer": "2",
-      "acceptedAlt": ["0.5*0+2"],
-      "hint": { "en": "0.5·0 + 2.", "es": "0.5·0 + 2." },
-      "solution": [ { "tex": "0.5\\cdot 0 + 2 = 2", "en": "h_1 = 2.", "es": "h_1 = 2." } ]
+      "acceptedAlt": [
+        "0.5*0+2"
+      ],
+      "hint": {
+        "en": "0.5·0 + 2.",
+        "es": "0.5·0 + 2."
+      },
+      "solution": [
+        {
+          "tex": "0.5\\cdot 0 + 2 = 2",
+          "en": "h_1 = 2.",
+          "es": "h_1 = 2."
+        }
+      ]
     },
     {
       "id": "dl-07-e3",
       "answerType": "number",
-      "prompt": { "en": "Continue: $x_2=4$, $h_1=2$: compute $h_2 = 0.5\\cdot 2 + 4$.", "es": "Continúa: $x_2=4$, $h_1=2$: calcula $h_2 = 0.5\\cdot 2 + 4$." },
+      "prompt": {
+        "en": "Continue: $x_2=4$, $h_1=2$: compute $h_2 = 0.5\\cdot 2 + 4$.",
+        "es": "Continúa: $x_2=4$, $h_1=2$: calcula $h_2 = 0.5\\cdot 2 + 4$."
+      },
       "answer": "5",
-      "acceptedAlt": ["0.5*2+4"],
-      "hint": { "en": "1 + 4.", "es": "1 + 4." },
-      "solution": [ { "tex": "0.5\\cdot 2 + 4 = 5", "en": "h_2 = 5.", "es": "h_2 = 5." } ]
+      "acceptedAlt": [
+        "0.5*2+4"
+      ],
+      "hint": {
+        "en": "1 + 4.",
+        "es": "1 + 4."
+      },
+      "solution": [
+        {
+          "tex": "0.5\\cdot 2 + 4 = 5",
+          "en": "h_2 = 5.",
+          "es": "h_2 = 5."
+        }
+      ]
     },
     {
       "id": "dl-07-e4",
       "answerType": "text",
-      "prompt": { "en": "RNNs reuse the same weights across ___. (one word)", "es": "Las RNN reutilizan los mismos pesos a lo largo del ___. (una palabra)" },
+      "prompt": {
+        "en": "RNNs reuse the same weights across ___. (one word)",
+        "es": "Las RNN reutilizan los mismos pesos a lo largo del ___. (una palabra)"
+      },
       "answer": "time",
-      "acceptedAlt": ["tiempo"],
-      "hint": { "en": "Steps over time.", "es": "Pasos en el tiempo." },
-      "solution": [ { "tex": "\\text{shared over time}", "en": "Time.", "es": "Tiempo." } ]
+      "acceptedAlt": [
+        "tiempo"
+      ],
+      "hint": {
+        "en": "Steps over time.",
+        "es": "Pasos en el tiempo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{shared over time}",
+          "en": "Time.",
+          "es": "Tiempo."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 10.1–10.2, recurrent networks and BPTT", "es": "Cap. 10.1–10.2, redes recurrentes y BPTT" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 10.1–10.2, recurrent networks and BPTT",
+        "es": "Cap. 10.1–10.2, redes recurrentes y BPTT"
+      }
+    }
   ]
 }

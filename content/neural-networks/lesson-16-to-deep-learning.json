@@ -3,7 +3,10 @@
   "subjectId": "neural-networks",
   "order": 16,
   "estimatedMinutes": 30,
-  "title": { "en": "From Neurons to Deep Learning", "es": "De las neuronas al aprendizaje profundo" },
+  "title": {
+    "en": "From Neurons to Deep Learning",
+    "es": "De las neuronas al aprendizaje profundo"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A network is considered **deep** once it has at least $2$ hidden layers. Each layer beyond the first learns features built from the previous layer's outputs — a hierarchy of representations, from simple to complex.",
         "es": "Una red se considera **profunda** cuando tiene al menos $2$ capas ocultas. Cada capa más allá de la primera aprende características construidas a partir de las salidas de la capa anterior — una jerarquía de representaciones, de simples a complejas."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# deeper net 4 -> 8 -> 8 -> 1; count weights + biases\nsizes = [4, 8, 8, 1]\nparams = sum(sizes[i] * sizes[i+1] + sizes[i+1] for i in range(len(sizes) - 1))\nprint(params)",
+        "es": "# red mas profunda 4 -> 8 -> 8 -> 1; cuenta pesos + sesgos\nsizes = [4, 8, 8, 1]\nparams = sum(sizes[i] * sizes[i+1] + sizes[i+1] for i in range(len(sizes) - 1))\nprint(params)"
+      },
+      "expectedOutput": "121",
+      "caption": {
+        "en": "Depth multiplies parameters — the road to deep learning.",
+        "es": "La profundidad multiplica los parametros — el camino al aprendizaje profundo."
       }
     }
   ],
@@ -39,42 +59,115 @@
     {
       "id": "nn-16-e1",
       "answerType": "text",
-      "prompt": { "en": "Networks with many hidden layers are called ___ networks. (one word)", "es": "Las redes con muchas capas ocultas se llaman redes ___. (una palabra)" },
+      "prompt": {
+        "en": "Networks with many hidden layers are called ___ networks. (one word)",
+        "es": "Las redes con muchas capas ocultas se llaman redes ___. (una palabra)"
+      },
       "answer": "deep",
-      "acceptedAlt": ["profundas", "profunda"],
-      "hint": { "en": "Depth.", "es": "Profundidad." },
-      "solution": [ { "tex": "\\text{deep networks}", "en": "Deep.", "es": "Profundas." } ]
+      "acceptedAlt": [
+        "profundas",
+        "profunda"
+      ],
+      "hint": {
+        "en": "Depth.",
+        "es": "Profundidad."
+      },
+      "solution": [
+        {
+          "tex": "\\text{deep networks}",
+          "en": "Deep.",
+          "es": "Profundas."
+        }
+      ]
     },
     {
       "id": "nn-16-e2",
       "answerType": "number",
-      "prompt": { "en": "At least how many hidden layers make a network 'deep'?", "es": "¿Al menos cuántas capas ocultas hacen 'profunda' a una red?" },
+      "prompt": {
+        "en": "At least how many hidden layers make a network 'deep'?",
+        "es": "¿Al menos cuántas capas ocultas hacen 'profunda' a una red?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "More than one.", "es": "Más de una." },
-      "solution": [ { "tex": "\\ge 2", "en": "Two or more.", "es": "Dos o más." } ]
+      "hint": {
+        "en": "More than one.",
+        "es": "Más de una."
+      },
+      "solution": [
+        {
+          "tex": "\\ge 2",
+          "en": "Two or more.",
+          "es": "Dos o más."
+        }
+      ]
     },
     {
       "id": "nn-16-e3",
       "answerType": "text",
-      "prompt": { "en": "Deep learning stacks layers to learn hierarchical ___. (one word)", "es": "El aprendizaje profundo apila capas para aprender ___ jerárquicas. (una palabra)" },
+      "prompt": {
+        "en": "Deep learning stacks layers to learn hierarchical ___. (one word)",
+        "es": "El aprendizaje profundo apila capas para aprender ___ jerárquicas. (una palabra)"
+      },
       "answer": "features",
-      "acceptedAlt": ["características", "caracteristicas", "representations", "representaciones"],
-      "hint": { "en": "Learned, not hand-designed.", "es": "Aprendidas, no diseñadas a mano." },
-      "solution": [ { "tex": "\\text{features}", "en": "Features.", "es": "Características." } ]
+      "acceptedAlt": [
+        "características",
+        "caracteristicas",
+        "representations",
+        "representaciones"
+      ],
+      "hint": {
+        "en": "Learned, not hand-designed.",
+        "es": "Aprendidas, no diseñadas a mano."
+      },
+      "solution": [
+        {
+          "tex": "\\text{features}",
+          "en": "Features.",
+          "es": "Características."
+        }
+      ]
     },
     {
       "id": "nn-16-e4",
       "answerType": "text",
-      "prompt": { "en": "Learning features automatically instead of by hand is ___ learning. (one word)", "es": "Aprender características automáticamente en vez de a mano es aprendizaje de ___. (una palabra)" },
+      "prompt": {
+        "en": "Learning features automatically instead of by hand is ___ learning. (one word)",
+        "es": "Aprender características automáticamente en vez de a mano es aprendizaje de ___. (una palabra)"
+      },
       "answer": "representation",
-      "acceptedAlt": ["representación", "representacion", "representations", "representaciones"],
-      "hint": { "en": "Representation learning.", "es": "Aprendizaje de representaciones." },
-      "solution": [ { "tex": "\\text{representation learning}", "en": "Representation.", "es": "Representaciones." } ]
+      "acceptedAlt": [
+        "representación",
+        "representacion",
+        "representations",
+        "representaciones"
+      ],
+      "hint": {
+        "en": "Representation learning.",
+        "es": "Aprendizaje de representaciones."
+      },
+      "solution": [
+        {
+          "tex": "\\text{representation learning}",
+          "en": "Representation.",
+          "es": "Representaciones."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 1 & 6, depth and representation learning", "es": "Cap. 1 y 6, profundidad y aprendizaje de representaciones" } },
-    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Distributed representations", "es": "Representaciones distribuidas" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 1 & 6, depth and representation learning",
+        "es": "Cap. 1 y 6, profundidad y aprendizaje de representaciones"
+      }
+    },
+    {
+      "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)",
+      "detail": {
+        "en": "Distributed representations",
+        "es": "Representaciones distribuidas"
+      }
+    }
   ]
 }

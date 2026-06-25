@@ -3,13 +3,26 @@
   "subjectId": "ml-foundations",
   "order": 11,
   "estimatedMinutes": 40,
-  "title": { "en": "Classification & Logistic Regression", "es": "Clasificación y regresión logística" },
+  "title": {
+    "en": "Classification & Logistic Regression",
+    "es": "Clasificación y regresión logística"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "**Classification** predicts a category rather than a number. The workhorse for binary classification is **logistic regression**, which takes a linear score $z = \\mathbf{w}\\cdot\\mathbf{x} + b$ and squashes it through the **sigmoid** function $\\sigma(z) = \\dfrac{1}{1 + e^{-z}}$ into a **probability** between $0$ and $1$.",
         "es": "La **clasificación** predice una categoría en vez de un número. El caballo de batalla para la clasificación binaria es la **regresión logística**, que toma una puntuación lineal $z = \\mathbf{w}\\cdot\\mathbf{x} + b$ y la aplasta mediante la función **sigmoide** $\\sigma(z) = \\dfrac{1}{1 + e^{-z}}$ en una **probabilidad** entre $0$ y $1$."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "mlf-05-linear-regression"
+      ],
+      "note": {
+        "en": "Logistic regression adapts linear regression to classification.",
+        "es": "La regresion logistica adapta la regresion lineal a la clasificacion."
       }
     },
     {
@@ -28,10 +41,30 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "At $z = 0$, $\\sigma(0) = \\dfrac{1}{1 + e^{0}} = \\dfrac{1}{2} = 0.5$ — maximum uncertainty. If the model outputs probability $0.7 > 0.5$, we predict class $1$. The sigmoid's maximum value is $1$ (approached but never reached).",
         "es": "En $z = 0$, $\\sigma(0) = \\dfrac{1}{1 + e^{0}} = \\dfrac{1}{2} = 0.5$ — máxima incertidumbre. Si el modelo da probabilidad $0.7 > 0.5$, predecimos clase $1$. El valor máximo de la sigmoide es $1$ (se aproxima pero nunca se alcanza)."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy",
+        "scikit-learn"
+      ],
+      "code": {
+        "en": "import numpy as np\nfrom sklearn.linear_model import LogisticRegression\nX = np.array([[0], [1], [2], [3]]); y = np.array([0, 0, 1, 1])\nm = LogisticRegression().fit(X, y)\n# classify two new points into class 0 or 1\nprint(m.predict([[0.5], [2.5]]).tolist())",
+        "es": "import numpy as np\nfrom sklearn.linear_model import LogisticRegression\nX = np.array([[0], [1], [2], [3]]); y = np.array([0, 0, 1, 1])\nm = LogisticRegression().fit(X, y)\n# clasifica dos puntos nuevos en la clase 0 o 1\nprint(m.predict([[0.5], [2.5]]).tolist())"
+      },
+      "expectedOutput": "[0, 1]",
+      "caption": {
+        "en": "Logistic regression predicts a class, not a number.",
+        "es": "La regresion logistica predice una clase, no un numero."
       }
     }
   ],
@@ -39,42 +72,107 @@
     {
       "id": "mlf-11-e1",
       "answerType": "number",
-      "prompt": { "en": "Compute the sigmoid at 0: $\\sigma(0) = \\tfrac{1}{1+e^{0}}$.", "es": "Calcula la sigmoide en 0: $\\sigma(0) = \\tfrac{1}{1+e^{0}}$." },
+      "prompt": {
+        "en": "Compute the sigmoid at 0: $\\sigma(0) = \\tfrac{1}{1+e^{0}}$.",
+        "es": "Calcula la sigmoide en 0: $\\sigma(0) = \\tfrac{1}{1+e^{0}}$."
+      },
       "answer": "0.5",
-      "acceptedAlt": ["1/(1+e^0)", "1/2"],
-      "hint": { "en": "e⁰ = 1.", "es": "e⁰ = 1." },
-      "solution": [ { "tex": "\\tfrac{1}{1+1} = 0.5", "en": "Sigmoid at 0.", "es": "Sigmoide en 0." } ]
+      "acceptedAlt": [
+        "1/(1+e^0)",
+        "1/2"
+      ],
+      "hint": {
+        "en": "e⁰ = 1.",
+        "es": "e⁰ = 1."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{1}{1+1} = 0.5",
+          "en": "Sigmoid at 0.",
+          "es": "Sigmoide en 0."
+        }
+      ]
     },
     {
       "id": "mlf-11-e2",
       "answerType": "text",
-      "prompt": { "en": "Logistic regression outputs a ___ between 0 and 1. (one word)", "es": "La regresión logística da una ___ entre 0 y 1. (una palabra)" },
+      "prompt": {
+        "en": "Logistic regression outputs a ___ between 0 and 1. (one word)",
+        "es": "La regresión logística da una ___ entre 0 y 1. (una palabra)"
+      },
       "answer": "probability",
-      "acceptedAlt": ["probabilidad"],
-      "hint": { "en": "Then thresholded to a class.", "es": "Luego umbralizada a una clase." },
-      "solution": [ { "tex": "\\sigma(z)\\in(0,1)", "en": "A probability.", "es": "Una probabilidad." } ]
+      "acceptedAlt": [
+        "probabilidad"
+      ],
+      "hint": {
+        "en": "Then thresholded to a class.",
+        "es": "Luego umbralizada a una clase."
+      },
+      "solution": [
+        {
+          "tex": "\\sigma(z)\\in(0,1)",
+          "en": "A probability.",
+          "es": "Una probabilidad."
+        }
+      ]
     },
     {
       "id": "mlf-11-e3",
       "answerType": "number",
-      "prompt": { "en": "If the sigmoid output is 0.7, which class (0 or 1) is predicted with a 0.5 threshold?", "es": "Si la salida sigmoide es 0.7, ¿qué clase (0 o 1) se predice con umbral 0.5?" },
+      "prompt": {
+        "en": "If the sigmoid output is 0.7, which class (0 or 1) is predicted with a 0.5 threshold?",
+        "es": "Si la salida sigmoide es 0.7, ¿qué clase (0 o 1) se predice con umbral 0.5?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "0.7 > 0.5.", "es": "0.7 > 0.5." },
-      "solution": [ { "tex": "0.7 > 0.5 \\Rightarrow 1", "en": "Class 1.", "es": "Clase 1." } ]
+      "hint": {
+        "en": "0.7 > 0.5.",
+        "es": "0.7 > 0.5."
+      },
+      "solution": [
+        {
+          "tex": "0.7 > 0.5 \\Rightarrow 1",
+          "en": "Class 1.",
+          "es": "Clase 1."
+        }
+      ]
     },
     {
       "id": "mlf-11-e4",
       "answerType": "number",
-      "prompt": { "en": "What is the maximum value the sigmoid approaches?", "es": "¿Cuál es el valor máximo al que se aproxima la sigmoide?" },
+      "prompt": {
+        "en": "What is the maximum value the sigmoid approaches?",
+        "es": "¿Cuál es el valor máximo al que se aproxima la sigmoide?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "Its upper asymptote.", "es": "Su asíntota superior." },
-      "solution": [ { "tex": "\\sigma(z)\\to 1", "en": "Approaches 1.", "es": "Se aproxima a 1." } ]
+      "hint": {
+        "en": "Its upper asymptote.",
+        "es": "Su asíntota superior."
+      },
+      "solution": [
+        {
+          "tex": "\\sigma(z)\\to 1",
+          "en": "Approaches 1.",
+          "es": "Se aproxima a 1."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5 & 6, logistic regression and the sigmoid", "es": "Cap. 5 y 6, regresión logística y la sigmoide" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, logistic regression", "es": "Cap. 18, regresión logística" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5 & 6, logistic regression and the sigmoid",
+        "es": "Cap. 5 y 6, regresión logística y la sigmoide"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 18, logistic regression",
+        "es": "Cap. 18, regresión logística"
+      }
+    }
   ]
 }

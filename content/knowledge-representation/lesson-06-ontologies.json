@@ -3,7 +3,10 @@
   "subjectId": "knowledge-representation",
   "order": 6,
   "estimatedMinutes": 35,
-  "title": { "en": "Knowledge Bases & Ontologies", "es": "Bases de conocimiento y ontologías" },
+  "title": {
+    "en": "Knowledge Bases & Ontologies",
+    "es": "Bases de conocimiento y ontologías"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "In the chain Dog is-a Mammal is-a Animal, a Dog inherits properties from $2$ ancestor classes. If Animal has the property 'breathes', a Dog has it by inheritance without it being stated on Dog.",
         "es": "En la cadena Perro es-un Mamífero es-un Animal, un Perro hereda propiedades de $2$ clases ancestro. Si Animal tiene la propiedad 'respira', un Perro la tiene por herencia sin que se indique en Perro."
@@ -39,42 +45,154 @@
     {
       "id": "kr-06-e1",
       "answerType": "number",
-      "prompt": { "en": "In 'Dog is-a Mammal is-a Animal', how many ancestor classes does Dog inherit from?", "es": "En 'Perro es-un Mamífero es-un Animal', ¿de cuántas clases ancestro hereda Perro?" },
+      "prompt": {
+        "en": "In 'Dog is-a Mammal is-a Animal', how many ancestor classes does Dog inherit from?",
+        "es": "En 'Perro es-un Mamífero es-un Animal', ¿de cuántas clases ancestro hereda Perro?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Mammal and Animal.", "es": "Mamífero y Animal." },
-      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "Mammal and Animal.",
+        "es": "Mamífero y Animal."
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "kr-06-e2",
       "answerType": "text",
-      "prompt": { "en": "A formal specification of concepts and their relationships is an ___. (one word)", "es": "Una especificación formal de conceptos y sus relaciones es una ___. (una palabra)" },
+      "prompt": {
+        "en": "A formal specification of concepts and their relationships is an ___. (one word)",
+        "es": "Una especificación formal de conceptos y sus relaciones es una ___. (una palabra)"
+      },
       "answer": "ontology",
-      "acceptedAlt": ["ontología", "ontologia"],
-      "hint": { "en": "Classes + relations.", "es": "Clases + relaciones." },
-      "solution": [ { "tex": "\\text{ontology}", "en": "Ontology.", "es": "Ontología." } ]
+      "acceptedAlt": [
+        "ontología",
+        "ontologia"
+      ],
+      "hint": {
+        "en": "Classes + relations.",
+        "es": "Clases + relaciones."
+      },
+      "solution": [
+        {
+          "tex": "\\text{ontology}",
+          "en": "Ontology.",
+          "es": "Ontología."
+        }
+      ]
     },
     {
       "id": "kr-06-e3",
       "answerType": "text",
-      "prompt": { "en": "The subclass relation that enables inheritance is the ___-a relation. (one word)", "es": "La relación de subclase que permite la herencia es la relación ___-un. (una palabra)" },
+      "prompt": {
+        "en": "The subclass relation that enables inheritance is the ___-a relation. (one word)",
+        "es": "La relación de subclase que permite la herencia es la relación ___-un. (una palabra)"
+      },
       "answer": "is",
-      "acceptedAlt": ["es"],
-      "hint": { "en": "___-a.", "es": "___-un." },
-      "solution": [ { "tex": "\\text{is-a}", "en": "Is.", "es": "Es." } ]
+      "acceptedAlt": [
+        "es"
+      ],
+      "hint": {
+        "en": "___-a.",
+        "es": "___-un."
+      },
+      "solution": [
+        {
+          "tex": "\\text{is-a}",
+          "en": "Is.",
+          "es": "Es."
+        }
+      ]
     },
     {
       "id": "kr-06-e4",
       "answerType": "text",
-      "prompt": { "en": "The web ontology language standard is ___ (acronym).", "es": "El estándar de lenguaje de ontologías web es ___ (siglas)." },
+      "prompt": {
+        "en": "The web ontology language standard is ___ (acronym).",
+        "es": "El estándar de lenguaje de ontologías web es ___ (siglas)."
+      },
       "answer": "owl",
       "acceptedAlt": [],
-      "hint": { "en": "Web Ontology Language.", "es": "Web Ontology Language." },
-      "solution": [ { "tex": "\\text{OWL}", "en": "OWL.", "es": "OWL." } ]
+      "hint": {
+        "en": "Web Ontology Language.",
+        "es": "Web Ontology Language."
+      },
+      "solution": [
+        {
+          "tex": "\\text{OWL}",
+          "en": "OWL.",
+          "es": "OWL."
+        }
+      ]
+    },
+    {
+      "id": "kr-06-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "In an ontology, 'Dog' is a class. What is 'Rex', a particular dog?",
+        "es": "En una ontologia, 'Perro' es una clase. Que es 'Rex', un perro concreto?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "An instance (individual)",
+            "es": "Una instancia (individuo)"
+          },
+          "correct": true,
+          "why": {
+            "en": "Ontologies distinguish classes (types) from instances (individuals) of them.",
+            "es": "Las ontologias distinguen clases (tipos) de instancias (individuos) de ellas."
+          }
+        },
+        {
+          "text": {
+            "en": "A subclass",
+            "es": "Una subclase"
+          },
+          "correct": false,
+          "why": {
+            "en": "A subclass would be e.g. 'Puppy'; Rex is a single individual.",
+            "es": "Una subclase seria p. ej. 'Cachorro'; Rex es un individuo concreto."
+          }
+        },
+        {
+          "text": {
+            "en": "A relation",
+            "es": "Una relacion"
+          },
+          "correct": false,
+          "why": {
+            "en": "Relations link entities (e.g. owns); Rex is an entity.",
+            "es": "Las relaciones enlazan entidades (p. ej. posee); Rex es una entidad."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Type vs token.",
+        "es": "Tipo vs ejemplar."
+      }
     }
   ],
   "references": [
-    { "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)", "detail": { "en": "Ch. on frames, inheritance and ontologies", "es": "Cap. sobre marcos, herencia y ontologías" } },
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 10, knowledge representation and ontologies", "es": "Cap. 10, representación del conocimiento y ontologías" } }
+    {
+      "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)",
+      "detail": {
+        "en": "Ch. on frames, inheritance and ontologies",
+        "es": "Cap. sobre marcos, herencia y ontologías"
+      }
+    },
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Ch. 10, knowledge representation and ontologies",
+        "es": "Cap. 10, representación del conocimiento y ontologías"
+      }
+    }
   ]
 }

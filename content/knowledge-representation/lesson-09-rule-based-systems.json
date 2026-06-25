@@ -3,13 +3,26 @@
   "subjectId": "knowledge-representation",
   "order": 9,
   "estimatedMinutes": 35,
-  "title": { "en": "Rule-Based Systems", "es": "Sistemas basados en reglas" },
+  "title": {
+    "en": "Rule-Based Systems",
+    "es": "Sistemas basados en reglas"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A **rule-based (production) system** represents knowledge as **if-then rules**: 'IF symptoms include fever and rash THEN consider measles'. It has three parts: a **rule base**, a **working memory** of current facts, and an **inference engine** that applies rules. These powered the **expert systems** of the 1980s like MYCIN and DENDRAL.",
         "es": "Un **sistema basado en reglas (de producción)** representa el conocimiento como **reglas si-entonces**: 'SI los síntomas incluyen fiebre y erupción ENTONCES considera sarampión'. Tiene tres partes: una **base de reglas**, una **memoria de trabajo** de hechos actuales, y un **motor de inferencia** que aplica las reglas. Estos impulsaron los **sistemas expertos** de los años 80 como MYCIN y DENDRAL."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "kr-04-inference"
+      ],
+      "note": {
+        "en": "Rule systems automate the inference just defined.",
+        "es": "Los sistemas de reglas automatizan la inferencia ya definida."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Given the fact A and rules 'A→B', 'B→C', forward chaining derives $2$ new facts (B then C). Starting instead from goal C and searching backward for support is backward chaining.",
         "es": "Dado el hecho A y las reglas 'A→B', 'B→C', el encadenamiento hacia delante deriva $2$ hechos nuevos (B y luego C). Partir en cambio de la meta C y buscar apoyo hacia atrás es encadenamiento hacia atrás."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# forward chaining fires rules until no new facts appear\nfacts = {\"A\"}\nrules = [((\"A\",), \"B\"), ((\"B\",), \"C\")]\nchanged = True\nwhile changed:\n    changed = False\n    for cond, res in rules:\n        if all(c in facts for c in cond) and res not in facts:\n            facts.add(res); changed = True\nprint(sorted(facts))",
+        "es": "# el encadenamiento hacia adelante dispara reglas hasta que no surgen hechos nuevos\nfacts = {\"A\"}\nrules = [((\"A\",), \"B\"), ((\"B\",), \"C\")]\nchanged = True\nwhile changed:\n    changed = False\n    for cond, res in rules:\n        if all(c in facts for c in cond) and res not in facts:\n            facts.add(res); changed = True\nprint(sorted(facts))"
+      },
+      "expectedOutput": "['A', 'B', 'C']",
+      "caption": {
+        "en": "Rule engines derive new facts by chaining if-then rules.",
+        "es": "Los motores de reglas derivan hechos nuevos encadenando reglas si-entonces."
       }
     }
   ],
@@ -39,41 +69,105 @@
     {
       "id": "kr-09-e1",
       "answerType": "number",
-      "prompt": { "en": "Fact A, rules A→B and B→C: how many new facts does forward chaining derive?", "es": "Hecho A, reglas A→B y B→C: ¿cuántos hechos nuevos deriva el encadenamiento hacia delante?" },
+      "prompt": {
+        "en": "Fact A, rules A→B and B→C: how many new facts does forward chaining derive?",
+        "es": "Hecho A, reglas A→B y B→C: ¿cuántos hechos nuevos deriva el encadenamiento hacia delante?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "B and C.", "es": "B y C." },
-      "solution": [ { "tex": "2", "en": "Two (B, C).", "es": "Dos (B, C)." } ]
+      "hint": {
+        "en": "B and C.",
+        "es": "B y C."
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two (B, C).",
+          "es": "Dos (B, C)."
+        }
+      ]
     },
     {
       "id": "kr-09-e2",
       "answerType": "text",
-      "prompt": { "en": "Reasoning from facts toward the goal is ___ chaining. (one word)", "es": "Razonar desde los hechos hacia la meta es encadenamiento hacia ___. (una palabra)" },
+      "prompt": {
+        "en": "Reasoning from facts toward the goal is ___ chaining. (one word)",
+        "es": "Razonar desde los hechos hacia la meta es encadenamiento hacia ___. (una palabra)"
+      },
       "answer": "forward",
-      "acceptedAlt": ["delante", "adelante"],
-      "hint": { "en": "Data-driven.", "es": "Guiado por datos." },
-      "solution": [ { "tex": "\\text{forward}", "en": "Forward.", "es": "Hacia delante." } ]
+      "acceptedAlt": [
+        "delante",
+        "adelante"
+      ],
+      "hint": {
+        "en": "Data-driven.",
+        "es": "Guiado por datos."
+      },
+      "solution": [
+        {
+          "tex": "\\text{forward}",
+          "en": "Forward.",
+          "es": "Hacia delante."
+        }
+      ]
     },
     {
       "id": "kr-09-e3",
       "answerType": "text",
-      "prompt": { "en": "The 1980s AI systems built from rules were called ___ systems. (one word)", "es": "Los sistemas de IA de los 80 construidos con reglas se llamaban sistemas ___. (una palabra)" },
+      "prompt": {
+        "en": "The 1980s AI systems built from rules were called ___ systems. (one word)",
+        "es": "Los sistemas de IA de los 80 construidos con reglas se llamaban sistemas ___. (una palabra)"
+      },
       "answer": "expert",
-      "acceptedAlt": ["expertos", "experto"],
-      "hint": { "en": "MYCIN, DENDRAL.", "es": "MYCIN, DENDRAL." },
-      "solution": [ { "tex": "\\text{expert systems}", "en": "Expert.", "es": "Expertos." } ]
+      "acceptedAlt": [
+        "expertos",
+        "experto"
+      ],
+      "hint": {
+        "en": "MYCIN, DENDRAL.",
+        "es": "MYCIN, DENDRAL."
+      },
+      "solution": [
+        {
+          "tex": "\\text{expert systems}",
+          "en": "Expert.",
+          "es": "Expertos."
+        }
+      ]
     },
     {
       "id": "kr-09-e4",
       "answerType": "text",
-      "prompt": { "en": "A key strength of rule systems vs neural nets is ___ (you can trace the reasoning). (one word)", "es": "Una fortaleza clave de los sistemas de reglas frente a las redes es la ___ (puedes trazar el razonamiento). (una palabra)" },
+      "prompt": {
+        "en": "A key strength of rule systems vs neural nets is ___ (you can trace the reasoning). (one word)",
+        "es": "Una fortaleza clave de los sistemas de reglas frente a las redes es la ___ (puedes trazar el razonamiento). (una palabra)"
+      },
       "answer": "explainability",
-      "acceptedAlt": ["explicabilidad", "transparency", "transparencia"],
-      "hint": { "en": "Transparent reasoning.", "es": "Razonamiento transparente." },
-      "solution": [ { "tex": "\\text{explainability}", "en": "Explainability.", "es": "Explicabilidad." } ]
+      "acceptedAlt": [
+        "explicabilidad",
+        "transparency",
+        "transparencia"
+      ],
+      "hint": {
+        "en": "Transparent reasoning.",
+        "es": "Razonamiento transparente."
+      },
+      "solution": [
+        {
+          "tex": "\\text{explainability}",
+          "en": "Explainability.",
+          "es": "Explicabilidad."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 9, inference in first-order logic; forward/backward chaining", "es": "Cap. 9, inferencia en lógica de primer orden; encadenamiento" } }
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Ch. 9, inference in first-order logic; forward/backward chaining",
+        "es": "Cap. 9, inferencia en lógica de primer orden; encadenamiento"
+      }
+    }
   ]
 }

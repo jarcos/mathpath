@@ -3,7 +3,10 @@
   "subjectId": "knowledge-representation",
   "order": 1,
   "estimatedMinutes": 30,
-  "title": { "en": "What Is Knowledge Representation?", "es": "¿Qué es la representación del conocimiento?" },
+  "title": {
+    "en": "What Is Knowledge Representation?",
+    "es": "¿Qué es la representación del conocimiento?"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "The two parts of any representation scheme are syntax and semantics — that is $2$ parts. 'All men are mortal; Socrates is a man; therefore Socrates is mortal' is a piece of explicit, symbolic knowledge KRR can encode.",
         "es": "Las dos partes de todo esquema de representación son la sintaxis y la semántica — es decir, $2$ partes. 'Todos los hombres son mortales; Sócrates es un hombre; por tanto Sócrates es mortal' es un fragmento de conocimiento explícito y simbólico que la KRR puede codificar."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# knowledge is often stored as (subject, relation, object) triples\nfact = (\"Socrates\", \"is_a\", \"human\")\nprint(fact)",
+        "es": "# el conocimiento suele guardarse como tripletas (sujeto, relacion, objeto)\nfact = (\"Socrates\", \"is_a\", \"human\")\nprint(fact)"
+      },
+      "expectedOutput": "('Socrates', 'is_a', 'human')",
+      "caption": {
+        "en": "A triple is a minimal unit of machine-readable knowledge.",
+        "es": "Una tripleta es la unidad minima de conocimiento legible por maquina."
       }
     }
   ],
@@ -39,41 +59,103 @@
     {
       "id": "kr-01-e1",
       "answerType": "number",
-      "prompt": { "en": "How many parts does a representation have (syntax + semantics)?", "es": "¿Cuántas partes tiene una representación (sintaxis + semántica)?" },
+      "prompt": {
+        "en": "How many parts does a representation have (syntax + semantics)?",
+        "es": "¿Cuántas partes tiene una representación (sintaxis + semántica)?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Form and meaning.", "es": "Forma y significado." },
-      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "Form and meaning.",
+        "es": "Forma y significado."
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "kr-01-e2",
       "answerType": "text",
-      "prompt": { "en": "The part of a representation defining what symbols mean is the ___. (one word)", "es": "La parte de una representación que define qué significan los símbolos es la ___. (una palabra)" },
+      "prompt": {
+        "en": "The part of a representation defining what symbols mean is the ___. (one word)",
+        "es": "La parte de una representación que define qué significan los símbolos es la ___. (una palabra)"
+      },
       "answer": "semantics",
-      "acceptedAlt": ["semántica", "semantica"],
-      "hint": { "en": "Meaning, not form.", "es": "Significado, no forma." },
-      "solution": [ { "tex": "\\text{semantics}", "en": "Semantics.", "es": "Semántica." } ]
+      "acceptedAlt": [
+        "semántica",
+        "semantica"
+      ],
+      "hint": {
+        "en": "Meaning, not form.",
+        "es": "Significado, no forma."
+      },
+      "solution": [
+        {
+          "tex": "\\text{semantics}",
+          "en": "Semantics.",
+          "es": "Semántica."
+        }
+      ]
     },
     {
       "id": "kr-01-e3",
       "answerType": "text",
-      "prompt": { "en": "KRR works with explicit ___ knowledge (facts and rules). (one word)", "es": "La KRR trabaja con conocimiento ___ explícito (hechos y reglas). (una palabra)" },
+      "prompt": {
+        "en": "KRR works with explicit ___ knowledge (facts and rules). (one word)",
+        "es": "La KRR trabaja con conocimiento ___ explícito (hechos y reglas). (una palabra)"
+      },
       "answer": "symbolic",
-      "acceptedAlt": ["simbólico", "simbolico"],
-      "hint": { "en": "Symbols, not weights.", "es": "Símbolos, no pesos." },
-      "solution": [ { "tex": "\\text{symbolic}", "en": "Symbolic.", "es": "Simbólico." } ]
+      "acceptedAlt": [
+        "simbólico",
+        "simbolico"
+      ],
+      "hint": {
+        "en": "Symbols, not weights.",
+        "es": "Símbolos, no pesos."
+      },
+      "solution": [
+        {
+          "tex": "\\text{symbolic}",
+          "en": "Symbolic.",
+          "es": "Simbólico."
+        }
+      ]
     },
     {
       "id": "kr-01-e4",
       "answerType": "text",
-      "prompt": { "en": "Reasoning that stays computationally feasible is called ___. (one word)", "es": "El razonamiento que sigue siendo computacionalmente factible se llama ___. (una palabra)" },
+      "prompt": {
+        "en": "Reasoning that stays computationally feasible is called ___. (one word)",
+        "es": "El razonamiento que sigue siendo computacionalmente factible se llama ___. (una palabra)"
+      },
       "answer": "tractable",
-      "acceptedAlt": ["tratable"],
-      "hint": { "en": "Not intractable.", "es": "No intratable." },
-      "solution": [ { "tex": "\\text{tractable}", "en": "Tractable.", "es": "Tratable." } ]
+      "acceptedAlt": [
+        "tratable"
+      ],
+      "hint": {
+        "en": "Not intractable.",
+        "es": "No intratable."
+      },
+      "solution": [
+        {
+          "tex": "\\text{tractable}",
+          "en": "Tractable.",
+          "es": "Tratable."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)", "detail": { "en": "Ch. 1, the KR hypothesis", "es": "Cap. 1, la hipótesis de la KR" } }
+    {
+      "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)",
+      "detail": {
+        "en": "Ch. 1, the KR hypothesis",
+        "es": "Cap. 1, la hipótesis de la KR"
+      }
+    }
   ]
 }

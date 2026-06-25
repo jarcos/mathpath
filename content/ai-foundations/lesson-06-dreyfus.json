@@ -3,7 +3,10 @@
   "subjectId": "ai-foundations",
   "order": 6,
   "estimatedMinutes": 30,
-  "title": { "en": "Dreyfus & the Limits of Formalism", "es": "Dreyfus y los límites del formalismo" },
+  "title": {
+    "en": "Dreyfus & the Limits of Formalism",
+    "es": "Dreyfus y los límites del formalismo"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Dreyfus argued intelligence is embodied and that much knowledge is tacit (cannot be made explicit). His 1972 book targeted symbolic (GOFAI) AI, not connectionism.",
         "es": "Dreyfus argumentó que la inteligencia es encarnada y que mucho conocimiento es tácito (no puede hacerse explícito). Su libro de 1972 apuntó a la IA simbólica (GOFAI), no al conexionismo."
@@ -39,41 +45,152 @@
     {
       "id": "aif-06-e1",
       "answerType": "text",
-      "prompt": { "en": "Dreyfus stressed that intelligence is ___ (rooted in having a body). (one word)", "es": "Dreyfus subrayó que la inteligencia es ___ (arraigada en tener un cuerpo). (una palabra)" },
+      "prompt": {
+        "en": "Dreyfus stressed that intelligence is ___ (rooted in having a body). (one word)",
+        "es": "Dreyfus subrayó que la inteligencia es ___ (arraigada en tener un cuerpo). (una palabra)"
+      },
       "answer": "embodied",
-      "acceptedAlt": ["encarnada", "corporeizada"],
-      "hint": { "en": "Has a body.", "es": "Tiene un cuerpo." },
-      "solution": [ { "tex": "\\text{embodied}", "en": "Embodied.", "es": "Encarnada." } ]
+      "acceptedAlt": [
+        "encarnada",
+        "corporeizada"
+      ],
+      "hint": {
+        "en": "Has a body.",
+        "es": "Tiene un cuerpo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{embodied}",
+          "en": "Embodied.",
+          "es": "Encarnada."
+        }
+      ]
     },
     {
       "id": "aif-06-e2",
       "answerType": "text",
-      "prompt": { "en": "Knowledge we have but cannot state explicitly is ___ knowledge. (one word)", "es": "El conocimiento que tenemos pero no podemos enunciar es conocimiento ___. (una palabra)" },
+      "prompt": {
+        "en": "Knowledge we have but cannot state explicitly is ___ knowledge. (one word)",
+        "es": "El conocimiento que tenemos pero no podemos enunciar es conocimiento ___. (una palabra)"
+      },
       "answer": "tacit",
-      "acceptedAlt": ["tácito", "tacito"],
-      "hint": { "en": "Implicit, unspoken.", "es": "Implícito, no dicho." },
-      "solution": [ { "tex": "\\text{tacit}", "en": "Tacit.", "es": "Tácito." } ]
+      "acceptedAlt": [
+        "tácito",
+        "tacito"
+      ],
+      "hint": {
+        "en": "Implicit, unspoken.",
+        "es": "Implícito, no dicho."
+      },
+      "solution": [
+        {
+          "tex": "\\text{tacit}",
+          "en": "Tacit.",
+          "es": "Tácito."
+        }
+      ]
     },
     {
       "id": "aif-06-e3",
       "answerType": "text",
-      "prompt": { "en": "Dreyfus's critique mainly targeted ___ AI (the rule-based kind). (one word)", "es": "La crítica de Dreyfus apuntó sobre todo a la IA ___ (la basada en reglas). (una palabra)" },
+      "prompt": {
+        "en": "Dreyfus's critique mainly targeted ___ AI (the rule-based kind). (one word)",
+        "es": "La crítica de Dreyfus apuntó sobre todo a la IA ___ (la basada en reglas). (una palabra)"
+      },
       "answer": "symbolic",
-      "acceptedAlt": ["simbólica", "simbolica", "gofai"],
-      "hint": { "en": "GOFAI.", "es": "GOFAI." },
-      "solution": [ { "tex": "\\text{symbolic}", "en": "Symbolic.", "es": "Simbólica." } ]
+      "acceptedAlt": [
+        "simbólica",
+        "simbolica",
+        "gofai"
+      ],
+      "hint": {
+        "en": "GOFAI.",
+        "es": "GOFAI."
+      },
+      "solution": [
+        {
+          "tex": "\\text{symbolic}",
+          "en": "Symbolic.",
+          "es": "Simbólica."
+        }
+      ]
     },
     {
       "id": "aif-06-e4",
       "answerType": "number",
-      "prompt": { "en": "Year of Dreyfus's 'What Computers Can't Do'?", "es": "¿Año de 'What Computers Can't Do' de Dreyfus?" },
+      "prompt": {
+        "en": "Year of Dreyfus's 'What Computers Can't Do'?",
+        "es": "¿Año de 'What Computers Can't Do' de Dreyfus?"
+      },
       "answer": "1972",
       "acceptedAlt": [],
-      "hint": { "en": "Early 1970s.", "es": "Principios de los 70." },
-      "solution": [ { "tex": "1972", "en": "1972.", "es": "1972." } ]
+      "hint": {
+        "en": "Early 1970s.",
+        "es": "Principios de los 70."
+      },
+      "solution": [
+        {
+          "tex": "1972",
+          "en": "1972.",
+          "es": "1972."
+        }
+      ]
+    },
+    {
+      "id": "aif-06-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Dreyfus argued that much human expertise depends on...",
+        "es": "Dreyfus sostuvo que gran parte de la pericia humana depende de..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Embodied, intuitive know-how that resists explicit rules",
+            "es": "Saber-hacer intuitivo y corporeo que resiste a las reglas explicitas"
+          },
+          "correct": true,
+          "why": {
+            "en": "He drew on phenomenology: skilled coping isn't fully formalizable.",
+            "es": "Se baso en la fenomenologia: la destreza no es del todo formalizable."
+          }
+        },
+        {
+          "text": {
+            "en": "Having more memory than a computer",
+            "es": "Tener mas memoria que un ordenador"
+          },
+          "correct": false,
+          "why": {
+            "en": "His critique was about the nature of expertise, not memory size.",
+            "es": "Su critica era sobre la naturaleza de la pericia, no el tamano de memoria."
+          }
+        },
+        {
+          "text": {
+            "en": "Following logical rules very quickly",
+            "es": "Seguir reglas logicas muy rapido"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's exactly the formalist view he criticized.",
+            "es": "Esa es justo la vision formalista que criticaba."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Can all skill be written as rules?",
+        "es": "¿Puede toda destreza escribirse como reglas?"
+      }
     }
   ],
   "references": [
-    { "source": "Dreyfus — What Computers Can't Do (1972); What Computers Still Can't Do (1992)", "detail": { "en": "Embodiment critique of symbolic AI", "es": "Crítica de la encarnación a la IA simbólica" } }
+    {
+      "source": "Dreyfus — What Computers Can't Do (1972); What Computers Still Can't Do (1992)",
+      "detail": {
+        "en": "Embodiment critique of symbolic AI",
+        "es": "Crítica de la encarnación a la IA simbólica"
+      }
+    }
   ]
 }

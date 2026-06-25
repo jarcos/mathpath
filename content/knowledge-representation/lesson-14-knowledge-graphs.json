@@ -3,7 +3,10 @@
   "subjectId": "knowledge-representation",
   "order": 14,
   "estimatedMinutes": 35,
-  "title": { "en": "Knowledge Graphs", "es": "Grafos de conocimiento" },
+  "title": {
+    "en": "Knowledge Graphs",
+    "es": "Grafos de conocimiento"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "The fact (Einstein, bornIn, Ulm) is a triple — it has $3$ parts: subject, predicate, object. A graph storing $1000$ such facts has $1000$ edges.",
         "es": "El hecho (Einstein, nacióEn, Ulm) es una tripleta — tiene $3$ partes: sujeto, predicado, objeto. Un grafo que almacena $1000$ hechos así tiene $1000$ aristas."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# a knowledge graph is queryable triples\ntriples = [(\"Alice\", \"knows\", \"Bob\"), (\"Bob\", \"knows\", \"Carol\")]\nprint([o for s, p, o in triples if s == \"Bob\" and p == \"knows\"])",
+        "es": "# un grafo de conocimiento son tripletas consultables\ntriples = [(\"Alice\", \"knows\", \"Bob\"), (\"Bob\", \"knows\", \"Carol\")]\nprint([o for s, p, o in triples if s == \"Bob\" and p == \"knows\"])"
+      },
+      "expectedOutput": "['Carol']",
+      "caption": {
+        "en": "Knowledge graphs answer queries by matching triple patterns.",
+        "es": "Los grafos de conocimiento responden consultas casando patrones de tripletas."
       }
     }
   ],
@@ -39,42 +59,109 @@
     {
       "id": "kr-14-e1",
       "answerType": "number",
-      "prompt": { "en": "How many parts does an RDF triple have (subject, predicate, object)?", "es": "¿Cuántas partes tiene una tripleta RDF (sujeto, predicado, objeto)?" },
+      "prompt": {
+        "en": "How many parts does an RDF triple have (subject, predicate, object)?",
+        "es": "¿Cuántas partes tiene una tripleta RDF (sujeto, predicado, objeto)?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "Triple.", "es": "Tripleta." },
-      "solution": [ { "tex": "3", "en": "Three.", "es": "Tres." } ]
+      "hint": {
+        "en": "Triple.",
+        "es": "Tripleta."
+      },
+      "solution": [
+        {
+          "tex": "3",
+          "en": "Three.",
+          "es": "Tres."
+        }
+      ]
     },
     {
       "id": "kr-14-e2",
       "answerType": "text",
-      "prompt": { "en": "Knowledge-graph facts are stored as ___ (subject-predicate-object). (one word)", "es": "Los hechos de un grafo de conocimiento se guardan como ___ (sujeto-predicado-objeto). (una palabra)" },
+      "prompt": {
+        "en": "Knowledge-graph facts are stored as ___ (subject-predicate-object). (one word)",
+        "es": "Los hechos de un grafo de conocimiento se guardan como ___ (sujeto-predicado-objeto). (una palabra)"
+      },
       "answer": "triples",
-      "acceptedAlt": ["tripletas", "triple", "tripleta"],
-      "hint": { "en": "Three-part facts.", "es": "Hechos de tres partes." },
-      "solution": [ { "tex": "(s,p,o)", "en": "Triples.", "es": "Tripletas." } ]
+      "acceptedAlt": [
+        "tripletas",
+        "triple",
+        "tripleta"
+      ],
+      "hint": {
+        "en": "Three-part facts.",
+        "es": "Hechos de tres partes."
+      },
+      "solution": [
+        {
+          "tex": "(s,p,o)",
+          "en": "Triples.",
+          "es": "Tripletas."
+        }
+      ]
     },
     {
       "id": "kr-14-e3",
       "answerType": "text",
-      "prompt": { "en": "The query language for RDF knowledge graphs is ___. (one word)", "es": "El lenguaje de consulta para grafos RDF es ___. (una palabra)" },
+      "prompt": {
+        "en": "The query language for RDF knowledge graphs is ___. (one word)",
+        "es": "El lenguaje de consulta para grafos RDF es ___. (una palabra)"
+      },
       "answer": "sparql",
       "acceptedAlt": [],
-      "hint": { "en": "Like SQL for graphs.", "es": "Como SQL para grafos." },
-      "solution": [ { "tex": "\\text{SPARQL}", "en": "SPARQL.", "es": "SPARQL." } ]
+      "hint": {
+        "en": "Like SQL for graphs.",
+        "es": "Como SQL para grafos."
+      },
+      "solution": [
+        {
+          "tex": "\\text{SPARQL}",
+          "en": "SPARQL.",
+          "es": "SPARQL."
+        }
+      ]
     },
     {
       "id": "kr-14-e4",
       "answerType": "text",
-      "prompt": { "en": "Predicting missing edges via embeddings is link ___. (one word)", "es": "Predecir aristas faltantes mediante embeddings es ___ de enlaces. (una palabra)" },
+      "prompt": {
+        "en": "Predicting missing edges via embeddings is link ___. (one word)",
+        "es": "Predecir aristas faltantes mediante embeddings es ___ de enlaces. (una palabra)"
+      },
       "answer": "prediction",
-      "acceptedAlt": ["predicción", "prediccion"],
-      "hint": { "en": "Link ___.", "es": "Predicción de ___." },
-      "solution": [ { "tex": "\\text{link prediction}", "en": "Prediction.", "es": "Predicción." } ]
+      "acceptedAlt": [
+        "predicción",
+        "prediccion"
+      ],
+      "hint": {
+        "en": "Link ___.",
+        "es": "Predicción de ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{link prediction}",
+          "en": "Prediction.",
+          "es": "Predicción."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Hogan et al. — Knowledge Graphs (ACM Computing Surveys, 2021)", "detail": { "en": "RDF, triples, knowledge graphs", "es": "RDF, tripletas, grafos de conocimiento" } },
-    { "source": "Bordes et al. — Translating Embeddings for Modeling Multi-relational Data (TransE, 2013)", "detail": { "en": "Knowledge-graph embeddings", "es": "Embeddings de grafos de conocimiento" } }
+    {
+      "source": "Hogan et al. — Knowledge Graphs (ACM Computing Surveys, 2021)",
+      "detail": {
+        "en": "RDF, triples, knowledge graphs",
+        "es": "RDF, tripletas, grafos de conocimiento"
+      }
+    },
+    {
+      "source": "Bordes et al. — Translating Embeddings for Modeling Multi-relational Data (TransE, 2013)",
+      "detail": {
+        "en": "Knowledge-graph embeddings",
+        "es": "Embeddings de grafos de conocimiento"
+      }
+    }
   ]
 }

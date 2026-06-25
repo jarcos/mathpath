@@ -3,7 +3,10 @@
   "subjectId": "computer-vision",
   "order": 3,
   "estimatedMinutes": 35,
-  "title": { "en": "Image Filtering & Convolution", "es": "Filtrado de imágenes y convolución" },
+  "title": {
+    "en": "Image Filtering & Convolution",
+    "es": "Filtrado de imágenes y convolución"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A $3\\times 3$ box-blur kernel has $9$ entries each $\\tfrac{1}{9}$, summing to $9\\cdot\\tfrac{1}{9} = 1$. Averaging the patch $[10, 20, 30]$ with weights $\\tfrac{1}{3}$ each gives $\\tfrac{10+20+30}{3} = 20$.",
         "es": "Un kernel de desenfoque de caja $3\\times 3$ tiene $9$ entradas cada una $\\tfrac{1}{9}$, sumando $9\\cdot\\tfrac{1}{9} = 1$. Promediar el parche $[10, 20, 30]$ con pesos $\\tfrac{1}{3}$ cada uno da $\\tfrac{10+20+30}{3} = 20$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nimg = np.array([[10, 10, 10],\n                [10, 50, 10],\n                [10, 10, 10]])\nkernel = np.array([[0, -1, 0],\n                   [-1, 4, -1],\n                   [0, -1, 0]])   # Laplacian edge detector\n# apply the kernel at the center pixel\nprint(int((img * kernel).sum()))",
+        "es": "import numpy as np\nimg = np.array([[10, 10, 10],\n                [10, 50, 10],\n                [10, 10, 10]])\nkernel = np.array([[0, -1, 0],\n                   [-1, 4, -1],\n                   [0, -1, 0]])   # detector de bordes laplaciano\n# aplica el núcleo en el píxel central\nprint(int((img * kernel).sum()))"
+      },
+      "expectedOutput": "160",
+      "caption": {
+        "en": "Convolving with a Laplacian kernel responds strongly where intensity changes — an edge.",
+        "es": "Convolucionar con un núcleo laplaciano responde con fuerza donde cambia la intensidad — un borde."
       }
     }
   ],
@@ -39,41 +61,105 @@
     {
       "id": "cv-03-e1",
       "answerType": "number",
-      "prompt": { "en": "Sum of a $3\\times 3$ box-blur kernel ($9$ entries of $1/9$): $9\\cdot\\frac{1}{9}$?", "es": "Suma de un kernel box-blur $3\\times 3$ ($9$ entradas de $1/9$): $9\\cdot\\frac{1}{9}$?" },
+      "prompt": {
+        "en": "Sum of a $3\\times 3$ box-blur kernel ($9$ entries of $1/9$): $9\\cdot\\frac{1}{9}$?",
+        "es": "Suma de un kernel box-blur $3\\times 3$ ($9$ entradas de $1/9$): $9\\cdot\\frac{1}{9}$?"
+      },
       "answer": "1",
-      "acceptedAlt": ["9*(1/9)"],
-      "hint": { "en": "9 × 1/9.", "es": "9 × 1/9." },
-      "solution": [ { "tex": "9\\cdot\\frac{1}{9} = 1", "en": "One.", "es": "Uno." } ]
+      "acceptedAlt": [
+        "9*(1/9)"
+      ],
+      "hint": {
+        "en": "9 × 1/9.",
+        "es": "9 × 1/9."
+      },
+      "solution": [
+        {
+          "tex": "9\\cdot\\frac{1}{9} = 1",
+          "en": "One.",
+          "es": "Uno."
+        }
+      ]
     },
     {
       "id": "cv-03-e2",
       "answerType": "number",
-      "prompt": { "en": "Average (blur) of $[10,20,30]$: $\\frac{10+20+30}{3}$?", "es": "Promedio (blur) de $[10,20,30]$: $\\frac{10+20+30}{3}$?" },
+      "prompt": {
+        "en": "Average (blur) of $[10,20,30]$: $\\frac{10+20+30}{3}$?",
+        "es": "Promedio (blur) de $[10,20,30]$: $\\frac{10+20+30}{3}$?"
+      },
       "answer": "20",
-      "acceptedAlt": ["(10+20+30)/3", "mean([10,20,30])"],
-      "hint": { "en": "60 / 3.", "es": "60 / 3." },
-      "solution": [ { "tex": "60/3 = 20", "en": "20.", "es": "20." } ]
+      "acceptedAlt": [
+        "(10+20+30)/3",
+        "mean([10,20,30])"
+      ],
+      "hint": {
+        "en": "60 / 3.",
+        "es": "60 / 3."
+      },
+      "solution": [
+        {
+          "tex": "60/3 = 20",
+          "en": "20.",
+          "es": "20."
+        }
+      ]
     },
     {
       "id": "cv-03-e3",
       "answerType": "text",
-      "prompt": { "en": "Blurring keeps slow variation and removes fine detail: it is a ___-pass filter. (one word)", "es": "El desenfoque conserva variación lenta y quita detalle fino: es un filtro paso-___. (una palabra)" },
+      "prompt": {
+        "en": "Blurring keeps slow variation and removes fine detail: it is a ___-pass filter. (one word)",
+        "es": "El desenfoque conserva variación lenta y quita detalle fino: es un filtro paso-___. (una palabra)"
+      },
       "answer": "low",
-      "acceptedAlt": ["bajo"],
-      "hint": { "en": "Low or high?", "es": "¿Bajo o alto?" },
-      "solution": [ { "tex": "\\text{low-pass}", "en": "Low.", "es": "Bajo." } ]
+      "acceptedAlt": [
+        "bajo"
+      ],
+      "hint": {
+        "en": "Low or high?",
+        "es": "¿Bajo o alto?"
+      },
+      "solution": [
+        {
+          "tex": "\\text{low-pass}",
+          "en": "Low.",
+          "es": "Bajo."
+        }
+      ]
     },
     {
       "id": "cv-03-e4",
       "answerType": "text",
-      "prompt": { "en": "Sliding a kernel and summing weighted neighborhoods is ___. (one word)", "es": "Deslizar un kernel y sumar vecindarios ponderados es ___. (una palabra)" },
+      "prompt": {
+        "en": "Sliding a kernel and summing weighted neighborhoods is ___. (one word)",
+        "es": "Deslizar un kernel y sumar vecindarios ponderados es ___. (una palabra)"
+      },
       "answer": "convolution",
-      "acceptedAlt": ["convolución", "convolucion"],
-      "hint": { "en": "Same as in CNNs.", "es": "Igual que en las CNN." },
-      "solution": [ { "tex": "*", "en": "Convolution.", "es": "Convolución." } ]
+      "acceptedAlt": [
+        "convolución",
+        "convolucion"
+      ],
+      "hint": {
+        "en": "Same as in CNNs.",
+        "es": "Igual que en las CNN."
+      },
+      "solution": [
+        {
+          "tex": "*",
+          "en": "Convolution.",
+          "es": "Convolución."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Szeliski — Computer Vision: Algorithms and Applications", "detail": { "en": "Ch. 3, image processing and filtering", "es": "Cap. 3, procesamiento y filtrado de imágenes" } }
+    {
+      "source": "Szeliski — Computer Vision: Algorithms and Applications",
+      "detail": {
+        "en": "Ch. 3, image processing and filtering",
+        "es": "Cap. 3, procesamiento y filtrado de imágenes"
+      }
+    }
   ]
 }

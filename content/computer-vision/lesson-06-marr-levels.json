@@ -3,7 +3,10 @@
   "subjectId": "computer-vision",
   "order": 6,
   "estimatedMinutes": 30,
-  "title": { "en": "Marr's Levels of Analysis", "es": "Los niveles de análisis de Marr" },
+  "title": {
+    "en": "Marr's Levels of Analysis",
+    "es": "Los niveles de análisis de Marr"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Marr defined $3$ levels of analysis. The level describing the representations and procedures (not the goal, not the hardware) is the algorithmic level.",
         "es": "Marr definió $3$ niveles de análisis. El nivel que describe las representaciones y procedimientos (no el objetivo, no el hardware) es el nivel algorítmico."
@@ -39,41 +45,150 @@
     {
       "id": "cv-06-e1",
       "answerType": "number",
-      "prompt": { "en": "How many levels of analysis did Marr propose?", "es": "¿Cuántos niveles de análisis propuso Marr?" },
+      "prompt": {
+        "en": "How many levels of analysis did Marr propose?",
+        "es": "¿Cuántos niveles de análisis propuso Marr?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "Computational, algorithmic, implementational.", "es": "Computacional, algorítmico, implementación." },
-      "solution": [ { "tex": "3", "en": "Three.", "es": "Tres." } ]
+      "hint": {
+        "en": "Computational, algorithmic, implementational.",
+        "es": "Computacional, algorítmico, implementación."
+      },
+      "solution": [
+        {
+          "tex": "3",
+          "en": "Three.",
+          "es": "Tres."
+        }
+      ]
     },
     {
       "id": "cv-06-e2",
       "answerType": "text",
-      "prompt": { "en": "The level describing WHAT problem is solved and WHY is the ___ level. (one word)", "es": "El nivel que describe QUÉ problema se resuelve y POR QUÉ es el nivel ___. (una palabra)" },
+      "prompt": {
+        "en": "The level describing WHAT problem is solved and WHY is the ___ level. (one word)",
+        "es": "El nivel que describe QUÉ problema se resuelve y POR QUÉ es el nivel ___. (una palabra)"
+      },
       "answer": "computational",
-      "acceptedAlt": ["computacional"],
-      "hint": { "en": "Goal level.", "es": "Nivel de objetivo." },
-      "solution": [ { "tex": "\\text{computational}", "en": "Computational.", "es": "Computacional." } ]
+      "acceptedAlt": [
+        "computacional"
+      ],
+      "hint": {
+        "en": "Goal level.",
+        "es": "Nivel de objetivo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{computational}",
+          "en": "Computational.",
+          "es": "Computacional."
+        }
+      ]
     },
     {
       "id": "cv-06-e3",
       "answerType": "text",
-      "prompt": { "en": "Marr's first representation, capturing edges and blobs, is the primal ___. (one word)", "es": "La primera representación de Marr, que capta bordes y manchas, es el ___ primario. (una palabra)" },
+      "prompt": {
+        "en": "Marr's first representation, capturing edges and blobs, is the primal ___. (one word)",
+        "es": "La primera representación de Marr, que capta bordes y manchas, es el ___ primario. (una palabra)"
+      },
       "answer": "sketch",
-      "acceptedAlt": ["esbozo", "boceto"],
-      "hint": { "en": "Primal ___.", "es": "Esbozo ___." },
-      "solution": [ { "tex": "\\text{primal sketch}", "en": "Sketch.", "es": "Esbozo." } ]
+      "acceptedAlt": [
+        "esbozo",
+        "boceto"
+      ],
+      "hint": {
+        "en": "Primal ___.",
+        "es": "Esbozo ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{primal sketch}",
+          "en": "Sketch.",
+          "es": "Esbozo."
+        }
+      ]
     },
     {
       "id": "cv-06-e4",
       "answerType": "text",
-      "prompt": { "en": "The viewer-centered representation with depth is the ___-D sketch. (number-word)", "es": "La representación centrada en el observador con profundidad es el esbozo ___-D. (número)" },
+      "prompt": {
+        "en": "The viewer-centered representation with depth is the ___-D sketch. (number-word)",
+        "es": "La representación centrada en el observador con profundidad es el esbozo ___-D. (número)"
+      },
       "answer": "2.5",
-      "acceptedAlt": ["2.5-D", "2,5"],
-      "hint": { "en": "Between 2 and 3.", "es": "Entre 2 y 3." },
-      "solution": [ { "tex": "2.5\\text{-D}", "en": "2.5-D.", "es": "2.5-D." } ]
+      "acceptedAlt": [
+        "2.5-D",
+        "2,5"
+      ],
+      "hint": {
+        "en": "Between 2 and 3.",
+        "es": "Entre 2 y 3."
+      },
+      "solution": [
+        {
+          "tex": "2.5\\text{-D}",
+          "en": "2.5-D.",
+          "es": "2.5-D."
+        }
+      ]
+    },
+    {
+      "id": "cv-06-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Marr's three levels of analysis are computational, algorithmic, and...",
+        "es": "Los tres niveles de analisis de Marr son computacional, algoritmico y..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Implementational (hardware)",
+            "es": "De implementacion (hardware)"
+          },
+          "correct": true,
+          "why": {
+            "en": "Marr separated what is computed, how (algorithm/representation), and the physical realization.",
+            "es": "Marr separo que se computa, como (algoritmo/representacion) y la realizacion fisica."
+          }
+        },
+        {
+          "text": {
+            "en": "Statistical",
+            "es": "Estadistico"
+          },
+          "correct": false,
+          "why": {
+            "en": "Statistics isn't one of Marr's three levels.",
+            "es": "La estadistica no es uno de los tres niveles de Marr."
+          }
+        },
+        {
+          "text": {
+            "en": "Biological",
+            "es": "Biologico"
+          },
+          "correct": false,
+          "why": {
+            "en": "The third level is implementational/hardware, not 'biological' specifically.",
+            "es": "El tercer nivel es de implementacion/hardware, no 'biologico' en concreto."
+          }
+        }
+      ],
+      "hint": {
+        "en": "What / how / on what physical substrate.",
+        "es": "Que / como / en que sustrato fisico."
+      }
     }
   ],
   "references": [
-    { "source": "Marr — Vision (1982)", "detail": { "en": "Three levels; primal/2.5-D/3-D sketches", "es": "Tres niveles; esbozos primario/2.5-D/3-D" } }
+    {
+      "source": "Marr — Vision (1982)",
+      "detail": {
+        "en": "Three levels; primal/2.5-D/3-D sketches",
+        "es": "Tres niveles; esbozos primario/2.5-D/3-D"
+      }
+    }
   ]
 }

@@ -3,13 +3,26 @@
   "subjectId": "reinforcement-learning",
   "order": 6,
   "estimatedMinutes": 35,
-  "title": { "en": "Dynamic Programming", "es": "Programación dinámica" },
+  "title": {
+    "en": "Dynamic Programming",
+    "es": "Programación dinámica"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "When the MDP is fully known (we have $P$ and $R$), **dynamic programming (DP)** solves it exactly by repeatedly applying the Bellman equation. **Policy evaluation** computes $V^\\pi$ for a fixed policy by sweeping through states and updating each value from its successors until they stop changing (convergence).",
         "es": "Cuando el MDP se conoce por completo (tenemos $P$ y $R$), la **programación dinámica (DP)** lo resuelve exactamente aplicando repetidamente la ecuación de Bellman. La **evaluación de política** calcula $V^\\pi$ para una política fija recorriendo los estados y actualizando cada valor a partir de sus sucesores hasta que dejan de cambiar (convergencia)."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "rl-05-bellman"
+      ],
+      "note": {
+        "en": "DP applies the Bellman equations iteratively.",
+        "es": "La PD aplica las ecuaciones de Bellman iterativamente."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A one-step value update with reward $3$, $\\gamma=0.8$, and successor value $5$: $V \\leftarrow 3 + 0.8\\cdot 5 = 3 + 4 = 7$. Improvement then picks, in each state, the action with the highest resulting value.",
         "es": "Una actualización de valor de un paso con recompensa $3$, $\\gamma=0.8$ y valor sucesor $5$: $V \\leftarrow 3 + 0.8\\cdot 5 = 3 + 4 = 7$. La mejora elige luego, en cada estado, la acción con el mayor valor resultante."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# value iteration: repeatedly apply the Bellman update until it converges\ngamma = 0.9\nR = np.array([0, 1])          # rewards for two states\nV = np.zeros(2)\nfor _ in range(3):\n    V = R + gamma * V[[1, 1]]   # both states transition to state 1\nprint(np.round(V, 4).tolist())",
+        "es": "import numpy as np\n# iteracion de valor: aplica repetidamente la actualizacion de Bellman hasta converger\ngamma = 0.9\nR = np.array([0, 1])          # recompensas de dos estados\nV = np.zeros(2)\nfor _ in range(3):\n    V = R + gamma * V[[1, 1]]   # ambos estados transitan al estado 1\nprint(np.round(V, 4).tolist())"
+      },
+      "expectedOutput": "[1.71, 2.71]",
+      "caption": {
+        "en": "Dynamic programming solves an MDP by iterating Bellman.",
+        "es": "La programacion dinamica resuelve un MDP iterando Bellman."
       }
     }
   ],
@@ -39,41 +71,105 @@
     {
       "id": "rl-06-e1",
       "answerType": "number",
-      "prompt": { "en": "Value update $3 + 0.8\\cdot 5$?", "es": "Actualización de valor $3 + 0.8\\cdot 5$?" },
+      "prompt": {
+        "en": "Value update $3 + 0.8\\cdot 5$?",
+        "es": "Actualización de valor $3 + 0.8\\cdot 5$?"
+      },
       "answer": "7",
-      "acceptedAlt": ["3+0.8*5"],
-      "hint": { "en": "3 + 4.", "es": "3 + 4." },
-      "solution": [ { "tex": "3+4 = 7", "en": "Seven.", "es": "Siete." } ]
+      "acceptedAlt": [
+        "3+0.8*5"
+      ],
+      "hint": {
+        "en": "3 + 4.",
+        "es": "3 + 4."
+      },
+      "solution": [
+        {
+          "tex": "3+4 = 7",
+          "en": "Seven.",
+          "es": "Siete."
+        }
+      ]
     },
     {
       "id": "rl-06-e2",
       "answerType": "text",
-      "prompt": { "en": "Computing $V^\\pi$ for a fixed policy is policy ___. (one word)", "es": "Calcular $V^\\pi$ para una política fija es ___ de política. (una palabra)" },
+      "prompt": {
+        "en": "Computing $V^\\pi$ for a fixed policy is policy ___. (one word)",
+        "es": "Calcular $V^\\pi$ para una política fija es ___ de política. (una palabra)"
+      },
       "answer": "evaluation",
-      "acceptedAlt": ["evaluación", "evaluacion"],
-      "hint": { "en": "Evaluate the policy.", "es": "Evaluar la política." },
-      "solution": [ { "tex": "V^\\pi", "en": "Evaluation.", "es": "Evaluación." } ]
+      "acceptedAlt": [
+        "evaluación",
+        "evaluacion"
+      ],
+      "hint": {
+        "en": "Evaluate the policy.",
+        "es": "Evaluar la política."
+      },
+      "solution": [
+        {
+          "tex": "V^\\pi",
+          "en": "Evaluation.",
+          "es": "Evaluación."
+        }
+      ]
     },
     {
       "id": "rl-06-e3",
       "answerType": "text",
-      "prompt": { "en": "DP requires a ___ of the environment (transition + reward). (one word)", "es": "La DP requiere un ___ del entorno (transición + recompensa). (una palabra)" },
+      "prompt": {
+        "en": "DP requires a ___ of the environment (transition + reward). (one word)",
+        "es": "La DP requiere un ___ del entorno (transición + recompensa). (una palabra)"
+      },
       "answer": "model",
-      "acceptedAlt": ["modelo"],
-      "hint": { "en": "P and R known.", "es": "P y R conocidos." },
-      "solution": [ { "tex": "P, R", "en": "Model.", "es": "Modelo." } ]
+      "acceptedAlt": [
+        "modelo"
+      ],
+      "hint": {
+        "en": "P and R known.",
+        "es": "P y R conocidos."
+      },
+      "solution": [
+        {
+          "tex": "P, R",
+          "en": "Model.",
+          "es": "Modelo."
+        }
+      ]
     },
     {
       "id": "rl-06-e4",
       "answerType": "text",
-      "prompt": { "en": "Alternating evaluation and greedy improvement is policy ___. (one word)", "es": "Alternar evaluación y mejora voraz es ___ de política. (una palabra)" },
+      "prompt": {
+        "en": "Alternating evaluation and greedy improvement is policy ___. (one word)",
+        "es": "Alternar evaluación y mejora voraz es ___ de política. (una palabra)"
+      },
       "answer": "iteration",
-      "acceptedAlt": ["iteración", "iteracion"],
-      "hint": { "en": "Repeat the cycle.", "es": "Repetir el ciclo." },
-      "solution": [ { "tex": "\\text{policy iteration}", "en": "Iteration.", "es": "Iteración." } ]
+      "acceptedAlt": [
+        "iteración",
+        "iteracion"
+      ],
+      "hint": {
+        "en": "Repeat the cycle.",
+        "es": "Repetir el ciclo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{policy iteration}",
+          "en": "Iteration.",
+          "es": "Iteración."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 4, dynamic programming", "es": "Cap. 4, programación dinámica" } }
+    {
+      "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)",
+      "detail": {
+        "en": "Ch. 4, dynamic programming",
+        "es": "Cap. 4, programación dinámica"
+      }
+    }
   ]
 }

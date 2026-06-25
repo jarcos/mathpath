@@ -3,7 +3,10 @@
   "subjectId": "ml-foundations",
   "order": 4,
   "estimatedMinutes": 40,
-  "title": { "en": "Loss Functions", "es": "Funciones de pérdida" },
+  "title": {
+    "en": "Loss Functions",
+    "es": "Funciones de pérdida"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A model predicts $\\hat{y} = 5$ when the target is $y = 3$. Squared error: $(5-3)^2 = 4$. Absolute error: $|5-3| = 2$. If a prediction equals the target, the squared error is $0$ — a perfect fit on that point.",
         "es": "Un modelo predice $\\hat{y} = 5$ cuando el objetivo es $y = 3$. Error cuadrático: $(5-3)^2 = 4$. Error absoluto: $|5-3| = 2$. Si una predicción coincide con el objetivo, el error cuadrático es $0$ — ajuste perfecto en ese punto."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# mean squared error: average of squared mistakes\ny = np.array([1, 2, 3])\nyhat = np.array([1.1, 1.9, 3.2])\nprint(round(float(np.mean((y - yhat)**2)), 4))",
+        "es": "import numpy as np\n# error cuadratico medio: media de los errores al cuadrado\ny = np.array([1, 2, 3])\nyhat = np.array([1.1, 1.9, 3.2])\nprint(round(float(np.mean((y - yhat)**2)), 4))"
+      },
+      "expectedOutput": "0.02",
+      "caption": {
+        "en": "Loss measures how wrong the model is; training minimizes it.",
+        "es": "La perdida mide cuanto se equivoca el modelo; entrenar la minimiza."
       }
     }
   ],
@@ -39,42 +61,168 @@
     {
       "id": "mlf-04-e1",
       "answerType": "number",
-      "prompt": { "en": "Squared error for prediction $\\hat{y}=5$, target $y=3$: $(\\hat{y}-y)^2$?", "es": "Error cuadrático para predicción $\\hat{y}=5$, objetivo $y=3$: $(\\hat{y}-y)^2$?" },
+      "prompt": {
+        "en": "Squared error for prediction $\\hat{y}=5$, target $y=3$: $(\\hat{y}-y)^2$?",
+        "es": "Error cuadrático para predicción $\\hat{y}=5$, objetivo $y=3$: $(\\hat{y}-y)^2$?"
+      },
       "answer": "4",
-      "acceptedAlt": ["(5-3)^2"],
-      "hint": { "en": "(5−3)².", "es": "(5−3)²." },
-      "solution": [ { "tex": "(5-3)^2 = 4", "en": "Squared error.", "es": "Error cuadrático." } ]
+      "acceptedAlt": [
+        "(5-3)^2"
+      ],
+      "hint": {
+        "en": "(5−3)².",
+        "es": "(5−3)²."
+      },
+      "solution": [
+        {
+          "tex": "(5-3)^2 = 4",
+          "en": "Squared error.",
+          "es": "Error cuadrático."
+        }
+      ]
     },
     {
       "id": "mlf-04-e2",
       "answerType": "number",
-      "prompt": { "en": "Absolute error for prediction $5$, target $8$: $|\\hat{y}-y|$?", "es": "Error absoluto para predicción $5$, objetivo $8$: $|\\hat{y}-y|$?" },
+      "prompt": {
+        "en": "Absolute error for prediction $5$, target $8$: $|\\hat{y}-y|$?",
+        "es": "Error absoluto para predicción $5$, objetivo $8$: $|\\hat{y}-y|$?"
+      },
       "answer": "3",
-      "acceptedAlt": ["abs(5-8)"],
-      "hint": { "en": "|5−8|.", "es": "|5−8|." },
-      "solution": [ { "tex": "|5-8| = 3", "en": "Absolute error.", "es": "Error absoluto." } ]
+      "acceptedAlt": [
+        "abs(5-8)"
+      ],
+      "hint": {
+        "en": "|5−8|.",
+        "es": "|5−8|."
+      },
+      "solution": [
+        {
+          "tex": "|5-8| = 3",
+          "en": "Absolute error.",
+          "es": "Error absoluto."
+        }
+      ]
     },
     {
       "id": "mlf-04-e3",
       "answerType": "number",
-      "prompt": { "en": "If the squared error is 0 and the target is 7, what was the prediction?", "es": "Si el error cuadrático es 0 y el objetivo es 7, ¿cuál fue la predicción?" },
+      "prompt": {
+        "en": "If the squared error is 0 and the target is 7, what was the prediction?",
+        "es": "Si el error cuadrático es 0 y el objetivo es 7, ¿cuál fue la predicción?"
+      },
       "answer": "7",
       "acceptedAlt": [],
-      "hint": { "en": "Zero error means a perfect match.", "es": "Error cero significa coincidencia perfecta." },
-      "solution": [ { "tex": "(\\hat{y}-7)^2 = 0 \\Rightarrow \\hat{y}=7", "en": "Prediction equals target.", "es": "Predicción igual al objetivo." } ]
+      "hint": {
+        "en": "Zero error means a perfect match.",
+        "es": "Error cero significa coincidencia perfecta."
+      },
+      "solution": [
+        {
+          "tex": "(\\hat{y}-7)^2 = 0 \\Rightarrow \\hat{y}=7",
+          "en": "Prediction equals target.",
+          "es": "Predicción igual al objetivo."
+        }
+      ]
     },
     {
       "id": "mlf-04-e4",
       "answerType": "text",
-      "prompt": { "en": "A loss function measures the ___ between prediction and target. (one word)", "es": "Una función de pérdida mide el ___ entre la predicción y el objetivo. (una palabra)" },
+      "prompt": {
+        "en": "A loss function measures the ___ between prediction and target. (one word)",
+        "es": "Una función de pérdida mide el ___ entre la predicción y el objetivo. (una palabra)"
+      },
       "answer": "error",
-      "acceptedAlt": ["error"],
-      "hint": { "en": "How wrong we are.", "es": "Cuán equivocados estamos." },
-      "solution": [ { "tex": "L(\\hat{y}, y)", "en": "The error.", "es": "El error." } ]
+      "acceptedAlt": [
+        "error"
+      ],
+      "hint": {
+        "en": "How wrong we are.",
+        "es": "Cuán equivocados estamos."
+      },
+      "solution": [
+        {
+          "tex": "L(\\hat{y}, y)",
+          "en": "The error.",
+          "es": "El error."
+        }
+      ]
+    },
+    {
+      "id": "mlf-04-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `mse(y, yhat)` = mean of (y[i]-yhat[i])^2.",
+        "es": "Completa `mse(y, yhat)` = media de (y[i]-yhat[i])^2."
+      },
+      "funcName": "mse",
+      "starter": {
+        "en": "def mse(y, yhat):\n    # mean of squared errors\n    pass",
+        "es": "def mse(y, yhat):\n    # media de los errores al cuadrado\n    pass"
+      },
+      "solution": "def mse(y, yhat):\n    return sum((a - b)**2 for a, b in zip(y, yhat)) / len(y)",
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": 0.0
+        },
+        {
+          "args": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "expected": 5.0
+        },
+        {
+          "args": [
+            [
+              1
+            ],
+            [
+              3
+            ]
+          ],
+          "expected": 4.0
+        }
+      ],
+      "hint": {
+        "en": "zip, square the differences, average.",
+        "es": "zip, eleva al cuadrado las diferencias, promedia."
+      }
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, cost functions; MSE and cross-entropy", "es": "Cap. 5, funciones de coste; MSE y entropía cruzada" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Loss and empirical risk", "es": "Pérdida y riesgo empírico" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, cost functions; MSE and cross-entropy",
+        "es": "Cap. 5, funciones de coste; MSE y entropía cruzada"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Loss and empirical risk",
+        "es": "Pérdida y riesgo empírico"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "statistics",
   "order": 11,
   "estimatedMinutes": 35,
-  "title": { "en": "The Poisson Distribution", "es": "La distribución de Poisson" },
+  "title": {
+    "en": "The Poisson Distribution",
+    "es": "La distribución de Poisson"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A counter averages $\\lambda = 4$ events per minute. Its mean is $4$ and its variance is also $4$. For $\\lambda = 2$, the probability of zero events in an interval is $P(0) = e^{-2} \\approx 0.135$.",
         "es": "Un contador promedia $\\lambda = 4$ sucesos por minuto. Su media es $4$ y su varianza también $4$. Para $\\lambda = 2$, la probabilidad de cero sucesos en un intervalo es $P(0) = e^{-2} \\approx 0.135$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "import math\n# Poisson pmf: P(k events) when the average rate is lambda\nlam, k = 3, 2\nprint(round(math.exp(-lam) * lam**k / math.factorial(k), 4))",
+        "es": "import math\n# pmf de Poisson: P(k eventos) cuando la tasa media es lambda\nlam, k = 3, 2\nprint(round(math.exp(-lam) * lam**k / math.factorial(k), 4))"
+      },
+      "expectedOutput": "0.224",
+      "caption": {
+        "en": "With lambda = 3, two events has probability about 0.224.",
+        "es": "Con lambda = 3, dos eventos tienen probabilidad de unos 0,224."
       }
     }
   ],
@@ -39,42 +59,149 @@
     {
       "id": "stats-11-e1",
       "answerType": "number",
-      "prompt": { "en": "A Poisson distribution has $\\lambda = 4$. What is its mean?", "es": "Una Poisson tiene $\\lambda = 4$. ¿Cuál es su media?" },
+      "prompt": {
+        "en": "A Poisson distribution has $\\lambda = 4$. What is its mean?",
+        "es": "Una Poisson tiene $\\lambda = 4$. ¿Cuál es su media?"
+      },
       "answer": "4",
       "acceptedAlt": [],
-      "hint": { "en": "Mean equals λ.", "es": "La media es λ." },
-      "solution": [ { "tex": "E[X] = \\lambda = 4", "en": "Mean.", "es": "Media." } ]
+      "hint": {
+        "en": "Mean equals λ.",
+        "es": "La media es λ."
+      },
+      "solution": [
+        {
+          "tex": "E[X] = \\lambda = 4",
+          "en": "Mean.",
+          "es": "Media."
+        }
+      ]
     },
     {
       "id": "stats-11-e2",
       "answerType": "number",
-      "prompt": { "en": "For a Poisson with $\\lambda = 4$, what is the variance?", "es": "Para una Poisson con $\\lambda = 4$, ¿cuál es la varianza?" },
+      "prompt": {
+        "en": "For a Poisson with $\\lambda = 4$, what is the variance?",
+        "es": "Para una Poisson con $\\lambda = 4$, ¿cuál es la varianza?"
+      },
       "answer": "4",
       "acceptedAlt": [],
-      "hint": { "en": "Variance equals λ too.", "es": "La varianza también es λ." },
-      "solution": [ { "tex": "\\text{Var}(X) = \\lambda = 4", "en": "Variance.", "es": "Varianza." } ]
+      "hint": {
+        "en": "Variance equals λ too.",
+        "es": "La varianza también es λ."
+      },
+      "solution": [
+        {
+          "tex": "\\text{Var}(X) = \\lambda = 4",
+          "en": "Variance.",
+          "es": "Varianza."
+        }
+      ]
     },
     {
       "id": "stats-11-e3",
       "answerType": "number",
-      "prompt": { "en": "For a Poisson with $\\lambda = 2$, find $P(0) = e^{-\\lambda}$.", "es": "Para una Poisson con $\\lambda = 2$, halla $P(0) = e^{-\\lambda}$." },
+      "prompt": {
+        "en": "For a Poisson with $\\lambda = 2$, find $P(0) = e^{-\\lambda}$.",
+        "es": "Para una Poisson con $\\lambda = 2$, halla $P(0) = e^{-\\lambda}$."
+      },
       "answer": "e^(-2)",
-      "acceptedAlt": ["exp(-2)"],
-      "hint": { "en": "e to the minus lambda.", "es": "e elevado a menos lambda." },
-      "solution": [ { "tex": "P(0) = e^{-2} \\approx 0.135", "en": "Zero events.", "es": "Cero sucesos." } ]
+      "acceptedAlt": [
+        "exp(-2)"
+      ],
+      "hint": {
+        "en": "e to the minus lambda.",
+        "es": "e elevado a menos lambda."
+      },
+      "solution": [
+        {
+          "tex": "P(0) = e^{-2} \\approx 0.135",
+          "en": "Zero events.",
+          "es": "Cero sucesos."
+        }
+      ]
     },
     {
       "id": "stats-11-e4",
       "answerType": "number",
-      "prompt": { "en": "For a Poisson with $\\lambda = 3$, what is the variance?", "es": "Para una Poisson con $\\lambda = 3$, ¿cuál es la varianza?" },
+      "prompt": {
+        "en": "For a Poisson with $\\lambda = 3$, what is the variance?",
+        "es": "Para una Poisson con $\\lambda = 3$, ¿cuál es la varianza?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "Mean and variance both equal λ.", "es": "Media y varianza son ambas λ." },
-      "solution": [ { "tex": "\\text{Var}(X) = 3", "en": "Equals λ.", "es": "Igual a λ." } ]
+      "hint": {
+        "en": "Mean and variance both equal λ.",
+        "es": "Media y varianza son ambas λ."
+      },
+      "solution": [
+        {
+          "tex": "\\text{Var}(X) = 3",
+          "en": "Equals λ.",
+          "es": "Igual a λ."
+        }
+      ]
+    },
+    {
+      "id": "stats-11-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `poisson_pmf(lam, k)` = e^(-lam) * lam^k / k!.",
+        "es": "Completa `poisson_pmf(lam, k)` = e^(-lam) * lam^k / k!."
+      },
+      "funcName": "poisson_pmf",
+      "starter": {
+        "en": "import math\ndef poisson_pmf(lam, k):\n    # e**(-lam) * lam**k / k!\n    pass",
+        "es": "import math\ndef poisson_pmf(lam, k):\n    # e**(-lam) * lam**k / k!\n    pass"
+      },
+      "solution": "import math\ndef poisson_pmf(lam, k):\n    return math.exp(-lam) * lam**k / math.factorial(k)",
+      "tests": [
+        {
+          "args": [
+            3,
+            2
+          ],
+          "expected": 0.224,
+          "tol": 0.001
+        },
+        {
+          "args": [
+            2,
+            0
+          ],
+          "expected": 0.1353,
+          "tol": 0.001
+        },
+        {
+          "args": [
+            1,
+            1
+          ],
+          "expected": 0.3679,
+          "tol": 0.001
+        }
+      ],
+      "hint": {
+        "en": "math.exp, ** and math.factorial.",
+        "es": "math.exp, ** y math.factorial."
+      }
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Common distributions: Poisson", "es": "Distribuciones comunes: Poisson" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, common probability distributions", "es": "Cap. 3, distribuciones de probabilidad comunes" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Common distributions: Poisson",
+        "es": "Distribuciones comunes: Poisson"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 3, common probability distributions",
+        "es": "Cap. 3, distribuciones de probabilidad comunes"
+      }
+    }
   ]
 }

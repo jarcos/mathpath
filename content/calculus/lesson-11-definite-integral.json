@@ -3,13 +3,26 @@
   "subjectId": "calculus",
   "order": 11,
   "estimatedMinutes": 45,
-  "title": { "en": "The Definite Integral & Area", "es": "La integral definida y el área" },
+  "title": {
+    "en": "The Definite Integral & Area",
+    "es": "La integral definida y el área"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "The **definite integral** $\\int_a^b f(x)\\,dx$ is a number: the **signed area** between the curve $y = f(x)$ and the x-axis, from $x = a$ to $x = b$. Area above the axis counts positive, below counts negative. It is built as a limit of **Riemann sums** — slice the region into thin rectangles, add their areas, and let the slices shrink to zero width.",
         "es": "La **integral definida** $\\int_a^b f(x)\\,dx$ es un número: el **área con signo** entre la curva $y = f(x)$ y el eje x, de $x = a$ a $x = b$. El área por encima del eje cuenta positiva, por debajo negativa. Se construye como límite de **sumas de Riemann** — corta la región en rectángulos finos, suma sus áreas y haz tender a cero el ancho de las rebanadas."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "calculus-10-indefinite-integral"
+      ],
+      "note": {
+        "en": "The definite integral evaluates the antiderivative from the previous lesson.",
+        "es": "La integral definida evalua la primitiva de la leccion anterior."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — the Fundamental Theorem", "es": "Ejemplo resuelto — el Teorema Fundamental" },
+      "title": {
+        "en": "Worked example — the Fundamental Theorem",
+        "es": "Ejemplo resuelto — el Teorema Fundamental"
+      },
       "content": {
         "en": "Evaluate $\\int_0^2 x\\,dx$. An antiderivative of $x$ is $\\tfrac{x^2}{2}$. Apply the theorem: $\\left[\\tfrac{x^2}{2}\\right]_0^2 = \\tfrac{4}{2} - \\tfrac{0}{2} = 2$. Check geometrically: the region is a triangle of base $2$ and height $2$, area $\\tfrac12\\cdot2\\cdot2 = 2$ ✓.",
         "es": "Evalúa $\\int_0^2 x\\,dx$. Una primitiva de $x$ es $\\tfrac{x^2}{2}$. Aplica el teorema: $\\left[\\tfrac{x^2}{2}\\right]_0^2 = \\tfrac{4}{2} - \\tfrac{0}{2} = 2$. Comprueba geométricamente: la región es un triángulo de base $2$ y altura $2$, área $\\tfrac12\\cdot2\\cdot2 = 2$ ✓."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "sympy"
+      ],
+      "code": {
+        "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# a definite integral = signed area under the curve\nprint(sp.integrate(x**2, (x, 0, 3)))",
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# una integral definida = area con signo bajo la curva\nprint(sp.integrate(x**2, (x, 0, 3)))"
+      },
+      "expectedOutput": "9",
+      "caption": {
+        "en": "The area under x^2 from 0 to 3 is exactly 9.",
+        "es": "El area bajo x^2 de 0 a 3 es exactamente 9."
       }
     }
   ],
@@ -39,43 +71,115 @@
     {
       "id": "calculus-11-e1",
       "answerType": "number",
-      "prompt": { "en": "Evaluate $\\int_0^1 2x\\,dx$.", "es": "Evalúa $\\int_0^1 2x\\,dx$." },
+      "prompt": {
+        "en": "Evaluate $\\int_0^1 2x\\,dx$.",
+        "es": "Evalúa $\\int_0^1 2x\\,dx$."
+      },
       "answer": "1",
-      "acceptedAlt": ["1^2-0^2"],
-      "hint": { "en": "Antiderivative is x²; evaluate 1 to 0.", "es": "La primitiva es x²; evalúa de 0 a 1." },
-      "solution": [ { "tex": "[x^2]_0^1 = 1 - 0 = 1", "en": "Apply the FTC.", "es": "Aplica el TFC." } ]
+      "acceptedAlt": [
+        "1^2-0^2"
+      ],
+      "hint": {
+        "en": "Antiderivative is x²; evaluate 1 to 0.",
+        "es": "La primitiva es x²; evalúa de 0 a 1."
+      },
+      "solution": [
+        {
+          "tex": "[x^2]_0^1 = 1 - 0 = 1",
+          "en": "Apply the FTC.",
+          "es": "Aplica el TFC."
+        }
+      ]
     },
     {
       "id": "calculus-11-e2",
       "answerType": "number",
-      "prompt": { "en": "Evaluate $\\int_0^2 x\\,dx$.", "es": "Evalúa $\\int_0^2 x\\,dx$." },
+      "prompt": {
+        "en": "Evaluate $\\int_0^2 x\\,dx$.",
+        "es": "Evalúa $\\int_0^2 x\\,dx$."
+      },
       "answer": "2",
-      "acceptedAlt": ["2^2/2"],
-      "hint": { "en": "Antiderivative is x²/2.", "es": "La primitiva es x²/2." },
-      "solution": [ { "tex": "[\\tfrac{x^2}{2}]_0^2 = \\tfrac{4}{2} = 2", "en": "Apply the FTC.", "es": "Aplica el TFC." } ]
+      "acceptedAlt": [
+        "2^2/2"
+      ],
+      "hint": {
+        "en": "Antiderivative is x²/2.",
+        "es": "La primitiva es x²/2."
+      },
+      "solution": [
+        {
+          "tex": "[\\tfrac{x^2}{2}]_0^2 = \\tfrac{4}{2} = 2",
+          "en": "Apply the FTC.",
+          "es": "Aplica el TFC."
+        }
+      ]
     },
     {
       "id": "calculus-11-e3",
       "answerType": "number",
-      "prompt": { "en": "Evaluate $\\int_0^3 1\\,dx$.", "es": "Evalúa $\\int_0^3 1\\,dx$." },
+      "prompt": {
+        "en": "Evaluate $\\int_0^3 1\\,dx$.",
+        "es": "Evalúa $\\int_0^3 1\\,dx$."
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "Antiderivative is x.", "es": "La primitiva es x." },
-      "solution": [ { "tex": "[x]_0^3 = 3 - 0 = 3", "en": "Width times height 1.", "es": "Base por altura 1." } ]
+      "hint": {
+        "en": "Antiderivative is x.",
+        "es": "La primitiva es x."
+      },
+      "solution": [
+        {
+          "tex": "[x]_0^3 = 3 - 0 = 3",
+          "en": "Width times height 1.",
+          "es": "Base por altura 1."
+        }
+      ]
     },
     {
       "id": "calculus-11-e4",
       "answerType": "number",
-      "prompt": { "en": "Evaluate $\\int_1^2 2x\\,dx$.", "es": "Evalúa $\\int_1^2 2x\\,dx$." },
+      "prompt": {
+        "en": "Evaluate $\\int_1^2 2x\\,dx$.",
+        "es": "Evalúa $\\int_1^2 2x\\,dx$."
+      },
       "answer": "3",
-      "acceptedAlt": ["2^2-1^2"],
-      "hint": { "en": "[x²] from 1 to 2.", "es": "[x²] de 1 a 2." },
-      "solution": [ { "tex": "[x^2]_1^2 = 4 - 1 = 3", "en": "Apply the FTC.", "es": "Aplica el TFC." } ]
+      "acceptedAlt": [
+        "2^2-1^2"
+      ],
+      "hint": {
+        "en": "[x²] from 1 to 2.",
+        "es": "[x²] de 1 a 2."
+      },
+      "solution": [
+        {
+          "tex": "[x^2]_1^2 = 4 - 1 = 3",
+          "en": "Apply the FTC.",
+          "es": "Aplica el TFC."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 5.1–5.3, the Definite Integral; the Fundamental Theorem of Calculus", "es": "Cap. 5.1–5.3, la integral definida; el Teorema Fundamental del Cálculo" } },
-    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 5, the definite integral", "es": "Cap. 5, la integral definida" } },
-    { "source": "UOC — Integración (PID_00284290)", "detail": { "en": "The definite integral; fundamental theorem", "es": "La integral definida; teorema fundamental" } }
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 5.1–5.3, the Definite Integral; the Fundamental Theorem of Calculus",
+        "es": "Cap. 5.1–5.3, la integral definida; el Teorema Fundamental del Cálculo"
+      }
+    },
+    {
+      "source": "Salas, Etgen & Hille — Calculus",
+      "detail": {
+        "en": "Ch. 5, the definite integral",
+        "es": "Cap. 5, la integral definida"
+      }
+    },
+    {
+      "source": "UOC — Integración (PID_00284290)",
+      "detail": {
+        "en": "The definite integral; fundamental theorem",
+        "es": "La integral definida; teorema fundamental"
+      }
+    }
   ]
 }

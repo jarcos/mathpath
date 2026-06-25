@@ -3,13 +3,26 @@
   "subjectId": "linear-maps",
   "order": 8,
   "estimatedMinutes": 40,
-  "title": { "en": "Powers of a Matrix via Diagonalization", "es": "Potencias de una matriz por diagonalización" },
+  "title": {
+    "en": "Powers of a Matrix via Diagonalization",
+    "es": "Potencias de una matriz por diagonalización"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Repeatedly applying a linear map means raising its matrix to a power. Doing $A^n$ by brute-force multiplication is expensive and error-prone. Diagonalization turns it into child's play: since $A = P D P^{-1}$, the middle $P^{-1}P$ pairs cancel in $A^n = P D^n P^{-1}$, leaving only $D^n$ to compute.",
         "es": "Aplicar repetidamente una aplicación lineal equivale a elevar su matriz a una potencia. Hacer $A^n$ por multiplicación a fuerza bruta es costoso y propenso a errores. La diagonalización lo vuelve un juego de niños: como $A = P D P^{-1}$, los pares centrales $P^{-1}P$ se cancelan en $A^n = P D^n P^{-1}$, dejando solo $D^n$ por calcular."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linmaps-07-diagonalization"
+      ],
+      "note": {
+        "en": "Powers are cheap once a matrix is diagonalized.",
+        "es": "Las potencias son baratas una vez diagonalizada la matriz."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "For $D = \\text{diag}(2,3)$, the $(1,1)$ entry of $D^2$ is $2^2 = 4$, and the $(2,2)$ entry of $D^3$ is $3^3 = 27$. To get $A^n$, sandwich: $A^n = P\\,\\text{diag}(2^n, 3^n)\\,P^{-1}$. No repeated matrix multiplication needed.",
         "es": "Para $D = \\text{diag}(2,3)$, el elemento $(1,1)$ de $D^2$ es $2^2 = 4$, y el $(2,2)$ de $D^3$ es $3^3 = 27$. Para obtener $A^n$, intercala: $A^n = P\\,\\text{diag}(2^n, 3^n)\\,P^{-1}$. Sin multiplicación repetida de matrices."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\n# diagonal matrices make powers trivial: just power the entries\nprint(np.linalg.matrix_power(A, 3).tolist())",
+        "es": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\n# las matrices diagonales hacen triviales las potencias: eleva las entradas\nprint(np.linalg.matrix_power(A, 3).tolist())"
+      },
+      "expectedOutput": "[[8, 0], [0, 27]]",
+      "caption": {
+        "en": "Diagonalization turns A^k into D^k — fast powers.",
+        "es": "La diagonalizacion convierte A^k en D^k — potencias rapidas."
       }
     }
   ],
@@ -39,42 +71,108 @@
     {
       "id": "linmaps-08-e1",
       "answerType": "number",
-      "prompt": { "en": "For $D=\\text{diag}(2,3)$, the $(1,1)$ entry of $D^2$ is?", "es": "Para $D=\\text{diag}(2,3)$, ¿el elemento $(1,1)$ de $D^2$ es?" },
+      "prompt": {
+        "en": "For $D=\\text{diag}(2,3)$, the $(1,1)$ entry of $D^2$ is?",
+        "es": "Para $D=\\text{diag}(2,3)$, ¿el elemento $(1,1)$ de $D^2$ es?"
+      },
       "answer": "4",
-      "acceptedAlt": ["2^2"],
-      "hint": { "en": "Square the first diagonal entry.", "es": "Eleva al cuadrado el primer elemento." },
-      "solution": [ { "tex": "2^2 = 4", "en": "Diagonal entry squared.", "es": "Elemento diagonal al cuadrado." } ]
+      "acceptedAlt": [
+        "2^2"
+      ],
+      "hint": {
+        "en": "Square the first diagonal entry.",
+        "es": "Eleva al cuadrado el primer elemento."
+      },
+      "solution": [
+        {
+          "tex": "2^2 = 4",
+          "en": "Diagonal entry squared.",
+          "es": "Elemento diagonal al cuadrado."
+        }
+      ]
     },
     {
       "id": "linmaps-08-e2",
       "answerType": "number",
-      "prompt": { "en": "For $D=\\text{diag}(2,3)$, the $(2,2)$ entry of $D^3$ is?", "es": "Para $D=\\text{diag}(2,3)$, ¿el elemento $(2,2)$ de $D^3$ es?" },
+      "prompt": {
+        "en": "For $D=\\text{diag}(2,3)$, the $(2,2)$ entry of $D^3$ is?",
+        "es": "Para $D=\\text{diag}(2,3)$, ¿el elemento $(2,2)$ de $D^3$ es?"
+      },
       "answer": "27",
-      "acceptedAlt": ["3^3"],
-      "hint": { "en": "Cube the second diagonal entry.", "es": "Eleva al cubo el segundo elemento." },
-      "solution": [ { "tex": "3^3 = 27", "en": "Diagonal entry cubed.", "es": "Elemento diagonal al cubo." } ]
+      "acceptedAlt": [
+        "3^3"
+      ],
+      "hint": {
+        "en": "Cube the second diagonal entry.",
+        "es": "Eleva al cubo el segundo elemento."
+      },
+      "solution": [
+        {
+          "tex": "3^3 = 27",
+          "en": "Diagonal entry cubed.",
+          "es": "Elemento diagonal al cubo."
+        }
+      ]
     },
     {
       "id": "linmaps-08-e3",
       "answerType": "text",
-      "prompt": { "en": "$D^n$ just raises the ___ entries to the n. (one word)", "es": "$D^n$ solo eleva los elementos de la ___ a la n. (una palabra)" },
+      "prompt": {
+        "en": "$D^n$ just raises the ___ entries to the n. (one word)",
+        "es": "$D^n$ solo eleva los elementos de la ___ a la n. (una palabra)"
+      },
       "answer": "diagonal",
       "acceptedAlt": [],
-      "hint": { "en": "D is diagonal.", "es": "D es diagonal." },
-      "solution": [ { "tex": "D^n = \\text{diag}(d_i^n)", "en": "Diagonal entries.", "es": "Elementos de la diagonal." } ]
+      "hint": {
+        "en": "D is diagonal.",
+        "es": "D es diagonal."
+      },
+      "solution": [
+        {
+          "tex": "D^n = \\text{diag}(d_i^n)",
+          "en": "Diagonal entries.",
+          "es": "Elementos de la diagonal."
+        }
+      ]
     },
     {
       "id": "linmaps-08-e4",
       "answerType": "number",
-      "prompt": { "en": "Compute $2^{10}$ (a single eigenvalue raised to a power).", "es": "Calcula $2^{10}$ (un autovalor elevado a una potencia)." },
+      "prompt": {
+        "en": "Compute $2^{10}$ (a single eigenvalue raised to a power).",
+        "es": "Calcula $2^{10}$ (un autovalor elevado a una potencia)."
+      },
       "answer": "1024",
-      "acceptedAlt": ["2^10"],
-      "hint": { "en": "Powers of 2.", "es": "Potencias de 2." },
-      "solution": [ { "tex": "2^{10} = 1024", "en": "Scalar power.", "es": "Potencia escalar." } ]
+      "acceptedAlt": [
+        "2^10"
+      ],
+      "hint": {
+        "en": "Powers of 2.",
+        "es": "Potencias de 2."
+      },
+      "solution": [
+        {
+          "tex": "2^{10} = 1024",
+          "en": "Scalar power.",
+          "es": "Potencia escalar."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Application to computing powers of a matrix", "es": "Aplicación al cálculo de potencias de una matriz" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 6.2, powers Aⁿ via diagonalization", "es": "Cap. 6.2, potencias Aⁿ por diagonalización" } }
+    {
+      "source": "UOC — Aplicaciones lineales (PID_00269006)",
+      "detail": {
+        "en": "Application to computing powers of a matrix",
+        "es": "Aplicación al cálculo de potencias de una matriz"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 6.2, powers Aⁿ via diagonalization",
+        "es": "Cap. 6.2, potencias Aⁿ por diagonalización"
+      }
+    }
   ]
 }

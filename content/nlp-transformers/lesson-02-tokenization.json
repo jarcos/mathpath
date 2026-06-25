@@ -3,7 +3,10 @@
   "subjectId": "nlp-transformers",
   "order": 2,
   "estimatedMinutes": 30,
-  "title": { "en": "Tokenization", "es": "Tokenización" },
+  "title": {
+    "en": "Tokenization",
+    "es": "Tokenización"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Whitespace-tokenizing 'the cat sat' gives $3$ tokens. Using the rule $0.75$ words per token, $300$ words is about $300/0.75 = 400$ tokens.",
         "es": "Tokenizar por espacios 'the cat sat' da $3$ tokens. Usando la regla de $0.75$ palabras por token, $300$ palabras son unos $300/0.75 = 400$ tokens."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "toks = \"the cat the dog\".split()\n# the vocabulary is the set of distinct tokens\nprint(toks, sorted(set(toks)))",
+        "es": "toks = \"the cat the dog\".split()\n# el vocabulario es el conjunto de tokens distintos\nprint(toks, sorted(set(toks)))"
+      },
+      "expectedOutput": "['the', 'cat', 'the', 'dog'] ['cat', 'dog', 'the']",
+      "caption": {
+        "en": "Tokenizing builds the vocabulary the model indexes.",
+        "es": "Tokenizar construye el vocabulario que el modelo indexa."
       }
     }
   ],
@@ -39,42 +59,110 @@
     {
       "id": "nlp-02-e1",
       "answerType": "number",
-      "prompt": { "en": "Whitespace tokens in 'the cat sat'?", "es": "¿Tokens por espacios en 'the cat sat'?" },
+      "prompt": {
+        "en": "Whitespace tokens in 'the cat sat'?",
+        "es": "¿Tokens por espacios en 'the cat sat'?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "Count the words.", "es": "Cuenta las palabras." },
-      "solution": [ { "tex": "3", "en": "Three.", "es": "Tres." } ]
+      "hint": {
+        "en": "Count the words.",
+        "es": "Cuenta las palabras."
+      },
+      "solution": [
+        {
+          "tex": "3",
+          "en": "Three.",
+          "es": "Tres."
+        }
+      ]
     },
     {
       "id": "nlp-02-e2",
       "answerType": "number",
-      "prompt": { "en": "Using 0.75 words/token, how many tokens is 300 words? ($300/0.75$)", "es": "Con 0.75 palabras/token, ¿cuántos tokens son 300 palabras? ($300/0.75$)" },
+      "prompt": {
+        "en": "Using 0.75 words/token, how many tokens is 300 words? ($300/0.75$)",
+        "es": "Con 0.75 palabras/token, ¿cuántos tokens son 300 palabras? ($300/0.75$)"
+      },
       "answer": "400",
-      "acceptedAlt": ["300/0.75"],
-      "hint": { "en": "300 / 0.75.", "es": "300 / 0.75." },
-      "solution": [ { "tex": "300/0.75 = 400", "en": "400 tokens.", "es": "400 tokens." } ]
+      "acceptedAlt": [
+        "300/0.75"
+      ],
+      "hint": {
+        "en": "300 / 0.75.",
+        "es": "300 / 0.75."
+      },
+      "solution": [
+        {
+          "tex": "300/0.75 = 400",
+          "en": "400 tokens.",
+          "es": "400 tokens."
+        }
+      ]
     },
     {
       "id": "nlp-02-e3",
       "answerType": "text",
-      "prompt": { "en": "Splitting rare words into reusable pieces is ___ tokenization. (one word)", "es": "Dividir palabras raras en piezas reutilizables es la tokenización en ___. (una palabra)" },
+      "prompt": {
+        "en": "Splitting rare words into reusable pieces is ___ tokenization. (one word)",
+        "es": "Dividir palabras raras en piezas reutilizables es la tokenización en ___. (una palabra)"
+      },
       "answer": "subword",
-      "acceptedAlt": ["subpalabra", "subpalabras", "subword"],
-      "hint": { "en": "Below the word level.", "es": "Por debajo de la palabra." },
-      "solution": [ { "tex": "\\text{subword}", "en": "Subword.", "es": "Subpalabra." } ]
+      "acceptedAlt": [
+        "subpalabra",
+        "subpalabras",
+        "subword"
+      ],
+      "hint": {
+        "en": "Below the word level.",
+        "es": "Por debajo de la palabra."
+      },
+      "solution": [
+        {
+          "tex": "\\text{subword}",
+          "en": "Subword.",
+          "es": "Subpalabra."
+        }
+      ]
     },
     {
       "id": "nlp-02-e4",
       "answerType": "number",
-      "prompt": { "en": "Approx tokens for 40 English characters at 4 chars/token? ($40/4$)", "es": "¿Tokens aprox. para 40 caracteres en inglés a 4 caracteres/token? ($40/4$)" },
+      "prompt": {
+        "en": "Approx tokens for 40 English characters at 4 chars/token? ($40/4$)",
+        "es": "¿Tokens aprox. para 40 caracteres en inglés a 4 caracteres/token? ($40/4$)"
+      },
       "answer": "10",
-      "acceptedAlt": ["40/4"],
-      "hint": { "en": "40 / 4.", "es": "40 / 4." },
-      "solution": [ { "tex": "40/4 = 10", "en": "About 10.", "es": "Unos 10." } ]
+      "acceptedAlt": [
+        "40/4"
+      ],
+      "hint": {
+        "en": "40 / 4.",
+        "es": "40 / 4."
+      },
+      "solution": [
+        {
+          "tex": "40/4 = 10",
+          "en": "About 10.",
+          "es": "Unos 10."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Jurafsky & Martin — Speech and Language Processing", "detail": { "en": "Ch. 2, regular expressions, text normalization, tokenization", "es": "Cap. 2, expresiones regulares, normalización y tokenización" } },
-    { "source": "Sennrich et al. — Neural Machine Translation of Rare Words with Subword Units (BPE, 2016)", "detail": { "en": "Byte-pair encoding", "es": "Codificación por pares de bytes" } }
+    {
+      "source": "Jurafsky & Martin — Speech and Language Processing",
+      "detail": {
+        "en": "Ch. 2, regular expressions, text normalization, tokenization",
+        "es": "Cap. 2, expresiones regulares, normalización y tokenización"
+      }
+    },
+    {
+      "source": "Sennrich et al. — Neural Machine Translation of Rare Words with Subword Units (BPE, 2016)",
+      "detail": {
+        "en": "Byte-pair encoding",
+        "es": "Codificación por pares de bytes"
+      }
+    }
   ]
 }

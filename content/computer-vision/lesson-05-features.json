@@ -3,7 +3,10 @@
   "subjectId": "computer-vision",
   "order": 5,
   "estimatedMinutes": 35,
-  "title": { "en": "Features & Keypoints", "es": "Características y puntos clave" },
+  "title": {
+    "en": "Features & Keypoints",
+    "es": "Características y puntos clave"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A SIFT descriptor is a $128$-dimensional vector. Euclidean distance between descriptors $[0,0]$ and $[3,4]$ is $\\sqrt{3^2+4^2} = 5$ — small distance means a likely match.",
         "es": "Un descriptor SIFT es un vector de $128$ dimensiones. La distancia euclídea entre los descriptores $[0,0]$ y $[3,4]$ es $\\sqrt{3^2+4^2} = 5$ — una distancia pequeña indica una coincidencia probable."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# a keypoint is a distinctive location, e.g. the brightest pixel\nsignal = np.array([0, 1, 5, 1, 0])\nprint(int(np.argmax(signal)))",
+        "es": "import numpy as np\n# un punto clave es una ubicacion distintiva, p. ej. el pixel mas brillante\nsignal = np.array([0, 1, 5, 1, 0])\nprint(int(np.argmax(signal)))"
+      },
+      "expectedOutput": "2",
+      "caption": {
+        "en": "Features mark distinctive, repeatable points in an image.",
+        "es": "Las caracteristicas marcan puntos distintivos y repetibles de una imagen."
       }
     }
   ],
@@ -39,42 +61,109 @@
     {
       "id": "cv-05-e1",
       "answerType": "number",
-      "prompt": { "en": "Dimensionality of a classic SIFT descriptor?", "es": "¿Dimensión de un descriptor SIFT clásico?" },
+      "prompt": {
+        "en": "Dimensionality of a classic SIFT descriptor?",
+        "es": "¿Dimensión de un descriptor SIFT clásico?"
+      },
       "answer": "128",
       "acceptedAlt": [],
-      "hint": { "en": "4×4 cells × 8 orientations.", "es": "4×4 celdas × 8 orientaciones." },
-      "solution": [ { "tex": "128", "en": "128.", "es": "128." } ]
+      "hint": {
+        "en": "4×4 cells × 8 orientations.",
+        "es": "4×4 celdas × 8 orientaciones."
+      },
+      "solution": [
+        {
+          "tex": "128",
+          "en": "128.",
+          "es": "128."
+        }
+      ]
     },
     {
       "id": "cv-05-e2",
       "answerType": "number",
-      "prompt": { "en": "Euclidean distance between $[0,0]$ and $[3,4]$: $\\sqrt{3^2+4^2}$?", "es": "Distancia euclídea entre $[0,0]$ y $[3,4]$: $\\sqrt{3^2+4^2}$?" },
+      "prompt": {
+        "en": "Euclidean distance between $[0,0]$ and $[3,4]$: $\\sqrt{3^2+4^2}$?",
+        "es": "Distancia euclídea entre $[0,0]$ y $[3,4]$: $\\sqrt{3^2+4^2}$?"
+      },
       "answer": "5",
-      "acceptedAlt": ["sqrt(25)", "sqrt(3^2+4^2)"],
-      "hint": { "en": "√25.", "es": "√25." },
-      "solution": [ { "tex": "5", "en": "Five.", "es": "Cinco." } ]
+      "acceptedAlt": [
+        "sqrt(25)",
+        "sqrt(3^2+4^2)"
+      ],
+      "hint": {
+        "en": "√25.",
+        "es": "√25."
+      },
+      "solution": [
+        {
+          "tex": "5",
+          "en": "Five.",
+          "es": "Cinco."
+        }
+      ]
     },
     {
       "id": "cv-05-e3",
       "answerType": "text",
-      "prompt": { "en": "Points where intensity changes in two directions are ___. (one word)", "es": "Los puntos donde la intensidad cambia en dos direcciones son ___. (una palabra)" },
+      "prompt": {
+        "en": "Points where intensity changes in two directions are ___. (one word)",
+        "es": "Los puntos donde la intensidad cambia en dos direcciones son ___. (una palabra)"
+      },
       "answer": "corners",
-      "acceptedAlt": ["esquinas", "corner", "esquina"],
-      "hint": { "en": "Harris detects them.", "es": "Harris las detecta." },
-      "solution": [ { "tex": "\\text{corners}", "en": "Corners.", "es": "Esquinas." } ]
+      "acceptedAlt": [
+        "esquinas",
+        "corner",
+        "esquina"
+      ],
+      "hint": {
+        "en": "Harris detects them.",
+        "es": "Harris las detecta."
+      },
+      "solution": [
+        {
+          "tex": "\\text{corners}",
+          "en": "Corners.",
+          "es": "Esquinas."
+        }
+      ]
     },
     {
       "id": "cv-05-e4",
       "answerType": "text",
-      "prompt": { "en": "The scale-invariant descriptor by Lowe is ___ (acronym).", "es": "El descriptor invariante a escala de Lowe es ___ (siglas)." },
+      "prompt": {
+        "en": "The scale-invariant descriptor by Lowe is ___ (acronym).",
+        "es": "El descriptor invariante a escala de Lowe es ___ (siglas)."
+      },
       "answer": "sift",
       "acceptedAlt": [],
-      "hint": { "en": "Scale-Invariant Feature Transform.", "es": "Scale-Invariant Feature Transform." },
-      "solution": [ { "tex": "\\text{SIFT}", "en": "SIFT.", "es": "SIFT." } ]
+      "hint": {
+        "en": "Scale-Invariant Feature Transform.",
+        "es": "Scale-Invariant Feature Transform."
+      },
+      "solution": [
+        {
+          "tex": "\\text{SIFT}",
+          "en": "SIFT.",
+          "es": "SIFT."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Harris & Stephens — A Combined Corner and Edge Detector (1988)", "detail": { "en": "Harris corners", "es": "Esquinas de Harris" } },
-    { "source": "Lowe — Distinctive Image Features from Scale-Invariant Keypoints (SIFT, 2004)", "detail": { "en": "SIFT", "es": "SIFT" } }
+    {
+      "source": "Harris & Stephens — A Combined Corner and Edge Detector (1988)",
+      "detail": {
+        "en": "Harris corners",
+        "es": "Esquinas de Harris"
+      }
+    },
+    {
+      "source": "Lowe — Distinctive Image Features from Scale-Invariant Keypoints (SIFT, 2004)",
+      "detail": {
+        "en": "SIFT",
+        "es": "SIFT"
+      }
+    }
   ]
 }

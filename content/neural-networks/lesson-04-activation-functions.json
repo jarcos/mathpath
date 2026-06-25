@@ -3,7 +3,10 @@
   "subjectId": "neural-networks",
   "order": 4,
   "estimatedMinutes": 40,
-  "title": { "en": "Activation Functions", "es": "Funciones de activación" },
+  "title": {
+    "en": "Activation Functions",
+    "es": "Funciones de activación"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "$\\text{ReLU}(-3) = \\max(0, -3) = 0$ (negatives become zero). $\\text{ReLU}(5) = \\max(0, 5) = 5$ (positives pass through). $\\sigma(0) = 0.5$. tanh ranges from $-1$ to $1$.",
         "es": "$\\text{ReLU}(-3) = \\max(0, -3) = 0$ (los negativos se vuelven cero). $\\text{ReLU}(5) = \\max(0, 5) = 5$ (los positivos pasan). $\\sigma(0) = 0.5$. tanh va de $-1$ a $1$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\ndef sigmoid(z): return 1 / (1 + np.exp(-z))\ndef relu(z):    return np.maximum(0, z)\nprint(round(float(sigmoid(0)), 3))   # 0.5 at the center\nprint(round(float(sigmoid(2)), 3))\nprint(relu(np.array([-1.0, 0.0, 3.0])).tolist())",
+        "es": "import numpy as np\ndef sigmoid(z): return 1 / (1 + np.exp(-z))\ndef relu(z):    return np.maximum(0, z)\nprint(round(float(sigmoid(0)), 3))   # 0.5 en el centro\nprint(round(float(sigmoid(2)), 3))\nprint(relu(np.array([-1.0, 0.0, 3.0])).tolist())"
+      },
+      "expectedOutput": "0.5\n0.881\n[0.0, 0.0, 3.0]",
+      "caption": {
+        "en": "Sigmoid squashes to (0,1); ReLU zeroes out negatives.",
+        "es": "La sigmoide comprime a (0,1); ReLU anula los negativos."
       }
     }
   ],
@@ -39,42 +61,148 @@
     {
       "id": "nn-04-e1",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\text{ReLU}(-3) = \\max(0,-3)$.", "es": "Calcula $\\text{ReLU}(-3) = \\max(0,-3)$." },
+      "prompt": {
+        "en": "Compute $\\text{ReLU}(-3) = \\max(0,-3)$.",
+        "es": "Calcula $\\text{ReLU}(-3) = \\max(0,-3)$."
+      },
       "answer": "0",
-      "acceptedAlt": ["max(0,-3)"],
-      "hint": { "en": "Negatives become 0.", "es": "Los negativos se vuelven 0." },
-      "solution": [ { "tex": "\\max(0,-3)=0", "en": "ReLU of a negative.", "es": "ReLU de un negativo." } ]
+      "acceptedAlt": [
+        "max(0,-3)"
+      ],
+      "hint": {
+        "en": "Negatives become 0.",
+        "es": "Los negativos se vuelven 0."
+      },
+      "solution": [
+        {
+          "tex": "\\max(0,-3)=0",
+          "en": "ReLU of a negative.",
+          "es": "ReLU de un negativo."
+        }
+      ]
     },
     {
       "id": "nn-04-e2",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\text{ReLU}(5) = \\max(0,5)$.", "es": "Calcula $\\text{ReLU}(5) = \\max(0,5)$." },
+      "prompt": {
+        "en": "Compute $\\text{ReLU}(5) = \\max(0,5)$.",
+        "es": "Calcula $\\text{ReLU}(5) = \\max(0,5)$."
+      },
       "answer": "5",
-      "acceptedAlt": ["max(0,5)"],
-      "hint": { "en": "Positives pass through.", "es": "Los positivos pasan." },
-      "solution": [ { "tex": "\\max(0,5)=5", "en": "ReLU of a positive.", "es": "ReLU de un positivo." } ]
+      "acceptedAlt": [
+        "max(0,5)"
+      ],
+      "hint": {
+        "en": "Positives pass through.",
+        "es": "Los positivos pasan."
+      },
+      "solution": [
+        {
+          "tex": "\\max(0,5)=5",
+          "en": "ReLU of a positive.",
+          "es": "ReLU de un positivo."
+        }
+      ]
     },
     {
       "id": "nn-04-e3",
       "answerType": "number",
-      "prompt": { "en": "Compute the sigmoid $\\sigma(0)=\\tfrac{1}{1+e^{0}}$.", "es": "Calcula la sigmoide $\\sigma(0)=\\tfrac{1}{1+e^{0}}$." },
+      "prompt": {
+        "en": "Compute the sigmoid $\\sigma(0)=\\tfrac{1}{1+e^{0}}$.",
+        "es": "Calcula la sigmoide $\\sigma(0)=\\tfrac{1}{1+e^{0}}$."
+      },
       "answer": "0.5",
-      "acceptedAlt": ["1/(1+e^0)", "1/2"],
-      "hint": { "en": "e⁰ = 1.", "es": "e⁰ = 1." },
-      "solution": [ { "tex": "\\tfrac{1}{2}=0.5", "en": "Sigmoid at 0.", "es": "Sigmoide en 0." } ]
+      "acceptedAlt": [
+        "1/(1+e^0)",
+        "1/2"
+      ],
+      "hint": {
+        "en": "e⁰ = 1.",
+        "es": "e⁰ = 1."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{1}{2}=0.5",
+          "en": "Sigmoid at 0.",
+          "es": "Sigmoide en 0."
+        }
+      ]
     },
     {
       "id": "nn-04-e4",
       "answerType": "number",
-      "prompt": { "en": "tanh outputs range from $-1$ to ___?", "es": "tanh tiene salida de $-1$ a ___?" },
+      "prompt": {
+        "en": "tanh outputs range from $-1$ to ___?",
+        "es": "tanh tiene salida de $-1$ a ___?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "Symmetric around 0.", "es": "Simétrica en torno a 0." },
-      "solution": [ { "tex": "\\tanh \\in (-1,1)", "en": "Up to 1.", "es": "Hasta 1." } ]
+      "hint": {
+        "en": "Symmetric around 0.",
+        "es": "Simétrica en torno a 0."
+      },
+      "solution": [
+        {
+          "tex": "\\tanh \\in (-1,1)",
+          "en": "Up to 1.",
+          "es": "Hasta 1."
+        }
+      ]
+    },
+    {
+      "id": "nn-04-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Implement `relu(z)` for a single number: return `z` if positive, else `0`.",
+        "es": "Implementa `relu(z)` para un solo número: devuelve `z` si es positivo, si no `0`."
+      },
+      "funcName": "relu",
+      "starter": {
+        "en": "def relu(z):\n    # return z if positive else 0\n    pass",
+        "es": "def relu(z):\n    # devuelve z si es positivo, si no 0\n    pass"
+      },
+      "solution": "def relu(z):\n    return max(0, z)",
+      "tests": [
+        {
+          "args": [
+            -2
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            3
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            0
+          ],
+          "expected": 0
+        }
+      ],
+      "hint": {
+        "en": "max(0, z) does it in one line.",
+        "es": "max(0, z) lo resuelve en una línea."
+      }
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.3, hidden units; ReLU and alternatives", "es": "Cap. 6.3, unidades ocultas; ReLU y alternativas" } },
-    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Activation functions of units", "es": "Funciones de activación de las unidades" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 6.3, hidden units; ReLU and alternatives",
+        "es": "Cap. 6.3, unidades ocultas; ReLU y alternativas"
+      }
+    },
+    {
+      "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)",
+      "detail": {
+        "en": "Activation functions of units",
+        "es": "Funciones de activación de las unidades"
+      }
+    }
   ]
 }

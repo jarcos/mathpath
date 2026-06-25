@@ -3,7 +3,10 @@
   "subjectId": "linear-algebra",
   "order": 13,
   "estimatedMinutes": 40,
-  "title": { "en": "Change of Basis", "es": "Cambio de base" },
+  "title": {
+    "en": "Change of Basis",
+    "es": "Cambio de base"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "In the basis $\\{(2,0),(0,1)\\}$, find the coordinates of $(4,0)$. We need $c_1(2,0) + c_2(0,1) = (4,0)$, so $2c_1 = 4 \\Rightarrow c_1 = 2$ and $c_2 = 0$. The first coordinate is $2$. In the standard basis the coordinates of $(7,2)$ are simply $7$ and $2$.",
         "es": "En la base $\\{(2,0),(0,1)\\}$, halla las coordenadas de $(4,0)$. Necesitamos $c_1(2,0) + c_2(0,1) = (4,0)$, así $2c_1 = 4 \\Rightarrow c_1 = 2$ y $c_2 = 0$. La primera coordenada es $2$. En la base canónica las coordenadas de $(7,2)$ son simplemente $7$ y $2$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nP = np.array([[1, 1], [0, 1]])\n# coordinates of v in the basis whose columns are P\nprint(np.linalg.solve(P, np.array([2, 3])).tolist())",
+        "es": "import numpy as np\nP = np.array([[1, 1], [0, 1]])\n# coordenadas de v en la base cuyas columnas son P\nprint(np.linalg.solve(P, np.array([2, 3])).tolist())"
+      },
+      "expectedOutput": "[-1.0, 3.0]",
+      "caption": {
+        "en": "Changing basis solves P c = v for the new coordinates c.",
+        "es": "Cambiar de base resuelve P c = v para las nuevas coordenadas c."
       }
     }
   ],
@@ -39,42 +61,107 @@
     {
       "id": "linalg-13-e1",
       "answerType": "number",
-      "prompt": { "en": "In basis $\\{(2,0),(0,1)\\}$, the first coordinate of $(4,0)$ is?", "es": "En la base $\\{(2,0),(0,1)\\}$, la primera coordenada de $(4,0)$ es?" },
+      "prompt": {
+        "en": "In basis $\\{(2,0),(0,1)\\}$, the first coordinate of $(4,0)$ is?",
+        "es": "En la base $\\{(2,0),(0,1)\\}$, la primera coordenada de $(4,0)$ es?"
+      },
       "answer": "2",
-      "acceptedAlt": ["4/2"],
-      "hint": { "en": "How many (2,0)'s make (4,0)?", "es": "¿Cuántos (2,0) hacen (4,0)?" },
-      "solution": [ { "tex": "2(2,0) = (4,0)", "en": "Coordinate is 2.", "es": "La coordenada es 2." } ]
+      "acceptedAlt": [
+        "4/2"
+      ],
+      "hint": {
+        "en": "How many (2,0)'s make (4,0)?",
+        "es": "¿Cuántos (2,0) hacen (4,0)?"
+      },
+      "solution": [
+        {
+          "tex": "2(2,0) = (4,0)",
+          "en": "Coordinate is 2.",
+          "es": "La coordenada es 2."
+        }
+      ]
     },
     {
       "id": "linalg-13-e2",
       "answerType": "text",
-      "prompt": { "en": "Must a change-of-basis matrix be invertible? (yes / no)", "es": "¿Una matriz de cambio de base debe ser invertible? (sí / no)" },
+      "prompt": {
+        "en": "Must a change-of-basis matrix be invertible? (yes / no)",
+        "es": "¿Una matriz de cambio de base debe ser invertible? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Its columns form a basis.", "es": "Sus columnas forman una base." },
-      "solution": [ { "tex": "\\det \\neq 0", "en": "Yes, invertible.", "es": "Sí, invertible." } ]
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Its columns form a basis.",
+        "es": "Sus columnas forman una base."
+      },
+      "solution": [
+        {
+          "tex": "\\det \\neq 0",
+          "en": "Yes, invertible.",
+          "es": "Sí, invertible."
+        }
+      ]
     },
     {
       "id": "linalg-13-e3",
       "answerType": "number",
-      "prompt": { "en": "In the standard basis, the first coordinate of $(7,2)$ is?", "es": "En la base canónica, la primera coordenada de $(7,2)$ es?" },
+      "prompt": {
+        "en": "In the standard basis, the first coordinate of $(7,2)$ is?",
+        "es": "En la base canónica, la primera coordenada de $(7,2)$ es?"
+      },
       "answer": "7",
       "acceptedAlt": [],
-      "hint": { "en": "Standard coordinates are the entries.", "es": "Las coordenadas canónicas son los componentes." },
-      "solution": [ { "tex": "7e_1 + 2e_2", "en": "First coordinate 7.", "es": "Primera coordenada 7." } ]
+      "hint": {
+        "en": "Standard coordinates are the entries.",
+        "es": "Las coordenadas canónicas son los componentes."
+      },
+      "solution": [
+        {
+          "tex": "7e_1 + 2e_2",
+          "en": "First coordinate 7.",
+          "es": "Primera coordenada 7."
+        }
+      ]
     },
     {
       "id": "linalg-13-e4",
       "answerType": "number",
-      "prompt": { "en": "In basis $\\{(2,0),(0,1)\\}$, the second coordinate of $(4,5)$ is?", "es": "En la base $\\{(2,0),(0,1)\\}$, la segunda coordenada de $(4,5)$ es?" },
+      "prompt": {
+        "en": "In basis $\\{(2,0),(0,1)\\}$, the second coordinate of $(4,5)$ is?",
+        "es": "En la base $\\{(2,0),(0,1)\\}$, la segunda coordenada de $(4,5)$ es?"
+      },
       "answer": "5",
       "acceptedAlt": [],
-      "hint": { "en": "(4,5) = 2(2,0) + 5(0,1).", "es": "(4,5) = 2(2,0) + 5(0,1)." },
-      "solution": [ { "tex": "5(0,1) = (0,5)", "en": "Second coordinate 5.", "es": "Segunda coordenada 5." } ]
+      "hint": {
+        "en": "(4,5) = 2(2,0) + 5(0,1).",
+        "es": "(4,5) = 2(2,0) + 5(0,1)."
+      },
+      "solution": [
+        {
+          "tex": "5(0,1) = (0,5)",
+          "en": "Second coordinate 5.",
+          "es": "Segunda coordenada 5."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 7.2 & 8.2, change of basis", "es": "Cap. 7.2 y 8.2, cambio de base" } },
-    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Change-of-basis matrix", "es": "Matriz de cambio de base" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 7.2 & 8.2, change of basis",
+        "es": "Cap. 7.2 y 8.2, cambio de base"
+      }
+    },
+    {
+      "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)",
+      "detail": {
+        "en": "Change-of-basis matrix",
+        "es": "Matriz de cambio de base"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 2,
   "estimatedMinutes": 30,
-  "title": { "en": "Why Depth Helps", "es": "Por qué ayuda la profundidad" },
+  "title": {
+    "en": "Why Depth Helps",
+    "es": "Por qué ayuda la profundidad"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A network with $5$ hidden layers has $5$ levels of feature composition. The first layer in a vision model typically learns simple features like **edges**, each later layer building on the **previous** one.",
         "es": "Una red con $5$ capas ocultas tiene $5$ niveles de composición de características. La primera capa en un modelo de visión suele aprender características simples como **bordes**, y cada capa posterior se construye sobre la **anterior**."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# depth multiplies parameters: a 10-10-10-10-1 net\nsizes = [10, 10, 10, 10, 1]\nprint(sum(sizes[i] * sizes[i+1] for i in range(len(sizes) - 1)))",
+        "es": "# la profundidad multiplica parametros: una red 10-10-10-10-1\nsizes = [10, 10, 10, 10, 1]\nprint(sum(sizes[i] * sizes[i+1] for i in range(len(sizes) - 1)))"
+      },
+      "expectedOutput": "310",
+      "caption": {
+        "en": "Depth lets a network build features of features.",
+        "es": "La profundidad permite construir caracteristicas de caracteristicas."
       }
     }
   ],
@@ -39,41 +59,102 @@
     {
       "id": "dl-02-e1",
       "answerType": "text",
-      "prompt": { "en": "Deep nets are more parameter-___ than shallow ones. (one word)", "es": "Las redes profundas son más ___ en parámetros que las poco profundas. (una palabra)" },
+      "prompt": {
+        "en": "Deep nets are more parameter-___ than shallow ones. (one word)",
+        "es": "Las redes profundas son más ___ en parámetros que las poco profundas. (una palabra)"
+      },
       "answer": "efficient",
-      "acceptedAlt": ["eficientes", "eficiente"],
-      "hint": { "en": "Fewer neurons for the same function.", "es": "Menos neuronas para la misma función." },
-      "solution": [ { "tex": "\\text{efficient}", "en": "Efficient.", "es": "Eficientes." } ]
+      "acceptedAlt": [
+        "eficientes",
+        "eficiente"
+      ],
+      "hint": {
+        "en": "Fewer neurons for the same function.",
+        "es": "Menos neuronas para la misma función."
+      },
+      "solution": [
+        {
+          "tex": "\\text{efficient}",
+          "en": "Efficient.",
+          "es": "Eficientes."
+        }
+      ]
     },
     {
       "id": "dl-02-e2",
       "answerType": "text",
-      "prompt": { "en": "Early layers of a vision network learn simple features like ___. (one word)", "es": "Las capas iniciales de una red de visión aprenden características simples como ___. (una palabra)" },
+      "prompt": {
+        "en": "Early layers of a vision network learn simple features like ___. (one word)",
+        "es": "Las capas iniciales de una red de visión aprenden características simples como ___. (una palabra)"
+      },
       "answer": "edges",
-      "acceptedAlt": ["bordes"],
-      "hint": { "en": "Then shapes, then objects.", "es": "Luego formas, luego objetos." },
-      "solution": [ { "tex": "\\text{edges}", "en": "Edges.", "es": "Bordes." } ]
+      "acceptedAlt": [
+        "bordes"
+      ],
+      "hint": {
+        "en": "Then shapes, then objects.",
+        "es": "Luego formas, luego objetos."
+      },
+      "solution": [
+        {
+          "tex": "\\text{edges}",
+          "en": "Edges.",
+          "es": "Bordes."
+        }
+      ]
     },
     {
       "id": "dl-02-e3",
       "answerType": "number",
-      "prompt": { "en": "How many hidden layers does a 5-hidden-layer network have?", "es": "¿Cuántas capas ocultas tiene una red de 5 capas ocultas?" },
+      "prompt": {
+        "en": "How many hidden layers does a 5-hidden-layer network have?",
+        "es": "¿Cuántas capas ocultas tiene una red de 5 capas ocultas?"
+      },
       "answer": "5",
       "acceptedAlt": [],
-      "hint": { "en": "As stated.", "es": "Como se indica." },
-      "solution": [ { "tex": "5", "en": "Five.", "es": "Cinco." } ]
+      "hint": {
+        "en": "As stated.",
+        "es": "Como se indica."
+      },
+      "solution": [
+        {
+          "tex": "5",
+          "en": "Five.",
+          "es": "Cinco."
+        }
+      ]
     },
     {
       "id": "dl-02-e4",
       "answerType": "text",
-      "prompt": { "en": "Each layer builds features from the ___ layer's output. (one word)", "es": "Cada capa construye características a partir de la salida de la capa ___. (una palabra)" },
+      "prompt": {
+        "en": "Each layer builds features from the ___ layer's output. (one word)",
+        "es": "Cada capa construye características a partir de la salida de la capa ___. (una palabra)"
+      },
       "answer": "previous",
-      "acceptedAlt": ["anterior"],
-      "hint": { "en": "The one before it.", "es": "La de antes." },
-      "solution": [ { "tex": "\\text{layer } l-1", "en": "Previous.", "es": "Anterior." } ]
+      "acceptedAlt": [
+        "anterior"
+      ],
+      "hint": {
+        "en": "The one before it.",
+        "es": "La de antes."
+      },
+      "solution": [
+        {
+          "tex": "\\text{layer } l-1",
+          "en": "Previous.",
+          "es": "Anterior."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.4, depth and representational efficiency", "es": "Cap. 6.4, profundidad y eficiencia representacional" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 6.4, depth and representational efficiency",
+        "es": "Cap. 6.4, profundidad y eficiencia representacional"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "ai-foundations",
   "order": 12,
   "estimatedMinutes": 35,
-  "title": { "en": "Foundation Models: Opportunities & Risks", "es": "Modelos fundacionales: oportunidades y riesgos" },
+  "title": {
+    "en": "Foundation Models: Opportunities & Risks",
+    "es": "Modelos fundacionales: oportunidades y riesgos"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Capabilities appearing at scale that weren't explicitly trained for are called emergence. When one foundation model underlies many apps, a single flaw propagates — the homogenization risk.",
         "es": "Las capacidades que aparecen con la escala sin haberse entrenado explícitamente se llaman emergencia. Cuando un modelo fundacional sustenta muchas apps, un solo defecto se propaga — el riesgo de homogeneización."
@@ -39,41 +45,156 @@
     {
       "id": "aif-12-e1",
       "answerType": "text",
-      "prompt": { "en": "Large models pretrained on broad data and adapted to many tasks are ___ models. (one word)", "es": "Los modelos grandes preentrenados con datos amplios y adaptados a muchas tareas son modelos ___. (una palabra)" },
+      "prompt": {
+        "en": "Large models pretrained on broad data and adapted to many tasks are ___ models. (one word)",
+        "es": "Los modelos grandes preentrenados con datos amplios y adaptados a muchas tareas son modelos ___. (una palabra)"
+      },
       "answer": "foundation",
-      "acceptedAlt": ["fundacionales", "fundacional"],
-      "hint": { "en": "They are a foundation.", "es": "Son una base." },
-      "solution": [ { "tex": "\\text{foundation models}", "en": "Foundation.", "es": "Fundacionales." } ]
+      "acceptedAlt": [
+        "fundacionales",
+        "fundacional"
+      ],
+      "hint": {
+        "en": "They are a foundation.",
+        "es": "Son una base."
+      },
+      "solution": [
+        {
+          "tex": "\\text{foundation models}",
+          "en": "Foundation.",
+          "es": "Fundacionales."
+        }
+      ]
     },
     {
       "id": "aif-12-e2",
       "answerType": "text",
-      "prompt": { "en": "Capabilities appearing with scale, not explicitly trained, are called ___. (one word)", "es": "Las capacidades que aparecen con la escala, sin entrenarse explícitamente, se llaman ___. (una palabra)" },
+      "prompt": {
+        "en": "Capabilities appearing with scale, not explicitly trained, are called ___. (one word)",
+        "es": "Las capacidades que aparecen con la escala, sin entrenarse explícitamente, se llaman ___. (una palabra)"
+      },
       "answer": "emergence",
-      "acceptedAlt": ["emergencia", "emergent", "emergente"],
-      "hint": { "en": "Emergent abilities.", "es": "Capacidades emergentes." },
-      "solution": [ { "tex": "\\text{emergence}", "en": "Emergence.", "es": "Emergencia." } ]
+      "acceptedAlt": [
+        "emergencia",
+        "emergent",
+        "emergente"
+      ],
+      "hint": {
+        "en": "Emergent abilities.",
+        "es": "Capacidades emergentes."
+      },
+      "solution": [
+        {
+          "tex": "\\text{emergence}",
+          "en": "Emergence.",
+          "es": "Emergencia."
+        }
+      ]
     },
     {
       "id": "aif-12-e3",
       "answerType": "text",
-      "prompt": { "en": "Confident false output from a model is called a ___. (one word)", "es": "Una salida falsa con confianza de un modelo se llama una ___. (una palabra)" },
+      "prompt": {
+        "en": "Confident false output from a model is called a ___. (one word)",
+        "es": "Una salida falsa con confianza de un modelo se llama una ___. (una palabra)"
+      },
       "answer": "hallucination",
-      "acceptedAlt": ["alucinación", "alucinacion"],
-      "hint": { "en": "Made-up facts.", "es": "Hechos inventados." },
-      "solution": [ { "tex": "\\text{hallucination}", "en": "Hallucination.", "es": "Alucinación." } ]
+      "acceptedAlt": [
+        "alucinación",
+        "alucinacion"
+      ],
+      "hint": {
+        "en": "Made-up facts.",
+        "es": "Hechos inventados."
+      },
+      "solution": [
+        {
+          "tex": "\\text{hallucination}",
+          "en": "Hallucination.",
+          "es": "Alucinación."
+        }
+      ]
     },
     {
       "id": "aif-12-e4",
       "answerType": "text",
-      "prompt": { "en": "One model underlying many apps creates ___ (the spreading of a single flaw). (one word)", "es": "Un modelo que sustenta muchas apps crea ___ (la difusión de un solo defecto). (una palabra)" },
+      "prompt": {
+        "en": "One model underlying many apps creates ___ (the spreading of a single flaw). (one word)",
+        "es": "Un modelo que sustenta muchas apps crea ___ (la difusión de un solo defecto). (una palabra)"
+      },
       "answer": "homogenization",
-      "acceptedAlt": ["homogeneización", "homogeneizacion", "homogenisation"],
-      "hint": { "en": "Everything becomes similar.", "es": "Todo se vuelve similar." },
-      "solution": [ { "tex": "\\text{homogenization}", "en": "Homogenization.", "es": "Homogeneización." } ]
+      "acceptedAlt": [
+        "homogeneización",
+        "homogeneizacion",
+        "homogenisation"
+      ],
+      "hint": {
+        "en": "Everything becomes similar.",
+        "es": "Todo se vuelve similar."
+      },
+      "solution": [
+        {
+          "tex": "\\text{homogenization}",
+          "en": "Homogenization.",
+          "es": "Homogeneización."
+        }
+      ]
+    },
+    {
+      "id": "aif-12-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A 'foundation model' is best described as...",
+        "es": "Un 'modelo fundacional' se describe mejor como..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "A large model pretrained broadly, then adapted to many downstream tasks",
+            "es": "Un modelo grande preentrenado de forma amplia y luego adaptado a muchas tareas"
+          },
+          "correct": true,
+          "why": {
+            "en": "Train once at scale, then fine-tune or prompt for many uses.",
+            "es": "Entrenar una vez a gran escala y luego afinar o promptear para muchos usos."
+          }
+        },
+        {
+          "text": {
+            "en": "A model that only works on one task",
+            "es": "Un modelo que solo sirve para una tarea"
+          },
+          "correct": false,
+          "why": {
+            "en": "The point is broad reuse across tasks.",
+            "es": "La idea es la reutilizacion amplia entre tareas."
+          }
+        },
+        {
+          "text": {
+            "en": "A hand-coded expert system",
+            "es": "Un sistema experto codificado a mano"
+          },
+          "correct": false,
+          "why": {
+            "en": "Foundation models are learned from data, not hand-coded rules.",
+            "es": "Los modelos fundacionales se aprenden de datos, no son reglas a mano."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Pretrain once, adapt widely.",
+        "es": "Preentrena una vez, adapta ampliamente."
+      }
     }
   ],
   "references": [
-    { "source": "Bommasani et al. — On the Opportunities and Risks of Foundation Models (2021)", "detail": { "en": "Emergence and homogenization", "es": "Emergencia y homogeneización" } }
+    {
+      "source": "Bommasani et al. — On the Opportunities and Risks of Foundation Models (2021)",
+      "detail": {
+        "en": "Emergence and homogenization",
+        "es": "Emergencia y homogeneización"
+      }
+    }
   ]
 }

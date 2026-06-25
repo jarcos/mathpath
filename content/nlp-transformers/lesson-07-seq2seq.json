@@ -3,7 +3,10 @@
   "subjectId": "nlp-transformers",
   "order": 7,
   "estimatedMinutes": 35,
-  "title": { "en": "Sequence-to-Sequence Models", "es": "Modelos secuencia a secuencia" },
+  "title": {
+    "en": "Sequence-to-Sequence Models",
+    "es": "Modelos secuencia a secuencia"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A seq2seq model uses $2$ RNNs (encoder + decoder). Translating a $5$-word sentence into a $7$-word one shows input and output lengths differ — here by $7 - 5 = 2$ tokens.",
         "es": "Un modelo seq2seq usa $2$ RNN (codificador + decodificador). Traducir una frase de $5$ palabras a una de $7$ muestra que las longitudes difieren — aquí en $7 - 5 = 2$ tokens."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# seq2seq encodes a whole sequence into one context vector\nseq = np.array([[1, 0], [0, 1], [1, 1]])\nprint(np.round(seq.mean(axis=0), 4).tolist())",
+        "es": "import numpy as np\n# seq2seq codifica una secuencia entera en un vector de contexto\nseq = np.array([[1, 0], [0, 1], [1, 1]])\nprint(np.round(seq.mean(axis=0), 4).tolist())"
+      },
+      "expectedOutput": "[0.6667, 0.6667]",
+      "caption": {
+        "en": "The encoder squeezes the input into a fixed-size summary.",
+        "es": "El codificador comprime la entrada en un resumen de tamano fijo."
       }
     }
   ],
@@ -39,42 +61,109 @@
     {
       "id": "nlp-07-e1",
       "answerType": "number",
-      "prompt": { "en": "How many RNNs does a basic seq2seq model use?", "es": "¿Cuántas RNN usa un modelo seq2seq básico?" },
+      "prompt": {
+        "en": "How many RNNs does a basic seq2seq model use?",
+        "es": "¿Cuántas RNN usa un modelo seq2seq básico?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Encoder and decoder.", "es": "Codificador y decodificador." },
-      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "Encoder and decoder.",
+        "es": "Codificador y decodificador."
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "nlp-07-e2",
       "answerType": "text",
-      "prompt": { "en": "The part that reads the input into a context vector is the ___. (one word)", "es": "La parte que lee la entrada en un vector de contexto es el ___. (una palabra)" },
+      "prompt": {
+        "en": "The part that reads the input into a context vector is the ___. (one word)",
+        "es": "La parte que lee la entrada en un vector de contexto es el ___. (una palabra)"
+      },
       "answer": "encoder",
-      "acceptedAlt": ["codificador"],
-      "hint": { "en": "Opposite of decoder.", "es": "Opuesto del decodificador." },
-      "solution": [ { "tex": "\\text{encoder}", "en": "Encoder.", "es": "Codificador." } ]
+      "acceptedAlt": [
+        "codificador"
+      ],
+      "hint": {
+        "en": "Opposite of decoder.",
+        "es": "Opuesto del decodificador."
+      },
+      "solution": [
+        {
+          "tex": "\\text{encoder}",
+          "en": "Encoder.",
+          "es": "Codificador."
+        }
+      ]
     },
     {
       "id": "nlp-07-e3",
       "answerType": "text",
-      "prompt": { "en": "A decoder feeding its own output back as input is ___. (one word)", "es": "Un decodificador que realimenta su propia salida como entrada es ___. (una palabra)" },
+      "prompt": {
+        "en": "A decoder feeding its own output back as input is ___. (one word)",
+        "es": "Un decodificador que realimenta su propia salida como entrada es ___. (una palabra)"
+      },
       "answer": "autoregressive",
-      "acceptedAlt": ["autorregresivo", "autoregresivo"],
-      "hint": { "en": "Auto + regressive.", "es": "Auto + regresivo." },
-      "solution": [ { "tex": "y_t \\mid y_{<t}", "en": "Autoregressive.", "es": "Autorregresivo." } ]
+      "acceptedAlt": [
+        "autorregresivo",
+        "autoregresivo"
+      ],
+      "hint": {
+        "en": "Auto + regressive.",
+        "es": "Auto + regresivo."
+      },
+      "solution": [
+        {
+          "tex": "y_t \\mid y_{<t}",
+          "en": "Autoregressive.",
+          "es": "Autorregresivo."
+        }
+      ]
     },
     {
       "id": "nlp-07-e4",
       "answerType": "number",
-      "prompt": { "en": "Length difference translating 5 words to 7: $7-5$?", "es": "Diferencia de longitud al traducir 5 palabras a 7: $7-5$?" },
+      "prompt": {
+        "en": "Length difference translating 5 words to 7: $7-5$?",
+        "es": "Diferencia de longitud al traducir 5 palabras a 7: $7-5$?"
+      },
       "answer": "2",
-      "acceptedAlt": ["7-5"],
-      "hint": { "en": "7 − 5.", "es": "7 − 5." },
-      "solution": [ { "tex": "7-5=2", "en": "Two.", "es": "Dos." } ]
+      "acceptedAlt": [
+        "7-5"
+      ],
+      "hint": {
+        "en": "7 − 5.",
+        "es": "7 − 5."
+      },
+      "solution": [
+        {
+          "tex": "7-5=2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Sutskever et al. — Sequence to Sequence Learning with Neural Networks (2014)", "detail": { "en": "Encoder-decoder seq2seq", "es": "seq2seq codificador-decodificador" } },
-    { "source": "Jurafsky & Martin — Speech and Language Processing", "detail": { "en": "Ch. 9–10, RNNs and encoder-decoder models", "es": "Cap. 9–10, RNN y modelos codificador-decodificador" } }
+    {
+      "source": "Sutskever et al. — Sequence to Sequence Learning with Neural Networks (2014)",
+      "detail": {
+        "en": "Encoder-decoder seq2seq",
+        "es": "seq2seq codificador-decodificador"
+      }
+    },
+    {
+      "source": "Jurafsky & Martin — Speech and Language Processing",
+      "detail": {
+        "en": "Ch. 9–10, RNNs and encoder-decoder models",
+        "es": "Cap. 9–10, RNN y modelos codificador-decodificador"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "nlp-transformers",
   "order": 1,
   "estimatedMinutes": 30,
-  "title": { "en": "What Is NLP?", "es": "¿Qué es el PLN?" },
+  "title": {
+    "en": "What Is NLP?",
+    "es": "¿Qué es el PLN?"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "The sentence 'I saw the man with the telescope' has $2$ valid parses (who has the telescope?) — an example of ambiguity. A collection of text used to train an NLP model is called a corpus.",
         "es": "La frase 'Vi al hombre con el telescopio' tiene $2$ análisis válidos (¿quién tiene el telescopio?) — un ejemplo de ambigüedad. Una colección de texto usada para entrenar un modelo de PLN se llama corpus."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "text = \"the cat sat\"\n# NLP starts by turning text into a sequence of tokens\nprint(text.split(), len(text.split()))",
+        "es": "text = \"the cat sat\"\n# el PLN empieza convirtiendo el texto en una secuencia de tokens\nprint(text.split(), len(text.split()))"
+      },
+      "expectedOutput": "['the', 'cat', 'sat'] 3",
+      "caption": {
+        "en": "Text becomes a sequence of tokens a model can process.",
+        "es": "El texto se vuelve una secuencia de tokens que un modelo procesa."
       }
     }
   ],
@@ -39,41 +59,101 @@
     {
       "id": "nlp-01-e1",
       "answerType": "text",
-      "prompt": { "en": "NLP gets computers to process human ___. (one word)", "es": "El PLN logra que las computadoras procesen el ___ humano. (una palabra)" },
+      "prompt": {
+        "en": "NLP gets computers to process human ___. (one word)",
+        "es": "El PLN logra que las computadoras procesen el ___ humano. (una palabra)"
+      },
       "answer": "language",
-      "acceptedAlt": ["lenguaje"],
-      "hint": { "en": "Natural ___ processing.", "es": "Procesamiento del ___ natural." },
-      "solution": [ { "tex": "\\text{language}", "en": "Language.", "es": "Lenguaje." } ]
+      "acceptedAlt": [
+        "lenguaje"
+      ],
+      "hint": {
+        "en": "Natural ___ processing.",
+        "es": "Procesamiento del ___ natural."
+      },
+      "solution": [
+        {
+          "tex": "\\text{language}",
+          "en": "Language.",
+          "es": "Lenguaje."
+        }
+      ]
     },
     {
       "id": "nlp-01-e2",
       "answerType": "text",
-      "prompt": { "en": "A collection of text used as training data is a ___. (one word)", "es": "Una colección de texto usada como datos de entrenamiento es un ___. (una palabra)" },
+      "prompt": {
+        "en": "A collection of text used as training data is a ___. (one word)",
+        "es": "Una colección de texto usada como datos de entrenamiento es un ___. (una palabra)"
+      },
       "answer": "corpus",
-      "acceptedAlt": ["corpus"],
-      "hint": { "en": "Plural: corpora.", "es": "Plural: corpus/corpora." },
-      "solution": [ { "tex": "\\text{corpus}", "en": "Corpus.", "es": "Corpus." } ]
+      "acceptedAlt": [
+        "corpus"
+      ],
+      "hint": {
+        "en": "Plural: corpora.",
+        "es": "Plural: corpus/corpora."
+      },
+      "solution": [
+        {
+          "tex": "\\text{corpus}",
+          "en": "Corpus.",
+          "es": "Corpus."
+        }
+      ]
     },
     {
       "id": "nlp-01-e3",
       "answerType": "number",
-      "prompt": { "en": "'I saw the man with the telescope' has how many valid parse interpretations?", "es": "'Vi al hombre con el telescopio' tiene ¿cuántas interpretaciones válidas?" },
+      "prompt": {
+        "en": "'I saw the man with the telescope' has how many valid parse interpretations?",
+        "es": "'Vi al hombre con el telescopio' tiene ¿cuántas interpretaciones válidas?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Who holds the telescope?", "es": "¿Quién tiene el telescopio?" },
-      "solution": [ { "tex": "2", "en": "Two — ambiguity.", "es": "Dos — ambigüedad." } ]
+      "hint": {
+        "en": "Who holds the telescope?",
+        "es": "¿Quién tiene el telescopio?"
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two — ambiguity.",
+          "es": "Dos — ambigüedad."
+        }
+      ]
     },
     {
       "id": "nlp-01-e4",
       "answerType": "text",
-      "prompt": { "en": "The architecture behind modern NLP models is the ___. (one word)", "es": "La arquitectura detrás de los modelos de PLN modernos es el ___. (una palabra)" },
+      "prompt": {
+        "en": "The architecture behind modern NLP models is the ___. (one word)",
+        "es": "La arquitectura detrás de los modelos de PLN modernos es el ___. (una palabra)"
+      },
       "answer": "transformer",
-      "acceptedAlt": ["transformador"],
-      "hint": { "en": "Attention Is All You Need.", "es": "Attention Is All You Need." },
-      "solution": [ { "tex": "\\text{Transformer}", "en": "Transformer.", "es": "Transformer." } ]
+      "acceptedAlt": [
+        "transformador"
+      ],
+      "hint": {
+        "en": "Attention Is All You Need.",
+        "es": "Attention Is All You Need."
+      },
+      "solution": [
+        {
+          "tex": "\\text{Transformer}",
+          "en": "Transformer.",
+          "es": "Transformer."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Jurafsky & Martin — Speech and Language Processing (3rd ed. draft)", "detail": { "en": "Ch. 1, introduction to NLP", "es": "Cap. 1, introducción al PLN" } }
+    {
+      "source": "Jurafsky & Martin — Speech and Language Processing (3rd ed. draft)",
+      "detail": {
+        "en": "Ch. 1, introduction to NLP",
+        "es": "Cap. 1, introducción al PLN"
+      }
+    }
   ]
 }

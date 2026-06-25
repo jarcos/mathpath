@@ -3,13 +3,27 @@
   "subjectId": "deep-learning",
   "order": 6,
   "estimatedMinutes": 35,
-  "title": { "en": "CNN Architecture End to End", "es": "Arquitectura de una CNN de principio a fin" },
+  "title": {
+    "en": "CNN Architecture End to End",
+    "es": "Arquitectura de una CNN de principio a fin"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A typical image classifier stacks repeating **conv → ReLU → pool** blocks, then flattens the final feature maps and feeds them to one or more **fully connected** layers ending in a softmax over classes. Early blocks see small regions; deeper blocks, thanks to repeated pooling, have a large **receptive field** — each neuron 'sees' a big chunk of the original image.",
         "es": "Un clasificador de imágenes típico apila bloques repetidos **conv → ReLU → pool**, luego aplana los mapas finales y los pasa a una o varias capas **totalmente conectadas** que terminan en un softmax sobre las clases. Los primeros bloques ven regiones pequeñas; los más profundos, gracias al pooling repetido, tienen un **campo receptivo** grande — cada neurona 've' una porción grande de la imagen original."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "dl-03-convolution",
+        "dl-05-pooling"
+      ],
+      "note": {
+        "en": "A CNN stacks the convolution and pooling layers just seen.",
+        "es": "Una CNN apila las capas de convolucion y pooling ya vistas."
       }
     },
     {
@@ -28,10 +42,28 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "One layer with $3$ input channels and $8$ filters of size $3\\times 3$ has $8\\,(3\\cdot 9 + 1) = 8\\cdot 28 = 224$ parameters. ResNet's signature idea is the **residual** (skip) connection.",
         "es": "Una capa con $3$ canales de entrada y $8$ filtros de tamaño $3\\times 3$ tiene $8\\,(3\\cdot 9 + 1) = 8\\cdot 28 = 224$ parámetros. La idea distintiva de ResNet es la conexión **residual** (de salto)."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": false,
+      "lib": [
+        "tensorflow"
+      ],
+      "code": {
+        "en": "import tensorflow as tf\n# a small CNN classifier (TensorFlow reference — not run in-app)\nmodel = tf.keras.Sequential([\n    tf.keras.layers.Conv2D(8, 3, activation=\"relu\", input_shape=(28, 28, 1)),\n    tf.keras.layers.MaxPooling2D(),\n    tf.keras.layers.Flatten(),\n    tf.keras.layers.Dense(10, activation=\"softmax\"),\n])\nmodel.summary()",
+        "es": "import tensorflow as tf\n# un pequeno clasificador CNN (referencia de TensorFlow — no se ejecuta en la app)\nmodel = tf.keras.Sequential([\n    tf.keras.layers.Conv2D(8, 3, activation=\"relu\", input_shape=(28, 28, 1)),\n    tf.keras.layers.MaxPooling2D(),\n    tf.keras.layers.Flatten(),\n    tf.keras.layers.Dense(10, activation=\"softmax\"),\n])\nmodel.summary()"
+      },
+      "caption": {
+        "en": "A typical CNN: convolution, pooling, flatten, dense — TensorFlow reference.",
+        "es": "Una CNN tipica: convolucion, pooling, aplanado, densa — referencia de TensorFlow."
       }
     }
   ],
@@ -39,42 +71,113 @@
     {
       "id": "dl-06-e1",
       "answerType": "number",
-      "prompt": { "en": "Params of a layer: 3 in-channels, 8 filters of 3×3, with bias: $8(3\\cdot 9 + 1)$?", "es": "Parámetros de una capa: 3 canales de entrada, 8 filtros de 3×3, con sesgo: $8(3\\cdot 9 + 1)$?" },
+      "prompt": {
+        "en": "Params of a layer: 3 in-channels, 8 filters of 3×3, with bias: $8(3\\cdot 9 + 1)$?",
+        "es": "Parámetros de una capa: 3 canales de entrada, 8 filtros de 3×3, con sesgo: $8(3\\cdot 9 + 1)$?"
+      },
       "answer": "224",
-      "acceptedAlt": ["8*(3*9+1)"],
-      "hint": { "en": "8 × (27 + 1).", "es": "8 × (27 + 1)." },
-      "solution": [ { "tex": "8(27+1) = 224", "en": "224 parameters.", "es": "224 parámetros." } ]
+      "acceptedAlt": [
+        "8*(3*9+1)"
+      ],
+      "hint": {
+        "en": "8 × (27 + 1).",
+        "es": "8 × (27 + 1)."
+      },
+      "solution": [
+        {
+          "tex": "8(27+1) = 224",
+          "en": "224 parameters.",
+          "es": "224 parámetros."
+        }
+      ]
     },
     {
       "id": "dl-06-e2",
       "answerType": "text",
-      "prompt": { "en": "ResNet adds skip connections, also called ___ connections. (one word)", "es": "ResNet añade conexiones de salto, también llamadas conexiones ___. (una palabra)" },
+      "prompt": {
+        "en": "ResNet adds skip connections, also called ___ connections. (one word)",
+        "es": "ResNet añade conexiones de salto, también llamadas conexiones ___. (una palabra)"
+      },
       "answer": "residual",
-      "acceptedAlt": ["residuales", "residuals"],
-      "hint": { "en": "It learns a residual.", "es": "Aprende un residuo." },
-      "solution": [ { "tex": "y = F(x) + x", "en": "Residual.", "es": "Residual." } ]
+      "acceptedAlt": [
+        "residuales",
+        "residuals"
+      ],
+      "hint": {
+        "en": "It learns a residual.",
+        "es": "Aprende un residuo."
+      },
+      "solution": [
+        {
+          "tex": "y = F(x) + x",
+          "en": "Residual.",
+          "es": "Residual."
+        }
+      ]
     },
     {
       "id": "dl-06-e3",
       "answerType": "text",
-      "prompt": { "en": "The region of input a neuron depends on is its receptive ___. (one word)", "es": "La región de entrada de la que depende una neurona es su campo ___. (una palabra)" },
+      "prompt": {
+        "en": "The region of input a neuron depends on is its receptive ___. (one word)",
+        "es": "La región de entrada de la que depende una neurona es su campo ___. (una palabra)"
+      },
       "answer": "field",
-      "acceptedAlt": ["receptivo", "campo"],
-      "hint": { "en": "Receptive ___.", "es": "Campo ___." },
-      "solution": [ { "tex": "\\text{receptive field}", "en": "Field.", "es": "Receptivo." } ]
+      "acceptedAlt": [
+        "receptivo",
+        "campo"
+      ],
+      "hint": {
+        "en": "Receptive ___.",
+        "es": "Campo ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{receptive field}",
+          "en": "Field.",
+          "es": "Receptivo."
+        }
+      ]
     },
     {
       "id": "dl-06-e4",
       "answerType": "number",
-      "prompt": { "en": "Conv params with 1 in-channel, 1 filter 3×3, no bias: $1\\cdot 9$?", "es": "Parámetros conv con 1 canal de entrada, 1 filtro 3×3, sin sesgo: $1\\cdot 9$?" },
+      "prompt": {
+        "en": "Conv params with 1 in-channel, 1 filter 3×3, no bias: $1\\cdot 9$?",
+        "es": "Parámetros conv con 1 canal de entrada, 1 filtro 3×3, sin sesgo: $1\\cdot 9$?"
+      },
       "answer": "9",
-      "acceptedAlt": ["1*9", "3^2"],
-      "hint": { "en": "Just the filter weights.", "es": "Solo los pesos del filtro." },
-      "solution": [ { "tex": "3^2 = 9", "en": "Nine weights.", "es": "Nueve pesos." } ]
+      "acceptedAlt": [
+        "1*9",
+        "3^2"
+      ],
+      "hint": {
+        "en": "Just the filter weights.",
+        "es": "Solo los pesos del filtro."
+      },
+      "solution": [
+        {
+          "tex": "3^2 = 9",
+          "en": "Nine weights.",
+          "es": "Nueve pesos."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 9.4–9.5, architectures and structured outputs", "es": "Cap. 9.4–9.5, arquitecturas y salidas estructuradas" } },
-    { "source": "He et al. — Deep Residual Learning for Image Recognition (2015)", "detail": { "en": "ResNet and residual connections", "es": "ResNet y conexiones residuales" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 9.4–9.5, architectures and structured outputs",
+        "es": "Cap. 9.4–9.5, arquitecturas y salidas estructuradas"
+      }
+    },
+    {
+      "source": "He et al. — Deep Residual Learning for Image Recognition (2015)",
+      "detail": {
+        "en": "ResNet and residual connections",
+        "es": "ResNet y conexiones residuales"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "computer-vision",
   "order": 10,
   "estimatedMinutes": 30,
-  "title": { "en": "Image Classification", "es": "Clasificación de imágenes" },
+  "title": {
+    "en": "Image Classification",
+    "es": "Clasificación de imágenes"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With class scores $[2, 5, 1]$, the prediction is the argmax — class index $2$ (the $5$). Accuracy with $920$ correct of $1000$ is $920/1000 = 0.92$.",
         "es": "Con puntuaciones de clase $[2, 5, 1]$, la predicción es el argmax — el índice de clase $2$ (el $5$). La exactitud con $920$ aciertos de $1000$ es $920/1000 = 0.92$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nsoftmax = lambda z: np.exp(z - z.max()) / np.exp(z - z.max()).sum()\n# a classifier outputs class scores; softmax + argmax give the prediction\nscores = np.array([1.0, 3.0, 0.5])\nprobs = softmax(scores)\nprint(int(np.argmax(probs)), round(float(probs.max()), 4))",
+        "es": "import numpy as np\nsoftmax = lambda z: np.exp(z - z.max()) / np.exp(z - z.max()).sum()\n# un clasificador da puntuaciones por clase; softmax + argmax dan la prediccion\nscores = np.array([1.0, 3.0, 0.5])\nprobs = softmax(scores)\nprint(int(np.argmax(probs)), round(float(probs.max()), 4))"
+      },
+      "expectedOutput": "1 0.8214",
+      "caption": {
+        "en": "Image classification picks the highest-probability class.",
+        "es": "La clasificacion de imagenes elige la clase de mayor probabilidad."
       }
     }
   ],
@@ -39,41 +61,103 @@
     {
       "id": "cv-10-e1",
       "answerType": "number",
-      "prompt": { "en": "Highest of class scores $[2,5,1]$ (the argmax value)?", "es": "Mayor de las puntuaciones $[2,5,1]$ (el valor del argmax)?" },
+      "prompt": {
+        "en": "Highest of class scores $[2,5,1]$ (the argmax value)?",
+        "es": "Mayor de las puntuaciones $[2,5,1]$ (el valor del argmax)?"
+      },
       "answer": "5",
-      "acceptedAlt": ["max(2,5,1)"],
-      "hint": { "en": "The maximum score.", "es": "La puntuación máxima." },
-      "solution": [ { "tex": "\\max = 5", "en": "Five.", "es": "Cinco." } ]
+      "acceptedAlt": [
+        "max(2,5,1)"
+      ],
+      "hint": {
+        "en": "The maximum score.",
+        "es": "La puntuación máxima."
+      },
+      "solution": [
+        {
+          "tex": "\\max = 5",
+          "en": "Five.",
+          "es": "Cinco."
+        }
+      ]
     },
     {
       "id": "cv-10-e2",
       "answerType": "number",
-      "prompt": { "en": "Accuracy: 920 correct of 1000?", "es": "Exactitud: 920 aciertos de 1000?" },
+      "prompt": {
+        "en": "Accuracy: 920 correct of 1000?",
+        "es": "Exactitud: 920 aciertos de 1000?"
+      },
       "answer": "0.92",
-      "acceptedAlt": ["920/1000", "23/25"],
-      "hint": { "en": "920 / 1000.", "es": "920 / 1000." },
-      "solution": [ { "tex": "0.92", "en": "0.92.", "es": "0.92." } ]
+      "acceptedAlt": [
+        "920/1000",
+        "23/25"
+      ],
+      "hint": {
+        "en": "920 / 1000.",
+        "es": "920 / 1000."
+      },
+      "solution": [
+        {
+          "tex": "0.92",
+          "en": "0.92.",
+          "es": "0.92."
+        }
+      ]
     },
     {
       "id": "cv-10-e3",
       "answerType": "text",
-      "prompt": { "en": "Scores are turned into class probabilities by the ___ function. (one word)", "es": "Las puntuaciones se vuelven probabilidades de clase con la función ___. (una palabra)" },
+      "prompt": {
+        "en": "Scores are turned into class probabilities by the ___ function. (one word)",
+        "es": "Las puntuaciones se vuelven probabilidades de clase con la función ___. (una palabra)"
+      },
       "answer": "softmax",
       "acceptedAlt": [],
-      "hint": { "en": "Normalizes to sum 1.", "es": "Normaliza para sumar 1." },
-      "solution": [ { "tex": "\\text{softmax}", "en": "Softmax.", "es": "Softmax." } ]
+      "hint": {
+        "en": "Normalizes to sum 1.",
+        "es": "Normaliza para sumar 1."
+      },
+      "solution": [
+        {
+          "tex": "\\text{softmax}",
+          "en": "Softmax.",
+          "es": "Softmax."
+        }
+      ]
     },
     {
       "id": "cv-10-e4",
       "answerType": "text",
-      "prompt": { "en": "Tiny perturbations that flip predictions are called ___ examples. (one word)", "es": "Las perturbaciones diminutas que invierten predicciones son ejemplos ___. (una palabra)" },
+      "prompt": {
+        "en": "Tiny perturbations that flip predictions are called ___ examples. (one word)",
+        "es": "Las perturbaciones diminutas que invierten predicciones son ejemplos ___. (una palabra)"
+      },
       "answer": "adversarial",
-      "acceptedAlt": ["adversarios", "adversariales"],
-      "hint": { "en": "Adversarial attacks.", "es": "Ataques adversarios." },
-      "solution": [ { "tex": "\\text{adversarial}", "en": "Adversarial.", "es": "Adversarios." } ]
+      "acceptedAlt": [
+        "adversarios",
+        "adversariales"
+      ],
+      "hint": {
+        "en": "Adversarial attacks.",
+        "es": "Ataques adversarios."
+      },
+      "solution": [
+        {
+          "tex": "\\text{adversarial}",
+          "en": "Adversarial.",
+          "es": "Adversarios."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russakovsky et al. — ImageNet Large Scale Visual Recognition Challenge (2015)", "detail": { "en": "Classification benchmark and top-5", "es": "Punto de referencia de clasificación y top-5" } }
+    {
+      "source": "Russakovsky et al. — ImageNet Large Scale Visual Recognition Challenge (2015)",
+      "detail": {
+        "en": "Classification benchmark and top-5",
+        "es": "Punto de referencia de clasificación y top-5"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "linear-maps",
   "order": 1,
   "estimatedMinutes": 40,
-  "title": { "en": "Linear Maps: The Concept", "es": "Aplicaciones lineales: el concepto" },
+  "title": {
+    "en": "Linear Maps: The Concept",
+    "es": "Aplicaciones lineales: el concepto"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Is $T(x) = 3x$ linear? Check: $T(a+b) = 3(a+b) = 3a + 3b = T(a)+T(b)$ ✓, and $T(0) = 0$ ✓. Yes. Evaluate $T(2) = 6$. Is $T(x) = x+1$ linear? $T(0) = 1 \\neq 0$, so no.",
         "es": "¿Es $T(x) = 3x$ lineal? Comprueba: $T(a+b) = 3(a+b) = 3a + 3b = T(a)+T(b)$ ✓, y $T(0) = 0$ ✓. Sí. Evalúa $T(2) = 6$. ¿Es $T(x) = x+1$ lineal? $T(0) = 1 \\neq 0$, así que no."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\n# a linear map T(x) = A x sends a vector to a new vector\nprint((A @ np.array([1, 1])).tolist())",
+        "es": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\n# un mapa lineal T(x) = A x lleva un vector a otro vector\nprint((A @ np.array([1, 1])).tolist())"
+      },
+      "expectedOutput": "[2, 3]",
+      "caption": {
+        "en": "Every linear map is multiplication by a matrix.",
+        "es": "Todo mapa lineal es una multiplicacion por una matriz."
       }
     }
   ],
@@ -39,42 +61,109 @@
     {
       "id": "linmaps-01-e1",
       "answerType": "text",
-      "prompt": { "en": "Is $T(x) = 2x$ a linear map? (yes / no)", "es": "¿Es $T(x) = 2x$ una aplicación lineal? (sí / no)" },
+      "prompt": {
+        "en": "Is $T(x) = 2x$ a linear map? (yes / no)",
+        "es": "¿Es $T(x) = 2x$ una aplicación lineal? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Check T(0)=0 and scaling.", "es": "Comprueba T(0)=0 y el escalado." },
-      "solution": [ { "tex": "T(0)=0,\\; T(cu)=cT(u)", "en": "Both conditions hold.", "es": "Se cumplen ambas condiciones." } ]
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Check T(0)=0 and scaling.",
+        "es": "Comprueba T(0)=0 y el escalado."
+      },
+      "solution": [
+        {
+          "tex": "T(0)=0,\\; T(cu)=cT(u)",
+          "en": "Both conditions hold.",
+          "es": "Se cumplen ambas condiciones."
+        }
+      ]
     },
     {
       "id": "linmaps-01-e2",
       "answerType": "text",
-      "prompt": { "en": "Is $T(x) = x + 1$ a linear map? (yes / no)", "es": "¿Es $T(x) = x + 1$ una aplicación lineal? (sí / no)" },
+      "prompt": {
+        "en": "Is $T(x) = x + 1$ a linear map? (yes / no)",
+        "es": "¿Es $T(x) = x + 1$ una aplicación lineal? (sí / no)"
+      },
       "answer": "no",
-      "acceptedAlt": ["no"],
-      "hint": { "en": "What is T(0)?", "es": "¿Cuánto vale T(0)?" },
-      "solution": [ { "tex": "T(0) = 1 \\neq 0", "en": "Fails T(0)=0 → not linear.", "es": "Falla T(0)=0 → no lineal." } ]
+      "acceptedAlt": [
+        "no"
+      ],
+      "hint": {
+        "en": "What is T(0)?",
+        "es": "¿Cuánto vale T(0)?"
+      },
+      "solution": [
+        {
+          "tex": "T(0) = 1 \\neq 0",
+          "en": "Fails T(0)=0 → not linear.",
+          "es": "Falla T(0)=0 → no lineal."
+        }
+      ]
     },
     {
       "id": "linmaps-01-e3",
       "answerType": "number",
-      "prompt": { "en": "For the linear map $T(x) = 3x$, find $T(2)$.", "es": "Para la aplicación lineal $T(x) = 3x$, halla $T(2)$." },
+      "prompt": {
+        "en": "For the linear map $T(x) = 3x$, find $T(2)$.",
+        "es": "Para la aplicación lineal $T(x) = 3x$, halla $T(2)$."
+      },
       "answer": "6",
-      "acceptedAlt": ["3*2"],
-      "hint": { "en": "Substitute 2.", "es": "Sustituye 2." },
-      "solution": [ { "tex": "T(2) = 3\\cdot 2 = 6", "en": "Evaluate.", "es": "Evalúa." } ]
+      "acceptedAlt": [
+        "3*2"
+      ],
+      "hint": {
+        "en": "Substitute 2.",
+        "es": "Sustituye 2."
+      },
+      "solution": [
+        {
+          "tex": "T(2) = 3\\cdot 2 = 6",
+          "en": "Evaluate.",
+          "es": "Evalúa."
+        }
+      ]
     },
     {
       "id": "linmaps-01-e4",
       "answerType": "number",
-      "prompt": { "en": "Every linear map sends the zero vector to which vector? (its single component)", "es": "Toda aplicación lineal envía el vector cero a qué vector? (su componente)" },
+      "prompt": {
+        "en": "Every linear map sends the zero vector to which vector? (its single component)",
+        "es": "Toda aplicación lineal envía el vector cero a qué vector? (su componente)"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "T(0) = ?", "es": "T(0) = ?" },
-      "solution": [ { "tex": "T(\\mathbf{0}) = \\mathbf{0}", "en": "Always zero.", "es": "Siempre cero." } ]
+      "hint": {
+        "en": "T(0) = ?",
+        "es": "T(0) = ?"
+      },
+      "solution": [
+        {
+          "tex": "T(\\mathbf{0}) = \\mathbf{0}",
+          "en": "Always zero.",
+          "es": "Siempre cero."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Concept of a linear map between vector spaces", "es": "Concepto de aplicación lineal entre espacios vectoriales" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 8.1, the idea of a linear transformation", "es": "Cap. 8.1, la idea de transformación lineal" } }
+    {
+      "source": "UOC — Aplicaciones lineales (PID_00269006)",
+      "detail": {
+        "en": "Concept of a linear map between vector spaces",
+        "es": "Concepto de aplicación lineal entre espacios vectoriales"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 8.1, the idea of a linear transformation",
+        "es": "Cap. 8.1, la idea de transformación lineal"
+      }
+    }
   ]
 }

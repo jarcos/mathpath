@@ -3,7 +3,10 @@
   "subjectId": "linear-algebra",
   "order": 1,
   "estimatedMinutes": 40,
-  "title": { "en": "Complex Numbers: Binomic Form", "es": "Números complejos: forma binómica" },
+  "title": {
+    "en": "Complex Numbers: Binomic Form",
+    "es": "Números complejos: forma binómica"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Identify parts and roots. For $z = 3 + 2i$: $\\Re(z) = 3$, $\\Im(z) = 2$. For $w = 5 - 4i$: $\\Im(w) = -4$ (keep the sign). And $\\sqrt{-9} = 3i$. Note $\\Im(z)$ is the real number $b$, not $bi$.",
         "es": "Identifica partes y raíces. Para $z = 3 + 2i$: $\\Re(z) = 3$, $\\Im(z) = 2$. Para $w = 5 - 4i$: $\\Im(w) = -4$ (conserva el signo). Y $\\sqrt{-9} = 3i$. Nota que $\\Im(z)$ es el número real $b$, no $bi$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "z = 2 + 3j          # j is Python’s imaginary unit\nprint(z.real, z.imag, round(abs(z), 4))",
+        "es": "z = 2 + 3j          # j es la unidad imaginaria en Python\nprint(z.real, z.imag, round(abs(z), 4))"
+      },
+      "expectedOutput": "2.0 3.0 3.6056",
+      "caption": {
+        "en": "Python has complex numbers built in; abs gives the modulus.",
+        "es": "Python trae numeros complejos integrados; abs da el modulo."
       }
     }
   ],
@@ -39,43 +59,111 @@
     {
       "id": "linalg-01-e1",
       "answerType": "number",
-      "prompt": { "en": "What is $i^2$?", "es": "¿Cuánto vale $i^2$?" },
+      "prompt": {
+        "en": "What is $i^2$?",
+        "es": "¿Cuánto vale $i^2$?"
+      },
       "answer": "-1",
       "acceptedAlt": [],
-      "hint": { "en": "Definition of the imaginary unit.", "es": "Definición de la unidad imaginaria." },
-      "solution": [ { "tex": "i^2 = -1", "en": "By definition.", "es": "Por definición." } ]
+      "hint": {
+        "en": "Definition of the imaginary unit.",
+        "es": "Definición de la unidad imaginaria."
+      },
+      "solution": [
+        {
+          "tex": "i^2 = -1",
+          "en": "By definition.",
+          "es": "Por definición."
+        }
+      ]
     },
     {
       "id": "linalg-01-e2",
       "answerType": "number",
-      "prompt": { "en": "What is the real part of $3 + 2i$?", "es": "¿Cuál es la parte real de $3 + 2i$?" },
+      "prompt": {
+        "en": "What is the real part of $3 + 2i$?",
+        "es": "¿Cuál es la parte real de $3 + 2i$?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "The term without i.", "es": "El término sin i." },
-      "solution": [ { "tex": "\\Re(3+2i) = 3", "en": "Real part.", "es": "Parte real." } ]
+      "hint": {
+        "en": "The term without i.",
+        "es": "El término sin i."
+      },
+      "solution": [
+        {
+          "tex": "\\Re(3+2i) = 3",
+          "en": "Real part.",
+          "es": "Parte real."
+        }
+      ]
     },
     {
       "id": "linalg-01-e3",
       "answerType": "number",
-      "prompt": { "en": "What is the imaginary part of $5 - 4i$?", "es": "¿Cuál es la parte imaginaria de $5 - 4i$?" },
+      "prompt": {
+        "en": "What is the imaginary part of $5 - 4i$?",
+        "es": "¿Cuál es la parte imaginaria de $5 - 4i$?"
+      },
       "answer": "-4",
       "acceptedAlt": [],
-      "hint": { "en": "The coefficient of i (with its sign).", "es": "El coeficiente de i (con su signo)." },
-      "solution": [ { "tex": "\\Im(5-4i) = -4", "en": "Imaginary part.", "es": "Parte imaginaria." } ]
+      "hint": {
+        "en": "The coefficient of i (with its sign).",
+        "es": "El coeficiente de i (con su signo)."
+      },
+      "solution": [
+        {
+          "tex": "\\Im(5-4i) = -4",
+          "en": "Imaginary part.",
+          "es": "Parte imaginaria."
+        }
+      ]
     },
     {
       "id": "linalg-01-e4",
       "answerType": "expression",
-      "prompt": { "en": "Write $\\sqrt{-9}$ in the form $bi$.", "es": "Escribe $\\sqrt{-9}$ en la forma $bi$." },
+      "prompt": {
+        "en": "Write $\\sqrt{-9}$ in the form $bi$.",
+        "es": "Escribe $\\sqrt{-9}$ en la forma $bi$."
+      },
       "answer": "3*i",
-      "acceptedAlt": ["3i"],
-      "hint": { "en": "√(−9) = √9 · √(−1).", "es": "√(−9) = √9 · √(−1)." },
-      "solution": [ { "tex": "\\sqrt{-9} = 3i", "en": "Since (3i)² = −9.", "es": "Ya que (3i)² = −9." } ]
+      "acceptedAlt": [
+        "3i"
+      ],
+      "hint": {
+        "en": "√(−9) = √9 · √(−1).",
+        "es": "√(−9) = √9 · √(−1)."
+      },
+      "solution": [
+        {
+          "tex": "\\sqrt{-9} = 3i",
+          "en": "Since (3i)² = −9.",
+          "es": "Ya que (3i)² = −9."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "UOC — Los números (PID_00271022)", "detail": { "en": "Complex numbers; binomic form", "es": "Números complejos; forma binómica" } },
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 3.5, Complex Numbers", "es": "Cap. 3.5, Números complejos" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 9, complex numbers in linear algebra", "es": "Cap. 9, números complejos en álgebra lineal" } }
+    {
+      "source": "UOC — Los números (PID_00271022)",
+      "detail": {
+        "en": "Complex numbers; binomic form",
+        "es": "Números complejos; forma binómica"
+      }
+    },
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 3.5, Complex Numbers",
+        "es": "Cap. 3.5, Números complejos"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 9, complex numbers in linear algebra",
+        "es": "Cap. 9, números complejos en álgebra lineal"
+      }
+    }
   ]
 }

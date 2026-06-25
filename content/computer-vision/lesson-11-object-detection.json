@@ -3,13 +3,26 @@
   "subjectId": "computer-vision",
   "order": 11,
   "estimatedMinutes": 35,
-  "title": { "en": "Object Detection", "es": "Detección de objetos" },
+  "title": {
+    "en": "Object Detection",
+    "es": "Detección de objetos"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "**Object detection** goes beyond classification: it finds **what** objects are present **and where**, drawing a **bounding box** around each and labeling it. An image may contain many objects of different classes, so the output is a variable-length list of (box, class, confidence) triples.",
         "es": "La **detección de objetos** va más allá de la clasificación: encuentra **qué** objetos hay **y dónde**, dibujando una **caja delimitadora (bounding box)** alrededor de cada uno y etiquetándolo. Una imagen puede contener muchos objetos de distintas clases, así que la salida es una lista de longitud variable de tripletas (caja, clase, confianza)."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "cv-10-classification"
+      ],
+      "note": {
+        "en": "Detection extends classification with localized boxes.",
+        "es": "La deteccion extiende la clasificacion con cajas localizadas."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "If a predicted and true box overlap in area $20$ and their union is $50$, then $\\text{IoU} = 20/50 = 0.4$ — below a $0.5$ threshold, so this detection would be rejected.",
         "es": "Si una caja predicha y la verdadera se solapan en área $20$ y su unión es $50$, entonces $\\text{IoU} = 20/50 = 0.4$ — por debajo de un umbral $0.5$, así que esta detección se rechazaría."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "def iou(a, b):\n    xA, yA = max(a[0], b[0]), max(a[1], b[1])\n    xB, yB = min(a[2], b[2]), min(a[3], b[3])\n    inter = max(0, xB - xA) * max(0, yB - yA)\n    union = (a[2]-a[0])*(a[3]-a[1]) + (b[2]-b[0])*(b[3]-b[1]) - inter\n    return inter / union\n# IoU measures box overlap for object detection\nprint(round(iou([0, 0, 2, 2], [1, 1, 3, 3]), 4))",
+        "es": "def iou(a, b):\n    xA, yA = max(a[0], b[0]), max(a[1], b[1])\n    xB, yB = min(a[2], b[2]), min(a[3], b[3])\n    inter = max(0, xB - xA) * max(0, yB - yA)\n    union = (a[2]-a[0])*(a[3]-a[1]) + (b[2]-b[0])*(b[3]-b[1]) - inter\n    return inter / union\n# IoU mide el solape de cajas para deteccion de objetos\nprint(round(iou([0, 0, 2, 2], [1, 1, 3, 3]), 4))"
+      },
+      "expectedOutput": "0.1429",
+      "caption": {
+        "en": "Detectors score predicted boxes against ground truth with IoU.",
+        "es": "Los detectores puntuan las cajas predichas frente a la verdad con IoU."
       }
     }
   ],
@@ -39,42 +69,183 @@
     {
       "id": "cv-11-e1",
       "answerType": "number",
-      "prompt": { "en": "IoU with intersection 20 and union 50: $20/50$?", "es": "IoU con intersección 20 y unión 50: $20/50$?" },
+      "prompt": {
+        "en": "IoU with intersection 20 and union 50: $20/50$?",
+        "es": "IoU con intersección 20 y unión 50: $20/50$?"
+      },
       "answer": "0.4",
-      "acceptedAlt": ["20/50", "2/5"],
-      "hint": { "en": "20 / 50.", "es": "20 / 50." },
-      "solution": [ { "tex": "20/50 = 0.4", "en": "0.4.", "es": "0.4." } ]
+      "acceptedAlt": [
+        "20/50",
+        "2/5"
+      ],
+      "hint": {
+        "en": "20 / 50.",
+        "es": "20 / 50."
+      },
+      "solution": [
+        {
+          "tex": "20/50 = 0.4",
+          "en": "0.4.",
+          "es": "0.4."
+        }
+      ]
     },
     {
       "id": "cv-11-e2",
       "answerType": "number",
-      "prompt": { "en": "IoU of two identical perfectly-overlapping boxes?", "es": "IoU de dos cajas idénticas perfectamente solapadas?" },
+      "prompt": {
+        "en": "IoU of two identical perfectly-overlapping boxes?",
+        "es": "IoU de dos cajas idénticas perfectamente solapadas?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "Intersection = union.", "es": "Intersección = unión." },
-      "solution": [ { "tex": "\\frac{A}{A} = 1", "en": "One.", "es": "Uno." } ]
+      "hint": {
+        "en": "Intersection = union.",
+        "es": "Intersección = unión."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{A}{A} = 1",
+          "en": "One.",
+          "es": "Uno."
+        }
+      ]
     },
     {
       "id": "cv-11-e3",
       "answerType": "text",
-      "prompt": { "en": "The box drawn around a detected object is the bounding ___. (one word)", "es": "La caja dibujada alrededor de un objeto detectado es la caja ___. (una palabra)" },
+      "prompt": {
+        "en": "The box drawn around a detected object is the bounding ___. (one word)",
+        "es": "La caja dibujada alrededor de un objeto detectado es la caja ___. (una palabra)"
+      },
       "answer": "box",
-      "acceptedAlt": ["caja", "delimitadora"],
-      "hint": { "en": "Bounding ___.", "es": "Caja ___." },
-      "solution": [ { "tex": "\\text{bounding box}", "en": "Box.", "es": "Caja." } ]
+      "acceptedAlt": [
+        "caja",
+        "delimitadora"
+      ],
+      "hint": {
+        "en": "Bounding ___.",
+        "es": "Caja ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{bounding box}",
+          "en": "Box.",
+          "es": "Caja."
+        }
+      ]
     },
     {
       "id": "cv-11-e4",
       "answerType": "text",
-      "prompt": { "en": "The fast one-stage real-time detector is ___ (acronym).", "es": "El detector rápido de una etapa en tiempo real es ___ (siglas)." },
+      "prompt": {
+        "en": "The fast one-stage real-time detector is ___ (acronym).",
+        "es": "El detector rápido de una etapa en tiempo real es ___ (siglas)."
+      },
       "answer": "yolo",
       "acceptedAlt": [],
-      "hint": { "en": "You Only Look Once.", "es": "You Only Look Once." },
-      "solution": [ { "tex": "\\text{YOLO}", "en": "YOLO.", "es": "YOLO." } ]
+      "hint": {
+        "en": "You Only Look Once.",
+        "es": "You Only Look Once."
+      },
+      "solution": [
+        {
+          "tex": "\\text{YOLO}",
+          "en": "YOLO.",
+          "es": "YOLO."
+        }
+      ]
+    },
+    {
+      "id": "cv-11-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `iou(a, b)` for boxes [x1,y1,x2,y2]: intersection area / union area.",
+        "es": "Completa `iou(a, b)` para cajas [x1,y1,x2,y2]: area de interseccion / area de union."
+      },
+      "funcName": "iou",
+      "starter": {
+        "en": "def iou(a, b):\n    # intersection over union of two boxes\n    pass",
+        "es": "def iou(a, b):\n    # interseccion sobre union de dos cajas\n    pass"
+      },
+      "solution": "def iou(a, b):\n    xA, yA = max(a[0], b[0]), max(a[1], b[1])\n    xB, yB = min(a[2], b[2]), min(a[3], b[3])\n    inter = max(0, xB - xA) * max(0, yB - yA)\n    union = (a[2]-a[0])*(a[3]-a[1]) + (b[2]-b[0])*(b[3]-b[1]) - inter\n    return inter / union",
+      "tests": [
+        {
+          "args": [
+            [
+              0,
+              0,
+              2,
+              2
+            ],
+            [
+              1,
+              1,
+              3,
+              3
+            ]
+          ],
+          "expected": 0.142857,
+          "tol": 0.0001
+        },
+        {
+          "args": [
+            [
+              0,
+              0,
+              2,
+              2
+            ],
+            [
+              0,
+              0,
+              2,
+              2
+            ]
+          ],
+          "expected": 1.0,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            [
+              0,
+              0,
+              1,
+              1
+            ],
+            [
+              2,
+              2,
+              3,
+              3
+            ]
+          ],
+          "expected": 0.0,
+          "tol": 1e-09
+        }
+      ],
+      "hint": {
+        "en": "Clamp overlap to >= 0; union = areaA + areaB - inter.",
+        "es": "Limita el solape a >= 0; union = areaA + areaB - inter."
+      }
     }
   ],
   "references": [
-    { "source": "Redmon et al. — You Only Look Once (YOLO, 2016)", "detail": { "en": "One-stage detection", "es": "Detección de una etapa" } },
-    { "source": "Girshick et al. — Rich feature hierarchies (R-CNN, 2014)", "detail": { "en": "Two-stage detection", "es": "Detección de dos etapas" } }
+    {
+      "source": "Redmon et al. — You Only Look Once (YOLO, 2016)",
+      "detail": {
+        "en": "One-stage detection",
+        "es": "Detección de una etapa"
+      }
+    },
+    {
+      "source": "Girshick et al. — Rich feature hierarchies (R-CNN, 2014)",
+      "detail": {
+        "en": "Two-stage detection",
+        "es": "Detección de dos etapas"
+      }
+    }
   ]
 }

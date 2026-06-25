@@ -3,7 +3,10 @@
   "subjectId": "ai-foundations",
   "order": 3,
   "estimatedMinutes": 35,
-  "title": { "en": "Symbolic vs Connectionist AI", "es": "IA simbólica vs conexionista" },
+  "title": {
+    "en": "Symbolic vs Connectionist AI",
+    "es": "IA simbólica vs conexionista"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Symbolic AI is nicknamed GOFAI. There are $2$ main historical paradigms (symbolic and connectionist), and their modern fusion is called neuro-symbolic AI.",
         "es": "La IA simbólica se apoda GOFAI. Hay $2$ paradigmas históricos principales (simbólico y conexionista), y su fusión moderna se llama IA neuro-simbólica."
@@ -39,42 +45,157 @@
     {
       "id": "aif-03-e1",
       "answerType": "number",
-      "prompt": { "en": "How many main historical AI paradigms (symbolic, connectionist)?", "es": "¿Cuántos paradigmas históricos principales de IA (simbólico, conexionista)?" },
+      "prompt": {
+        "en": "How many main historical AI paradigms (symbolic, connectionist)?",
+        "es": "¿Cuántos paradigmas históricos principales de IA (simbólico, conexionista)?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Symbols and networks.", "es": "Símbolos y redes." },
-      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "Symbols and networks.",
+        "es": "Símbolos y redes."
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "aif-03-e2",
       "answerType": "text",
-      "prompt": { "en": "The nickname for symbolic AI is ___ (acronym).", "es": "El apodo de la IA simbólica es ___ (siglas)." },
+      "prompt": {
+        "en": "The nickname for symbolic AI is ___ (acronym).",
+        "es": "El apodo de la IA simbólica es ___ (siglas)."
+      },
       "answer": "gofai",
       "acceptedAlt": [],
-      "hint": { "en": "Good Old-Fashioned AI.", "es": "Good Old-Fashioned AI." },
-      "solution": [ { "tex": "\\text{GOFAI}", "en": "GOFAI.", "es": "GOFAI." } ]
+      "hint": {
+        "en": "Good Old-Fashioned AI.",
+        "es": "Good Old-Fashioned AI."
+      },
+      "solution": [
+        {
+          "tex": "\\text{GOFAI}",
+          "en": "GOFAI.",
+          "es": "GOFAI."
+        }
+      ]
     },
     {
       "id": "aif-03-e3",
       "answerType": "text",
-      "prompt": { "en": "The paradigm that learns knowledge in network weights is ___. (one word)", "es": "El paradigma que aprende el conocimiento en los pesos de una red es el ___. (una palabra)" },
+      "prompt": {
+        "en": "The paradigm that learns knowledge in network weights is ___. (one word)",
+        "es": "El paradigma que aprende el conocimiento en los pesos de una red es el ___. (una palabra)"
+      },
       "answer": "connectionism",
-      "acceptedAlt": ["conexionismo", "connectionist", "conexionista"],
-      "hint": { "en": "Neural networks.", "es": "Redes neuronales." },
-      "solution": [ { "tex": "\\text{connectionism}", "en": "Connectionism.", "es": "Conexionismo." } ]
+      "acceptedAlt": [
+        "conexionismo",
+        "connectionist",
+        "conexionista"
+      ],
+      "hint": {
+        "en": "Neural networks.",
+        "es": "Redes neuronales."
+      },
+      "solution": [
+        {
+          "tex": "\\text{connectionism}",
+          "en": "Connectionism.",
+          "es": "Conexionismo."
+        }
+      ]
     },
     {
       "id": "aif-03-e4",
       "answerType": "text",
-      "prompt": { "en": "Combining learned perception with symbolic reasoning is ___-symbolic AI. (one word)", "es": "Combinar percepción aprendida con razonamiento simbólico es la IA ___-simbólica. (una palabra)" },
+      "prompt": {
+        "en": "Combining learned perception with symbolic reasoning is ___-symbolic AI. (one word)",
+        "es": "Combinar percepción aprendida con razonamiento simbólico es la IA ___-simbólica. (una palabra)"
+      },
       "answer": "neuro",
-      "acceptedAlt": ["neuro-symbolic", "neurosimbólica", "neurosimbolica"],
-      "hint": { "en": "Neuro-___.", "es": "___-simbólica." },
-      "solution": [ { "tex": "\\text{neuro-symbolic}", "en": "Neuro.", "es": "Neuro." } ]
+      "acceptedAlt": [
+        "neuro-symbolic",
+        "neurosimbólica",
+        "neurosimbolica"
+      ],
+      "hint": {
+        "en": "Neuro-___.",
+        "es": "___-simbólica."
+      },
+      "solution": [
+        {
+          "tex": "\\text{neuro-symbolic}",
+          "en": "Neuro.",
+          "es": "Neuro."
+        }
+      ]
+    },
+    {
+      "id": "aif-03-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Connectionist AI represents knowledge primarily as...",
+        "es": "La IA conexionista representa el conocimiento principalmente como..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Learned weights in a network of simple units",
+            "es": "Pesos aprendidos en una red de unidades simples"
+          },
+          "correct": true,
+          "why": {
+            "en": "Connectionism stores knowledge in distributed connection strengths.",
+            "es": "El conexionismo guarda el conocimiento en fuerzas de conexion distribuidas."
+          }
+        },
+        {
+          "text": {
+            "en": "Hand-written logical rules and symbols",
+            "es": "Reglas logicas y simbolos escritos a mano"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's the symbolic (GOFAI) approach, the contrast here.",
+            "es": "Ese es el enfoque simbolico (GOFAI), el contraste aqui."
+          }
+        },
+        {
+          "text": {
+            "en": "A single lookup table of answers",
+            "es": "Una unica tabla de respuestas"
+          },
+          "correct": false,
+          "why": {
+            "en": "Networks generalize; they aren't mere lookup tables.",
+            "es": "Las redes generalizan; no son meras tablas de consulta."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Symbols vs learned weights.",
+        "es": "Simbolos vs pesos aprendidos."
+      }
     }
   ],
   "references": [
-    { "source": "Newell & Simon — Computer Science as Empirical Inquiry (1976)", "detail": { "en": "Physical symbol system hypothesis", "es": "Hipótesis del sistema de símbolos físicos" } },
-    { "source": "Haugeland — Artificial Intelligence: The Very Idea (1985)", "detail": { "en": "GOFAI", "es": "GOFAI" } }
+    {
+      "source": "Newell & Simon — Computer Science as Empirical Inquiry (1976)",
+      "detail": {
+        "en": "Physical symbol system hypothesis",
+        "es": "Hipótesis del sistema de símbolos físicos"
+      }
+    },
+    {
+      "source": "Haugeland — Artificial Intelligence: The Very Idea (1985)",
+      "detail": {
+        "en": "GOFAI",
+        "es": "GOFAI"
+      }
+    }
   ]
 }

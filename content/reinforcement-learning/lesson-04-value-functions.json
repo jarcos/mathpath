@@ -3,13 +3,26 @@
   "subjectId": "reinforcement-learning",
   "order": 4,
   "estimatedMinutes": 35,
-  "title": { "en": "Policies & Value Functions", "es": "Políticas y funciones de valor" },
+  "title": {
+    "en": "Policies & Value Functions",
+    "es": "Políticas y funciones de valor"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A **policy** $\\pi(a\\mid s)$ gives the probability of taking action $a$ in state $s$. To evaluate how good a state is under a policy we use the **state-value function** $V^\\pi(s)$ — the expected return starting from $s$ and following $\\pi$ thereafter. It answers: 'how much reward can I expect from here?'",
         "es": "Una **política** $\\pi(a\\mid s)$ da la probabilidad de tomar la acción $a$ en el estado $s$. Para evaluar qué tan bueno es un estado bajo una política usamos la **función de valor de estado** $V^\\pi(s)$ — el retorno esperado empezando en $s$ y siguiendo $\\pi$ después. Responde: '¿cuánta recompensa puedo esperar desde aquí?'"
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "rl-03-returns"
+      ],
+      "note": {
+        "en": "Value functions are expected returns.",
+        "es": "Las funciones de valor son retornos esperados."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "If in state $s$ the policy picks action 1 (Q=10) with prob $0.6$ and action 2 (Q=5) with prob $0.4$, then $V(s) = 0.6\\cdot10 + 0.4\\cdot5 = 6 + 2 = 8$.",
         "es": "Si en el estado $s$ la política elige la acción 1 (Q=10) con prob. $0.6$ y la acción 2 (Q=5) con prob. $0.4$, entonces $V(s) = 0.6\\cdot10 + 0.4\\cdot5 = 6 + 2 = 8$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# a value function is the expected return from following a policy\ngamma = 0.9\nrewards = [1, 1, 1]\nprint(round(sum(gamma**t * r for t, r in enumerate(rewards)), 4))",
+        "es": "# una funcion de valor es el retorno esperado al seguir una politica\ngamma = 0.9\nrewards = [1, 1, 1]\nprint(round(sum(gamma**t * r for t, r in enumerate(rewards)), 4))"
+      },
+      "expectedOutput": "2.71",
+      "caption": {
+        "en": "V(s) is the expected discounted return from state s.",
+        "es": "V(s) es el retorno descontado esperado desde el estado s."
       }
     }
   ],
@@ -39,41 +69,104 @@
     {
       "id": "rl-04-e1",
       "answerType": "number",
-      "prompt": { "en": "$V(s) = 0.6\\cdot10 + 0.4\\cdot5$?", "es": "$V(s) = 0.6\\cdot10 + 0.4\\cdot5$?" },
+      "prompt": {
+        "en": "$V(s) = 0.6\\cdot10 + 0.4\\cdot5$?",
+        "es": "$V(s) = 0.6\\cdot10 + 0.4\\cdot5$?"
+      },
       "answer": "8",
-      "acceptedAlt": ["0.6*10+0.4*5"],
-      "hint": { "en": "6 + 2.", "es": "6 + 2." },
-      "solution": [ { "tex": "6+2 = 8", "en": "Eight.", "es": "Ocho." } ]
+      "acceptedAlt": [
+        "0.6*10+0.4*5"
+      ],
+      "hint": {
+        "en": "6 + 2.",
+        "es": "6 + 2."
+      },
+      "solution": [
+        {
+          "tex": "6+2 = 8",
+          "en": "Eight.",
+          "es": "Ocho."
+        }
+      ]
     },
     {
       "id": "rl-04-e2",
       "answerType": "text",
-      "prompt": { "en": "The function giving expected return from a state under π is the ___-value function. (one word)", "es": "La función que da el retorno esperado desde un estado bajo π es la función de valor de ___. (una palabra)" },
+      "prompt": {
+        "en": "The function giving expected return from a state under π is the ___-value function. (one word)",
+        "es": "La función que da el retorno esperado desde un estado bajo π es la función de valor de ___. (una palabra)"
+      },
       "answer": "state",
-      "acceptedAlt": ["estado"],
-      "hint": { "en": "V(s).", "es": "V(s)." },
-      "solution": [ { "tex": "V^\\pi(s)", "en": "State.", "es": "Estado." } ]
+      "acceptedAlt": [
+        "estado"
+      ],
+      "hint": {
+        "en": "V(s).",
+        "es": "V(s)."
+      },
+      "solution": [
+        {
+          "tex": "V^\\pi(s)",
+          "en": "State.",
+          "es": "Estado."
+        }
+      ]
     },
     {
       "id": "rl-04-e3",
       "answerType": "number",
-      "prompt": { "en": "Greedy value: best of Q-values $\\{3, 9, 7\\}$?", "es": "Valor voraz: mejor de los valores Q $\\{3, 9, 7\\}$?" },
+      "prompt": {
+        "en": "Greedy value: best of Q-values $\\{3, 9, 7\\}$?",
+        "es": "Valor voraz: mejor de los valores Q $\\{3, 9, 7\\}$?"
+      },
       "answer": "9",
-      "acceptedAlt": ["max(3,9,7)"],
-      "hint": { "en": "The maximum.", "es": "El máximo." },
-      "solution": [ { "tex": "\\max\\{3,9,7\\} = 9", "en": "Nine.", "es": "Nueve." } ]
+      "acceptedAlt": [
+        "max(3,9,7)"
+      ],
+      "hint": {
+        "en": "The maximum.",
+        "es": "El máximo."
+      },
+      "solution": [
+        {
+          "tex": "\\max\\{3,9,7\\} = 9",
+          "en": "Nine.",
+          "es": "Nueve."
+        }
+      ]
     },
     {
       "id": "rl-04-e4",
       "answerType": "text",
-      "prompt": { "en": "$Q(s,a)$ is the ___-value function. (one word)", "es": "$Q(s,a)$ es la función de valor de ___. (una palabra)" },
+      "prompt": {
+        "en": "$Q(s,a)$ is the ___-value function. (one word)",
+        "es": "$Q(s,a)$ es la función de valor de ___. (una palabra)"
+      },
       "answer": "action",
-      "acceptedAlt": ["acción", "accion"],
-      "hint": { "en": "Fixes the first action.", "es": "Fija la primera acción." },
-      "solution": [ { "tex": "Q^\\pi(s,a)", "en": "Action.", "es": "Acción." } ]
+      "acceptedAlt": [
+        "acción",
+        "accion"
+      ],
+      "hint": {
+        "en": "Fixes the first action.",
+        "es": "Fija la primera acción."
+      },
+      "solution": [
+        {
+          "tex": "Q^\\pi(s,a)",
+          "en": "Action.",
+          "es": "Acción."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 3.5–3.6, policies and value functions", "es": "Cap. 3.5–3.6, políticas y funciones de valor" } }
+    {
+      "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)",
+      "detail": {
+        "en": "Ch. 3.5–3.6, policies and value functions",
+        "es": "Cap. 3.5–3.6, políticas y funciones de valor"
+      }
+    }
   ]
 }

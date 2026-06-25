@@ -3,13 +3,26 @@
   "subjectId": "reinforcement-learning",
   "order": 15,
   "estimatedMinutes": 35,
-  "title": { "en": "Actor-Critic Methods", "es": "Métodos actor-crítico" },
+  "title": {
+    "en": "Actor-Critic Methods",
+    "es": "Métodos actor-crítico"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "**Actor-critic** methods marry the two families. The **actor** is a policy $\\pi_\\theta$ that picks actions; the **critic** is a value function $\\hat{V}_w$ that judges them. The critic's estimate replaces the noisy full return as the learning signal for the actor, dramatically cutting variance while keeping the policy-gradient benefits.",
         "es": "Los métodos **actor-crítico** casan las dos familias. El **actor** es una política $\\pi_\\theta$ que elige acciones; el **crítico** es una función de valor $\\hat{V}_w$ que las juzga. La estimación del crítico sustituye al ruidoso retorno completo como señal de aprendizaje para el actor, reduciendo drásticamente la varianza y conservando los beneficios del gradiente de política."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "rl-14-policy-gradients"
+      ],
+      "note": {
+        "en": "Actor-critic combines policy gradients with a value critic.",
+        "es": "Actor-critic combina gradientes de politica con un critico de valor."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Critic advantage with $r=2$, $\\gamma=0.9$, $\\hat{V}(s')=10$, $\\hat{V}(s)=8$: $A = 2 + 0.9\\cdot10 - 8 = 11 - 8 = 3$. A positive advantage tells the actor to make that action more likely.",
         "es": "Ventaja del crítico con $r=2$, $\\gamma=0.9$, $\\hat{V}(s')=10$, $\\hat{V}(s)=8$: $A = 2 + 0.9\\cdot10 - 8 = 11 - 8 = 3$. Una ventaja positiva le dice al actor que haga esa acción más probable."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# actor-critic advantage: how much better an action was than expected\ngamma, r, V, V_next = 0.9, 1, 2.0, 3.0\nadvantage = r + gamma * V_next - V\nprint(round(advantage, 4))",
+        "es": "# ventaja actor-critic: cuanto mejor fue una accion de lo esperado\ngamma, r, V, V_next = 0.9, 1, 2.0, 3.0\nadvantage = r + gamma * V_next - V\nprint(round(advantage, 4))"
+      },
+      "expectedOutput": "1.7",
+      "caption": {
+        "en": "Actor-critic uses a critic's value to reduce gradient variance.",
+        "es": "Actor-critic usa el valor de un critico para reducir la varianza del gradiente."
       }
     }
   ],
@@ -39,42 +69,107 @@
     {
       "id": "rl-15-e1",
       "answerType": "number",
-      "prompt": { "en": "Advantage $2 + 0.9\\cdot 10 - 8$?", "es": "Ventaja $2 + 0.9\\cdot 10 - 8$?" },
+      "prompt": {
+        "en": "Advantage $2 + 0.9\\cdot 10 - 8$?",
+        "es": "Ventaja $2 + 0.9\\cdot 10 - 8$?"
+      },
       "answer": "3",
-      "acceptedAlt": ["2+0.9*10-8"],
-      "hint": { "en": "11 − 8.", "es": "11 − 8." },
-      "solution": [ { "tex": "11-8 = 3", "en": "Three.", "es": "Tres." } ]
+      "acceptedAlt": [
+        "2+0.9*10-8"
+      ],
+      "hint": {
+        "en": "11 − 8.",
+        "es": "11 − 8."
+      },
+      "solution": [
+        {
+          "tex": "11-8 = 3",
+          "en": "Three.",
+          "es": "Tres."
+        }
+      ]
     },
     {
       "id": "rl-15-e2",
       "answerType": "text",
-      "prompt": { "en": "The component that picks actions (the policy) is the ___. (one word)", "es": "El componente que elige acciones (la política) es el ___. (una palabra)" },
+      "prompt": {
+        "en": "The component that picks actions (the policy) is the ___. (one word)",
+        "es": "El componente que elige acciones (la política) es el ___. (una palabra)"
+      },
       "answer": "actor",
       "acceptedAlt": [],
-      "hint": { "en": "It acts.", "es": "Actúa." },
-      "solution": [ { "tex": "\\pi_\\theta", "en": "Actor.", "es": "Actor." } ]
+      "hint": {
+        "en": "It acts.",
+        "es": "Actúa."
+      },
+      "solution": [
+        {
+          "tex": "\\pi_\\theta",
+          "en": "Actor.",
+          "es": "Actor."
+        }
+      ]
     },
     {
       "id": "rl-15-e3",
       "answerType": "text",
-      "prompt": { "en": "The component that estimates value (judges actions) is the ___. (one word)", "es": "El componente que estima el valor (juzga acciones) es el ___. (una palabra)" },
+      "prompt": {
+        "en": "The component that estimates value (judges actions) is the ___. (one word)",
+        "es": "El componente que estima el valor (juzga acciones) es el ___. (una palabra)"
+      },
       "answer": "critic",
-      "acceptedAlt": ["crítico", "critico"],
-      "hint": { "en": "It critiques.", "es": "Critica." },
-      "solution": [ { "tex": "\\hat{V}_w", "en": "Critic.", "es": "Crítico." } ]
+      "acceptedAlt": [
+        "crítico",
+        "critico"
+      ],
+      "hint": {
+        "en": "It critiques.",
+        "es": "Critica."
+      },
+      "solution": [
+        {
+          "tex": "\\hat{V}_w",
+          "en": "Critic.",
+          "es": "Crítico."
+        }
+      ]
     },
     {
       "id": "rl-15-e4",
       "answerType": "text",
-      "prompt": { "en": "The stable clipped actor-critic used in RLHF is ___ (acronym).", "es": "El actor-crítico recortado y estable usado en RLHF es ___ (siglas)." },
+      "prompt": {
+        "en": "The stable clipped actor-critic used in RLHF is ___ (acronym).",
+        "es": "El actor-crítico recortado y estable usado en RLHF es ___ (siglas)."
+      },
       "answer": "ppo",
       "acceptedAlt": [],
-      "hint": { "en": "Proximal Policy Optimization.", "es": "Optimización de política proximal." },
-      "solution": [ { "tex": "\\text{PPO}", "en": "PPO.", "es": "PPO." } ]
+      "hint": {
+        "en": "Proximal Policy Optimization.",
+        "es": "Optimización de política proximal."
+      },
+      "solution": [
+        {
+          "tex": "\\text{PPO}",
+          "en": "PPO.",
+          "es": "PPO."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 13.5, actor-critic methods", "es": "Cap. 13.5, métodos actor-crítico" } },
-    { "source": "Schulman et al. — Proximal Policy Optimization Algorithms (2017)", "detail": { "en": "PPO", "es": "PPO" } }
+    {
+      "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)",
+      "detail": {
+        "en": "Ch. 13.5, actor-critic methods",
+        "es": "Cap. 13.5, métodos actor-crítico"
+      }
+    },
+    {
+      "source": "Schulman et al. — Proximal Policy Optimization Algorithms (2017)",
+      "detail": {
+        "en": "PPO",
+        "es": "PPO"
+      }
+    }
   ]
 }

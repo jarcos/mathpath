@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 18,
   "estimatedMinutes": 35,
-  "title": { "en": "The Deep Learning Pipeline", "es": "El flujo de trabajo del aprendizaje profundo" },
+  "title": {
+    "en": "The Deep Learning Pipeline",
+    "es": "El flujo de trabajo del aprendizaje profundo"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Splitting $1000$ examples $80/10/10$ gives $800$ train, $100$ validation, $100$ test. A model with training accuracy $99\\%$ but validation accuracy $70\\%$ is overfitting (gap $99 - 70 = 29$ points).",
         "es": "Dividir $1000$ ejemplos $80/10/10$ da $800$ de entrenamiento, $100$ de validación, $100$ de test. Un modelo con precisión de entrenamiento del $99\\%$ pero de validación del $70\\%$ está sobreajustando (brecha $99 - 70 = 29$ puntos)."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\ndata = np.arange(10)\n# a data pipeline serves the model in mini-batches\nbatches = [data[i:i+3].tolist() for i in range(0, 10, 3)]\nprint(batches)",
+        "es": "import numpy as np\ndata = np.arange(10)\n# un pipeline de datos alimenta al modelo en mini-lotes\nbatches = [data[i:i+3].tolist() for i in range(0, 10, 3)]\nprint(batches)"
+      },
+      "expectedOutput": "[[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]",
+      "caption": {
+        "en": "Training streams data in mini-batches, not all at once.",
+        "es": "El entrenamiento sirve los datos en mini-lotes, no todos a la vez."
       }
     }
   ],
@@ -39,41 +61,104 @@
     {
       "id": "dl-18-e1",
       "answerType": "number",
-      "prompt": { "en": "Split 1000 examples 80/10/10: how many training examples?", "es": "Divide 1000 ejemplos 80/10/10: ¿cuántos de entrenamiento?" },
+      "prompt": {
+        "en": "Split 1000 examples 80/10/10: how many training examples?",
+        "es": "Divide 1000 ejemplos 80/10/10: ¿cuántos de entrenamiento?"
+      },
       "answer": "800",
-      "acceptedAlt": ["0.8*1000"],
-      "hint": { "en": "80% of 1000.", "es": "80% de 1000." },
-      "solution": [ { "tex": "0.8\\cdot 1000 = 800", "en": "800.", "es": "800." } ]
+      "acceptedAlt": [
+        "0.8*1000"
+      ],
+      "hint": {
+        "en": "80% of 1000.",
+        "es": "80% de 1000."
+      },
+      "solution": [
+        {
+          "tex": "0.8\\cdot 1000 = 800",
+          "en": "800.",
+          "es": "800."
+        }
+      ]
     },
     {
       "id": "dl-18-e2",
       "answerType": "number",
-      "prompt": { "en": "Train acc 99%, validation acc 70%: the overfitting gap in points?", "es": "Precisión entren. 99%, validación 70%: ¿brecha de sobreajuste en puntos?" },
+      "prompt": {
+        "en": "Train acc 99%, validation acc 70%: the overfitting gap in points?",
+        "es": "Precisión entren. 99%, validación 70%: ¿brecha de sobreajuste en puntos?"
+      },
       "answer": "29",
-      "acceptedAlt": ["99-70"],
-      "hint": { "en": "99 − 70.", "es": "99 − 70." },
-      "solution": [ { "tex": "99 - 70 = 29", "en": "29 points.", "es": "29 puntos." } ]
+      "acceptedAlt": [
+        "99-70"
+      ],
+      "hint": {
+        "en": "99 − 70.",
+        "es": "99 − 70."
+      },
+      "solution": [
+        {
+          "tex": "99 - 70 = 29",
+          "en": "29 points.",
+          "es": "29 puntos."
+        }
+      ]
     },
     {
       "id": "dl-18-e3",
       "answerType": "text",
-      "prompt": { "en": "The split touched only once, for the final honest estimate, is the ___ set. (one word)", "es": "El conjunto tocado solo una vez, para la estimación final honesta, es el conjunto de ___. (una palabra)" },
+      "prompt": {
+        "en": "The split touched only once, for the final honest estimate, is the ___ set. (one word)",
+        "es": "El conjunto tocado solo una vez, para la estimación final honesta, es el conjunto de ___. (una palabra)"
+      },
       "answer": "test",
-      "acceptedAlt": ["prueba"],
-      "hint": { "en": "Not train, not validation.", "es": "No entren., no validación." },
-      "solution": [ { "tex": "\\text{test set}", "en": "Test.", "es": "Test." } ]
+      "acceptedAlt": [
+        "prueba"
+      ],
+      "hint": {
+        "en": "Not train, not validation.",
+        "es": "No entren., no validación."
+      },
+      "solution": [
+        {
+          "tex": "\\text{test set}",
+          "en": "Test.",
+          "es": "Test."
+        }
+      ]
     },
     {
       "id": "dl-18-e4",
       "answerType": "text",
-      "prompt": { "en": "High training error (model too weak) is called ___. (one word)", "es": "Un error de entrenamiento alto (modelo demasiado débil) se llama ___. (una palabra)" },
+      "prompt": {
+        "en": "High training error (model too weak) is called ___. (one word)",
+        "es": "Un error de entrenamiento alto (modelo demasiado débil) se llama ___. (una palabra)"
+      },
       "answer": "underfitting",
-      "acceptedAlt": ["subajuste", "underfit"],
-      "hint": { "en": "Opposite of overfitting.", "es": "Lo contrario de sobreajuste." },
-      "solution": [ { "tex": "\\text{underfitting}", "en": "Underfitting.", "es": "Subajuste." } ]
+      "acceptedAlt": [
+        "subajuste",
+        "underfit"
+      ],
+      "hint": {
+        "en": "Opposite of overfitting.",
+        "es": "Lo contrario de sobreajuste."
+      },
+      "solution": [
+        {
+          "tex": "\\text{underfitting}",
+          "en": "Underfitting.",
+          "es": "Subajuste."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 11, practical methodology", "es": "Cap. 11, metodología práctica" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 11, practical methodology",
+        "es": "Cap. 11, metodología práctica"
+      }
+    }
   ]
 }

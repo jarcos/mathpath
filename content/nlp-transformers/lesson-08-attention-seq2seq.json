@@ -3,13 +3,26 @@
   "subjectId": "nlp-transformers",
   "order": 8,
   "estimatedMinutes": 35,
-  "title": { "en": "Attention in Seq2Seq", "es": "Atención en seq2seq" },
+  "title": {
+    "en": "Attention in Seq2Seq",
+    "es": "Atención en seq2seq"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Attention removes the seq2seq bottleneck. Instead of one fixed context vector, at every decoding step the decoder computes a **fresh context** as a weighted average of *all* encoder states. The weights — the **attention distribution** — say how relevant each input position is to the word being generated now, and they always sum to $1$.",
         "es": "La atención elimina el cuello de botella de seq2seq. En vez de un único vector de contexto fijo, en cada paso de decodificación el decodificador calcula un **contexto fresco** como media ponderada de *todos* los estados del codificador. Los pesos — la **distribución de atención** — indican qué tan relevante es cada posición de entrada para la palabra que se genera ahora, y siempre suman $1$."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "nlp-07-seq2seq"
+      ],
+      "note": {
+        "en": "Attention augments the seq2seq encoder-decoder.",
+        "es": "La atencion mejora el codificador-decodificador seq2seq."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Attention weights $[0.1, 0.7, 0.2]$ sum to $1$ and concentrate on position $2$. The context is $0.1 h_1 + 0.7 h_2 + 0.2 h_3$; with $h=[2,4,6]$ that is $0.1\\cdot2 + 0.7\\cdot4 + 0.2\\cdot6 = 0.2+2.8+1.2 = 4.2$.",
         "es": "Los pesos de atención $[0.1, 0.7, 0.2]$ suman $1$ y se concentran en la posición $2$. El contexto es $0.1 h_1 + 0.7 h_2 + 0.2 h_3$; con $h=[2,4,6]$ eso es $0.1\\cdot2 + 0.7\\cdot4 + 0.2\\cdot6 = 0.2+2.8+1.2 = 4.2$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nsoftmax = lambda z: np.exp(z - z.max()) / np.exp(z - z.max()).sum()\n# attention weights say how much to focus on each encoder state\nscores = np.array([1.0, 2.0, 0.5])\nprint(np.round(softmax(scores), 4).tolist())",
+        "es": "import numpy as np\nsoftmax = lambda z: np.exp(z - z.max()) / np.exp(z - z.max()).sum()\n# los pesos de atencion dicen cuanto fijarse en cada estado del codificador\nscores = np.array([1.0, 2.0, 0.5])\nprint(np.round(softmax(scores), 4).tolist())"
+      },
+      "expectedOutput": "[0.2312, 0.6285, 0.1402]",
+      "caption": {
+        "en": "Attention lets the decoder look back at any input position.",
+        "es": "La atencion permite al decodificador mirar cualquier posicion de entrada."
       }
     }
   ],
@@ -39,41 +71,101 @@
     {
       "id": "nlp-08-e1",
       "answerType": "number",
-      "prompt": { "en": "Attention weights $[0.1,0.7,0.2]$ sum to?", "es": "Los pesos de atención $[0.1,0.7,0.2]$ suman?" },
+      "prompt": {
+        "en": "Attention weights $[0.1,0.7,0.2]$ sum to?",
+        "es": "Los pesos de atención $[0.1,0.7,0.2]$ suman?"
+      },
       "answer": "1",
-      "acceptedAlt": ["0.1+0.7+0.2"],
-      "hint": { "en": "They form a distribution.", "es": "Forman una distribución." },
-      "solution": [ { "tex": "1", "en": "One.", "es": "Uno." } ]
+      "acceptedAlt": [
+        "0.1+0.7+0.2"
+      ],
+      "hint": {
+        "en": "They form a distribution.",
+        "es": "Forman una distribución."
+      },
+      "solution": [
+        {
+          "tex": "1",
+          "en": "One.",
+          "es": "Uno."
+        }
+      ]
     },
     {
       "id": "nlp-08-e2",
       "answerType": "number",
-      "prompt": { "en": "Context $0.1\\cdot2+0.7\\cdot4+0.2\\cdot6$?", "es": "Contexto $0.1\\cdot2+0.7\\cdot4+0.2\\cdot6$?" },
+      "prompt": {
+        "en": "Context $0.1\\cdot2+0.7\\cdot4+0.2\\cdot6$?",
+        "es": "Contexto $0.1\\cdot2+0.7\\cdot4+0.2\\cdot6$?"
+      },
       "answer": "4.2",
-      "acceptedAlt": ["0.1*2+0.7*4+0.2*6"],
-      "hint": { "en": "0.2 + 2.8 + 1.2.", "es": "0.2 + 2.8 + 1.2." },
-      "solution": [ { "tex": "4.2", "en": "4.2.", "es": "4.2." } ]
+      "acceptedAlt": [
+        "0.1*2+0.7*4+0.2*6"
+      ],
+      "hint": {
+        "en": "0.2 + 2.8 + 1.2.",
+        "es": "0.2 + 2.8 + 1.2."
+      },
+      "solution": [
+        {
+          "tex": "4.2",
+          "en": "4.2.",
+          "es": "4.2."
+        }
+      ]
     },
     {
       "id": "nlp-08-e3",
       "answerType": "text",
-      "prompt": { "en": "Scores become weights via the ___ function. (one word)", "es": "Las puntuaciones se vuelven pesos con la función ___. (una palabra)" },
+      "prompt": {
+        "en": "Scores become weights via the ___ function. (one word)",
+        "es": "Las puntuaciones se vuelven pesos con la función ___. (una palabra)"
+      },
       "answer": "softmax",
       "acceptedAlt": [],
-      "hint": { "en": "Normalizes to sum 1.", "es": "Normaliza para sumar 1." },
-      "solution": [ { "tex": "\\text{softmax}", "en": "Softmax.", "es": "Softmax." } ]
+      "hint": {
+        "en": "Normalizes to sum 1.",
+        "es": "Normaliza para sumar 1."
+      },
+      "solution": [
+        {
+          "tex": "\\text{softmax}",
+          "en": "Softmax.",
+          "es": "Softmax."
+        }
+      ]
     },
     {
       "id": "nlp-08-e4",
       "answerType": "text",
-      "prompt": { "en": "Attention replaces the single fixed ___ vector of seq2seq. (one word)", "es": "La atención sustituye el único vector de ___ fijo de seq2seq. (una palabra)" },
+      "prompt": {
+        "en": "Attention replaces the single fixed ___ vector of seq2seq. (one word)",
+        "es": "La atención sustituye el único vector de ___ fijo de seq2seq. (una palabra)"
+      },
       "answer": "context",
-      "acceptedAlt": ["contexto"],
-      "hint": { "en": "The encoder summary.", "es": "El resumen del codificador." },
-      "solution": [ { "tex": "\\text{context}", "en": "Context.", "es": "Contexto." } ]
+      "acceptedAlt": [
+        "contexto"
+      ],
+      "hint": {
+        "en": "The encoder summary.",
+        "es": "El resumen del codificador."
+      },
+      "solution": [
+        {
+          "tex": "\\text{context}",
+          "en": "Context.",
+          "es": "Contexto."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Bahdanau et al. — Neural Machine Translation by Jointly Learning to Align and Translate (2015)", "detail": { "en": "Attention for seq2seq", "es": "Atención para seq2seq" } }
+    {
+      "source": "Bahdanau et al. — Neural Machine Translation by Jointly Learning to Align and Translate (2015)",
+      "detail": {
+        "en": "Attention for seq2seq",
+        "es": "Atención para seq2seq"
+      }
+    }
   ]
 }

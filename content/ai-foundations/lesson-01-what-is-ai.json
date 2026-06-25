@@ -3,7 +3,10 @@
   "subjectId": "ai-foundations",
   "order": 1,
   "estimatedMinutes": 30,
-  "title": { "en": "What Is Artificial Intelligence?", "es": "¿Qué es la inteligencia artificial?" },
+  "title": {
+    "en": "What Is Artificial Intelligence?",
+    "es": "¿Qué es la inteligencia artificial?"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "AI was founded as a field at Dartmouth in $1956$. Russell & Norvig's two axes (human/rational × thinking/acting) yield $2\\times 2 = 4$ definitions of AI.",
         "es": "La IA se fundó como campo en Dartmouth en $1956$. Los dos ejes de Russell y Norvig (humano/racional × pensar/actuar) dan $2\\times 2 = 4$ definiciones de IA."
@@ -39,41 +45,148 @@
     {
       "id": "aif-01-e1",
       "answerType": "number",
-      "prompt": { "en": "In what year was the founding Dartmouth AI workshop held?", "es": "¿En qué año se celebró el taller fundacional de Dartmouth sobre IA?" },
+      "prompt": {
+        "en": "In what year was the founding Dartmouth AI workshop held?",
+        "es": "¿En qué año se celebró el taller fundacional de Dartmouth sobre IA?"
+      },
       "answer": "1956",
       "acceptedAlt": [],
-      "hint": { "en": "Mid-1950s.", "es": "Mediados de los 50." },
-      "solution": [ { "tex": "1956", "en": "1956.", "es": "1956." } ]
+      "hint": {
+        "en": "Mid-1950s.",
+        "es": "Mediados de los 50."
+      },
+      "solution": [
+        {
+          "tex": "1956",
+          "en": "1956.",
+          "es": "1956."
+        }
+      ]
     },
     {
       "id": "aif-01-e2",
       "answerType": "number",
-      "prompt": { "en": "How many definitions of AI come from the 2×2 (human/rational × think/act) grid?", "es": "¿Cuántas definiciones de IA da la rejilla 2×2 (humano/racional × pensar/actuar)?" },
+      "prompt": {
+        "en": "How many definitions of AI come from the 2×2 (human/rational × think/act) grid?",
+        "es": "¿Cuántas definiciones de IA da la rejilla 2×2 (humano/racional × pensar/actuar)?"
+      },
       "answer": "4",
-      "acceptedAlt": ["2*2"],
-      "hint": { "en": "2 × 2.", "es": "2 × 2." },
-      "solution": [ { "tex": "4", "en": "Four.", "es": "Cuatro." } ]
+      "acceptedAlt": [
+        "2*2"
+      ],
+      "hint": {
+        "en": "2 × 2.",
+        "es": "2 × 2."
+      },
+      "solution": [
+        {
+          "tex": "4",
+          "en": "Four.",
+          "es": "Cuatro."
+        }
+      ]
     },
     {
       "id": "aif-01-e3",
       "answerType": "text",
-      "prompt": { "en": "Who coined the term 'artificial intelligence'? (surname)", "es": "¿Quién acuñó el término 'inteligencia artificial'? (apellido)" },
+      "prompt": {
+        "en": "Who coined the term 'artificial intelligence'? (surname)",
+        "es": "¿Quién acuñó el término 'inteligencia artificial'? (apellido)"
+      },
       "answer": "mccarthy",
-      "acceptedAlt": ["john mccarthy"],
-      "hint": { "en": "John ___.", "es": "John ___." },
-      "solution": [ { "tex": "\\text{McCarthy}", "en": "McCarthy.", "es": "McCarthy." } ]
+      "acceptedAlt": [
+        "john mccarthy"
+      ],
+      "hint": {
+        "en": "John ___.",
+        "es": "John ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{McCarthy}",
+          "en": "McCarthy.",
+          "es": "McCarthy."
+        }
+      ]
     },
     {
       "id": "aif-01-e4",
       "answerType": "text",
-      "prompt": { "en": "The unifying modern notion is the rational ___. (one word)", "es": "La noción moderna unificadora es el ___ racional. (una palabra)" },
+      "prompt": {
+        "en": "The unifying modern notion is the rational ___. (one word)",
+        "es": "La noción moderna unificadora es el ___ racional. (una palabra)"
+      },
       "answer": "agent",
-      "acceptedAlt": ["agente"],
-      "hint": { "en": "Perceives and acts.", "es": "Percibe y actúa." },
-      "solution": [ { "tex": "\\text{rational agent}", "en": "Agent.", "es": "Agente." } ]
+      "acceptedAlt": [
+        "agente"
+      ],
+      "hint": {
+        "en": "Perceives and acts.",
+        "es": "Percibe y actúa."
+      },
+      "solution": [
+        {
+          "tex": "\\text{rational agent}",
+          "en": "Agent.",
+          "es": "Agente."
+        }
+      ]
+    },
+    {
+      "id": "aif-01-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which best describes AI as a field?",
+        "es": "Que describe mejor la IA como disciplina?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Building systems that perform tasks normally requiring human intelligence",
+            "es": "Construir sistemas que realizan tareas que normalmente requieren inteligencia humana"
+          },
+          "correct": true,
+          "why": {
+            "en": "AI studies and builds agents that perceive, reason and act on such tasks.",
+            "es": "La IA estudia y construye agentes que perciben, razonan y actuan en esas tareas."
+          }
+        },
+        {
+          "text": {
+            "en": "Only making robots that look human",
+            "es": "Solo fabricar robots con apariencia humana"
+          },
+          "correct": false,
+          "why": {
+            "en": "Humanoid form is not required; most AI has no body at all.",
+            "es": "La forma humanoide no es necesaria; la mayoria de la IA no tiene cuerpo."
+          }
+        },
+        {
+          "text": {
+            "en": "A synonym for any computer program",
+            "es": "Un sinonimo de cualquier programa informatico"
+          },
+          "correct": false,
+          "why": {
+            "en": "Ordinary programs that don't tackle intelligence-requiring tasks aren't AI.",
+            "es": "Los programas que no abordan tareas que requieren inteligencia no son IA."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think about the tasks, not the hardware.",
+        "es": "Piensa en las tareas, no en el hardware."
+      }
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 1, what is AI; the four approaches", "es": "Cap. 1, qué es la IA; los cuatro enfoques" } }
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Ch. 1, what is AI; the four approaches",
+        "es": "Cap. 1, qué es la IA; los cuatro enfoques"
+      }
+    }
   ]
 }

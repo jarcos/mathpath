@@ -3,7 +3,10 @@
   "subjectId": "linear-algebra",
   "order": 19,
   "estimatedMinutes": 45,
-  "title": { "en": "Linear Systems & Gauss", "es": "Sistemas lineales y Gauss" },
+  "title": {
+    "en": "Linear Systems & Gauss",
+    "es": "Sistemas lineales y Gauss"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Solve $x + y = 5$, $x - y = 1$. Add the equations to eliminate $y$: $2x = 6 \\Rightarrow x = 3$. Back-substitute into the first: $3 + y = 5 \\Rightarrow y = 2$. The solution $(3, 2)$ checks in both equations. With two pivots and two unknowns, it is unique.",
         "es": "Resuelve $x + y = 5$, $x - y = 1$. Suma las ecuaciones para eliminar $y$: $2x = 6 \\Rightarrow x = 3$. Sustituye en la primera: $3 + y = 5 \\Rightarrow y = 2$. La solución $(3, 2)$ cumple ambas ecuaciones. Con dos pivotes y dos incógnitas, es única."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nA = np.array([[2, 1], [1, 3]])\nb = np.array([5, 10])\n# solve the linear system A x = b\nprint(np.linalg.solve(A, b).tolist())",
+        "es": "import numpy as np\nA = np.array([[2, 1], [1, 3]])\nb = np.array([5, 10])\n# resuelve el sistema lineal A x = b\nprint(np.linalg.solve(A, b).tolist())"
+      },
+      "expectedOutput": "[1.0, 3.0]",
+      "caption": {
+        "en": "Gaussian elimination (np.linalg.solve) gives x=1, y=3.",
+        "es": "La eliminacion de Gauss (np.linalg.solve) da x=1, y=3."
       }
     }
   ],
@@ -39,42 +61,104 @@
     {
       "id": "linalg-19-e1",
       "answerType": "number",
-      "prompt": { "en": "Solve $x+y=5$, $x-y=1$ — find $x$.", "es": "Resuelve $x+y=5$, $x-y=1$ — halla $x$." },
+      "prompt": {
+        "en": "Solve $x+y=5$, $x-y=1$ — find $x$.",
+        "es": "Resuelve $x+y=5$, $x-y=1$ — halla $x$."
+      },
       "answer": "3",
-      "acceptedAlt": ["6/2"],
-      "hint": { "en": "Add the equations.", "es": "Suma las ecuaciones." },
-      "solution": [ { "tex": "2x = 6 \\Rightarrow x = 3", "en": "Eliminate y.", "es": "Elimina y." } ]
+      "acceptedAlt": [
+        "6/2"
+      ],
+      "hint": {
+        "en": "Add the equations.",
+        "es": "Suma las ecuaciones."
+      },
+      "solution": [
+        {
+          "tex": "2x = 6 \\Rightarrow x = 3",
+          "en": "Eliminate y.",
+          "es": "Elimina y."
+        }
+      ]
     },
     {
       "id": "linalg-19-e2",
       "answerType": "number",
-      "prompt": { "en": "For the same system, find $y$.", "es": "Para el mismo sistema, halla $y$." },
+      "prompt": {
+        "en": "For the same system, find $y$.",
+        "es": "Para el mismo sistema, halla $y$."
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Back-substitute x = 3.", "es": "Sustituye x = 3." },
-      "solution": [ { "tex": "3 + y = 5 \\Rightarrow y = 2", "en": "Solve for y.", "es": "Despeja y." } ]
+      "hint": {
+        "en": "Back-substitute x = 3.",
+        "es": "Sustituye x = 3."
+      },
+      "solution": [
+        {
+          "tex": "3 + y = 5 \\Rightarrow y = 2",
+          "en": "Solve for y.",
+          "es": "Despeja y."
+        }
+      ]
     },
     {
       "id": "linalg-19-e3",
       "answerType": "number",
-      "prompt": { "en": "How many pivots does a uniquely-solvable system in 2 unknowns have?", "es": "¿Cuántos pivotes tiene un sistema con solución única en 2 incógnitas?" },
+      "prompt": {
+        "en": "How many pivots does a uniquely-solvable system in 2 unknowns have?",
+        "es": "¿Cuántos pivotes tiene un sistema con solución única en 2 incógnitas?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "One per unknown.", "es": "Uno por incógnita." },
-      "solution": [ { "tex": "\\text{pivots} = 2", "en": "As many as unknowns.", "es": "Tantos como incógnitas." } ]
+      "hint": {
+        "en": "One per unknown.",
+        "es": "Uno por incógnita."
+      },
+      "solution": [
+        {
+          "tex": "\\text{pivots} = 2",
+          "en": "As many as unknowns.",
+          "es": "Tantos como incógnitas."
+        }
+      ]
     },
     {
       "id": "linalg-19-e4",
       "answerType": "number",
-      "prompt": { "en": "How many independent equations uniquely determine 3 unknowns?", "es": "¿Cuántas ecuaciones independientes determinan 3 incógnitas?" },
+      "prompt": {
+        "en": "How many independent equations uniquely determine 3 unknowns?",
+        "es": "¿Cuántas ecuaciones independientes determinan 3 incógnitas?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "One per unknown.", "es": "Una por incógnita." },
-      "solution": [ { "tex": "n = 3", "en": "Three equations.", "es": "Tres ecuaciones." } ]
+      "hint": {
+        "en": "One per unknown.",
+        "es": "Una por incógnita."
+      },
+      "solution": [
+        {
+          "tex": "n = 3",
+          "en": "Three equations.",
+          "es": "Tres ecuaciones."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 2.2, solving linear equations by elimination", "es": "Cap. 2.2, resolución de ecuaciones lineales por eliminación" } },
-    { "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)", "detail": { "en": "Matrix form; the Gauss method", "es": "Forma matricial; el método de Gauss" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 2.2, solving linear equations by elimination",
+        "es": "Cap. 2.2, resolución de ecuaciones lineales por eliminación"
+      }
+    },
+    {
+      "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)",
+      "detail": {
+        "en": "Matrix form; the Gauss method",
+        "es": "Forma matricial; el método de Gauss"
+      }
+    }
   ]
 }

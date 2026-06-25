@@ -3,7 +3,10 @@
   "subjectId": "ml-foundations",
   "order": 15,
   "estimatedMinutes": 40,
-  "title": { "en": "Decision Trees", "es": "Árboles de decisión" },
+  "title": {
+    "en": "Decision Trees",
+    "es": "Árboles de decisión"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,30 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A balanced binary decision tree of depth $2$ has at most $2^2 = 4$ leaves. The top node where the first question is asked is the **root**. Trees grown too deep tend to **overfit** the training data.",
         "es": "Un árbol de decisión binario equilibrado de profundidad $2$ tiene como mucho $2^2 = 4$ hojas. El nodo superior donde se hace la primera pregunta es la **raíz**. Los árboles demasiado profundos tienden a **sobreajustar** los datos de entrenamiento."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy",
+        "scikit-learn"
+      ],
+      "code": {
+        "en": "import numpy as np\nfrom sklearn.tree import DecisionTreeClassifier\nX = np.array([[0], [1], [2], [3]]); y = np.array([0, 0, 1, 1])\nm = DecisionTreeClassifier().fit(X, y)\nprint(m.predict([[0.5], [2.5]]).tolist())",
+        "es": "import numpy as np\nfrom sklearn.tree import DecisionTreeClassifier\nX = np.array([[0], [1], [2], [3]]); y = np.array([0, 0, 1, 1])\nm = DecisionTreeClassifier().fit(X, y)\nprint(m.predict([[0.5], [2.5]]).tolist())"
+      },
+      "expectedOutput": "[0, 1]",
+      "caption": {
+        "en": "A tree learns threshold rules to split the data.",
+        "es": "Un arbol aprende reglas de umbral para dividir los datos."
       }
     }
   ],
@@ -39,42 +62,113 @@
     {
       "id": "mlf-15-e1",
       "answerType": "text",
-      "prompt": { "en": "A decision tree makes decisions by asking yes/no ___ about features. (one word)", "es": "Un árbol de decisión decide haciendo ___ sí/no sobre las características. (una palabra)" },
+      "prompt": {
+        "en": "A decision tree makes decisions by asking yes/no ___ about features. (one word)",
+        "es": "Un árbol de decisión decide haciendo ___ sí/no sobre las características. (una palabra)"
+      },
       "answer": "questions",
-      "acceptedAlt": ["preguntas"],
-      "hint": { "en": "At each node.", "es": "En cada nodo." },
-      "solution": [ { "tex": "x_i > t?", "en": "Questions.", "es": "Preguntas." } ]
+      "acceptedAlt": [
+        "preguntas"
+      ],
+      "hint": {
+        "en": "At each node.",
+        "es": "En cada nodo."
+      },
+      "solution": [
+        {
+          "tex": "x_i > t?",
+          "en": "Questions.",
+          "es": "Preguntas."
+        }
+      ]
     },
     {
       "id": "mlf-15-e2",
       "answerType": "text",
-      "prompt": { "en": "The top node of a decision tree is the ___. (one word)", "es": "El nodo superior de un árbol de decisión es la ___. (una palabra)" },
+      "prompt": {
+        "en": "The top node of a decision tree is the ___. (one word)",
+        "es": "El nodo superior de un árbol de decisión es la ___. (una palabra)"
+      },
       "answer": "root",
-      "acceptedAlt": ["raíz", "raiz"],
-      "hint": { "en": "Where it starts.", "es": "Donde empieza." },
-      "solution": [ { "tex": "\\text{root node}", "en": "Root.", "es": "Raíz." } ]
+      "acceptedAlt": [
+        "raíz",
+        "raiz"
+      ],
+      "hint": {
+        "en": "Where it starts.",
+        "es": "Donde empieza."
+      },
+      "solution": [
+        {
+          "tex": "\\text{root node}",
+          "en": "Root.",
+          "es": "Raíz."
+        }
+      ]
     },
     {
       "id": "mlf-15-e3",
       "answerType": "number",
-      "prompt": { "en": "At most how many leaves does a balanced binary tree of depth 2 have?", "es": "¿Como máximo cuántas hojas tiene un árbol binario equilibrado de profundidad 2?" },
+      "prompt": {
+        "en": "At most how many leaves does a balanced binary tree of depth 2 have?",
+        "es": "¿Como máximo cuántas hojas tiene un árbol binario equilibrado de profundidad 2?"
+      },
       "answer": "4",
-      "acceptedAlt": ["2^2"],
-      "hint": { "en": "2 to the depth.", "es": "2 elevado a la profundidad." },
-      "solution": [ { "tex": "2^2 = 4", "en": "Four leaves.", "es": "Cuatro hojas." } ]
+      "acceptedAlt": [
+        "2^2"
+      ],
+      "hint": {
+        "en": "2 to the depth.",
+        "es": "2 elevado a la profundidad."
+      },
+      "solution": [
+        {
+          "tex": "2^2 = 4",
+          "en": "Four leaves.",
+          "es": "Cuatro hojas."
+        }
+      ]
     },
     {
       "id": "mlf-15-e4",
       "answerType": "text",
-      "prompt": { "en": "Trees that grow too deep tend to ___ (one word: overfit).", "es": "Los árboles demasiado profundos tienden a ___ (una palabra: sobreajustar)." },
+      "prompt": {
+        "en": "Trees that grow too deep tend to ___ (one word: overfit).",
+        "es": "Los árboles demasiado profundos tienden a ___ (una palabra: sobreajustar)."
+      },
       "answer": "overfit",
-      "acceptedAlt": ["sobreajustar", "overfitting", "sobreajuste"],
-      "hint": { "en": "Memorize the training data.", "es": "Memorizar los datos de entrenamiento." },
-      "solution": [ { "tex": "\\text{deep} \\Rightarrow \\text{overfit}", "en": "Overfit.", "es": "Sobreajustar." } ]
+      "acceptedAlt": [
+        "sobreajustar",
+        "overfitting",
+        "sobreajuste"
+      ],
+      "hint": {
+        "en": "Memorize the training data.",
+        "es": "Memorizar los datos de entrenamiento."
+      },
+      "solution": [
+        {
+          "tex": "\\text{deep} \\Rightarrow \\text{overfit}",
+          "en": "Overfit.",
+          "es": "Sobreajustar."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, learning decision trees", "es": "Cap. 18, aprendizaje de árboles de decisión" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, decision trees and their limits", "es": "Cap. 5, árboles de decisión y sus límites" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 18, learning decision trees",
+        "es": "Cap. 18, aprendizaje de árboles de decisión"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, decision trees and their limits",
+        "es": "Cap. 5, árboles de decisión y sus límites"
+      }
+    }
   ]
 }

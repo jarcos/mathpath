@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 4,
   "estimatedMinutes": 35,
-  "title": { "en": "Filters & Feature Maps", "es": "Filtros y mapas de características" },
+  "title": {
+    "en": "Filters & Feature Maps",
+    "es": "Filtros y mapas de características"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "An edge filter $[1, 0, -1]$ applied to the patch $[5, 3, 1]$ gives $1\\cdot5 + 0\\cdot3 + (-1)\\cdot1 = 4$ — a positive response, signaling a left-to-right drop in intensity (an edge). A $3\\times 3$ filter has $3\\times 3 = 9$ weights.",
         "es": "Un filtro de borde $[1, 0, -1]$ aplicado al parche $[5, 3, 1]$ da $1\\cdot5 + 0\\cdot3 + (-1)\\cdot1 = 4$ — una respuesta positiva, que señala una caída de intensidad de izquierda a derecha (un borde). Un filtro $3\\times 3$ tiene $3\\times 3 = 9$ pesos."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nimg = np.array([[0, 0, 1, 1],\n                [0, 0, 1, 1]])\nk = np.array([[-1, 1]])   # horizontal gradient (edge) filter\nprint([[int((img[r, c:c+2] * k[0]).sum()) for c in range(3)] for r in range(2)])",
+        "es": "import numpy as np\nimg = np.array([[0, 0, 1, 1],\n                [0, 0, 1, 1]])\nk = np.array([[-1, 1]])   # filtro de gradiente horizontal (borde)\nprint([[int((img[r, c:c+2] * k[0]).sum()) for c in range(3)] for r in range(2)])"
+      },
+      "expectedOutput": "[[0, 1, 0], [0, 1, 0]]",
+      "caption": {
+        "en": "A filter's feature map lights up where its pattern appears.",
+        "es": "El mapa de caracteristicas se enciende donde aparece el patron del filtro."
       }
     }
   ],
@@ -39,41 +61,105 @@
     {
       "id": "dl-04-e1",
       "answerType": "text",
-      "prompt": { "en": "A convolutional filter is also called a ___. (one word)", "es": "Un filtro convolucional también se llama ___. (una palabra)" },
+      "prompt": {
+        "en": "A convolutional filter is also called a ___. (one word)",
+        "es": "Un filtro convolucional también se llama ___. (una palabra)"
+      },
       "answer": "kernel",
-      "acceptedAlt": ["núcleo", "nucleo"],
-      "hint": { "en": "Grid of weights.", "es": "Rejilla de pesos." },
-      "solution": [ { "tex": "\\text{kernel}", "en": "Kernel.", "es": "Kernel/núcleo." } ]
+      "acceptedAlt": [
+        "núcleo",
+        "nucleo"
+      ],
+      "hint": {
+        "en": "Grid of weights.",
+        "es": "Rejilla de pesos."
+      },
+      "solution": [
+        {
+          "tex": "\\text{kernel}",
+          "en": "Kernel.",
+          "es": "Kernel/núcleo."
+        }
+      ]
     },
     {
       "id": "dl-04-e2",
       "answerType": "number",
-      "prompt": { "en": "How many weights does a $3\\times 3$ filter have?", "es": "¿Cuántos pesos tiene un filtro $3\\times 3$?" },
+      "prompt": {
+        "en": "How many weights does a $3\\times 3$ filter have?",
+        "es": "¿Cuántos pesos tiene un filtro $3\\times 3$?"
+      },
       "answer": "9",
-      "acceptedAlt": ["3*3"],
-      "hint": { "en": "3 × 3.", "es": "3 × 3." },
-      "solution": [ { "tex": "3\\times 3 = 9", "en": "Nine weights.", "es": "Nueve pesos." } ]
+      "acceptedAlt": [
+        "3*3"
+      ],
+      "hint": {
+        "en": "3 × 3.",
+        "es": "3 × 3."
+      },
+      "solution": [
+        {
+          "tex": "3\\times 3 = 9",
+          "en": "Nine weights.",
+          "es": "Nueve pesos."
+        }
+      ]
     },
     {
       "id": "dl-04-e3",
       "answerType": "text",
-      "prompt": { "en": "The output of applying a filter across the input is a feature ___. (one word)", "es": "La salida de aplicar un filtro por la entrada es un ___ de características. (una palabra)" },
+      "prompt": {
+        "en": "The output of applying a filter across the input is a feature ___. (one word)",
+        "es": "La salida de aplicar un filtro por la entrada es un ___ de características. (una palabra)"
+      },
       "answer": "map",
-      "acceptedAlt": ["mapa"],
-      "hint": { "en": "It maps where the pattern is.", "es": "Mapea dónde está el patrón." },
-      "solution": [ { "tex": "\\text{feature map}", "en": "Map.", "es": "Mapa." } ]
+      "acceptedAlt": [
+        "mapa"
+      ],
+      "hint": {
+        "en": "It maps where the pattern is.",
+        "es": "Mapea dónde está el patrón."
+      },
+      "solution": [
+        {
+          "tex": "\\text{feature map}",
+          "en": "Map.",
+          "es": "Mapa."
+        }
+      ]
     },
     {
       "id": "dl-04-e4",
       "answerType": "number",
-      "prompt": { "en": "Filter $[1,0,-1]$ on patch $[5,3,1]$: dot product?", "es": "Filtro $[1,0,-1]$ sobre el parche $[5,3,1]$: ¿producto escalar?" },
+      "prompt": {
+        "en": "Filter $[1,0,-1]$ on patch $[5,3,1]$: dot product?",
+        "es": "Filtro $[1,0,-1]$ sobre el parche $[5,3,1]$: ¿producto escalar?"
+      },
       "answer": "4",
-      "acceptedAlt": ["1*5+0*3-1*1", "dot([1,0,-1],[5,3,1])"],
-      "hint": { "en": "5 + 0 − 1.", "es": "5 + 0 − 1." },
-      "solution": [ { "tex": "5 - 1 = 4", "en": "Filter response.", "es": "Respuesta del filtro." } ]
+      "acceptedAlt": [
+        "1*5+0*3-1*1",
+        "dot([1,0,-1],[5,3,1])"
+      ],
+      "hint": {
+        "en": "5 + 0 − 1.",
+        "es": "5 + 0 − 1."
+      },
+      "solution": [
+        {
+          "tex": "5 - 1 = 4",
+          "en": "Filter response.",
+          "es": "Respuesta del filtro."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 9.1–9.2, the convolution operation and motivation", "es": "Cap. 9.1–9.2, la operación de convolución y su motivación" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 9.1–9.2, the convolution operation and motivation",
+        "es": "Cap. 9.1–9.2, la operación de convolución y su motivación"
+      }
+    }
   ]
 }

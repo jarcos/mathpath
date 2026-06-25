@@ -3,7 +3,10 @@
   "subjectId": "ai-foundations",
   "order": 10,
   "estimatedMinutes": 35,
-  "title": { "en": "AI Ethics: Bias & Fairness", "es": "Ética de la IA: sesgo y equidad" },
+  "title": {
+    "en": "AI Ethics: Bias & Fairness",
+    "es": "Ética de la IA: sesgo y equidad"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A feature like zip code that correlates with a protected attribute is a proxy. Impossibility results say multiple fairness criteria generally cannot all be satisfied simultaneously when base rates differ.",
         "es": "Una característica como el código postal que correlaciona con un atributo protegido es un proxy. Los resultados de imposibilidad dicen que múltiples criterios de equidad en general no pueden satisfacerse todos a la vez cuando las tasas base difieren."
@@ -39,41 +45,148 @@
     {
       "id": "aif-10-e1",
       "answerType": "text",
-      "prompt": { "en": "Models trained on historical data can absorb and amplify ___. (one word)", "es": "Los modelos entrenados con datos históricos pueden absorber y amplificar el ___. (una palabra)" },
+      "prompt": {
+        "en": "Models trained on historical data can absorb and amplify ___. (one word)",
+        "es": "Los modelos entrenados con datos históricos pueden absorber y amplificar el ___. (una palabra)"
+      },
       "answer": "bias",
-      "acceptedAlt": ["sesgo"],
-      "hint": { "en": "Prejudice in data.", "es": "Prejuicio en los datos." },
-      "solution": [ { "tex": "\\text{bias}", "en": "Bias.", "es": "Sesgo." } ]
+      "acceptedAlt": [
+        "sesgo"
+      ],
+      "hint": {
+        "en": "Prejudice in data.",
+        "es": "Prejuicio en los datos."
+      },
+      "solution": [
+        {
+          "tex": "\\text{bias}",
+          "en": "Bias.",
+          "es": "Sesgo."
+        }
+      ]
     },
     {
       "id": "aif-10-e2",
       "answerType": "text",
-      "prompt": { "en": "A feature like zip code that secretly carries a protected attribute is a ___. (one word)", "es": "Una característica como el código postal que porta en secreto un atributo protegido es un ___. (una palabra)" },
+      "prompt": {
+        "en": "A feature like zip code that secretly carries a protected attribute is a ___. (one word)",
+        "es": "Una característica como el código postal que porta en secreto un atributo protegido es un ___. (una palabra)"
+      },
       "answer": "proxy",
-      "acceptedAlt": ["proxi"],
-      "hint": { "en": "Stands in for it.", "es": "Lo sustituye." },
-      "solution": [ { "tex": "\\text{proxy}", "en": "Proxy.", "es": "Proxy." } ]
+      "acceptedAlt": [
+        "proxi"
+      ],
+      "hint": {
+        "en": "Stands in for it.",
+        "es": "Lo sustituye."
+      },
+      "solution": [
+        {
+          "tex": "\\text{proxy}",
+          "en": "Proxy.",
+          "es": "Proxy."
+        }
+      ]
     },
     {
       "id": "aif-10-e3",
       "answerType": "text",
-      "prompt": { "en": "Whether a model's decisions can be explained is its ___. (one word)", "es": "Si las decisiones de un modelo pueden explicarse es su ___. (una palabra)" },
+      "prompt": {
+        "en": "Whether a model's decisions can be explained is its ___. (one word)",
+        "es": "Si las decisiones de un modelo pueden explicarse es su ___. (una palabra)"
+      },
       "answer": "transparency",
-      "acceptedAlt": ["transparencia"],
-      "hint": { "en": "Opposite of opacity.", "es": "Opuesto de opacidad." },
-      "solution": [ { "tex": "\\text{transparency}", "en": "Transparency.", "es": "Transparencia." } ]
+      "acceptedAlt": [
+        "transparencia"
+      ],
+      "hint": {
+        "en": "Opposite of opacity.",
+        "es": "Opuesto de opacidad."
+      },
+      "solution": [
+        {
+          "tex": "\\text{transparency}",
+          "en": "Transparency.",
+          "es": "Transparencia."
+        }
+      ]
     },
     {
       "id": "aif-10-e4",
       "answerType": "number",
-      "prompt": { "en": "Can all reasonable fairness criteria hold at once when base rates differ? (1 = yes, 0 = no)", "es": "¿Pueden cumplirse a la vez todos los criterios razonables de equidad cuando difieren las tasas base? (1 = sí, 0 = no)" },
+      "prompt": {
+        "en": "Can all reasonable fairness criteria hold at once when base rates differ? (1 = yes, 0 = no)",
+        "es": "¿Pueden cumplirse a la vez todos los criterios razonables de equidad cuando difieren las tasas base? (1 = sí, 0 = no)"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Impossibility results.", "es": "Resultados de imposibilidad." },
-      "solution": [ { "tex": "0", "en": "No.", "es": "No." } ]
+      "hint": {
+        "en": "Impossibility results.",
+        "es": "Resultados de imposibilidad."
+      },
+      "solution": [
+        {
+          "tex": "0",
+          "en": "No.",
+          "es": "No."
+        }
+      ]
+    },
+    {
+      "id": "aif-10-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A model trained on biased historical data will most likely...",
+        "es": "Un modelo entrenado con datos historicos sesgados probablemente..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Reproduce and can amplify those biases",
+            "es": "Reproducir y poder amplificar esos sesgos"
+          },
+          "correct": true,
+          "why": {
+            "en": "Models learn the patterns in their data, including unfair ones.",
+            "es": "Los modelos aprenden los patrones de sus datos, incluidos los injustos."
+          }
+        },
+        {
+          "text": {
+            "en": "Automatically correct the bias",
+            "es": "Corregir el sesgo automaticamente"
+          },
+          "correct": false,
+          "why": {
+            "en": "Nothing makes a model fair unless we design for it.",
+            "es": "Nada hace justo a un modelo salvo que lo disenemos para ello."
+          }
+        },
+        {
+          "text": {
+            "en": "Ignore the data it was trained on",
+            "es": "Ignorar los datos con que se entreno"
+          },
+          "correct": false,
+          "why": {
+            "en": "A model's behavior is shaped precisely by its training data.",
+            "es": "La conducta de un modelo la moldean justamente sus datos."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Garbage in, garbage out.",
+        "es": "Basura entra, basura sale."
+      }
     }
   ],
   "references": [
-    { "source": "Barocas, Hardt & Narayanan — Fairness and Machine Learning (2019)", "detail": { "en": "Bias, fairness, impossibility results", "es": "Sesgo, equidad, resultados de imposibilidad" } }
+    {
+      "source": "Barocas, Hardt & Narayanan — Fairness and Machine Learning (2019)",
+      "detail": {
+        "en": "Bias, fairness, impossibility results",
+        "es": "Sesgo, equidad, resultados de imposibilidad"
+      }
+    }
   ]
 }

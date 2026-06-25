@@ -3,13 +3,26 @@
   "subjectId": "ml-foundations",
   "order": 17,
   "estimatedMinutes": 40,
-  "title": { "en": "Dimensionality Reduction (PCA)", "es": "Reducción de dimensionalidad (PCA)" },
+  "title": {
+    "en": "Dimensionality Reduction (PCA)",
+    "es": "Reducción de dimensionalidad (PCA)"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Real data often has hundreds or thousands of features, many redundant or noisy — the 'curse of dimensionality'. **Dimensionality reduction** compresses the data into far fewer features while keeping most of the information. The classic method is **Principal Component Analysis (PCA)**.",
         "es": "Los datos reales suelen tener cientos o miles de características, muchas redundantes o ruidosas — la 'maldición de la dimensionalidad'. La **reducción de dimensionalidad** comprime los datos en muchas menos características conservando la mayor parte de la información. El método clásico es el **Análisis de Componentes Principales (PCA)**."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linmaps-06-eigenvalues"
+      ],
+      "note": {
+        "en": "PCA is an eigenvalue problem on the covariance matrix.",
+        "es": "El PCA es un problema de autovalores sobre la matriz de covarianza."
       }
     },
     {
@@ -28,10 +41,30 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Reducing $10$ features down to $2$ principal components **drops** $10 - 2 = 8$ dimensions while keeping the directions of greatest variance. The principal components are the eigenvectors of the data's covariance matrix.",
         "es": "Reducir $10$ características a $2$ componentes principales **elimina** $10 - 2 = 8$ dimensiones conservando las direcciones de mayor varianza. Las componentes principales son los autovectores de la matriz de covarianza de los datos."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy",
+        "scikit-learn"
+      ],
+      "code": {
+        "en": "import numpy as np\nfrom sklearn.decomposition import PCA\nX = np.array([[1, 1], [2, 2], [3, 3], [4, 4]])\n# one component captures all the variance (data lies on a line)\nprint(round(float(PCA(n_components=1).fit(X).explained_variance_ratio_[0]), 4))",
+        "es": "import numpy as np\nfrom sklearn.decomposition import PCA\nX = np.array([[1, 1], [2, 2], [3, 3], [4, 4]])\n# una componente captura toda la varianza (los datos estan en una recta)\nprint(round(float(PCA(n_components=1).fit(X).explained_variance_ratio_[0]), 4))"
+      },
+      "expectedOutput": "1.0",
+      "caption": {
+        "en": "PCA finds the directions (eigenvectors) of greatest variance.",
+        "es": "El PCA halla las direcciones (autovectores) de mayor varianza."
       }
     }
   ],
@@ -39,42 +72,114 @@
     {
       "id": "mlf-17-e1",
       "answerType": "text",
-      "prompt": { "en": "PCA reduces ___ while keeping most variance. (one word)", "es": "PCA reduce la ___ conservando la mayor varianza. (una palabra)" },
+      "prompt": {
+        "en": "PCA reduces ___ while keeping most variance. (one word)",
+        "es": "PCA reduce la ___ conservando la mayor varianza. (una palabra)"
+      },
       "answer": "dimensionality",
-      "acceptedAlt": ["dimensions", "dimensionalidad", "dimensiones"],
-      "hint": { "en": "Number of features.", "es": "Número de características." },
-      "solution": [ { "tex": "\\mathbb{R}^{n}\\to\\mathbb{R}^{k}", "en": "Dimensionality.", "es": "Dimensionalidad." } ]
+      "acceptedAlt": [
+        "dimensions",
+        "dimensionalidad",
+        "dimensiones"
+      ],
+      "hint": {
+        "en": "Number of features.",
+        "es": "Número de características."
+      },
+      "solution": [
+        {
+          "tex": "\\mathbb{R}^{n}\\to\\mathbb{R}^{k}",
+          "en": "Dimensionality.",
+          "es": "Dimensionalidad."
+        }
+      ]
     },
     {
       "id": "mlf-17-e2",
       "answerType": "text",
-      "prompt": { "en": "PCA's principal components are the ___ of the covariance matrix. (one word)", "es": "Las componentes principales de PCA son los ___ de la matriz de covarianza. (una palabra)" },
+      "prompt": {
+        "en": "PCA's principal components are the ___ of the covariance matrix. (one word)",
+        "es": "Las componentes principales de PCA son los ___ de la matriz de covarianza. (una palabra)"
+      },
       "answer": "eigenvectors",
-      "acceptedAlt": ["autovectores", "autovector", "vectores propios"],
-      "hint": { "en": "From the Linear Maps subject.", "es": "De la asignatura de Aplicaciones lineales." },
-      "solution": [ { "tex": "C v = \\lambda v", "en": "Eigenvectors.", "es": "Autovectores." } ]
+      "acceptedAlt": [
+        "autovectores",
+        "autovector",
+        "vectores propios"
+      ],
+      "hint": {
+        "en": "From the Linear Maps subject.",
+        "es": "De la asignatura de Aplicaciones lineales."
+      },
+      "solution": [
+        {
+          "tex": "C v = \\lambda v",
+          "en": "Eigenvectors.",
+          "es": "Autovectores."
+        }
+      ]
     },
     {
       "id": "mlf-17-e3",
       "answerType": "number",
-      "prompt": { "en": "Reducing 10 features to 2 components drops how many dimensions?", "es": "Reducir 10 características a 2 componentes elimina cuántas dimensiones?" },
+      "prompt": {
+        "en": "Reducing 10 features to 2 components drops how many dimensions?",
+        "es": "Reducir 10 características a 2 componentes elimina cuántas dimensiones?"
+      },
       "answer": "8",
-      "acceptedAlt": ["10-2"],
-      "hint": { "en": "10 − 2.", "es": "10 − 2." },
-      "solution": [ { "tex": "10 - 2 = 8", "en": "Dropped dimensions.", "es": "Dimensiones eliminadas." } ]
+      "acceptedAlt": [
+        "10-2"
+      ],
+      "hint": {
+        "en": "10 − 2.",
+        "es": "10 − 2."
+      },
+      "solution": [
+        {
+          "tex": "10 - 2 = 8",
+          "en": "Dropped dimensions.",
+          "es": "Dimensiones eliminadas."
+        }
+      ]
     },
     {
       "id": "mlf-17-e4",
       "answerType": "text",
-      "prompt": { "en": "The first principal component captures the most ___. (one word)", "es": "La primera componente principal captura la mayor ___. (una palabra)" },
+      "prompt": {
+        "en": "The first principal component captures the most ___. (one word)",
+        "es": "La primera componente principal captura la mayor ___. (una palabra)"
+      },
       "answer": "variance",
-      "acceptedAlt": ["varianza"],
-      "hint": { "en": "Largest eigenvalue direction.", "es": "Dirección de mayor autovalor." },
-      "solution": [ { "tex": "\\max \\text{var}", "en": "Variance.", "es": "Varianza." } ]
+      "acceptedAlt": [
+        "varianza"
+      ],
+      "hint": {
+        "en": "Largest eigenvalue direction.",
+        "es": "Dirección de mayor autovalor."
+      },
+      "solution": [
+        {
+          "tex": "\\max \\text{var}",
+          "en": "Variance.",
+          "es": "Varianza."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 2 & 5, PCA via eigendecomposition", "es": "Cap. 2 y 5, PCA por descomposición en autovectores" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 7, PCA and the SVD", "es": "Cap. 7, PCA y la SVD" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 2 & 5, PCA via eigendecomposition",
+        "es": "Cap. 2 y 5, PCA por descomposición en autovectores"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 7, PCA and the SVD",
+        "es": "Cap. 7, PCA y la SVD"
+      }
+    }
   ]
 }

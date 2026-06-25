@@ -3,13 +3,26 @@
   "subjectId": "calculus",
   "order": 2,
   "estimatedMinutes": 40,
-  "title": { "en": "Series & Progressions", "es": "Series y progresiones" },
+  "title": {
+    "en": "Series & Progressions",
+    "es": "Series y progresiones"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A **series** is what you get by **adding up** the terms of a sequence. Remarkably, an infinite sum can be finite. The two simplest and most important patterns are arithmetic and geometric progressions, which appear in loans, annuities, fractals, and the analysis of algorithms.",
         "es": "Una **serie** es lo que se obtiene al **sumar** los términos de una sucesión. Sorprendentemente, una suma infinita puede ser finita. Los dos patrones más simples e importantes son las progresiones aritmética y geométrica, que aparecen en préstamos, rentas, fractales y el análisis de algoritmos."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "calculus-01-sequences"
+      ],
+      "note": {
+        "en": "Series are sums of the sequences from the previous lesson.",
+        "es": "Las series son sumas de las sucesiones de la leccion anterior."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — a convergent series", "es": "Ejemplo resuelto — una serie convergente" },
+      "title": {
+        "en": "Worked example — a convergent series",
+        "es": "Ejemplo resuelto — una serie convergente"
+      },
       "content": {
         "en": "Sum $1 + \\tfrac12 + \\tfrac14 + \\tfrac18 + \\dots$. It is geometric with $a_1 = 1$ and $r = \\tfrac12$ (and $|r|<1$, so it converges). Apply $\\tfrac{a_1}{1-r} = \\tfrac{1}{1 - 1/2} = \\tfrac{1}{1/2} = 2$. Each new term adds half the remaining gap to $2$.",
         "es": "Suma $1 + \\tfrac12 + \\tfrac14 + \\tfrac18 + \\dots$. Es geométrica con $a_1 = 1$ y $r = \\tfrac12$ (y $|r|<1$, así converge). Aplica $\\tfrac{a_1}{1-r} = \\tfrac{1}{1 - 1/2} = \\tfrac{1}{1/2} = 2$. Cada término nuevo añade la mitad del hueco que falta hasta $2$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# geometric series: partial sum approaches a/(1-r) for |r|<1\na, r = 1, 0.5\nprint(round(sum(a * r**k for k in range(20)), 4), round(a / (1 - r), 4))",
+        "es": "# serie geometrica: la suma parcial tiende a a/(1-r) si |r|<1\na, r = 1, 0.5\nprint(round(sum(a * r**k for k in range(20)), 4), round(a / (1 - r), 4))"
+      },
+      "expectedOutput": "2.0 2.0",
+      "caption": {
+        "en": "Twenty terms already match the closed-form sum a/(1-r).",
+        "es": "Veinte terminos ya coinciden con la formula cerrada a/(1-r)."
       }
     }
   ],
@@ -39,43 +69,163 @@
     {
       "id": "calculus-02-e1",
       "answerType": "number",
-      "prompt": { "en": "Sum the integers $1 + 2 + \\dots + 10$.", "es": "Suma los enteros $1 + 2 + \\dots + 10$." },
+      "prompt": {
+        "en": "Sum the integers $1 + 2 + \\dots + 10$.",
+        "es": "Suma los enteros $1 + 2 + \\dots + 10$."
+      },
       "answer": "55",
-      "acceptedAlt": ["10*11/2"],
-      "hint": { "en": "Use n(n+1)/2 with n = 10.", "es": "Usa n(n+1)/2 con n = 10." },
-      "solution": [ { "tex": "\\tfrac{10\\cdot 11}{2} = 55", "en": "Apply the formula.", "es": "Aplica la fórmula." } ]
+      "acceptedAlt": [
+        "10*11/2"
+      ],
+      "hint": {
+        "en": "Use n(n+1)/2 with n = 10.",
+        "es": "Usa n(n+1)/2 con n = 10."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{10\\cdot 11}{2} = 55",
+          "en": "Apply the formula.",
+          "es": "Aplica la fórmula."
+        }
+      ]
     },
     {
       "id": "calculus-02-e2",
       "answerType": "number",
-      "prompt": { "en": "Sum the infinite series $1 + \\tfrac12 + \\tfrac14 + \\tfrac18 + \\dots$", "es": "Suma la serie infinita $1 + \\tfrac12 + \\tfrac14 + \\tfrac18 + \\dots$" },
+      "prompt": {
+        "en": "Sum the infinite series $1 + \\tfrac12 + \\tfrac14 + \\tfrac18 + \\dots$",
+        "es": "Suma la serie infinita $1 + \\tfrac12 + \\tfrac14 + \\tfrac18 + \\dots$"
+      },
       "answer": "2",
-      "acceptedAlt": ["1/(1-1/2)"],
-      "hint": { "en": "Geometric with a₁ = 1, r = 1/2.", "es": "Geométrica con a₁ = 1, r = 1/2." },
-      "solution": [ { "tex": "\\tfrac{1}{1 - 1/2} = 2", "en": "Use a₁/(1−r).", "es": "Usa a₁/(1−r)." } ]
+      "acceptedAlt": [
+        "1/(1-1/2)"
+      ],
+      "hint": {
+        "en": "Geometric with a₁ = 1, r = 1/2.",
+        "es": "Geométrica con a₁ = 1, r = 1/2."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{1}{1 - 1/2} = 2",
+          "en": "Use a₁/(1−r).",
+          "es": "Usa a₁/(1−r)."
+        }
+      ]
     },
     {
       "id": "calculus-02-e3",
       "answerType": "number",
-      "prompt": { "en": "Find the common ratio of $2, 6, 18, 54, \\dots$", "es": "Halla la razón de $2, 6, 18, 54, \\dots$" },
+      "prompt": {
+        "en": "Find the common ratio of $2, 6, 18, 54, \\dots$",
+        "es": "Halla la razón de $2, 6, 18, 54, \\dots$"
+      },
       "answer": "3",
-      "acceptedAlt": ["6/2"],
-      "hint": { "en": "Divide a term by the previous one.", "es": "Divide un término entre el anterior." },
-      "solution": [ { "tex": "r = \\tfrac{6}{2} = 3", "en": "Constant ratio.", "es": "Razón constante." } ]
+      "acceptedAlt": [
+        "6/2"
+      ],
+      "hint": {
+        "en": "Divide a term by the previous one.",
+        "es": "Divide un término entre el anterior."
+      },
+      "solution": [
+        {
+          "tex": "r = \\tfrac{6}{2} = 3",
+          "en": "Constant ratio.",
+          "es": "Razón constante."
+        }
+      ]
     },
     {
       "id": "calculus-02-e4",
       "answerType": "number",
-      "prompt": { "en": "Find the common difference of $3, 7, 11, 15, \\dots$", "es": "Halla la diferencia de $3, 7, 11, 15, \\dots$" },
+      "prompt": {
+        "en": "Find the common difference of $3, 7, 11, 15, \\dots$",
+        "es": "Halla la diferencia de $3, 7, 11, 15, \\dots$"
+      },
       "answer": "4",
-      "acceptedAlt": ["7-3"],
-      "hint": { "en": "Subtract consecutive terms.", "es": "Resta términos consecutivos." },
-      "solution": [ { "tex": "d = 7 - 3 = 4", "en": "Constant difference.", "es": "Diferencia constante." } ]
+      "acceptedAlt": [
+        "7-3"
+      ],
+      "hint": {
+        "en": "Subtract consecutive terms.",
+        "es": "Resta términos consecutivos."
+      },
+      "solution": [
+        {
+          "tex": "d = 7 - 3 = 4",
+          "en": "Constant difference.",
+          "es": "Diferencia constante."
+        }
+      ]
+    },
+    {
+      "id": "calculus-02-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `geometric_sum(a, r, n)` = sum of a*r^k for k = 0 .. n-1.",
+        "es": "Completa `geometric_sum(a, r, n)` = suma de a*r^k para k = 0 .. n-1."
+      },
+      "funcName": "geometric_sum",
+      "starter": {
+        "en": "def geometric_sum(a, r, n):\n    # sum of a * r**k for k in range(n)\n    pass",
+        "es": "def geometric_sum(a, r, n):\n    # suma de a * r**k para k in range(n)\n    pass"
+      },
+      "solution": "def geometric_sum(a, r, n):\n    return sum(a * r**k for k in range(n))",
+      "tests": [
+        {
+          "args": [
+            1,
+            0.5,
+            10
+          ],
+          "expected": 1.998046875,
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            2,
+            0,
+            5
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            1,
+            1,
+            4
+          ],
+          "expected": 4
+        }
+      ],
+      "hint": {
+        "en": "A generator inside sum() over range(n).",
+        "es": "Un generador dentro de sum() sobre range(n)."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 11.2, Series; geometric series", "es": "Cap. 11.2, Series; series geométricas" } },
-    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 11, infinite series", "es": "Cap. 11, series infinitas" } },
-    { "source": "UOC — Sucesiones y series de números reales (PID_00284286)", "detail": { "en": "Series; arithmetic and geometric progressions", "es": "Series; progresiones aritméticas y geométricas" } }
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 11.2, Series; geometric series",
+        "es": "Cap. 11.2, Series; series geométricas"
+      }
+    },
+    {
+      "source": "Salas, Etgen & Hille — Calculus",
+      "detail": {
+        "en": "Ch. 11, infinite series",
+        "es": "Cap. 11, series infinitas"
+      }
+    },
+    {
+      "source": "UOC — Sucesiones y series de números reales (PID_00284286)",
+      "detail": {
+        "en": "Series; arithmetic and geometric progressions",
+        "es": "Series; progresiones aritméticas y geométricas"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "ml-foundations",
   "order": 12,
   "estimatedMinutes": 35,
-  "title": { "en": "Decision Boundaries & Accuracy", "es": "Fronteras de decisión y exactitud" },
+  "title": {
+    "en": "Decision Boundaries & Accuracy",
+    "es": "Fronteras de decisión y exactitud"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A model gets $80$ of $100$ predictions right: accuracy $= \\tfrac{80}{100} = 0.8$. On a tiny set, $9$ of $10$ right gives $0.9$. A 'yes/no' problem is binary — exactly $2$ classes.",
         "es": "Un modelo acierta $80$ de $100$ predicciones: exactitud $= \\tfrac{80}{100} = 0.8$. En un conjunto pequeño, $9$ de $10$ aciertos dan $0.9$. Un problema 'sí/no' es binario — exactamente $2$ clases."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "scikit-learn"
+      ],
+      "code": {
+        "en": "from sklearn.metrics import accuracy_score\n# accuracy = fraction of correct predictions\nprint(accuracy_score([0, 1, 1, 0], [0, 1, 0, 0]))",
+        "es": "from sklearn.metrics import accuracy_score\n# exactitud = fraccion de predicciones correctas\nprint(accuracy_score([0, 1, 1, 0], [0, 1, 0, 0]))"
+      },
+      "expectedOutput": "0.75",
+      "caption": {
+        "en": "Accuracy is the simplest score: 3 of 4 right here.",
+        "es": "La exactitud es el indicador mas simple: 3 de 4 aqui."
       }
     }
   ],
@@ -39,42 +61,109 @@
     {
       "id": "mlf-12-e1",
       "answerType": "number",
-      "prompt": { "en": "Accuracy with 80 correct out of 100?", "es": "¿Exactitud con 80 correctas de 100?" },
+      "prompt": {
+        "en": "Accuracy with 80 correct out of 100?",
+        "es": "¿Exactitud con 80 correctas de 100?"
+      },
       "answer": "0.8",
-      "acceptedAlt": ["80/100", "4/5"],
-      "hint": { "en": "correct / total.", "es": "correctas / total." },
-      "solution": [ { "tex": "\\tfrac{80}{100} = 0.8", "en": "Accuracy.", "es": "Exactitud." } ]
+      "acceptedAlt": [
+        "80/100",
+        "4/5"
+      ],
+      "hint": {
+        "en": "correct / total.",
+        "es": "correctas / total."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{80}{100} = 0.8",
+          "en": "Accuracy.",
+          "es": "Exactitud."
+        }
+      ]
     },
     {
       "id": "mlf-12-e2",
       "answerType": "text",
-      "prompt": { "en": "The surface separating classes is the decision ___. (one word)", "es": "La superficie que separa las clases es la ___ de decisión. (una palabra)" },
+      "prompt": {
+        "en": "The surface separating classes is the decision ___. (one word)",
+        "es": "La superficie que separa las clases es la ___ de decisión. (una palabra)"
+      },
       "answer": "boundary",
-      "acceptedAlt": ["frontera"],
-      "hint": { "en": "Where σ(z) = 0.5.", "es": "Donde σ(z) = 0.5." },
-      "solution": [ { "tex": "\\sigma(z)=0.5", "en": "Decision boundary.", "es": "Frontera de decisión." } ]
+      "acceptedAlt": [
+        "frontera"
+      ],
+      "hint": {
+        "en": "Where σ(z) = 0.5.",
+        "es": "Donde σ(z) = 0.5."
+      },
+      "solution": [
+        {
+          "tex": "\\sigma(z)=0.5",
+          "en": "Decision boundary.",
+          "es": "Frontera de decisión."
+        }
+      ]
     },
     {
       "id": "mlf-12-e3",
       "answerType": "number",
-      "prompt": { "en": "Accuracy with 9 correct out of 10?", "es": "¿Exactitud con 9 correctas de 10?" },
+      "prompt": {
+        "en": "Accuracy with 9 correct out of 10?",
+        "es": "¿Exactitud con 9 correctas de 10?"
+      },
       "answer": "0.9",
-      "acceptedAlt": ["9/10"],
-      "hint": { "en": "9 / 10.", "es": "9 / 10." },
-      "solution": [ { "tex": "\\tfrac{9}{10} = 0.9", "en": "Accuracy.", "es": "Exactitud." } ]
+      "acceptedAlt": [
+        "9/10"
+      ],
+      "hint": {
+        "en": "9 / 10.",
+        "es": "9 / 10."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{9}{10} = 0.9",
+          "en": "Accuracy.",
+          "es": "Exactitud."
+        }
+      ]
     },
     {
       "id": "mlf-12-e4",
       "answerType": "number",
-      "prompt": { "en": "How many classes does a binary classification problem have?", "es": "¿Cuántas clases tiene un problema de clasificación binaria?" },
+      "prompt": {
+        "en": "How many classes does a binary classification problem have?",
+        "es": "¿Cuántas clases tiene un problema de clasificación binaria?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Binary.", "es": "Binaria." },
-      "solution": [ { "tex": "2 \\text{ classes}", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "Binary.",
+        "es": "Binaria."
+      },
+      "solution": [
+        {
+          "tex": "2 \\text{ classes}",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, linear classifiers and decision boundaries", "es": "Cap. 18, clasificadores lineales y fronteras de decisión" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, capacity and classification", "es": "Cap. 5, capacidad y clasificación" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 18, linear classifiers and decision boundaries",
+        "es": "Cap. 18, clasificadores lineales y fronteras de decisión"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, capacity and classification",
+        "es": "Cap. 5, capacidad y clasificación"
+      }
+    }
   ]
 }

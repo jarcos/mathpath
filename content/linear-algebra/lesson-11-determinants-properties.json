@@ -3,7 +3,10 @@
   "subjectId": "linear-algebra",
   "order": 11,
   "estimatedMinutes": 40,
-  "title": { "en": "Determinants: Higher Order & Properties", "es": "Determinantes: orden superior y propiedades" },
+  "title": {
+    "en": "Determinants: Higher Order & Properties",
+    "es": "Determinantes: orden superior y propiedades"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "$\\det I_4 = 1$ by property (1). The matrix $\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$ is diagonal, so its determinant is the diagonal product $2\\cdot1\\cdot1\\cdot1 = 2$. And any matrix with two identical rows has determinant $0$ — no computation needed.",
         "es": "$\\det I_4 = 1$ por la propiedad (1). La matriz $\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$ es diagonal, así que su determinante es el producto diagonal $2\\cdot1\\cdot1\\cdot1 = 2$. Y cualquier matriz con dos filas idénticas tiene determinante $0$ — sin cálculo."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nA = np.array([[1, 2], [3, 4]])\nB = np.array([[2, 0], [1, 2]])\n# property: det(AB) = det(A) * det(B)\nprint(int(round(np.linalg.det(A @ B))), int(round(np.linalg.det(A) * np.linalg.det(B))))",
+        "es": "import numpy as np\nA = np.array([[1, 2], [3, 4]])\nB = np.array([[2, 0], [1, 2]])\n# propiedad: det(AB) = det(A) * det(B)\nprint(int(round(np.linalg.det(A @ B))), int(round(np.linalg.det(A) * np.linalg.det(B))))"
+      },
+      "expectedOutput": "-8 -8",
+      "caption": {
+        "en": "The determinant is multiplicative: det(AB)=det(A)det(B).",
+        "es": "El determinante es multiplicativo: det(AB)=det(A)det(B)."
       }
     }
   ],
@@ -39,42 +61,106 @@
     {
       "id": "linalg-11-e1",
       "answerType": "number",
-      "prompt": { "en": "$\\det$ of the $4\\times4$ identity matrix?", "es": "¿$\\det$ de la matriz identidad $4\\times4$?" },
+      "prompt": {
+        "en": "$\\det$ of the $4\\times4$ identity matrix?",
+        "es": "¿$\\det$ de la matriz identidad $4\\times4$?"
+      },
       "answer": "1",
-      "acceptedAlt": ["det(identity(4))"],
-      "hint": { "en": "Product of diagonal 1s.", "es": "Producto de unos en la diagonal." },
-      "solution": [ { "tex": "\\det I_4 = 1", "en": "Identity determinant.", "es": "Determinante de la identidad." } ]
+      "acceptedAlt": [
+        "det(identity(4))"
+      ],
+      "hint": {
+        "en": "Product of diagonal 1s.",
+        "es": "Producto de unos en la diagonal."
+      },
+      "solution": [
+        {
+          "tex": "\\det I_4 = 1",
+          "en": "Identity determinant.",
+          "es": "Determinante de la identidad."
+        }
+      ]
     },
     {
       "id": "linalg-11-e2",
       "answerType": "number",
-      "prompt": { "en": "A matrix has two identical rows. Its determinant is ___?", "es": "Una matriz tiene dos filas iguales. Su determinante es ___?" },
+      "prompt": {
+        "en": "A matrix has two identical rows. Its determinant is ___?",
+        "es": "Una matriz tiene dos filas iguales. Su determinante es ___?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Repeated rows → dependent.", "es": "Filas repetidas → dependientes." },
-      "solution": [ { "tex": "\\det = 0", "en": "Linearly dependent rows.", "es": "Filas linealmente dependientes." } ]
+      "hint": {
+        "en": "Repeated rows → dependent.",
+        "es": "Filas repetidas → dependientes."
+      },
+      "solution": [
+        {
+          "tex": "\\det = 0",
+          "en": "Linearly dependent rows.",
+          "es": "Filas linealmente dependientes."
+        }
+      ]
     },
     {
       "id": "linalg-11-e3",
       "answerType": "number",
-      "prompt": { "en": "$\\det\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$?", "es": "¿$\\det\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$?" },
+      "prompt": {
+        "en": "$\\det\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$?",
+        "es": "¿$\\det\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$?"
+      },
       "answer": "2",
-      "acceptedAlt": ["2*1*1*1"],
-      "hint": { "en": "Product of the diagonal.", "es": "Producto de la diagonal." },
-      "solution": [ { "tex": "2\\cdot1\\cdot1\\cdot1 = 2", "en": "Diagonal product.", "es": "Producto de la diagonal." } ]
+      "acceptedAlt": [
+        "2*1*1*1"
+      ],
+      "hint": {
+        "en": "Product of the diagonal.",
+        "es": "Producto de la diagonal."
+      },
+      "solution": [
+        {
+          "tex": "2\\cdot1\\cdot1\\cdot1 = 2",
+          "en": "Diagonal product.",
+          "es": "Producto de la diagonal."
+        }
+      ]
     },
     {
       "id": "linalg-11-e4",
       "answerType": "number",
-      "prompt": { "en": "Swapping two rows multiplies the determinant by ___?", "es": "Intercambiar dos filas multiplica el determinante por ___?" },
+      "prompt": {
+        "en": "Swapping two rows multiplies the determinant by ___?",
+        "es": "Intercambiar dos filas multiplica el determinante por ___?"
+      },
       "answer": "-1",
       "acceptedAlt": [],
-      "hint": { "en": "A sign change.", "es": "Un cambio de signo." },
-      "solution": [ { "tex": "\\det \\to -\\det", "en": "Sign flips.", "es": "Cambia de signo." } ]
+      "hint": {
+        "en": "A sign change.",
+        "es": "Un cambio de signo."
+      },
+      "solution": [
+        {
+          "tex": "\\det \\to -\\det",
+          "en": "Sign flips.",
+          "es": "Cambia de signo."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 5.1, the properties of determinants", "es": "Cap. 5.1, las propiedades de los determinantes" } },
-    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Determinants of order ≥4; properties", "es": "Determinantes de orden ≥4; propiedades" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 5.1, the properties of determinants",
+        "es": "Cap. 5.1, las propiedades de los determinantes"
+      }
+    },
+    {
+      "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)",
+      "detail": {
+        "en": "Determinants of order ≥4; properties",
+        "es": "Determinantes de orden ≥4; propiedades"
+      }
+    }
   ]
 }

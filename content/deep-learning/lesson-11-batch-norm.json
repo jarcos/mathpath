@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 11,
   "estimatedMinutes": 30,
-  "title": { "en": "Batch Normalization", "es": "Normalización por lotes" },
+  "title": {
+    "en": "Batch Normalization",
+    "es": "Normalización por lotes"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Batch $[2,4,6]$ has mean $\\mu = 4$ and variance $\\sigma^2 = \\frac{(2-4)^2+(4-4)^2+(6-4)^2}{3} = \\frac{8}{3}$. Normalizing the value $4$ (ignoring $\\epsilon$) gives $\\frac{4-4}{\\sigma} = 0$.",
         "es": "El lote $[2,4,6]$ tiene media $\\mu = 4$ y varianza $\\sigma^2 = \\frac{(2-4)^2+(4-4)^2+(6-4)^2}{3} = \\frac{8}{3}$. Normalizar el valor $4$ (ignorando $\\epsilon$) da $\\frac{4-4}{\\sigma} = 0$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nx = np.array([1.0, 2.0, 3.0, 4.0])\n# batch norm: standardize activations to mean 0, std 1\nprint(np.round((x - x.mean()) / x.std(), 4).tolist())",
+        "es": "import numpy as np\nx = np.array([1.0, 2.0, 3.0, 4.0])\n# batch norm: estandariza activaciones a media 0, desv. 1\nprint(np.round((x - x.mean()) / x.std(), 4).tolist())"
+      },
+      "expectedOutput": "[-1.3416, -0.4472, 0.4472, 1.3416]",
+      "caption": {
+        "en": "Batch norm stabilizes and speeds up training.",
+        "es": "La batch norm estabiliza y acelera el entrenamiento."
       }
     }
   ],
@@ -39,42 +61,107 @@
     {
       "id": "dl-11-e1",
       "answerType": "number",
-      "prompt": { "en": "Mean of the batch $[2,4,6]$?", "es": "¿Media del lote $[2,4,6]$?" },
+      "prompt": {
+        "en": "Mean of the batch $[2,4,6]$?",
+        "es": "¿Media del lote $[2,4,6]$?"
+      },
       "answer": "4",
-      "acceptedAlt": ["(2+4+6)/3", "mean([2,4,6])"],
-      "hint": { "en": "Sum / 3.", "es": "Suma / 3." },
-      "solution": [ { "tex": "\\frac{12}{3} = 4", "en": "Four.", "es": "Cuatro." } ]
+      "acceptedAlt": [
+        "(2+4+6)/3",
+        "mean([2,4,6])"
+      ],
+      "hint": {
+        "en": "Sum / 3.",
+        "es": "Suma / 3."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{12}{3} = 4",
+          "en": "Four.",
+          "es": "Cuatro."
+        }
+      ]
     },
     {
       "id": "dl-11-e2",
       "answerType": "number",
-      "prompt": { "en": "Normalized value of $4$ in batch $[2,4,6]$ (mean 4): $\\frac{4-4}{\\sigma}$?", "es": "Valor normalizado de $4$ en el lote $[2,4,6]$ (media 4): $\\frac{4-4}{\\sigma}$?" },
+      "prompt": {
+        "en": "Normalized value of $4$ in batch $[2,4,6]$ (mean 4): $\\frac{4-4}{\\sigma}$?",
+        "es": "Valor normalizado de $4$ en el lote $[2,4,6]$ (media 4): $\\frac{4-4}{\\sigma}$?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Numerator is 0.", "es": "El numerador es 0." },
-      "solution": [ { "tex": "\\frac{0}{\\sigma} = 0", "en": "Zero.", "es": "Cero." } ]
+      "hint": {
+        "en": "Numerator is 0.",
+        "es": "El numerador es 0."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{0}{\\sigma} = 0",
+          "en": "Zero.",
+          "es": "Cero."
+        }
+      ]
     },
     {
       "id": "dl-11-e3",
       "answerType": "number",
-      "prompt": { "en": "Population variance of $[2,4,6]$: $\\frac{8}{3}$ as a decimal to 4 dp.", "es": "Varianza poblacional de $[2,4,6]$: $\\frac{8}{3}$ como decimal a 4 cifras." },
+      "prompt": {
+        "en": "Population variance of $[2,4,6]$: $\\frac{8}{3}$ as a decimal to 4 dp.",
+        "es": "Varianza poblacional de $[2,4,6]$: $\\frac{8}{3}$ como decimal a 4 cifras."
+      },
       "answer": "2.6667",
       "acceptedAlt": [],
-      "hint": { "en": "((-2)²+0²+2²)/3.", "es": "((-2)²+0²+2²)/3." },
-      "solution": [ { "tex": "\\frac{8}{3}\\approx 2.6667", "en": "≈ 2.6667.", "es": "≈ 2.6667." } ]
+      "hint": {
+        "en": "((-2)²+0²+2²)/3.",
+        "es": "((-2)²+0²+2²)/3."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{8}{3}\\approx 2.6667",
+          "en": "≈ 2.6667.",
+          "es": "≈ 2.6667."
+        }
+      ]
     },
     {
       "id": "dl-11-e4",
       "answerType": "text",
-      "prompt": { "en": "The norm variant used in Transformers (across features) is ___ norm. (one word)", "es": "La variante de normalización usada en Transformers (entre características) es ___ norm. (una palabra)" },
+      "prompt": {
+        "en": "The norm variant used in Transformers (across features) is ___ norm. (one word)",
+        "es": "La variante de normalización usada en Transformers (entre características) es ___ norm. (una palabra)"
+      },
       "answer": "layer",
-      "acceptedAlt": ["capa"],
-      "hint": { "en": "Layer ___.", "es": "___ norm." },
-      "solution": [ { "tex": "\\text{LayerNorm}", "en": "Layer.", "es": "Layer (capa)." } ]
+      "acceptedAlt": [
+        "capa"
+      ],
+      "hint": {
+        "en": "Layer ___.",
+        "es": "___ norm."
+      },
+      "solution": [
+        {
+          "tex": "\\text{LayerNorm}",
+          "en": "Layer.",
+          "es": "Layer (capa)."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8.7.1, batch normalization", "es": "Cap. 8.7.1, normalización por lotes" } },
-    { "source": "Ioffe & Szegedy — Batch Normalization (2015)", "detail": { "en": "Original method", "es": "Método original" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 8.7.1, batch normalization",
+        "es": "Cap. 8.7.1, normalización por lotes"
+      }
+    },
+    {
+      "source": "Ioffe & Szegedy — Batch Normalization (2015)",
+      "detail": {
+        "en": "Original method",
+        "es": "Método original"
+      }
+    }
   ]
 }

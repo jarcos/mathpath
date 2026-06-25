@@ -3,13 +3,26 @@
   "subjectId": "statistics",
   "order": 9,
   "estimatedMinutes": 40,
-  "title": { "en": "Variance of a Random Variable", "es": "Varianza de una variable aleatoria" },
+  "title": {
+    "en": "Variance of a Random Variable",
+    "es": "Varianza de una variable aleatoria"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Expectation gives the center; **variance** gives the spread of a random variable. It is the expected squared deviation from the mean: $\\text{Var}(X) = E[(X - E[X])^2]$. A small variance means outcomes cluster near the mean; a large one means they scatter widely.",
         "es": "La esperanza da el centro; la **varianza** da la dispersión de una variable aleatoria. Es la desviación cuadrática esperada respecto a la media: $\\text{Var}(X) = E[(X - E[X])^2]$. Una varianza pequeña significa que los resultados se agrupan cerca de la media; una grande, que se dispersan mucho."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "stats-08-random-variables"
+      ],
+      "note": {
+        "en": "Variance of a random variable builds directly on its expected value.",
+        "es": "La varianza de una variable aleatoria se apoya en su valor esperado."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "If $E[X^2] = 10$ and $E[X] = 3$, then $\\text{Var}(X) = 10 - 3^2 = 1$. So $\\sigma = \\sqrt{1} = 1$. Scaling: $\\text{Var}(2X) = 2^2\\cdot\\text{Var}(X) = 4\\cdot 3 = 12$ when $\\text{Var}(X) = 3$.",
         "es": "Si $E[X^2] = 10$ y $E[X] = 3$, entonces $\\text{Var}(X) = 10 - 3^2 = 1$. Así $\\sigma = \\sqrt{1} = 1$. Escalado: $\\text{Var}(2X) = 2^2\\cdot\\text{Var}(X) = 4\\cdot 3 = 12$ cuando $\\text{Var}(X) = 3$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# variance = E[X^2] - E[X]^2\nvalues = [1, 2, 3]\nprobs = [0.2, 0.3, 0.5]\nE = sum(v * p for v, p in zip(values, probs))\nE2 = sum(v * v * p for v, p in zip(values, probs))\nprint(round(E2 - E * E, 4))",
+        "es": "# varianza = E[X^2] - E[X]^2\nvalues = [1, 2, 3]\nprobs = [0.2, 0.3, 0.5]\nE = sum(v * p for v, p in zip(values, probs))\nE2 = sum(v * v * p for v, p in zip(values, probs))\nprint(round(E2 - E * E, 4))"
+      },
+      "expectedOutput": "0.61",
+      "caption": {
+        "en": "Variance via the computational formula E[X squared] minus E[X] squared.",
+        "es": "La varianza con la fórmula E[X al cuadrado] menos E[X] al cuadrado."
       }
     }
   ],
@@ -39,42 +69,110 @@
     {
       "id": "stats-09-e1",
       "answerType": "number",
-      "prompt": { "en": "If $E[X^2]=10$ and $E[X]=3$, find $\\text{Var}(X)$.", "es": "Si $E[X^2]=10$ y $E[X]=3$, halla $\\text{Var}(X)$." },
+      "prompt": {
+        "en": "If $E[X^2]=10$ and $E[X]=3$, find $\\text{Var}(X)$.",
+        "es": "Si $E[X^2]=10$ y $E[X]=3$, halla $\\text{Var}(X)$."
+      },
       "answer": "1",
-      "acceptedAlt": ["10-3^2", "10-9"],
-      "hint": { "en": "E[X²] − (E[X])².", "es": "E[X²] − (E[X])²." },
-      "solution": [ { "tex": "10 - 9 = 1", "en": "Variance.", "es": "Varianza." } ]
+      "acceptedAlt": [
+        "10-3^2",
+        "10-9"
+      ],
+      "hint": {
+        "en": "E[X²] − (E[X])².",
+        "es": "E[X²] − (E[X])²."
+      },
+      "solution": [
+        {
+          "tex": "10 - 9 = 1",
+          "en": "Variance.",
+          "es": "Varianza."
+        }
+      ]
     },
     {
       "id": "stats-09-e2",
       "answerType": "number",
-      "prompt": { "en": "What is the variance of a constant?", "es": "¿Cuál es la varianza de una constante?" },
+      "prompt": {
+        "en": "What is the variance of a constant?",
+        "es": "¿Cuál es la varianza de una constante?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "No spread.", "es": "Sin dispersión." },
-      "solution": [ { "tex": "\\text{Var}(c) = 0", "en": "Zero.", "es": "Cero." } ]
+      "hint": {
+        "en": "No spread.",
+        "es": "Sin dispersión."
+      },
+      "solution": [
+        {
+          "tex": "\\text{Var}(c) = 0",
+          "en": "Zero.",
+          "es": "Cero."
+        }
+      ]
     },
     {
       "id": "stats-09-e3",
       "answerType": "number",
-      "prompt": { "en": "If $\\text{Var}(X)=4$, what is the standard deviation?", "es": "Si $\\text{Var}(X)=4$, ¿cuál es la desviación típica?" },
+      "prompt": {
+        "en": "If $\\text{Var}(X)=4$, what is the standard deviation?",
+        "es": "Si $\\text{Var}(X)=4$, ¿cuál es la desviación típica?"
+      },
       "answer": "2",
-      "acceptedAlt": ["sqrt(4)"],
-      "hint": { "en": "Square root of the variance.", "es": "Raíz de la varianza." },
-      "solution": [ { "tex": "\\sqrt{4} = 2", "en": "Standard deviation.", "es": "Desviación típica." } ]
+      "acceptedAlt": [
+        "sqrt(4)"
+      ],
+      "hint": {
+        "en": "Square root of the variance.",
+        "es": "Raíz de la varianza."
+      },
+      "solution": [
+        {
+          "tex": "\\sqrt{4} = 2",
+          "en": "Standard deviation.",
+          "es": "Desviación típica."
+        }
+      ]
     },
     {
       "id": "stats-09-e4",
       "answerType": "number",
-      "prompt": { "en": "If $\\text{Var}(X)=3$, find $\\text{Var}(2X)$.", "es": "Si $\\text{Var}(X)=3$, halla $\\text{Var}(2X)$." },
+      "prompt": {
+        "en": "If $\\text{Var}(X)=3$, find $\\text{Var}(2X)$.",
+        "es": "Si $\\text{Var}(X)=3$, halla $\\text{Var}(2X)$."
+      },
       "answer": "12",
-      "acceptedAlt": ["2^2*3", "4*3"],
-      "hint": { "en": "Var(aX) = a²·Var(X).", "es": "Var(aX) = a²·Var(X)." },
-      "solution": [ { "tex": "4\\cdot 3 = 12", "en": "Constant comes out squared.", "es": "La constante sale al cuadrado." } ]
+      "acceptedAlt": [
+        "2^2*3",
+        "4*3"
+      ],
+      "hint": {
+        "en": "Var(aX) = a²·Var(X).",
+        "es": "Var(aX) = a²·Var(X)."
+      },
+      "solution": [
+        {
+          "tex": "4\\cdot 3 = 12",
+          "en": "Constant comes out squared.",
+          "es": "La constante sale al cuadrado."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, variance; bias-variance considerations", "es": "Cap. 3, varianza; consideraciones sesgo-varianza" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Variance of random variables", "es": "Varianza de variables aleatorias" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 3, variance; bias-variance considerations",
+        "es": "Cap. 3, varianza; consideraciones sesgo-varianza"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Variance of random variables",
+        "es": "Varianza de variables aleatorias"
+      }
+    }
   ]
 }

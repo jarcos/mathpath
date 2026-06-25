@@ -3,7 +3,10 @@
   "subjectId": "reinforcement-learning",
   "order": 1,
   "estimatedMinutes": 30,
-  "title": { "en": "What Is Reinforcement Learning?", "es": "¿Qué es el aprendizaje por refuerzo?" },
+  "title": {
+    "en": "What Is Reinforcement Learning?",
+    "es": "¿Qué es el aprendizaje por refuerzo?"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "If an agent receives rewards $+1, 0, +2$ over three steps, the total reward is $1 + 0 + 2 = 3$. The mapping from states to actions the agent follows is called its policy.",
         "es": "Si un agente recibe recompensas $+1, 0, +2$ en tres pasos, la recompensa total es $1 + 0 + 2 = 3$. El mapeo de estados a acciones que sigue el agente se llama su política."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# the RL loop: agent takes an action, environment returns reward + next state\nstate, action, reward = 0, 1, 1\nnext_state = state + action\nprint(next_state, reward)",
+        "es": "# el bucle de RL: el agente actua, el entorno devuelve recompensa + siguiente estado\nstate, action, reward = 0, 1, 1\nnext_state = state + action\nprint(next_state, reward)"
+      },
+      "expectedOutput": "1 1",
+      "caption": {
+        "en": "RL is an agent learning by trial and reward in an environment.",
+        "es": "RL es un agente que aprende por ensayo y recompensa en un entorno."
       }
     }
   ],
@@ -39,41 +59,105 @@
     {
       "id": "rl-01-e1",
       "answerType": "number",
-      "prompt": { "en": "Total reward from $+1, 0, +2$?", "es": "¿Recompensa total de $+1, 0, +2$?" },
+      "prompt": {
+        "en": "Total reward from $+1, 0, +2$?",
+        "es": "¿Recompensa total de $+1, 0, +2$?"
+      },
       "answer": "3",
-      "acceptedAlt": ["1+0+2"],
-      "hint": { "en": "Add them.", "es": "Súmalas." },
-      "solution": [ { "tex": "1+0+2 = 3", "en": "Three.", "es": "Tres." } ]
+      "acceptedAlt": [
+        "1+0+2"
+      ],
+      "hint": {
+        "en": "Add them.",
+        "es": "Súmalas."
+      },
+      "solution": [
+        {
+          "tex": "1+0+2 = 3",
+          "en": "Three.",
+          "es": "Tres."
+        }
+      ]
     },
     {
       "id": "rl-01-e2",
       "answerType": "text",
-      "prompt": { "en": "The decision-maker that takes actions is the ___. (one word)", "es": "El que toma decisiones y ejecuta acciones es el ___. (una palabra)" },
+      "prompt": {
+        "en": "The decision-maker that takes actions is the ___. (one word)",
+        "es": "El que toma decisiones y ejecuta acciones es el ___. (una palabra)"
+      },
       "answer": "agent",
-      "acceptedAlt": ["agente"],
-      "hint": { "en": "Acts in the environment.", "es": "Actúa en el entorno." },
-      "solution": [ { "tex": "\\text{agent}", "en": "Agent.", "es": "Agente." } ]
+      "acceptedAlt": [
+        "agente"
+      ],
+      "hint": {
+        "en": "Acts in the environment.",
+        "es": "Actúa en el entorno."
+      },
+      "solution": [
+        {
+          "tex": "\\text{agent}",
+          "en": "Agent.",
+          "es": "Agente."
+        }
+      ]
     },
     {
       "id": "rl-01-e3",
       "answerType": "text",
-      "prompt": { "en": "The agent's mapping from states to actions is its ___. (one word)", "es": "El mapeo del agente de estados a acciones es su ___. (una palabra)" },
+      "prompt": {
+        "en": "The agent's mapping from states to actions is its ___. (one word)",
+        "es": "El mapeo del agente de estados a acciones es su ___. (una palabra)"
+      },
       "answer": "policy",
-      "acceptedAlt": ["política", "politica"],
-      "hint": { "en": "Denoted π.", "es": "Se denota π." },
-      "solution": [ { "tex": "\\pi", "en": "Policy.", "es": "Política." } ]
+      "acceptedAlt": [
+        "política",
+        "politica"
+      ],
+      "hint": {
+        "en": "Denoted π.",
+        "es": "Se denota π."
+      },
+      "solution": [
+        {
+          "tex": "\\pi",
+          "en": "Policy.",
+          "es": "Política."
+        }
+      ]
     },
     {
       "id": "rl-01-e4",
       "answerType": "text",
-      "prompt": { "en": "Trying new actions vs using known good ones is the ___–exploitation trade-off. (one word)", "es": "Probar acciones nuevas vs usar buenas conocidas es el compromiso ___–explotación. (una palabra)" },
+      "prompt": {
+        "en": "Trying new actions vs using known good ones is the ___–exploitation trade-off. (one word)",
+        "es": "Probar acciones nuevas vs usar buenas conocidas es el compromiso ___–explotación. (una palabra)"
+      },
       "answer": "exploration",
-      "acceptedAlt": ["exploración", "exploracion"],
-      "hint": { "en": "Explore vs exploit.", "es": "Explorar vs explotar." },
-      "solution": [ { "tex": "\\text{exploration}", "en": "Exploration.", "es": "Exploración." } ]
+      "acceptedAlt": [
+        "exploración",
+        "exploracion"
+      ],
+      "hint": {
+        "en": "Explore vs exploit.",
+        "es": "Explorar vs explotar."
+      },
+      "solution": [
+        {
+          "tex": "\\text{exploration}",
+          "en": "Exploration.",
+          "es": "Exploración."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2nd ed., 2018)", "detail": { "en": "Ch. 1, the RL problem", "es": "Cap. 1, el problema del RL" } }
+    {
+      "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2nd ed., 2018)",
+      "detail": {
+        "en": "Ch. 1, the RL problem",
+        "es": "Cap. 1, el problema del RL"
+      }
+    }
   ]
 }

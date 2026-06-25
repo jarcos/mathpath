@@ -3,13 +3,27 @@
   "subjectId": "neural-networks",
   "order": 9,
   "estimatedMinutes": 45,
-  "title": { "en": "Backpropagation", "es": "Retropropagación" },
+  "title": {
+    "en": "Backpropagation",
+    "es": "Retropropagación"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "**Backpropagation** is the algorithm that makes deep learning possible: it computes how much each weight contributed to the loss, so gradient descent knows how to adjust it. The key engine is the **chain rule** from calculus — backprop is, quite literally, the chain rule applied systematically through the layers.",
         "es": "La **retropropagación** es el algoritmo que hace posible el aprendizaje profundo: calcula cuánto contribuyó cada peso a la pérdida, para que el descenso de gradiente sepa cómo ajustarlo. El motor clave es la **regla de la cadena** del cálculo — la retropropagación es, literalmente, la regla de la cadena aplicada sistemáticamente por las capas."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "calculus-07-rules-chain",
+        "mlf-06-gradient-descent"
+      ],
+      "note": {
+        "en": "Backpropagation is the chain rule applied to a network, used to drive gradient descent.",
+        "es": "La retropropagación es la regla de la cadena aplicada a una red, usada para el descenso de gradiente."
       }
     },
     {
@@ -28,10 +42,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Chain rule with an outer derivative of $2$ and an inner derivative of $3$: the gradient is $2\\times 3 = 6$. Each training step does $1$ forward pass and $1$ backward pass — $2$ passes total.",
         "es": "Regla de la cadena con derivada externa $2$ e interna $3$: el gradiente es $2\\times 3 = 6$. Cada paso de entrenamiento hace $1$ pasada hacia delante y $1$ hacia atrás — $2$ pasadas en total."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# backprop = gradient of the loss w.r.t. a weight, via the chain rule\nw, x, y = 2.0, 3.0, 10.0\npred = w * x\nloss = (pred - y)**2\ngrad = 2 * (pred - y) * x      # dLoss/dw\nprint(loss, grad)",
+        "es": "# backprop = gradiente de la perdida respecto a un peso, por la regla de la cadena\nw, x, y = 2.0, 3.0, 10.0\npred = w * x\nloss = (pred - y)**2\ngrad = 2 * (pred - y) * x      # dPerdida/dw\nprint(loss, grad)"
+      },
+      "expectedOutput": "16.0 -24.0",
+      "caption": {
+        "en": "The gradient says which way (and how hard) to change w.",
+        "es": "El gradiente dice en que direccion (y cuanto) cambiar w."
       }
     }
   ],
@@ -39,42 +70,112 @@
     {
       "id": "nn-09-e1",
       "answerType": "text",
-      "prompt": { "en": "Backpropagation applies the ___ rule to compute gradients. (one word)", "es": "La retropropagación aplica la regla de la ___ para calcular gradientes. (una palabra)" },
+      "prompt": {
+        "en": "Backpropagation applies the ___ rule to compute gradients. (one word)",
+        "es": "La retropropagación aplica la regla de la ___ para calcular gradientes. (una palabra)"
+      },
       "answer": "chain",
-      "acceptedAlt": ["cadena"],
-      "hint": { "en": "From calculus.", "es": "Del cálculo." },
-      "solution": [ { "tex": "f'(g)\\cdot g'", "en": "Chain rule.", "es": "Regla de la cadena." } ]
+      "acceptedAlt": [
+        "cadena"
+      ],
+      "hint": {
+        "en": "From calculus.",
+        "es": "Del cálculo."
+      },
+      "solution": [
+        {
+          "tex": "f'(g)\\cdot g'",
+          "en": "Chain rule.",
+          "es": "Regla de la cadena."
+        }
+      ]
     },
     {
       "id": "nn-09-e2",
       "answerType": "number",
-      "prompt": { "en": "Chain rule: outer derivative $2$, inner derivative $3$. The gradient is?", "es": "Regla de la cadena: derivada externa $2$, interna $3$. ¿El gradiente es?" },
+      "prompt": {
+        "en": "Chain rule: outer derivative $2$, inner derivative $3$. The gradient is?",
+        "es": "Regla de la cadena: derivada externa $2$, interna $3$. ¿El gradiente es?"
+      },
       "answer": "6",
-      "acceptedAlt": ["2*3"],
-      "hint": { "en": "Multiply them.", "es": "Multiplícalas." },
-      "solution": [ { "tex": "2\\times 3 = 6", "en": "Gradient.", "es": "Gradiente." } ]
+      "acceptedAlt": [
+        "2*3"
+      ],
+      "hint": {
+        "en": "Multiply them.",
+        "es": "Multiplícalas."
+      },
+      "solution": [
+        {
+          "tex": "2\\times 3 = 6",
+          "en": "Gradient.",
+          "es": "Gradiente."
+        }
+      ]
     },
     {
       "id": "nn-09-e3",
       "answerType": "text",
-      "prompt": { "en": "Backprop propagates the error ___ through the network. (one word)", "es": "La retropropagación propaga el error hacia ___ por la red. (una palabra)" },
+      "prompt": {
+        "en": "Backprop propagates the error ___ through the network. (one word)",
+        "es": "La retropropagación propaga el error hacia ___ por la red. (una palabra)"
+      },
       "answer": "backward",
-      "acceptedAlt": ["atrás", "hacia atrás", "atras"],
-      "hint": { "en": "Output toward input.", "es": "De la salida a la entrada." },
-      "solution": [ { "tex": "\\leftarrow", "en": "Backward.", "es": "Hacia atrás." } ]
+      "acceptedAlt": [
+        "atrás",
+        "hacia atrás",
+        "atras"
+      ],
+      "hint": {
+        "en": "Output toward input.",
+        "es": "De la salida a la entrada."
+      },
+      "solution": [
+        {
+          "tex": "\\leftarrow",
+          "en": "Backward.",
+          "es": "Hacia atrás."
+        }
+      ]
     },
     {
       "id": "nn-09-e4",
       "answerType": "number",
-      "prompt": { "en": "How many passes (forward + backward) does one training step take?", "es": "¿Cuántas pasadas (hacia delante + hacia atrás) toma un paso de entrenamiento?" },
+      "prompt": {
+        "en": "How many passes (forward + backward) does one training step take?",
+        "es": "¿Cuántas pasadas (hacia delante + hacia atrás) toma un paso de entrenamiento?"
+      },
       "answer": "2",
-      "acceptedAlt": ["1+1"],
-      "hint": { "en": "One each way.", "es": "Una en cada sentido." },
-      "solution": [ { "tex": "1 + 1 = 2", "en": "Two passes.", "es": "Dos pasadas." } ]
+      "acceptedAlt": [
+        "1+1"
+      ],
+      "hint": {
+        "en": "One each way.",
+        "es": "Una en cada sentido."
+      },
+      "solution": [
+        {
+          "tex": "1 + 1 = 2",
+          "en": "Two passes.",
+          "es": "Dos pasadas."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Learning representations by back-propagating errors", "es": "Aprender representaciones retropropagando errores" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.5, back-propagation and the chain rule", "es": "Cap. 6.5, retropropagación y la regla de la cadena" } }
+    {
+      "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)",
+      "detail": {
+        "en": "Learning representations by back-propagating errors",
+        "es": "Aprender representaciones retropropagando errores"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 6.5, back-propagation and the chain rule",
+        "es": "Cap. 6.5, retropropagación y la regla de la cadena"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "statistics",
   "order": 1,
   "estimatedMinutes": 40,
-  "title": { "en": "Descriptive Statistics", "es": "Estadística descriptiva" },
+  "title": {
+    "en": "Descriptive Statistics",
+    "es": "Estadística descriptiva"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,30 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "For the data $\\{2, 4, 6\\}$: mean $= \\tfrac{2+4+6}{3} = 4$, median $= 4$ (the middle value), mode $=$ none (all appear once). For $\\{1, 3, 5, 7\\}$ the median is the average of the two middle values: $\\tfrac{3+5}{2} = 4$.",
         "es": "Para los datos $\\{2, 4, 6\\}$: media $= \\tfrac{2+4+6}{3} = 4$, mediana $= 4$ (el valor central), moda $=$ ninguna (todos aparecen una vez). Para $\\{1, 3, 5, 7\\}$ la mediana es la media de los dos centrales: $\\tfrac{3+5}{2} = 4$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy",
+        "pandas"
+      ],
+      "code": {
+        "en": "import numpy as np\nimport pandas as pd\n\n# one outlier (100) drags the mean far above the median\ndata = [2, 4, 6, 6, 100]\ns = pd.Series(data)\nprint(f\"mean   {round(float(s.mean()), 1)}\")\nprint(f\"median {round(float(s.median()), 1)}\")\nprint(f\"mode   {int(s.mode().iloc[0])}\")",
+        "es": "import numpy as np\nimport pandas as pd\n\n# un valor atípico (100) arrastra la media por encima de la mediana\ndata = [2, 4, 6, 6, 100]\ns = pd.Series(data)\nprint(f\"mean   {round(float(s.mean()), 1)}\")\nprint(f\"median {round(float(s.median()), 1)}\")\nprint(f\"mode   {int(s.mode().iloc[0])}\")"
+      },
+      "expectedOutput": "mean   23.6\nmedian 6.0\nmode   6",
+      "caption": {
+        "en": "pandas computes all three summaries; note how the single outlier separates mean from median.",
+        "es": "pandas calcula los tres resúmenes; fíjate cómo el único valor atípico separa la media de la mediana."
       }
     }
   ],
@@ -39,42 +62,209 @@
     {
       "id": "stats-01-e1",
       "answerType": "number",
-      "prompt": { "en": "Find the mean of $\\{2, 4, 6\\}$.", "es": "Halla la media de $\\{2, 4, 6\\}$." },
+      "prompt": {
+        "en": "Find the mean of $\\{2, 4, 6\\}$.",
+        "es": "Halla la media de $\\{2, 4, 6\\}$."
+      },
       "answer": "4",
-      "acceptedAlt": ["(2+4+6)/3", "mean([2,4,6])"],
-      "hint": { "en": "Sum divided by 3.", "es": "Suma dividida entre 3." },
-      "solution": [ { "tex": "\\tfrac{2+4+6}{3} = 4", "en": "Mean.", "es": "Media." } ]
+      "acceptedAlt": [
+        "(2+4+6)/3",
+        "mean([2,4,6])"
+      ],
+      "hint": {
+        "en": "Sum divided by 3.",
+        "es": "Suma dividida entre 3."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{2+4+6}{3} = 4",
+          "en": "Mean.",
+          "es": "Media."
+        }
+      ]
     },
     {
       "id": "stats-01-e2",
       "answerType": "number",
-      "prompt": { "en": "Find the median of $\\{1, 3, 5, 7\\}$.", "es": "Halla la mediana de $\\{1, 3, 5, 7\\}$." },
+      "prompt": {
+        "en": "Find the median of $\\{1, 3, 5, 7\\}$.",
+        "es": "Halla la mediana de $\\{1, 3, 5, 7\\}$."
+      },
       "answer": "4",
-      "acceptedAlt": ["(3+5)/2", "median([1,3,5,7])"],
-      "hint": { "en": "Average the two middle values.", "es": "Promedia los dos valores centrales." },
-      "solution": [ { "tex": "\\tfrac{3+5}{2} = 4", "en": "Median.", "es": "Mediana." } ]
+      "acceptedAlt": [
+        "(3+5)/2",
+        "median([1,3,5,7])"
+      ],
+      "hint": {
+        "en": "Average the two middle values.",
+        "es": "Promedia los dos valores centrales."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{3+5}{2} = 4",
+          "en": "Median.",
+          "es": "Mediana."
+        }
+      ]
     },
     {
       "id": "stats-01-e3",
       "answerType": "number",
-      "prompt": { "en": "Find the mode of $\\{2, 2, 3\\}$.", "es": "Halla la moda de $\\{2, 2, 3\\}$." },
+      "prompt": {
+        "en": "Find the mode of $\\{2, 2, 3\\}$.",
+        "es": "Halla la moda de $\\{2, 2, 3\\}$."
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "The most frequent value.", "es": "El valor más frecuente." },
-      "solution": [ { "tex": "2 \\text{ appears twice}", "en": "Mode is 2.", "es": "La moda es 2." } ]
+      "hint": {
+        "en": "The most frequent value.",
+        "es": "El valor más frecuente."
+      },
+      "solution": [
+        {
+          "tex": "2 \\text{ appears twice}",
+          "en": "Mode is 2.",
+          "es": "La moda es 2."
+        }
+      ]
     },
     {
       "id": "stats-01-e4",
       "answerType": "number",
-      "prompt": { "en": "Find the mean of $\\{10, 20\\}$.", "es": "Halla la media de $\\{10, 20\\}$." },
+      "prompt": {
+        "en": "Find the mean of $\\{10, 20\\}$.",
+        "es": "Halla la media de $\\{10, 20\\}$."
+      },
       "answer": "15",
-      "acceptedAlt": ["(10+20)/2"],
-      "hint": { "en": "Sum over 2.", "es": "Suma entre 2." },
-      "solution": [ { "tex": "\\tfrac{10+20}{2} = 15", "en": "Mean.", "es": "Media." } ]
+      "acceptedAlt": [
+        "(10+20)/2"
+      ],
+      "hint": {
+        "en": "Sum over 2.",
+        "es": "Suma entre 2."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{10+20}{2} = 15",
+          "en": "Mean.",
+          "es": "Media."
+        }
+      ]
+    },
+    {
+      "id": "stats-01-e5",
+      "answerType": "code",
+      "lib": [
+        "numpy"
+      ],
+      "prompt": {
+        "en": "Complete `median(xs)` so it returns the median of the list `xs`. (NumPy is available.)",
+        "es": "Completa `median(xs)` para que devuelva la mediana de la lista `xs`. (NumPy está disponible.)"
+      },
+      "funcName": "median",
+      "starter": {
+        "en": "def median(xs):\n    # return the median of the list xs\n    pass",
+        "es": "def median(xs):\n    # devuelve la mediana de la lista xs\n    pass"
+      },
+      "solution": "import numpy as np\ndef median(xs):\n    return float(np.median(xs))",
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              3,
+              5,
+              7
+            ]
+          ],
+          "expected": 4.0
+        },
+        {
+          "args": [
+            [
+              2,
+              4,
+              6
+            ]
+          ],
+          "expected": 4.0
+        },
+        {
+          "args": [
+            [
+              5
+            ]
+          ],
+          "expected": 5.0
+        }
+      ],
+      "hint": {
+        "en": "np.median does the work — wrap it in float().",
+        "es": "np.median hace el trabajo — envuélvelo en float()."
+      }
+    },
+    {
+      "id": "stats-01-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "In a room where most incomes are modest but one person is a billionaire, which summary best represents a *typical* income?",
+        "es": "En una sala donde casi todas las rentas son modestas pero una persona es multimillonaria, ¿qué resumen representa mejor una renta *típica*?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The median",
+            "es": "La mediana"
+          },
+          "correct": true,
+          "why": {
+            "en": "The median is resistant to outliers, so it stays near the typical value.",
+            "es": "La mediana es resistente a valores atípicos, así que se queda cerca del valor típico."
+          }
+        },
+        {
+          "text": {
+            "en": "The mean",
+            "es": "La media"
+          },
+          "correct": false,
+          "why": {
+            "en": "The mean is pulled far up by the single huge value.",
+            "es": "La media se ve arrastrada muy hacia arriba por el único valor enorme."
+          }
+        },
+        {
+          "text": {
+            "en": "The maximum",
+            "es": "El máximo"
+          },
+          "correct": false,
+          "why": {
+            "en": "The maximum is exactly the outlier — the opposite of typical.",
+            "es": "El máximo es justo el valor atípico — lo contrario de típico."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which one barely moves when one extreme value is added?",
+        "es": "¿Cuál apenas se mueve al añadir un valor extremo?"
+      }
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, Probability and Information Theory (expectation, summaries)", "es": "Cap. 3, probabilidad y teoría de la información" } },
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Quantifying uncertainty: basic statistics", "es": "Cuantificar la incertidumbre: estadística básica" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 3, Probability and Information Theory (expectation, summaries)",
+        "es": "Cap. 3, probabilidad y teoría de la información"
+      }
+    },
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Quantifying uncertainty: basic statistics",
+        "es": "Cuantificar la incertidumbre: estadística básica"
+      }
+    }
   ]
 }

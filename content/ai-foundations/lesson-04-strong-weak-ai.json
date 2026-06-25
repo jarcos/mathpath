@@ -3,13 +3,26 @@
   "subjectId": "ai-foundations",
   "order": 4,
   "estimatedMinutes": 30,
-  "title": { "en": "Strong vs Weak AI; AGI", "es": "IA fuerte vs débil; AGI" },
+  "title": {
+    "en": "Strong vs Weak AI; AGI",
+    "es": "IA fuerte vs débil; AGI"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Searle distinguished **weak AI** — machines that *simulate* intelligence and are useful tools — from **strong AI**, the claim that a suitably programmed computer literally *has* a mind, understands, and is conscious. The distinction is about metaphysics, not capability: a system could be enormously capable yet, on the weak-AI view, understand nothing.",
         "es": "Searle distinguió la **IA débil** — máquinas que *simulan* inteligencia y son herramientas útiles — de la **IA fuerte**, la afirmación de que una computadora adecuadamente programada literalmente *tiene* una mente, entiende y es consciente. La distinción es sobre metafísica, no sobre capacidad: un sistema podría ser enormemente capaz y, según la visión de IA débil, no entender nada."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "aif-01-what-is-ai"
+      ],
+      "note": {
+        "en": "Builds on the definition of AI.",
+        "es": "Se apoya en la definicion de IA."
       }
     },
     {
@@ -28,7 +41,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A chess engine that only plays chess is an example of narrow AI. The claim that a computer literally has a mind is strong AI. Broad human-level competence is abbreviated AGI.",
         "es": "Un motor de ajedrez que solo juega ajedrez es un ejemplo de IA estrecha. La afirmación de que una computadora literalmente tiene una mente es la IA fuerte. La competencia amplia de nivel humano se abrevia AGI."
@@ -39,41 +55,151 @@
     {
       "id": "aif-04-e1",
       "answerType": "text",
-      "prompt": { "en": "The claim a computer literally has a mind is ___ AI. (one word)", "es": "La afirmación de que una computadora literalmente tiene una mente es la IA ___. (una palabra)" },
+      "prompt": {
+        "en": "The claim a computer literally has a mind is ___ AI. (one word)",
+        "es": "La afirmación de que una computadora literalmente tiene una mente es la IA ___. (una palabra)"
+      },
       "answer": "strong",
-      "acceptedAlt": ["fuerte"],
-      "hint": { "en": "Strong vs weak.", "es": "Fuerte vs débil." },
-      "solution": [ { "tex": "\\text{strong AI}", "en": "Strong.", "es": "Fuerte." } ]
+      "acceptedAlt": [
+        "fuerte"
+      ],
+      "hint": {
+        "en": "Strong vs weak.",
+        "es": "Fuerte vs débil."
+      },
+      "solution": [
+        {
+          "tex": "\\text{strong AI}",
+          "en": "Strong.",
+          "es": "Fuerte."
+        }
+      ]
     },
     {
       "id": "aif-04-e2",
       "answerType": "text",
-      "prompt": { "en": "AI that merely simulates intelligence as a useful tool is ___ AI. (one word)", "es": "La IA que solo simula inteligencia como herramienta útil es la IA ___. (una palabra)" },
+      "prompt": {
+        "en": "AI that merely simulates intelligence as a useful tool is ___ AI. (one word)",
+        "es": "La IA que solo simula inteligencia como herramienta útil es la IA ___. (una palabra)"
+      },
       "answer": "weak",
-      "acceptedAlt": ["débil", "debil"],
-      "hint": { "en": "Opposite of strong.", "es": "Opuesto de fuerte." },
-      "solution": [ { "tex": "\\text{weak AI}", "en": "Weak.", "es": "Débil." } ]
+      "acceptedAlt": [
+        "débil",
+        "debil"
+      ],
+      "hint": {
+        "en": "Opposite of strong.",
+        "es": "Opuesto de fuerte."
+      },
+      "solution": [
+        {
+          "tex": "\\text{weak AI}",
+          "en": "Weak.",
+          "es": "Débil."
+        }
+      ]
     },
     {
       "id": "aif-04-e3",
       "answerType": "text",
-      "prompt": { "en": "Broad human-level intelligence across domains is ___ (acronym).", "es": "La inteligencia amplia de nivel humano en muchos dominios es ___ (siglas)." },
+      "prompt": {
+        "en": "Broad human-level intelligence across domains is ___ (acronym).",
+        "es": "La inteligencia amplia de nivel humano en muchos dominios es ___ (siglas)."
+      },
       "answer": "agi",
       "acceptedAlt": [],
-      "hint": { "en": "Artificial General Intelligence.", "es": "Inteligencia artificial general." },
-      "solution": [ { "tex": "\\text{AGI}", "en": "AGI.", "es": "AGI." } ]
+      "hint": {
+        "en": "Artificial General Intelligence.",
+        "es": "Inteligencia artificial general."
+      },
+      "solution": [
+        {
+          "tex": "\\text{AGI}",
+          "en": "AGI.",
+          "es": "AGI."
+        }
+      ]
     },
     {
       "id": "aif-04-e4",
       "answerType": "text",
-      "prompt": { "en": "AI that excels at only one task is called ___ AI. (one word)", "es": "La IA que destaca en una sola tarea se llama IA ___. (una palabra)" },
+      "prompt": {
+        "en": "AI that excels at only one task is called ___ AI. (one word)",
+        "es": "La IA que destaca en una sola tarea se llama IA ___. (una palabra)"
+      },
       "answer": "narrow",
-      "acceptedAlt": ["estrecha", "específica", "especifica"],
-      "hint": { "en": "Opposite of general.", "es": "Opuesto de general." },
-      "solution": [ { "tex": "\\text{narrow AI}", "en": "Narrow.", "es": "Estrecha." } ]
+      "acceptedAlt": [
+        "estrecha",
+        "específica",
+        "especifica"
+      ],
+      "hint": {
+        "en": "Opposite of general.",
+        "es": "Opuesto de general."
+      },
+      "solution": [
+        {
+          "tex": "\\text{narrow AI}",
+          "en": "Narrow.",
+          "es": "Estrecha."
+        }
+      ]
+    },
+    {
+      "id": "aif-04-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "'Strong AI' is the claim that a suitably programmed machine...",
+        "es": "La 'IA fuerte' es la afirmacion de que una maquina bien programada..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Genuinely has a mind and understanding, not just a simulation",
+            "es": "Tiene genuinamente mente y comprension, no solo una simulacion"
+          },
+          "correct": true,
+          "why": {
+            "en": "Strong AI asserts real understanding; weak AI only useful behavior.",
+            "es": "La IA fuerte afirma comprension real; la debil solo conducta util."
+          }
+        },
+        {
+          "text": {
+            "en": "Runs on more powerful hardware",
+            "es": "Funciona en hardware mas potente"
+          },
+          "correct": false,
+          "why": {
+            "en": "Strength here is philosophical, not computational power.",
+            "es": "La fuerza aqui es filosofica, no potencia de computo."
+          }
+        },
+        {
+          "text": {
+            "en": "Is simply a larger neural network",
+            "es": "Es simplemente una red neuronal mas grande"
+          },
+          "correct": false,
+          "why": {
+            "en": "Scale alone is not the strong-AI claim about mind.",
+            "es": "La escala por si sola no es la tesis de la IA fuerte sobre la mente."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Real mind vs useful tool.",
+        "es": "Mente real vs herramienta util."
+      }
     }
   ],
   "references": [
-    { "source": "Searle — Minds, Brains, and Programs (1980)", "detail": { "en": "Strong vs weak AI", "es": "IA fuerte vs débil" } }
+    {
+      "source": "Searle — Minds, Brains, and Programs (1980)",
+      "detail": {
+        "en": "Strong vs weak AI",
+        "es": "IA fuerte vs débil"
+      }
+    }
   ]
 }

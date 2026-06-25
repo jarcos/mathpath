@@ -3,7 +3,10 @@
   "subjectId": "computer-vision",
   "order": 2,
   "estimatedMinutes": 30,
-  "title": { "en": "Images as Arrays", "es": "Imágenes como arreglos" },
+  "title": {
+    "en": "Images as Arrays",
+    "es": "Imágenes como arreglos"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A $640\\times 480$ grayscale image has $640\\cdot 480 = 307200$ pixels. Normalizing the value $128$ by dividing by $256$ gives $128/256 = 0.5$.",
         "es": "Una imagen en gris de $640\\times 480$ tiene $640\\cdot 480 = 307200$ píxeles. Normalizar el valor $128$ dividiendo por $256$ da $128/256 = 0.5$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# one RGB pixel; its grayscale value is the channel average\npx = np.array([255, 128, 0])\nprint(px.tolist(), int(px.mean()))",
+        "es": "import numpy as np\n# un pixel RGB; su valor en gris es la media de los canales\npx = np.array([255, 128, 0])\nprint(px.tolist(), int(px.mean()))"
+      },
+      "expectedOutput": "[255, 128, 0] 127",
+      "caption": {
+        "en": "Color images stack three channels (R, G, B) per pixel.",
+        "es": "Las imagenes en color apilan tres canales (R, G, B) por pixel."
       }
     }
   ],
@@ -39,41 +61,102 @@
     {
       "id": "cv-02-e1",
       "answerType": "number",
-      "prompt": { "en": "Pixels in a $640\\times 480$ image: $640\\cdot 480$?", "es": "Píxeles en una imagen de $640\\times 480$: $640\\cdot 480$?" },
+      "prompt": {
+        "en": "Pixels in a $640\\times 480$ image: $640\\cdot 480$?",
+        "es": "Píxeles en una imagen de $640\\times 480$: $640\\cdot 480$?"
+      },
       "answer": "307200",
-      "acceptedAlt": ["640*480"],
-      "hint": { "en": "Multiply width × height.", "es": "Multiplica ancho × alto." },
-      "solution": [ { "tex": "640\\cdot480 = 307200", "en": "307,200.", "es": "307.200." } ]
+      "acceptedAlt": [
+        "640*480"
+      ],
+      "hint": {
+        "en": "Multiply width × height.",
+        "es": "Multiplica ancho × alto."
+      },
+      "solution": [
+        {
+          "tex": "640\\cdot480 = 307200",
+          "en": "307,200.",
+          "es": "307.200."
+        }
+      ]
     },
     {
       "id": "cv-02-e2",
       "answerType": "number",
-      "prompt": { "en": "How many channels does an RGB color image have?", "es": "¿Cuántos canales tiene una imagen en color RGB?" },
+      "prompt": {
+        "en": "How many channels does an RGB color image have?",
+        "es": "¿Cuántos canales tiene una imagen en color RGB?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "Red, green, blue.", "es": "Rojo, verde, azul." },
-      "solution": [ { "tex": "3", "en": "Three.", "es": "Tres." } ]
+      "hint": {
+        "en": "Red, green, blue.",
+        "es": "Rojo, verde, azul."
+      },
+      "solution": [
+        {
+          "tex": "3",
+          "en": "Three.",
+          "es": "Tres."
+        }
+      ]
     },
     {
       "id": "cv-02-e3",
       "answerType": "number",
-      "prompt": { "en": "Normalize pixel 128 by dividing by 256: $128/256$?", "es": "Normaliza el píxel 128 dividiendo por 256: $128/256$?" },
+      "prompt": {
+        "en": "Normalize pixel 128 by dividing by 256: $128/256$?",
+        "es": "Normaliza el píxel 128 dividiendo por 256: $128/256$?"
+      },
       "answer": "0.5",
-      "acceptedAlt": ["128/256", "1/2"],
-      "hint": { "en": "128 / 256.", "es": "128 / 256." },
-      "solution": [ { "tex": "128/256 = 0.5", "en": "0.5.", "es": "0.5." } ]
+      "acceptedAlt": [
+        "128/256",
+        "1/2"
+      ],
+      "hint": {
+        "en": "128 / 256.",
+        "es": "128 / 256."
+      },
+      "solution": [
+        {
+          "tex": "128/256 = 0.5",
+          "en": "0.5.",
+          "es": "0.5."
+        }
+      ]
     },
     {
       "id": "cv-02-e4",
       "answerType": "number",
-      "prompt": { "en": "Max 8-bit pixel intensity value?", "es": "¿Valor máximo de intensidad de un píxel de 8 bits?" },
+      "prompt": {
+        "en": "Max 8-bit pixel intensity value?",
+        "es": "¿Valor máximo de intensidad de un píxel de 8 bits?"
+      },
       "answer": "255",
-      "acceptedAlt": ["2^8-1"],
-      "hint": { "en": "2^8 − 1.", "es": "2^8 − 1." },
-      "solution": [ { "tex": "2^8-1 = 255", "en": "255.", "es": "255." } ]
+      "acceptedAlt": [
+        "2^8-1"
+      ],
+      "hint": {
+        "en": "2^8 − 1.",
+        "es": "2^8 − 1."
+      },
+      "solution": [
+        {
+          "tex": "2^8-1 = 255",
+          "en": "255.",
+          "es": "255."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Szeliski — Computer Vision: Algorithms and Applications", "detail": { "en": "Ch. 2, image formation and representation", "es": "Cap. 2, formación y representación de imágenes" } }
+    {
+      "source": "Szeliski — Computer Vision: Algorithms and Applications",
+      "detail": {
+        "en": "Ch. 2, image formation and representation",
+        "es": "Cap. 2, formación y representación de imágenes"
+      }
+    }
   ]
 }

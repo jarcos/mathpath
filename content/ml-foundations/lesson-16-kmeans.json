@@ -3,7 +3,10 @@
   "subjectId": "ml-foundations",
   "order": 16,
   "estimatedMinutes": 40,
-  "title": { "en": "k-Means Clustering", "es": "Agrupamiento k-means" },
+  "title": {
+    "en": "k-Means Clustering",
+    "es": "Agrupamiento k-means"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,30 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "k-means with $k = 3$ produces $3$ clusters. Each cluster's centroid is the mean of its points; the centroid of the 1-D points $\\{2, 4\\}$ is $\\tfrac{2+4}{2} = 3$. Because there are no labels, k-means is an unsupervised method.",
         "es": "k-means con $k = 3$ produce $3$ grupos. El centroide de cada grupo es la media de sus puntos; el centroide de los puntos 1-D $\\{2, 4\\}$ es $\\tfrac{2+4}{2} = 3$. Como no hay etiquetas, k-means es un método no supervisado."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy",
+        "scikit-learn"
+      ],
+      "code": {
+        "en": "import numpy as np\nfrom sklearn.cluster import KMeans\nX = np.array([[0], [1], [10], [11]])\nm = KMeans(n_clusters=2, n_init=10, random_state=0).fit(X)\n# unsupervised: it finds the two cluster centers itself\nprint(sorted(np.round(m.cluster_centers_.ravel(), 1).tolist()))",
+        "es": "import numpy as np\nfrom sklearn.cluster import KMeans\nX = np.array([[0], [1], [10], [11]])\nm = KMeans(n_clusters=2, n_init=10, random_state=0).fit(X)\n# no supervisado: encuentra por si mismo los dos centros\nprint(sorted(np.round(m.cluster_centers_.ravel(), 1).tolist()))"
+      },
+      "expectedOutput": "[0.5, 10.5]",
+      "caption": {
+        "en": "k-means groups points around centers with no labels.",
+        "es": "k-means agrupa puntos alrededor de centros sin etiquetas."
       }
     }
   ],
@@ -39,42 +62,157 @@
     {
       "id": "mlf-16-e1",
       "answerType": "text",
-      "prompt": { "en": "k-means is an ___ learning algorithm (no labels). (one word)", "es": "k-means es un algoritmo de aprendizaje ___ (sin etiquetas). (una palabra)" },
+      "prompt": {
+        "en": "k-means is an ___ learning algorithm (no labels). (one word)",
+        "es": "k-means es un algoritmo de aprendizaje ___ (sin etiquetas). (una palabra)"
+      },
       "answer": "unsupervised",
-      "acceptedAlt": ["no supervisado", "no-supervisado"],
-      "hint": { "en": "No labels needed.", "es": "Sin etiquetas." },
-      "solution": [ { "tex": "\\{x_i\\}", "en": "Unsupervised.", "es": "No supervisado." } ]
+      "acceptedAlt": [
+        "no supervisado",
+        "no-supervisado"
+      ],
+      "hint": {
+        "en": "No labels needed.",
+        "es": "Sin etiquetas."
+      },
+      "solution": [
+        {
+          "tex": "\\{x_i\\}",
+          "en": "Unsupervised.",
+          "es": "No supervisado."
+        }
+      ]
     },
     {
       "id": "mlf-16-e2",
       "answerType": "number",
-      "prompt": { "en": "k-means with $k=3$ finds how many clusters?", "es": "k-means con $k=3$ halla cuántos grupos?" },
+      "prompt": {
+        "en": "k-means with $k=3$ finds how many clusters?",
+        "es": "k-means con $k=3$ halla cuántos grupos?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "k clusters.", "es": "k grupos." },
-      "solution": [ { "tex": "k = 3", "en": "Three clusters.", "es": "Tres grupos." } ]
+      "hint": {
+        "en": "k clusters.",
+        "es": "k grupos."
+      },
+      "solution": [
+        {
+          "tex": "k = 3",
+          "en": "Three clusters.",
+          "es": "Tres grupos."
+        }
+      ]
     },
     {
       "id": "mlf-16-e3",
       "answerType": "text",
-      "prompt": { "en": "Each cluster is represented by its ___ (the mean point). (one word)", "es": "Cada grupo se representa por su ___ (el punto medio). (una palabra)" },
+      "prompt": {
+        "en": "Each cluster is represented by its ___ (the mean point). (one word)",
+        "es": "Cada grupo se representa por su ___ (el punto medio). (una palabra)"
+      },
       "answer": "centroid",
-      "acceptedAlt": ["centroide"],
-      "hint": { "en": "The mean of its members.", "es": "La media de sus miembros." },
-      "solution": [ { "tex": "\\mu_c", "en": "Centroid.", "es": "Centroide." } ]
+      "acceptedAlt": [
+        "centroide"
+      ],
+      "hint": {
+        "en": "The mean of its members.",
+        "es": "La media de sus miembros."
+      },
+      "solution": [
+        {
+          "tex": "\\mu_c",
+          "en": "Centroid.",
+          "es": "Centroide."
+        }
+      ]
     },
     {
       "id": "mlf-16-e4",
       "answerType": "number",
-      "prompt": { "en": "The centroid (mean) of the 1-D points $\\{2, 4\\}$?", "es": "¿El centroide (media) de los puntos 1-D $\\{2, 4\\}$?" },
+      "prompt": {
+        "en": "The centroid (mean) of the 1-D points $\\{2, 4\\}$?",
+        "es": "¿El centroide (media) de los puntos 1-D $\\{2, 4\\}$?"
+      },
       "answer": "3",
-      "acceptedAlt": ["(2+4)/2", "mean([2,4])"],
-      "hint": { "en": "Average them.", "es": "Promédialos." },
-      "solution": [ { "tex": "\\tfrac{2+4}{2} = 3", "en": "Centroid.", "es": "Centroide." } ]
+      "acceptedAlt": [
+        "(2+4)/2",
+        "mean([2,4])"
+      ],
+      "hint": {
+        "en": "Average them.",
+        "es": "Promédialos."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{2+4}{2} = 3",
+          "en": "Centroid.",
+          "es": "Centroide."
+        }
+      ]
+    },
+    {
+      "id": "mlf-16-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "k-means clustering is an example of...",
+        "es": "El agrupamiento k-means es un ejemplo de..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Unsupervised learning",
+            "es": "Aprendizaje no supervisado"
+          },
+          "correct": true,
+          "why": {
+            "en": "It finds structure (clusters) from features alone, with no labels.",
+            "es": "Encuentra estructura (grupos) solo a partir de las caracteristicas, sin etiquetas."
+          }
+        },
+        {
+          "text": {
+            "en": "Supervised learning",
+            "es": "Aprendizaje supervisado"
+          },
+          "correct": false,
+          "why": {
+            "en": "Supervised learning needs labeled targets y; k-means has none.",
+            "es": "El aprendizaje supervisado necesita etiquetas y; k-means no las tiene."
+          }
+        },
+        {
+          "text": {
+            "en": "Reinforcement learning",
+            "es": "Aprendizaje por refuerzo"
+          },
+          "correct": false,
+          "why": {
+            "en": "There are no rewards or actions here, just grouping.",
+            "es": "Aqui no hay recompensas ni acciones, solo agrupamiento."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Are there any labels in the data?",
+        "es": "Hay etiquetas en los datos?"
+      }
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 19, unsupervised learning and clustering", "es": "Cap. 19, aprendizaje no supervisado y agrupamiento" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, k-means clustering", "es": "Cap. 5, agrupamiento k-means" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 19, unsupervised learning and clustering",
+        "es": "Cap. 19, aprendizaje no supervisado y agrupamiento"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, k-means clustering",
+        "es": "Cap. 5, agrupamiento k-means"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "nlp-transformers",
   "order": 13,
   "estimatedMinutes": 35,
-  "title": { "en": "BERT: Encoder Models", "es": "BERT: modelos codificadores" },
+  "title": {
+    "en": "BERT: Encoder Models",
+    "es": "BERT: modelos codificadores"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Masking $15\\%$ of a $200$-token sequence hides about $0.15\\cdot 200 = 30$ tokens. BERT-base has $12$ encoder layers and no decoder.",
         "es": "Enmascarar el $15\\%$ de una secuencia de $200$ tokens oculta unos $0.15\\cdot 200 = 30$ tokens. BERT-base tiene $12$ capas codificadoras y ningún decodificador."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# BERT is trained by masking tokens and predicting them\ntoks = \"the cat sat\".split()\ntoks[1] = \"[MASK]\"\nprint(toks)",
+        "es": "# BERT se entrena enmascarando tokens y prediciendolos\ntoks = \"the cat sat\".split()\ntoks[1] = \"[MASK]\"\nprint(toks)"
+      },
+      "expectedOutput": "['the', '[MASK]', 'sat']",
+      "caption": {
+        "en": "BERT learns by filling in masked words (bidirectional).",
+        "es": "BERT aprende rellenando palabras enmascaradas (bidireccional)."
       }
     }
   ],
@@ -39,41 +59,102 @@
     {
       "id": "nlp-13-e1",
       "answerType": "number",
-      "prompt": { "en": "Tokens masked at 15% of a 200-token sequence: $0.15\\cdot 200$?", "es": "Tokens enmascarados al 15% de una secuencia de 200: $0.15\\cdot 200$?" },
+      "prompt": {
+        "en": "Tokens masked at 15% of a 200-token sequence: $0.15\\cdot 200$?",
+        "es": "Tokens enmascarados al 15% de una secuencia de 200: $0.15\\cdot 200$?"
+      },
       "answer": "30",
-      "acceptedAlt": ["0.15*200"],
-      "hint": { "en": "0.15 × 200.", "es": "0.15 × 200." },
-      "solution": [ { "tex": "0.15\\cdot 200 = 30", "en": "30 tokens.", "es": "30 tokens." } ]
+      "acceptedAlt": [
+        "0.15*200"
+      ],
+      "hint": {
+        "en": "0.15 × 200.",
+        "es": "0.15 × 200."
+      },
+      "solution": [
+        {
+          "tex": "0.15\\cdot 200 = 30",
+          "en": "30 tokens.",
+          "es": "30 tokens."
+        }
+      ]
     },
     {
       "id": "nlp-13-e2",
       "answerType": "text",
-      "prompt": { "en": "BERT keeps only the Transformer ___ stack. (one word)", "es": "BERT conserva solo la pila ___ del Transformer. (una palabra)" },
+      "prompt": {
+        "en": "BERT keeps only the Transformer ___ stack. (one word)",
+        "es": "BERT conserva solo la pila ___ del Transformer. (una palabra)"
+      },
       "answer": "encoder",
-      "acceptedAlt": ["codificador"],
-      "hint": { "en": "Not the decoder.", "es": "No el decodificador." },
-      "solution": [ { "tex": "\\text{encoder}", "en": "Encoder.", "es": "Codificador." } ]
+      "acceptedAlt": [
+        "codificador"
+      ],
+      "hint": {
+        "en": "Not the decoder.",
+        "es": "No el decodificador."
+      },
+      "solution": [
+        {
+          "tex": "\\text{encoder}",
+          "en": "Encoder.",
+          "es": "Codificador."
+        }
+      ]
     },
     {
       "id": "nlp-13-e3",
       "answerType": "text",
-      "prompt": { "en": "BERT's pretraining objective predicts hidden tokens: ___ language modeling. (one word)", "es": "El objetivo de preentrenamiento de BERT predice tokens ocultos: modelado de lenguaje ___. (una palabra)" },
+      "prompt": {
+        "en": "BERT's pretraining objective predicts hidden tokens: ___ language modeling. (one word)",
+        "es": "El objetivo de preentrenamiento de BERT predice tokens ocultos: modelado de lenguaje ___. (una palabra)"
+      },
       "answer": "masked",
-      "acceptedAlt": ["enmascarado", "masked"],
-      "hint": { "en": "MLM.", "es": "MLM." },
-      "solution": [ { "tex": "\\text{MLM}", "en": "Masked.", "es": "Enmascarado." } ]
+      "acceptedAlt": [
+        "enmascarado",
+        "masked"
+      ],
+      "hint": {
+        "en": "MLM.",
+        "es": "MLM."
+      },
+      "solution": [
+        {
+          "tex": "\\text{MLM}",
+          "en": "Masked.",
+          "es": "Enmascarado."
+        }
+      ]
     },
     {
       "id": "nlp-13-e4",
       "answerType": "number",
-      "prompt": { "en": "How many encoder layers in BERT-base?", "es": "¿Cuántas capas codificadoras tiene BERT-base?" },
+      "prompt": {
+        "en": "How many encoder layers in BERT-base?",
+        "es": "¿Cuántas capas codificadoras tiene BERT-base?"
+      },
       "answer": "12",
       "acceptedAlt": [],
-      "hint": { "en": "Base, not large.", "es": "Base, no large." },
-      "solution": [ { "tex": "12", "en": "Twelve.", "es": "Doce." } ]
+      "hint": {
+        "en": "Base, not large.",
+        "es": "Base, no large."
+      },
+      "solution": [
+        {
+          "tex": "12",
+          "en": "Twelve.",
+          "es": "Doce."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Devlin et al. — BERT: Pre-training of Deep Bidirectional Transformers (2019)", "detail": { "en": "Masked LM and bidirectional encoders", "es": "MLM y codificadores bidireccionales" } }
+    {
+      "source": "Devlin et al. — BERT: Pre-training of Deep Bidirectional Transformers (2019)",
+      "detail": {
+        "en": "Masked LM and bidirectional encoders",
+        "es": "MLM y codificadores bidireccionales"
+      }
+    }
   ]
 }

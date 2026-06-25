@@ -3,7 +3,10 @@
   "subjectId": "reinforcement-learning",
   "order": 13,
   "estimatedMinutes": 35,
-  "title": { "en": "Deep Q-Networks (DQN)", "es": "Redes Q profundas (DQN)" },
+  "title": {
+    "en": "Deep Q-Networks (DQN)",
+    "es": "Redes Q profundas (DQN)"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "DQN TD error with $r=1$, $\\gamma=0.99$, target max $=10$, current $Q=2$: $1 + 0.99\\cdot10 - 2 = 10.9 - 2 = 8.9$. The squared loss is $8.9^2 = 79.21$.",
         "es": "Error TD de DQN con $r=1$, $\\gamma=0.99$, máx. objetivo $=10$, $Q$ actual $=2$: $1 + 0.99\\cdot10 - 2 = 10.9 - 2 = 8.9$. La pérdida al cuadrado es $8.9^2 = 79.21$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# DQN target: reward plus discounted best next Q (from a target network)\ngamma, r = 0.99, 1\nq_target_next = [0.5, 2.0, 1.0]\nprint(round(r + gamma * max(q_target_next), 4))",
+        "es": "# objetivo DQN: recompensa mas el mejor Q siguiente descontado (de una red objetivo)\ngamma, r = 0.99, 1\nq_target_next = [0.5, 2.0, 1.0]\nprint(round(r + gamma * max(q_target_next), 4))"
+      },
+      "expectedOutput": "2.98",
+      "caption": {
+        "en": "DQN approximates Q with a neural network plus a target net.",
+        "es": "DQN aproxima Q con una red neuronal mas una red objetivo."
       }
     }
   ],
@@ -39,41 +59,105 @@
     {
       "id": "rl-13-e1",
       "answerType": "number",
-      "prompt": { "en": "DQN TD error $1 + 0.99\\cdot 10 - 2$?", "es": "Error TD de DQN $1 + 0.99\\cdot 10 - 2$?" },
+      "prompt": {
+        "en": "DQN TD error $1 + 0.99\\cdot 10 - 2$?",
+        "es": "Error TD de DQN $1 + 0.99\\cdot 10 - 2$?"
+      },
       "answer": "8.9",
-      "acceptedAlt": ["1+0.99*10-2"],
-      "hint": { "en": "10.9 − 2.", "es": "10.9 − 2." },
-      "solution": [ { "tex": "10.9 - 2 = 8.9", "en": "8.9.", "es": "8.9." } ]
+      "acceptedAlt": [
+        "1+0.99*10-2"
+      ],
+      "hint": {
+        "en": "10.9 − 2.",
+        "es": "10.9 − 2."
+      },
+      "solution": [
+        {
+          "tex": "10.9 - 2 = 8.9",
+          "en": "8.9.",
+          "es": "8.9."
+        }
+      ]
     },
     {
       "id": "rl-13-e2",
       "answerType": "number",
-      "prompt": { "en": "Squared loss $8.9^2$?", "es": "Pérdida al cuadrado $8.9^2$?" },
+      "prompt": {
+        "en": "Squared loss $8.9^2$?",
+        "es": "Pérdida al cuadrado $8.9^2$?"
+      },
       "answer": "79.21",
-      "acceptedAlt": ["8.9^2"],
-      "hint": { "en": "8.9 × 8.9.", "es": "8.9 × 8.9." },
-      "solution": [ { "tex": "8.9^2 = 79.21", "en": "79.21.", "es": "79.21." } ]
+      "acceptedAlt": [
+        "8.9^2"
+      ],
+      "hint": {
+        "en": "8.9 × 8.9.",
+        "es": "8.9 × 8.9."
+      },
+      "solution": [
+        {
+          "tex": "8.9^2 = 79.21",
+          "en": "79.21.",
+          "es": "79.21."
+        }
+      ]
     },
     {
       "id": "rl-13-e3",
       "answerType": "text",
-      "prompt": { "en": "Storing transitions and training on random batches is experience ___. (one word)", "es": "Guardar transiciones y entrenar con lotes aleatorios es ___ de experiencia. (una palabra)" },
+      "prompt": {
+        "en": "Storing transitions and training on random batches is experience ___. (one word)",
+        "es": "Guardar transiciones y entrenar con lotes aleatorios es ___ de experiencia. (una palabra)"
+      },
       "answer": "replay",
-      "acceptedAlt": ["repaso", "repetición", "repeticion"],
-      "hint": { "en": "Replay buffer.", "es": "Búfer de repaso." },
-      "solution": [ { "tex": "\\text{experience replay}", "en": "Replay.", "es": "Repaso." } ]
+      "acceptedAlt": [
+        "repaso",
+        "repetición",
+        "repeticion"
+      ],
+      "hint": {
+        "en": "Replay buffer.",
+        "es": "Búfer de repaso."
+      },
+      "solution": [
+        {
+          "tex": "\\text{experience replay}",
+          "en": "Replay.",
+          "es": "Repaso."
+        }
+      ]
     },
     {
       "id": "rl-13-e4",
       "answerType": "text",
-      "prompt": { "en": "The periodically-frozen copy used for the TD target is the ___ network. (one word)", "es": "La copia congelada periódicamente para el objetivo TD es la red ___. (una palabra)" },
+      "prompt": {
+        "en": "The periodically-frozen copy used for the TD target is the ___ network. (one word)",
+        "es": "La copia congelada periódicamente para el objetivo TD es la red ___. (una palabra)"
+      },
       "answer": "target",
-      "acceptedAlt": ["objetivo"],
-      "hint": { "en": "Computes the target.", "es": "Calcula el objetivo." },
-      "solution": [ { "tex": "Q_{\\text{target}}", "en": "Target.", "es": "Objetivo." } ]
+      "acceptedAlt": [
+        "objetivo"
+      ],
+      "hint": {
+        "en": "Computes the target.",
+        "es": "Calcula el objetivo."
+      },
+      "solution": [
+        {
+          "tex": "Q_{\\text{target}}",
+          "en": "Target.",
+          "es": "Objetivo."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Mnih et al. — Human-level control through deep reinforcement learning (DQN, 2015)", "detail": { "en": "Experience replay and target networks", "es": "Repaso de experiencia y redes objetivo" } }
+    {
+      "source": "Mnih et al. — Human-level control through deep reinforcement learning (DQN, 2015)",
+      "detail": {
+        "en": "Experience replay and target networks",
+        "es": "Repaso de experiencia y redes objetivo"
+      }
+    }
   ]
 }

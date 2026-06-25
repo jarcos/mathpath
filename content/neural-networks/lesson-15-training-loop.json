@@ -3,13 +3,26 @@
   "subjectId": "neural-networks",
   "order": 15,
   "estimatedMinutes": 35,
-  "title": { "en": "The Training Loop", "es": "El bucle de entrenamiento" },
+  "title": {
+    "en": "The Training Loop",
+    "es": "El bucle de entrenamiento"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Training a network means repeating one loop many times: take a batch of data → **forward pass** to get predictions → compute the **loss** → **backward pass** for gradients → **update** the weights. Each pass over the *entire* training set is called an **epoch**; training usually runs for many epochs.",
         "es": "Entrenar una red es repetir un bucle muchas veces: toma un lote de datos → **pasada hacia delante** para obtener predicciones → calcula la **pérdida** → **pasada hacia atrás** para los gradientes → **actualiza** los pesos. Cada pasada por *todo* el conjunto de entrenamiento es una **época**; el entrenamiento suele durar muchas épocas."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "nn-10-weight-updates"
+      ],
+      "note": {
+        "en": "The training loop repeats the weight update many times.",
+        "es": "El bucle de entrenamiento repite muchas veces la actualizacion de pesos."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Dataset of $320$ examples, batch size $32$: each epoch has $320/32 = 10$ batches. Running $5$ epochs gives $5\\times 10 = 50$ weight updates in total.",
         "es": "Conjunto de $320$ ejemplos, tamaño de lote $32$: cada época tiene $320/32 = 10$ lotes. Ejecutar $5$ épocas da $5\\times 10 = 50$ actualizaciones de pesos en total."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# a full training loop: gradient descent fits w toward 2 (y = 2x)\nw = 0.0\nfor _ in range(200):\n    for x, y in zip([1, 2, 3], [2, 4, 6]):\n        w -= 0.01 * 2 * (w * x - y) * x\nprint(round(w, 2))",
+        "es": "# un bucle de entrenamiento completo: el descenso de gradiente ajusta w hacia 2 (y = 2x)\nw = 0.0\nfor _ in range(200):\n    for x, y in zip([1, 2, 3], [2, 4, 6]):\n        w -= 0.01 * 2 * (w * x - y) * x\nprint(round(w, 2))"
+      },
+      "expectedOutput": "2.0",
+      "caption": {
+        "en": "Looping over data with gradient steps is how networks learn.",
+        "es": "Recorrer los datos con pasos de gradiente es como aprenden las redes."
       }
     }
   ],
@@ -39,41 +69,107 @@
     {
       "id": "nn-15-e1",
       "answerType": "text",
-      "prompt": { "en": "One full pass through the training data is an ___. (one word)", "es": "Una pasada completa por los datos de entrenamiento es una ___. (una palabra)" },
+      "prompt": {
+        "en": "One full pass through the training data is an ___. (one word)",
+        "es": "Una pasada completa por los datos de entrenamiento es una ___. (una palabra)"
+      },
       "answer": "epoch",
-      "acceptedAlt": ["época", "epoca"],
-      "hint": { "en": "Many of them per training run.", "es": "Muchas por entrenamiento." },
-      "solution": [ { "tex": "\\text{epoch}", "en": "Epoch.", "es": "Época." } ]
+      "acceptedAlt": [
+        "época",
+        "epoca"
+      ],
+      "hint": {
+        "en": "Many of them per training run.",
+        "es": "Muchas por entrenamiento."
+      },
+      "solution": [
+        {
+          "tex": "\\text{epoch}",
+          "en": "Epoch.",
+          "es": "Época."
+        }
+      ]
     },
     {
       "id": "nn-15-e2",
       "answerType": "number",
-      "prompt": { "en": "Dataset of 320, batch size 32. How many batches per epoch?", "es": "Conjunto de 320, tamaño de lote 32. ¿Cuántos lotes por época?" },
+      "prompt": {
+        "en": "Dataset of 320, batch size 32. How many batches per epoch?",
+        "es": "Conjunto de 320, tamaño de lote 32. ¿Cuántos lotes por época?"
+      },
       "answer": "10",
-      "acceptedAlt": ["320/32"],
-      "hint": { "en": "320 / 32.", "es": "320 / 32." },
-      "solution": [ { "tex": "\\tfrac{320}{32} = 10", "en": "Ten batches.", "es": "Diez lotes." } ]
+      "acceptedAlt": [
+        "320/32"
+      ],
+      "hint": {
+        "en": "320 / 32.",
+        "es": "320 / 32."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{320}{32} = 10",
+          "en": "Ten batches.",
+          "es": "Diez lotes."
+        }
+      ]
     },
     {
       "id": "nn-15-e3",
       "answerType": "text",
-      "prompt": { "en": "Updating weights on small random subsets is ___ gradient descent. (one word)", "es": "Actualizar pesos en pequeños subconjuntos aleatorios es descenso de gradiente ___. (una palabra)" },
+      "prompt": {
+        "en": "Updating weights on small random subsets is ___ gradient descent. (one word)",
+        "es": "Actualizar pesos en pequeños subconjuntos aleatorios es descenso de gradiente ___. (una palabra)"
+      },
       "answer": "stochastic",
-      "acceptedAlt": ["estocástico", "estocastico", "mini-batch", "minibatch"],
-      "hint": { "en": "SGD / mini-batch.", "es": "SGD / mini-lote." },
-      "solution": [ { "tex": "\\text{SGD}", "en": "Stochastic.", "es": "Estocástico." } ]
+      "acceptedAlt": [
+        "estocástico",
+        "estocastico",
+        "mini-batch",
+        "minibatch"
+      ],
+      "hint": {
+        "en": "SGD / mini-batch.",
+        "es": "SGD / mini-lote."
+      },
+      "solution": [
+        {
+          "tex": "\\text{SGD}",
+          "en": "Stochastic.",
+          "es": "Estocástico."
+        }
+      ]
     },
     {
       "id": "nn-15-e4",
       "answerType": "number",
-      "prompt": { "en": "5 epochs over 10 batches each: how many weight updates total?", "es": "5 épocas de 10 lotes cada una: ¿cuántas actualizaciones de pesos en total?" },
+      "prompt": {
+        "en": "5 epochs over 10 batches each: how many weight updates total?",
+        "es": "5 épocas de 10 lotes cada una: ¿cuántas actualizaciones de pesos en total?"
+      },
       "answer": "50",
-      "acceptedAlt": ["5*10"],
-      "hint": { "en": "5 × 10.", "es": "5 × 10." },
-      "solution": [ { "tex": "5\\times 10 = 50", "en": "Fifty updates.", "es": "Cincuenta actualizaciones." } ]
+      "acceptedAlt": [
+        "5*10"
+      ],
+      "hint": {
+        "en": "5 × 10.",
+        "es": "5 × 10."
+      },
+      "solution": [
+        {
+          "tex": "5\\times 10 = 50",
+          "en": "Fifty updates.",
+          "es": "Cincuenta actualizaciones."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8, stochastic gradient descent; epochs and batches", "es": "Cap. 8, descenso de gradiente estocástico; épocas y lotes" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 8, stochastic gradient descent; epochs and batches",
+        "es": "Cap. 8, descenso de gradiente estocástico; épocas y lotes"
+      }
+    }
   ]
 }

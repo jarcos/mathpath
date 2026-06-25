@@ -3,13 +3,27 @@
   "subjectId": "statistics",
   "order": 16,
   "estimatedMinutes": 40,
-  "title": { "en": "Correlation & Covariance", "es": "Correlación y covarianza" },
+  "title": {
+    "en": "Correlation & Covariance",
+    "es": "Correlación y covarianza"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "So far we have studied single variables. **Covariance** and **correlation** measure how two variables move **together**. Covariance $\\text{Cov}(X,Y) = E[(X-\\mu_X)(Y-\\mu_Y)]$ is positive when they tend to rise together, negative when one rises as the other falls, and zero when there is no linear relationship.",
         "es": "Hasta ahora hemos estudiado variables sueltas. La **covarianza** y la **correlación** miden cómo dos variables se mueven **juntas**. La covarianza $\\text{Cov}(X,Y) = E[(X-\\mu_X)(Y-\\mu_Y)]$ es positiva cuando tienden a subir juntas, negativa cuando una sube mientras la otra baja, y cero cuando no hay relación lineal."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "stats-02-spread",
+        "stats-09-variance-rv"
+      ],
+      "note": {
+        "en": "Covariance and correlation generalize variance to two variables.",
+        "es": "La covarianza y la correlacion generalizan la varianza a dos variables."
       }
     },
     {
@@ -28,10 +42,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "The correlation coefficient ranges from $-1$ to $1$. A perfect positive linear relationship gives $r = 1$; a perfect negative one gives $r = -1$; and $r = 0$ means no linear relationship (though a nonlinear one may still exist).",
         "es": "El coeficiente de correlación va de $-1$ a $1$. Una relación lineal positiva perfecta da $r = 1$; una negativa perfecta da $r = -1$; y $r = 0$ significa ninguna relación lineal (aunque puede existir una no lineal)."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nx = np.array([1, 2, 3, 4])\ny = np.array([2, 4, 5, 8])\n# Pearson correlation: +1 perfectly increasing, 0 none, -1 decreasing\nprint(round(float(np.corrcoef(x, y)[0, 1]), 4))",
+        "es": "import numpy as np\nx = np.array([1, 2, 3, 4])\ny = np.array([2, 4, 5, 8])\n# correlacion de Pearson: +1 crece perfecto, 0 nada, -1 decrece\nprint(round(float(np.corrcoef(x, y)[0, 1]), 4))"
+      },
+      "expectedOutput": "0.9812",
+      "caption": {
+        "en": "Correlation standardizes covariance to the range -1 to 1.",
+        "es": "La correlacion estandariza la covarianza al rango -1 a 1."
       }
     }
   ],
@@ -39,42 +72,106 @@
     {
       "id": "stats-16-e1",
       "answerType": "number",
-      "prompt": { "en": "What is the maximum value of the correlation coefficient?", "es": "¿Cuál es el valor máximo del coeficiente de correlación?" },
+      "prompt": {
+        "en": "What is the maximum value of the correlation coefficient?",
+        "es": "¿Cuál es el valor máximo del coeficiente de correlación?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "Perfect positive relationship.", "es": "Relación positiva perfecta." },
-      "solution": [ { "tex": "r \\le 1", "en": "Maximum 1.", "es": "Máximo 1." } ]
+      "hint": {
+        "en": "Perfect positive relationship.",
+        "es": "Relación positiva perfecta."
+      },
+      "solution": [
+        {
+          "tex": "r \\le 1",
+          "en": "Maximum 1.",
+          "es": "Máximo 1."
+        }
+      ]
     },
     {
       "id": "stats-16-e2",
       "answerType": "number",
-      "prompt": { "en": "What correlation value means a perfect negative linear relationship?", "es": "¿Qué valor de correlación indica una relación lineal negativa perfecta?" },
+      "prompt": {
+        "en": "What correlation value means a perfect negative linear relationship?",
+        "es": "¿Qué valor de correlación indica una relación lineal negativa perfecta?"
+      },
       "answer": "-1",
       "acceptedAlt": [],
-      "hint": { "en": "The minimum.", "es": "El mínimo." },
-      "solution": [ { "tex": "r = -1", "en": "Perfect negative.", "es": "Negativa perfecta." } ]
+      "hint": {
+        "en": "The minimum.",
+        "es": "El mínimo."
+      },
+      "solution": [
+        {
+          "tex": "r = -1",
+          "en": "Perfect negative.",
+          "es": "Negativa perfecta."
+        }
+      ]
     },
     {
       "id": "stats-16-e3",
       "answerType": "text",
-      "prompt": { "en": "A correlation of 0 means no ___ relationship. (one word)", "es": "Una correlación de 0 significa ninguna relación ___. (una palabra)" },
+      "prompt": {
+        "en": "A correlation of 0 means no ___ relationship. (one word)",
+        "es": "Una correlación de 0 significa ninguna relación ___. (una palabra)"
+      },
       "answer": "linear",
-      "acceptedAlt": ["lineal"],
-      "hint": { "en": "Correlation detects only this kind.", "es": "La correlación solo detecta este tipo." },
-      "solution": [ { "tex": "r = 0", "en": "No linear relationship.", "es": "Sin relación lineal." } ]
+      "acceptedAlt": [
+        "lineal"
+      ],
+      "hint": {
+        "en": "Correlation detects only this kind.",
+        "es": "La correlación solo detecta este tipo."
+      },
+      "solution": [
+        {
+          "tex": "r = 0",
+          "en": "No linear relationship.",
+          "es": "Sin relación lineal."
+        }
+      ]
     },
     {
       "id": "stats-16-e4",
       "answerType": "text",
-      "prompt": { "en": "Correlation does not imply ___. (one word)", "es": "La correlación no implica ___. (una palabra)" },
+      "prompt": {
+        "en": "Correlation does not imply ___. (one word)",
+        "es": "La correlación no implica ___. (una palabra)"
+      },
       "answer": "causation",
-      "acceptedAlt": ["causalidad"],
-      "hint": { "en": "The golden warning.", "es": "La advertencia de oro." },
-      "solution": [ { "tex": "r \\neq \\text{cause}", "en": "Not causation.", "es": "No causalidad." } ]
+      "acceptedAlt": [
+        "causalidad"
+      ],
+      "hint": {
+        "en": "The golden warning.",
+        "es": "La advertencia de oro."
+      },
+      "solution": [
+        {
+          "tex": "r \\neq \\text{cause}",
+          "en": "Not causation.",
+          "es": "No causalidad."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, covariance and correlation", "es": "Cap. 3, covarianza y correlación" } },
-    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Correlation vs causation", "es": "Correlación frente a causalidad" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 3, covariance and correlation",
+        "es": "Cap. 3, covarianza y correlación"
+      }
+    },
+    {
+      "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)",
+      "detail": {
+        "en": "Correlation vs causation",
+        "es": "Correlación frente a causalidad"
+      }
+    }
   ]
 }

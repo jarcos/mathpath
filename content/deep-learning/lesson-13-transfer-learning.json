@@ -3,13 +3,26 @@
   "subjectId": "deep-learning",
   "order": 13,
   "estimatedMinutes": 35,
-  "title": { "en": "Transfer Learning & Foundation Models", "es": "Aprendizaje por transferencia y modelos fundacionales" },
+  "title": {
+    "en": "Transfer Learning & Foundation Models",
+    "es": "Aprendizaje por transferencia y modelos fundacionales"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Training a big network from scratch needs huge data and compute. **Transfer learning** reuses a model already **pretrained** on a large dataset, then adapts it to a new, smaller task. The early layers have learned generic features (edges, textures, word patterns) that transfer broadly, so you only retrain the last layers.",
         "es": "Entrenar una red grande desde cero requiere muchísimos datos y cómputo. El **aprendizaje por transferencia** reutiliza un modelo ya **preentrenado** en un conjunto grande, y luego lo adapta a una tarea nueva más pequeña. Las capas iniciales han aprendido características genéricas (bordes, texturas, patrones de palabras) que se transfieren ampliamente, así que solo reentrenas las últimas capas."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "dl-06-cnn-arch"
+      ],
+      "note": {
+        "en": "Transfer learning reuses CNNs like the one above.",
+        "es": "El transfer learning reutiliza CNN como la anterior."
       }
     },
     {
@@ -28,10 +41,28 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "If a pretrained network has $50$ layers and you freeze the first $48$, you fine-tune $50 - 48 = 2$ layers. Freezing weights means their gradient is effectively $0$, so they do not update.",
         "es": "Si una red preentrenada tiene $50$ capas y congelas las primeras $48$, ajustas $50 - 48 = 2$ capas. Congelar pesos significa que su gradiente es efectivamente $0$, así que no se actualizan."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": false,
+      "lib": [
+        "tensorflow"
+      ],
+      "code": {
+        "en": "import tensorflow as tf\n# transfer learning: reuse a pretrained backbone (TensorFlow reference)\nbase = tf.keras.applications.MobileNetV2(include_top=False, weights=\"imagenet\")\nbase.trainable = False   # freeze the pretrained features\nprint(len(base.layers))",
+        "es": "import tensorflow as tf\n# transfer learning: reutiliza un backbone preentrenado (referencia de TensorFlow)\nbase = tf.keras.applications.MobileNetV2(include_top=False, weights=\"imagenet\")\nbase.trainable = False   # congela las caracteristicas preentrenadas\nprint(len(base.layers))"
+      },
+      "caption": {
+        "en": "Transfer learning freezes a pretrained network and retrains only the head.",
+        "es": "El transfer learning congela una red preentrenada y reentrena solo la cabeza."
       }
     }
   ],
@@ -39,42 +70,108 @@
     {
       "id": "dl-13-e1",
       "answerType": "number",
-      "prompt": { "en": "50-layer net, first 48 frozen: how many layers are fine-tuned?", "es": "Red de 50 capas, 48 primeras congeladas: ¿cuántas capas se ajustan?" },
+      "prompt": {
+        "en": "50-layer net, first 48 frozen: how many layers are fine-tuned?",
+        "es": "Red de 50 capas, 48 primeras congeladas: ¿cuántas capas se ajustan?"
+      },
       "answer": "2",
-      "acceptedAlt": ["50-48"],
-      "hint": { "en": "50 − 48.", "es": "50 − 48." },
-      "solution": [ { "tex": "50 - 48 = 2", "en": "Two.", "es": "Dos." } ]
+      "acceptedAlt": [
+        "50-48"
+      ],
+      "hint": {
+        "en": "50 − 48.",
+        "es": "50 − 48."
+      },
+      "solution": [
+        {
+          "tex": "50 - 48 = 2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "dl-13-e2",
       "answerType": "text",
-      "prompt": { "en": "Reusing a model trained on a large dataset for a new task is ___ learning. (one word)", "es": "Reutilizar un modelo entrenado en un conjunto grande para una tarea nueva es aprendizaje por ___. (una palabra)" },
+      "prompt": {
+        "en": "Reusing a model trained on a large dataset for a new task is ___ learning. (one word)",
+        "es": "Reutilizar un modelo entrenado en un conjunto grande para una tarea nueva es aprendizaje por ___. (una palabra)"
+      },
       "answer": "transfer",
-      "acceptedAlt": ["transferencia"],
-      "hint": { "en": "Transfer ___.", "es": "Por ___." },
-      "solution": [ { "tex": "\\text{transfer}", "en": "Transfer.", "es": "Transferencia." } ]
+      "acceptedAlt": [
+        "transferencia"
+      ],
+      "hint": {
+        "en": "Transfer ___.",
+        "es": "Por ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{transfer}",
+          "en": "Transfer.",
+          "es": "Transferencia."
+        }
+      ]
     },
     {
       "id": "dl-13-e3",
       "answerType": "text",
-      "prompt": { "en": "Continuing training a pretrained model at a low rate is called ___-tuning. (one word)", "es": "Seguir entrenando un modelo preentrenado a baja tasa es el ajuste ___. (una palabra)" },
+      "prompt": {
+        "en": "Continuing training a pretrained model at a low rate is called ___-tuning. (one word)",
+        "es": "Seguir entrenando un modelo preentrenado a baja tasa es el ajuste ___. (una palabra)"
+      },
       "answer": "fine",
-      "acceptedAlt": ["fino"],
-      "hint": { "en": "Fine-___.", "es": "Ajuste ___." },
-      "solution": [ { "tex": "\\text{fine-tuning}", "en": "Fine.", "es": "Fino." } ]
+      "acceptedAlt": [
+        "fino"
+      ],
+      "hint": {
+        "en": "Fine-___.",
+        "es": "Ajuste ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{fine-tuning}",
+          "en": "Fine.",
+          "es": "Fino."
+        }
+      ]
     },
     {
       "id": "dl-13-e4",
       "answerType": "number",
-      "prompt": { "en": "Effective gradient of a frozen weight?", "es": "¿Gradiente efectivo de un peso congelado?" },
+      "prompt": {
+        "en": "Effective gradient of a frozen weight?",
+        "es": "¿Gradiente efectivo de un peso congelado?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "It does not update.", "es": "No se actualiza." },
-      "solution": [ { "tex": "\\nabla = 0", "en": "Zero.", "es": "Cero." } ]
+      "hint": {
+        "en": "It does not update.",
+        "es": "No se actualiza."
+      },
+      "solution": [
+        {
+          "tex": "\\nabla = 0",
+          "en": "Zero.",
+          "es": "Cero."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 15.2, transfer learning and domain adaptation", "es": "Cap. 15.2, aprendizaje por transferencia y adaptación de dominio" } },
-    { "source": "Bommasani et al. — On the Opportunities and Risks of Foundation Models (2021)", "detail": { "en": "Foundation models", "es": "Modelos fundacionales" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 15.2, transfer learning and domain adaptation",
+        "es": "Cap. 15.2, aprendizaje por transferencia y adaptación de dominio"
+      }
+    },
+    {
+      "source": "Bommasani et al. — On the Opportunities and Risks of Foundation Models (2021)",
+      "detail": {
+        "en": "Foundation models",
+        "es": "Modelos fundacionales"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "ml-foundations",
   "order": 1,
   "estimatedMinutes": 35,
-  "title": { "en": "What Is Machine Learning?", "es": "¿Qué es el aprendizaje automático?" },
+  "title": {
+    "en": "What Is Machine Learning?",
+    "es": "¿Qué es el aprendizaje automático?"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,30 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Predicting tomorrow's temperature from labeled past data is **supervised**. Grouping news articles by topic without labels is **unsupervised**. A robot learning to walk by rewards is **reinforcement** learning. The clue is always: are there labels, structure to find, or rewards?",
         "es": "Predecir la temperatura de mañana a partir de datos pasados etiquetados es **supervisado**. Agrupar noticias por tema sin etiquetas es **no supervisado**. Un robot que aprende a caminar por recompensas es aprendizaje por **refuerzo**. La pista siempre es: ¿hay etiquetas, estructura por descubrir o recompensas?"
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy",
+        "scikit-learn"
+      ],
+      "code": {
+        "en": "import numpy as np\nfrom sklearn.linear_model import LinearRegression\n# \"learning\" = fitting a model to data, then predicting new inputs\nX = np.array([[1], [2], [3]]); y = np.array([2, 4, 6])\nprint(LinearRegression().fit(X, y).predict([[4]]).round(1).tolist())",
+        "es": "import numpy as np\nfrom sklearn.linear_model import LinearRegression\n# \"aprender\" = ajustar un modelo a datos y luego predecir entradas nuevas\nX = np.array([[1], [2], [3]]); y = np.array([2, 4, 6])\nprint(LinearRegression().fit(X, y).predict([[4]]).round(1).tolist())"
+      },
+      "expectedOutput": "[8.0]",
+      "caption": {
+        "en": "ML in three steps: create a model, fit it, predict.",
+        "es": "ML en tres pasos: crear un modelo, ajustarlo, predecir."
       }
     }
   ],
@@ -39,42 +62,111 @@
     {
       "id": "mlf-01-e1",
       "answerType": "text",
-      "prompt": { "en": "Learning from labeled data is called ___ learning. (one word)", "es": "Aprender de datos etiquetados es aprendizaje ___. (una palabra)" },
+      "prompt": {
+        "en": "Learning from labeled data is called ___ learning. (one word)",
+        "es": "Aprender de datos etiquetados es aprendizaje ___. (una palabra)"
+      },
       "answer": "supervised",
-      "acceptedAlt": ["supervisado"],
-      "hint": { "en": "Input → known output.", "es": "Entrada → salida conocida." },
-      "solution": [ { "tex": "(x_i, y_i)", "en": "Supervised.", "es": "Supervisado." } ]
+      "acceptedAlt": [
+        "supervisado"
+      ],
+      "hint": {
+        "en": "Input → known output.",
+        "es": "Entrada → salida conocida."
+      },
+      "solution": [
+        {
+          "tex": "(x_i, y_i)",
+          "en": "Supervised.",
+          "es": "Supervisado."
+        }
+      ]
     },
     {
       "id": "mlf-01-e2",
       "answerType": "text",
-      "prompt": { "en": "Learning from unlabeled data is ___ learning. (one word)", "es": "Aprender de datos sin etiquetar es aprendizaje ___. (una palabra)" },
+      "prompt": {
+        "en": "Learning from unlabeled data is ___ learning. (one word)",
+        "es": "Aprender de datos sin etiquetar es aprendizaje ___. (una palabra)"
+      },
       "answer": "unsupervised",
-      "acceptedAlt": ["no supervisado", "no-supervisado"],
-      "hint": { "en": "Find structure.", "es": "Hallar estructura." },
-      "solution": [ { "tex": "\\{x_i\\}", "en": "Unsupervised.", "es": "No supervisado." } ]
+      "acceptedAlt": [
+        "no supervisado",
+        "no-supervisado"
+      ],
+      "hint": {
+        "en": "Find structure.",
+        "es": "Hallar estructura."
+      },
+      "solution": [
+        {
+          "tex": "\\{x_i\\}",
+          "en": "Unsupervised.",
+          "es": "No supervisado."
+        }
+      ]
     },
     {
       "id": "mlf-01-e3",
       "answerType": "text",
-      "prompt": { "en": "Learning from rewards is ___ learning. (one word)", "es": "Aprender de recompensas es aprendizaje por ___. (una palabra)" },
+      "prompt": {
+        "en": "Learning from rewards is ___ learning. (one word)",
+        "es": "Aprender de recompensas es aprendizaje por ___. (una palabra)"
+      },
       "answer": "reinforcement",
-      "acceptedAlt": ["refuerzo"],
-      "hint": { "en": "Trial and error.", "es": "Ensayo y error." },
-      "solution": [ { "tex": "r_t", "en": "Reinforcement.", "es": "Refuerzo." } ]
+      "acceptedAlt": [
+        "refuerzo"
+      ],
+      "hint": {
+        "en": "Trial and error.",
+        "es": "Ensayo y error."
+      },
+      "solution": [
+        {
+          "tex": "r_t",
+          "en": "Reinforcement.",
+          "es": "Refuerzo."
+        }
+      ]
     },
     {
       "id": "mlf-01-e4",
       "answerType": "text",
-      "prompt": { "en": "Machine learning learns patterns from ___ rather than explicit rules. (one word)", "es": "El aprendizaje automático aprende patrones de ___ en vez de reglas explícitas. (una palabra)" },
+      "prompt": {
+        "en": "Machine learning learns patterns from ___ rather than explicit rules. (one word)",
+        "es": "El aprendizaje automático aprende patrones de ___ en vez de reglas explícitas. (una palabra)"
+      },
       "answer": "data",
-      "acceptedAlt": ["datos"],
-      "hint": { "en": "The raw material of ML.", "es": "La materia prima del ML." },
-      "solution": [ { "tex": "\\text{data} \\to \\text{model}", "en": "From data.", "es": "De los datos." } ]
+      "acceptedAlt": [
+        "datos"
+      ],
+      "hint": {
+        "en": "The raw material of ML.",
+        "es": "La materia prima del ML."
+      },
+      "solution": [
+        {
+          "tex": "\\text{data} \\to \\text{model}",
+          "en": "From data.",
+          "es": "De los datos."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18, learning from examples", "es": "Cap. 18, aprender de ejemplos" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, machine learning basics", "es": "Cap. 5, fundamentos del aprendizaje automático" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 18, learning from examples",
+        "es": "Cap. 18, aprender de ejemplos"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, machine learning basics",
+        "es": "Cap. 5, fundamentos del aprendizaje automático"
+      }
+    }
   ]
 }

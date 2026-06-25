@@ -3,7 +3,10 @@
   "subjectId": "linear-algebra",
   "order": 7,
   "estimatedMinutes": 40,
-  "title": { "en": "Linear Combination & Span", "es": "Combinación lineal y subespacio generado" },
+  "title": {
+    "en": "Linear Combination & Span",
+    "es": "Combinación lineal y subespacio generado"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Express $(2,3)$ as a linear combination of $(1,0)$ and $(0,1)$: it is $2(1,0) + 3(0,1)$, so the weights are $2$ and $3$. Is $(2,4)$ a multiple of $(1,2)$? Yes — $(2,4) = 2(1,2)$, so it lies on the line spanned by $(1,2)$.",
         "es": "Expresa $(2,3)$ como combinación lineal de $(1,0)$ y $(0,1)$: es $2(1,0) + 3(0,1)$, así que los pesos son $2$ y $3$. ¿Es $(2,4)$ múltiplo de $(1,2)$? Sí — $(2,4) = 2(1,2)$, así que está en la recta generada por $(1,2)$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# find the coefficients writing [3,1] as a combination of the columns\nprint(np.linalg.solve(np.array([[1, 1], [0, 1]]), np.array([3, 1])).tolist())",
+        "es": "import numpy as np\n# halla los coeficientes que escriben [3,1] como combinacion de las columnas\nprint(np.linalg.solve(np.array([[1, 1], [0, 1]]), np.array([3, 1])).tolist())"
+      },
+      "expectedOutput": "[2.0, 1.0]",
+      "caption": {
+        "en": "Solving a system recovers the combination coefficients.",
+        "es": "Resolver un sistema recupera los coeficientes de la combinacion."
       }
     }
   ],
@@ -39,42 +61,105 @@
     {
       "id": "linalg-07-e1",
       "answerType": "number",
-      "prompt": { "en": "First component of $2(1,0) + 3(0,1)$?", "es": "¿Primera componente de $2(1,0) + 3(0,1)$?" },
+      "prompt": {
+        "en": "First component of $2(1,0) + 3(0,1)$?",
+        "es": "¿Primera componente de $2(1,0) + 3(0,1)$?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "2·1 + 3·0.", "es": "2·1 + 3·0." },
-      "solution": [ { "tex": "(2,3) \\Rightarrow 2", "en": "First component.", "es": "Primera componente." } ]
+      "hint": {
+        "en": "2·1 + 3·0.",
+        "es": "2·1 + 3·0."
+      },
+      "solution": [
+        {
+          "tex": "(2,3) \\Rightarrow 2",
+          "en": "First component.",
+          "es": "Primera componente."
+        }
+      ]
     },
     {
       "id": "linalg-07-e2",
       "answerType": "text",
-      "prompt": { "en": "Is $(3,0)$ a scalar multiple of $(1,0)$? (yes / no)", "es": "¿Es $(3,0)$ múltiplo escalar de $(1,0)$? (sí / no)" },
+      "prompt": {
+        "en": "Is $(3,0)$ a scalar multiple of $(1,0)$? (yes / no)",
+        "es": "¿Es $(3,0)$ múltiplo escalar de $(1,0)$? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Is there a c with c(1,0) = (3,0)?", "es": "¿Existe c con c(1,0) = (3,0)?" },
-      "solution": [ { "tex": "3\\cdot(1,0) = (3,0)", "en": "Yes, c = 3.", "es": "Sí, c = 3." } ]
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Is there a c with c(1,0) = (3,0)?",
+        "es": "¿Existe c con c(1,0) = (3,0)?"
+      },
+      "solution": [
+        {
+          "tex": "3\\cdot(1,0) = (3,0)",
+          "en": "Yes, c = 3.",
+          "es": "Sí, c = 3."
+        }
+      ]
     },
     {
       "id": "linalg-07-e3",
       "answerType": "number",
-      "prompt": { "en": "Find $a$ such that $a\\cdot(1,1) = (5,5)$.", "es": "Halla $a$ tal que $a\\cdot(1,1) = (5,5)$." },
+      "prompt": {
+        "en": "Find $a$ such that $a\\cdot(1,1) = (5,5)$.",
+        "es": "Halla $a$ tal que $a\\cdot(1,1) = (5,5)$."
+      },
       "answer": "5",
       "acceptedAlt": [],
-      "hint": { "en": "Each component must match.", "es": "Cada componente debe coincidir." },
-      "solution": [ { "tex": "a = 5", "en": "5·(1,1) = (5,5).", "es": "5·(1,1) = (5,5)." } ]
+      "hint": {
+        "en": "Each component must match.",
+        "es": "Cada componente debe coincidir."
+      },
+      "solution": [
+        {
+          "tex": "a = 5",
+          "en": "5·(1,1) = (5,5).",
+          "es": "5·(1,1) = (5,5)."
+        }
+      ]
     },
     {
       "id": "linalg-07-e4",
       "answerType": "number",
-      "prompt": { "en": "Find the scalar $c$ with $(2,4) = c\\cdot(1,2)$.", "es": "Halla el escalar $c$ con $(2,4) = c\\cdot(1,2)$." },
+      "prompt": {
+        "en": "Find the scalar $c$ with $(2,4) = c\\cdot(1,2)$.",
+        "es": "Halla el escalar $c$ con $(2,4) = c\\cdot(1,2)$."
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Divide componentwise.", "es": "Divide componente a componente." },
-      "solution": [ { "tex": "c = 2", "en": "2·(1,2) = (2,4).", "es": "2·(1,2) = (2,4)." } ]
+      "hint": {
+        "en": "Divide componentwise.",
+        "es": "Divide componente a componente."
+      },
+      "solution": [
+        {
+          "tex": "c = 2",
+          "en": "2·(1,2) = (2,4).",
+          "es": "2·(1,2) = (2,4)."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 1.1 & 3.5, linear combinations and span", "es": "Cap. 1.1 y 3.5, combinaciones lineales y generado" } },
-    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Linear combination; spanning subspace", "es": "Combinación lineal; subespacio generado" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 1.1 & 3.5, linear combinations and span",
+        "es": "Cap. 1.1 y 3.5, combinaciones lineales y generado"
+      }
+    },
+    {
+      "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)",
+      "detail": {
+        "en": "Linear combination; spanning subspace",
+        "es": "Combinación lineal; subespacio generado"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "reinforcement-learning",
   "order": 7,
   "estimatedMinutes": 35,
-  "title": { "en": "Monte Carlo Methods", "es": "Métodos de Monte Carlo" },
+  "title": {
+    "en": "Monte Carlo Methods",
+    "es": "Métodos de Monte Carlo"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Returns $4, 6, 8$ for visits to a state average to $(4+6+8)/3 = 6$. Incremental update from $V=5$ with target $G=9$, $\\alpha=0.1$: $5 + 0.1(9-5) = 5 + 0.4 = 5.4$.",
         "es": "Retornos $4, 6, 8$ para visitas a un estado promedian $(4+6+8)/3 = 6$. Actualización incremental desde $V=5$ con objetivo $G=9$, $\\alpha=0.1$: $5 + 0.1(9-5) = 5 + 0.4 = 5.4$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# Monte Carlo estimates a value by averaging sampled returns\nreturns = [2.0, 3.0, 4.0]\nprint(round(sum(returns) / len(returns), 4))",
+        "es": "# Monte Carlo estima un valor promediando retornos muestreados\nreturns = [2.0, 3.0, 4.0]\nprint(round(sum(returns) / len(returns), 4))"
+      },
+      "expectedOutput": "3.0",
+      "caption": {
+        "en": "Monte Carlo learns from complete sampled episodes.",
+        "es": "Monte Carlo aprende de episodios muestreados completos."
       }
     }
   ],
@@ -39,41 +59,109 @@
     {
       "id": "rl-07-e1",
       "answerType": "number",
-      "prompt": { "en": "Average of returns $4, 6, 8$?", "es": "¿Media de los retornos $4, 6, 8$?" },
+      "prompt": {
+        "en": "Average of returns $4, 6, 8$?",
+        "es": "¿Media de los retornos $4, 6, 8$?"
+      },
       "answer": "6",
-      "acceptedAlt": ["(4+6+8)/3", "mean([4,6,8])"],
-      "hint": { "en": "Sum / 3.", "es": "Suma / 3." },
-      "solution": [ { "tex": "18/3 = 6", "en": "Six.", "es": "Seis." } ]
+      "acceptedAlt": [
+        "(4+6+8)/3",
+        "mean([4,6,8])"
+      ],
+      "hint": {
+        "en": "Sum / 3.",
+        "es": "Suma / 3."
+      },
+      "solution": [
+        {
+          "tex": "18/3 = 6",
+          "en": "Six.",
+          "es": "Seis."
+        }
+      ]
     },
     {
       "id": "rl-07-e2",
       "answerType": "number",
-      "prompt": { "en": "Incremental update $5 + 0.1(9-5)$?", "es": "Actualización incremental $5 + 0.1(9-5)$?" },
+      "prompt": {
+        "en": "Incremental update $5 + 0.1(9-5)$?",
+        "es": "Actualización incremental $5 + 0.1(9-5)$?"
+      },
       "answer": "5.4",
-      "acceptedAlt": ["5+0.1*(9-5)", "27/5"],
-      "hint": { "en": "5 + 0.4.", "es": "5 + 0.4." },
-      "solution": [ { "tex": "5+0.4 = 5.4", "en": "5.4.", "es": "5.4." } ]
+      "acceptedAlt": [
+        "5+0.1*(9-5)",
+        "27/5"
+      ],
+      "hint": {
+        "en": "5 + 0.4.",
+        "es": "5 + 0.4."
+      },
+      "solution": [
+        {
+          "tex": "5+0.4 = 5.4",
+          "en": "5.4.",
+          "es": "5.4."
+        }
+      ]
     },
     {
       "id": "rl-07-e3",
       "answerType": "text",
-      "prompt": { "en": "MC estimates values by ___ observed returns. (one word)", "es": "MC estima valores ___ los retornos observados. (una palabra)" },
+      "prompt": {
+        "en": "MC estimates values by ___ observed returns. (one word)",
+        "es": "MC estima valores ___ los retornos observados. (una palabra)"
+      },
       "answer": "averaging",
-      "acceptedAlt": ["promediando", "average", "promediar"],
-      "hint": { "en": "Take the mean.", "es": "Toma la media." },
-      "solution": [ { "tex": "\\frac{1}{N}\\sum G", "en": "Averaging.", "es": "Promediando." } ]
+      "acceptedAlt": [
+        "promediando",
+        "average",
+        "promediar"
+      ],
+      "hint": {
+        "en": "Take the mean.",
+        "es": "Toma la media."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{1}{N}\\sum G",
+          "en": "Averaging.",
+          "es": "Promediando."
+        }
+      ]
     },
     {
       "id": "rl-07-e4",
       "answerType": "text",
-      "prompt": { "en": "MC needs each episode to ___ before updating. (one word)", "es": "MC necesita que cada episodio ___ antes de actualizar. (una palabra)" },
+      "prompt": {
+        "en": "MC needs each episode to ___ before updating. (one word)",
+        "es": "MC necesita que cada episodio ___ antes de actualizar. (una palabra)"
+      },
       "answer": "terminate",
-      "acceptedAlt": ["termine", "terminar", "end"],
-      "hint": { "en": "Reach the end.", "es": "Llegar al final." },
-      "solution": [ { "tex": "\\text{terminate}", "en": "Terminate.", "es": "Terminar." } ]
+      "acceptedAlt": [
+        "termine",
+        "terminar",
+        "end"
+      ],
+      "hint": {
+        "en": "Reach the end.",
+        "es": "Llegar al final."
+      },
+      "solution": [
+        {
+          "tex": "\\text{terminate}",
+          "en": "Terminate.",
+          "es": "Terminar."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 5, Monte Carlo methods", "es": "Cap. 5, métodos de Monte Carlo" } }
+    {
+      "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)",
+      "detail": {
+        "en": "Ch. 5, Monte Carlo methods",
+        "es": "Cap. 5, métodos de Monte Carlo"
+      }
+    }
   ]
 }

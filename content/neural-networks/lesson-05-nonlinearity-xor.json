@@ -3,7 +3,10 @@
   "subjectId": "neural-networks",
   "order": 5,
   "estimatedMinutes": 35,
-  "title": { "en": "Why Nonlinearity? The XOR Problem", "es": "¿Por qué la no linealidad? El problema XOR" },
+  "title": {
+    "en": "Why Nonlinearity? The XOR Problem",
+    "es": "¿Por qué la no linealidad? El problema XOR"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Stacking 3 linear layers with no activation is equivalent to just $1$ linear layer. To solve XOR you need a hidden layer; the minimum number of hidden neurons that works is $2$.",
         "es": "Apilar 3 capas lineales sin activación equivale a solo $1$ capa lineal. Para resolver XOR necesitas una capa oculta; el número mínimo de neuronas ocultas que funciona es $2$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\ndef relu(z): return np.maximum(0, z)\n# a 2-layer net solves XOR, which no single neuron can\nW1 = np.array([[1, 1], [1, 1]]); b1 = np.array([0, -1]); W2 = np.array([1, -2])\nnet = lambda x: int(W2 @ relu(W1 @ x + b1))\nprint(net(np.array([0,0])), net(np.array([1,0])), net(np.array([0,1])), net(np.array([1,1])))",
+        "es": "import numpy as np\ndef relu(z): return np.maximum(0, z)\n# una red de 2 capas resuelve XOR, que ninguna neurona sola puede\nW1 = np.array([[1, 1], [1, 1]]); b1 = np.array([0, -1]); W2 = np.array([1, -2])\nnet = lambda x: int(W2 @ relu(W1 @ x + b1))\nprint(net(np.array([0,0])), net(np.array([1,0])), net(np.array([0,1])), net(np.array([1,1])))"
+      },
+      "expectedOutput": "0 1 1 0",
+      "caption": {
+        "en": "A hidden layer makes XOR solvable — the power of nonlinearity.",
+        "es": "Una capa oculta hace resoluble XOR — el poder de la no linealidad."
       }
     }
   ],
@@ -39,42 +61,106 @@
     {
       "id": "nn-05-e1",
       "answerType": "number",
-      "prompt": { "en": "Stacking 3 linear layers with no activation equals how many effective linear layers?", "es": "Apilar 3 capas lineales sin activación equivale a cuántas capas lineales efectivas?" },
+      "prompt": {
+        "en": "Stacking 3 linear layers with no activation equals how many effective linear layers?",
+        "es": "Apilar 3 capas lineales sin activación equivale a cuántas capas lineales efectivas?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "Composition of linear maps is linear.", "es": "La composición de lineales es lineal." },
-      "solution": [ { "tex": "W_3 W_2 W_1 = W", "en": "One layer.", "es": "Una capa." } ]
+      "hint": {
+        "en": "Composition of linear maps is linear.",
+        "es": "La composición de lineales es lineal."
+      },
+      "solution": [
+        {
+          "tex": "W_3 W_2 W_1 = W",
+          "en": "One layer.",
+          "es": "Una capa."
+        }
+      ]
     },
     {
       "id": "nn-05-e2",
       "answerType": "text",
-      "prompt": { "en": "Without a nonlinear activation, stacked layers collapse to a single ___ function. (one word)", "es": "Sin activación no lineal, las capas apiladas colapsan a una única función ___. (una palabra)" },
+      "prompt": {
+        "en": "Without a nonlinear activation, stacked layers collapse to a single ___ function. (one word)",
+        "es": "Sin activación no lineal, las capas apiladas colapsan a una única función ___. (una palabra)"
+      },
       "answer": "linear",
-      "acceptedAlt": ["lineal"],
-      "hint": { "en": "Composition of linear maps.", "es": "Composición de aplicaciones lineales." },
-      "solution": [ { "tex": "\\text{linear}", "en": "Linear.", "es": "Lineal." } ]
+      "acceptedAlt": [
+        "lineal"
+      ],
+      "hint": {
+        "en": "Composition of linear maps.",
+        "es": "Composición de aplicaciones lineales."
+      },
+      "solution": [
+        {
+          "tex": "\\text{linear}",
+          "en": "Linear.",
+          "es": "Lineal."
+        }
+      ]
     },
     {
       "id": "nn-05-e3",
       "answerType": "text",
-      "prompt": { "en": "XOR is not linearly ___. (one word)", "es": "XOR no es linealmente ___. (una palabra)" },
+      "prompt": {
+        "en": "XOR is not linearly ___. (one word)",
+        "es": "XOR no es linealmente ___. (una palabra)"
+      },
       "answer": "separable",
-      "acceptedAlt": ["separable"],
-      "hint": { "en": "No single line separates it.", "es": "Ninguna recta lo separa." },
-      "solution": [ { "tex": "\\text{XOR}", "en": "Not separable.", "es": "No separable." } ]
+      "acceptedAlt": [
+        "separable"
+      ],
+      "hint": {
+        "en": "No single line separates it.",
+        "es": "Ninguna recta lo separa."
+      },
+      "solution": [
+        {
+          "tex": "\\text{XOR}",
+          "en": "Not separable.",
+          "es": "No separable."
+        }
+      ]
     },
     {
       "id": "nn-05-e4",
       "answerType": "number",
-      "prompt": { "en": "Minimum number of hidden neurons to solve XOR?", "es": "¿Número mínimo de neuronas ocultas para resolver XOR?" },
+      "prompt": {
+        "en": "Minimum number of hidden neurons to solve XOR?",
+        "es": "¿Número mínimo de neuronas ocultas para resolver XOR?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Two hidden units.", "es": "Dos unidades ocultas." },
-      "solution": [ { "tex": "2 \\text{ hidden}", "en": "Two neurons.", "es": "Dos neuronas." } ]
+      "hint": {
+        "en": "Two hidden units.",
+        "es": "Dos unidades ocultas."
+      },
+      "solution": [
+        {
+          "tex": "2 \\text{ hidden}",
+          "en": "Two neurons.",
+          "es": "Dos neuronas."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.1, learning XOR", "es": "Cap. 6.1, aprender XOR" } },
-    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "Multilayer networks overcome the perceptron's limits", "es": "Las redes multicapa superan los límites del perceptrón" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 6.1, learning XOR",
+        "es": "Cap. 6.1, aprender XOR"
+      }
+    },
+    {
+      "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)",
+      "detail": {
+        "en": "Multilayer networks overcome the perceptron's limits",
+        "es": "Las redes multicapa superan los límites del perceptrón"
+      }
+    }
   ]
 }

@@ -3,13 +3,26 @@
   "subjectId": "calculus",
   "order": 12,
   "estimatedMinutes": 40,
-  "title": { "en": "Applications of Integration", "es": "Aplicaciones de la integración" },
+  "title": {
+    "en": "Applications of Integration",
+    "es": "Aplicaciones de la integración"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Integration is far more than area. Its true power is **accumulation**: whenever a quantity is built up from a varying rate, an integral assembles the total. Distance is the integral of velocity; total charge is the integral of current; the work done by a varying force is an integral; in probability, the area under a density curve is a probability.",
         "es": "La integración es mucho más que área. Su verdadero poder es la **acumulación**: siempre que una magnitud se construye a partir de una tasa variable, una integral reúne el total. La distancia es la integral de la velocidad; la carga total es la integral de la corriente; el trabajo de una fuerza variable es una integral; en probabilidad, el área bajo una densidad es una probabilidad."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "calculus-11-definite-integral"
+      ],
+      "note": {
+        "en": "Applications build on the definite integral.",
+        "es": "Las aplicaciones se apoyan en la integral definida."
       }
     },
     {
@@ -22,7 +35,10 @@
     {
       "type": "graph",
       "fn": "x",
-      "domain": [0, 4],
+      "domain": [
+        0,
+        4
+      ],
       "caption": {
         "en": "The area under $f(x)=x$ from $0$ to $4$ is the shaded triangle. By geometry it is $\\tfrac12\\cdot4\\cdot4 = 8$; by integration $\\int_0^4 x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_0^4 = 8$ — the two methods agree.",
         "es": "El área bajo $f(x)=x$ de $0$ a $4$ es el triángulo sombreado. Por geometría es $\\tfrac12\\cdot4\\cdot4 = 8$; por integración $\\int_0^4 x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_0^4 = 8$ — ambos métodos coinciden."
@@ -30,10 +46,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — area under a parabola", "es": "Ejemplo resuelto — área bajo una parábola" },
+      "title": {
+        "en": "Worked example — area under a parabola",
+        "es": "Ejemplo resuelto — área bajo una parábola"
+      },
       "content": {
         "en": "Find the area under $f(x) = x^2$ from $0$ to $1$. Antiderivative $\\tfrac{x^3}{3}$; evaluate: $\\left[\\tfrac{x^3}{3}\\right]_0^1 = \\tfrac13 - 0 = \\tfrac13$. Unlike the triangle, this curved region has no elementary geometric formula — integration is the only way.",
         "es": "Halla el área bajo $f(x) = x^2$ de $0$ a $1$. Primitiva $\\tfrac{x^3}{3}$; evalúa: $\\left[\\tfrac{x^3}{3}\\right]_0^1 = \\tfrac13 - 0 = \\tfrac13$. A diferencia del triángulo, esta región curva no tiene fórmula geométrica elemental — la integración es la única vía."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "sympy"
+      ],
+      "code": {
+        "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# area under y = x^2 from 0 to 2 (a fraction!)\nprint(sp.integrate(x**2, (x, 0, 2)))",
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# area bajo y = x^2 de 0 a 2 (una fraccion!)\nprint(sp.integrate(x**2, (x, 0, 2)))"
+      },
+      "expectedOutput": "8/3",
+      "caption": {
+        "en": "Integration yields exact fractions, here 8/3.",
+        "es": "La integracion da fracciones exactas, aqui 8/3."
       }
     }
   ],
@@ -41,43 +76,119 @@
     {
       "id": "calculus-12-e1",
       "answerType": "number",
-      "prompt": { "en": "Find the area under $f(x)=x$ from $0$ to $4$.", "es": "Halla el área bajo $f(x)=x$ de $0$ a $4$." },
+      "prompt": {
+        "en": "Find the area under $f(x)=x$ from $0$ to $4$.",
+        "es": "Halla el área bajo $f(x)=x$ de $0$ a $4$."
+      },
       "answer": "8",
-      "acceptedAlt": ["4*4/2", "4^2/2"],
-      "hint": { "en": "It's a triangle, or ∫₀⁴ x dx.", "es": "Es un triángulo, o ∫₀⁴ x dx." },
-      "solution": [ { "tex": "\\int_0^4 x\\,dx = [\\tfrac{x^2}{2}]_0^4 = 8", "en": "Evaluate the integral.", "es": "Evalúa la integral." } ]
+      "acceptedAlt": [
+        "4*4/2",
+        "4^2/2"
+      ],
+      "hint": {
+        "en": "It's a triangle, or ∫₀⁴ x dx.",
+        "es": "Es un triángulo, o ∫₀⁴ x dx."
+      },
+      "solution": [
+        {
+          "tex": "\\int_0^4 x\\,dx = [\\tfrac{x^2}{2}]_0^4 = 8",
+          "en": "Evaluate the integral.",
+          "es": "Evalúa la integral."
+        }
+      ]
     },
     {
       "id": "calculus-12-e2",
       "answerType": "number",
-      "prompt": { "en": "Evaluate $\\int_0^1 x^2\\,dx$.", "es": "Evalúa $\\int_0^1 x^2\\,dx$." },
+      "prompt": {
+        "en": "Evaluate $\\int_0^1 x^2\\,dx$.",
+        "es": "Evalúa $\\int_0^1 x^2\\,dx$."
+      },
       "answer": "1/3",
-      "acceptedAlt": ["1^3/3"],
-      "hint": { "en": "Antiderivative x³/3, from 0 to 1.", "es": "Primitiva x³/3, de 0 a 1." },
-      "solution": [ { "tex": "[\\tfrac{x^3}{3}]_0^1 = \\tfrac13", "en": "Apply the FTC.", "es": "Aplica el TFC." } ]
+      "acceptedAlt": [
+        "1^3/3"
+      ],
+      "hint": {
+        "en": "Antiderivative x³/3, from 0 to 1.",
+        "es": "Primitiva x³/3, de 0 a 1."
+      },
+      "solution": [
+        {
+          "tex": "[\\tfrac{x^3}{3}]_0^1 = \\tfrac13",
+          "en": "Apply the FTC.",
+          "es": "Aplica el TFC."
+        }
+      ]
     },
     {
       "id": "calculus-12-e3",
       "answerType": "number",
-      "prompt": { "en": "Find the area under the constant $f(x)=2$ from $0$ to $5$.", "es": "Halla el área bajo la constante $f(x)=2$ de $0$ a $5$." },
+      "prompt": {
+        "en": "Find the area under the constant $f(x)=2$ from $0$ to $5$.",
+        "es": "Halla el área bajo la constante $f(x)=2$ de $0$ a $5$."
+      },
       "answer": "10",
-      "acceptedAlt": ["2*5"],
-      "hint": { "en": "A rectangle: height × width.", "es": "Un rectángulo: altura × base." },
-      "solution": [ { "tex": "\\int_0^5 2\\,dx = 2\\cdot 5 = 10", "en": "Rectangle area.", "es": "Área del rectángulo." } ]
+      "acceptedAlt": [
+        "2*5"
+      ],
+      "hint": {
+        "en": "A rectangle: height × width.",
+        "es": "Un rectángulo: altura × base."
+      },
+      "solution": [
+        {
+          "tex": "\\int_0^5 2\\,dx = 2\\cdot 5 = 10",
+          "en": "Rectangle area.",
+          "es": "Área del rectángulo."
+        }
+      ]
     },
     {
       "id": "calculus-12-e4",
       "answerType": "text",
-      "prompt": { "en": "The definite integral gives the ___ under the curve. (one word)", "es": "La integral definida da el ___ bajo la curva. (una palabra)" },
+      "prompt": {
+        "en": "The definite integral gives the ___ under the curve. (one word)",
+        "es": "La integral definida da el ___ bajo la curva. (una palabra)"
+      },
       "answer": "area",
-      "acceptedAlt": ["área", "area"],
-      "hint": { "en": "Region between curve and axis.", "es": "Región entre la curva y el eje." },
-      "solution": [ { "tex": "\\int_a^b f = \\text{area}", "en": "Signed area.", "es": "Área con signo." } ]
+      "acceptedAlt": [
+        "área",
+        "area"
+      ],
+      "hint": {
+        "en": "Region between curve and axis.",
+        "es": "Región entre la curva y el eje."
+      },
+      "solution": [
+        {
+          "tex": "\\int_a^b f = \\text{area}",
+          "en": "Signed area.",
+          "es": "Área con signo."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 6.1, Areas Between Curves; applications of integration", "es": "Cap. 6.1, áreas entre curvas; aplicaciones de la integración" } },
-    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 5–6, applications of the integral", "es": "Cap. 5–6, aplicaciones de la integral" } },
-    { "source": "UOC — Integración (PID_00284290)", "detail": { "en": "Applications of integration", "es": "Aplicaciones de la integración" } }
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 6.1, Areas Between Curves; applications of integration",
+        "es": "Cap. 6.1, áreas entre curvas; aplicaciones de la integración"
+      }
+    },
+    {
+      "source": "Salas, Etgen & Hille — Calculus",
+      "detail": {
+        "en": "Ch. 5–6, applications of the integral",
+        "es": "Cap. 5–6, aplicaciones de la integral"
+      }
+    },
+    {
+      "source": "UOC — Integración (PID_00284290)",
+      "detail": {
+        "en": "Applications of integration",
+        "es": "Aplicaciones de la integración"
+      }
+    }
   ]
 }

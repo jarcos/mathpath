@@ -3,13 +3,26 @@
   "subjectId": "deep-learning",
   "order": 8,
   "estimatedMinutes": 35,
-  "title": { "en": "LSTM, GRU & the Vanishing Gradient", "es": "LSTM, GRU y el gradiente que se desvanece" },
+  "title": {
+    "en": "LSTM, GRU & the Vanishing Gradient",
+    "es": "LSTM, GRU y el gradiente que se desvanece"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "In a plain RNN the gradient is multiplied by the recurrent weight at every step. If that factor is below $1$ the gradient **vanishes** exponentially over long sequences; if above $1$ it **explodes**. As a result, simple RNNs struggle to learn dependencies more than ~10 steps apart.",
         "es": "En una RNN simple el gradiente se multiplica por el peso recurrente en cada paso. Si ese factor es menor que $1$, el gradiente se **desvanece** exponencialmente en secuencias largas; si es mayor que $1$, **explota**. Por eso las RNN simples tienen dificultad para aprender dependencias separadas más de ~10 pasos."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "dl-07-rnns"
+      ],
+      "note": {
+        "en": "LSTMs and GRUs are gated versions of the simple RNN.",
+        "es": "Las LSTM y GRU son versiones con puertas del RNN simple."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A forget gate value of $0.9$ multiplied into a cell state of $10$ keeps $0.9\\cdot 10 = 9$. If a recurrent factor is $0.8$, after $10$ steps the gradient scales by $0.8^{10}\\approx 0.107$ — already a tenfold shrink, illustrating vanishing.",
         "es": "Un valor de puerta de olvido de $0.9$ multiplicado por un estado de celda de $10$ conserva $0.9\\cdot 10 = 9$. Si un factor recurrente es $0.8$, tras $10$ pasos el gradiente se escala por $0.8^{10}\\approx 0.107$ — ya una reducción de diez veces, ilustrando el desvanecimiento."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nsigmoid = lambda z: 1 / (1 + np.exp(-z))\n# LSTM/GRU gates are sigmoids in [0,1] controlling memory flow\nforget = sigmoid(2.0)\ninput_gate = sigmoid(-1.0)\nprint(round(float(forget), 4), round(float(input_gate), 4))",
+        "es": "import numpy as np\nsigmoid = lambda z: 1 / (1 + np.exp(-z))\n# las puertas LSTM/GRU son sigmoides en [0,1] que controlan el flujo de memoria\nforget = sigmoid(2.0)\ninput_gate = sigmoid(-1.0)\nprint(round(float(forget), 4), round(float(input_gate), 4))"
+      },
+      "expectedOutput": "0.8808 0.2689",
+      "caption": {
+        "en": "Gates near 1 keep memory; near 0 they erase it.",
+        "es": "Puertas cerca de 1 conservan memoria; cerca de 0 la borran."
       }
     }
   ],
@@ -39,42 +71,112 @@
     {
       "id": "dl-08-e1",
       "answerType": "text",
-      "prompt": { "en": "Over long sequences plain-RNN gradients tend to ___ (shrink to zero). (one word)", "es": "En secuencias largas los gradientes de RNN simples tienden a ___ (encogerse a cero). (una palabra)" },
+      "prompt": {
+        "en": "Over long sequences plain-RNN gradients tend to ___ (shrink to zero). (one word)",
+        "es": "En secuencias largas los gradientes de RNN simples tienden a ___ (encogerse a cero). (una palabra)"
+      },
       "answer": "vanish",
-      "acceptedAlt": ["desvanecerse", "vanishing", "desvanecer"],
-      "hint": { "en": "Vanishing gradient.", "es": "Gradiente que se desvanece." },
-      "solution": [ { "tex": "\\to 0", "en": "Vanish.", "es": "Desvanecerse." } ]
+      "acceptedAlt": [
+        "desvanecerse",
+        "vanishing",
+        "desvanecer"
+      ],
+      "hint": {
+        "en": "Vanishing gradient.",
+        "es": "Gradiente que se desvanece."
+      },
+      "solution": [
+        {
+          "tex": "\\to 0",
+          "en": "Vanish.",
+          "es": "Desvanecerse."
+        }
+      ]
     },
     {
       "id": "dl-08-e2",
       "answerType": "text",
-      "prompt": { "en": "LSTMs and GRUs control information flow with ___. (one word)", "es": "Las LSTM y GRU controlan el flujo de información con ___. (una palabra)" },
+      "prompt": {
+        "en": "LSTMs and GRUs control information flow with ___. (one word)",
+        "es": "Las LSTM y GRU controlan el flujo de información con ___. (una palabra)"
+      },
       "answer": "gates",
-      "acceptedAlt": ["puertas", "gate", "puerta"],
-      "hint": { "en": "Forget / input / output.", "es": "Olvido / entrada / salida." },
-      "solution": [ { "tex": "\\sigma(\\cdot)", "en": "Gates.", "es": "Puertas." } ]
+      "acceptedAlt": [
+        "puertas",
+        "gate",
+        "puerta"
+      ],
+      "hint": {
+        "en": "Forget / input / output.",
+        "es": "Olvido / entrada / salida."
+      },
+      "solution": [
+        {
+          "tex": "\\sigma(\\cdot)",
+          "en": "Gates.",
+          "es": "Puertas."
+        }
+      ]
     },
     {
       "id": "dl-08-e3",
       "answerType": "number",
-      "prompt": { "en": "Forget gate 0.9 times cell state 10: kept value?", "es": "Puerta de olvido 0.9 por estado de celda 10: ¿valor conservado?" },
+      "prompt": {
+        "en": "Forget gate 0.9 times cell state 10: kept value?",
+        "es": "Puerta de olvido 0.9 por estado de celda 10: ¿valor conservado?"
+      },
       "answer": "9",
-      "acceptedAlt": ["0.9*10"],
-      "hint": { "en": "0.9 × 10.", "es": "0.9 × 10." },
-      "solution": [ { "tex": "0.9\\cdot 10 = 9", "en": "Nine.", "es": "Nueve." } ]
+      "acceptedAlt": [
+        "0.9*10"
+      ],
+      "hint": {
+        "en": "0.9 × 10.",
+        "es": "0.9 × 10."
+      },
+      "solution": [
+        {
+          "tex": "0.9\\cdot 10 = 9",
+          "en": "Nine.",
+          "es": "Nueve."
+        }
+      ]
     },
     {
       "id": "dl-08-e4",
       "answerType": "number",
-      "prompt": { "en": "How many gates does a GRU have?", "es": "¿Cuántas puertas tiene una GRU?" },
+      "prompt": {
+        "en": "How many gates does a GRU have?",
+        "es": "¿Cuántas puertas tiene una GRU?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Reset and update.", "es": "Reinicio y actualización." },
-      "solution": [ { "tex": "2", "en": "Two: reset, update.", "es": "Dos: reinicio, actualización." } ]
+      "hint": {
+        "en": "Reset and update.",
+        "es": "Reinicio y actualización."
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two: reset, update.",
+          "es": "Dos: reinicio, actualización."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 10.7, the long-term dependency problem; LSTM and gated units", "es": "Cap. 10.7, el problema de dependencias a largo plazo; LSTM y unidades con puertas" } },
-    { "source": "Hochreiter & Schmidhuber — Long Short-Term Memory (1997)", "detail": { "en": "Original LSTM", "es": "LSTM original" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 10.7, the long-term dependency problem; LSTM and gated units",
+        "es": "Cap. 10.7, el problema de dependencias a largo plazo; LSTM y unidades con puertas"
+      }
+    },
+    {
+      "source": "Hochreiter & Schmidhuber — Long Short-Term Memory (1997)",
+      "detail": {
+        "en": "Original LSTM",
+        "es": "LSTM original"
+      }
+    }
   ]
 }

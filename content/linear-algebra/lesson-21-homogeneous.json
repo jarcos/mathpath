@@ -3,7 +3,10 @@
   "subjectId": "linear-algebra",
   "order": 21,
   "estimatedMinutes": 40,
-  "title": { "en": "Homogeneous Systems", "es": "Sistemas homogéneos" },
+  "title": {
+    "en": "Homogeneous Systems",
+    "es": "Sistemas homogéneos"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Does $x = 0, y = 0$ solve $x + y = 0$, $x - y = 0$? Substitute: $0 + 0 = 0$ ✓ and $0 - 0 = 0$ ✓ — yes, the trivial solution always works. Here $\\det\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix} = -2 \\neq 0$, so the trivial solution is the *only* one.",
         "es": "¿Cumple $x = 0, y = 0$ el sistema $x + y = 0$, $x - y = 0$? Sustituye: $0 + 0 = 0$ ✓ y $0 - 0 = 0$ ✓ — sí, la solución trivial siempre funciona. Aquí $\\det\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix} = -2 \\neq 0$, así que la trivial es la *única*."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nA = np.array([[1, 2], [2, 4]])\n# free variables = columns - rank (dimension of the solution space)\nprint(2 - np.linalg.matrix_rank(A))",
+        "es": "import numpy as np\nA = np.array([[1, 2], [2, 4]])\n# variables libres = columnas - rango (dimension del espacio solucion)\nprint(2 - np.linalg.matrix_rank(A))"
+      },
+      "expectedOutput": "1",
+      "caption": {
+        "en": "A homogeneous system here has a 1-dimensional solution space.",
+        "es": "Un sistema homogeneo aqui tiene un espacio solucion de dimension 1."
       }
     }
   ],
@@ -39,42 +61,105 @@
     {
       "id": "linalg-21-e1",
       "answerType": "number",
-      "prompt": { "en": "In the trivial solution of a homogeneous system, each unknown equals ___?", "es": "En la solución trivial de un sistema homogéneo, cada incógnita vale ___?" },
+      "prompt": {
+        "en": "In the trivial solution of a homogeneous system, each unknown equals ___?",
+        "es": "En la solución trivial de un sistema homogéneo, cada incógnita vale ___?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "All zeros.", "es": "Todo ceros." },
-      "solution": [ { "tex": "\\mathbf{x} = \\mathbf{0}", "en": "All components zero.", "es": "Todas las componentes cero." } ]
+      "hint": {
+        "en": "All zeros.",
+        "es": "Todo ceros."
+      },
+      "solution": [
+        {
+          "tex": "\\mathbf{x} = \\mathbf{0}",
+          "en": "All components zero.",
+          "es": "Todas las componentes cero."
+        }
+      ]
     },
     {
       "id": "linalg-21-e2",
       "answerType": "text",
-      "prompt": { "en": "Does $x=0, y=0$ solve $x+y=0$, $x-y=0$? (yes / no)", "es": "¿Cumple $x=0, y=0$ el sistema $x+y=0$, $x-y=0$? (sí / no)" },
+      "prompt": {
+        "en": "Does $x=0, y=0$ solve $x+y=0$, $x-y=0$? (yes / no)",
+        "es": "¿Cumple $x=0, y=0$ el sistema $x+y=0$, $x-y=0$? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Substitute zeros.", "es": "Sustituye ceros." },
-      "solution": [ { "tex": "0+0=0,\\;0-0=0", "en": "Trivial solution works.", "es": "La solución trivial funciona." } ]
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Substitute zeros.",
+        "es": "Sustituye ceros."
+      },
+      "solution": [
+        {
+          "tex": "0+0=0,\\;0-0=0",
+          "en": "Trivial solution works.",
+          "es": "La solución trivial funciona."
+        }
+      ]
     },
     {
       "id": "linalg-21-e3",
       "answerType": "number",
-      "prompt": { "en": "If $\\det A \\neq 0$, how many nontrivial solutions does $A\\mathbf{x}=\\mathbf{0}$ have?", "es": "Si $\\det A \\neq 0$, ¿cuántas soluciones no triviales tiene $A\\mathbf{x}=\\mathbf{0}$?" },
+      "prompt": {
+        "en": "If $\\det A \\neq 0$, how many nontrivial solutions does $A\\mathbf{x}=\\mathbf{0}$ have?",
+        "es": "Si $\\det A \\neq 0$, ¿cuántas soluciones no triviales tiene $A\\mathbf{x}=\\mathbf{0}$?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Only the trivial one exists.", "es": "Solo existe la trivial." },
-      "solution": [ { "tex": "\\det A\\neq0 \\Rightarrow \\text{only } \\mathbf{0}", "en": "No nontrivial solutions.", "es": "Sin soluciones no triviales." } ]
+      "hint": {
+        "en": "Only the trivial one exists.",
+        "es": "Solo existe la trivial."
+      },
+      "solution": [
+        {
+          "tex": "\\det A\\neq0 \\Rightarrow \\text{only } \\mathbf{0}",
+          "en": "No nontrivial solutions.",
+          "es": "Sin soluciones no triviales."
+        }
+      ]
     },
     {
       "id": "linalg-21-e4",
       "answerType": "number",
-      "prompt": { "en": "Nontrivial solutions require the determinant to equal ___?", "es": "Las soluciones no triviales requieren que el determinante valga ___?" },
+      "prompt": {
+        "en": "Nontrivial solutions require the determinant to equal ___?",
+        "es": "Las soluciones no triviales requieren que el determinante valga ___?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Singular matrix.", "es": "Matriz singular." },
-      "solution": [ { "tex": "\\det A = 0", "en": "Singular → nontrivial solutions.", "es": "Singular → soluciones no triviales." } ]
+      "hint": {
+        "en": "Singular matrix.",
+        "es": "Matriz singular."
+      },
+      "solution": [
+        {
+          "tex": "\\det A = 0",
+          "en": "Singular → nontrivial solutions.",
+          "es": "Singular → soluciones no triviales."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)", "detail": { "en": "Homogeneous systems and their solutions", "es": "Sistemas homogéneos y sus soluciones" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 3.2, the null space of A; solving Ax = 0", "es": "Cap. 3.2, el espacio nulo de A; resolver Ax = 0" } }
+    {
+      "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)",
+      "detail": {
+        "en": "Homogeneous systems and their solutions",
+        "es": "Sistemas homogéneos y sus soluciones"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 3.2, the null space of A; solving Ax = 0",
+        "es": "Cap. 3.2, el espacio nulo de A; resolver Ax = 0"
+      }
+    }
   ]
 }

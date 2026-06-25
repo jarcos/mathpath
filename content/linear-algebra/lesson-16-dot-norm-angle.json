@@ -3,13 +3,26 @@
   "subjectId": "linear-algebra",
   "order": 16,
   "estimatedMinutes": 45,
-  "title": { "en": "Dot Product, Norm & Angle", "es": "Producto escalar, módulo y ángulo" },
+  "title": {
+    "en": "Dot Product, Norm & Angle",
+    "es": "Producto escalar, módulo y ángulo"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "The **dot product** $u\\cdot v = u_1v_1 + \\dots + u_nv_n$ multiplies two vectors to produce a single number, and it is the gateway to all of geometry inside a vector space. It powers similarity measures in machine learning (cosine similarity), projections, and the very notion of angle.",
         "es": "El **producto escalar** $u\\cdot v = u_1v_1 + \\dots + u_nv_n$ multiplica dos vectores para dar un único número, y es la puerta a toda la geometría dentro de un espacio vectorial. Impulsa las medidas de similitud en aprendizaje automático (similitud coseno), las proyecciones y la propia noción de ángulo."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-05-vectors-rn"
+      ],
+      "note": {
+        "en": "Angles use the dot product and vector norms.",
+        "es": "Los angulos usan el producto escalar y las normas."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "$(1,2,3)\\cdot(4,5,6) = 1\\cdot4 + 2\\cdot5 + 3\\cdot6 = 4 + 10 + 18 = 32$. And $(1,0)\\cdot(0,1) = 0$, confirming the axes are perpendicular. The norm of $(3,4)$ is $\\sqrt{(3,4)\\cdot(3,4)} = \\sqrt{25} = 5$.",
         "es": "$(1,2,3)\\cdot(4,5,6) = 1\\cdot4 + 2\\cdot5 + 3\\cdot6 = 4 + 10 + 18 = 32$. Y $(1,0)\\cdot(0,1) = 0$, confirmando que los ejes son perpendiculares. La norma de $(3,4)$ es $\\sqrt{(3,4)\\cdot(3,4)} = \\sqrt{25} = 5$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\na = np.array([1, 0])\nb = np.array([1, 1])\ncos = a @ b / (np.linalg.norm(a) * np.linalg.norm(b))\nprint(round(float(np.degrees(np.arccos(cos))), 2))",
+        "es": "import numpy as np\na = np.array([1, 0])\nb = np.array([1, 1])\ncos = a @ b / (np.linalg.norm(a) * np.linalg.norm(b))\nprint(round(float(np.degrees(np.arccos(cos))), 2))"
+      },
+      "expectedOutput": "45.0",
+      "caption": {
+        "en": "The dot product and norms give the angle between vectors.",
+        "es": "El producto escalar y las normas dan el angulo entre vectores."
       }
     }
   ],
@@ -39,42 +71,160 @@
     {
       "id": "linalg-16-e1",
       "answerType": "number",
-      "prompt": { "en": "Dot product $(1,2,3)\\cdot(4,5,6)$?", "es": "¿Producto escalar $(1,2,3)\\cdot(4,5,6)$?" },
+      "prompt": {
+        "en": "Dot product $(1,2,3)\\cdot(4,5,6)$?",
+        "es": "¿Producto escalar $(1,2,3)\\cdot(4,5,6)$?"
+      },
       "answer": "32",
-      "acceptedAlt": ["1*4+2*5+3*6", "dot([1,2,3],[4,5,6])"],
-      "hint": { "en": "Sum of products of components.", "es": "Suma de productos de componentes." },
-      "solution": [ { "tex": "4+10+18 = 32", "en": "Dot product.", "es": "Producto escalar." } ]
+      "acceptedAlt": [
+        "1*4+2*5+3*6",
+        "dot([1,2,3],[4,5,6])"
+      ],
+      "hint": {
+        "en": "Sum of products of components.",
+        "es": "Suma de productos de componentes."
+      },
+      "solution": [
+        {
+          "tex": "4+10+18 = 32",
+          "en": "Dot product.",
+          "es": "Producto escalar."
+        }
+      ]
     },
     {
       "id": "linalg-16-e2",
       "answerType": "number",
-      "prompt": { "en": "Norm $\\|(3,4)\\|$?", "es": "¿Norma $\\|(3,4)\\|$?" },
+      "prompt": {
+        "en": "Norm $\\|(3,4)\\|$?",
+        "es": "¿Norma $\\|(3,4)\\|$?"
+      },
       "answer": "5",
-      "acceptedAlt": ["norm([3,4])", "sqrt(3^2+4^2)"],
-      "hint": { "en": "√(9 + 16).", "es": "√(9 + 16)." },
-      "solution": [ { "tex": "\\sqrt{25} = 5", "en": "Norm.", "es": "Norma." } ]
+      "acceptedAlt": [
+        "norm([3,4])",
+        "sqrt(3^2+4^2)"
+      ],
+      "hint": {
+        "en": "√(9 + 16).",
+        "es": "√(9 + 16)."
+      },
+      "solution": [
+        {
+          "tex": "\\sqrt{25} = 5",
+          "en": "Norm.",
+          "es": "Norma."
+        }
+      ]
     },
     {
       "id": "linalg-16-e3",
       "answerType": "text",
-      "prompt": { "en": "Are $(1,0)$ and $(0,1)$ perpendicular? (yes / no)", "es": "¿Son $(1,0)$ y $(0,1)$ perpendiculares? (sí / no)" },
+      "prompt": {
+        "en": "Are $(1,0)$ and $(0,1)$ perpendicular? (yes / no)",
+        "es": "¿Son $(1,0)$ y $(0,1)$ perpendiculares? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Check if the dot product is 0.", "es": "Comprueba si el producto escalar es 0." },
-      "solution": [ { "tex": "(1,0)\\cdot(0,1) = 0", "en": "Perpendicular.", "es": "Perpendiculares." } ]
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Check if the dot product is 0.",
+        "es": "Comprueba si el producto escalar es 0."
+      },
+      "solution": [
+        {
+          "tex": "(1,0)\\cdot(0,1) = 0",
+          "en": "Perpendicular.",
+          "es": "Perpendiculares."
+        }
+      ]
     },
     {
       "id": "linalg-16-e4",
       "answerType": "number",
-      "prompt": { "en": "Dot product $(1,0)\\cdot(0,1)$?", "es": "¿Producto escalar $(1,0)\\cdot(0,1)$?" },
+      "prompt": {
+        "en": "Dot product $(1,0)\\cdot(0,1)$?",
+        "es": "¿Producto escalar $(1,0)\\cdot(0,1)$?"
+      },
       "answer": "0",
-      "acceptedAlt": ["dot([1,0],[0,1])"],
-      "hint": { "en": "1·0 + 0·1.", "es": "1·0 + 0·1." },
-      "solution": [ { "tex": "0 + 0 = 0", "en": "Orthogonal.", "es": "Ortogonales." } ]
+      "acceptedAlt": [
+        "dot([1,0],[0,1])"
+      ],
+      "hint": {
+        "en": "1·0 + 0·1.",
+        "es": "1·0 + 0·1."
+      },
+      "solution": [
+        {
+          "tex": "0 + 0 = 0",
+          "en": "Orthogonal.",
+          "es": "Ortogonales."
+        }
+      ]
+    },
+    {
+      "id": "linalg-16-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Two nonzero vectors are perpendicular exactly when their dot product is...",
+        "es": "Dos vectores no nulos son perpendiculares exactamente cuando su producto escalar es..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Zero",
+            "es": "Cero"
+          },
+          "correct": true,
+          "why": {
+            "en": "cos(90 degrees)=0, so a·b = |a||b|cos = 0 for perpendicular vectors.",
+            "es": "cos(90 grados)=0, asi que a·b = |a||b|cos = 0 para vectores perpendiculares."
+          }
+        },
+        {
+          "text": {
+            "en": "One",
+            "es": "Uno"
+          },
+          "correct": false,
+          "why": {
+            "en": "A dot product of 1 has no special geometric meaning here.",
+            "es": "Un producto escalar de 1 no tiene un significado geometrico especial aqui."
+          }
+        },
+        {
+          "text": {
+            "en": "Maximal",
+            "es": "Maximo"
+          },
+          "correct": false,
+          "why": {
+            "en": "The dot product is maximal when the vectors are parallel, not perpendicular.",
+            "es": "El producto escalar es maximo cuando los vectores son paralelos, no perpendiculares."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think of cos(90 degrees).",
+        "es": "Piensa en cos(90 grados)."
+      }
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 1.2, lengths and dot products", "es": "Cap. 1.2, longitudes y productos escalares" } },
-    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Dot product, norm and angle between vectors", "es": "Producto escalar, módulo y ángulo entre vectores" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 1.2, lengths and dot products",
+        "es": "Cap. 1.2, longitudes y productos escalares"
+      }
+    },
+    {
+      "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)",
+      "detail": {
+        "en": "Dot product, norm and angle between vectors",
+        "es": "Producto escalar, módulo y ángulo entre vectores"
+      }
+    }
   ]
 }

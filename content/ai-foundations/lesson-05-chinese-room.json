@@ -3,13 +3,26 @@
   "subjectId": "ai-foundations",
   "order": 5,
   "estimatedMinutes": 35,
-  "title": { "en": "The Chinese Room", "es": "La habitación china" },
+  "title": {
+    "en": "The Chinese Room",
+    "es": "La habitación china"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "John **Searle's** 1980 **Chinese Room** argument attacks strong AI. Imagine Searle, who knows no Chinese, locked in a room with a rulebook for manipulating Chinese symbols. He receives questions in Chinese, follows the rules, and passes back fluent answers — convincing outsiders he understands. Yet he understands nothing; he just shuffles symbols.",
         "es": "El argumento de la **habitación china** de John **Searle** (1980) ataca la IA fuerte. Imagina a Searle, que no sabe chino, encerrado en una sala con un libro de reglas para manipular símbolos chinos. Recibe preguntas en chino, sigue las reglas y devuelve respuestas fluidas — convenciendo a los de fuera de que entiende. Pero no entiende nada; solo baraja símbolos."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "aif-02-turing-test"
+      ],
+      "note": {
+        "en": "Responds to the behavioral view of the Turing Test.",
+        "es": "Responde a la vision conductual del test de Turing."
       }
     },
     {
@@ -28,7 +41,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Searle's argument is that syntax does not suffice for semantics. The reply that the whole room understands is the systems reply. The argument dates from $1980$.",
         "es": "El argumento de Searle es que la sintaxis no basta para la semántica. La réplica de que toda la sala entiende es la réplica del sistema. El argumento es de $1980$."
@@ -39,41 +55,151 @@
     {
       "id": "aif-05-e1",
       "answerType": "text",
-      "prompt": { "en": "A program manipulates symbols — that is pure ___. (one word)", "es": "Un programa manipula símbolos — eso es pura ___. (una palabra)" },
+      "prompt": {
+        "en": "A program manipulates symbols — that is pure ___. (one word)",
+        "es": "Un programa manipula símbolos — eso es pura ___. (una palabra)"
+      },
       "answer": "syntax",
-      "acceptedAlt": ["sintaxis"],
-      "hint": { "en": "Form, not meaning.", "es": "Forma, no significado." },
-      "solution": [ { "tex": "\\text{syntax}", "en": "Syntax.", "es": "Sintaxis." } ]
+      "acceptedAlt": [
+        "sintaxis"
+      ],
+      "hint": {
+        "en": "Form, not meaning.",
+        "es": "Forma, no significado."
+      },
+      "solution": [
+        {
+          "tex": "\\text{syntax}",
+          "en": "Syntax.",
+          "es": "Sintaxis."
+        }
+      ]
     },
     {
       "id": "aif-05-e2",
       "answerType": "text",
-      "prompt": { "en": "Understanding requires meaning, i.e. ___. (one word)", "es": "Entender requiere significado, es decir, ___. (una palabra)" },
+      "prompt": {
+        "en": "Understanding requires meaning, i.e. ___. (one word)",
+        "es": "Entender requiere significado, es decir, ___. (una palabra)"
+      },
       "answer": "semantics",
-      "acceptedAlt": ["semántica", "semantica"],
-      "hint": { "en": "Syntax does not yield ___.", "es": "La sintaxis no produce ___." },
-      "solution": [ { "tex": "\\text{semantics}", "en": "Semantics.", "es": "Semántica." } ]
+      "acceptedAlt": [
+        "semántica",
+        "semantica"
+      ],
+      "hint": {
+        "en": "Syntax does not yield ___.",
+        "es": "La sintaxis no produce ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{semantics}",
+          "en": "Semantics.",
+          "es": "Semántica."
+        }
+      ]
     },
     {
       "id": "aif-05-e3",
       "answerType": "text",
-      "prompt": { "en": "The reply that the whole room (not just Searle) understands is the ___ reply. (one word)", "es": "La réplica de que toda la sala (no solo Searle) entiende es la réplica del ___. (una palabra)" },
+      "prompt": {
+        "en": "The reply that the whole room (not just Searle) understands is the ___ reply. (one word)",
+        "es": "La réplica de que toda la sala (no solo Searle) entiende es la réplica del ___. (una palabra)"
+      },
       "answer": "systems",
-      "acceptedAlt": ["sistema", "system", "sistemas"],
-      "hint": { "en": "The whole system.", "es": "Todo el sistema." },
-      "solution": [ { "tex": "\\text{systems reply}", "en": "Systems.", "es": "Sistema." } ]
+      "acceptedAlt": [
+        "sistema",
+        "system",
+        "sistemas"
+      ],
+      "hint": {
+        "en": "The whole system.",
+        "es": "Todo el sistema."
+      },
+      "solution": [
+        {
+          "tex": "\\text{systems reply}",
+          "en": "Systems.",
+          "es": "Sistema."
+        }
+      ]
     },
     {
       "id": "aif-05-e4",
       "answerType": "number",
-      "prompt": { "en": "Year Searle published the Chinese Room argument?", "es": "¿Año en que Searle publicó el argumento de la habitación china?" },
+      "prompt": {
+        "en": "Year Searle published the Chinese Room argument?",
+        "es": "¿Año en que Searle publicó el argumento de la habitación china?"
+      },
       "answer": "1980",
       "acceptedAlt": [],
-      "hint": { "en": "1980.", "es": "1980." },
-      "solution": [ { "tex": "1980", "en": "1980.", "es": "1980." } ]
+      "hint": {
+        "en": "1980.",
+        "es": "1980."
+      },
+      "solution": [
+        {
+          "tex": "1980",
+          "en": "1980.",
+          "es": "1980."
+        }
+      ]
+    },
+    {
+      "id": "aif-05-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Searle's Chinese Room is meant to show that...",
+        "es": "La habitacion china de Searle pretende mostrar que..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Manipulating symbols by rules (syntax) is not enough for understanding (semantics)",
+            "es": "Manipular simbolos por reglas (sintaxis) no basta para comprender (semantica)"
+          },
+          "correct": true,
+          "why": {
+            "en": "The person follows rules yet understands no Chinese — syntax != semantics.",
+            "es": "La persona sigue reglas pero no entiende chino — sintaxis != semantica."
+          }
+        },
+        {
+          "text": {
+            "en": "Computers can never process language",
+            "es": "Los ordenadores nunca pueden procesar lenguaje"
+          },
+          "correct": false,
+          "why": {
+            "en": "They clearly can process it; the claim is about understanding.",
+            "es": "Claramente pueden procesarlo; la tesis es sobre la comprension."
+          }
+        },
+        {
+          "text": {
+            "en": "Chinese is too hard for machines",
+            "es": "El chino es demasiado dificil para las maquinas"
+          },
+          "correct": false,
+          "why": {
+            "en": "The language is incidental to the argument.",
+            "es": "El idioma es incidental al argumento."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Syntax versus semantics.",
+        "es": "Sintaxis frente a semantica."
+      }
     }
   ],
   "references": [
-    { "source": "Searle — Minds, Brains, and Programs (1980)", "detail": { "en": "The Chinese Room", "es": "La habitación china" } }
+    {
+      "source": "Searle — Minds, Brains, and Programs (1980)",
+      "detail": {
+        "en": "The Chinese Room",
+        "es": "La habitación china"
+      }
+    }
   ]
 }

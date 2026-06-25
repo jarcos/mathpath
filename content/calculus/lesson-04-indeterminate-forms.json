@@ -3,13 +3,26 @@
   "subjectId": "calculus",
   "order": 4,
   "estimatedMinutes": 40,
-  "title": { "en": "Indeterminate Forms", "es": "Indeterminaciones" },
+  "title": {
+    "en": "Indeterminate Forms",
+    "es": "Indeterminaciones"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Some limits, on direct substitution, produce expressions like $\\tfrac00$, $\\tfrac{\\infty}{\\infty}$, $\\infty - \\infty$, or $0\\cdot\\infty$. These are **indeterminate forms**: the notation alone does not fix the answer, because the result depends on *how* the parts approach their limits. $\\tfrac00$ might come out as $0$, as $5$, as $\\infty$, or fail to exist — you must do more work to decide.",
         "es": "Algunos límites, al sustituir, producen expresiones como $\\tfrac00$, $\\tfrac{\\infty}{\\infty}$, $\\infty - \\infty$ o $0\\cdot\\infty$. Son **indeterminaciones**: la notación por sí sola no fija la respuesta, porque el resultado depende de *cómo* se aproximan las partes a sus límites. $\\tfrac00$ puede dar $0$, $5$, $\\infty$, o no existir — hay que trabajar más para decidir."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "calculus-03-limits"
+      ],
+      "note": {
+        "en": "Indeterminate forms arise when evaluating the limits just introduced.",
+        "es": "Las formas indeterminadas surgen al evaluar los limites recien vistos."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — limit at infinity", "es": "Ejemplo resuelto — límite en el infinito" },
+      "title": {
+        "en": "Worked example — limit at infinity",
+        "es": "Ejemplo resuelto — límite en el infinito"
+      },
       "content": {
         "en": "$\\lim_{x\\to\\infty}\\tfrac{3x^2+1}{x^2}$ is $\\tfrac{\\infty}{\\infty}$. Divide each term by $x^2$: $\\tfrac{3x^2/x^2 + 1/x^2}{x^2/x^2} = 3 + \\tfrac{1}{x^2}$. As $x\\to\\infty$, $\\tfrac{1}{x^2}\\to 0$, so the limit is $3$ — the ratio of the leading coefficients.",
         "es": "$\\lim_{x\\to\\infty}\\tfrac{3x^2+1}{x^2}$ es $\\tfrac{\\infty}{\\infty}$. Divide cada término por $x^2$: $\\tfrac{3x^2/x^2 + 1/x^2}{x^2/x^2} = 3 + \\tfrac{1}{x^2}$. Cuando $x\\to\\infty$, $\\tfrac{1}{x^2}\\to 0$, así el límite es $3$ — el cociente de los coeficientes principales."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "sympy"
+      ],
+      "code": {
+        "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# a 0/0 form, resolved symbolically\nprint(sp.limit((x**2 - 1) / (x - 1), x, 1))",
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# una forma 0/0, resuelta simbolicamente\nprint(sp.limit((x**2 - 1) / (x - 1), x, 1))"
+      },
+      "expectedOutput": "2",
+      "caption": {
+        "en": "SymPy resolves the 0/0 indeterminate form exactly.",
+        "es": "SymPy resuelve la forma indeterminada 0/0 de forma exacta."
       }
     }
   ],
@@ -39,43 +71,114 @@
     {
       "id": "calculus-04-e1",
       "answerType": "number",
-      "prompt": { "en": "Find $\\displaystyle\\lim_{x\\to 1}\\tfrac{x^2-1}{x-1}$.", "es": "Halla $\\displaystyle\\lim_{x\\to 1}\\tfrac{x^2-1}{x-1}$." },
+      "prompt": {
+        "en": "Find $\\displaystyle\\lim_{x\\to 1}\\tfrac{x^2-1}{x-1}$.",
+        "es": "Halla $\\displaystyle\\lim_{x\\to 1}\\tfrac{x^2-1}{x-1}$."
+      },
       "answer": "2",
-      "acceptedAlt": ["1+1"],
-      "hint": { "en": "Factor: x² − 1 = (x−1)(x+1).", "es": "Factoriza: x² − 1 = (x−1)(x+1)." },
-      "solution": [ { "tex": "\\tfrac{(x-1)(x+1)}{x-1} = x+1 \\to 2", "en": "Cancel and substitute.", "es": "Cancela y sustituye." } ]
+      "acceptedAlt": [
+        "1+1"
+      ],
+      "hint": {
+        "en": "Factor: x² − 1 = (x−1)(x+1).",
+        "es": "Factoriza: x² − 1 = (x−1)(x+1)."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{(x-1)(x+1)}{x-1} = x+1 \\to 2",
+          "en": "Cancel and substitute.",
+          "es": "Cancela y sustituye."
+        }
+      ]
     },
     {
       "id": "calculus-04-e2",
       "answerType": "number",
-      "prompt": { "en": "Find $\\displaystyle\\lim_{x\\to\\infty}\\tfrac{3x^2+1}{x^2}$.", "es": "Halla $\\displaystyle\\lim_{x\\to\\infty}\\tfrac{3x^2+1}{x^2}$." },
+      "prompt": {
+        "en": "Find $\\displaystyle\\lim_{x\\to\\infty}\\tfrac{3x^2+1}{x^2}$.",
+        "es": "Halla $\\displaystyle\\lim_{x\\to\\infty}\\tfrac{3x^2+1}{x^2}$."
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "Leading terms dominate.", "es": "Dominan los términos principales." },
-      "solution": [ { "tex": "3 + \\tfrac{1}{x^2} \\to 3", "en": "The 1/x² term vanishes.", "es": "El término 1/x² se anula." } ]
+      "hint": {
+        "en": "Leading terms dominate.",
+        "es": "Dominan los términos principales."
+      },
+      "solution": [
+        {
+          "tex": "3 + \\tfrac{1}{x^2} \\to 3",
+          "en": "The 1/x² term vanishes.",
+          "es": "El término 1/x² se anula."
+        }
+      ]
     },
     {
       "id": "calculus-04-e3",
       "answerType": "number",
-      "prompt": { "en": "Find $\\displaystyle\\lim_{x\\to\\infty}\\tfrac{1}{x}$.", "es": "Halla $\\displaystyle\\lim_{x\\to\\infty}\\tfrac{1}{x}$." },
+      "prompt": {
+        "en": "Find $\\displaystyle\\lim_{x\\to\\infty}\\tfrac{1}{x}$.",
+        "es": "Halla $\\displaystyle\\lim_{x\\to\\infty}\\tfrac{1}{x}$."
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Denominator grows without bound.", "es": "El denominador crece sin límite." },
-      "solution": [ { "tex": "\\tfrac1x \\to 0", "en": "Tends to zero.", "es": "Tiende a cero." } ]
+      "hint": {
+        "en": "Denominator grows without bound.",
+        "es": "El denominador crece sin límite."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac1x \\to 0",
+          "en": "Tends to zero.",
+          "es": "Tiende a cero."
+        }
+      ]
     },
     {
       "id": "calculus-04-e4",
       "answerType": "text",
-      "prompt": { "en": "$\\tfrac00$ is an example of what kind of form? (one word)", "es": "$\\tfrac00$ es un ejemplo de qué tipo de forma? (una palabra)" },
+      "prompt": {
+        "en": "$\\tfrac00$ is an example of what kind of form? (one word)",
+        "es": "$\\tfrac00$ es un ejemplo de qué tipo de forma? (una palabra)"
+      },
       "answer": "indeterminate",
-      "acceptedAlt": ["indeterminada", "indeterminado"],
-      "hint": { "en": "It requires more work to resolve.", "es": "Requiere más trabajo para resolverse." },
-      "solution": [ { "tex": "\\tfrac00", "en": "An indeterminate form.", "es": "Una indeterminación." } ]
+      "acceptedAlt": [
+        "indeterminada",
+        "indeterminado"
+      ],
+      "hint": {
+        "en": "It requires more work to resolve.",
+        "es": "Requiere más trabajo para resolverse."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac00",
+          "en": "An indeterminate form.",
+          "es": "Una indeterminación."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 2.6, Limits at Infinity; Ch. 4.4 (indeterminate forms)", "es": "Cap. 2.6, límites en el infinito; Cap. 4.4 (indeterminaciones)" } },
-    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 2 & 11, indeterminate forms", "es": "Cap. 2 y 11, indeterminaciones" } },
-    { "source": "UOC — Límites de funciones y continuidad (PID_00284288)", "detail": { "en": "Algebra of limits; indeterminate forms", "es": "Álgebra de límites; indeterminaciones" } }
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 2.6, Limits at Infinity; Ch. 4.4 (indeterminate forms)",
+        "es": "Cap. 2.6, límites en el infinito; Cap. 4.4 (indeterminaciones)"
+      }
+    },
+    {
+      "source": "Salas, Etgen & Hille — Calculus",
+      "detail": {
+        "en": "Ch. 2 & 11, indeterminate forms",
+        "es": "Cap. 2 y 11, indeterminaciones"
+      }
+    },
+    {
+      "source": "UOC — Límites de funciones y continuidad (PID_00284288)",
+      "detail": {
+        "en": "Algebra of limits; indeterminate forms",
+        "es": "Álgebra de límites; indeterminaciones"
+      }
+    }
   ]
 }

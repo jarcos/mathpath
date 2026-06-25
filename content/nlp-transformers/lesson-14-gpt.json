@@ -3,13 +3,26 @@
   "subjectId": "nlp-transformers",
   "order": 14,
   "estimatedMinutes": 35,
-  "title": { "en": "GPT: Decoder Models", "es": "GPT: modelos decodificadores" },
+  "title": {
+    "en": "GPT: Decoder Models",
+    "es": "GPT: modelos decodificadores"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "The **GPT** family keeps only the Transformer **decoder** stack and trains it as an **autoregressive** language model: predict the next token given all previous ones. It uses **causal (masked) self-attention** so position $t$ can only attend to positions $\\le t$, never peeking ahead. This makes GPT a natural text *generator*.",
         "es": "La familia **GPT** conserva solo la pila **decodificadora** del Transformer y la entrena como modelo de lenguaje **autorregresivo**: predecir el siguiente token dados todos los anteriores. Usa **autoatención causal (enmascarada)** para que la posición $t$ solo atienda a posiciones $\\le t$, sin mirar adelante. Esto hace de GPT un *generador* de texto natural."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "nlp-12-transformer"
+      ],
+      "note": {
+        "en": "GPT is a transformer decoder stack.",
+        "es": "GPT es una pila de decodificadores transformer."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "In causal attention, token at position $4$ can attend to $4$ positions (1–4). Providing $3$ examples in the prompt before the real query is '3-shot' prompting.",
         "es": "En la atención causal, el token en la posición $4$ puede atender a $4$ posiciones (1–4). Dar $3$ ejemplos en el prompt antes de la consulta real es prompting '3-shot'."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# GPT predicts the next token: pick the highest-scoring one\nlogits = np.array([0.1, 2.0, 0.5])\nvocab = [\"a\", \"b\", \"c\"]\nprint(vocab[int(np.argmax(logits))])",
+        "es": "import numpy as np\n# GPT predice el siguiente token: elige el de mayor puntuacion\nlogits = np.array([0.1, 2.0, 0.5])\nvocab = [\"a\", \"b\", \"c\"]\nprint(vocab[int(np.argmax(logits))])"
+      },
+      "expectedOutput": "b",
+      "caption": {
+        "en": "GPT generates text one next-token prediction at a time.",
+        "es": "GPT genera texto una prediccion de siguiente token cada vez."
       }
     }
   ],
@@ -39,42 +71,155 @@
     {
       "id": "nlp-14-e1",
       "answerType": "number",
-      "prompt": { "en": "In causal attention, how many positions can token 4 attend to (positions 1–4)?", "es": "En atención causal, ¿a cuántas posiciones puede atender el token 4 (posiciones 1–4)?" },
+      "prompt": {
+        "en": "In causal attention, how many positions can token 4 attend to (positions 1–4)?",
+        "es": "En atención causal, ¿a cuántas posiciones puede atender el token 4 (posiciones 1–4)?"
+      },
       "answer": "4",
       "acceptedAlt": [],
-      "hint": { "en": "Itself and all before.", "es": "Él mismo y todos los anteriores." },
-      "solution": [ { "tex": "4", "en": "Four.", "es": "Cuatro." } ]
+      "hint": {
+        "en": "Itself and all before.",
+        "es": "Él mismo y todos los anteriores."
+      },
+      "solution": [
+        {
+          "tex": "4",
+          "en": "Four.",
+          "es": "Cuatro."
+        }
+      ]
     },
     {
       "id": "nlp-14-e2",
       "answerType": "text",
-      "prompt": { "en": "GPT keeps only the Transformer ___ stack. (one word)", "es": "GPT conserva solo la pila ___ del Transformer. (una palabra)" },
+      "prompt": {
+        "en": "GPT keeps only the Transformer ___ stack. (one word)",
+        "es": "GPT conserva solo la pila ___ del Transformer. (una palabra)"
+      },
       "answer": "decoder",
-      "acceptedAlt": ["decodificador"],
-      "hint": { "en": "Not the encoder.", "es": "No el codificador." },
-      "solution": [ { "tex": "\\text{decoder}", "en": "Decoder.", "es": "Decodificador." } ]
+      "acceptedAlt": [
+        "decodificador"
+      ],
+      "hint": {
+        "en": "Not the encoder.",
+        "es": "No el codificador."
+      },
+      "solution": [
+        {
+          "tex": "\\text{decoder}",
+          "en": "Decoder.",
+          "es": "Decodificador."
+        }
+      ]
     },
     {
       "id": "nlp-14-e3",
       "answerType": "text",
-      "prompt": { "en": "The next-token training loss is ___-entropy. (one word)", "es": "La pérdida de entrenamiento de siguiente token es entropía ___. (una palabra)" },
+      "prompt": {
+        "en": "The next-token training loss is ___-entropy. (one word)",
+        "es": "La pérdida de entrenamiento de siguiente token es entropía ___. (una palabra)"
+      },
       "answer": "cross",
-      "acceptedAlt": ["cruzada"],
-      "hint": { "en": "Cross-___.", "es": "Entropía ___." },
-      "solution": [ { "tex": "\\text{cross-entropy}", "en": "Cross.", "es": "Cruzada." } ]
+      "acceptedAlt": [
+        "cruzada"
+      ],
+      "hint": {
+        "en": "Cross-___.",
+        "es": "Entropía ___."
+      },
+      "solution": [
+        {
+          "tex": "\\text{cross-entropy}",
+          "en": "Cross.",
+          "es": "Cruzada."
+        }
+      ]
     },
     {
       "id": "nlp-14-e4",
       "answerType": "text",
-      "prompt": { "en": "Doing a task from the prompt with zero examples is ___-shot. (one word)", "es": "Hacer una tarea desde el prompt con cero ejemplos es ___-shot. (una palabra)" },
+      "prompt": {
+        "en": "Doing a task from the prompt with zero examples is ___-shot. (one word)",
+        "es": "Hacer una tarea desde el prompt con cero ejemplos es ___-shot. (una palabra)"
+      },
       "answer": "zero",
-      "acceptedAlt": ["cero"],
-      "hint": { "en": "No examples.", "es": "Sin ejemplos." },
-      "solution": [ { "tex": "\\text{zero-shot}", "en": "Zero.", "es": "Zero (cero)." } ]
+      "acceptedAlt": [
+        "cero"
+      ],
+      "hint": {
+        "en": "No examples.",
+        "es": "Sin ejemplos."
+      },
+      "solution": [
+        {
+          "tex": "\\text{zero-shot}",
+          "en": "Zero.",
+          "es": "Zero (cero)."
+        }
+      ]
+    },
+    {
+      "id": "nlp-14-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A GPT-style model is trained to...",
+        "es": "Un modelo tipo GPT se entrena para..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Predict the next token given the previous ones",
+            "es": "Predecir el siguiente token dados los anteriores"
+          },
+          "correct": true,
+          "why": {
+            "en": "GPT is autoregressive: it models P(next token | context).",
+            "es": "GPT es autorregresivo: modela P(siguiente token | contexto)."
+          }
+        },
+        {
+          "text": {
+            "en": "Fill in masked tokens using both sides",
+            "es": "Rellenar tokens enmascarados usando ambos lados"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's BERT's masked-language-model objective, not GPT's.",
+            "es": "Ese es el objetivo de modelo de lenguaje enmascarado de BERT, no de GPT."
+          }
+        },
+        {
+          "text": {
+            "en": "Cluster documents without labels",
+            "es": "Agrupar documentos sin etiquetas"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's unsupervised clustering, unrelated to GPT's training.",
+            "es": "Eso es agrupamiento no supervisado, ajeno al entrenamiento de GPT."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Autoregressive = left to right.",
+        "es": "Autorregresivo = de izquierda a derecha."
+      }
     }
   ],
   "references": [
-    { "source": "Radford et al. — Improving Language Understanding by Generative Pre-Training (GPT, 2018)", "detail": { "en": "Decoder-only autoregressive LM", "es": "LM autorregresivo solo-decodificador" } },
-    { "source": "Brown et al. — Language Models are Few-Shot Learners (GPT-3, 2020)", "detail": { "en": "Few-shot and scale", "es": "Few-shot y escala" } }
+    {
+      "source": "Radford et al. — Improving Language Understanding by Generative Pre-Training (GPT, 2018)",
+      "detail": {
+        "en": "Decoder-only autoregressive LM",
+        "es": "LM autorregresivo solo-decodificador"
+      }
+    },
+    {
+      "source": "Brown et al. — Language Models are Few-Shot Learners (GPT-3, 2020)",
+      "detail": {
+        "en": "Few-shot and scale",
+        "es": "Few-shot y escala"
+      }
+    }
   ]
 }

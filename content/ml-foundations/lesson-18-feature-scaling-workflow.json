@@ -3,7 +3,10 @@
   "subjectId": "ml-foundations",
   "order": 18,
   "estimatedMinutes": 35,
-  "title": { "en": "Feature Scaling & the ML Workflow", "es": "Escalado de características y el flujo de trabajo de ML" },
+  "title": {
+    "en": "Feature Scaling & the ML Workflow",
+    "es": "Escalado de características y el flujo de trabajo de ML"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,30 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Min-max normalizing $x = 5$ in the range $[0, 10]$: $\\tfrac{5 - 0}{10 - 0} = 0.5$. Standardizing $x = 8$ with mean $\\mu = 5$ and standard deviation $\\sigma = 3$: $z = \\tfrac{8 - 5}{3} = 1$ — one standard deviation above the mean.",
         "es": "Normalizando min-max $x = 5$ en el rango $[0, 10]$: $\\tfrac{5 - 0}{10 - 0} = 0.5$. Estandarizando $x = 8$ con media $\\mu = 5$ y desviación típica $\\sigma = 3$: $z = \\tfrac{8 - 5}{3} = 1$ — una desviación típica por encima de la media."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy",
+        "scikit-learn"
+      ],
+      "code": {
+        "en": "import numpy as np\nfrom sklearn.preprocessing import StandardScaler\nX = np.array([[1.0], [2.0], [3.0]])\n# scaling to mean 0, std 1 is a standard preprocessing step\nprint(np.round(StandardScaler().fit_transform(X).ravel(), 4).tolist())",
+        "es": "import numpy as np\nfrom sklearn.preprocessing import StandardScaler\nX = np.array([[1.0], [2.0], [3.0]])\n# escalar a media 0, desv. 1 es un paso habitual de preprocesado\nprint(np.round(StandardScaler().fit_transform(X).ravel(), 4).tolist())"
+      },
+      "expectedOutput": "[-1.2247, 0.0, 1.2247]",
+      "caption": {
+        "en": "Feature scaling puts every feature on a comparable scale.",
+        "es": "El escalado pone cada caracteristica en una escala comparable."
       }
     }
   ],
@@ -39,42 +62,115 @@
     {
       "id": "mlf-18-e1",
       "answerType": "text",
-      "prompt": { "en": "Rescaling features to comparable ranges is feature ___. (one word)", "es": "Reescalar las características a rangos comparables es ___ de características. (una palabra)" },
+      "prompt": {
+        "en": "Rescaling features to comparable ranges is feature ___. (one word)",
+        "es": "Reescalar las características a rangos comparables es ___ de características. (una palabra)"
+      },
       "answer": "scaling",
-      "acceptedAlt": ["escalado", "scaling"],
-      "hint": { "en": "Min-max or standardization.", "es": "Min-max o estandarización." },
-      "solution": [ { "tex": "x' = \\tfrac{x-\\min}{\\max-\\min}", "en": "Feature scaling.", "es": "Escalado de características." } ]
+      "acceptedAlt": [
+        "escalado",
+        "scaling"
+      ],
+      "hint": {
+        "en": "Min-max or standardization.",
+        "es": "Min-max o estandarización."
+      },
+      "solution": [
+        {
+          "tex": "x' = \\tfrac{x-\\min}{\\max-\\min}",
+          "en": "Feature scaling.",
+          "es": "Escalado de características."
+        }
+      ]
     },
     {
       "id": "mlf-18-e2",
       "answerType": "number",
-      "prompt": { "en": "Min-max normalize $x=5$ in range $[0,10]$: $(x-0)/(10-0)$?", "es": "Normaliza min-max $x=5$ en el rango $[0,10]$: $(x-0)/(10-0)$?" },
+      "prompt": {
+        "en": "Min-max normalize $x=5$ in range $[0,10]$: $(x-0)/(10-0)$?",
+        "es": "Normaliza min-max $x=5$ en el rango $[0,10]$: $(x-0)/(10-0)$?"
+      },
       "answer": "0.5",
-      "acceptedAlt": ["5/10", "1/2"],
-      "hint": { "en": "5 / 10.", "es": "5 / 10." },
-      "solution": [ { "tex": "\\tfrac{5}{10} = 0.5", "en": "Normalized value.", "es": "Valor normalizado." } ]
+      "acceptedAlt": [
+        "5/10",
+        "1/2"
+      ],
+      "hint": {
+        "en": "5 / 10.",
+        "es": "5 / 10."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{5}{10} = 0.5",
+          "en": "Normalized value.",
+          "es": "Valor normalizado."
+        }
+      ]
     },
     {
       "id": "mlf-18-e3",
       "answerType": "number",
-      "prompt": { "en": "Standardize $x=8$ with $\\mu=5$, $\\sigma=3$: $z=(x-\\mu)/\\sigma$?", "es": "Estandariza $x=8$ con $\\mu=5$, $\\sigma=3$: $z=(x-\\mu)/\\sigma$?" },
+      "prompt": {
+        "en": "Standardize $x=8$ with $\\mu=5$, $\\sigma=3$: $z=(x-\\mu)/\\sigma$?",
+        "es": "Estandariza $x=8$ con $\\mu=5$, $\\sigma=3$: $z=(x-\\mu)/\\sigma$?"
+      },
       "answer": "1",
-      "acceptedAlt": ["(8-5)/3"],
-      "hint": { "en": "(8 − 5) / 3.", "es": "(8 − 5) / 3." },
-      "solution": [ { "tex": "\\tfrac{8-5}{3} = 1", "en": "z-score.", "es": "Puntuación z." } ]
+      "acceptedAlt": [
+        "(8-5)/3"
+      ],
+      "hint": {
+        "en": "(8 − 5) / 3.",
+        "es": "(8 − 5) / 3."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{8-5}{3} = 1",
+          "en": "z-score.",
+          "es": "Puntuación z."
+        }
+      ]
     },
     {
       "id": "mlf-18-e4",
       "answerType": "text",
-      "prompt": { "en": "The ML workflow: data → train → ___ → deploy. (one word)", "es": "El flujo de ML: datos → entrenar → ___ → desplegar. (una palabra)" },
+      "prompt": {
+        "en": "The ML workflow: data → train → ___ → deploy. (one word)",
+        "es": "El flujo de ML: datos → entrenar → ___ → desplegar. (una palabra)"
+      },
       "answer": "evaluate",
-      "acceptedAlt": ["evaluar", "evaluation", "evaluación", "evaluacion"],
-      "hint": { "en": "Measure performance.", "es": "Medir el rendimiento." },
-      "solution": [ { "tex": "\\text{evaluate}", "en": "Evaluate.", "es": "Evaluar." } ]
+      "acceptedAlt": [
+        "evaluar",
+        "evaluation",
+        "evaluación",
+        "evaluacion"
+      ],
+      "hint": {
+        "en": "Measure performance.",
+        "es": "Medir el rendimiento."
+      },
+      "solution": [
+        {
+          "tex": "\\text{evaluate}",
+          "en": "Evaluate.",
+          "es": "Evaluar."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5 & 11, preprocessing and ML methodology", "es": "Cap. 5 y 11, preprocesamiento y metodología de ML" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 18–19, the machine-learning pipeline", "es": "Cap. 18–19, el pipeline de aprendizaje automático" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5 & 11, preprocessing and ML methodology",
+        "es": "Cap. 5 y 11, preprocesamiento y metodología de ML"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 18–19, the machine-learning pipeline",
+        "es": "Cap. 18–19, el pipeline de aprendizaje automático"
+      }
+    }
   ]
 }

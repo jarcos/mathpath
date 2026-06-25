@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 5,
   "estimatedMinutes": 30,
-  "title": { "en": "Pooling Layers", "es": "Capas de agrupamiento (pooling)" },
+  "title": {
+    "en": "Pooling Layers",
+    "es": "Capas de agrupamiento (pooling)"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Max-pooling $[1, 3, 2, 4]$ with window size $2$: first window $\\max(1,3) = 3$, second window $\\max(2,4) = 4$. Average-pooling the window $[2, 4]$ gives $\\tfrac{2+4}{2} = 3$.",
         "es": "Max-pooling de $[1, 3, 2, 4]$ con ventana $2$: primera ventana $\\max(1,3) = 3$, segunda ventana $\\max(2,4) = 4$. Average-pooling de la ventana $[2, 4]$ da $\\tfrac{2+4}{2} = 3$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nx = np.array([[1, 3, 2, 4],\n              [5, 6, 1, 2],\n              [7, 8, 0, 1],\n              [3, 2, 4, 0]])\n# 2x2 max pooling, stride 2: take the max of each 2x2 block\nout = x.reshape(2, 2, 2, 2).max(axis=(1, 3))\nprint(out.tolist())",
+        "es": "import numpy as np\nx = np.array([[1, 3, 2, 4],\n              [5, 6, 1, 2],\n              [7, 8, 0, 1],\n              [3, 2, 4, 0]])\n# max-pooling 2x2, paso 2: toma el máximo de cada bloque 2x2\nout = x.reshape(2, 2, 2, 2).max(axis=(1, 3))\nprint(out.tolist())"
+      },
+      "expectedOutput": "[[6, 4], [8, 4]]",
+      "caption": {
+        "en": "Max pooling downsamples by keeping the strongest activation in each window.",
+        "es": "El max-pooling submuestrea conservando la activación más fuerte de cada ventana."
       }
     }
   ],
@@ -39,41 +61,106 @@
     {
       "id": "dl-05-e1",
       "answerType": "number",
-      "prompt": { "en": "Max-pool $[1,3,2,4]$, window 2: first output $\\max(1,3)$?", "es": "Max-pool $[1,3,2,4]$, ventana 2: primera salida $\\max(1,3)$?" },
+      "prompt": {
+        "en": "Max-pool $[1,3,2,4]$, window 2: first output $\\max(1,3)$?",
+        "es": "Max-pool $[1,3,2,4]$, ventana 2: primera salida $\\max(1,3)$?"
+      },
       "answer": "3",
-      "acceptedAlt": ["max(1,3)"],
-      "hint": { "en": "Larger of 1 and 3.", "es": "El mayor de 1 y 3." },
-      "solution": [ { "tex": "\\max(1,3) = 3", "en": "First pooled value.", "es": "Primer valor agrupado." } ]
+      "acceptedAlt": [
+        "max(1,3)"
+      ],
+      "hint": {
+        "en": "Larger of 1 and 3.",
+        "es": "El mayor de 1 y 3."
+      },
+      "solution": [
+        {
+          "tex": "\\max(1,3) = 3",
+          "en": "First pooled value.",
+          "es": "Primer valor agrupado."
+        }
+      ]
     },
     {
       "id": "dl-05-e2",
       "answerType": "number",
-      "prompt": { "en": "Max-pool $[1,3,2,4]$, window 2: second output $\\max(2,4)$?", "es": "Max-pool $[1,3,2,4]$, ventana 2: segunda salida $\\max(2,4)$?" },
+      "prompt": {
+        "en": "Max-pool $[1,3,2,4]$, window 2: second output $\\max(2,4)$?",
+        "es": "Max-pool $[1,3,2,4]$, ventana 2: segunda salida $\\max(2,4)$?"
+      },
       "answer": "4",
-      "acceptedAlt": ["max(2,4)"],
-      "hint": { "en": "Larger of 2 and 4.", "es": "El mayor de 2 y 4." },
-      "solution": [ { "tex": "\\max(2,4) = 4", "en": "Second pooled value.", "es": "Segundo valor agrupado." } ]
+      "acceptedAlt": [
+        "max(2,4)"
+      ],
+      "hint": {
+        "en": "Larger of 2 and 4.",
+        "es": "El mayor de 2 y 4."
+      },
+      "solution": [
+        {
+          "tex": "\\max(2,4) = 4",
+          "en": "Second pooled value.",
+          "es": "Segundo valor agrupado."
+        }
+      ]
     },
     {
       "id": "dl-05-e3",
       "answerType": "number",
-      "prompt": { "en": "Average-pool the window $[2,4]$.", "es": "Average-pool de la ventana $[2,4]$." },
+      "prompt": {
+        "en": "Average-pool the window $[2,4]$.",
+        "es": "Average-pool de la ventana $[2,4]$."
+      },
       "answer": "3",
-      "acceptedAlt": ["(2+4)/2", "mean([2,4])"],
-      "hint": { "en": "Mean of 2 and 4.", "es": "Media de 2 y 4." },
-      "solution": [ { "tex": "\\tfrac{2+4}{2} = 3", "en": "Average.", "es": "Media." } ]
+      "acceptedAlt": [
+        "(2+4)/2",
+        "mean([2,4])"
+      ],
+      "hint": {
+        "en": "Mean of 2 and 4.",
+        "es": "Media de 2 y 4."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{2+4}{2} = 3",
+          "en": "Average.",
+          "es": "Media."
+        }
+      ]
     },
     {
       "id": "dl-05-e4",
       "answerType": "text",
-      "prompt": { "en": "Pooling ___ the spatial size of a feature map. (one word)", "es": "El pooling ___ el tamaño espacial de un mapa de características. (una palabra)" },
+      "prompt": {
+        "en": "Pooling ___ the spatial size of a feature map. (one word)",
+        "es": "El pooling ___ el tamaño espacial de un mapa de características. (una palabra)"
+      },
       "answer": "reduces",
-      "acceptedAlt": ["reduce", "downsamples", "disminuye"],
-      "hint": { "en": "Downsampling.", "es": "Submuestreo." },
-      "solution": [ { "tex": "\\downarrow \\text{size}", "en": "Reduces.", "es": "Reduce." } ]
+      "acceptedAlt": [
+        "reduce",
+        "downsamples",
+        "disminuye"
+      ],
+      "hint": {
+        "en": "Downsampling.",
+        "es": "Submuestreo."
+      },
+      "solution": [
+        {
+          "tex": "\\downarrow \\text{size}",
+          "en": "Reduces.",
+          "es": "Reduce."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 9.3, pooling", "es": "Cap. 9.3, pooling" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 9.3, pooling",
+        "es": "Cap. 9.3, pooling"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "calculus",
   "order": 1,
   "estimatedMinutes": 40,
-  "title": { "en": "Sequences & Their Limits", "es": "Sucesiones y sus límites" },
+  "title": {
+    "en": "Sequences & Their Limits",
+    "es": "Sucesiones y sus límites"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Find $\\lim_{n\\to\\infty}\\tfrac{2n+1}{n}$. Split: $\\tfrac{2n+1}{n} = 2 + \\tfrac{1}{n}$. As $n\\to\\infty$ the $\\tfrac1n$ vanishes, leaving the limit $2$. Equivalently, divide top and bottom by $n$ — the standard trick for such ratios.",
         "es": "Halla $\\lim_{n\\to\\infty}\\tfrac{2n+1}{n}$. Separa: $\\tfrac{2n+1}{n} = 2 + \\tfrac{1}{n}$. Cuando $n\\to\\infty$ el $\\tfrac1n$ se anula, dejando el límite $2$. Equivalentemente, divide numerador y denominador por $n$ — el truco estándar para estos cocientes."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# a sequence that approaches Euler number e\nn = 10000\nprint(round((1 + 1/n)**n, 4))",
+        "es": "# una sucesion que se aproxima al numero e de Euler\nn = 10000\nprint(round((1 + 1/n)**n, 4))"
+      },
+      "expectedOutput": "2.7181",
+      "caption": {
+        "en": "As n grows, (1 + 1/n)^n converges to e ~ 2.718.",
+        "es": "Al crecer n, (1 + 1/n)^n converge a e ~ 2,718."
       }
     }
   ],
@@ -39,46 +59,116 @@
     {
       "id": "calculus-01-e1",
       "answerType": "number",
-      "prompt": { "en": "Find $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{1}{n}$.", "es": "Halla $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{1}{n}$." },
+      "prompt": {
+        "en": "Find $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{1}{n}$.",
+        "es": "Halla $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{1}{n}$."
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "1 divided by ever-larger numbers.", "es": "1 dividido entre números cada vez mayores." },
-      "solution": [ { "tex": "\\tfrac1n \\to 0", "en": "Terms shrink to zero.", "es": "Los términos tienden a cero." } ]
+      "hint": {
+        "en": "1 divided by ever-larger numbers.",
+        "es": "1 dividido entre números cada vez mayores."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac1n \\to 0",
+          "en": "Terms shrink to zero.",
+          "es": "Los términos tienden a cero."
+        }
+      ]
     },
     {
       "id": "calculus-01-e2",
       "answerType": "number",
-      "prompt": { "en": "Find $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{2n+1}{n}$.", "es": "Halla $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{2n+1}{n}$." },
+      "prompt": {
+        "en": "Find $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{2n+1}{n}$.",
+        "es": "Halla $\\displaystyle\\lim_{n\\to\\infty} \\tfrac{2n+1}{n}$."
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Split into 2 + 1/n.", "es": "Separa en 2 + 1/n." },
+      "hint": {
+        "en": "Split into 2 + 1/n.",
+        "es": "Separa en 2 + 1/n."
+      },
       "solution": [
-        { "tex": "\\tfrac{2n+1}{n} = 2 + \\tfrac1n", "en": "Rewrite.", "es": "Reescribe." },
-        { "tex": "\\to 2", "en": "The 1/n term vanishes.", "es": "El término 1/n se anula." }
+        {
+          "tex": "\\tfrac{2n+1}{n} = 2 + \\tfrac1n",
+          "en": "Rewrite.",
+          "es": "Reescribe."
+        },
+        {
+          "tex": "\\to 2",
+          "en": "The 1/n term vanishes.",
+          "es": "El término 1/n se anula."
+        }
       ]
     },
     {
       "id": "calculus-01-e3",
       "answerType": "number",
-      "prompt": { "en": "For $a_n = n^2$, find $a_4$.", "es": "Para $a_n = n^2$, halla $a_4$." },
+      "prompt": {
+        "en": "For $a_n = n^2$, find $a_4$.",
+        "es": "Para $a_n = n^2$, halla $a_4$."
+      },
       "answer": "16",
-      "acceptedAlt": ["4^2"],
-      "hint": { "en": "Substitute n = 4.", "es": "Sustituye n = 4." },
-      "solution": [ { "tex": "a_4 = 4^2 = 16", "en": "Evaluate.", "es": "Evalúa." } ]
+      "acceptedAlt": [
+        "4^2"
+      ],
+      "hint": {
+        "en": "Substitute n = 4.",
+        "es": "Sustituye n = 4."
+      },
+      "solution": [
+        {
+          "tex": "a_4 = 4^2 = 16",
+          "en": "Evaluate.",
+          "es": "Evalúa."
+        }
+      ]
     },
     {
       "id": "calculus-01-e4",
       "answerType": "number",
-      "prompt": { "en": "Find $\\displaystyle\\lim_{n\\to\\infty} \\left(\\tfrac12\\right)^n$.", "es": "Halla $\\displaystyle\\lim_{n\\to\\infty} \\left(\\tfrac12\\right)^n$." },
+      "prompt": {
+        "en": "Find $\\displaystyle\\lim_{n\\to\\infty} \\left(\\tfrac12\\right)^n$.",
+        "es": "Halla $\\displaystyle\\lim_{n\\to\\infty} \\left(\\tfrac12\\right)^n$."
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Repeatedly halving.", "es": "Reduciendo a la mitad sin parar." },
-      "solution": [ { "tex": "(\\tfrac12)^n \\to 0", "en": "A ratio below 1 decays to 0.", "es": "Una razón menor que 1 decae a 0." } ]
+      "hint": {
+        "en": "Repeatedly halving.",
+        "es": "Reduciendo a la mitad sin parar."
+      },
+      "solution": [
+        {
+          "tex": "(\\tfrac12)^n \\to 0",
+          "en": "A ratio below 1 decays to 0.",
+          "es": "Una razón menor que 1 decae a 0."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 11.1, Sequences", "es": "Cap. 11.1, Sucesiones" } },
-    { "source": "Salas, Etgen & Hille — Calculus: One and Several Variables", "detail": { "en": "Ch. 11, sequences and limits", "es": "Cap. 11, sucesiones y límites" } },
-    { "source": "UOC — Sucesiones y series de números reales (PID_00284286)", "detail": { "en": "Sequences; limits of sequences", "es": "Sucesiones; límites de sucesiones" } }
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 11.1, Sequences",
+        "es": "Cap. 11.1, Sucesiones"
+      }
+    },
+    {
+      "source": "Salas, Etgen & Hille — Calculus: One and Several Variables",
+      "detail": {
+        "en": "Ch. 11, sequences and limits",
+        "es": "Cap. 11, sucesiones y límites"
+      }
+    },
+    {
+      "source": "UOC — Sucesiones y series de números reales (PID_00284286)",
+      "detail": {
+        "en": "Sequences; limits of sequences",
+        "es": "Sucesiones; límites de sucesiones"
+      }
+    }
   ]
 }

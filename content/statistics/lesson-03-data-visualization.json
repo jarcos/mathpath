@@ -3,7 +3,10 @@
   "subjectId": "statistics",
   "order": 3,
   "estimatedMinutes": 35,
-  "title": { "en": "Data Visualization & Quartiles", "es": "Visualización de datos y cuartiles" },
+  "title": {
+    "en": "Data Visualization & Quartiles",
+    "es": "Visualización de datos y cuartiles"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "If $Q_1 = 2$ and $Q_3 = 6$, the IQR is $6 - 2 = 4$. For sorted data $\\{2, 4, 6, 8\\}$ the median is the average of the two middle values, $\\tfrac{4+6}{2} = 5$.",
         "es": "Si $Q_1 = 2$ y $Q_3 = 6$, el IQR es $6 - 2 = 4$. Para los datos ordenados $\\{2, 4, 6, 8\\}$ la mediana es la media de los dos centrales, $\\tfrac{4+6}{2} = 5$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\ndata = np.array([1, 2, 2, 3, 3, 3, 4])\n# count how many times each value appears\nvalues, counts = np.unique(data, return_counts=True)\nprint(dict(zip(values.tolist(), counts.tolist())))",
+        "es": "import numpy as np\ndata = np.array([1, 2, 2, 3, 3, 3, 4])\n# cuenta cuántas veces aparece cada valor\nvalues, counts = np.unique(data, return_counts=True)\nprint(dict(zip(values.tolist(), counts.tolist())))"
+      },
+      "expectedOutput": "{1: 1, 2: 2, 3: 3, 4: 1}",
+      "caption": {
+        "en": "A frequency table is the data behind any histogram.",
+        "es": "Una tabla de frecuencias son los datos detrás de cualquier histograma."
       }
     }
   ],
@@ -39,42 +61,112 @@
     {
       "id": "stats-03-e1",
       "answerType": "number",
-      "prompt": { "en": "Find the median of $\\{1, 2, 3, 4, 5\\}$.", "es": "Halla la mediana de $\\{1, 2, 3, 4, 5\\}$." },
+      "prompt": {
+        "en": "Find the median of $\\{1, 2, 3, 4, 5\\}$.",
+        "es": "Halla la mediana de $\\{1, 2, 3, 4, 5\\}$."
+      },
       "answer": "3",
-      "acceptedAlt": ["median([1,2,3,4,5])"],
-      "hint": { "en": "The middle value.", "es": "El valor central." },
-      "solution": [ { "tex": "\\text{median} = 3", "en": "Middle of five.", "es": "Centro de cinco." } ]
+      "acceptedAlt": [
+        "median([1,2,3,4,5])"
+      ],
+      "hint": {
+        "en": "The middle value.",
+        "es": "El valor central."
+      },
+      "solution": [
+        {
+          "tex": "\\text{median} = 3",
+          "en": "Middle of five.",
+          "es": "Centro de cinco."
+        }
+      ]
     },
     {
       "id": "stats-03-e2",
       "answerType": "number",
-      "prompt": { "en": "If $Q_1 = 2$ and $Q_3 = 6$, find the IQR.", "es": "Si $Q_1 = 2$ y $Q_3 = 6$, halla el IQR." },
+      "prompt": {
+        "en": "If $Q_1 = 2$ and $Q_3 = 6$, find the IQR.",
+        "es": "Si $Q_1 = 2$ y $Q_3 = 6$, halla el IQR."
+      },
       "answer": "4",
-      "acceptedAlt": ["6-2"],
-      "hint": { "en": "Q3 − Q1.", "es": "Q3 − Q1." },
-      "solution": [ { "tex": "6 - 2 = 4", "en": "Interquartile range.", "es": "Rango intercuartílico." } ]
+      "acceptedAlt": [
+        "6-2"
+      ],
+      "hint": {
+        "en": "Q3 − Q1.",
+        "es": "Q3 − Q1."
+      },
+      "solution": [
+        {
+          "tex": "6 - 2 = 4",
+          "en": "Interquartile range.",
+          "es": "Rango intercuartílico."
+        }
+      ]
     },
     {
       "id": "stats-03-e3",
       "answerType": "text",
-      "prompt": { "en": "A histogram shows the ___ of the data. (one word)", "es": "Un histograma muestra la ___ de los datos. (una palabra)" },
+      "prompt": {
+        "en": "A histogram shows the ___ of the data. (one word)",
+        "es": "Un histograma muestra la ___ de los datos. (una palabra)"
+      },
       "answer": "distribution",
-      "acceptedAlt": ["distribución", "distribucion"],
-      "hint": { "en": "Its shape across bins.", "es": "Su forma a lo largo de los intervalos." },
-      "solution": [ { "tex": "\\text{distribution}", "en": "The distribution.", "es": "La distribución." } ]
+      "acceptedAlt": [
+        "distribución",
+        "distribucion"
+      ],
+      "hint": {
+        "en": "Its shape across bins.",
+        "es": "Su forma a lo largo de los intervalos."
+      },
+      "solution": [
+        {
+          "tex": "\\text{distribution}",
+          "en": "The distribution.",
+          "es": "La distribución."
+        }
+      ]
     },
     {
       "id": "stats-03-e4",
       "answerType": "number",
-      "prompt": { "en": "Find the median of $\\{2, 4, 6, 8\\}$.", "es": "Halla la mediana de $\\{2, 4, 6, 8\\}$." },
+      "prompt": {
+        "en": "Find the median of $\\{2, 4, 6, 8\\}$.",
+        "es": "Halla la mediana de $\\{2, 4, 6, 8\\}$."
+      },
       "answer": "5",
-      "acceptedAlt": ["(4+6)/2", "median([2,4,6,8])"],
-      "hint": { "en": "Average the two middle values.", "es": "Promedia los dos centrales." },
-      "solution": [ { "tex": "\\tfrac{4+6}{2} = 5", "en": "Median.", "es": "Mediana." } ]
+      "acceptedAlt": [
+        "(4+6)/2",
+        "median([2,4,6,8])"
+      ],
+      "hint": {
+        "en": "Average the two middle values.",
+        "es": "Promedia los dos centrales."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{4+6}{2} = 5",
+          "en": "Median.",
+          "es": "Mediana."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Describing data distributions", "es": "Descripción de distribuciones de datos" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, distributions", "es": "Cap. 3, distribuciones" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Describing data distributions",
+        "es": "Descripción de distribuciones de datos"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 3, distributions",
+        "es": "Cap. 3, distribuciones"
+      }
+    }
   ]
 }

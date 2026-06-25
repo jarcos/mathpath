@@ -3,7 +3,10 @@
   "subjectId": "reinforcement-learning",
   "order": 14,
   "estimatedMinutes": 40,
-  "title": { "en": "Policy Gradients", "es": "Gradientes de política" },
+  "title": {
+    "en": "Policy Gradients",
+    "es": "Gradientes de política"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A positive return $G=5$ scales the gradient step to increase the taken action's probability. Subtracting a baseline $b=3$ gives the advantage $G - b = 5 - 3 = 2$, a lower-variance signal that says the action was $2$ better than typical.",
         "es": "Un retorno positivo $G=5$ escala el paso de gradiente para aumentar la probabilidad de la acción tomada. Restar una línea base $b=3$ da la ventaja $G - b = 5 - 3 = 2$, una señal de menor varianza que dice que la acción fue $2$ mejor que lo típico."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nsoftmax = lambda z: np.exp(z - z.max()) / np.exp(z - z.max()).sum()\n# a policy maps preferences to action probabilities\nprefs = np.array([1.0, 2.0])\nprint(np.round(softmax(prefs), 4).tolist())",
+        "es": "import numpy as np\nsoftmax = lambda z: np.exp(z - z.max()) / np.exp(z - z.max()).sum()\n# una politica mapea preferencias a probabilidades de accion\nprefs = np.array([1.0, 2.0])\nprint(np.round(softmax(prefs), 4).tolist())"
+      },
+      "expectedOutput": "[0.2689, 0.7311]",
+      "caption": {
+        "en": "Policy gradients optimize the action probabilities directly.",
+        "es": "Los gradientes de politica optimizan directamente las probabilidades de accion."
       }
     }
   ],
@@ -39,42 +61,111 @@
     {
       "id": "rl-14-e1",
       "answerType": "number",
-      "prompt": { "en": "Advantage $G - b$ with $G=5$, baseline $b=3$?", "es": "Ventaja $G - b$ con $G=5$, línea base $b=3$?" },
+      "prompt": {
+        "en": "Advantage $G - b$ with $G=5$, baseline $b=3$?",
+        "es": "Ventaja $G - b$ con $G=5$, línea base $b=3$?"
+      },
       "answer": "2",
-      "acceptedAlt": ["5-3"],
-      "hint": { "en": "5 − 3.", "es": "5 − 3." },
-      "solution": [ { "tex": "5-3 = 2", "en": "Two.", "es": "Dos." } ]
+      "acceptedAlt": [
+        "5-3"
+      ],
+      "hint": {
+        "en": "5 − 3.",
+        "es": "5 − 3."
+      },
+      "solution": [
+        {
+          "tex": "5-3 = 2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "rl-14-e2",
       "answerType": "text",
-      "prompt": { "en": "Policy-gradient methods learn the ___ directly (not a value function). (one word)", "es": "Los métodos de gradiente de política aprenden la ___ directamente (no una función de valor). (una palabra)" },
+      "prompt": {
+        "en": "Policy-gradient methods learn the ___ directly (not a value function). (one word)",
+        "es": "Los métodos de gradiente de política aprenden la ___ directamente (no una función de valor). (una palabra)"
+      },
       "answer": "policy",
-      "acceptedAlt": ["política", "politica"],
-      "hint": { "en": "π_θ.", "es": "π_θ." },
-      "solution": [ { "tex": "\\pi_\\theta", "en": "Policy.", "es": "Política." } ]
+      "acceptedAlt": [
+        "política",
+        "politica"
+      ],
+      "hint": {
+        "en": "π_θ.",
+        "es": "π_θ."
+      },
+      "solution": [
+        {
+          "tex": "\\pi_\\theta",
+          "en": "Policy.",
+          "es": "Política."
+        }
+      ]
     },
     {
       "id": "rl-14-e3",
       "answerType": "text",
-      "prompt": { "en": "The basic policy-gradient algorithm is ___. (one word)", "es": "El algoritmo básico de gradiente de política es ___. (una palabra)" },
+      "prompt": {
+        "en": "The basic policy-gradient algorithm is ___. (one word)",
+        "es": "El algoritmo básico de gradiente de política es ___. (una palabra)"
+      },
       "answer": "reinforce",
       "acceptedAlt": [],
-      "hint": { "en": "Williams, 1992.", "es": "Williams, 1992." },
-      "solution": [ { "tex": "\\text{REINFORCE}", "en": "REINFORCE.", "es": "REINFORCE." } ]
+      "hint": {
+        "en": "Williams, 1992.",
+        "es": "Williams, 1992."
+      },
+      "solution": [
+        {
+          "tex": "\\text{REINFORCE}",
+          "en": "REINFORCE.",
+          "es": "REINFORCE."
+        }
+      ]
     },
     {
       "id": "rl-14-e4",
       "answerType": "text",
-      "prompt": { "en": "Subtracting a ___ from the return reduces gradient variance. (one word)", "es": "Restar una ___ del retorno reduce la varianza del gradiente. (una palabra)" },
+      "prompt": {
+        "en": "Subtracting a ___ from the return reduces gradient variance. (one word)",
+        "es": "Restar una ___ del retorno reduce la varianza del gradiente. (una palabra)"
+      },
       "answer": "baseline",
-      "acceptedAlt": ["línea base", "linea base", "base"],
-      "hint": { "en": "Often the state value.", "es": "A menudo el valor del estado." },
-      "solution": [ { "tex": "b(s)", "en": "Baseline.", "es": "Línea base." } ]
+      "acceptedAlt": [
+        "línea base",
+        "linea base",
+        "base"
+      ],
+      "hint": {
+        "en": "Often the state value.",
+        "es": "A menudo el valor del estado."
+      },
+      "solution": [
+        {
+          "tex": "b(s)",
+          "en": "Baseline.",
+          "es": "Línea base."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 13, policy gradient methods", "es": "Cap. 13, métodos de gradiente de política" } },
-    { "source": "Williams — Simple statistical gradient-following algorithms (REINFORCE, 1992)", "detail": { "en": "REINFORCE", "es": "REINFORCE" } }
+    {
+      "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)",
+      "detail": {
+        "en": "Ch. 13, policy gradient methods",
+        "es": "Cap. 13, métodos de gradiente de política"
+      }
+    },
+    {
+      "source": "Williams — Simple statistical gradient-following algorithms (REINFORCE, 1992)",
+      "detail": {
+        "en": "REINFORCE",
+        "es": "REINFORCE"
+      }
+    }
   ]
 }

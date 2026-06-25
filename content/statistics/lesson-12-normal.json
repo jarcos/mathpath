@@ -3,7 +3,10 @@
   "subjectId": "statistics",
   "order": 12,
   "estimatedMinutes": 40,
-  "title": { "en": "Continuous Distributions & the Normal", "es": "Distribuciones continuas y la normal" },
+  "title": {
+    "en": "Continuous Distributions & the Normal",
+    "es": "Distribuciones continuas y la normal"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "The standard normal has mean $0$ and standard deviation $1$. By the empirical rule, about $95\\%$ of its values lie within $2$ standard deviations of the mean. A z-score of $z = \\tfrac{x-\\mu}{\\sigma}$ tells you how many standard deviations $x$ is from the mean.",
         "es": "La normal estándar tiene media $0$ y desviación típica $1$. Por la regla empírica, alrededor del $95\\%$ de sus valores está a $2$ desviaciones típicas de la media. Una puntuación z $z = \\tfrac{x-\\mu}{\\sigma}$ dice a cuántas desviaciones típicas está $x$ de la media."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "scipy"
+      ],
+      "code": {
+        "en": "from scipy.stats import norm\n# cdf(1.96) ~ 0.975 (the 97.5th percentile) and the peak density at 0\nprint(round(float(norm.cdf(1.96)), 4))\nprint(round(float(norm.pdf(0)), 4))",
+        "es": "from scipy.stats import norm\n# cdf(1.96) ~ 0.975 (el percentil 97,5) y la densidad máxima en 0\nprint(round(float(norm.cdf(1.96)), 4))\nprint(round(float(norm.pdf(0)), 4))"
+      },
+      "expectedOutput": "0.975\n0.3989",
+      "caption": {
+        "en": "SciPy's norm gives the CDF and PDF of the standard normal.",
+        "es": "La norm de SciPy da la CDF y la PDF de la normal estándar."
       }
     }
   ],
@@ -39,42 +61,106 @@
     {
       "id": "stats-12-e1",
       "answerType": "number",
-      "prompt": { "en": "What is the mean of the standard normal distribution?", "es": "¿Cuál es la media de la normal estándar?" },
+      "prompt": {
+        "en": "What is the mean of the standard normal distribution?",
+        "es": "¿Cuál es la media de la normal estándar?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "It is centered at zero.", "es": "Está centrada en cero." },
-      "solution": [ { "tex": "\\mu = 0", "en": "Mean zero.", "es": "Media cero." } ]
+      "hint": {
+        "en": "It is centered at zero.",
+        "es": "Está centrada en cero."
+      },
+      "solution": [
+        {
+          "tex": "\\mu = 0",
+          "en": "Mean zero.",
+          "es": "Media cero."
+        }
+      ]
     },
     {
       "id": "stats-12-e2",
       "answerType": "number",
-      "prompt": { "en": "What is the standard deviation of the standard normal?", "es": "¿Cuál es la desviación típica de la normal estándar?" },
+      "prompt": {
+        "en": "What is the standard deviation of the standard normal?",
+        "es": "¿Cuál es la desviación típica de la normal estándar?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "Unit width.", "es": "Anchura unidad." },
-      "solution": [ { "tex": "\\sigma = 1", "en": "Standard deviation 1.", "es": "Desviación típica 1." } ]
+      "hint": {
+        "en": "Unit width.",
+        "es": "Anchura unidad."
+      },
+      "solution": [
+        {
+          "tex": "\\sigma = 1",
+          "en": "Standard deviation 1.",
+          "es": "Desviación típica 1."
+        }
+      ]
     },
     {
       "id": "stats-12-e3",
       "answerType": "text",
-      "prompt": { "en": "The normal distribution graph is called a ___ curve. (one word)", "es": "La gráfica de la normal se llama curva de ___. (una palabra)" },
+      "prompt": {
+        "en": "The normal distribution graph is called a ___ curve. (one word)",
+        "es": "La gráfica de la normal se llama curva de ___. (una palabra)"
+      },
       "answer": "bell",
-      "acceptedAlt": ["campana", "gaussian", "gaussiana"],
-      "hint": { "en": "Its symmetric shape.", "es": "Su forma simétrica." },
-      "solution": [ { "tex": "\\text{bell curve}", "en": "Bell curve.", "es": "Campana." } ]
+      "acceptedAlt": [
+        "campana",
+        "gaussian",
+        "gaussiana"
+      ],
+      "hint": {
+        "en": "Its symmetric shape.",
+        "es": "Su forma simétrica."
+      },
+      "solution": [
+        {
+          "tex": "\\text{bell curve}",
+          "en": "Bell curve.",
+          "es": "Campana."
+        }
+      ]
     },
     {
       "id": "stats-12-e4",
       "answerType": "number",
-      "prompt": { "en": "By the empirical rule, about what percent of data is within 2 standard deviations? (number only)", "es": "Por la regla empírica, ¿qué porcentaje aprox. de los datos está a 2 desviaciones típicas? (solo el número)" },
+      "prompt": {
+        "en": "By the empirical rule, about what percent of data is within 2 standard deviations? (number only)",
+        "es": "Por la regla empírica, ¿qué porcentaje aprox. de los datos está a 2 desviaciones típicas? (solo el número)"
+      },
       "answer": "95",
       "acceptedAlt": [],
-      "hint": { "en": "68-95-99.7 rule.", "es": "Regla 68-95-99.7." },
-      "solution": [ { "tex": "\\approx 95\\%", "en": "Within 2σ.", "es": "Dentro de 2σ." } ]
+      "hint": {
+        "en": "68-95-99.7 rule.",
+        "es": "Regla 68-95-99.7."
+      },
+      "solution": [
+        {
+          "tex": "\\approx 95\\%",
+          "en": "Within 2σ.",
+          "es": "Dentro de 2σ."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, the Gaussian distribution", "es": "Cap. 3, la distribución gaussiana" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Continuous distributions", "es": "Distribuciones continuas" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 3, the Gaussian distribution",
+        "es": "Cap. 3, la distribución gaussiana"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Continuous distributions",
+        "es": "Distribuciones continuas"
+      }
+    }
   ]
 }

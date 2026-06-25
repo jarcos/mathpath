@@ -3,13 +3,26 @@
   "subjectId": "neural-networks",
   "order": 10,
   "estimatedMinutes": 35,
-  "title": { "en": "Weight Updates & Training", "es": "Actualización de pesos y entrenamiento" },
+  "title": {
+    "en": "Weight Updates & Training",
+    "es": "Actualización de pesos y entrenamiento"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Once backpropagation has produced the gradient of the loss with respect to every weight, **gradient descent** updates them — exactly the algorithm from ML Foundations, now applied across the whole network. Each weight is nudged opposite its gradient: $w \\leftarrow w - \\eta\\,\\dfrac{\\partial L}{\\partial w}$, where $\\eta$ is the learning rate.",
         "es": "Una vez que la retropropagación produce el gradiente de la pérdida respecto a cada peso, el **descenso de gradiente** los actualiza — exactamente el algoritmo de Fundamentos de ML, ahora aplicado a toda la red. Cada peso se ajusta en sentido opuesto a su gradiente: $w \\leftarrow w - \\eta\\,\\dfrac{\\partial L}{\\partial w}$, donde $\\eta$ es la tasa de aprendizaje."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "nn-09-backprop"
+      ],
+      "note": {
+        "en": "Updates use the gradients from backpropagation.",
+        "es": "Las actualizaciones usan los gradientes de la retropropagacion."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Update a weight: $w = 0.5$, learning rate $\\eta = 0.1$, gradient $2$: $w \\leftarrow 0.5 - 0.1\\times 2 = 0.3$. With $w = 1$, $\\eta = 0.2$, gradient $5$: $w \\leftarrow 1 - 1 = 0$. At a minimum the gradient is $0$, so $w$ stops moving.",
         "es": "Actualiza un peso: $w = 0.5$, tasa $\\eta = 0.1$, gradiente $2$: $w \\leftarrow 0.5 - 0.1\\times 2 = 0.3$. Con $w = 1$, $\\eta = 0.2$, gradiente $5$: $w \\leftarrow 1 - 1 = 0$. En un mínimo el gradiente es $0$, así que $w$ deja de moverse."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# weight update: step downhill against the gradient\nw = 2.0\nlr = 0.01\ngrad = -24.0\nw = w - lr * grad\nprint(round(w, 4))",
+        "es": "# actualizacion del peso: paso cuesta abajo contra el gradiente\nw = 2.0\nlr = 0.01\ngrad = -24.0\nw = w - lr * grad\nprint(round(w, 4))"
+      },
+      "expectedOutput": "2.24",
+      "caption": {
+        "en": "Subtracting lr*grad nudges the weight toward lower loss.",
+        "es": "Restar lr*grad acerca el peso a una perdida menor."
       }
     }
   ],
@@ -39,42 +69,108 @@
     {
       "id": "nn-10-e1",
       "answerType": "number",
-      "prompt": { "en": "Update: $w=0.5$, $\\eta=0.1$, gradient $=2$. New $w = w - \\eta\\cdot\\text{grad}$?", "es": "Actualización: $w=0.5$, $\\eta=0.1$, gradiente $=2$. ¿Nuevo $w = w - \\eta\\cdot\\text{grad}$?" },
+      "prompt": {
+        "en": "Update: $w=0.5$, $\\eta=0.1$, gradient $=2$. New $w = w - \\eta\\cdot\\text{grad}$?",
+        "es": "Actualización: $w=0.5$, $\\eta=0.1$, gradiente $=2$. ¿Nuevo $w = w - \\eta\\cdot\\text{grad}$?"
+      },
       "answer": "0.3",
-      "acceptedAlt": ["0.5-0.1*2"],
-      "hint": { "en": "0.5 − 0.2.", "es": "0.5 − 0.2." },
-      "solution": [ { "tex": "0.5 - 0.2 = 0.3", "en": "Updated weight.", "es": "Peso actualizado." } ]
+      "acceptedAlt": [
+        "0.5-0.1*2"
+      ],
+      "hint": {
+        "en": "0.5 − 0.2.",
+        "es": "0.5 − 0.2."
+      },
+      "solution": [
+        {
+          "tex": "0.5 - 0.2 = 0.3",
+          "en": "Updated weight.",
+          "es": "Peso actualizado."
+        }
+      ]
     },
     {
       "id": "nn-10-e2",
       "answerType": "text",
-      "prompt": { "en": "Weights are updated in the direction opposite the ___. (one word)", "es": "Los pesos se actualizan en sentido opuesto al ___. (una palabra)" },
+      "prompt": {
+        "en": "Weights are updated in the direction opposite the ___. (one word)",
+        "es": "Los pesos se actualizan en sentido opuesto al ___. (una palabra)"
+      },
       "answer": "gradient",
-      "acceptedAlt": ["gradiente"],
-      "hint": { "en": "−η∇L.", "es": "−η∇L." },
-      "solution": [ { "tex": "w - \\eta\\nabla L", "en": "Gradient.", "es": "Gradiente." } ]
+      "acceptedAlt": [
+        "gradiente"
+      ],
+      "hint": {
+        "en": "−η∇L.",
+        "es": "−η∇L."
+      },
+      "solution": [
+        {
+          "tex": "w - \\eta\\nabla L",
+          "en": "Gradient.",
+          "es": "Gradiente."
+        }
+      ]
     },
     {
       "id": "nn-10-e3",
       "answerType": "number",
-      "prompt": { "en": "At convergence, the gradient approaches what value?", "es": "En la convergencia, ¿a qué valor se acerca el gradiente?" },
+      "prompt": {
+        "en": "At convergence, the gradient approaches what value?",
+        "es": "En la convergencia, ¿a qué valor se acerca el gradiente?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Like f'(x)=0.", "es": "Como f'(x)=0." },
-      "solution": [ { "tex": "\\nabla L \\to 0", "en": "Zero.", "es": "Cero." } ]
+      "hint": {
+        "en": "Like f'(x)=0.",
+        "es": "Como f'(x)=0."
+      },
+      "solution": [
+        {
+          "tex": "\\nabla L \\to 0",
+          "en": "Zero.",
+          "es": "Cero."
+        }
+      ]
     },
     {
       "id": "nn-10-e4",
       "answerType": "number",
-      "prompt": { "en": "Update: $w=1$, $\\eta=0.2$, gradient $=5$. New $w$?", "es": "Actualización: $w=1$, $\\eta=0.2$, gradiente $=5$. ¿Nuevo $w$?" },
+      "prompt": {
+        "en": "Update: $w=1$, $\\eta=0.2$, gradient $=5$. New $w$?",
+        "es": "Actualización: $w=1$, $\\eta=0.2$, gradiente $=5$. ¿Nuevo $w$?"
+      },
       "answer": "0",
-      "acceptedAlt": ["1-0.2*5"],
-      "hint": { "en": "1 − 1.", "es": "1 − 1." },
-      "solution": [ { "tex": "1 - 1 = 0", "en": "Updated weight.", "es": "Peso actualizado." } ]
+      "acceptedAlt": [
+        "1-0.2*5"
+      ],
+      "hint": {
+        "en": "1 − 1.",
+        "es": "1 − 1."
+      },
+      "solution": [
+        {
+          "tex": "1 - 1 = 0",
+          "en": "Updated weight.",
+          "es": "Peso actualizado."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8, optimization for training deep models", "es": "Cap. 8, optimización para entrenar modelos profundos" } },
-    { "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)", "detail": { "en": "The generalized delta rule", "es": "La regla delta generalizada" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 8, optimization for training deep models",
+        "es": "Cap. 8, optimización para entrenar modelos profundos"
+      }
+    },
+    {
+      "source": "Rumelhart & McClelland — Parallel Distributed Processing (1986)",
+      "detail": {
+        "en": "The generalized delta rule",
+        "es": "La regla delta generalizada"
+      }
+    }
   ]
 }

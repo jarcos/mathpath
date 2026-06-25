@@ -3,13 +3,26 @@
   "subjectId": "statistics",
   "order": 15,
   "estimatedMinutes": 40,
-  "title": { "en": "Hypothesis Testing", "es": "Contraste de hipótesis" },
+  "title": {
+    "en": "Hypothesis Testing",
+    "es": "Contraste de hipótesis"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "**Hypothesis testing** is a formal procedure for deciding whether data provides enough evidence to support a claim. We state two competing hypotheses: the **null hypothesis** $H_0$ (the default, 'no effect' / 'no difference') and the **alternative** $H_1$ (the claim we hope to support). The test asks whether the data is surprising *under $H_0$*.",
         "es": "El **contraste de hipótesis** es un procedimiento formal para decidir si los datos aportan evidencia suficiente para apoyar una afirmación. Planteamos dos hipótesis rivales: la **hipótesis nula** $H_0$ (lo por defecto, 'sin efecto' / 'sin diferencia') y la **alternativa** $H_1$ (la afirmación que esperamos apoyar). El contraste pregunta si los datos son sorprendentes *bajo $H_0$*."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "stats-14-confidence-intervals"
+      ],
+      "note": {
+        "en": "Hypothesis tests use the same sampling-distribution logic as confidence intervals.",
+        "es": "Los contrastes de hipotesis usan la misma logica de distribucion muestral que los IC."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "We test whether a coin is fair. $H_0$: the coin is fair. We set $\\alpha = 0.05$. If the data yields $p = 0.02 < 0.05$, we **reject** $H_0$ — the coin looks biased. If $p = 0.30$, we fail to reject: not enough evidence of bias.",
         "es": "Contrastamos si una moneda es justa. $H_0$: la moneda es justa. Fijamos $\\alpha = 0.05$. Si los datos dan $p = 0.02 < 0.05$, **rechazamos** $H_0$ — la moneda parece sesgada. Si $p = 0.30$, no rechazamos: no hay evidencia suficiente de sesgo."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "scipy"
+      ],
+      "code": {
+        "en": "from scipy.stats import norm\n# two-sided p-value for a z-score\nz = 2.0\np_value = 2 * (1 - norm.cdf(abs(z)))\nprint(round(z, 2))\nprint(round(p_value, 4))",
+        "es": "from scipy.stats import norm\n# valor p de dos colas para un z-score\nz = 2.0\np_value = 2 * (1 - norm.cdf(abs(z)))\nprint(round(z, 2))\nprint(round(p_value, 4))"
+      },
+      "expectedOutput": "2.0\n0.0455",
+      "caption": {
+        "en": "A z of 2 gives p about 0.045, just under the usual 0.05 threshold.",
+        "es": "Un z de 2 da p de unos 0,045, justo bajo el umbral habitual de 0,05."
       }
     }
   ],
@@ -39,42 +71,114 @@
     {
       "id": "stats-15-e1",
       "answerType": "text",
-      "prompt": { "en": "The default 'no effect' hypothesis being tested is the ___ hypothesis. (one word)", "es": "La hipótesis por defecto de 'sin efecto' que se contrasta es la hipótesis ___. (una palabra)" },
+      "prompt": {
+        "en": "The default 'no effect' hypothesis being tested is the ___ hypothesis. (one word)",
+        "es": "La hipótesis por defecto de 'sin efecto' que se contrasta es la hipótesis ___. (una palabra)"
+      },
       "answer": "null",
-      "acceptedAlt": ["nula"],
-      "hint": { "en": "H₀.", "es": "H₀." },
-      "solution": [ { "tex": "H_0", "en": "Null hypothesis.", "es": "Hipótesis nula." } ]
+      "acceptedAlt": [
+        "nula"
+      ],
+      "hint": {
+        "en": "H₀.",
+        "es": "H₀."
+      },
+      "solution": [
+        {
+          "tex": "H_0",
+          "en": "Null hypothesis.",
+          "es": "Hipótesis nula."
+        }
+      ]
     },
     {
       "id": "stats-15-e2",
       "answerType": "text",
-      "prompt": { "en": "If the p-value < α, we ___ the null hypothesis. (reject / accept)", "es": "Si el valor p < α, ___ la hipótesis nula. (rechazamos / aceptamos)" },
+      "prompt": {
+        "en": "If the p-value < α, we ___ the null hypothesis. (reject / accept)",
+        "es": "Si el valor p < α, ___ la hipótesis nula. (rechazamos / aceptamos)"
+      },
       "answer": "reject",
-      "acceptedAlt": ["rechazar", "rechazamos"],
-      "hint": { "en": "Small p → evidence against H₀.", "es": "p pequeño → evidencia contra H₀." },
-      "solution": [ { "tex": "p < \\alpha \\Rightarrow \\text{reject}", "en": "Reject the null.", "es": "Rechaza la nula." } ]
+      "acceptedAlt": [
+        "rechazar",
+        "rechazamos"
+      ],
+      "hint": {
+        "en": "Small p → evidence against H₀.",
+        "es": "p pequeño → evidencia contra H₀."
+      },
+      "solution": [
+        {
+          "tex": "p < \\alpha \\Rightarrow \\text{reject}",
+          "en": "Reject the null.",
+          "es": "Rechaza la nula."
+        }
+      ]
     },
     {
       "id": "stats-15-e3",
       "answerType": "number",
-      "prompt": { "en": "What is the most common significance level $\\alpha$? (decimal)", "es": "¿Cuál es el nivel de significación $\\alpha$ más común? (decimal)" },
+      "prompt": {
+        "en": "What is the most common significance level $\\alpha$? (decimal)",
+        "es": "¿Cuál es el nivel de significación $\\alpha$ más común? (decimal)"
+      },
       "answer": "0.05",
-      "acceptedAlt": ["5/100"],
-      "hint": { "en": "5%.", "es": "5%." },
-      "solution": [ { "tex": "\\alpha = 0.05", "en": "5% significance.", "es": "Significación del 5%." } ]
+      "acceptedAlt": [
+        "5/100"
+      ],
+      "hint": {
+        "en": "5%.",
+        "es": "5%."
+      },
+      "solution": [
+        {
+          "tex": "\\alpha = 0.05",
+          "en": "5% significance.",
+          "es": "Significación del 5%."
+        }
+      ]
     },
     {
       "id": "stats-15-e4",
       "answerType": "text",
-      "prompt": { "en": "Rejecting a true null hypothesis is a Type ___ error. (I / II — answer 'I')", "es": "Rechazar una hipótesis nula verdadera es un error de Tipo ___. (I / II — responde 'I')" },
+      "prompt": {
+        "en": "Rejecting a true null hypothesis is a Type ___ error. (I / II — answer 'I')",
+        "es": "Rechazar una hipótesis nula verdadera es un error de Tipo ___. (I / II — responde 'I')"
+      },
       "answer": "I",
-      "acceptedAlt": ["i", "1", "uno", "one"],
-      "hint": { "en": "False positive.", "es": "Falso positivo." },
-      "solution": [ { "tex": "\\text{Type I}", "en": "False positive.", "es": "Falso positivo." } ]
+      "acceptedAlt": [
+        "i",
+        "1",
+        "uno",
+        "one"
+      ],
+      "hint": {
+        "en": "False positive.",
+        "es": "Falso positivo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{Type I}",
+          "en": "False positive.",
+          "es": "Falso positivo."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Statistical inference and testing", "es": "Inferencia estadística y contraste" } },
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 5, frequentist statistics", "es": "Cap. 5, estadística frecuentista" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Statistical inference and testing",
+        "es": "Inferencia estadística y contraste"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 5, frequentist statistics",
+        "es": "Cap. 5, estadística frecuentista"
+      }
+    }
   ]
 }

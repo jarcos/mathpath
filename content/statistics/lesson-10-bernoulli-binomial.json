@@ -3,7 +3,10 @@
   "subjectId": "statistics",
   "order": 10,
   "estimatedMinutes": 40,
-  "title": { "en": "Bernoulli & Binomial Distributions", "es": "Distribuciones de Bernoulli y binomial" },
+  "title": {
+    "en": "Bernoulli & Binomial Distributions",
+    "es": "Distribuciones de Bernoulli y binomial"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "For $B(10, 0.5)$ (ten fair coin flips): mean $= np = 10\\times 0.5 = 5$, variance $= np(1-p) = 10\\times 0.5\\times 0.5 = 2.5$. The probability of $3$ heads in $3$ flips ($p^n$ with $p=0.5$) is $0.5^3 = 0.125$.",
         "es": "Para $B(10, 0.5)$ (diez lanzamientos justos): media $= np = 10\\times 0.5 = 5$, varianza $= np(1-p) = 10\\times 0.5\\times 0.5 = 2.5$. La probabilidad de $3$ caras en $3$ lanzamientos ($p^n$ con $p=0.5$) es $0.5^3 = 0.125$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "from math import comb\n# binomial pmf: P(k successes in n independent trials)\nn, k, p = 5, 2, 0.5\nprint(round(comb(n, k) * p**k * (1 - p)**(n - k), 4))",
+        "es": "from math import comb\n# pmf binomial: P(k exitos en n ensayos independientes)\nn, k, p = 5, 2, 0.5\nprint(round(comb(n, k) * p**k * (1 - p)**(n - k), 4))"
+      },
+      "expectedOutput": "0.3125",
+      "caption": {
+        "en": "The binomial pmf combines a count of ways (comb) with each outcome's probability.",
+        "es": "La pmf binomial combina el numero de formas (comb) con la probabilidad de cada resultado."
       }
     }
   ],
@@ -39,42 +59,109 @@
     {
       "id": "stats-10-e1",
       "answerType": "number",
-      "prompt": { "en": "A Bernoulli variable has $p=0.3$. What is its mean?", "es": "Una variable de Bernoulli tiene $p=0.3$. ¿Cuál es su media?" },
+      "prompt": {
+        "en": "A Bernoulli variable has $p=0.3$. What is its mean?",
+        "es": "Una variable de Bernoulli tiene $p=0.3$. ¿Cuál es su media?"
+      },
       "answer": "0.3",
       "acceptedAlt": [],
-      "hint": { "en": "Mean of Bernoulli is p.", "es": "La media de Bernoulli es p." },
-      "solution": [ { "tex": "E[X] = p = 0.3", "en": "Mean.", "es": "Media." } ]
+      "hint": {
+        "en": "Mean of Bernoulli is p.",
+        "es": "La media de Bernoulli es p."
+      },
+      "solution": [
+        {
+          "tex": "E[X] = p = 0.3",
+          "en": "Mean.",
+          "es": "Media."
+        }
+      ]
     },
     {
       "id": "stats-10-e2",
       "answerType": "number",
-      "prompt": { "en": "For $B(10, 0.5)$, find the mean $np$.", "es": "Para $B(10, 0.5)$, halla la media $np$." },
+      "prompt": {
+        "en": "For $B(10, 0.5)$, find the mean $np$.",
+        "es": "Para $B(10, 0.5)$, halla la media $np$."
+      },
       "answer": "5",
-      "acceptedAlt": ["10*0.5"],
-      "hint": { "en": "n times p.", "es": "n por p." },
-      "solution": [ { "tex": "10\\times 0.5 = 5", "en": "Mean.", "es": "Media." } ]
+      "acceptedAlt": [
+        "10*0.5"
+      ],
+      "hint": {
+        "en": "n times p.",
+        "es": "n por p."
+      },
+      "solution": [
+        {
+          "tex": "10\\times 0.5 = 5",
+          "en": "Mean.",
+          "es": "Media."
+        }
+      ]
     },
     {
       "id": "stats-10-e3",
       "answerType": "number",
-      "prompt": { "en": "For $B(10, 0.5)$, find the variance $np(1-p)$.", "es": "Para $B(10, 0.5)$, halla la varianza $np(1-p)$." },
+      "prompt": {
+        "en": "For $B(10, 0.5)$, find the variance $np(1-p)$.",
+        "es": "Para $B(10, 0.5)$, halla la varianza $np(1-p)$."
+      },
       "answer": "2.5",
-      "acceptedAlt": ["10*0.5*0.5"],
-      "hint": { "en": "np(1−p).", "es": "np(1−p)." },
-      "solution": [ { "tex": "10\\cdot 0.5\\cdot 0.5 = 2.5", "en": "Variance.", "es": "Varianza." } ]
+      "acceptedAlt": [
+        "10*0.5*0.5"
+      ],
+      "hint": {
+        "en": "np(1−p).",
+        "es": "np(1−p)."
+      },
+      "solution": [
+        {
+          "tex": "10\\cdot 0.5\\cdot 0.5 = 2.5",
+          "en": "Variance.",
+          "es": "Varianza."
+        }
+      ]
     },
     {
       "id": "stats-10-e4",
       "answerType": "number",
-      "prompt": { "en": "Probability all 3 of 3 trials succeed with $p=0.5$ (i.e. $p^3$)?", "es": "¿Probabilidad de que los 3 de 3 ensayos tengan éxito con $p=0.5$ (es decir $p^3$)?" },
+      "prompt": {
+        "en": "Probability all 3 of 3 trials succeed with $p=0.5$ (i.e. $p^3$)?",
+        "es": "¿Probabilidad de que los 3 de 3 ensayos tengan éxito con $p=0.5$ (es decir $p^3$)?"
+      },
       "answer": "0.125",
-      "acceptedAlt": ["0.5^3", "1/8"],
-      "hint": { "en": "0.5 cubed.", "es": "0.5 al cubo." },
-      "solution": [ { "tex": "0.5^3 = 0.125", "en": "All succeed.", "es": "Todos con éxito." } ]
+      "acceptedAlt": [
+        "0.5^3",
+        "1/8"
+      ],
+      "hint": {
+        "en": "0.5 cubed.",
+        "es": "0.5 al cubo."
+      },
+      "solution": [
+        {
+          "tex": "0.5^3 = 0.125",
+          "en": "All succeed.",
+          "es": "Todos con éxito."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 3, Bernoulli and multinoulli distributions", "es": "Cap. 3, distribuciones de Bernoulli y multinoulli" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Common probability distributions", "es": "Distribuciones de probabilidad comunes" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 3, Bernoulli and multinoulli distributions",
+        "es": "Cap. 3, distribuciones de Bernoulli y multinoulli"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Common probability distributions",
+        "es": "Distribuciones de probabilidad comunes"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "ai-foundations",
   "order": 9,
   "estimatedMinutes": 30,
-  "title": { "en": "Symbol Grounding & Intentionality", "es": "Anclaje de símbolos e intencionalidad" },
+  "title": {
+    "en": "Symbol Grounding & Intentionality",
+    "es": "Anclaje de símbolos e intencionalidad"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,7 +31,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Connecting the symbol 'apple' to perceived apples is grounding. The 'aboutness' of a mental state — that a thought is about something — is intentionality.",
         "es": "Conectar el símbolo 'manzana' con manzanas percibidas es el anclaje. El 'ser-acerca-de' de un estado mental — que un pensamiento es sobre algo — es la intencionalidad."
@@ -39,41 +45,156 @@
     {
       "id": "aif-09-e1",
       "answerType": "text",
-      "prompt": { "en": "Connecting symbols to the world via perception is symbol ___. (one word)", "es": "Conectar símbolos con el mundo vía percepción es el ___ de símbolos. (una palabra)" },
+      "prompt": {
+        "en": "Connecting symbols to the world via perception is symbol ___. (one word)",
+        "es": "Conectar símbolos con el mundo vía percepción es el ___ de símbolos. (una palabra)"
+      },
       "answer": "grounding",
-      "acceptedAlt": ["anclaje", "anclar", "grounding"],
-      "hint": { "en": "Grounds meaning.", "es": "Ancla el significado." },
-      "solution": [ { "tex": "\\text{grounding}", "en": "Grounding.", "es": "Anclaje." } ]
+      "acceptedAlt": [
+        "anclaje",
+        "anclar",
+        "grounding"
+      ],
+      "hint": {
+        "en": "Grounds meaning.",
+        "es": "Ancla el significado."
+      },
+      "solution": [
+        {
+          "tex": "\\text{grounding}",
+          "en": "Grounding.",
+          "es": "Anclaje."
+        }
+      ]
     },
     {
       "id": "aif-09-e2",
       "answerType": "text",
-      "prompt": { "en": "The 'aboutness' of mental states is called ___. (one word)", "es": "El 'ser-acerca-de' de los estados mentales se llama ___. (una palabra)" },
+      "prompt": {
+        "en": "The 'aboutness' of mental states is called ___. (one word)",
+        "es": "El 'ser-acerca-de' de los estados mentales se llama ___. (una palabra)"
+      },
       "answer": "intentionality",
-      "acceptedAlt": ["intencionalidad"],
-      "hint": { "en": "Thoughts about things.", "es": "Pensamientos sobre cosas." },
-      "solution": [ { "tex": "\\text{intentionality}", "en": "Intentionality.", "es": "Intencionalidad." } ]
+      "acceptedAlt": [
+        "intencionalidad"
+      ],
+      "hint": {
+        "en": "Thoughts about things.",
+        "es": "Pensamientos sobre cosas."
+      },
+      "solution": [
+        {
+          "tex": "\\text{intentionality}",
+          "en": "Intentionality.",
+          "es": "Intencionalidad."
+        }
+      ]
     },
     {
       "id": "aif-09-e3",
       "answerType": "text",
-      "prompt": { "en": "A body giving symbols their referents reflects the importance of ___. (one word)", "es": "Un cuerpo que da a los símbolos sus referentes refleja la importancia de la ___. (una palabra)" },
+      "prompt": {
+        "en": "A body giving symbols their referents reflects the importance of ___. (one word)",
+        "es": "Un cuerpo que da a los símbolos sus referentes refleja la importancia de la ___. (una palabra)"
+      },
       "answer": "embodiment",
-      "acceptedAlt": ["encarnación", "encarnacion", "corporeización"],
-      "hint": { "en": "Having a body.", "es": "Tener un cuerpo." },
-      "solution": [ { "tex": "\\text{embodiment}", "en": "Embodiment.", "es": "Encarnación." } ]
+      "acceptedAlt": [
+        "encarnación",
+        "encarnacion",
+        "corporeización"
+      ],
+      "hint": {
+        "en": "Having a body.",
+        "es": "Tener un cuerpo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{embodiment}",
+          "en": "Embodiment.",
+          "es": "Encarnación."
+        }
+      ]
     },
     {
       "id": "aif-09-e4",
       "answerType": "text",
-      "prompt": { "en": "Models linking language to images and action try to ___ language. (one word)", "es": "Los modelos que ligan lenguaje a imágenes y acción intentan ___ el lenguaje. (una palabra)" },
+      "prompt": {
+        "en": "Models linking language to images and action try to ___ language. (one word)",
+        "es": "Los modelos que ligan lenguaje a imágenes y acción intentan ___ el lenguaje. (una palabra)"
+      },
       "answer": "ground",
-      "acceptedAlt": ["anclar", "grounding", "anclaje"],
-      "hint": { "en": "Grounding again.", "es": "Anclaje de nuevo." },
-      "solution": [ { "tex": "\\text{ground}", "en": "Ground.", "es": "Anclar." } ]
+      "acceptedAlt": [
+        "anclar",
+        "grounding",
+        "anclaje"
+      ],
+      "hint": {
+        "en": "Grounding again.",
+        "es": "Anclaje de nuevo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{ground}",
+          "en": "Ground.",
+          "es": "Anclar."
+        }
+      ]
+    },
+    {
+      "id": "aif-09-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The symbol grounding problem asks...",
+        "es": "El problema del anclaje de simbolos pregunta..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "How symbols get meaning tied to the world, not just to other symbols",
+            "es": "Como los simbolos obtienen significado ligado al mundo, no solo a otros simbolos"
+          },
+          "correct": true,
+          "why": {
+            "en": "Definitions in terms of more symbols risk circularity without grounding.",
+            "es": "Definir con mas simbolos corre riesgo de circularidad sin anclaje."
+          }
+        },
+        {
+          "text": {
+            "en": "How to compress symbol tables",
+            "es": "Como comprimir tablas de simbolos"
+          },
+          "correct": false,
+          "why": {
+            "en": "Grounding is about meaning, not storage.",
+            "es": "El anclaje trata del significado, no del almacenamiento."
+          }
+        },
+        {
+          "text": {
+            "en": "Which font to render symbols in",
+            "es": "Con que fuente representar los simbolos"
+          },
+          "correct": false,
+          "why": {
+            "en": "Rendering is irrelevant to meaning.",
+            "es": "La representacion grafica es ajena al significado."
+          }
+        }
+      ],
+      "hint": {
+        "en": "What connects a symbol to its referent?",
+        "es": "¿Que conecta un simbolo con su referente?"
+      }
     }
   ],
   "references": [
-    { "source": "Harnad — The Symbol Grounding Problem (1990)", "detail": { "en": "Symbol grounding", "es": "Anclaje de símbolos" } }
+    {
+      "source": "Harnad — The Symbol Grounding Problem (1990)",
+      "detail": {
+        "en": "Symbol grounding",
+        "es": "Anclaje de símbolos"
+      }
+    }
   ]
 }

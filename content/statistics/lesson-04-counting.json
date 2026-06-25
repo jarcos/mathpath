@@ -3,7 +3,10 @@
   "subjectId": "statistics",
   "order": 4,
   "estimatedMinutes": 40,
-  "title": { "en": "Counting: Permutations & Combinations", "es": "Combinatoria: permutaciones y combinaciones" },
+  "title": {
+    "en": "Counting: Permutations & Combinations",
+    "es": "Combinatoria: permutaciones y combinaciones"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "From 5 people, choose 2 for a *ranked* podium (order matters): $P(5,2) = \\tfrac{5!}{3!} = 5\\cdot 4 = 20$. Choose 2 for an *unordered* team: $C(5,2) = \\tfrac{5!}{2!\\,3!} = 10$. Order halves... actually it divides by $2! = 2$, giving $20/2 = 10$.",
         "es": "De 5 personas, elige 2 para un podio *ordenado* (importa el orden): $P(5,2) = \\tfrac{5!}{3!} = 5\\cdot 4 = 20$. Elige 2 para un equipo *sin orden*: $C(5,2) = \\tfrac{5!}{2!\\,3!} = 10$. El orden divide por $2! = 2$, dando $20/2 = 10$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "from math import comb, factorial\n# comb = combinations (order ignored); factorial = total arrangements\nprint(comb(5, 2), factorial(5))",
+        "es": "from math import comb, factorial\n# comb = combinaciones (sin orden); factorial = ordenaciones totales\nprint(comb(5, 2), factorial(5))"
+      },
+      "expectedOutput": "10 120",
+      "caption": {
+        "en": "Python's math module has exact combinatorics built in.",
+        "es": "El módulo math de Python trae la combinatoria exacta integrada."
       }
     }
   ],
@@ -39,42 +59,112 @@
     {
       "id": "stats-04-e1",
       "answerType": "number",
-      "prompt": { "en": "Compute the permutations $P(5,2) = \\tfrac{5!}{3!}$.", "es": "Calcula las permutaciones $P(5,2) = \\tfrac{5!}{3!}$." },
+      "prompt": {
+        "en": "Compute the permutations $P(5,2) = \\tfrac{5!}{3!}$.",
+        "es": "Calcula las permutaciones $P(5,2) = \\tfrac{5!}{3!}$."
+      },
       "answer": "20",
-      "acceptedAlt": ["5*4", "permutations(5,2)"],
-      "hint": { "en": "5 · 4.", "es": "5 · 4." },
-      "solution": [ { "tex": "\\tfrac{5!}{3!} = 5\\cdot 4 = 20", "en": "Ordered.", "es": "Ordenado." } ]
+      "acceptedAlt": [
+        "5*4",
+        "permutations(5,2)"
+      ],
+      "hint": {
+        "en": "5 · 4.",
+        "es": "5 · 4."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{5!}{3!} = 5\\cdot 4 = 20",
+          "en": "Ordered.",
+          "es": "Ordenado."
+        }
+      ]
     },
     {
       "id": "stats-04-e2",
       "answerType": "number",
-      "prompt": { "en": "Compute the combinations $C(5,2) = \\binom{5}{2}$.", "es": "Calcula las combinaciones $C(5,2) = \\binom{5}{2}$." },
+      "prompt": {
+        "en": "Compute the combinations $C(5,2) = \\binom{5}{2}$.",
+        "es": "Calcula las combinaciones $C(5,2) = \\binom{5}{2}$."
+      },
       "answer": "10",
-      "acceptedAlt": ["combinations(5,2)"],
-      "hint": { "en": "5!/(2!·3!).", "es": "5!/(2!·3!)." },
-      "solution": [ { "tex": "\\tfrac{5!}{2!\\,3!} = 10", "en": "Unordered.", "es": "Sin orden." } ]
+      "acceptedAlt": [
+        "combinations(5,2)"
+      ],
+      "hint": {
+        "en": "5!/(2!·3!).",
+        "es": "5!/(2!·3!)."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{5!}{2!\\,3!} = 10",
+          "en": "Unordered.",
+          "es": "Sin orden."
+        }
+      ]
     },
     {
       "id": "stats-04-e3",
       "answerType": "number",
-      "prompt": { "en": "Compute $5!$.", "es": "Calcula $5!$." },
+      "prompt": {
+        "en": "Compute $5!$.",
+        "es": "Calcula $5!$."
+      },
       "answer": "120",
-      "acceptedAlt": ["factorial(5)", "5*4*3*2*1"],
-      "hint": { "en": "5·4·3·2·1.", "es": "5·4·3·2·1." },
-      "solution": [ { "tex": "5! = 120", "en": "Factorial.", "es": "Factorial." } ]
+      "acceptedAlt": [
+        "factorial(5)",
+        "5*4*3*2*1"
+      ],
+      "hint": {
+        "en": "5·4·3·2·1.",
+        "es": "5·4·3·2·1."
+      },
+      "solution": [
+        {
+          "tex": "5! = 120",
+          "en": "Factorial.",
+          "es": "Factorial."
+        }
+      ]
     },
     {
       "id": "stats-04-e4",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\binom{4}{4}$.", "es": "Calcula $\\binom{4}{4}$." },
+      "prompt": {
+        "en": "Compute $\\binom{4}{4}$.",
+        "es": "Calcula $\\binom{4}{4}$."
+      },
       "answer": "1",
-      "acceptedAlt": ["combinations(4,4)"],
-      "hint": { "en": "One way to choose all.", "es": "Una forma de elegir todo." },
-      "solution": [ { "tex": "\\binom{4}{4} = 1", "en": "Exactly one way.", "es": "Exactamente una forma." } ]
+      "acceptedAlt": [
+        "combinations(4,4)"
+      ],
+      "hint": {
+        "en": "One way to choose all.",
+        "es": "Una forma de elegir todo."
+      },
+      "solution": [
+        {
+          "tex": "\\binom{4}{4} = 1",
+          "en": "Exactly one way.",
+          "es": "Exactamente una forma."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Combinatorics for probability", "es": "Combinatoria para la probabilidad" } },
-    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Foundations of probability", "es": "Fundamentos de la probabilidad" } }
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Combinatorics for probability",
+        "es": "Combinatoria para la probabilidad"
+      }
+    },
+    {
+      "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)",
+      "detail": {
+        "en": "Foundations of probability",
+        "es": "Fundamentos de la probabilidad"
+      }
+    }
   ]
 }

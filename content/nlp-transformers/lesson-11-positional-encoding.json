@@ -3,7 +3,10 @@
   "subjectId": "nlp-transformers",
   "order": 11,
   "estimatedMinutes": 30,
-  "title": { "en": "Positional Encoding", "es": "Codificación posicional" },
+  "title": {
+    "en": "Positional Encoding",
+    "es": "Codificación posicional"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "At position $pos=0$, dimension $2i=0$: $PE = \\sin(0/10000^0) = \\sin(0) = 0$. The encoding (dimension $d_{model}$) is added to a token embedding of the same dimension, so widths must match.",
         "es": "En la posición $pos=0$, dimensión $2i=0$: $PE = \\sin(0/10000^0) = \\sin(0) = 0$. La codificación (dimensión $d_{model}$) se suma a un embedding de token de la misma dimensión, así que los anchos deben coincidir."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# sinusoidal positional encoding injects word order\npos, i, d = 1, 0, 4\nprint(round(float(np.sin(pos / 10000 ** (2 * i / d))), 4))",
+        "es": "import numpy as np\n# la codificacion posicional sinusoidal inyecta el orden de las palabras\npos, i, d = 1, 0, 4\nprint(round(float(np.sin(pos / 10000 ** (2 * i / d))), 4))"
+      },
+      "expectedOutput": "0.8415",
+      "caption": {
+        "en": "Positional encodings tell a transformer where each token sits.",
+        "es": "Las codificaciones posicionales dicen al transformer donde va cada token."
       }
     }
   ],
@@ -39,41 +61,106 @@
     {
       "id": "nlp-11-e1",
       "answerType": "number",
-      "prompt": { "en": "Sinusoidal $PE$ at $pos=0$, even dim: $\\sin(0)$?", "es": "$PE$ sinusoidal en $pos=0$, dim. par: $\\sin(0)$?" },
+      "prompt": {
+        "en": "Sinusoidal $PE$ at $pos=0$, even dim: $\\sin(0)$?",
+        "es": "$PE$ sinusoidal en $pos=0$, dim. par: $\\sin(0)$?"
+      },
       "answer": "0",
-      "acceptedAlt": ["sin(0)"],
-      "hint": { "en": "sin 0.", "es": "sen 0." },
-      "solution": [ { "tex": "\\sin 0 = 0", "en": "Zero.", "es": "Cero." } ]
+      "acceptedAlt": [
+        "sin(0)"
+      ],
+      "hint": {
+        "en": "sin 0.",
+        "es": "sen 0."
+      },
+      "solution": [
+        {
+          "tex": "\\sin 0 = 0",
+          "en": "Zero.",
+          "es": "Cero."
+        }
+      ]
     },
     {
       "id": "nlp-11-e2",
       "answerType": "text",
-      "prompt": { "en": "Self-attention without position info is permutation ___. (one word)", "es": "La autoatención sin info de posición es ___ a permutaciones. (una palabra)" },
+      "prompt": {
+        "en": "Self-attention without position info is permutation ___. (one word)",
+        "es": "La autoatención sin info de posición es ___ a permutaciones. (una palabra)"
+      },
       "answer": "invariant",
-      "acceptedAlt": ["invariante"],
-      "hint": { "en": "Order doesn't change output.", "es": "El orden no cambia la salida." },
-      "solution": [ { "tex": "\\text{permutation invariant}", "en": "Invariant.", "es": "Invariante." } ]
+      "acceptedAlt": [
+        "invariante"
+      ],
+      "hint": {
+        "en": "Order doesn't change output.",
+        "es": "El orden no cambia la salida."
+      },
+      "solution": [
+        {
+          "tex": "\\text{permutation invariant}",
+          "en": "Invariant.",
+          "es": "Invariante."
+        }
+      ]
     },
     {
       "id": "nlp-11-e3",
       "answerType": "text",
-      "prompt": { "en": "Positional encoding is ___ to (not concatenated with) the embedding. (one word)", "es": "La codificación posicional se ___ (no se concatena) al embedding. (una palabra)" },
+      "prompt": {
+        "en": "Positional encoding is ___ to (not concatenated with) the embedding. (one word)",
+        "es": "La codificación posicional se ___ (no se concatena) al embedding. (una palabra)"
+      },
       "answer": "added",
-      "acceptedAlt": ["suma", "sumada", "added", "add"],
-      "hint": { "en": "Element-wise sum.", "es": "Suma elemento a elemento." },
-      "solution": [ { "tex": "x + PE", "en": "Added.", "es": "Sumada." } ]
+      "acceptedAlt": [
+        "suma",
+        "sumada",
+        "added",
+        "add"
+      ],
+      "hint": {
+        "en": "Element-wise sum.",
+        "es": "Suma elemento a elemento."
+      },
+      "solution": [
+        {
+          "tex": "x + PE",
+          "en": "Added.",
+          "es": "Sumada."
+        }
+      ]
     },
     {
       "id": "nlp-11-e4",
       "answerType": "number",
-      "prompt": { "en": "Value of $\\cos(0)$ (the cosine half of $PE$ at $pos=0$)?", "es": "Valor de $\\cos(0)$ (la mitad coseno de $PE$ en $pos=0$)?" },
+      "prompt": {
+        "en": "Value of $\\cos(0)$ (the cosine half of $PE$ at $pos=0$)?",
+        "es": "Valor de $\\cos(0)$ (la mitad coseno de $PE$ en $pos=0$)?"
+      },
       "answer": "1",
-      "acceptedAlt": ["cos(0)"],
-      "hint": { "en": "cos 0.", "es": "cos 0." },
-      "solution": [ { "tex": "\\cos 0 = 1", "en": "One.", "es": "Uno." } ]
+      "acceptedAlt": [
+        "cos(0)"
+      ],
+      "hint": {
+        "en": "cos 0.",
+        "es": "cos 0."
+      },
+      "solution": [
+        {
+          "tex": "\\cos 0 = 1",
+          "en": "One.",
+          "es": "Uno."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Vaswani et al. — Attention Is All You Need (2017)", "detail": { "en": "Positional encoding, §3.5", "es": "Codificación posicional, §3.5" } }
+    {
+      "source": "Vaswani et al. — Attention Is All You Need (2017)",
+      "detail": {
+        "en": "Positional encoding, §3.5",
+        "es": "Codificación posicional, §3.5"
+      }
+    }
   ]
 }

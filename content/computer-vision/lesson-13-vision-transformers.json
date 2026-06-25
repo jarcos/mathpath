@@ -3,13 +3,26 @@
   "subjectId": "computer-vision",
   "order": 13,
   "estimatedMinutes": 35,
-  "title": { "en": "Vision Transformers", "es": "Transformers de visión" },
+  "title": {
+    "en": "Vision Transformers",
+    "es": "Transformers de visión"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "The **Vision Transformer (ViT, 2020)** brought the Transformer from NLP to images. Its key move: split the image into a grid of fixed-size **patches** (e.g. $16\\times 16$), flatten each into a vector, and treat the sequence of patches like word tokens. Self-attention then relates every patch to every other — global context from layer one.",
         "es": "El **Vision Transformer (ViT, 2020)** trajo el Transformer del PLN a las imágenes. Su movimiento clave: dividir la imagen en una rejilla de **parches** de tamaño fijo (p. ej. $16\\times 16$), aplanar cada uno en un vector, y tratar la secuencia de parches como tokens de palabras. La autoatención relaciona entonces cada parche con todos los demás — contexto global desde la primera capa."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "cv-09-cnns"
+      ],
+      "note": {
+        "en": "ViT is an alternative to convolutional vision models.",
+        "es": "ViT es una alternativa a los modelos de vision convolucionales."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Splitting a $224\\times 224$ image into $16\\times 16$ patches gives $(224/16)^2 = 14^2 = 196$ patches — the sequence length the Transformer processes.",
         "es": "Dividir una imagen de $224\\times 224$ en parches de $16\\times 16$ da $(224/16)^2 = 14^2 = 196$ parches — la longitud de secuencia que procesa el Transformer."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# a Vision Transformer splits an image into fixed patches\nimage_size, patch = 224, 16\nprint((image_size // patch) ** 2)",
+        "es": "# un Vision Transformer divide la imagen en parches fijos\nimage_size, patch = 224, 16\nprint((image_size // patch) ** 2)"
+      },
+      "expectedOutput": "196",
+      "caption": {
+        "en": "ViT treats 16x16 image patches like word tokens.",
+        "es": "ViT trata parches de imagen de 16x16 como tokens de palabra."
       }
     }
   ],
@@ -39,42 +69,111 @@
     {
       "id": "cv-13-e1",
       "answerType": "number",
-      "prompt": { "en": "Patches in a $224\\times 224$ image with $16\\times 16$ patches: $(224/16)^2$?", "es": "Parches en una imagen $224\\times 224$ con parches $16\\times 16$: $(224/16)^2$?" },
+      "prompt": {
+        "en": "Patches in a $224\\times 224$ image with $16\\times 16$ patches: $(224/16)^2$?",
+        "es": "Parches en una imagen $224\\times 224$ con parches $16\\times 16$: $(224/16)^2$?"
+      },
       "answer": "196",
-      "acceptedAlt": ["(224/16)^2", "14^2"],
-      "hint": { "en": "14².", "es": "14²." },
-      "solution": [ { "tex": "14^2 = 196", "en": "196.", "es": "196." } ]
+      "acceptedAlt": [
+        "(224/16)^2",
+        "14^2"
+      ],
+      "hint": {
+        "en": "14².",
+        "es": "14²."
+      },
+      "solution": [
+        {
+          "tex": "14^2 = 196",
+          "en": "196.",
+          "es": "196."
+        }
+      ]
     },
     {
       "id": "cv-13-e2",
       "answerType": "number",
-      "prompt": { "en": "Patches per row for a 224-wide image with 16-wide patches: $224/16$?", "es": "Parches por fila para una imagen de ancho 224 con parches de ancho 16: $224/16$?" },
+      "prompt": {
+        "en": "Patches per row for a 224-wide image with 16-wide patches: $224/16$?",
+        "es": "Parches por fila para una imagen de ancho 224 con parches de ancho 16: $224/16$?"
+      },
       "answer": "14",
-      "acceptedAlt": ["224/16"],
-      "hint": { "en": "224 / 16.", "es": "224 / 16." },
-      "solution": [ { "tex": "224/16 = 14", "en": "14.", "es": "14." } ]
+      "acceptedAlt": [
+        "224/16"
+      ],
+      "hint": {
+        "en": "224 / 16.",
+        "es": "224 / 16."
+      },
+      "solution": [
+        {
+          "tex": "224/16 = 14",
+          "en": "14.",
+          "es": "14."
+        }
+      ]
     },
     {
       "id": "cv-13-e3",
       "answerType": "text",
-      "prompt": { "en": "ViT splits an image into a sequence of ___. (one word)", "es": "ViT divide una imagen en una secuencia de ___. (una palabra)" },
+      "prompt": {
+        "en": "ViT splits an image into a sequence of ___. (one word)",
+        "es": "ViT divide una imagen en una secuencia de ___. (una palabra)"
+      },
       "answer": "patches",
-      "acceptedAlt": ["parches", "patch", "parche"],
-      "hint": { "en": "Like tokens.", "es": "Como tokens." },
-      "solution": [ { "tex": "\\text{patches}", "en": "Patches.", "es": "Parches." } ]
+      "acceptedAlt": [
+        "parches",
+        "patch",
+        "parche"
+      ],
+      "hint": {
+        "en": "Like tokens.",
+        "es": "Como tokens."
+      },
+      "solution": [
+        {
+          "tex": "\\text{patches}",
+          "en": "Patches.",
+          "es": "Parches."
+        }
+      ]
     },
     {
       "id": "cv-13-e4",
       "answerType": "text",
-      "prompt": { "en": "The model aligning images and text in a shared space is ___. (one word)", "es": "El modelo que alinea imágenes y texto en un espacio compartido es ___. (una palabra)" },
+      "prompt": {
+        "en": "The model aligning images and text in a shared space is ___. (one word)",
+        "es": "El modelo que alinea imágenes y texto en un espacio compartido es ___. (una palabra)"
+      },
       "answer": "clip",
       "acceptedAlt": [],
-      "hint": { "en": "Contrastive image-text.", "es": "Imagen-texto contrastivo." },
-      "solution": [ { "tex": "\\text{CLIP}", "en": "CLIP.", "es": "CLIP." } ]
+      "hint": {
+        "en": "Contrastive image-text.",
+        "es": "Imagen-texto contrastivo."
+      },
+      "solution": [
+        {
+          "tex": "\\text{CLIP}",
+          "en": "CLIP.",
+          "es": "CLIP."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Dosovitskiy et al. — An Image is Worth 16x16 Words (ViT, 2021)", "detail": { "en": "Vision Transformer", "es": "Vision Transformer" } },
-    { "source": "Radford et al. — Learning Transferable Visual Models (CLIP, 2021)", "detail": { "en": "Image-text alignment", "es": "Alineación imagen-texto" } }
+    {
+      "source": "Dosovitskiy et al. — An Image is Worth 16x16 Words (ViT, 2021)",
+      "detail": {
+        "en": "Vision Transformer",
+        "es": "Vision Transformer"
+      }
+    },
+    {
+      "source": "Radford et al. — Learning Transferable Visual Models (CLIP, 2021)",
+      "detail": {
+        "en": "Image-text alignment",
+        "es": "Alineación imagen-texto"
+      }
+    }
   ]
 }

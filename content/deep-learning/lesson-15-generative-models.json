@@ -3,7 +3,10 @@
   "subjectId": "deep-learning",
   "order": 15,
   "estimatedMinutes": 35,
-  "title": { "en": "Generative Models: GANs & VAEs", "es": "Modelos generativos: GAN y VAE" },
+  "title": {
+    "en": "Generative Models: GANs & VAEs",
+    "es": "Modelos generativos: GAN y VAE"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A GAN has $2$ networks (generator + discriminator). If a discriminator outputs probability $0.5$ that a sample is real, it is maximally uncertain — the ideal end state where it cannot distinguish real from generated.",
         "es": "Una GAN tiene $2$ redes (generador + discriminador). Si un discriminador produce probabilidad $0.5$ de que una muestra sea real, está en máxima incertidumbre — el estado final ideal donde no puede distinguir lo real de lo generado."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nz1 = np.array([0.0, 0.0])\nz2 = np.array([2.0, 4.0])\n# generative models can interpolate in latent space\nprint((0.5 * z1 + 0.5 * z2).tolist())",
+        "es": "import numpy as np\nz1 = np.array([0.0, 0.0])\nz2 = np.array([2.0, 4.0])\n# los modelos generativos pueden interpolar en el espacio latente\nprint((0.5 * z1 + 0.5 * z2).tolist())"
+      },
+      "expectedOutput": "[1.0, 2.0]",
+      "caption": {
+        "en": "Walking the latent space morphs one sample into another.",
+        "es": "Recorrer el espacio latente transforma una muestra en otra."
       }
     }
   ],
@@ -39,42 +61,109 @@
     {
       "id": "dl-15-e1",
       "answerType": "number",
-      "prompt": { "en": "How many networks does a GAN train against each other?", "es": "¿Cuántas redes entrena una GAN una contra otra?" },
+      "prompt": {
+        "en": "How many networks does a GAN train against each other?",
+        "es": "¿Cuántas redes entrena una GAN una contra otra?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Generator and discriminator.", "es": "Generador y discriminador." },
-      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+      "hint": {
+        "en": "Generator and discriminator.",
+        "es": "Generador y discriminador."
+      },
+      "solution": [
+        {
+          "tex": "2",
+          "en": "Two.",
+          "es": "Dos."
+        }
+      ]
     },
     {
       "id": "dl-15-e2",
       "answerType": "text",
-      "prompt": { "en": "In a GAN, the network that creates fake samples is the ___. (one word)", "es": "En una GAN, la red que crea muestras falsas es el ___. (una palabra)" },
+      "prompt": {
+        "en": "In a GAN, the network that creates fake samples is the ___. (one word)",
+        "es": "En una GAN, la red que crea muestras falsas es el ___. (una palabra)"
+      },
       "answer": "generator",
-      "acceptedAlt": ["generador"],
-      "hint": { "en": "It generates.", "es": "Genera." },
-      "solution": [ { "tex": "G(z)", "en": "Generator.", "es": "Generador." } ]
+      "acceptedAlt": [
+        "generador"
+      ],
+      "hint": {
+        "en": "It generates.",
+        "es": "Genera."
+      },
+      "solution": [
+        {
+          "tex": "G(z)",
+          "en": "Generator.",
+          "es": "Generador."
+        }
+      ]
     },
     {
       "id": "dl-15-e3",
       "answerType": "number",
-      "prompt": { "en": "A perfectly fooled discriminator outputs what probability a sample is real?", "es": "Un discriminador perfectamente engañado da ¿qué probabilidad de que una muestra sea real?" },
+      "prompt": {
+        "en": "A perfectly fooled discriminator outputs what probability a sample is real?",
+        "es": "Un discriminador perfectamente engañado da ¿qué probabilidad de que una muestra sea real?"
+      },
       "answer": "0.5",
-      "acceptedAlt": ["1/2"],
-      "hint": { "en": "Maximal uncertainty.", "es": "Máxima incertidumbre." },
-      "solution": [ { "tex": "0.5", "en": "Coin flip.", "es": "Cara o cruz." } ]
+      "acceptedAlt": [
+        "1/2"
+      ],
+      "hint": {
+        "en": "Maximal uncertainty.",
+        "es": "Máxima incertidumbre."
+      },
+      "solution": [
+        {
+          "tex": "0.5",
+          "en": "Coin flip.",
+          "es": "Cara o cruz."
+        }
+      ]
     },
     {
       "id": "dl-15-e4",
       "answerType": "text",
-      "prompt": { "en": "Models that reverse a gradual noising process are ___ models. (one word)", "es": "Los modelos que revierten un proceso gradual de ruido son modelos de ___. (una palabra)" },
+      "prompt": {
+        "en": "Models that reverse a gradual noising process are ___ models. (one word)",
+        "es": "Los modelos que revierten un proceso gradual de ruido son modelos de ___. (una palabra)"
+      },
       "answer": "diffusion",
-      "acceptedAlt": ["difusión", "difusion"],
-      "hint": { "en": "Denoise step by step.", "es": "Quitan ruido paso a paso." },
-      "solution": [ { "tex": "\\text{diffusion}", "en": "Diffusion.", "es": "Difusión." } ]
+      "acceptedAlt": [
+        "difusión",
+        "difusion"
+      ],
+      "hint": {
+        "en": "Denoise step by step.",
+        "es": "Quitan ruido paso a paso."
+      },
+      "solution": [
+        {
+          "tex": "\\text{diffusion}",
+          "en": "Diffusion.",
+          "es": "Difusión."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 20, deep generative models", "es": "Cap. 20, modelos generativos profundos" } },
-    { "source": "Goodfellow et al. — Generative Adversarial Nets (2014)", "detail": { "en": "Original GAN", "es": "GAN original" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 20, deep generative models",
+        "es": "Cap. 20, modelos generativos profundos"
+      }
+    },
+    {
+      "source": "Goodfellow et al. — Generative Adversarial Nets (2014)",
+      "detail": {
+        "en": "Original GAN",
+        "es": "GAN original"
+      }
+    }
   ]
 }

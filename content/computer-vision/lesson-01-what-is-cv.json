@@ -3,7 +3,10 @@
   "subjectId": "computer-vision",
   "order": 1,
   "estimatedMinutes": 30,
-  "title": { "en": "What Is Computer Vision?", "es": "¿Qué es la visión por computador?" },
+  "title": {
+    "en": "What Is Computer Vision?",
+    "es": "¿Qué es la visión por computador?"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Vision inverts a projection from $3$ dimensions to $2$ — losing $3 - 2 = 1$ dimension (depth), which is why depth must be inferred. The task 'which pixel belongs to which object' is segmentation.",
         "es": "La visión invierte una proyección de $3$ dimensiones a $2$ — perdiendo $3 - 2 = 1$ dimensión (la profundidad), por lo que la profundidad debe inferirse. La tarea '¿qué píxel pertenece a qué objeto?' es la segmentación."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\n# an image is just a grid of numbers (here 4x4 = 16 pixels)\nimg = np.zeros((4, 4))\nprint(img.shape, int(img.size))",
+        "es": "import numpy as np\n# una imagen es solo una rejilla de numeros (aqui 4x4 = 16 pixeles)\nimg = np.zeros((4, 4))\nprint(img.shape, int(img.size))"
+      },
+      "expectedOutput": "(4, 4) 16",
+      "caption": {
+        "en": "To a computer, an image is an array of pixel values.",
+        "es": "Para un ordenador, una imagen es un array de valores de pixel."
       }
     }
   ],
@@ -39,42 +61,112 @@
     {
       "id": "cv-01-e1",
       "answerType": "number",
-      "prompt": { "en": "Dimensions lost projecting a 3-D scene to a 2-D image: $3-2$?", "es": "Dimensiones perdidas al proyectar una escena 3-D a una imagen 2-D: $3-2$?" },
+      "prompt": {
+        "en": "Dimensions lost projecting a 3-D scene to a 2-D image: $3-2$?",
+        "es": "Dimensiones perdidas al proyectar una escena 3-D a una imagen 2-D: $3-2$?"
+      },
       "answer": "1",
-      "acceptedAlt": ["3-2"],
-      "hint": { "en": "3 − 2.", "es": "3 − 2." },
-      "solution": [ { "tex": "3-2 = 1", "en": "One (depth).", "es": "Una (profundidad)." } ]
+      "acceptedAlt": [
+        "3-2"
+      ],
+      "hint": {
+        "en": "3 − 2.",
+        "es": "3 − 2."
+      },
+      "solution": [
+        {
+          "tex": "3-2 = 1",
+          "en": "One (depth).",
+          "es": "Una (profundidad)."
+        }
+      ]
     },
     {
       "id": "cv-01-e2",
       "answerType": "text",
-      "prompt": { "en": "Recovering 3-D meaning from a 2-D image is an ___ problem. (one word)", "es": "Recuperar significado 3-D de una imagen 2-D es un problema ___. (una palabra)" },
+      "prompt": {
+        "en": "Recovering 3-D meaning from a 2-D image is an ___ problem. (one word)",
+        "es": "Recuperar significado 3-D de una imagen 2-D es un problema ___. (una palabra)"
+      },
       "answer": "inverse",
-      "acceptedAlt": ["inverso"],
-      "hint": { "en": "Undoing projection.", "es": "Deshacer la proyección." },
-      "solution": [ { "tex": "\\text{inverse}", "en": "Inverse.", "es": "Inverso." } ]
+      "acceptedAlt": [
+        "inverso"
+      ],
+      "hint": {
+        "en": "Undoing projection.",
+        "es": "Deshacer la proyección."
+      },
+      "solution": [
+        {
+          "tex": "\\text{inverse}",
+          "en": "Inverse.",
+          "es": "Inverso."
+        }
+      ]
     },
     {
       "id": "cv-01-e3",
       "answerType": "text",
-      "prompt": { "en": "Labeling each pixel by which object it belongs to is ___. (one word)", "es": "Etiquetar cada píxel por el objeto al que pertenece es ___. (una palabra)" },
+      "prompt": {
+        "en": "Labeling each pixel by which object it belongs to is ___. (one word)",
+        "es": "Etiquetar cada píxel por el objeto al que pertenece es ___. (una palabra)"
+      },
       "answer": "segmentation",
-      "acceptedAlt": ["segmentación", "segmentacion"],
-      "hint": { "en": "Per-pixel labels.", "es": "Etiquetas por píxel." },
-      "solution": [ { "tex": "\\text{segmentation}", "en": "Segmentation.", "es": "Segmentación." } ]
+      "acceptedAlt": [
+        "segmentación",
+        "segmentacion"
+      ],
+      "hint": {
+        "en": "Per-pixel labels.",
+        "es": "Etiquetas por píxel."
+      },
+      "solution": [
+        {
+          "tex": "\\text{segmentation}",
+          "en": "Segmentation.",
+          "es": "Segmentación."
+        }
+      ]
     },
     {
       "id": "cv-01-e4",
       "answerType": "text",
-      "prompt": { "en": "The network type that revolutionized vision in 2012 is the ___ network. (one word)", "es": "El tipo de red que revolucionó la visión en 2012 es la red ___. (una palabra)" },
+      "prompt": {
+        "en": "The network type that revolutionized vision in 2012 is the ___ network. (one word)",
+        "es": "El tipo de red que revolucionó la visión en 2012 es la red ___. (una palabra)"
+      },
       "answer": "convolutional",
-      "acceptedAlt": ["convolucional", "CNN"],
-      "hint": { "en": "CNN.", "es": "CNN." },
-      "solution": [ { "tex": "\\text{CNN}", "en": "Convolutional.", "es": "Convolucional." } ]
+      "acceptedAlt": [
+        "convolucional",
+        "CNN"
+      ],
+      "hint": {
+        "en": "CNN.",
+        "es": "CNN."
+      },
+      "solution": [
+        {
+          "tex": "\\text{CNN}",
+          "en": "Convolutional.",
+          "es": "Convolucional."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Marr — Vision (1982)", "detail": { "en": "Vision as an information-processing problem", "es": "La visión como problema de procesamiento de información" } },
-    { "source": "Szeliski — Computer Vision: Algorithms and Applications", "detail": { "en": "Ch. 1, introduction", "es": "Cap. 1, introducción" } }
+    {
+      "source": "Marr — Vision (1982)",
+      "detail": {
+        "en": "Vision as an information-processing problem",
+        "es": "La visión como problema de procesamiento de información"
+      }
+    },
+    {
+      "source": "Szeliski — Computer Vision: Algorithms and Applications",
+      "detail": {
+        "en": "Ch. 1, introduction",
+        "es": "Cap. 1, introducción"
+      }
+    }
   ]
 }

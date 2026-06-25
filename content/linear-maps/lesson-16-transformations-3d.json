@@ -3,13 +3,26 @@
   "subjectId": "linear-maps",
   "order": 16,
   "estimatedMinutes": 40,
-  "title": { "en": "Geometric Transformations in 3D", "es": "Transformaciones geométricas en 3D" },
+  "title": {
+    "en": "Geometric Transformations in 3D",
+    "es": "Transformaciones geométricas en 3D"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Everything generalizes to three dimensions, where points have **three coordinates** $(x, y, z)$. Scaling uses a $3\\times 3$ diagonal matrix; translation adds a displacement $(a,b,c)$; and rotation now happens **about an axis** rather than a point — there are basic rotations about the $x$-, $y$-, and $z$-axes, combined to rotate about any axis.",
         "es": "Todo se generaliza a tres dimensiones, donde los puntos tienen **tres coordenadas** $(x, y, z)$. El escalado usa una matriz diagonal $3\\times 3$; la traslación añade un desplazamiento $(a,b,c)$; y la rotación ahora ocurre **en torno a un eje** en lugar de un punto — hay rotaciones básicas sobre los ejes $x$, $y$ y $z$, que se combinan para rotar sobre cualquier eje."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linmaps-11-rotation"
+      ],
+      "note": {
+        "en": "3D rotation generalizes the 2D rotation matrix.",
+        "es": "La rotacion 3D generaliza la matriz de rotacion 2D."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A 3D point needs $3$ coordinates. Scale $(1,2,3)$ by factor $2$: $(2,4,6)$, so the z-component is $6$. In homogeneous form the transformation matrices are $4\\times 4$ (4 rows). Translating $(0,0,0)$ by $(1,2,3)$ gives $(1,2,3)$, z-coordinate $3$.",
         "es": "Un punto 3D necesita $3$ coordenadas. Escala $(1,2,3)$ por factor $2$: $(2,4,6)$, así la componente z es $6$. En forma homogénea las matrices de transformación son $4\\times 4$ (4 filas). Trasladar $(0,0,0)$ por $(1,2,3)$ da $(1,2,3)$, coordenada z $3$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\ntheta = np.pi / 2\n# rotation about the z-axis in 3D\nRz = np.array([[np.cos(theta), -np.sin(theta), 0],\n               [np.sin(theta),  np.cos(theta), 0],\n               [0, 0, 1]])\nprint(np.round(Rz @ np.array([1, 0, 0]), 2).tolist())",
+        "es": "import numpy as np\ntheta = np.pi / 2\n# rotacion alrededor del eje z en 3D\nRz = np.array([[np.cos(theta), -np.sin(theta), 0],\n               [np.sin(theta),  np.cos(theta), 0],\n               [0, 0, 1]])\nprint(np.round(Rz @ np.array([1, 0, 0]), 2).tolist())"
+      },
+      "expectedOutput": "[0.0, 1.0, 0.0]",
+      "caption": {
+        "en": "3D rotations are 3x3 matrices about an axis.",
+        "es": "Las rotaciones 3D son matrices 3x3 alrededor de un eje."
       }
     }
   ],
@@ -39,42 +71,106 @@
     {
       "id": "linmaps-16-e1",
       "answerType": "number",
-      "prompt": { "en": "How many coordinates does a 3D point need?", "es": "¿Cuántas coordenadas necesita un punto 3D?" },
+      "prompt": {
+        "en": "How many coordinates does a 3D point need?",
+        "es": "¿Cuántas coordenadas necesita un punto 3D?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "x, y, z.", "es": "x, y, z." },
-      "solution": [ { "tex": "(x,y,z)", "en": "Three.", "es": "Tres." } ]
+      "hint": {
+        "en": "x, y, z.",
+        "es": "x, y, z."
+      },
+      "solution": [
+        {
+          "tex": "(x,y,z)",
+          "en": "Three.",
+          "es": "Tres."
+        }
+      ]
     },
     {
       "id": "linmaps-16-e2",
       "answerType": "number",
-      "prompt": { "en": "Scale $(1,2,3)$ by factor 2. What is the z-component?", "es": "Escala $(1,2,3)$ por factor 2. ¿Cuál es la componente z?" },
+      "prompt": {
+        "en": "Scale $(1,2,3)$ by factor 2. What is the z-component?",
+        "es": "Escala $(1,2,3)$ por factor 2. ¿Cuál es la componente z?"
+      },
       "answer": "6",
-      "acceptedAlt": ["2*3"],
-      "hint": { "en": "2 · 3.", "es": "2 · 3." },
-      "solution": [ { "tex": "(2,4,6)", "en": "z-component 6.", "es": "Componente z 6." } ]
+      "acceptedAlt": [
+        "2*3"
+      ],
+      "hint": {
+        "en": "2 · 3.",
+        "es": "2 · 3."
+      },
+      "solution": [
+        {
+          "tex": "(2,4,6)",
+          "en": "z-component 6.",
+          "es": "Componente z 6."
+        }
+      ]
     },
     {
       "id": "linmaps-16-e3",
       "answerType": "number",
-      "prompt": { "en": "3D homogeneous transformation matrices have how many rows?", "es": "¿Cuántas filas tienen las matrices de transformación homogéneas 3D?" },
+      "prompt": {
+        "en": "3D homogeneous transformation matrices have how many rows?",
+        "es": "¿Cuántas filas tienen las matrices de transformación homogéneas 3D?"
+      },
       "answer": "4",
       "acceptedAlt": [],
-      "hint": { "en": "4×4.", "es": "4×4." },
-      "solution": [ { "tex": "4\\times 4", "en": "Four rows.", "es": "Cuatro filas." } ]
+      "hint": {
+        "en": "4×4.",
+        "es": "4×4."
+      },
+      "solution": [
+        {
+          "tex": "4\\times 4",
+          "en": "Four rows.",
+          "es": "Cuatro filas."
+        }
+      ]
     },
     {
       "id": "linmaps-16-e4",
       "answerType": "number",
-      "prompt": { "en": "Translate $(0,0,0)$ by $(1,2,3)$. What is the z-coordinate?", "es": "Traslada $(0,0,0)$ por $(1,2,3)$. ¿Cuál es la coordenada z?" },
+      "prompt": {
+        "en": "Translate $(0,0,0)$ by $(1,2,3)$. What is the z-coordinate?",
+        "es": "Traslada $(0,0,0)$ por $(1,2,3)$. ¿Cuál es la coordenada z?"
+      },
       "answer": "3",
-      "acceptedAlt": ["0+3"],
-      "hint": { "en": "0 + 3.", "es": "0 + 3." },
-      "solution": [ { "tex": "(1,2,3)", "en": "z-coordinate 3.", "es": "Coordenada z 3." } ]
+      "acceptedAlt": [
+        "0+3"
+      ],
+      "hint": {
+        "en": "0 + 3.",
+        "es": "0 + 3."
+      },
+      "solution": [
+        {
+          "tex": "(1,2,3)",
+          "en": "z-coordinate 3.",
+          "es": "Coordenada z 3."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "UOC — Transformaciones geométricas (PID_00269008)", "detail": { "en": "Geometric transformations in 3D", "es": "Transformaciones geométricas en 3D" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 8, transformations and their matrices", "es": "Cap. 8, transformaciones y sus matrices" } }
+    {
+      "source": "UOC — Transformaciones geométricas (PID_00269008)",
+      "detail": {
+        "en": "Geometric transformations in 3D",
+        "es": "Transformaciones geométricas en 3D"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 8, transformations and their matrices",
+        "es": "Cap. 8, transformaciones y sus matrices"
+      }
+    }
   ]
 }

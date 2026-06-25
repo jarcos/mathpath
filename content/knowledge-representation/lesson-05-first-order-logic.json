@@ -3,13 +3,26 @@
   "subjectId": "knowledge-representation",
   "order": 5,
   "estimatedMinutes": 40,
-  "title": { "en": "First-Order Logic", "es": "Lógica de primer orden" },
+  "title": {
+    "en": "First-Order Logic",
+    "es": "Lógica de primer orden"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Propositional logic can't say 'all humans are mortal' compactly — it would need one proposition per human. **First-order logic (FOL)** adds **objects**, **predicates** (relations over objects, e.g. $\\text{Mortal}(x)$), **functions**, and crucially **quantifiers**. This vastly increases expressive power.",
         "es": "La lógica proposicional no puede decir 'todos los humanos son mortales' de forma compacta — necesitaría una proposición por humano. La **lógica de primer orden (FOL)** añade **objetos**, **predicados** (relaciones sobre objetos, p. ej. $\\text{Mortal}(x)$), **funciones** y, crucialmente, **cuantificadores**. Esto aumenta enormemente el poder expresivo."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "kr-02-prop-logic"
+      ],
+      "note": {
+        "en": "FOL extends propositional logic with quantifiers.",
+        "es": "La LPO extiende la logica proposicional con cuantificadores."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "'All humans are mortal' uses the universal quantifier $\\forall$. FOL adds quantifiers, predicates, functions, and objects to propositional logic — that is $4$ new ingredients. The negation of $\\forall x\\,P(x)$ is $\\exists x\\,\\neg P(x)$.",
         "es": "'Todos los humanos son mortales' usa el cuantificador universal $\\forall$. La FOL añade cuantificadores, predicados, funciones y objetos a la lógica proposicional — son $4$ ingredientes nuevos. La negación de $\\forall x\\,P(x)$ es $\\exists x\\,\\neg P(x)$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# first-order logic adds quantifiers over a domain of objects\ndomain = [1, 2, 3, 4]\nprint(all(x > 0 for x in domain), any(x > 3 for x in domain))",
+        "es": "# la logica de primer orden anade cuantificadores sobre un dominio de objetos\ndomain = [1, 2, 3, 4]\nprint(all(x > 0 for x in domain), any(x > 3 for x in domain))"
+      },
+      "expectedOutput": "True True",
+      "caption": {
+        "en": "FOL: 'for all' (all) and 'there exists' (any) over a domain.",
+        "es": "LPO: 'para todo' (all) y 'existe' (any) sobre un dominio."
       }
     }
   ],
@@ -39,41 +69,103 @@
     {
       "id": "kr-05-e1",
       "answerType": "text",
-      "prompt": { "en": "The quantifier meaning 'for all' is the ___ quantifier. (one word)", "es": "El cuantificador que significa 'para todo' es el cuantificador ___. (una palabra)" },
+      "prompt": {
+        "en": "The quantifier meaning 'for all' is the ___ quantifier. (one word)",
+        "es": "El cuantificador que significa 'para todo' es el cuantificador ___. (una palabra)"
+      },
       "answer": "universal",
-      "acceptedAlt": ["universal"],
-      "hint": { "en": "Symbol ∀.", "es": "Símbolo ∀." },
-      "solution": [ { "tex": "\\forall", "en": "Universal.", "es": "Universal." } ]
+      "acceptedAlt": [
+        "universal"
+      ],
+      "hint": {
+        "en": "Symbol ∀.",
+        "es": "Símbolo ∀."
+      },
+      "solution": [
+        {
+          "tex": "\\forall",
+          "en": "Universal.",
+          "es": "Universal."
+        }
+      ]
     },
     {
       "id": "kr-05-e2",
       "answerType": "text",
-      "prompt": { "en": "The quantifier meaning 'there exists' is the ___ quantifier. (one word)", "es": "El cuantificador que significa 'existe' es el cuantificador ___. (una palabra)" },
+      "prompt": {
+        "en": "The quantifier meaning 'there exists' is the ___ quantifier. (one word)",
+        "es": "El cuantificador que significa 'existe' es el cuantificador ___. (una palabra)"
+      },
       "answer": "existential",
-      "acceptedAlt": ["existencial"],
-      "hint": { "en": "Symbol ∃.", "es": "Símbolo ∃." },
-      "solution": [ { "tex": "\\exists", "en": "Existential.", "es": "Existencial." } ]
+      "acceptedAlt": [
+        "existencial"
+      ],
+      "hint": {
+        "en": "Symbol ∃.",
+        "es": "Símbolo ∃."
+      },
+      "solution": [
+        {
+          "tex": "\\exists",
+          "en": "Existential.",
+          "es": "Existencial."
+        }
+      ]
     },
     {
       "id": "kr-05-e3",
       "answerType": "text",
-      "prompt": { "en": "A relation over objects like Mortal(x) is a ___. (one word)", "es": "Una relación sobre objetos como Mortal(x) es un ___. (una palabra)" },
+      "prompt": {
+        "en": "A relation over objects like Mortal(x) is a ___. (one word)",
+        "es": "Una relación sobre objetos como Mortal(x) es un ___. (una palabra)"
+      },
       "answer": "predicate",
-      "acceptedAlt": ["predicado"],
-      "hint": { "en": "Predicate logic.", "es": "Lógica de predicados." },
-      "solution": [ { "tex": "\\text{Mortal}(x)", "en": "Predicate.", "es": "Predicado." } ]
+      "acceptedAlt": [
+        "predicado"
+      ],
+      "hint": {
+        "en": "Predicate logic.",
+        "es": "Lógica de predicados."
+      },
+      "solution": [
+        {
+          "tex": "\\text{Mortal}(x)",
+          "en": "Predicate.",
+          "es": "Predicado."
+        }
+      ]
     },
     {
       "id": "kr-05-e4",
       "answerType": "text",
-      "prompt": { "en": "$\\neg\\forall x\\,P(x)$ is equivalent to $\\exists x\\,\\neg P(x)$. The leading quantifier on the right is the ___ quantifier. (one word)", "es": "$\\neg\\forall x\\,P(x)$ equivale a $\\exists x\\,\\neg P(x)$. El cuantificador principal de la derecha es el ___. (una palabra)" },
+      "prompt": {
+        "en": "$\\neg\\forall x\\,P(x)$ is equivalent to $\\exists x\\,\\neg P(x)$. The leading quantifier on the right is the ___ quantifier. (one word)",
+        "es": "$\\neg\\forall x\\,P(x)$ equivale a $\\exists x\\,\\neg P(x)$. El cuantificador principal de la derecha es el ___. (una palabra)"
+      },
       "answer": "existential",
-      "acceptedAlt": ["existencial"],
-      "hint": { "en": "∃.", "es": "∃." },
-      "solution": [ { "tex": "\\exists", "en": "Existential.", "es": "Existencial." } ]
+      "acceptedAlt": [
+        "existencial"
+      ],
+      "hint": {
+        "en": "∃.",
+        "es": "∃."
+      },
+      "solution": [
+        {
+          "tex": "\\exists",
+          "en": "Existential.",
+          "es": "Existencial."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 8, first-order logic", "es": "Cap. 8, lógica de primer orden" } }
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Ch. 8, first-order logic",
+        "es": "Cap. 8, lógica de primer orden"
+      }
+    }
   ]
 }

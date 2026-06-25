@@ -3,13 +3,27 @@
   "subjectId": "linear-algebra",
   "order": 20,
   "estimatedMinutes": 45,
-  "title": { "en": "Rouché-Fröbenius & Discussion", "es": "Rouché-Fröbenius y discusión" },
+  "title": {
+    "en": "Rouché-Fröbenius & Discussion",
+    "es": "Rouché-Fröbenius y discusión"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Before solving a system, we can **discuss** it — determine how many solutions it has without finding them. The **Rouché-Fröbenius theorem** gives a complete answer in terms of two ranks: $r = \\text{rank}(A)$ of the coefficient matrix, and $r' = \\text{rank}(A\\,|\\,\\mathbf{b})$ of the augmented matrix.",
         "es": "Antes de resolver un sistema, podemos **discutirlo** — determinar cuántas soluciones tiene sin hallarlas. El **teorema de Rouché-Fröbenius** da una respuesta completa en términos de dos rangos: $r = \\text{rango}(A)$ de la matriz de coeficientes, y $r' = \\text{rango}(A\\,|\\,\\mathbf{b})$ de la matriz ampliada."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-19-systems-gauss",
+        "linalg-12-rank-inverse"
+      ],
+      "note": {
+        "en": "The theorem compares ranks of A and the augmented matrix.",
+        "es": "El teorema compara los rangos de A y de la matriz ampliada."
       }
     },
     {
@@ -28,10 +42,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "If $\\text{rank}(A) = 2$ but $\\text{rank}(A\\,|\\,\\mathbf{b}) = 3$, then $r \\neq r'$ — the augmented column added new information, signalling a contradiction. The system is **inconsistent**, no solution. But if $r = r' = 2$ with $n = 3$ unknowns, there are $3 - 2 = 1$ free parameters: infinitely many solutions.",
         "es": "Si $\\text{rango}(A) = 2$ pero $\\text{rango}(A\\,|\\,\\mathbf{b}) = 3$, entonces $r \\neq r'$ — la columna ampliada añadió información nueva, señalando una contradicción. El sistema es **incompatible**, sin solución. Pero si $r = r' = 2$ con $n = 3$ incógnitas, hay $3 - 2 = 1$ parámetros libres: infinitas soluciones."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nA = np.array([[1, 1], [2, 2]])\nb = np.array([1, 3])\n# Rouche-Frobenius: rank(A) vs rank([A|b]); unequal -> no solution\nprint(np.linalg.matrix_rank(A), np.linalg.matrix_rank(np.column_stack([A, b])))",
+        "es": "import numpy as np\nA = np.array([[1, 1], [2, 2]])\nb = np.array([1, 3])\n# Rouche-Frobenius: rango(A) vs rango([A|b]); distintos -> sin solucion\nprint(np.linalg.matrix_rank(A), np.linalg.matrix_rank(np.column_stack([A, b])))"
+      },
+      "expectedOutput": "1 2",
+      "caption": {
+        "en": "Unequal ranks (1 vs 2) mean the system is inconsistent.",
+        "es": "Rangos distintos (1 vs 2) significan sistema incompatible."
       }
     }
   ],
@@ -39,42 +72,106 @@
     {
       "id": "linalg-20-e1",
       "answerType": "number",
-      "prompt": { "en": "For a unique solution in 3 unknowns, the rank must equal ___?", "es": "Para solución única en 3 incógnitas, el rango debe ser ___?" },
+      "prompt": {
+        "en": "For a unique solution in 3 unknowns, the rank must equal ___?",
+        "es": "Para solución única en 3 incógnitas, el rango debe ser ___?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "r = n.", "es": "r = n." },
-      "solution": [ { "tex": "r = r' = n = 3", "en": "Full rank.", "es": "Rango máximo." } ]
+      "hint": {
+        "en": "r = n.",
+        "es": "r = n."
+      },
+      "solution": [
+        {
+          "tex": "r = r' = n = 3",
+          "en": "Full rank.",
+          "es": "Rango máximo."
+        }
+      ]
     },
     {
       "id": "linalg-20-e2",
       "answerType": "text",
-      "prompt": { "en": "If $\\text{rank}(A)=2$ but $\\text{rank}(A|b)=3$, is the system consistent? (yes / no)", "es": "Si $\\text{rango}(A)=2$ pero $\\text{rango}(A|b)=3$, ¿es compatible? (sí / no)" },
+      "prompt": {
+        "en": "If $\\text{rank}(A)=2$ but $\\text{rank}(A|b)=3$, is the system consistent? (yes / no)",
+        "es": "Si $\\text{rango}(A)=2$ pero $\\text{rango}(A|b)=3$, ¿es compatible? (sí / no)"
+      },
       "answer": "no",
-      "acceptedAlt": ["no"],
-      "hint": { "en": "r ≠ r' means no solution.", "es": "r ≠ r' significa sin solución." },
-      "solution": [ { "tex": "r \\neq r' \\Rightarrow \\text{none}", "en": "Inconsistent.", "es": "Incompatible." } ]
+      "acceptedAlt": [
+        "no"
+      ],
+      "hint": {
+        "en": "r ≠ r' means no solution.",
+        "es": "r ≠ r' significa sin solución."
+      },
+      "solution": [
+        {
+          "tex": "r \\neq r' \\Rightarrow \\text{none}",
+          "en": "Inconsistent.",
+          "es": "Incompatible."
+        }
+      ]
     },
     {
       "id": "linalg-20-e3",
       "answerType": "number",
-      "prompt": { "en": "If $r = r' = n$, how many solutions?", "es": "Si $r = r' = n$, ¿cuántas soluciones?" },
+      "prompt": {
+        "en": "If $r = r' = n$, how many solutions?",
+        "es": "Si $r = r' = n$, ¿cuántas soluciones?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "Full rank → unique.", "es": "Rango máximo → única." },
-      "solution": [ { "tex": "\\text{unique} = 1", "en": "One solution.", "es": "Una solución." } ]
+      "hint": {
+        "en": "Full rank → unique.",
+        "es": "Rango máximo → única."
+      },
+      "solution": [
+        {
+          "tex": "\\text{unique} = 1",
+          "en": "One solution.",
+          "es": "Una solución."
+        }
+      ]
     },
     {
       "id": "linalg-20-e4",
       "answerType": "number",
-      "prompt": { "en": "If $r = r' = 2$ and $n = 3$, how many free parameters?", "es": "Si $r = r' = 2$ y $n = 3$, ¿cuántos parámetros libres?" },
+      "prompt": {
+        "en": "If $r = r' = 2$ and $n = 3$, how many free parameters?",
+        "es": "Si $r = r' = 2$ y $n = 3$, ¿cuántos parámetros libres?"
+      },
       "answer": "1",
-      "acceptedAlt": ["3-2"],
-      "hint": { "en": "n − r.", "es": "n − r." },
-      "solution": [ { "tex": "n - r = 1", "en": "One free parameter.", "es": "Un parámetro libre." } ]
+      "acceptedAlt": [
+        "3-2"
+      ],
+      "hint": {
+        "en": "n − r.",
+        "es": "n − r."
+      },
+      "solution": [
+        {
+          "tex": "n - r = 1",
+          "en": "One free parameter.",
+          "es": "Un parámetro libre."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)", "detail": { "en": "Rank and the Rouché-Fröbenius theorem", "es": "Rango y el teorema de Rouché-Fröbenius" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 3.3–3.4, rank and the complete solution to Ax = b", "es": "Cap. 3.3–3.4, rango y la solución completa de Ax = b" } }
+    {
+      "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)",
+      "detail": {
+        "en": "Rank and the Rouché-Fröbenius theorem",
+        "es": "Rango y el teorema de Rouché-Fröbenius"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 3.3–3.4, rank and the complete solution to Ax = b",
+        "es": "Cap. 3.3–3.4, rango y la solución completa de Ax = b"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "calculus",
   "order": 5,
   "estimatedMinutes": 40,
-  "title": { "en": "Continuity", "es": "Continuidad" },
+  "title": {
+    "en": "Continuity",
+    "es": "Continuidad"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — checking continuity", "es": "Ejemplo resuelto — comprobar continuidad" },
+      "title": {
+        "en": "Worked example — checking continuity",
+        "es": "Ejemplo resuelto — comprobar continuidad"
+      },
       "content": {
         "en": "Is $f(x) = x^2$ continuous at $x = 0$? Check the three conditions: $f(0) = 0$ exists; $\\lim_{x\\to 0} x^2 = 0$ exists; and they are equal. Yes — continuous. By contrast $\\tfrac1x$ fails the first condition at $x=0$ (undefined), so it is discontinuous there.",
         "es": "¿Es $f(x) = x^2$ continua en $x = 0$? Comprueba las tres condiciones: $f(0) = 0$ existe; $\\lim_{x\\to 0} x^2 = 0$ existe; y coinciden. Sí — continua. En cambio $\\tfrac1x$ falla la primera condición en $x=0$ (indefinida), así que es discontinua allí."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "sympy"
+      ],
+      "code": {
+        "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# left and right limits agree -> the limit exists\nprint(sp.limit((x**2 - 1)/(x - 1), x, 1, \"+\"), sp.limit((x**2 - 1)/(x - 1), x, 1, \"-\"))",
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# los limites por la izquierda y la derecha coinciden -> el limite existe\nprint(sp.limit((x**2 - 1)/(x - 1), x, 1, \"+\"), sp.limit((x**2 - 1)/(x - 1), x, 1, \"-\"))"
+      },
+      "expectedOutput": "2 2",
+      "caption": {
+        "en": "Matching one-sided limits is the test for continuity of the limit.",
+        "es": "Que coincidan los limites laterales es la prueba de continuidad del limite."
       }
     }
   ],
@@ -39,43 +61,117 @@
     {
       "id": "calculus-05-e1",
       "answerType": "text",
-      "prompt": { "en": "Is $f(x) = x^2$ continuous at $x = 0$? (yes / no)", "es": "¿Es $f(x) = x^2$ continua en $x = 0$? (sí / no)" },
+      "prompt": {
+        "en": "Is $f(x) = x^2$ continuous at $x = 0$? (yes / no)",
+        "es": "¿Es $f(x) = x^2$ continua en $x = 0$? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Polynomials are continuous everywhere.", "es": "Los polinomios son continuos en todas partes." },
-      "solution": [ { "tex": "\\lim_{x\\to0} x^2 = 0 = f(0)", "en": "All three conditions hold.", "es": "Se cumplen las tres condiciones." } ]
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Polynomials are continuous everywhere.",
+        "es": "Los polinomios son continuos en todas partes."
+      },
+      "solution": [
+        {
+          "tex": "\\lim_{x\\to0} x^2 = 0 = f(0)",
+          "en": "All three conditions hold.",
+          "es": "Se cumplen las tres condiciones."
+        }
+      ]
     },
     {
       "id": "calculus-05-e2",
       "answerType": "number",
-      "prompt": { "en": "At which $x$ is $f(x) = \\tfrac1x$ discontinuous?", "es": "¿En qué $x$ es discontinua $f(x) = \\tfrac1x$?" },
+      "prompt": {
+        "en": "At which $x$ is $f(x) = \\tfrac1x$ discontinuous?",
+        "es": "¿En qué $x$ es discontinua $f(x) = \\tfrac1x$?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Where the denominator is zero.", "es": "Donde el denominador es cero." },
-      "solution": [ { "tex": "x = 0", "en": "Division by zero.", "es": "División entre cero." } ]
+      "hint": {
+        "en": "Where the denominator is zero.",
+        "es": "Donde el denominador es cero."
+      },
+      "solution": [
+        {
+          "tex": "x = 0",
+          "en": "Division by zero.",
+          "es": "División entre cero."
+        }
+      ]
     },
     {
       "id": "calculus-05-e3",
       "answerType": "number",
-      "prompt": { "en": "For continuous $f(x) = 2x$, continuity at $a = 3$ requires $f(3) = ?$", "es": "Para $f(x) = 2x$ continua, la continuidad en $a = 3$ exige $f(3) = ?$" },
+      "prompt": {
+        "en": "For continuous $f(x) = 2x$, continuity at $a = 3$ requires $f(3) = ?$",
+        "es": "Para $f(x) = 2x$ continua, la continuidad en $a = 3$ exige $f(3) = ?$"
+      },
       "answer": "6",
-      "acceptedAlt": ["2*3"],
-      "hint": { "en": "Evaluate f(3).", "es": "Evalúa f(3)." },
-      "solution": [ { "tex": "f(3) = 2\\cdot3 = 6", "en": "Equals the limit there.", "es": "Igual al límite allí." } ]
+      "acceptedAlt": [
+        "2*3"
+      ],
+      "hint": {
+        "en": "Evaluate f(3).",
+        "es": "Evalúa f(3)."
+      },
+      "solution": [
+        {
+          "tex": "f(3) = 2\\cdot3 = 6",
+          "en": "Equals the limit there.",
+          "es": "Igual al límite allí."
+        }
+      ]
     },
     {
       "id": "calculus-05-e4",
       "answerType": "text",
-      "prompt": { "en": "Can you draw a continuous function without lifting the pen? (yes / no)", "es": "¿Se puede dibujar una función continua sin levantar el lápiz? (sí / no)" },
+      "prompt": {
+        "en": "Can you draw a continuous function without lifting the pen? (yes / no)",
+        "es": "¿Se puede dibujar una función continua sin levantar el lápiz? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "That is the intuitive definition.", "es": "Esa es la definición intuitiva." },
-      "solution": [ { "tex": "\\text{no breaks}", "en": "Continuous = no gaps.", "es": "Continua = sin saltos." } ]
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "That is the intuitive definition.",
+        "es": "Esa es la definición intuitiva."
+      },
+      "solution": [
+        {
+          "tex": "\\text{no breaks}",
+          "en": "Continuous = no gaps.",
+          "es": "Continua = sin saltos."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 2.5, Continuity; the Intermediate Value Theorem", "es": "Cap. 2.5, Continuidad; el Teorema del Valor Intermedio" } },
-    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 2, continuity", "es": "Cap. 2, continuidad" } },
-    { "source": "UOC — Límites de funciones y continuidad (PID_00284288)", "detail": { "en": "Continuity of functions", "es": "Continuidad de funciones" } }
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 2.5, Continuity; the Intermediate Value Theorem",
+        "es": "Cap. 2.5, Continuidad; el Teorema del Valor Intermedio"
+      }
+    },
+    {
+      "source": "Salas, Etgen & Hille — Calculus",
+      "detail": {
+        "en": "Ch. 2, continuity",
+        "es": "Cap. 2, continuidad"
+      }
+    },
+    {
+      "source": "UOC — Límites de funciones y continuidad (PID_00284288)",
+      "detail": {
+        "en": "Continuity of functions",
+        "es": "Continuidad de funciones"
+      }
+    }
   ]
 }

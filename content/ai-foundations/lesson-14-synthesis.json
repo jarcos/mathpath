@@ -3,13 +3,26 @@
   "subjectId": "ai-foundations",
   "order": 14,
   "estimatedMinutes": 30,
-  "title": { "en": "Synthesis: The State & Future of AI", "es": "Síntesis: el estado y futuro de la IA" },
+  "title": {
+    "en": "Synthesis: The State & Future of AI",
+    "es": "Síntesis: el estado y futuro de la IA"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "This subject traced AI's big questions: Turing's behavioral test, the symbolic-vs-connectionist divide, Searle's and Dreyfus's challenges to machine understanding, the riddle of consciousness, and the ethics, alignment and risks of increasingly capable systems. A recurring theme is the gap between **capability** and **understanding** — doing versus genuinely comprehending.",
         "es": "Esta asignatura recorrió las grandes preguntas de la IA: el test conductual de Turing, la división simbólico-vs-conexionista, los desafíos de Searle y Dreyfus a la comprensión de las máquinas, el enigma de la conciencia, y la ética, alineación y riesgos de sistemas cada vez más capaces. Un tema recurrente es la brecha entre **capacidad** y **comprensión** — hacer versus comprender genuinamente."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "aif-13-superintelligence"
+      ],
+      "note": {
+        "en": "Synthesizes the whole subject.",
+        "es": "Sintetiza toda la asignatura."
       }
     },
     {
@@ -28,7 +41,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A recurring theme of the subject is the gap between capability and understanding. The modern fusion of learning and symbolic reasoning is the neuro-symbolic direction.",
         "es": "Un tema recurrente de la asignatura es la brecha entre capacidad y comprensión. La fusión moderna de aprendizaje y razonamiento simbólico es la dirección neuro-simbólica."
@@ -39,41 +55,155 @@
     {
       "id": "aif-14-e1",
       "answerType": "text",
-      "prompt": { "en": "A recurring theme is the gap between capability and ___. (one word)", "es": "Un tema recurrente es la brecha entre capacidad y ___. (una palabra)" },
+      "prompt": {
+        "en": "A recurring theme is the gap between capability and ___. (one word)",
+        "es": "Un tema recurrente es la brecha entre capacidad y ___. (una palabra)"
+      },
       "answer": "understanding",
-      "acceptedAlt": ["comprensión", "comprension", "entendimiento"],
-      "hint": { "en": "Doing vs comprehending.", "es": "Hacer vs comprender." },
-      "solution": [ { "tex": "\\text{understanding}", "en": "Understanding.", "es": "Comprensión." } ]
+      "acceptedAlt": [
+        "comprensión",
+        "comprension",
+        "entendimiento"
+      ],
+      "hint": {
+        "en": "Doing vs comprehending.",
+        "es": "Hacer vs comprender."
+      },
+      "solution": [
+        {
+          "tex": "\\text{understanding}",
+          "en": "Understanding.",
+          "es": "Comprensión."
+        }
+      ]
     },
     {
       "id": "aif-14-e2",
       "answerType": "text",
-      "prompt": { "en": "The convergence of learning and symbolic reasoning is the ___-symbolic direction. (one word)", "es": "La convergencia de aprendizaje y razonamiento simbólico es la dirección ___-simbólica. (una palabra)" },
+      "prompt": {
+        "en": "The convergence of learning and symbolic reasoning is the ___-symbolic direction. (one word)",
+        "es": "La convergencia de aprendizaje y razonamiento simbólico es la dirección ___-simbólica. (una palabra)"
+      },
       "answer": "neuro",
-      "acceptedAlt": ["neuro-symbolic", "neurosimbólica", "neurosimbolica"],
-      "hint": { "en": "Neuro-___.", "es": "___-simbólica." },
-      "solution": [ { "tex": "\\text{neuro-symbolic}", "en": "Neuro.", "es": "Neuro." } ]
+      "acceptedAlt": [
+        "neuro-symbolic",
+        "neurosimbólica",
+        "neurosimbolica"
+      ],
+      "hint": {
+        "en": "Neuro-___.",
+        "es": "___-simbólica."
+      },
+      "solution": [
+        {
+          "tex": "\\text{neuro-symbolic}",
+          "en": "Neuro.",
+          "es": "Neuro."
+        }
+      ]
     },
     {
       "id": "aif-14-e3",
       "answerType": "text",
-      "prompt": { "en": "Skeptics ask if large models truly understand or are sophisticated ___ Rooms. (one word)", "es": "Los escépticos preguntan si los grandes modelos comprenden o son habitaciones ___ sofisticadas. (una palabra)" },
+      "prompt": {
+        "en": "Skeptics ask if large models truly understand or are sophisticated ___ Rooms. (one word)",
+        "es": "Los escépticos preguntan si los grandes modelos comprenden o son habitaciones ___ sofisticadas. (una palabra)"
+      },
       "answer": "chinese",
-      "acceptedAlt": ["chinas", "china"],
-      "hint": { "en": "Searle's argument.", "es": "El argumento de Searle." },
-      "solution": [ { "tex": "\\text{Chinese Room}", "en": "Chinese.", "es": "China." } ]
+      "acceptedAlt": [
+        "chinas",
+        "china"
+      ],
+      "hint": {
+        "en": "Searle's argument.",
+        "es": "El argumento de Searle."
+      },
+      "solution": [
+        {
+          "tex": "\\text{Chinese Room}",
+          "en": "Chinese.",
+          "es": "China."
+        }
+      ]
     },
     {
       "id": "aif-14-e4",
       "answerType": "text",
-      "prompt": { "en": "The responsible path pairs ambition with ___. (one word)", "es": "El camino responsable une ambición con ___. (una palabra)" },
+      "prompt": {
+        "en": "The responsible path pairs ambition with ___. (one word)",
+        "es": "El camino responsable une ambición con ___. (una palabra)"
+      },
       "answer": "humility",
-      "acceptedAlt": ["humildad"],
-      "hint": { "en": "Not arrogance.", "es": "No arrogancia." },
-      "solution": [ { "tex": "\\text{humility}", "en": "Humility.", "es": "Humildad." } ]
+      "acceptedAlt": [
+        "humildad"
+      ],
+      "hint": {
+        "en": "Not arrogance.",
+        "es": "No arrogancia."
+      },
+      "solution": [
+        {
+          "tex": "\\text{humility}",
+          "en": "Humility.",
+          "es": "Humildad."
+        }
+      ]
+    },
+    {
+      "id": "aif-14-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Today's most capable AI systems are best characterized as...",
+        "es": "Los sistemas de IA mas capaces de hoy se caracterizan mejor como..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Narrow (weak) AI — highly capable in domains, but not general minds",
+            "es": "IA estrecha (debil) — muy capaces por dominios, pero no mentes generales"
+          },
+          "correct": true,
+          "why": {
+            "en": "Despite impressive breadth, they are not verified AGI with genuine understanding.",
+            "es": "Pese a su amplitud, no son AGI verificada con comprension genuina."
+          }
+        },
+        {
+          "text": {
+            "en": "Verified artificial general intelligence",
+            "es": "Inteligencia general artificial verificada"
+          },
+          "correct": false,
+          "why": {
+            "en": "No system today is established as AGI.",
+            "es": "Ningun sistema actual esta establecido como AGI."
+          }
+        },
+        {
+          "text": {
+            "en": "Conscious beings",
+            "es": "Seres conscientes"
+          },
+          "correct": false,
+          "why": {
+            "en": "There's no evidence current systems are conscious.",
+            "es": "No hay evidencia de que los sistemas actuales sean conscientes."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Capable, but general?",
+        "es": "Capaces, ¿pero generales?"
+      }
     }
   ],
   "references": [
-    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 27–28, philosophical foundations and the future of AI", "es": "Cap. 27–28, fundamentos filosóficos y el futuro de la IA" } }
+    {
+      "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach",
+      "detail": {
+        "en": "Ch. 27–28, philosophical foundations and the future of AI",
+        "es": "Cap. 27–28, fundamentos filosóficos y el futuro de la IA"
+      }
+    }
   ]
 }

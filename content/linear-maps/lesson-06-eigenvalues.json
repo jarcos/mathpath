@@ -3,7 +3,10 @@
   "subjectId": "linear-maps",
   "order": 6,
   "estimatedMinutes": 50,
-  "title": { "en": "Eigenvalues & Eigenvectors", "es": "Valores y vectores propios" },
+  "title": {
+    "en": "Eigenvalues & Eigenvectors",
+    "es": "Valores y vectores propios"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Eigenvalues of $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$? It is triangular, so read the diagonal: $\\lambda = 2$ and $\\lambda = 3$. Check: their sum $5$ equals the trace, and their product $6$ equals the determinant ✓.",
         "es": "¿Autovalores de $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$? Es triangular, así que lee la diagonal: $\\lambda = 2$ y $\\lambda = 3$. Comprueba: su suma $5$ es la traza, y su producto $6$ el determinante ✓."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\nvalues, vectors = np.linalg.eig(A)\n# eigenvalues: scalars lambda with A v = lambda v\nprint(sorted(values.real.round(2).tolist()))",
+        "es": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\nvalues, vectors = np.linalg.eig(A)\n# autovalores: escalares lambda con A v = lambda v\nprint(sorted(values.real.round(2).tolist()))"
+      },
+      "expectedOutput": "[2.0, 3.0]",
+      "caption": {
+        "en": "Eigenvalues are the scalars a map only stretches by.",
+        "es": "Los autovalores son los escalares por los que el mapa solo estira."
       }
     }
   ],
@@ -39,42 +61,157 @@
     {
       "id": "linmaps-06-e1",
       "answerType": "text",
-      "prompt": { "en": "In $Av = \\lambda v$, the scalar $\\lambda$ is called an ___ (one word).", "es": "En $Av = \\lambda v$, el escalar $\\lambda$ se llama ___ (una palabra)." },
+      "prompt": {
+        "en": "In $Av = \\lambda v$, the scalar $\\lambda$ is called an ___ (one word).",
+        "es": "En $Av = \\lambda v$, el escalar $\\lambda$ se llama ___ (una palabra)."
+      },
       "answer": "eigenvalue",
-      "acceptedAlt": ["autovalor", "valor propio", "valor-propio"],
-      "hint": { "en": "Eigen-value.", "es": "Valor propio." },
-      "solution": [ { "tex": "Av = \\lambda v", "en": "λ is an eigenvalue.", "es": "λ es un autovalor." } ]
+      "acceptedAlt": [
+        "autovalor",
+        "valor propio",
+        "valor-propio"
+      ],
+      "hint": {
+        "en": "Eigen-value.",
+        "es": "Valor propio."
+      },
+      "solution": [
+        {
+          "tex": "Av = \\lambda v",
+          "en": "λ is an eigenvalue.",
+          "es": "λ es un autovalor."
+        }
+      ]
     },
     {
       "id": "linmaps-06-e2",
       "answerType": "set",
-      "prompt": { "en": "Eigenvalues of $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?", "es": "¿Autovalores de $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?" },
+      "prompt": {
+        "en": "Eigenvalues of $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?",
+        "es": "¿Autovalores de $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?"
+      },
       "answer": "2, 3",
-      "acceptedAlt": ["3, 2"],
-      "hint": { "en": "Diagonal matrix: read the diagonal.", "es": "Matriz diagonal: lee la diagonal." },
-      "solution": [ { "tex": "\\lambda = 2, 3", "en": "Diagonal entries.", "es": "Elementos de la diagonal." } ]
+      "acceptedAlt": [
+        "3, 2"
+      ],
+      "hint": {
+        "en": "Diagonal matrix: read the diagonal.",
+        "es": "Matriz diagonal: lee la diagonal."
+      },
+      "solution": [
+        {
+          "tex": "\\lambda = 2, 3",
+          "en": "Diagonal entries.",
+          "es": "Elementos de la diagonal."
+        }
+      ]
     },
     {
       "id": "linmaps-06-e3",
       "answerType": "set",
-      "prompt": { "en": "Eigenvalues of the triangular $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$?", "es": "¿Autovalores de la triangular $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$?" },
+      "prompt": {
+        "en": "Eigenvalues of the triangular $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$?",
+        "es": "¿Autovalores de la triangular $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$?"
+      },
       "answer": "2, 3",
-      "acceptedAlt": ["3, 2"],
-      "hint": { "en": "Triangular: diagonal entries.", "es": "Triangular: elementos de la diagonal." },
-      "solution": [ { "tex": "\\lambda = 2, 3", "en": "From the diagonal.", "es": "De la diagonal." } ]
+      "acceptedAlt": [
+        "3, 2"
+      ],
+      "hint": {
+        "en": "Triangular: diagonal entries.",
+        "es": "Triangular: elementos de la diagonal."
+      },
+      "solution": [
+        {
+          "tex": "\\lambda = 2, 3",
+          "en": "From the diagonal.",
+          "es": "De la diagonal."
+        }
+      ]
     },
     {
       "id": "linmaps-06-e4",
       "answerType": "number",
-      "prompt": { "en": "The characteristic equation sets $\\det(A-\\lambda I)$ equal to ___?", "es": "La ecuación característica iguala $\\det(A-\\lambda I)$ a ___?" },
+      "prompt": {
+        "en": "The characteristic equation sets $\\det(A-\\lambda I)$ equal to ___?",
+        "es": "La ecuación característica iguala $\\det(A-\\lambda I)$ a ___?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "A − λI must be singular.", "es": "A − λI debe ser singular." },
-      "solution": [ { "tex": "\\det(A-\\lambda I) = 0", "en": "Characteristic equation.", "es": "Ecuación característica." } ]
+      "hint": {
+        "en": "A − λI must be singular.",
+        "es": "A − λI debe ser singular."
+      },
+      "solution": [
+        {
+          "tex": "\\det(A-\\lambda I) = 0",
+          "en": "Characteristic equation.",
+          "es": "Ecuación característica."
+        }
+      ]
+    },
+    {
+      "id": "linmaps-06-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A nonzero vector v is an eigenvector of A with eigenvalue λ when...",
+        "es": "Un vector no nulo v es autovector de A con autovalor λ cuando..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "A v = λ v",
+            "es": "A v = λ v"
+          },
+          "correct": true,
+          "why": {
+            "en": "The map only scales v by λ, without changing its direction.",
+            "es": "El mapa solo escala v por λ, sin cambiar su direccion."
+          }
+        },
+        {
+          "text": {
+            "en": "A v = 0",
+            "es": "A v = 0"
+          },
+          "correct": false,
+          "why": {
+            "en": "That defines the kernel, not an eigenvector (unless λ=0).",
+            "es": "Eso define el nucleo, no un autovector (salvo λ=0)."
+          }
+        },
+        {
+          "text": {
+            "en": "v A = λ",
+            "es": "v A = λ"
+          },
+          "correct": false,
+          "why": {
+            "en": "Dimensions don't even match; the defining equation is A v = λ v.",
+            "es": "Ni siquiera coinciden las dimensiones; la ecuacion es A v = λ v."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The map must not rotate v, only scale it.",
+        "es": "El mapa no debe rotar v, solo escalarlo."
+      }
     }
   ],
   "references": [
-    { "source": "UOC — Aplicaciones lineales (PID_00269006)", "detail": { "en": "Eigenvalues and eigenvectors", "es": "Valores y vectores propios" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 6.1, introduction to eigenvalues", "es": "Cap. 6.1, introducción a los autovalores" } }
+    {
+      "source": "UOC — Aplicaciones lineales (PID_00269006)",
+      "detail": {
+        "en": "Eigenvalues and eigenvectors",
+        "es": "Valores y vectores propios"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 6.1, introduction to eigenvalues",
+        "es": "Cap. 6.1, introducción a los autovalores"
+      }
+    }
   ]
 }

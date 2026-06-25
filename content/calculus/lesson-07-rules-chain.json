@@ -3,7 +3,10 @@
   "subjectId": "calculus",
   "order": 7,
   "estimatedMinutes": 45,
-  "title": { "en": "Differentiation Rules & Chain Rule", "es": "Reglas de derivación y regla de la cadena" },
+  "title": {
+    "en": "Differentiation Rules & Chain Rule",
+    "es": "Reglas de derivación y regla de la cadena"
+  },
   "sections": [
     {
       "type": "prose",
@@ -28,10 +31,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — chain rule", "es": "Ejemplo resuelto — regla de la cadena" },
+      "title": {
+        "en": "Worked example — chain rule",
+        "es": "Ejemplo resuelto — regla de la cadena"
+      },
       "content": {
         "en": "Differentiate $(x^2+1)^2$. Outer function $u^2$ has derivative $2u$, so $2(x^2+1)$; inner function $x^2+1$ has derivative $2x$. Multiply: $2(x^2+1)\\cdot 2x = 4x^3 + 4x$. (You can check by expanding first: $(x^2+1)^2 = x^4 + 2x^2 + 1$, whose derivative is $4x^3 + 4x$ ✓.)",
         "es": "Deriva $(x^2+1)^2$. La función externa $u^2$ tiene derivada $2u$, así $2(x^2+1)$; la interna $x^2+1$ tiene derivada $2x$. Multiplica: $2(x^2+1)\\cdot 2x = 4x^3 + 4x$. (Puedes comprobarlo desarrollando primero: $(x^2+1)^2 = x^4 + 2x^2 + 1$, cuya derivada es $4x^3 + 4x$ ✓.)"
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "sympy"
+      ],
+      "code": {
+        "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# SymPy differentiates symbolically — exact, not numeric\nprint(sp.diff(x**3 + 2*x, x))\n# product rule, automatically\nprint(sp.diff(sp.sin(x) * x, x))",
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# SymPy deriva simbólicamente — exacto, no numérico\nprint(sp.diff(x**3 + 2*x, x))\n# regla del producto, automáticamente\nprint(sp.diff(sp.sin(x) * x, x))"
+      },
+      "expectedOutput": "3*x**2 + 2\nx*cos(x) + sin(x)",
+      "caption": {
+        "en": "SymPy gives exact symbolic derivatives, applying the rules for you.",
+        "es": "SymPy da derivadas simbólicas exactas, aplicando las reglas por ti."
       }
     }
   ],
@@ -39,46 +61,121 @@
     {
       "id": "calculus-07-e1",
       "answerType": "expression",
-      "prompt": { "en": "Differentiate $f(x) = x^3 + 2x$.", "es": "Deriva $f(x) = x^3 + 2x$." },
+      "prompt": {
+        "en": "Differentiate $f(x) = x^3 + 2x$.",
+        "es": "Deriva $f(x) = x^3 + 2x$."
+      },
       "answer": "3*x^2 + 2",
-      "acceptedAlt": ["2+3x^2"],
-      "hint": { "en": "Differentiate term by term.", "es": "Deriva término a término." },
-      "solution": [ { "tex": "3x^2 + 2", "en": "Power rule on each term.", "es": "Regla de la potencia en cada término." } ]
+      "acceptedAlt": [
+        "2+3x^2"
+      ],
+      "hint": {
+        "en": "Differentiate term by term.",
+        "es": "Deriva término a término."
+      },
+      "solution": [
+        {
+          "tex": "3x^2 + 2",
+          "en": "Power rule on each term.",
+          "es": "Regla de la potencia en cada término."
+        }
+      ]
     },
     {
       "id": "calculus-07-e2",
       "answerType": "expression",
-      "prompt": { "en": "Differentiate $f(x) = 5x^2$.", "es": "Deriva $f(x) = 5x^2$." },
+      "prompt": {
+        "en": "Differentiate $f(x) = 5x^2$.",
+        "es": "Deriva $f(x) = 5x^2$."
+      },
       "answer": "10*x",
-      "acceptedAlt": ["10x"],
-      "hint": { "en": "Constant times the derivative.", "es": "Constante por la derivada." },
-      "solution": [ { "tex": "5\\cdot 2x = 10x", "en": "Apply the constant multiple rule.", "es": "Aplica la regla del múltiplo constante." } ]
+      "acceptedAlt": [
+        "10x"
+      ],
+      "hint": {
+        "en": "Constant times the derivative.",
+        "es": "Constante por la derivada."
+      },
+      "solution": [
+        {
+          "tex": "5\\cdot 2x = 10x",
+          "en": "Apply the constant multiple rule.",
+          "es": "Aplica la regla del múltiplo constante."
+        }
+      ]
     },
     {
       "id": "calculus-07-e3",
       "answerType": "expression",
-      "prompt": { "en": "Differentiate $f(x) = (x^2+1)^2$ using the chain rule.", "es": "Deriva $f(x) = (x^2+1)^2$ con la regla de la cadena." },
+      "prompt": {
+        "en": "Differentiate $f(x) = (x^2+1)^2$ using the chain rule.",
+        "es": "Deriva $f(x) = (x^2+1)^2$ con la regla de la cadena."
+      },
       "answer": "4*x^3 + 4*x",
-      "acceptedAlt": ["2*(x^2+1)*(2*x)", "4*x*(x^2+1)"],
-      "hint": { "en": "Outer 2(x²+1) times inner 2x.", "es": "Externa 2(x²+1) por interna 2x." },
+      "acceptedAlt": [
+        "2*(x^2+1)*(2*x)",
+        "4*x*(x^2+1)"
+      ],
+      "hint": {
+        "en": "Outer 2(x²+1) times inner 2x.",
+        "es": "Externa 2(x²+1) por interna 2x."
+      },
       "solution": [
-        { "tex": "2(x^2+1)\\cdot 2x", "en": "Chain rule.", "es": "Regla de la cadena." },
-        { "tex": "= 4x^3 + 4x", "en": "Expand.", "es": "Desarrolla." }
+        {
+          "tex": "2(x^2+1)\\cdot 2x",
+          "en": "Chain rule.",
+          "es": "Regla de la cadena."
+        },
+        {
+          "tex": "= 4x^3 + 4x",
+          "en": "Expand.",
+          "es": "Desarrolla."
+        }
       ]
     },
     {
       "id": "calculus-07-e4",
       "answerType": "expression",
-      "prompt": { "en": "Differentiate $f(x) = \\sin x$.", "es": "Deriva $f(x) = \\sin x$." },
+      "prompt": {
+        "en": "Differentiate $f(x) = \\sin x$.",
+        "es": "Deriva $f(x) = \\sin x$."
+      },
       "answer": "cos(x)",
       "acceptedAlt": [],
-      "hint": { "en": "A standard derivative.", "es": "Una derivada estándar." },
-      "solution": [ { "tex": "\\tfrac{d}{dx}\\sin x = \\cos x", "en": "Standard rule.", "es": "Regla estándar." } ]
+      "hint": {
+        "en": "A standard derivative.",
+        "es": "Una derivada estándar."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{d}{dx}\\sin x = \\cos x",
+          "en": "Standard rule.",
+          "es": "Regla estándar."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Stewart — Calculus: Early Transcendentals", "detail": { "en": "Ch. 3.1–3.6, differentiation rules and the chain rule", "es": "Cap. 3.1–3.6, reglas de derivación y regla de la cadena" } },
-    { "source": "Salas, Etgen & Hille — Calculus", "detail": { "en": "Ch. 3, rules for differentiation", "es": "Cap. 3, reglas de derivación" } },
-    { "source": "UOC — Derivación: el problema de la tangente (PID_00284285)", "detail": { "en": "Differentiation rules; chain rule", "es": "Reglas de derivación; regla de la cadena" } }
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 3.1–3.6, differentiation rules and the chain rule",
+        "es": "Cap. 3.1–3.6, reglas de derivación y regla de la cadena"
+      }
+    },
+    {
+      "source": "Salas, Etgen & Hille — Calculus",
+      "detail": {
+        "en": "Ch. 3, rules for differentiation",
+        "es": "Cap. 3, reglas de derivación"
+      }
+    },
+    {
+      "source": "UOC — Derivación: el problema de la tangente (PID_00284285)",
+      "detail": {
+        "en": "Differentiation rules; chain rule",
+        "es": "Reglas de derivación; regla de la cadena"
+      }
+    }
   ]
 }

@@ -3,13 +3,26 @@
   "subjectId": "statistics",
   "order": 7,
   "estimatedMinutes": 45,
-  "title": { "en": "Bayes' Theorem", "es": "Teorema de Bayes" },
+  "title": {
+    "en": "Bayes' Theorem",
+    "es": "Teorema de Bayes"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "**Bayes' theorem** is the rule for **updating beliefs with evidence**, and arguably the most important formula in modern AI. It reverses a conditional: $P(A\\mid B) = \\dfrac{P(B\\mid A)\\,P(A)}{P(B)}$. It turns 'how likely is the evidence if the hypothesis is true' into 'how likely is the hypothesis given the evidence'.",
         "es": "El **teorema de Bayes** es la regla para **actualizar creencias con evidencia**, posiblemente la fórmula más importante de la IA moderna. Invierte una condicional: $P(A\\mid B) = \\dfrac{P(B\\mid A)\\,P(A)}{P(B)}$. Convierte 'qué probable es la evidencia si la hipótesis es cierta' en 'qué probable es la hipótesis dada la evidencia'."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "stats-06-conditional"
+      ],
+      "note": {
+        "en": "Bayes' theorem reverses the conditional probability from the previous lesson.",
+        "es": "El teorema de Bayes invierte la probabilidad condicional de la lección anterior."
       }
     },
     {
@@ -28,10 +41,27 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With likelihood $P(B\\mid A) = 0.9$, prior $P(A) = 0.1$, and evidence $P(B) = 0.3$: the posterior is $P(A\\mid B) = \\dfrac{0.9\\times 0.1}{0.3} = \\dfrac{0.09}{0.3} = 0.3$. The evidence tripled the belief from $0.1$ to $0.3$.",
         "es": "Con verosimilitud $P(B\\mid A) = 0.9$, prior $P(A) = 0.1$ y evidencia $P(B) = 0.3$: el posterior es $P(A\\mid B) = \\dfrac{0.9\\times 0.1}{0.3} = \\dfrac{0.09}{0.3} = 0.3$. La evidencia triplicó la creencia de $0.1$ a $0.3$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# Bayes: a positive test is often a false alarm when the disease is rare\np_disease = 0.01\nsensitivity = 0.99   # P(positive | disease)\nspecificity = 0.95   # P(negative | healthy)\np_pos = sensitivity * p_disease + (1 - specificity) * (1 - p_disease)\nprint(round(sensitivity * p_disease / p_pos, 4))",
+        "es": "# Bayes: un positivo suele ser una falsa alarma cuando la enfermedad es rara\np_disease = 0.01\nsensitivity = 0.99   # P(positivo | enfermo)\nspecificity = 0.95   # P(negativo | sano)\np_pos = sensitivity * p_disease + (1 - specificity) * (1 - p_disease)\nprint(round(sensitivity * p_disease / p_pos, 4))"
+      },
+      "expectedOutput": "0.1667",
+      "caption": {
+        "en": "Even a 99% test gives only ~17% posterior when the base rate is 1%.",
+        "es": "Incluso un test del 99% da solo ~17% a posteriori cuando la tasa base es del 1%."
       }
     }
   ],
@@ -39,42 +69,161 @@
     {
       "id": "stats-07-e1",
       "answerType": "number",
-      "prompt": { "en": "Bayes: $P(B|A)=0.9$, $P(A)=0.1$, $P(B)=0.3$. Find $P(A|B)$.", "es": "Bayes: $P(B|A)=0.9$, $P(A)=0.1$, $P(B)=0.3$. Halla $P(A|B)$." },
+      "prompt": {
+        "en": "Bayes: $P(B|A)=0.9$, $P(A)=0.1$, $P(B)=0.3$. Find $P(A|B)$.",
+        "es": "Bayes: $P(B|A)=0.9$, $P(A)=0.1$, $P(B)=0.3$. Halla $P(A|B)$."
+      },
       "answer": "0.3",
-      "acceptedAlt": ["0.9*0.1/0.3", "0.09/0.3"],
-      "hint": { "en": "Likelihood × prior / evidence.", "es": "Verosimilitud × prior / evidencia." },
-      "solution": [ { "tex": "\\tfrac{0.9\\cdot 0.1}{0.3} = 0.3", "en": "Posterior.", "es": "Posterior." } ]
+      "acceptedAlt": [
+        "0.9*0.1/0.3",
+        "0.09/0.3"
+      ],
+      "hint": {
+        "en": "Likelihood × prior / evidence.",
+        "es": "Verosimilitud × prior / evidencia."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{0.9\\cdot 0.1}{0.3} = 0.3",
+          "en": "Posterior.",
+          "es": "Posterior."
+        }
+      ]
     },
     {
       "id": "stats-07-e2",
       "answerType": "number",
-      "prompt": { "en": "Bayes: $P(B|A)=0.8$, $P(A)=0.25$, $P(B)=0.4$. Find $P(A|B)$.", "es": "Bayes: $P(B|A)=0.8$, $P(A)=0.25$, $P(B)=0.4$. Halla $P(A|B)$." },
+      "prompt": {
+        "en": "Bayes: $P(B|A)=0.8$, $P(A)=0.25$, $P(B)=0.4$. Find $P(A|B)$.",
+        "es": "Bayes: $P(B|A)=0.8$, $P(A)=0.25$, $P(B)=0.4$. Halla $P(A|B)$."
+      },
       "answer": "0.5",
-      "acceptedAlt": ["0.8*0.25/0.4", "0.2/0.4"],
-      "hint": { "en": "0.8·0.25 / 0.4.", "es": "0.8·0.25 / 0.4." },
-      "solution": [ { "tex": "\\tfrac{0.8\\cdot 0.25}{0.4} = 0.5", "en": "Posterior.", "es": "Posterior." } ]
+      "acceptedAlt": [
+        "0.8*0.25/0.4",
+        "0.2/0.4"
+      ],
+      "hint": {
+        "en": "0.8·0.25 / 0.4.",
+        "es": "0.8·0.25 / 0.4."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac{0.8\\cdot 0.25}{0.4} = 0.5",
+          "en": "Posterior.",
+          "es": "Posterior."
+        }
+      ]
     },
     {
       "id": "stats-07-e3",
       "answerType": "text",
-      "prompt": { "en": "Bayes updates a prior into a ___. (one word)", "es": "Bayes actualiza un prior en un ___. (una palabra)" },
+      "prompt": {
+        "en": "Bayes updates a prior into a ___. (one word)",
+        "es": "Bayes actualiza un prior en un ___. (una palabra)"
+      },
       "answer": "posterior",
-      "acceptedAlt": ["posteriori", "a posteriori"],
-      "hint": { "en": "Belief after evidence.", "es": "Creencia tras la evidencia." },
-      "solution": [ { "tex": "P(A\\mid B)", "en": "The posterior.", "es": "El posterior." } ]
+      "acceptedAlt": [
+        "posteriori",
+        "a posteriori"
+      ],
+      "hint": {
+        "en": "Belief after evidence.",
+        "es": "Creencia tras la evidencia."
+      },
+      "solution": [
+        {
+          "tex": "P(A\\mid B)",
+          "en": "The posterior.",
+          "es": "El posterior."
+        }
+      ]
     },
     {
       "id": "stats-07-e4",
       "answerType": "text",
-      "prompt": { "en": "The probability $P(A)$ before seeing evidence is called the ___. (one word)", "es": "La probabilidad $P(A)$ antes de ver la evidencia se llama el ___. (una palabra)" },
+      "prompt": {
+        "en": "The probability $P(A)$ before seeing evidence is called the ___. (one word)",
+        "es": "La probabilidad $P(A)$ antes de ver la evidencia se llama el ___. (una palabra)"
+      },
       "answer": "prior",
-      "acceptedAlt": ["priori", "a priori"],
-      "hint": { "en": "Belief before evidence.", "es": "Creencia antes de la evidencia." },
-      "solution": [ { "tex": "P(A)", "en": "The prior.", "es": "El prior." } ]
+      "acceptedAlt": [
+        "priori",
+        "a priori"
+      ],
+      "hint": {
+        "en": "Belief before evidence.",
+        "es": "Creencia antes de la evidencia."
+      },
+      "solution": [
+        {
+          "tex": "P(A)",
+          "en": "The prior.",
+          "es": "El prior."
+        }
+      ]
+    },
+    {
+      "id": "stats-07-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A disease affects 1% of people. A test is 99% sensitive and 95% specific. Someone tests positive — roughly how likely is it they truly have it?",
+        "es": "Una enfermedad afecta al 1% de las personas. Un test es 99% sensible y 95% específico. Alguien da positivo — ¿qué probabilidad real tiene de padecerla?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "About 17%",
+            "es": "Alrededor del 17%"
+          },
+          "correct": true,
+          "why": {
+            "en": "Because the disease is rare, most positives are false alarms — the base-rate fallacy.",
+            "es": "Como la enfermedad es rara, la mayoría de positivos son falsas alarmas — la falacia de la tasa base."
+          }
+        },
+        {
+          "text": {
+            "en": "About 99%",
+            "es": "Alrededor del 99%"
+          },
+          "correct": false,
+          "why": {
+            "en": "That confuses sensitivity P(+|disease) with the posterior P(disease|+).",
+            "es": "Eso confunde la sensibilidad P(+|enfermo) con la posterior P(enfermo|+)."
+          }
+        },
+        {
+          "text": {
+            "en": "About 95%",
+            "es": "Alrededor del 95%"
+          },
+          "correct": false,
+          "why": {
+            "en": "Specificity isn't the answer either; you must weigh by the 1% base rate.",
+            "es": "La especificidad tampoco es la respuesta; hay que ponderar por la tasa base del 1%."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Out of 10,000 people, how many true vs false positives?",
+        "es": "De 10.000 personas, ¿cuántos positivos verdaderos vs falsos?"
+      }
     }
   ],
   "references": [
-    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Bayesian inference; belief updating", "es": "Inferencia bayesiana; actualización de creencias" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Ch. 12, Bayes' rule and its use", "es": "Cap. 12, la regla de Bayes y su uso" } }
+    {
+      "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)",
+      "detail": {
+        "en": "Bayesian inference; belief updating",
+        "es": "Inferencia bayesiana; actualización de creencias"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Ch. 12, Bayes' rule and its use",
+        "es": "Cap. 12, la regla de Bayes y su uso"
+      }
+    }
   ]
 }

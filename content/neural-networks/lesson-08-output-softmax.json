@@ -3,13 +3,26 @@
   "subjectId": "neural-networks",
   "order": 8,
   "estimatedMinutes": 35,
-  "title": { "en": "Output Layers & Softmax", "es": "Capas de salida y softmax" },
+  "title": {
+    "en": "Output Layers & Softmax",
+    "es": "Capas de salida y softmax"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "The **output layer** is shaped by the task. For **regression**, a single linear neuron outputs a number. For **binary classification**, one neuron with a **sigmoid** outputs a probability in $(0,1)$. For **multi-class classification**, we use the **softmax** function over several output neurons.",
         "es": "La **capa de salida** se adapta a la tarea. Para **regresión**, una sola neurona lineal da un número. Para **clasificación binaria**, una neurona con **sigmoide** da una probabilidad en $(0,1)$. Para **clasificación multiclase**, usamos la función **softmax** sobre varias neuronas de salida."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "nn-04-activation"
+      ],
+      "note": {
+        "en": "Softmax is an activation for the output layer.",
+        "es": "Softmax es una activacion para la capa de salida."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A $3$-class classifier has a softmax output layer producing $3$ probabilities, which always sum to $1$ (e.g. $0.7 + 0.2 + 0.1 = 1$). A binary classifier uses a single sigmoid output instead.",
         "es": "Un clasificador de $3$ clases tiene una capa de salida softmax que produce $3$ probabilidades, que siempre suman $1$ (p. ej. $0.7 + 0.2 + 0.1 = 1$). Un clasificador binario usa en cambio una única salida sigmoide."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\ndef softmax(z):\n    e = np.exp(z - np.max(z))\n    return e / e.sum()\n# softmax turns scores into class probabilities that sum to 1\nprint(np.round(softmax(np.array([2.0, 1.0, 0.1])), 4).tolist())",
+        "es": "import numpy as np\ndef softmax(z):\n    e = np.exp(z - np.max(z))\n    return e / e.sum()\n# softmax convierte puntuaciones en probabilidades de clase que suman 1\nprint(np.round(softmax(np.array([2.0, 1.0, 0.1])), 4).tolist())"
+      },
+      "expectedOutput": "[0.659, 0.2424, 0.0986]",
+      "caption": {
+        "en": "Softmax is the standard output layer for classification.",
+        "es": "Softmax es la capa de salida estandar para clasificacion."
       }
     }
   ],
@@ -39,42 +71,104 @@
     {
       "id": "nn-08-e1",
       "answerType": "text",
-      "prompt": { "en": "For multi-class output, the ___ function gives probabilities that sum to 1. (one word)", "es": "Para salida multiclase, la función ___ da probabilidades que suman 1. (una palabra)" },
+      "prompt": {
+        "en": "For multi-class output, the ___ function gives probabilities that sum to 1. (one word)",
+        "es": "Para salida multiclase, la función ___ da probabilidades que suman 1. (una palabra)"
+      },
       "answer": "softmax",
       "acceptedAlt": [],
-      "hint": { "en": "Generalizes the sigmoid.", "es": "Generaliza la sigmoide." },
-      "solution": [ { "tex": "\\text{softmax}", "en": "Softmax.", "es": "Softmax." } ]
+      "hint": {
+        "en": "Generalizes the sigmoid.",
+        "es": "Generaliza la sigmoide."
+      },
+      "solution": [
+        {
+          "tex": "\\text{softmax}",
+          "en": "Softmax.",
+          "es": "Softmax."
+        }
+      ]
     },
     {
       "id": "nn-08-e2",
       "answerType": "number",
-      "prompt": { "en": "Softmax outputs always sum to ___?", "es": "Las salidas softmax siempre suman ___?" },
+      "prompt": {
+        "en": "Softmax outputs always sum to ___?",
+        "es": "Las salidas softmax siempre suman ___?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "A probability distribution.", "es": "Una distribución de probabilidad." },
-      "solution": [ { "tex": "\\sum_i p_i = 1", "en": "Sum to 1.", "es": "Suman 1." } ]
+      "hint": {
+        "en": "A probability distribution.",
+        "es": "Una distribución de probabilidad."
+      },
+      "solution": [
+        {
+          "tex": "\\sum_i p_i = 1",
+          "en": "Sum to 1.",
+          "es": "Suman 1."
+        }
+      ]
     },
     {
       "id": "nn-08-e3",
       "answerType": "text",
-      "prompt": { "en": "For a binary output we use the ___ activation. (one word)", "es": "Para una salida binaria usamos la activación ___. (una palabra)" },
+      "prompt": {
+        "en": "For a binary output we use the ___ activation. (one word)",
+        "es": "Para una salida binaria usamos la activación ___. (una palabra)"
+      },
       "answer": "sigmoid",
-      "acceptedAlt": ["sigmoide"],
-      "hint": { "en": "Outputs one probability.", "es": "Da una probabilidad." },
-      "solution": [ { "tex": "\\sigma(z)", "en": "Sigmoid.", "es": "Sigmoide." } ]
+      "acceptedAlt": [
+        "sigmoide"
+      ],
+      "hint": {
+        "en": "Outputs one probability.",
+        "es": "Da una probabilidad."
+      },
+      "solution": [
+        {
+          "tex": "\\sigma(z)",
+          "en": "Sigmoid.",
+          "es": "Sigmoide."
+        }
+      ]
     },
     {
       "id": "nn-08-e4",
       "answerType": "number",
-      "prompt": { "en": "A 3-class softmax layer outputs how many values?", "es": "Una capa softmax de 3 clases produce cuántos valores?" },
+      "prompt": {
+        "en": "A 3-class softmax layer outputs how many values?",
+        "es": "Una capa softmax de 3 clases produce cuántos valores?"
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "One per class.", "es": "Uno por clase." },
-      "solution": [ { "tex": "k = 3", "en": "Three.", "es": "Tres." } ]
+      "hint": {
+        "en": "One per class.",
+        "es": "Uno por clase."
+      },
+      "solution": [
+        {
+          "tex": "k = 3",
+          "en": "Three.",
+          "es": "Tres."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.2, output units; softmax", "es": "Cap. 6.2, unidades de salida; softmax" } },
-    { "source": "Russell & Norvig — AIMA", "detail": { "en": "Output representations", "es": "Representaciones de salida" } }
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)",
+      "detail": {
+        "en": "Ch. 6.2, output units; softmax",
+        "es": "Cap. 6.2, unidades de salida; softmax"
+      }
+    },
+    {
+      "source": "Russell & Norvig — AIMA",
+      "detail": {
+        "en": "Output representations",
+        "es": "Representaciones de salida"
+      }
+    }
   ]
 }

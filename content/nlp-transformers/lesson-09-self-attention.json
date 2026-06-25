@@ -3,13 +3,26 @@
   "subjectId": "nlp-transformers",
   "order": 9,
   "estimatedMinutes": 40,
-  "title": { "en": "Self-Attention: Q, K, V", "es": "Autoatención: Q, K, V" },
+  "title": {
+    "en": "Self-Attention: Q, K, V",
+    "es": "Autoatención: Q, K, V"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "**Self-attention** lets every token in a sequence attend to every other token in the *same* sequence, building context-aware representations. Each token is projected into three vectors: a **query** (what am I looking for?), a **key** (what do I offer?), and a **value** (what I actually pass on). These come from learned weight matrices applied to the token embedding.",
         "es": "La **autoatención** permite que cada token de una secuencia atienda a todos los demás de la *misma* secuencia, construyendo representaciones conscientes del contexto. Cada token se proyecta en tres vectores: una **consulta (query)** (¿qué busco?), una **clave (key)** (¿qué ofrezco?) y un **valor (value)** (lo que realmente transmito). Provienen de matrices de pesos aprendidas aplicadas al embedding del token."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "nlp-08-attn-seq2seq"
+      ],
+      "note": {
+        "en": "Self-attention generalizes the attention mechanism introduced for seq2seq.",
+        "es": "La autoatención generaliza el mecanismo de atención introducido para seq2seq."
       }
     },
     {
@@ -28,10 +41,29 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "With key dimension $d_k = 64$, the scaling factor is $\\sqrt{64} = 8$. The score $q\\cdot k = [1,2]\\cdot[3,4] = 3 + 8 = 11$; scaled, $11/8 = 1.375$ before softmax.",
         "es": "Con dimensión de clave $d_k = 64$, el factor de escala es $\\sqrt{64} = 8$. La puntuación $q\\cdot k = [1,2]\\cdot[3,4] = 3 + 8 = 11$; escalada, $11/8 = 1.375$ antes de softmax."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "numpy"
+      ],
+      "code": {
+        "en": "import numpy as np\ndef softmax(z):\n    e = np.exp(z - np.max(z))   # subtract max for numerical stability\n    return e / e.sum()\n# attention turns raw scores into weights that sum to 1\nprint(np.round(softmax(np.array([1.0, 2.0, 3.0])), 3).tolist())",
+        "es": "import numpy as np\ndef softmax(z):\n    e = np.exp(z - np.max(z))   # resta el máximo por estabilidad numérica\n    return e / e.sum()\n# la atención convierte puntuaciones en pesos que suman 1\nprint(np.round(softmax(np.array([1.0, 2.0, 3.0])), 3).tolist())"
+      },
+      "expectedOutput": "[0.09, 0.245, 0.665]",
+      "caption": {
+        "en": "Softmax converts attention scores into a probability distribution over tokens.",
+        "es": "La softmax convierte las puntuaciones de atención en una distribución de probabilidad sobre los tokens."
       }
     }
   ],
@@ -39,41 +71,104 @@
     {
       "id": "nlp-09-e1",
       "answerType": "number",
-      "prompt": { "en": "Scaling factor $\\sqrt{d_k}$ for $d_k=64$?", "es": "¿Factor de escala $\\sqrt{d_k}$ para $d_k=64$?" },
+      "prompt": {
+        "en": "Scaling factor $\\sqrt{d_k}$ for $d_k=64$?",
+        "es": "¿Factor de escala $\\sqrt{d_k}$ para $d_k=64$?"
+      },
       "answer": "8",
-      "acceptedAlt": ["sqrt(64)"],
-      "hint": { "en": "√64.", "es": "√64." },
-      "solution": [ { "tex": "\\sqrt{64}=8", "en": "Eight.", "es": "Ocho." } ]
+      "acceptedAlt": [
+        "sqrt(64)"
+      ],
+      "hint": {
+        "en": "√64.",
+        "es": "√64."
+      },
+      "solution": [
+        {
+          "tex": "\\sqrt{64}=8",
+          "en": "Eight.",
+          "es": "Ocho."
+        }
+      ]
     },
     {
       "id": "nlp-09-e2",
       "answerType": "number",
-      "prompt": { "en": "Score $q\\cdot k = [1,2]\\cdot[3,4]$?", "es": "Puntuación $q\\cdot k = [1,2]\\cdot[3,4]$?" },
+      "prompt": {
+        "en": "Score $q\\cdot k = [1,2]\\cdot[3,4]$?",
+        "es": "Puntuación $q\\cdot k = [1,2]\\cdot[3,4]$?"
+      },
       "answer": "11",
-      "acceptedAlt": ["1*3+2*4", "dot([1,2],[3,4])"],
-      "hint": { "en": "3 + 8.", "es": "3 + 8." },
-      "solution": [ { "tex": "3+8=11", "en": "11.", "es": "11." } ]
+      "acceptedAlt": [
+        "1*3+2*4",
+        "dot([1,2],[3,4])"
+      ],
+      "hint": {
+        "en": "3 + 8.",
+        "es": "3 + 8."
+      },
+      "solution": [
+        {
+          "tex": "3+8=11",
+          "en": "11.",
+          "es": "11."
+        }
+      ]
     },
     {
       "id": "nlp-09-e3",
       "answerType": "number",
-      "prompt": { "en": "Scaled score $11/8$ (4 dp)?", "es": "Puntuación escalada $11/8$ (4 cifras)?" },
+      "prompt": {
+        "en": "Scaled score $11/8$ (4 dp)?",
+        "es": "Puntuación escalada $11/8$ (4 cifras)?"
+      },
       "answer": "1.375",
-      "acceptedAlt": ["11/8"],
-      "hint": { "en": "11 / 8.", "es": "11 / 8." },
-      "solution": [ { "tex": "11/8 = 1.375", "en": "1.375.", "es": "1.375." } ]
+      "acceptedAlt": [
+        "11/8"
+      ],
+      "hint": {
+        "en": "11 / 8.",
+        "es": "11 / 8."
+      },
+      "solution": [
+        {
+          "tex": "11/8 = 1.375",
+          "en": "1.375.",
+          "es": "1.375."
+        }
+      ]
     },
     {
       "id": "nlp-09-e4",
       "answerType": "text",
-      "prompt": { "en": "The three projections per token are query, key, and ___. (one word)", "es": "Las tres proyecciones por token son consulta, clave y ___. (una palabra)" },
+      "prompt": {
+        "en": "The three projections per token are query, key, and ___. (one word)",
+        "es": "Las tres proyecciones por token son consulta, clave y ___. (una palabra)"
+      },
       "answer": "value",
-      "acceptedAlt": ["valor"],
-      "hint": { "en": "Q, K, V.", "es": "Q, K, V." },
-      "solution": [ { "tex": "V", "en": "Value.", "es": "Valor." } ]
+      "acceptedAlt": [
+        "valor"
+      ],
+      "hint": {
+        "en": "Q, K, V.",
+        "es": "Q, K, V."
+      },
+      "solution": [
+        {
+          "tex": "V",
+          "en": "Value.",
+          "es": "Valor."
+        }
+      ]
     }
   ],
   "references": [
-    { "source": "Vaswani et al. — Attention Is All You Need (2017)", "detail": { "en": "Scaled dot-product self-attention", "es": "Autoatención de producto escalar escalado" } }
+    {
+      "source": "Vaswani et al. — Attention Is All You Need (2017)",
+      "detail": {
+        "en": "Scaled dot-product self-attention",
+        "es": "Autoatención de producto escalar escalado"
+      }
+    }
   ]
 }
