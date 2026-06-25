@@ -19,10 +19,10 @@
     "postinstall": "electron-rebuild -f -w better-sqlite3 && node scripts/copy-pyodide.mjs",
     "predist": "npm run verify && npm run build",
     "dist": "electron-builder",
-    "dist:mac": "electron-builder --mac",
-    "dist:linux": "electron-builder --linux",
-    "dist:win": "electron-builder --win",
-    "dist:dir": "electron-builder --dir"
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:dir": "npm run build && electron-builder --dir"
   },
   "dependencies": {
     "better-sqlite3": "^11.3.0",
