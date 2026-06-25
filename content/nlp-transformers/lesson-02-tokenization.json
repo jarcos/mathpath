@@ -1,0 +1,80 @@
+{
+  "id": "nlp-02-tokenization",
+  "subjectId": "nlp-transformers",
+  "order": 2,
+  "estimatedMinutes": 30,
+  "title": { "en": "Tokenization", "es": "Tokenización" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Before a model can read text it must be cut into **tokens** — the atomic units it processes. The simplest scheme splits on whitespace into words, but that explodes the vocabulary and fails on unseen words. Modern models use **subword** tokenization (e.g. Byte-Pair Encoding), splitting rare words into reusable pieces so any text maps to a fixed vocabulary.",
+        "es": "Antes de que un modelo lea texto debe cortarlo en **tokens** — las unidades atómicas que procesa. El esquema más simple separa por espacios en palabras, pero eso dispara el vocabulario y falla con palabras no vistas. Los modelos modernos usan tokenización en **subpalabras** (p. ej. codificación por pares de bytes, BPE), dividiendo palabras raras en piezas reutilizables para que cualquier texto se mapee a un vocabulario fijo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Each token is then mapped to an integer **ID** via the vocabulary, and the sequence of IDs is what the network actually sees. Subword tokenizers strike a balance: common words stay whole ('the'), while rare ones break up ('tokenization' → 'token' + 'ization'), keeping the vocabulary small (tens of thousands) yet covering everything.",
+        "es": "Cada token se mapea luego a un entero (**ID**) mediante el vocabulario, y la secuencia de IDs es lo que la red realmente ve. Los tokenizadores de subpalabras logran un equilibrio: las palabras comunes quedan enteras ('the'), mientras que las raras se dividen ('tokenización' → 'token' + 'ización'), manteniendo el vocabulario pequeño (decenas de miles) y cubriéndolo todo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Token count matters in practice: models have a maximum **context length** in tokens, and API costs are billed per token. As a rough English rule of thumb, $1$ token is about $4$ characters or $0.75$ words, so $100$ words is roughly $133$ tokens.",
+        "es": "El recuento de tokens importa en la práctica: los modelos tienen una **longitud de contexto** máxima en tokens, y los costes de API se facturan por token. Como regla aproximada para el inglés, $1$ token equivale a unos $4$ caracteres o $0.75$ palabras, así que $100$ palabras son unos $133$ tokens."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Whitespace-tokenizing 'the cat sat' gives $3$ tokens. Using the rule $0.75$ words per token, $300$ words is about $300/0.75 = 400$ tokens.",
+        "es": "Tokenizar por espacios 'the cat sat' da $3$ tokens. Usando la regla de $0.75$ palabras por token, $300$ palabras son unos $300/0.75 = 400$ tokens."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-02-e1",
+      "answerType": "number",
+      "prompt": { "en": "Whitespace tokens in 'the cat sat'?", "es": "¿Tokens por espacios en 'the cat sat'?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "Count the words.", "es": "Cuenta las palabras." },
+      "solution": [ { "tex": "3", "en": "Three.", "es": "Tres." } ]
+    },
+    {
+      "id": "nlp-02-e2",
+      "answerType": "number",
+      "prompt": { "en": "Using 0.75 words/token, how many tokens is 300 words? ($300/0.75$)", "es": "Con 0.75 palabras/token, ¿cuántos tokens son 300 palabras? ($300/0.75$)" },
+      "answer": "400",
+      "acceptedAlt": ["300/0.75"],
+      "hint": { "en": "300 / 0.75.", "es": "300 / 0.75." },
+      "solution": [ { "tex": "300/0.75 = 400", "en": "400 tokens.", "es": "400 tokens." } ]
+    },
+    {
+      "id": "nlp-02-e3",
+      "answerType": "text",
+      "prompt": { "en": "Splitting rare words into reusable pieces is ___ tokenization. (one word)", "es": "Dividir palabras raras en piezas reutilizables es la tokenización en ___. (una palabra)" },
+      "answer": "subword",
+      "acceptedAlt": ["subpalabra", "subpalabras", "subword"],
+      "hint": { "en": "Below the word level.", "es": "Por debajo de la palabra." },
+      "solution": [ { "tex": "\\text{subword}", "en": "Subword.", "es": "Subpalabra." } ]
+    },
+    {
+      "id": "nlp-02-e4",
+      "answerType": "number",
+      "prompt": { "en": "Approx tokens for 40 English characters at 4 chars/token? ($40/4$)", "es": "¿Tokens aprox. para 40 caracteres en inglés a 4 caracteres/token? ($40/4$)" },
+      "answer": "10",
+      "acceptedAlt": ["40/4"],
+      "hint": { "en": "40 / 4.", "es": "40 / 4." },
+      "solution": [ { "tex": "40/4 = 10", "en": "About 10.", "es": "Unos 10." } ]
+    }
+  ],
+  "references": [
+    { "source": "Jurafsky & Martin — Speech and Language Processing", "detail": { "en": "Ch. 2, regular expressions, text normalization, tokenization", "es": "Cap. 2, expresiones regulares, normalización y tokenización" } },
+    { "source": "Sennrich et al. — Neural Machine Translation of Rare Words with Subword Units (BPE, 2016)", "detail": { "en": "Byte-pair encoding", "es": "Codificación por pares de bytes" } }
+  ]
+}

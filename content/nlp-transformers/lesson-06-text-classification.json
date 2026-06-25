@@ -1,0 +1,79 @@
+{
+  "id": "nlp-06-classification",
+  "subjectId": "nlp-transformers",
+  "order": 6,
+  "estimatedMinutes": 35,
+  "title": { "en": "Text Classification & Sentiment", "es": "Clasificación de texto y sentimiento" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Text classification** assigns a label to a document: spam vs not, topic, or **sentiment** (positive/negative). A simple, strong baseline is **Naive Bayes**, which uses Bayes' rule and assumes word independence given the class. It picks the class maximizing $P(c)\\prod_i P(w_i\\mid c)$ — the prior times the likelihood of each word.",
+        "es": "La **clasificación de texto** asigna una etiqueta a un documento: spam o no, tema, o **sentimiento** (positivo/negativo). Una línea base simple y potente es **Naive Bayes**, que usa la regla de Bayes y asume independencia entre palabras dada la clase. Elige la clase que maximiza $P(c)\\prod_i P(w_i\\mid c)$ — la previa por la verosimilitud de cada palabra."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Classifiers are scored on held-out data. **Accuracy** is the fraction correct, but with imbalanced classes we prefer **precision** (of predicted positives, how many were right) and **recall** (of actual positives, how many we caught). Their harmonic mean is the **F1 score**: $F_1 = \\dfrac{2\\,PR}{P+R}$.",
+        "es": "Los clasificadores se evalúan con datos reservados. La **exactitud** es la fracción de aciertos, pero con clases desbalanceadas preferimos la **precisión** (de los positivos predichos, cuántos fueron correctos) y la **exhaustividad/recall** (de los positivos reales, cuántos capturamos). Su media armónica es la **puntuación F1**: $F_1 = \\dfrac{2\\,PR}{P+R}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Modern text classifiers replace hand-built features with learned embeddings fed to a neural network, or fine-tune a pretrained Transformer. But the evaluation metrics stay the same — and understanding precision/recall trade-offs is essential whatever the model.",
+        "es": "Los clasificadores de texto modernos sustituyen las características hechas a mano por embeddings aprendidos pasados a una red neuronal, o ajustan un Transformer preentrenado. Pero las métricas de evaluación siguen igual — y entender el compromiso entre precisión y recall es esencial sea cual sea el modelo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With precision $P=0.8$ and recall $R=0.6$, $F_1 = \\dfrac{2\\cdot 0.8\\cdot 0.6}{0.8+0.6} = \\dfrac{0.96}{1.4}\\approx 0.686$. Accuracy with $90$ correct out of $100$ is $90/100 = 0.9$.",
+        "es": "Con precisión $P=0.8$ y recall $R=0.6$, $F_1 = \\dfrac{2\\cdot 0.8\\cdot 0.6}{0.8+0.6} = \\dfrac{0.96}{1.4}\\approx 0.686$. La exactitud con $90$ aciertos de $100$ es $90/100 = 0.9$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-06-e1",
+      "answerType": "number",
+      "prompt": { "en": "Accuracy: 90 correct of 100?", "es": "Exactitud: 90 aciertos de 100?" },
+      "answer": "0.9",
+      "acceptedAlt": ["90/100", "9/10"],
+      "hint": { "en": "90 / 100.", "es": "90 / 100." },
+      "solution": [ { "tex": "0.9", "en": "0.9.", "es": "0.9." } ]
+    },
+    {
+      "id": "nlp-06-e2",
+      "answerType": "number",
+      "prompt": { "en": "F1 with P=0.8, R=0.6: $\\frac{2\\cdot0.8\\cdot0.6}{0.8+0.6}$ to 3 dp.", "es": "F1 con P=0.8, R=0.6: $\\frac{2\\cdot0.8\\cdot0.6}{0.8+0.6}$ a 3 cifras." },
+      "answer": "0.686",
+      "acceptedAlt": [],
+      "hint": { "en": "0.96 / 1.4.", "es": "0.96 / 1.4." },
+      "solution": [ { "tex": "\\frac{0.96}{1.4}\\approx 0.686", "en": "≈ 0.686.", "es": "≈ 0.686." } ]
+    },
+    {
+      "id": "nlp-06-e3",
+      "answerType": "number",
+      "prompt": { "en": "Precision: 8 true positives, 2 false positives. $8/(8+2)$?", "es": "Precisión: 8 verdaderos positivos, 2 falsos positivos. $8/(8+2)$?" },
+      "answer": "0.8",
+      "acceptedAlt": ["8/10", "4/5"],
+      "hint": { "en": "TP / (TP+FP).", "es": "VP / (VP+FP)." },
+      "solution": [ { "tex": "8/10 = 0.8", "en": "0.8.", "es": "0.8." } ]
+    },
+    {
+      "id": "nlp-06-e4",
+      "answerType": "text",
+      "prompt": { "en": "The simple count-based classifier assuming word independence is ___ Bayes. (one word)", "es": "El clasificador simple por cuentas que asume independencia de palabras es ___ Bayes. (una palabra)" },
+      "answer": "naive",
+      "acceptedAlt": ["ingenuo", "naïve"],
+      "hint": { "en": "Naïve.", "es": "Ingenuo." },
+      "solution": [ { "tex": "\\text{Naive Bayes}", "en": "Naive.", "es": "Naive (ingenuo)." } ]
+    }
+  ],
+  "references": [
+    { "source": "Jurafsky & Martin — Speech and Language Processing", "detail": { "en": "Ch. 4, naive Bayes and sentiment classification; evaluation metrics", "es": "Cap. 4, naive Bayes y clasificación de sentimiento; métricas" } }
+  ]
+}

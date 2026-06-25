@@ -1,0 +1,79 @@
+{
+  "id": "nlp-04-tfidf",
+  "subjectId": "nlp-transformers",
+  "order": 4,
+  "estimatedMinutes": 35,
+  "title": { "en": "Bag of Words & TF-IDF", "es": "Bolsa de palabras y TF-IDF" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "To feed text to a classical model we turn a document into a vector. The **bag of words (BoW)** representation counts how often each vocabulary word appears, ignoring order entirely — 'dog bites man' and 'man bites dog' get the same vector. Despite throwing away order, BoW works surprisingly well for topic and sentiment classification.",
+        "es": "Para alimentar texto a un modelo clásico convertimos un documento en un vector. La representación de **bolsa de palabras (BoW)** cuenta cuántas veces aparece cada palabra del vocabulario, ignorando el orden por completo — 'el perro muerde al hombre' y 'el hombre muerde al perro' obtienen el mismo vector. A pesar de descartar el orden, BoW funciona sorprendentemente bien para clasificar tema y sentimiento."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Raw counts overweight common words like 'the'. **TF-IDF** fixes this by multiplying **term frequency** (how often a word appears in a document) by **inverse document frequency**, $\\text{idf}(t) = \\log\\dfrac{N}{df(t)}$, which down-weights words appearing in many documents. Rare, distinctive words get high scores; ubiquitous words get near zero.",
+        "es": "Las cuentas crudas sobreponderan palabras comunes como 'the'. **TF-IDF** lo corrige multiplicando la **frecuencia de término** (cuántas veces aparece una palabra en un documento) por la **frecuencia inversa de documento**, $\\text{idf}(t) = \\log\\dfrac{N}{df(t)}$, que reduce el peso de palabras que aparecen en muchos documentos. Las palabras raras y distintivas obtienen puntuaciones altas; las ubicuas, casi cero."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The TF-IDF weight is the product $\\text{tf}(t,d)\\cdot \\text{idf}(t)$. If a term appears in *every* document, $df = N$, so $\\text{idf} = \\log(N/N) = \\log 1 = 0$ — it carries no discriminating information. These sparse vectors fed classifiers for decades before dense neural embeddings took over.",
+        "es": "El peso TF-IDF es el producto $\\text{tf}(t,d)\\cdot \\text{idf}(t)$. Si un término aparece en *todos* los documentos, $df = N$, así que $\\text{idf} = \\log(N/N) = \\log 1 = 0$ — no aporta información discriminante. Estos vectores dispersos alimentaron clasificadores durante décadas antes de que los embeddings neuronales densos tomaran el relevo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With $N=100$ documents and a term in $df=10$ of them, $\\text{idf} = \\log_{10}(100/10) = \\log_{10}(10) = 1$. A term in all $100$ documents has $\\text{idf} = \\log_{10}(1) = 0$.",
+        "es": "Con $N=100$ documentos y un término en $df=10$ de ellos, $\\text{idf} = \\log_{10}(100/10) = \\log_{10}(10) = 1$. Un término en los $100$ documentos tiene $\\text{idf} = \\log_{10}(1) = 0$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-04-e1",
+      "answerType": "number",
+      "prompt": { "en": "$\\text{idf} = \\log_{10}(N/df)$ with $N=100$, $df=10$: compute.", "es": "$\\text{idf} = \\log_{10}(N/df)$ con $N=100$, $df=10$: calcula." },
+      "answer": "1",
+      "acceptedAlt": ["log(100/10,10)", "log10(10)"],
+      "hint": { "en": "log10(10).", "es": "log10(10)." },
+      "solution": [ { "tex": "\\log_{10}(10) = 1", "en": "One.", "es": "Uno." } ]
+    },
+    {
+      "id": "nlp-04-e2",
+      "answerType": "number",
+      "prompt": { "en": "idf of a term appearing in all documents ($df=N$): $\\log(N/N)$?", "es": "idf de un término en todos los documentos ($df=N$): $\\log(N/N)$?" },
+      "answer": "0",
+      "acceptedAlt": ["log(1)"],
+      "hint": { "en": "log(1).", "es": "log(1)." },
+      "solution": [ { "tex": "\\log 1 = 0", "en": "Zero.", "es": "Cero." } ]
+    },
+    {
+      "id": "nlp-04-e3",
+      "answerType": "number",
+      "prompt": { "en": "TF-IDF weight with tf $=3$ and idf $=2$: product?", "es": "Peso TF-IDF con tf $=3$ e idf $=2$: ¿producto?" },
+      "answer": "6",
+      "acceptedAlt": ["3*2"],
+      "hint": { "en": "tf × idf.", "es": "tf × idf." },
+      "solution": [ { "tex": "3\\cdot 2 = 6", "en": "Six.", "es": "Seis." } ]
+    },
+    {
+      "id": "nlp-04-e4",
+      "answerType": "text",
+      "prompt": { "en": "Representing a document as word counts ignoring order is the bag of ___. (one word)", "es": "Representar un documento como cuentas de palabras ignorando el orden es la bolsa de ___. (una palabra)" },
+      "answer": "words",
+      "acceptedAlt": ["palabras"],
+      "hint": { "en": "Bag of ___.", "es": "Bolsa de ___." },
+      "solution": [ { "tex": "\\text{BoW}", "en": "Words.", "es": "Palabras." } ]
+    }
+  ],
+  "references": [
+    { "source": "Jurafsky & Martin — Speech and Language Processing", "detail": { "en": "Ch. 6, vector semantics; TF-IDF", "es": "Cap. 6, semántica vectorial; TF-IDF" } }
+  ]
+}

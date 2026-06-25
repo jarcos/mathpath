@@ -1,0 +1,79 @@
+{
+  "id": "nlp-11-positional",
+  "subjectId": "nlp-transformers",
+  "order": 11,
+  "estimatedMinutes": 30,
+  "title": { "en": "Positional Encoding", "es": "Codificación posicional" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Self-attention is **permutation invariant**: it treats the input as a *set*, so 'dog bites man' and 'man bites dog' would look identical. Since word **order** carries meaning, the Transformer injects it explicitly by adding a **positional encoding** vector to each token's embedding before the first layer.",
+        "es": "La autoatención es **invariante a permutaciones**: trata la entrada como un *conjunto*, así que 'el perro muerde al hombre' y 'el hombre muerde al perro' parecerían idénticos. Como el **orden** de las palabras lleva significado, el Transformer lo inyecta explícitamente sumando un vector de **codificación posicional** al embedding de cada token antes de la primera capa."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The original paper uses fixed **sinusoidal** encodings: each dimension is a sine or cosine of the position at a different frequency, $PE_{(pos,2i)} = \\sin\\!\\big(pos/10000^{2i/d}\\big)$. This gives every position a unique signature and lets the model generalize to sequence lengths unseen in training. Many modern models instead **learn** the position embeddings.",
+        "es": "El artículo original usa codificaciones **sinusoidales** fijas: cada dimensión es un seno o coseno de la posición a una frecuencia distinta, $PE_{(pos,2i)} = \\sin\\!\\big(pos/10000^{2i/d}\\big)$. Esto da a cada posición una firma única y permite al modelo generalizar a longitudes de secuencia no vistas en entrenamiento. Muchos modelos modernos en cambio **aprenden** los embeddings de posición."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Crucially, the encoding is **added** to the token embedding (same dimension $d_{model}$), not concatenated, so it does not increase the width. After this addition the network has access to both *what* each token is and *where* it sits — everything attention needs to use order.",
+        "es": "Es clave que la codificación se **suma** al embedding del token (misma dimensión $d_{model}$), no se concatena, así que no aumenta el ancho. Tras esta suma la red tiene acceso tanto a *qué* es cada token como a *dónde* está — todo lo que la atención necesita para usar el orden."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "At position $pos=0$, dimension $2i=0$: $PE = \\sin(0/10000^0) = \\sin(0) = 0$. The encoding (dimension $d_{model}$) is added to a token embedding of the same dimension, so widths must match.",
+        "es": "En la posición $pos=0$, dimensión $2i=0$: $PE = \\sin(0/10000^0) = \\sin(0) = 0$. La codificación (dimensión $d_{model}$) se suma a un embedding de token de la misma dimensión, así que los anchos deben coincidir."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-11-e1",
+      "answerType": "number",
+      "prompt": { "en": "Sinusoidal $PE$ at $pos=0$, even dim: $\\sin(0)$?", "es": "$PE$ sinusoidal en $pos=0$, dim. par: $\\sin(0)$?" },
+      "answer": "0",
+      "acceptedAlt": ["sin(0)"],
+      "hint": { "en": "sin 0.", "es": "sen 0." },
+      "solution": [ { "tex": "\\sin 0 = 0", "en": "Zero.", "es": "Cero." } ]
+    },
+    {
+      "id": "nlp-11-e2",
+      "answerType": "text",
+      "prompt": { "en": "Self-attention without position info is permutation ___. (one word)", "es": "La autoatención sin info de posición es ___ a permutaciones. (una palabra)" },
+      "answer": "invariant",
+      "acceptedAlt": ["invariante"],
+      "hint": { "en": "Order doesn't change output.", "es": "El orden no cambia la salida." },
+      "solution": [ { "tex": "\\text{permutation invariant}", "en": "Invariant.", "es": "Invariante." } ]
+    },
+    {
+      "id": "nlp-11-e3",
+      "answerType": "text",
+      "prompt": { "en": "Positional encoding is ___ to (not concatenated with) the embedding. (one word)", "es": "La codificación posicional se ___ (no se concatena) al embedding. (una palabra)" },
+      "answer": "added",
+      "acceptedAlt": ["suma", "sumada", "added", "add"],
+      "hint": { "en": "Element-wise sum.", "es": "Suma elemento a elemento." },
+      "solution": [ { "tex": "x + PE", "en": "Added.", "es": "Sumada." } ]
+    },
+    {
+      "id": "nlp-11-e4",
+      "answerType": "number",
+      "prompt": { "en": "Value of $\\cos(0)$ (the cosine half of $PE$ at $pos=0$)?", "es": "Valor de $\\cos(0)$ (la mitad coseno de $PE$ en $pos=0$)?" },
+      "answer": "1",
+      "acceptedAlt": ["cos(0)"],
+      "hint": { "en": "cos 0.", "es": "cos 0." },
+      "solution": [ { "tex": "\\cos 0 = 1", "en": "One.", "es": "Uno." } ]
+    }
+  ],
+  "references": [
+    { "source": "Vaswani et al. — Attention Is All You Need (2017)", "detail": { "en": "Positional encoding, §3.5", "es": "Codificación posicional, §3.5" } }
+  ]
+}

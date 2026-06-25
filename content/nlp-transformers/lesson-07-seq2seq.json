@@ -1,0 +1,80 @@
+{
+  "id": "nlp-07-seq2seq",
+  "subjectId": "nlp-transformers",
+  "order": 7,
+  "estimatedMinutes": 35,
+  "title": { "en": "Sequence-to-Sequence Models", "es": "Modelos secuencia a secuencia" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Many NLP tasks map an input sequence to an output sequence of *different* length: translation, summarization, question answering. The **sequence-to-sequence (seq2seq)** framework solves this with two RNNs: an **encoder** reads the input and compresses it into a context vector, and a **decoder** generates the output one token at a time from that context.",
+        "es": "Muchas tareas de PLN mapean una secuencia de entrada a una de salida de longitud *distinta*: traducción, resumen, respuesta a preguntas. El marco **secuencia a secuencia (seq2seq)** lo resuelve con dos RNN: un **codificador** lee la entrada y la comprime en un vector de contexto, y un **decodificador** genera la salida token a token a partir de ese contexto."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The decoder is **autoregressive**: each generated token is fed back as input for the next step, so it predicts $y_t$ given the context and all previously generated tokens $y_1\\dots y_{t-1}$. Special tokens mark the start (`<sos>`) and end (`<eos>`) of generation, telling the decoder when to begin and stop.",
+        "es": "El decodificador es **autorregresivo**: cada token generado se realimenta como entrada del siguiente paso, así que predice $y_t$ dado el contexto y todos los tokens previos $y_1\\dots y_{t-1}$. Tokens especiales marcan el inicio (`<sos>`) y el fin (`<eos>`) de la generación, indicando al decodificador cuándo empezar y parar."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The bottleneck is fatal for long inputs: cramming an entire paragraph into one fixed context vector loses information. The fix — letting the decoder look back at *all* encoder states via **attention** — is the subject of the next lesson and the seed of the Transformer.",
+        "es": "El cuello de botella es fatal para entradas largas: meter un párrafo entero en un único vector de contexto fijo pierde información. La solución — dejar que el decodificador mire *todos* los estados del codificador mediante **atención** — es el tema de la próxima lección y la semilla del Transformer."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A seq2seq model uses $2$ RNNs (encoder + decoder). Translating a $5$-word sentence into a $7$-word one shows input and output lengths differ — here by $7 - 5 = 2$ tokens.",
+        "es": "Un modelo seq2seq usa $2$ RNN (codificador + decodificador). Traducir una frase de $5$ palabras a una de $7$ muestra que las longitudes difieren — aquí en $7 - 5 = 2$ tokens."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-07-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many RNNs does a basic seq2seq model use?", "es": "¿Cuántas RNN usa un modelo seq2seq básico?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Encoder and decoder.", "es": "Codificador y decodificador." },
+      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "nlp-07-e2",
+      "answerType": "text",
+      "prompt": { "en": "The part that reads the input into a context vector is the ___. (one word)", "es": "La parte que lee la entrada en un vector de contexto es el ___. (una palabra)" },
+      "answer": "encoder",
+      "acceptedAlt": ["codificador"],
+      "hint": { "en": "Opposite of decoder.", "es": "Opuesto del decodificador." },
+      "solution": [ { "tex": "\\text{encoder}", "en": "Encoder.", "es": "Codificador." } ]
+    },
+    {
+      "id": "nlp-07-e3",
+      "answerType": "text",
+      "prompt": { "en": "A decoder feeding its own output back as input is ___. (one word)", "es": "Un decodificador que realimenta su propia salida como entrada es ___. (una palabra)" },
+      "answer": "autoregressive",
+      "acceptedAlt": ["autorregresivo", "autoregresivo"],
+      "hint": { "en": "Auto + regressive.", "es": "Auto + regresivo." },
+      "solution": [ { "tex": "y_t \\mid y_{<t}", "en": "Autoregressive.", "es": "Autorregresivo." } ]
+    },
+    {
+      "id": "nlp-07-e4",
+      "answerType": "number",
+      "prompt": { "en": "Length difference translating 5 words to 7: $7-5$?", "es": "Diferencia de longitud al traducir 5 palabras a 7: $7-5$?" },
+      "answer": "2",
+      "acceptedAlt": ["7-5"],
+      "hint": { "en": "7 − 5.", "es": "7 − 5." },
+      "solution": [ { "tex": "7-5=2", "en": "Two.", "es": "Dos." } ]
+    }
+  ],
+  "references": [
+    { "source": "Sutskever et al. — Sequence to Sequence Learning with Neural Networks (2014)", "detail": { "en": "Encoder-decoder seq2seq", "es": "seq2seq codificador-decodificador" } },
+    { "source": "Jurafsky & Martin — Speech and Language Processing", "detail": { "en": "Ch. 9–10, RNNs and encoder-decoder models", "es": "Cap. 9–10, RNN y modelos codificador-decodificador" } }
+  ]
+}

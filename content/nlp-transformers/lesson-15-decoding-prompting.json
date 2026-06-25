@@ -1,0 +1,80 @@
+{
+  "id": "nlp-15-decoding",
+  "subjectId": "nlp-transformers",
+  "order": 15,
+  "estimatedMinutes": 35,
+  "title": { "en": "Decoding & Prompting", "es": "Decodificación y prompting" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A language model outputs a probability distribution over the next token; **decoding** turns that into actual text. **Greedy** decoding always picks the most probable token — fast but repetitive. **Sampling** draws randomly from the distribution for variety. **Beam search** keeps the top-$k$ partial sequences to find a high-probability whole sentence.",
+        "es": "Un modelo de lenguaje produce una distribución de probabilidad sobre el siguiente token; la **decodificación** la convierte en texto real. La decodificación **voraz (greedy)** elige siempre el token más probable — rápida pero repetitiva. El **muestreo** extrae al azar de la distribución para dar variedad. La **búsqueda en haz (beam search)** mantiene las top-$k$ secuencias parciales para hallar una frase entera de alta probabilidad."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Sampling is shaped by **temperature** $T$: logits are divided by $T$ before softmax. $T<1$ sharpens the distribution (more confident, less random), $T>1$ flattens it (more diverse, riskier), and $T\\to 0$ recovers greedy. **Top-k** and **top-p (nucleus)** sampling restrict the choice to the most likely tokens to avoid nonsense.",
+        "es": "El muestreo se modula con la **temperatura** $T$: los logits se dividen por $T$ antes del softmax. $T<1$ agudiza la distribución (más segura, menos aleatoria), $T>1$ la aplana (más diversa, más arriesgada), y $T\\to 0$ recupera la voraz. El muestreo **top-k** y **top-p (núcleo)** restringen la elección a los tokens más probables para evitar disparates."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Beyond decoding, **prompting** is how we steer a model without retraining: phrasing the input so the desired behavior follows. **Few-shot** prompts include worked examples; **chain-of-thought** prompts ask the model to reason step by step, often improving accuracy on multi-step problems. Prompting plus decoding settings are the everyday controls of a deployed LLM.",
+        "es": "Más allá de la decodificación, el **prompting** es cómo guiamos un modelo sin reentrenarlo: redactando la entrada para que siga el comportamiento deseado. Los prompts **few-shot** incluyen ejemplos resueltos; los prompts de **cadena de pensamiento** piden al modelo razonar paso a paso, mejorando a menudo la exactitud en problemas de varios pasos. El prompting más los ajustes de decodificación son los controles cotidianos de un LLM desplegado."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A logit of $2$ divided by temperature $T=0.5$ gives $2/0.5 = 4$ — a larger value, sharpening the softmax. Greedy decoding corresponds to picking the single token with the highest probability (the argmax).",
+        "es": "Un logit de $2$ dividido por temperatura $T=0.5$ da $2/0.5 = 4$ — un valor mayor, agudizando el softmax. La decodificación voraz corresponde a elegir el único token de mayor probabilidad (el argmax)."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-15-e1",
+      "answerType": "number",
+      "prompt": { "en": "Logit 2 divided by temperature 0.5: $2/0.5$?", "es": "Logit 2 dividido por temperatura 0.5: $2/0.5$?" },
+      "answer": "4",
+      "acceptedAlt": ["2/0.5"],
+      "hint": { "en": "2 / 0.5.", "es": "2 / 0.5." },
+      "solution": [ { "tex": "2/0.5 = 4", "en": "Four.", "es": "Cuatro." } ]
+    },
+    {
+      "id": "nlp-15-e2",
+      "answerType": "text",
+      "prompt": { "en": "Decoding that always picks the most probable token is ___. (one word)", "es": "La decodificación que elige siempre el token más probable es ___. (una palabra)" },
+      "answer": "greedy",
+      "acceptedAlt": ["voraz", "voraz"],
+      "hint": { "en": "argmax each step.", "es": "argmax en cada paso." },
+      "solution": [ { "tex": "\\arg\\max", "en": "Greedy.", "es": "Voraz." } ]
+    },
+    {
+      "id": "nlp-15-e3",
+      "answerType": "text",
+      "prompt": { "en": "The parameter $T$ controlling randomness in sampling is the ___. (one word)", "es": "El parámetro $T$ que controla la aleatoriedad del muestreo es la ___. (una palabra)" },
+      "answer": "temperature",
+      "acceptedAlt": ["temperatura"],
+      "hint": { "en": "Divides the logits.", "es": "Divide los logits." },
+      "solution": [ { "tex": "T", "en": "Temperature.", "es": "Temperatura." } ]
+    },
+    {
+      "id": "nlp-15-e4",
+      "answerType": "text",
+      "prompt": { "en": "Prompting a model to reason step by step is chain-of-___. (one word)", "es": "Pedir al modelo razonar paso a paso es cadena de ___. (una palabra)" },
+      "answer": "thought",
+      "acceptedAlt": ["pensamiento"],
+      "hint": { "en": "Chain-of-___.", "es": "Cadena de ___." },
+      "solution": [ { "tex": "\\text{chain-of-thought}", "en": "Thought.", "es": "Pensamiento." } ]
+    }
+  ],
+  "references": [
+    { "source": "Holtzman et al. — The Curious Case of Neural Text Degeneration (nucleus sampling, 2020)", "detail": { "en": "Top-p sampling and decoding", "es": "Muestreo top-p y decodificación" } },
+    { "source": "Wei et al. — Chain-of-Thought Prompting (2022)", "detail": { "en": "Step-by-step prompting", "es": "Prompting paso a paso" } }
+  ]
+}

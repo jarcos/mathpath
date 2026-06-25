@@ -1,0 +1,79 @@
+{
+  "id": "nlp-03-ngram",
+  "subjectId": "nlp-transformers",
+  "order": 3,
+  "estimatedMinutes": 35,
+  "title": { "en": "N-gram Language Models", "es": "Modelos de lenguaje de n-gramas" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **language model** assigns a probability to a sequence of words and, equivalently, predicts the **next word** given the preceding ones. The classic approach is the **n-gram** model: approximate the probability of a word using only the previous $n-1$ words. A **bigram** ($n=2$) uses one word of history, a **trigram** ($n=3$) two.",
+        "es": "Un **modelo de lenguaje** asigna una probabilidad a una secuencia de palabras y, de forma equivalente, predice la **palabra siguiente** dadas las anteriores. El enfoque clásico es el modelo de **n-gramas**: aproximar la probabilidad de una palabra usando solo las $n-1$ palabras previas. Un **bigrama** ($n=2$) usa una palabra de historia, un **trigrama** ($n=3$) dos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Probabilities are estimated by **counting**: $P(w_i \\mid w_{i-1}) = \\dfrac{\\text{count}(w_{i-1}, w_i)}{\\text{count}(w_{i-1})}$. This is just the fraction of times $w_i$ followed $w_{i-1}$ in the training corpus. The probability of a whole sentence is the product of these conditional probabilities (the chain rule under the Markov assumption).",
+        "es": "Las probabilidades se estiman **contando**: $P(w_i \\mid w_{i-1}) = \\dfrac{\\text{cuenta}(w_{i-1}, w_i)}{\\text{cuenta}(w_{i-1})}$. Es simplemente la fracción de veces que $w_i$ siguió a $w_{i-1}$ en el corpus de entrenamiento. La probabilidad de una frase entera es el producto de estas probabilidades condicionales (la regla de la cadena bajo la hipótesis de Markov)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "N-grams are simple and fast but limited: they have no memory beyond $n-1$ words and assign zero probability to any unseen n-gram, requiring **smoothing**. Their weakness — a tiny fixed context — is exactly what neural language models and Transformers overcome by learning rich, long-range representations.",
+        "es": "Los n-gramas son simples y rápidos pero limitados: no tienen memoria más allá de $n-1$ palabras y asignan probabilidad cero a cualquier n-grama no visto, requiriendo **suavizado**. Su debilidad — un contexto fijo diminuto — es justo lo que los modelos de lenguaje neuronales y los Transformers superan al aprender representaciones ricas de largo alcance."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If 'the' appears $100$ times and is followed by 'cat' $20$ times, the bigram probability $P(\\text{cat}\\mid\\text{the}) = 20/100 = 0.2$. A trigram model conditions on the previous $3-1 = 2$ words.",
+        "es": "Si 'the' aparece $100$ veces y le sigue 'cat' $20$ veces, la probabilidad bigrama $P(\\text{cat}\\mid\\text{the}) = 20/100 = 0.2$. Un modelo trigrama condiciona sobre las $3-1 = 2$ palabras previas."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "$P(\\text{cat}\\mid\\text{the})$ if 'the cat' count 20, 'the' count 100: $20/100$?", "es": "$P(\\text{cat}\\mid\\text{the})$ si 'the cat' cuenta 20, 'the' cuenta 100: $20/100$?" },
+      "answer": "0.2",
+      "acceptedAlt": ["20/100", "1/5"],
+      "hint": { "en": "20 / 100.", "es": "20 / 100." },
+      "solution": [ { "tex": "20/100 = 0.2", "en": "0.2.", "es": "0.2." } ]
+    },
+    {
+      "id": "nlp-03-e2",
+      "answerType": "number",
+      "prompt": { "en": "How many words of history does a trigram ($n=3$) use? ($n-1$)", "es": "¿Cuántas palabras de historia usa un trigrama ($n=3$)? ($n-1$)" },
+      "answer": "2",
+      "acceptedAlt": ["3-1"],
+      "hint": { "en": "n − 1.", "es": "n − 1." },
+      "solution": [ { "tex": "3-1 = 2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "nlp-03-e3",
+      "answerType": "number",
+      "prompt": { "en": "Sentence prob as product: $P=0.5\\cdot 0.4$. Compute.", "es": "Prob. de frase como producto: $P=0.5\\cdot 0.4$. Calcula." },
+      "answer": "0.2",
+      "acceptedAlt": ["0.5*0.4", "1/5"],
+      "hint": { "en": "0.5 × 0.4.", "es": "0.5 × 0.4." },
+      "solution": [ { "tex": "0.5\\cdot 0.4 = 0.2", "en": "0.2.", "es": "0.2." } ]
+    },
+    {
+      "id": "nlp-03-e4",
+      "answerType": "text",
+      "prompt": { "en": "Giving unseen n-grams non-zero probability is called ___. (one word)", "es": "Dar probabilidad no nula a n-gramas no vistos se llama ___. (una palabra)" },
+      "answer": "smoothing",
+      "acceptedAlt": ["suavizado", "suavizar"],
+      "hint": { "en": "e.g. add-one.", "es": "p. ej. suma de uno." },
+      "solution": [ { "tex": "\\text{smoothing}", "en": "Smoothing.", "es": "Suavizado." } ]
+    }
+  ],
+  "references": [
+    { "source": "Jurafsky & Martin — Speech and Language Processing", "detail": { "en": "Ch. 3, n-gram language models", "es": "Cap. 3, modelos de lenguaje de n-gramas" } }
+  ]
+}

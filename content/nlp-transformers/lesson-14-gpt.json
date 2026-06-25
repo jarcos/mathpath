@@ -1,0 +1,80 @@
+{
+  "id": "nlp-14-gpt",
+  "subjectId": "nlp-transformers",
+  "order": 14,
+  "estimatedMinutes": 35,
+  "title": { "en": "GPT: Decoder Models", "es": "GPT: modelos decodificadores" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **GPT** family keeps only the Transformer **decoder** stack and trains it as an **autoregressive** language model: predict the next token given all previous ones. It uses **causal (masked) self-attention** so position $t$ can only attend to positions $\\le t$, never peeking ahead. This makes GPT a natural text *generator*.",
+        "es": "La familia **GPT** conserva solo la pila **decodificadora** del Transformer y la entrena como modelo de lenguaje **autorregresivo**: predecir el siguiente token dados todos los anteriores. Usa **autoatención causal (enmascarada)** para que la posición $t$ solo atienda a posiciones $\\le t$, sin mirar adelante. Esto hace de GPT un *generador* de texto natural."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Pretraining is gloriously simple: take raw text and predict each next token. The objective minimizes **cross-entropy** between the predicted distribution and the true next token, equivalent to maximizing the likelihood of the corpus. No labels needed — the text is its own supervision (**self-supervised** learning).",
+        "es": "El preentrenamiento es gloriosamente simple: tomar texto crudo y predecir cada siguiente token. El objetivo minimiza la **entropía cruzada** entre la distribución predicha y el verdadero siguiente token, equivalente a maximizar la verosimilitud del corpus. Sin etiquetas — el texto es su propia supervisión (aprendizaje **autosupervisado**)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "As GPT models grew (GPT-2, GPT-3 with $175$ billion parameters, and beyond), a surprise emerged: scale alone unlocked **few-shot** and **zero-shot** abilities — the model performs new tasks from a prompt with few or no examples. The encoder-only (BERT) vs decoder-only (GPT) split defines two of the three Transformer families (the third being encoder-decoder).",
+        "es": "Conforme los modelos GPT crecieron (GPT-2, GPT-3 con $175$ mil millones de parámetros, y más allá), surgió una sorpresa: la escala por sí sola desbloqueó capacidades **few-shot** y **zero-shot** — el modelo realiza tareas nuevas desde un prompt con pocos o ningún ejemplo. La división solo-codificador (BERT) vs solo-decodificador (GPT) define dos de las tres familias Transformer (la tercera es codificador-decodificador)."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "In causal attention, token at position $4$ can attend to $4$ positions (1–4). Providing $3$ examples in the prompt before the real query is '3-shot' prompting.",
+        "es": "En la atención causal, el token en la posición $4$ puede atender a $4$ posiciones (1–4). Dar $3$ ejemplos en el prompt antes de la consulta real es prompting '3-shot'."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-14-e1",
+      "answerType": "number",
+      "prompt": { "en": "In causal attention, how many positions can token 4 attend to (positions 1–4)?", "es": "En atención causal, ¿a cuántas posiciones puede atender el token 4 (posiciones 1–4)?" },
+      "answer": "4",
+      "acceptedAlt": [],
+      "hint": { "en": "Itself and all before.", "es": "Él mismo y todos los anteriores." },
+      "solution": [ { "tex": "4", "en": "Four.", "es": "Cuatro." } ]
+    },
+    {
+      "id": "nlp-14-e2",
+      "answerType": "text",
+      "prompt": { "en": "GPT keeps only the Transformer ___ stack. (one word)", "es": "GPT conserva solo la pila ___ del Transformer. (una palabra)" },
+      "answer": "decoder",
+      "acceptedAlt": ["decodificador"],
+      "hint": { "en": "Not the encoder.", "es": "No el codificador." },
+      "solution": [ { "tex": "\\text{decoder}", "en": "Decoder.", "es": "Decodificador." } ]
+    },
+    {
+      "id": "nlp-14-e3",
+      "answerType": "text",
+      "prompt": { "en": "The next-token training loss is ___-entropy. (one word)", "es": "La pérdida de entrenamiento de siguiente token es entropía ___. (una palabra)" },
+      "answer": "cross",
+      "acceptedAlt": ["cruzada"],
+      "hint": { "en": "Cross-___.", "es": "Entropía ___." },
+      "solution": [ { "tex": "\\text{cross-entropy}", "en": "Cross.", "es": "Cruzada." } ]
+    },
+    {
+      "id": "nlp-14-e4",
+      "answerType": "text",
+      "prompt": { "en": "Doing a task from the prompt with zero examples is ___-shot. (one word)", "es": "Hacer una tarea desde el prompt con cero ejemplos es ___-shot. (una palabra)" },
+      "answer": "zero",
+      "acceptedAlt": ["cero"],
+      "hint": { "en": "No examples.", "es": "Sin ejemplos." },
+      "solution": [ { "tex": "\\text{zero-shot}", "en": "Zero.", "es": "Zero (cero)." } ]
+    }
+  ],
+  "references": [
+    { "source": "Radford et al. — Improving Language Understanding by Generative Pre-Training (GPT, 2018)", "detail": { "en": "Decoder-only autoregressive LM", "es": "LM autorregresivo solo-decodificador" } },
+    { "source": "Brown et al. — Language Models are Few-Shot Learners (GPT-3, 2020)", "detail": { "en": "Few-shot and scale", "es": "Few-shot y escala" } }
+  ]
+}

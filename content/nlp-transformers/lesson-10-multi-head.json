@@ -1,0 +1,79 @@
+{
+  "id": "nlp-10-multi-head",
+  "subjectId": "nlp-transformers",
+  "order": 10,
+  "estimatedMinutes": 35,
+  "title": { "en": "Multi-Head Attention", "es": "Atención multicabeza" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A single attention computation can only capture one kind of relationship at a time. **Multi-head attention** runs several attention operations — **heads** — in parallel, each with its own learned query/key/value projections. One head might track syntactic agreement, another coreference, another local word order; together they capture richer structure.",
+        "es": "Una sola operación de atención solo puede capturar un tipo de relación a la vez. La **atención multicabeza** ejecuta varias operaciones de atención — **cabezas** — en paralelo, cada una con sus propias proyecciones aprendidas de consulta/clave/valor. Una cabeza podría seguir la concordancia sintáctica, otra la correferencia, otra el orden local; juntas capturan una estructura más rica."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Each head works in a smaller subspace. The model dimension $d_{model}$ is split across the $h$ heads, so each head has dimension $d_k = d_{model}/h$. The heads' outputs are concatenated back to width $d_{model}$ and passed through a final linear layer. This keeps total computation similar to single-head attention while adding expressive power.",
+        "es": "Cada cabeza trabaja en un subespacio más pequeño. La dimensión del modelo $d_{model}$ se reparte entre las $h$ cabezas, así que cada cabeza tiene dimensión $d_k = d_{model}/h$. Las salidas de las cabezas se concatenan de nuevo a ancho $d_{model}$ y pasan por una capa lineal final. Esto mantiene el cómputo total similar al de una sola cabeza mientras añade poder expresivo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The original Transformer used $d_{model}=512$ with $h=8$ heads, so each head had dimension $512/8 = 64$. Multi-head attention is the workhorse inside every Transformer block — it is repeated at every layer, letting the model build up relationships of increasing abstraction.",
+        "es": "El Transformer original usó $d_{model}=512$ con $h=8$ cabezas, así que cada cabeza tenía dimensión $512/8 = 64$. La atención multicabeza es el caballo de batalla dentro de cada bloque Transformer — se repite en cada capa, permitiendo al modelo construir relaciones de abstracción creciente."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With $d_{model}=512$ and $h=8$ heads, each head dimension is $512/8 = 64$. With $d_{model}=768$ and $h=12$, each head is $768/12 = 64$ as well.",
+        "es": "Con $d_{model}=512$ y $h=8$ cabezas, cada cabeza tiene dimensión $512/8 = 64$. Con $d_{model}=768$ y $h=12$, cada cabeza es $768/12 = 64$ también."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "Per-head dimension with $d_{model}=512$, $h=8$: $512/8$?", "es": "Dimensión por cabeza con $d_{model}=512$, $h=8$: $512/8$?" },
+      "answer": "64",
+      "acceptedAlt": ["512/8"],
+      "hint": { "en": "512 / 8.", "es": "512 / 8." },
+      "solution": [ { "tex": "512/8 = 64", "en": "64.", "es": "64." } ]
+    },
+    {
+      "id": "nlp-10-e2",
+      "answerType": "number",
+      "prompt": { "en": "Per-head dimension with $d_{model}=768$, $h=12$: $768/12$?", "es": "Dimensión por cabeza con $d_{model}=768$, $h=12$: $768/12$?" },
+      "answer": "64",
+      "acceptedAlt": ["768/12"],
+      "hint": { "en": "768 / 12.", "es": "768 / 12." },
+      "solution": [ { "tex": "768/12 = 64", "en": "64.", "es": "64." } ]
+    },
+    {
+      "id": "nlp-10-e3",
+      "answerType": "text",
+      "prompt": { "en": "Each parallel attention operation is called a ___. (one word)", "es": "Cada operación de atención paralela se llama una ___. (una palabra)" },
+      "answer": "head",
+      "acceptedAlt": ["cabeza"],
+      "hint": { "en": "Multi-___ attention.", "es": "Atención multi-___." },
+      "solution": [ { "tex": "\\text{head}", "en": "Head.", "es": "Cabeza." } ]
+    },
+    {
+      "id": "nlp-10-e4",
+      "answerType": "number",
+      "prompt": { "en": "Total model width if 8 heads of dimension 64 are concatenated: $8\\cdot 64$?", "es": "Ancho total del modelo si se concatenan 8 cabezas de dimensión 64: $8\\cdot 64$?" },
+      "answer": "512",
+      "acceptedAlt": ["8*64"],
+      "hint": { "en": "8 × 64.", "es": "8 × 64." },
+      "solution": [ { "tex": "8\\cdot 64 = 512", "en": "512.", "es": "512." } ]
+    }
+  ],
+  "references": [
+    { "source": "Vaswani et al. — Attention Is All You Need (2017)", "detail": { "en": "Multi-head attention, §3.2.2", "es": "Atención multicabeza, §3.2.2" } }
+  ]
+}

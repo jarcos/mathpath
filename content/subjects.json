@@ -294,7 +294,7 @@
       "id": "nlp-transformers",
       "icon": "💬",
       "targetDays": 30,
-      "status": "coming-soon",
+      "status": "available",
       "plannedLessons": 16,
       "source": "Jurafsky & Martin, SLP; Vaswani et al., Attention Is All You Need (2017)",
       "name": { "en": "NLP & Transformers", "es": "PLN y transformers" },
@@ -302,7 +302,24 @@
         "en": "Language models, embeddings, attention and the transformer architecture.",
         "es": "Modelos de lenguaje, embeddings, atención y la arquitectura transformer."
       },
-      "lessons": []
+      "lessons": [
+        "nlp-transformers/lesson-01-what-is-nlp.json",
+        "nlp-transformers/lesson-02-tokenization.json",
+        "nlp-transformers/lesson-03-ngram-models.json",
+        "nlp-transformers/lesson-04-bow-tfidf.json",
+        "nlp-transformers/lesson-05-word-embeddings.json",
+        "nlp-transformers/lesson-06-text-classification.json",
+        "nlp-transformers/lesson-07-seq2seq.json",
+        "nlp-transformers/lesson-08-attention-seq2seq.json",
+        "nlp-transformers/lesson-09-self-attention.json",
+        "nlp-transformers/lesson-10-multi-head.json",
+        "nlp-transformers/lesson-11-positional-encoding.json",
+        "nlp-transformers/lesson-12-transformer-architecture.json",
+        "nlp-transformers/lesson-13-bert.json",
+        "nlp-transformers/lesson-14-gpt.json",
+        "nlp-transformers/lesson-15-decoding-prompting.json",
+        "nlp-transformers/lesson-16-evaluation.json"
+      ]
     },
     {
       "id": "reinforcement-learning",

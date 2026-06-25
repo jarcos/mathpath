@@ -1,0 +1,79 @@
+{
+  "id": "nlp-08-attn-seq2seq",
+  "subjectId": "nlp-transformers",
+  "order": 8,
+  "estimatedMinutes": 35,
+  "title": { "en": "Attention in Seq2Seq", "es": "Atención en seq2seq" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Attention removes the seq2seq bottleneck. Instead of one fixed context vector, at every decoding step the decoder computes a **fresh context** as a weighted average of *all* encoder states. The weights — the **attention distribution** — say how relevant each input position is to the word being generated now, and they always sum to $1$.",
+        "es": "La atención elimina el cuello de botella de seq2seq. En vez de un único vector de contexto fijo, en cada paso de decodificación el decodificador calcula un **contexto fresco** como media ponderada de *todos* los estados del codificador. Los pesos — la **distribución de atención** — indican qué tan relevante es cada posición de entrada para la palabra que se genera ahora, y siempre suman $1$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Mechanically: score each encoder state against the decoder's current state (e.g. by dot product), pass the scores through a **softmax** to get the weights, then take the weighted sum of encoder states. This lets the model 'focus' — when translating a word it attends to the corresponding source word, wherever it sits.",
+        "es": "Mecánicamente: puntúa cada estado del codificador frente al estado actual del decodificador (p. ej. por producto escalar), pasa las puntuaciones por una **softmax** para obtener los pesos, y luego toma la suma ponderada de los estados del codificador. Esto permite al modelo 'enfocar' — al traducir una palabra atiende a la palabra fuente correspondiente, esté donde esté."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A bonus: the attention weights are interpretable — you can visualize which source words the model looked at for each output word, often producing a near-diagonal alignment in translation. This idea proved so powerful that the next step was radical: drop the RNN entirely and use attention alone.",
+        "es": "Un extra: los pesos de atención son interpretables — puedes visualizar qué palabras fuente miró el modelo para cada palabra de salida, a menudo produciendo una alineación casi diagonal en traducción. Esta idea resultó tan potente que el paso siguiente fue radical: eliminar la RNN por completo y usar solo la atención."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Attention weights $[0.1, 0.7, 0.2]$ sum to $1$ and concentrate on position $2$. The context is $0.1 h_1 + 0.7 h_2 + 0.2 h_3$; with $h=[2,4,6]$ that is $0.1\\cdot2 + 0.7\\cdot4 + 0.2\\cdot6 = 0.2+2.8+1.2 = 4.2$.",
+        "es": "Los pesos de atención $[0.1, 0.7, 0.2]$ suman $1$ y se concentran en la posición $2$. El contexto es $0.1 h_1 + 0.7 h_2 + 0.2 h_3$; con $h=[2,4,6]$ eso es $0.1\\cdot2 + 0.7\\cdot4 + 0.2\\cdot6 = 0.2+2.8+1.2 = 4.2$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-08-e1",
+      "answerType": "number",
+      "prompt": { "en": "Attention weights $[0.1,0.7,0.2]$ sum to?", "es": "Los pesos de atención $[0.1,0.7,0.2]$ suman?" },
+      "answer": "1",
+      "acceptedAlt": ["0.1+0.7+0.2"],
+      "hint": { "en": "They form a distribution.", "es": "Forman una distribución." },
+      "solution": [ { "tex": "1", "en": "One.", "es": "Uno." } ]
+    },
+    {
+      "id": "nlp-08-e2",
+      "answerType": "number",
+      "prompt": { "en": "Context $0.1\\cdot2+0.7\\cdot4+0.2\\cdot6$?", "es": "Contexto $0.1\\cdot2+0.7\\cdot4+0.2\\cdot6$?" },
+      "answer": "4.2",
+      "acceptedAlt": ["0.1*2+0.7*4+0.2*6"],
+      "hint": { "en": "0.2 + 2.8 + 1.2.", "es": "0.2 + 2.8 + 1.2." },
+      "solution": [ { "tex": "4.2", "en": "4.2.", "es": "4.2." } ]
+    },
+    {
+      "id": "nlp-08-e3",
+      "answerType": "text",
+      "prompt": { "en": "Scores become weights via the ___ function. (one word)", "es": "Las puntuaciones se vuelven pesos con la función ___. (una palabra)" },
+      "answer": "softmax",
+      "acceptedAlt": [],
+      "hint": { "en": "Normalizes to sum 1.", "es": "Normaliza para sumar 1." },
+      "solution": [ { "tex": "\\text{softmax}", "en": "Softmax.", "es": "Softmax." } ]
+    },
+    {
+      "id": "nlp-08-e4",
+      "answerType": "text",
+      "prompt": { "en": "Attention replaces the single fixed ___ vector of seq2seq. (one word)", "es": "La atención sustituye el único vector de ___ fijo de seq2seq. (una palabra)" },
+      "answer": "context",
+      "acceptedAlt": ["contexto"],
+      "hint": { "en": "The encoder summary.", "es": "El resumen del codificador." },
+      "solution": [ { "tex": "\\text{context}", "en": "Context.", "es": "Contexto." } ]
+    }
+  ],
+  "references": [
+    { "source": "Bahdanau et al. — Neural Machine Translation by Jointly Learning to Align and Translate (2015)", "detail": { "en": "Attention for seq2seq", "es": "Atención para seq2seq" } }
+  ]
+}

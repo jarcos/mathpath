@@ -1,0 +1,79 @@
+{
+  "id": "nlp-01-what-is-nlp",
+  "subjectId": "nlp-transformers",
+  "order": 1,
+  "estimatedMinutes": 30,
+  "title": { "en": "What Is NLP?", "es": "¿Qué es el PLN?" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Natural Language Processing (NLP)** is the field that gets computers to read, understand and generate human **language** — text and speech. It powers search, translation, spam filters, voice assistants and chatbots. The core difficulty is that language is **ambiguous**, context-dependent and endlessly creative, unlike the rigid syntax of programming languages.",
+        "es": "El **procesamiento del lenguaje natural (PLN)** es el campo que logra que las computadoras lean, entiendan y generen **lenguaje** humano — texto y voz. Impulsa la búsqueda, la traducción, los filtros de spam, los asistentes de voz y los chatbots. La dificultad central es que el lenguaje es **ambiguo**, dependiente del contexto e infinitamente creativo, a diferencia de la sintaxis rígida de los lenguajes de programación."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "NLP tasks span a ladder of difficulty: **classification** (is this review positive?), **sequence labeling** (tag each word's part of speech), **sequence-to-sequence** (translate a sentence), and open-ended **generation** (write an essay). Modern systems handle all of these with one family of models — neural networks, and especially the **Transformer**.",
+        "es": "Las tareas de PLN abarcan una escala de dificultad: **clasificación** (¿es positiva esta reseña?), **etiquetado de secuencias** (marcar la categoría gramatical de cada palabra), **secuencia a secuencia** (traducir una frase) y **generación** abierta (escribir un ensayo). Los sistemas modernos manejan todas con una familia de modelos — las redes neuronales, y en especial el **Transformer**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The field shifted from hand-written rules (1950s–80s) to statistical methods (1990s–2000s) to deep learning (2010s) and finally to large pretrained language models (2018 onward). Each step traded explicit human knowledge for learning from ever-larger text **corpora** — collections of documents used as training data.",
+        "es": "El campo pasó de reglas escritas a mano (1950–80) a métodos estadísticos (1990–2000), al aprendizaje profundo (2010) y finalmente a los grandes modelos de lenguaje preentrenados (desde 2018). Cada paso cambió conocimiento humano explícito por aprendizaje a partir de **corpus** de texto cada vez mayores — colecciones de documentos usadas como datos de entrenamiento."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The sentence 'I saw the man with the telescope' has $2$ valid parses (who has the telescope?) — an example of ambiguity. A collection of text used to train an NLP model is called a corpus.",
+        "es": "La frase 'Vi al hombre con el telescopio' tiene $2$ análisis válidos (¿quién tiene el telescopio?) — un ejemplo de ambigüedad. Una colección de texto usada para entrenar un modelo de PLN se llama corpus."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-01-e1",
+      "answerType": "text",
+      "prompt": { "en": "NLP gets computers to process human ___. (one word)", "es": "El PLN logra que las computadoras procesen el ___ humano. (una palabra)" },
+      "answer": "language",
+      "acceptedAlt": ["lenguaje"],
+      "hint": { "en": "Natural ___ processing.", "es": "Procesamiento del ___ natural." },
+      "solution": [ { "tex": "\\text{language}", "en": "Language.", "es": "Lenguaje." } ]
+    },
+    {
+      "id": "nlp-01-e2",
+      "answerType": "text",
+      "prompt": { "en": "A collection of text used as training data is a ___. (one word)", "es": "Una colección de texto usada como datos de entrenamiento es un ___. (una palabra)" },
+      "answer": "corpus",
+      "acceptedAlt": ["corpus"],
+      "hint": { "en": "Plural: corpora.", "es": "Plural: corpus/corpora." },
+      "solution": [ { "tex": "\\text{corpus}", "en": "Corpus.", "es": "Corpus." } ]
+    },
+    {
+      "id": "nlp-01-e3",
+      "answerType": "number",
+      "prompt": { "en": "'I saw the man with the telescope' has how many valid parse interpretations?", "es": "'Vi al hombre con el telescopio' tiene ¿cuántas interpretaciones válidas?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Who holds the telescope?", "es": "¿Quién tiene el telescopio?" },
+      "solution": [ { "tex": "2", "en": "Two — ambiguity.", "es": "Dos — ambigüedad." } ]
+    },
+    {
+      "id": "nlp-01-e4",
+      "answerType": "text",
+      "prompt": { "en": "The architecture behind modern NLP models is the ___. (one word)", "es": "La arquitectura detrás de los modelos de PLN modernos es el ___. (una palabra)" },
+      "answer": "transformer",
+      "acceptedAlt": ["transformador"],
+      "hint": { "en": "Attention Is All You Need.", "es": "Attention Is All You Need." },
+      "solution": [ { "tex": "\\text{Transformer}", "en": "Transformer.", "es": "Transformer." } ]
+    }
+  ],
+  "references": [
+    { "source": "Jurafsky & Martin — Speech and Language Processing (3rd ed. draft)", "detail": { "en": "Ch. 1, introduction to NLP", "es": "Cap. 1, introducción al PLN" } }
+  ]
+}

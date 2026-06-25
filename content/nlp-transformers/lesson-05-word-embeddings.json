@@ -1,0 +1,80 @@
+{
+  "id": "nlp-05-word-embeddings",
+  "subjectId": "nlp-transformers",
+  "order": 5,
+  "estimatedMinutes": 35,
+  "title": { "en": "Word Embeddings: word2vec & GloVe", "es": "Embeddings de palabras: word2vec y GloVe" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "TF-IDF vectors are sparse and treat every word as unrelated to every other. **Word embeddings** instead place each word at a point in a dense, low-dimensional space where **distance encodes meaning**. The guiding principle is the **distributional hypothesis**: words appearing in similar contexts have similar meanings — 'you shall know a word by the company it keeps'.",
+        "es": "Los vectores TF-IDF son dispersos y tratan cada palabra como ajena a las demás. Los **embeddings de palabras** en cambio sitúan cada palabra en un punto de un espacio denso y de baja dimensión donde la **distancia codifica significado**. El principio guía es la **hipótesis distribucional**: las palabras que aparecen en contextos similares tienen significados similares — 'conocerás una palabra por la compañía que mantiene'."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**word2vec** learns embeddings with a tiny prediction task: given a word, predict its neighbors (skip-gram), or given neighbors, predict the word (CBOW). **GloVe** instead factorizes a global word co-occurrence matrix. Both yield vectors where related words cluster and analogies become arithmetic: $\\text{king} - \\text{man} + \\text{woman} \\approx \\text{queen}$.",
+        "es": "**word2vec** aprende embeddings con una tarea de predicción diminuta: dada una palabra, predecir sus vecinas (skip-gram), o dadas las vecinas, predecir la palabra (CBOW). **GloVe** en cambio factoriza una matriz global de coocurrencias. Ambos dan vectores donde las palabras relacionadas se agrupan y las analogías se vuelven aritmética: $\\text{rey} - \\text{hombre} + \\text{mujer} \\approx \\text{reina}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Similarity is measured by **cosine similarity**, $\\cos\\theta = \\dfrac{u\\cdot v}{\\lVert u\\rVert\\lVert v\\rVert}$, ranging from $-1$ to $1$. A limitation: classic word2vec/GloVe give each word **one** fixed vector, so 'bank' (river vs money) gets a single blurred meaning. Contextual embeddings from Transformers later fixed this by making the vector depend on the sentence.",
+        "es": "La similitud se mide con la **similitud coseno**, $\\cos\\theta = \\dfrac{u\\cdot v}{\\lVert u\\rVert\\lVert v\\rVert}$, que va de $-1$ a $1$. Una limitación: word2vec/GloVe clásicos dan a cada palabra **un** vector fijo, así que 'banco' (asiento vs dinero) obtiene un único significado difuso. Los embeddings contextuales de los Transformers lo solucionaron después haciendo que el vector dependa de la frase."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Cosine similarity of $u=[3,4]$ and $v=[3,4]$ is $\\dfrac{9+16}{5\\cdot 5} = \\dfrac{25}{25} = 1$ (identical). For $u=[1,0]$, $v=[0,1]$ it is $\\dfrac{0}{1\\cdot 1}=0$ (orthogonal, unrelated).",
+        "es": "La similitud coseno de $u=[3,4]$ y $v=[3,4]$ es $\\dfrac{9+16}{5\\cdot 5} = \\dfrac{25}{25} = 1$ (idénticos). Para $u=[1,0]$, $v=[0,1]$ es $\\dfrac{0}{1\\cdot 1}=0$ (ortogonales, sin relación)."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "nlp-05-e1",
+      "answerType": "number",
+      "prompt": { "en": "Cosine similarity of $[3,4]$ with itself?", "es": "¿Similitud coseno de $[3,4]$ consigo mismo?" },
+      "answer": "1",
+      "acceptedAlt": ["25/25"],
+      "hint": { "en": "Same direction.", "es": "Misma dirección." },
+      "solution": [ { "tex": "\\frac{25}{25}=1", "en": "One.", "es": "Uno." } ]
+    },
+    {
+      "id": "nlp-05-e2",
+      "answerType": "number",
+      "prompt": { "en": "Cosine similarity of orthogonal $[1,0]$ and $[0,1]$?", "es": "¿Similitud coseno de los ortogonales $[1,0]$ y $[0,1]$?" },
+      "answer": "0",
+      "acceptedAlt": ["0/1"],
+      "hint": { "en": "Dot product is 0.", "es": "El producto escalar es 0." },
+      "solution": [ { "tex": "0", "en": "Zero.", "es": "Cero." } ]
+    },
+    {
+      "id": "nlp-05-e3",
+      "answerType": "text",
+      "prompt": { "en": "'Words in similar contexts have similar meaning' is the ___ hypothesis. (one word)", "es": "'Palabras en contextos similares tienen significado similar' es la hipótesis ___. (una palabra)" },
+      "answer": "distributional",
+      "acceptedAlt": ["distribucional"],
+      "hint": { "en": "Distribution of contexts.", "es": "Distribución de contextos." },
+      "solution": [ { "tex": "\\text{distributional}", "en": "Distributional.", "es": "Distribucional." } ]
+    },
+    {
+      "id": "nlp-05-e4",
+      "answerType": "text",
+      "prompt": { "en": "The word2vec variant predicting neighbors from a word is ___-gram. (one word)", "es": "La variante de word2vec que predice vecinas desde una palabra es ___-gram. (una palabra)" },
+      "answer": "skip",
+      "acceptedAlt": ["skipgram", "skip-gram"],
+      "hint": { "en": "Skip-___.", "es": "Skip-___." },
+      "solution": [ { "tex": "\\text{skip-gram}", "en": "Skip.", "es": "Skip." } ]
+    }
+  ],
+  "references": [
+    { "source": "Mikolov et al. — Efficient Estimation of Word Representations (word2vec, 2013)", "detail": { "en": "Skip-gram and CBOW", "es": "Skip-gram y CBOW" } },
+    { "source": "Pennington et al. — GloVe: Global Vectors for Word Representation (2014)", "detail": { "en": "Co-occurrence factorization", "es": "Factorización de coocurrencias" } }
+  ]
+}
