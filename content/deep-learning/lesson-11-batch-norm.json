@@ -1,0 +1,80 @@
+{
+  "id": "dl-11-batch-norm",
+  "subjectId": "deep-learning",
+  "order": 11,
+  "estimatedMinutes": 30,
+  "title": { "en": "Batch Normalization", "es": "Normalización por lotes" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "As a deep network trains, the distribution of each layer's inputs keeps shifting because the layers below keep changing — making training slow and finicky. **Batch normalization** stabilizes this by normalizing each layer's pre-activations across the mini-batch to zero mean and unit variance, then rescaling with two learned parameters $\\gamma$ and $\\beta$.",
+        "es": "Cuando una red profunda se entrena, la distribución de las entradas de cada capa cambia constantemente porque las capas inferiores cambian — haciendo el entrenamiento lento y delicado. La **normalización por lotes** lo estabiliza normalizando las preactivaciones de cada capa en el mini-lote a media cero y varianza unidad, y luego reescalando con dos parámetros aprendidos $\\gamma$ y $\\beta$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The normalization is $\\hat{x} = \\dfrac{x - \\mu}{\\sqrt{\\sigma^2 + \\epsilon}}$, where $\\mu$ and $\\sigma^2$ are the batch mean and variance and $\\epsilon$ is a tiny constant for numerical safety. The learned $\\gamma,\\beta$ then let the network undo the normalization if that is what is best, so it loses no representational power.",
+        "es": "La normalización es $\\hat{x} = \\dfrac{x - \\mu}{\\sqrt{\\sigma^2 + \\epsilon}}$, donde $\\mu$ y $\\sigma^2$ son la media y varianza del lote y $\\epsilon$ es una constante diminuta para seguridad numérica. Los aprendidos $\\gamma,\\beta$ permiten luego a la red deshacer la normalización si eso es lo mejor, sin perder poder representacional."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The payoff: faster, more stable training, tolerance of higher learning rates, and a mild regularizing effect. Related variants — **layer norm** (normalize across features, used in Transformers) and **group norm** — apply the same idea where batch statistics are unreliable, such as tiny batches or sequences.",
+        "es": "El beneficio: entrenamiento más rápido y estable, tolerancia a tasas de aprendizaje mayores y un leve efecto regularizador. Variantes relacionadas — **layer norm** (normaliza entre características, usada en Transformers) y **group norm** — aplican la misma idea donde las estadísticas del lote no son fiables, como lotes diminutos o secuencias."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Batch $[2,4,6]$ has mean $\\mu = 4$ and variance $\\sigma^2 = \\frac{(2-4)^2+(4-4)^2+(6-4)^2}{3} = \\frac{8}{3}$. Normalizing the value $4$ (ignoring $\\epsilon$) gives $\\frac{4-4}{\\sigma} = 0$.",
+        "es": "El lote $[2,4,6]$ tiene media $\\mu = 4$ y varianza $\\sigma^2 = \\frac{(2-4)^2+(4-4)^2+(6-4)^2}{3} = \\frac{8}{3}$. Normalizar el valor $4$ (ignorando $\\epsilon$) da $\\frac{4-4}{\\sigma} = 0$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-11-e1",
+      "answerType": "number",
+      "prompt": { "en": "Mean of the batch $[2,4,6]$?", "es": "¿Media del lote $[2,4,6]$?" },
+      "answer": "4",
+      "acceptedAlt": ["(2+4+6)/3", "mean([2,4,6])"],
+      "hint": { "en": "Sum / 3.", "es": "Suma / 3." },
+      "solution": [ { "tex": "\\frac{12}{3} = 4", "en": "Four.", "es": "Cuatro." } ]
+    },
+    {
+      "id": "dl-11-e2",
+      "answerType": "number",
+      "prompt": { "en": "Normalized value of $4$ in batch $[2,4,6]$ (mean 4): $\\frac{4-4}{\\sigma}$?", "es": "Valor normalizado de $4$ en el lote $[2,4,6]$ (media 4): $\\frac{4-4}{\\sigma}$?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Numerator is 0.", "es": "El numerador es 0." },
+      "solution": [ { "tex": "\\frac{0}{\\sigma} = 0", "en": "Zero.", "es": "Cero." } ]
+    },
+    {
+      "id": "dl-11-e3",
+      "answerType": "number",
+      "prompt": { "en": "Population variance of $[2,4,6]$: $\\frac{8}{3}$ as a decimal to 4 dp.", "es": "Varianza poblacional de $[2,4,6]$: $\\frac{8}{3}$ como decimal a 4 cifras." },
+      "answer": "2.6667",
+      "acceptedAlt": [],
+      "hint": { "en": "((-2)²+0²+2²)/3.", "es": "((-2)²+0²+2²)/3." },
+      "solution": [ { "tex": "\\frac{8}{3}\\approx 2.6667", "en": "≈ 2.6667.", "es": "≈ 2.6667." } ]
+    },
+    {
+      "id": "dl-11-e4",
+      "answerType": "text",
+      "prompt": { "en": "The norm variant used in Transformers (across features) is ___ norm. (one word)", "es": "La variante de normalización usada en Transformers (entre características) es ___ norm. (una palabra)" },
+      "answer": "layer",
+      "acceptedAlt": ["capa"],
+      "hint": { "en": "Layer ___.", "es": "___ norm." },
+      "solution": [ { "tex": "\\text{LayerNorm}", "en": "Layer.", "es": "Layer (capa)." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8.7.1, batch normalization", "es": "Cap. 8.7.1, normalización por lotes" } },
+    { "source": "Ioffe & Szegedy — Batch Normalization (2015)", "detail": { "en": "Original method", "es": "Método original" } }
+  ]
+}

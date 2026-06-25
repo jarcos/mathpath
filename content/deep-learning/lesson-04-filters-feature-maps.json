@@ -1,0 +1,79 @@
+{
+  "id": "dl-04-filters",
+  "subjectId": "deep-learning",
+  "order": 4,
+  "estimatedMinutes": 35,
+  "title": { "en": "Filters & Feature Maps", "es": "Filtros y mapas de características" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A convolutional **filter** (or **kernel**) is a small grid of weights — say $3\\times 3$ — that detects a specific pattern: a vertical edge, a blob of color, a texture. Sliding it over the image and recording the response at every position produces a **feature map** that lights up wherever the pattern occurs.",
+        "es": "Un **filtro** convolucional (o **kernel/núcleo**) es una pequeña rejilla de pesos — digamos $3\\times 3$ — que detecta un patrón concreto: un borde vertical, una mancha de color, una textura. Deslizarlo por la imagen y registrar la respuesta en cada posición produce un **mapa de características** que se ilumina donde aparece el patrón."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A convolutional layer learns **many filters at once**, each producing its own feature map, so one layer might detect dozens of different patterns in parallel. Crucially, the filter weights are **learned** by backpropagation, not hand-designed — the network figures out which patterns are useful for the task.",
+        "es": "Una capa convolucional aprende **muchos filtros a la vez**, cada uno produciendo su propio mapa de características, así que una capa puede detectar decenas de patrones distintos en paralelo. Es clave que los pesos del filtro se **aprenden** por retropropagación, no se diseñan a mano — la red descubre qué patrones son útiles para la tarea."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A $3\\times 3$ filter has $9$ weights (plus a bias). The response at each position is the dot product of the filter with the image patch beneath it — large when the patch matches the filter's pattern, near zero when it does not. Stacking convolutional layers lets later filters combine earlier feature maps into more abstract detectors.",
+        "es": "Un filtro $3\\times 3$ tiene $9$ pesos (más un sesgo). La respuesta en cada posición es el producto escalar del filtro con el parche de imagen bajo él — grande cuando el parche coincide con el patrón del filtro, cercano a cero cuando no. Apilar capas convolucionales permite que los filtros posteriores combinen mapas anteriores en detectores más abstractos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "An edge filter $[1, 0, -1]$ applied to the patch $[5, 3, 1]$ gives $1\\cdot5 + 0\\cdot3 + (-1)\\cdot1 = 4$ — a positive response, signaling a left-to-right drop in intensity (an edge). A $3\\times 3$ filter has $3\\times 3 = 9$ weights.",
+        "es": "Un filtro de borde $[1, 0, -1]$ aplicado al parche $[5, 3, 1]$ da $1\\cdot5 + 0\\cdot3 + (-1)\\cdot1 = 4$ — una respuesta positiva, que señala una caída de intensidad de izquierda a derecha (un borde). Un filtro $3\\times 3$ tiene $3\\times 3 = 9$ pesos."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-04-e1",
+      "answerType": "text",
+      "prompt": { "en": "A convolutional filter is also called a ___. (one word)", "es": "Un filtro convolucional también se llama ___. (una palabra)" },
+      "answer": "kernel",
+      "acceptedAlt": ["núcleo", "nucleo"],
+      "hint": { "en": "Grid of weights.", "es": "Rejilla de pesos." },
+      "solution": [ { "tex": "\\text{kernel}", "en": "Kernel.", "es": "Kernel/núcleo." } ]
+    },
+    {
+      "id": "dl-04-e2",
+      "answerType": "number",
+      "prompt": { "en": "How many weights does a $3\\times 3$ filter have?", "es": "¿Cuántos pesos tiene un filtro $3\\times 3$?" },
+      "answer": "9",
+      "acceptedAlt": ["3*3"],
+      "hint": { "en": "3 × 3.", "es": "3 × 3." },
+      "solution": [ { "tex": "3\\times 3 = 9", "en": "Nine weights.", "es": "Nueve pesos." } ]
+    },
+    {
+      "id": "dl-04-e3",
+      "answerType": "text",
+      "prompt": { "en": "The output of applying a filter across the input is a feature ___. (one word)", "es": "La salida de aplicar un filtro por la entrada es un ___ de características. (una palabra)" },
+      "answer": "map",
+      "acceptedAlt": ["mapa"],
+      "hint": { "en": "It maps where the pattern is.", "es": "Mapea dónde está el patrón." },
+      "solution": [ { "tex": "\\text{feature map}", "en": "Map.", "es": "Mapa." } ]
+    },
+    {
+      "id": "dl-04-e4",
+      "answerType": "number",
+      "prompt": { "en": "Filter $[1,0,-1]$ on patch $[5,3,1]$: dot product?", "es": "Filtro $[1,0,-1]$ sobre el parche $[5,3,1]$: ¿producto escalar?" },
+      "answer": "4",
+      "acceptedAlt": ["1*5+0*3-1*1", "dot([1,0,-1],[5,3,1])"],
+      "hint": { "en": "5 + 0 − 1.", "es": "5 + 0 − 1." },
+      "solution": [ { "tex": "5 - 1 = 4", "en": "Filter response.", "es": "Respuesta del filtro." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 9.1–9.2, the convolution operation and motivation", "es": "Cap. 9.1–9.2, la operación de convolución y su motivación" } }
+  ]
+}

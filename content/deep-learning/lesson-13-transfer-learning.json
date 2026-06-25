@@ -1,0 +1,80 @@
+{
+  "id": "dl-13-transfer",
+  "subjectId": "deep-learning",
+  "order": 13,
+  "estimatedMinutes": 35,
+  "title": { "en": "Transfer Learning & Foundation Models", "es": "Aprendizaje por transferencia y modelos fundacionales" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Training a big network from scratch needs huge data and compute. **Transfer learning** reuses a model already **pretrained** on a large dataset, then adapts it to a new, smaller task. The early layers have learned generic features (edges, textures, word patterns) that transfer broadly, so you only retrain the last layers.",
+        "es": "Entrenar una red grande desde cero requiere muchísimos datos y cómputo. El **aprendizaje por transferencia** reutiliza un modelo ya **preentrenado** en un conjunto grande, y luego lo adapta a una tarea nueva más pequeña. Las capas iniciales han aprendido características genéricas (bordes, texturas, patrones de palabras) que se transfieren ampliamente, así que solo reentrenas las últimas capas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two common recipes: **feature extraction** freezes the pretrained weights and trains only a new classifier head; **fine-tuning** unfreezes some or all layers and continues training at a small learning rate. The choice depends on how much data you have and how similar the new task is to the original.",
+        "es": "Dos recetas comunes: la **extracción de características** congela los pesos preentrenados y entrena solo una nueva cabeza clasificadora; el **ajuste fino (fine-tuning)** descongela algunas o todas las capas y sigue entrenando con una tasa de aprendizaje pequeña. La elección depende de cuántos datos tengas y de lo parecida que sea la nueva tarea a la original."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Scaled up, this gives **foundation models**: very large models pretrained on broad data (all of the web's text, billions of images) that are then adapted to countless downstream tasks. They are the dominant paradigm in modern AI precisely because pretraining amortizes the expensive learning once and shares it everywhere.",
+        "es": "Llevado al extremo, esto da los **modelos fundacionales**: modelos enormes preentrenados con datos amplios (todo el texto de la web, miles de millones de imágenes) que luego se adaptan a innumerables tareas. Son el paradigma dominante en la IA moderna precisamente porque el preentrenamiento amortiza el aprendizaje costoso una vez y lo comparte en todas partes."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If a pretrained network has $50$ layers and you freeze the first $48$, you fine-tune $50 - 48 = 2$ layers. Freezing weights means their gradient is effectively $0$, so they do not update.",
+        "es": "Si una red preentrenada tiene $50$ capas y congelas las primeras $48$, ajustas $50 - 48 = 2$ capas. Congelar pesos significa que su gradiente es efectivamente $0$, así que no se actualizan."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-13-e1",
+      "answerType": "number",
+      "prompt": { "en": "50-layer net, first 48 frozen: how many layers are fine-tuned?", "es": "Red de 50 capas, 48 primeras congeladas: ¿cuántas capas se ajustan?" },
+      "answer": "2",
+      "acceptedAlt": ["50-48"],
+      "hint": { "en": "50 − 48.", "es": "50 − 48." },
+      "solution": [ { "tex": "50 - 48 = 2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "dl-13-e2",
+      "answerType": "text",
+      "prompt": { "en": "Reusing a model trained on a large dataset for a new task is ___ learning. (one word)", "es": "Reutilizar un modelo entrenado en un conjunto grande para una tarea nueva es aprendizaje por ___. (una palabra)" },
+      "answer": "transfer",
+      "acceptedAlt": ["transferencia"],
+      "hint": { "en": "Transfer ___.", "es": "Por ___." },
+      "solution": [ { "tex": "\\text{transfer}", "en": "Transfer.", "es": "Transferencia." } ]
+    },
+    {
+      "id": "dl-13-e3",
+      "answerType": "text",
+      "prompt": { "en": "Continuing training a pretrained model at a low rate is called ___-tuning. (one word)", "es": "Seguir entrenando un modelo preentrenado a baja tasa es el ajuste ___. (una palabra)" },
+      "answer": "fine",
+      "acceptedAlt": ["fino"],
+      "hint": { "en": "Fine-___.", "es": "Ajuste ___." },
+      "solution": [ { "tex": "\\text{fine-tuning}", "en": "Fine.", "es": "Fino." } ]
+    },
+    {
+      "id": "dl-13-e4",
+      "answerType": "number",
+      "prompt": { "en": "Effective gradient of a frozen weight?", "es": "¿Gradiente efectivo de un peso congelado?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "It does not update.", "es": "No se actualiza." },
+      "solution": [ { "tex": "\\nabla = 0", "en": "Zero.", "es": "Cero." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 15.2, transfer learning and domain adaptation", "es": "Cap. 15.2, aprendizaje por transferencia y adaptación de dominio" } },
+    { "source": "Bommasani et al. — On the Opportunities and Risks of Foundation Models (2021)", "detail": { "en": "Foundation models", "es": "Modelos fundacionales" } }
+  ]
+}

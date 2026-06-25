@@ -1,0 +1,80 @@
+{
+  "id": "dl-06-cnn-arch",
+  "subjectId": "deep-learning",
+  "order": 6,
+  "estimatedMinutes": 35,
+  "title": { "en": "CNN Architecture End to End", "es": "Arquitectura de una CNN de principio a fin" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A typical image classifier stacks repeating **conv → ReLU → pool** blocks, then flattens the final feature maps and feeds them to one or more **fully connected** layers ending in a softmax over classes. Early blocks see small regions; deeper blocks, thanks to repeated pooling, have a large **receptive field** — each neuron 'sees' a big chunk of the original image.",
+        "es": "Un clasificador de imágenes típico apila bloques repetidos **conv → ReLU → pool**, luego aplana los mapas finales y los pasa a una o varias capas **totalmente conectadas** que terminan en un softmax sobre las clases. Los primeros bloques ven regiones pequeñas; los más profundos, gracias al pooling repetido, tienen un **campo receptivo** grande — cada neurona 've' una porción grande de la imagen original."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Landmark architectures show the pattern: **LeNet-5** (1998) for digits, **AlexNet** (2012) which ignited the deep-learning boom on ImageNet, **VGG** (very deep, all $3\\times 3$ filters), and **ResNet** (2015) whose **residual** skip connections let networks reach hundreds of layers by letting gradients flow directly.",
+        "es": "Arquitecturas emblemáticas muestran el patrón: **LeNet-5** (1998) para dígitos, **AlexNet** (2012) que encendió el auge del aprendizaje profundo en ImageNet, **VGG** (muy profunda, todos filtros $3\\times 3$) y **ResNet** (2015) cuyas conexiones **residuales** de salto permiten cientos de capas al dejar fluir los gradientes directamente."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The key counting fact: a convolutional layer's parameters depend only on filter size and channel counts, **not** on image size. A layer with $C_{in}$ input channels, $C_{out}$ filters of size $k\\times k$ has $C_{out}\\,(C_{in}\\,k^2 + 1)$ parameters. That independence from resolution is why CNNs scale to large images.",
+        "es": "El dato clave de conteo: los parámetros de una capa convolucional dependen solo del tamaño del filtro y del número de canales, **no** del tamaño de la imagen. Una capa con $C_{in}$ canales de entrada y $C_{out}$ filtros de tamaño $k\\times k$ tiene $C_{out}\\,(C_{in}\\,k^2 + 1)$ parámetros. Esa independencia de la resolución es por lo que las CNN escalan a imágenes grandes."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "One layer with $3$ input channels and $8$ filters of size $3\\times 3$ has $8\\,(3\\cdot 9 + 1) = 8\\cdot 28 = 224$ parameters. ResNet's signature idea is the **residual** (skip) connection.",
+        "es": "Una capa con $3$ canales de entrada y $8$ filtros de tamaño $3\\times 3$ tiene $8\\,(3\\cdot 9 + 1) = 8\\cdot 28 = 224$ parámetros. La idea distintiva de ResNet es la conexión **residual** (de salto)."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-06-e1",
+      "answerType": "number",
+      "prompt": { "en": "Params of a layer: 3 in-channels, 8 filters of 3×3, with bias: $8(3\\cdot 9 + 1)$?", "es": "Parámetros de una capa: 3 canales de entrada, 8 filtros de 3×3, con sesgo: $8(3\\cdot 9 + 1)$?" },
+      "answer": "224",
+      "acceptedAlt": ["8*(3*9+1)"],
+      "hint": { "en": "8 × (27 + 1).", "es": "8 × (27 + 1)." },
+      "solution": [ { "tex": "8(27+1) = 224", "en": "224 parameters.", "es": "224 parámetros." } ]
+    },
+    {
+      "id": "dl-06-e2",
+      "answerType": "text",
+      "prompt": { "en": "ResNet adds skip connections, also called ___ connections. (one word)", "es": "ResNet añade conexiones de salto, también llamadas conexiones ___. (una palabra)" },
+      "answer": "residual",
+      "acceptedAlt": ["residuales", "residuals"],
+      "hint": { "en": "It learns a residual.", "es": "Aprende un residuo." },
+      "solution": [ { "tex": "y = F(x) + x", "en": "Residual.", "es": "Residual." } ]
+    },
+    {
+      "id": "dl-06-e3",
+      "answerType": "text",
+      "prompt": { "en": "The region of input a neuron depends on is its receptive ___. (one word)", "es": "La región de entrada de la que depende una neurona es su campo ___. (una palabra)" },
+      "answer": "field",
+      "acceptedAlt": ["receptivo", "campo"],
+      "hint": { "en": "Receptive ___.", "es": "Campo ___." },
+      "solution": [ { "tex": "\\text{receptive field}", "en": "Field.", "es": "Receptivo." } ]
+    },
+    {
+      "id": "dl-06-e4",
+      "answerType": "number",
+      "prompt": { "en": "Conv params with 1 in-channel, 1 filter 3×3, no bias: $1\\cdot 9$?", "es": "Parámetros conv con 1 canal de entrada, 1 filtro 3×3, sin sesgo: $1\\cdot 9$?" },
+      "answer": "9",
+      "acceptedAlt": ["1*9", "3^2"],
+      "hint": { "en": "Just the filter weights.", "es": "Solo los pesos del filtro." },
+      "solution": [ { "tex": "3^2 = 9", "en": "Nine weights.", "es": "Nueve pesos." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 9.4–9.5, architectures and structured outputs", "es": "Cap. 9.4–9.5, arquitecturas y salidas estructuradas" } },
+    { "source": "He et al. — Deep Residual Learning for Image Recognition (2015)", "detail": { "en": "ResNet and residual connections", "es": "ResNet y conexiones residuales" } }
+  ]
+}

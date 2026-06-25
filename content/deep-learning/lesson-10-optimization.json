@@ -1,0 +1,80 @@
+{
+  "id": "dl-10-optimization",
+  "subjectId": "deep-learning",
+  "order": 10,
+  "estimatedMinutes": 40,
+  "title": { "en": "Optimization: SGD, Momentum, Adam", "es": "Optimización: SGD, momento y Adam" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Training minimizes a loss by **gradient descent**: step the weights opposite the gradient, $\\theta \\leftarrow \\theta - \\eta\\,\\nabla L$, where $\\eta$ is the **learning rate**. Computing the gradient over the whole dataset each step is too slow, so we use **stochastic gradient descent (SGD)**: estimate the gradient from a small **mini-batch**.",
+        "es": "El entrenamiento minimiza una pérdida por **descenso de gradiente**: mover los pesos en sentido opuesto al gradiente, $\\theta \\leftarrow \\theta - \\eta\\,\\nabla L$, donde $\\eta$ es la **tasa de aprendizaje**. Calcular el gradiente sobre todo el conjunto en cada paso es muy lento, así que usamos **descenso de gradiente estocástico (SGD)**: estimar el gradiente a partir de un pequeño **mini-lote**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Plain SGD zig-zags in ravines. **Momentum** smooths it by accumulating a velocity: $v \\leftarrow \\beta v + \\nabla L$, then $\\theta \\leftarrow \\theta - \\eta v$. Like a ball rolling downhill, it builds speed in consistent directions and damps oscillations, typically converging faster.",
+        "es": "El SGD simple zigzaguea en barrancos. El **momento** lo suaviza acumulando una velocidad: $v \\leftarrow \\beta v + \\nabla L$, luego $\\theta \\leftarrow \\theta - \\eta v$. Como una bola rodando cuesta abajo, gana velocidad en direcciones consistentes y amortigua las oscilaciones, convergiendo normalmente más rápido."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Adam** combines momentum with per-parameter adaptive learning rates (scaling by a running estimate of each gradient's magnitude). It is the default optimizer for most deep models because it works well with little tuning. The learning rate remains the single most important hyperparameter: too large diverges, too small crawls.",
+        "es": "**Adam** combina el momento con tasas de aprendizaje adaptativas por parámetro (escalando por una estimación continua de la magnitud de cada gradiente). Es el optimizador por defecto de la mayoría de modelos profundos porque funciona bien con poco ajuste. La tasa de aprendizaje sigue siendo el hiperparámetro más importante: demasiado grande diverge, demasiado pequeña avanza a rastras."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "One SGD step with weight $w=5$, learning rate $\\eta=0.1$, gradient $\\nabla L = 4$: $w \\leftarrow 5 - 0.1\\cdot 4 = 4.6$. A dataset of $1000$ examples with batch size $100$ yields $1000/100 = 10$ mini-batches per epoch.",
+        "es": "Un paso de SGD con peso $w=5$, tasa $\\eta=0.1$, gradiente $\\nabla L = 4$: $w \\leftarrow 5 - 0.1\\cdot 4 = 4.6$. Un conjunto de $1000$ ejemplos con tamaño de lote $100$ da $1000/100 = 10$ mini-lotes por época."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "SGD step: $w=5$, $\\eta=0.1$, gradient $4$: new $w = 5 - 0.1\\cdot 4$?", "es": "Paso SGD: $w=5$, $\\eta=0.1$, gradiente $4$: nuevo $w = 5 - 0.1\\cdot 4$?" },
+      "answer": "4.6",
+      "acceptedAlt": ["5-0.1*4", "23/5"],
+      "hint": { "en": "5 − 0.4.", "es": "5 − 0.4." },
+      "solution": [ { "tex": "5 - 0.4 = 4.6", "en": "4.6.", "es": "4.6." } ]
+    },
+    {
+      "id": "dl-10-e2",
+      "answerType": "number",
+      "prompt": { "en": "1000 examples, batch size 100: mini-batches per epoch?", "es": "1000 ejemplos, tamaño de lote 100: ¿mini-lotes por época?" },
+      "answer": "10",
+      "acceptedAlt": ["1000/100"],
+      "hint": { "en": "1000 / 100.", "es": "1000 / 100." },
+      "solution": [ { "tex": "1000/100 = 10", "en": "Ten.", "es": "Diez." } ]
+    },
+    {
+      "id": "dl-10-e3",
+      "answerType": "text",
+      "prompt": { "en": "The step-size hyperparameter $\\eta$ is the learning ___. (one word)", "es": "El hiperparámetro de tamaño de paso $\\eta$ es la tasa de ___. (una palabra)" },
+      "answer": "rate",
+      "acceptedAlt": ["aprendizaje", "tasa"],
+      "hint": { "en": "Learning ___.", "es": "Tasa de ___." },
+      "solution": [ { "tex": "\\eta", "en": "Rate.", "es": "Aprendizaje." } ]
+    },
+    {
+      "id": "dl-10-e4",
+      "answerType": "text",
+      "prompt": { "en": "The popular optimizer combining momentum + adaptive rates is ___. (one word)", "es": "El optimizador popular que combina momento + tasas adaptativas es ___. (una palabra)" },
+      "answer": "adam",
+      "acceptedAlt": [],
+      "hint": { "en": "Four letters.", "es": "Cuatro letras." },
+      "solution": [ { "tex": "\\text{Adam}", "en": "Adam.", "es": "Adam." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 8, optimization for training deep models", "es": "Cap. 8, optimización para entrenar modelos profundos" } },
+    { "source": "Kingma & Ba — Adam: A Method for Stochastic Optimization (2015)", "detail": { "en": "The Adam optimizer", "es": "El optimizador Adam" } }
+  ]
+}

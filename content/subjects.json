@@ -261,7 +261,7 @@
       "id": "deep-learning",
       "icon": "◈",
       "targetDays": 30,
-      "status": "coming-soon",
+      "status": "available",
       "plannedLessons": 18,
       "source": "Goodfellow, Bengio & Courville, Deep Learning (2016)",
       "name": { "en": "Deep Learning", "es": "Aprendizaje profundo" },
@@ -269,7 +269,26 @@
         "en": "Convolutional networks, regularization, optimization and sequence models.",
         "es": "Redes convolucionales, regularización, optimización y modelos secuenciales."
       },
-      "lessons": []
+      "lessons": [
+        "deep-learning/lesson-01-what-is-deep-learning.json",
+        "deep-learning/lesson-02-depth.json",
+        "deep-learning/lesson-03-convolution.json",
+        "deep-learning/lesson-04-filters-feature-maps.json",
+        "deep-learning/lesson-05-pooling.json",
+        "deep-learning/lesson-06-cnn-architecture.json",
+        "deep-learning/lesson-07-rnns.json",
+        "deep-learning/lesson-08-lstm-gru.json",
+        "deep-learning/lesson-09-embeddings.json",
+        "deep-learning/lesson-10-optimization.json",
+        "deep-learning/lesson-11-batch-norm.json",
+        "deep-learning/lesson-12-regularization.json",
+        "deep-learning/lesson-13-transfer-learning.json",
+        "deep-learning/lesson-14-autoencoders.json",
+        "deep-learning/lesson-15-generative-models.json",
+        "deep-learning/lesson-16-attention.json",
+        "deep-learning/lesson-17-hardware-scale.json",
+        "deep-learning/lesson-18-dl-pipeline.json"
+      ]
     },
     {
       "id": "nlp-transformers",

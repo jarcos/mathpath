@@ -1,0 +1,80 @@
+{
+  "id": "dl-16-attention",
+  "subjectId": "deep-learning",
+  "order": 16,
+  "estimatedMinutes": 40,
+  "title": { "en": "Attention", "es": "Atención" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "RNNs squeeze a whole sequence into one fixed vector, a bottleneck that loses detail over long inputs. **Attention** removes it: at each step the model looks back over *all* positions and computes a **weighted average**, focusing on the relevant ones. The weights are learned and depend on the content, so attention is dynamic — different for every input.",
+        "es": "Las RNN comprimen una secuencia entera en un vector fijo, un cuello de botella que pierde detalle en entradas largas. La **atención** lo elimina: en cada paso el modelo mira hacia atrás sobre *todas* las posiciones y calcula una **media ponderada**, centrándose en las relevantes. Los pesos se aprenden y dependen del contenido, así que la atención es dinámica — distinta para cada entrada."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The mechanism uses three vectors per token: a **query**, a **key**, and a **value**. The relevance of token $j$ to token $i$ is the dot product of $i$'s query with $j$'s key; these scores are passed through a **softmax** to become weights summing to $1$, and the output is the weighted sum of the values. Scaled dot-product attention divides scores by $\\sqrt{d_k}$ for stability.",
+        "es": "El mecanismo usa tres vectores por token: una **consulta (query)**, una **clave (key)** y un **valor (value)**. La relevancia del token $j$ para el token $i$ es el producto escalar de la consulta de $i$ con la clave de $j$; estas puntuaciones pasan por una **softmax** para convertirse en pesos que suman $1$, y la salida es la suma ponderada de los valores. La atención de producto escalar escalado divide las puntuaciones por $\\sqrt{d_k}$ para dar estabilidad."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Because attention compares every position to every other, it captures long-range relationships directly and — unlike an RNN — processes all positions in **parallel**. This is the core idea behind the **Transformer**, the architecture of modern language models, explored in depth in the next subject (NLP & Transformers).",
+        "es": "Como la atención compara cada posición con todas las demás, captura relaciones de largo alcance directamente y — a diferencia de una RNN — procesa todas las posiciones en **paralelo**. Esta es la idea central del **Transformer**, la arquitectura de los modelos de lenguaje modernos, que se explora a fondo en la próxima asignatura (PLN y Transformers)."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Attention weights $[0.2, 0.5, 0.3]$ sum to $1$. Weighted average of values $[10, 20, 30]$ with those weights: $0.2\\cdot10 + 0.5\\cdot20 + 0.3\\cdot30 = 2 + 10 + 9 = 21$.",
+        "es": "Los pesos de atención $[0.2, 0.5, 0.3]$ suman $1$. Media ponderada de los valores $[10, 20, 30]$ con esos pesos: $0.2\\cdot10 + 0.5\\cdot20 + 0.3\\cdot30 = 2 + 10 + 9 = 21$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-16-e1",
+      "answerType": "number",
+      "prompt": { "en": "Attention weights must sum to what value?", "es": "¿A qué valor deben sumar los pesos de atención?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "Softmax output.", "es": "Salida de softmax." },
+      "solution": [ { "tex": "\\sum_j a_j = 1", "en": "One.", "es": "Uno." } ]
+    },
+    {
+      "id": "dl-16-e2",
+      "answerType": "number",
+      "prompt": { "en": "Weighted sum of values $[10,20,30]$ with weights $[0.2,0.5,0.3]$?", "es": "Suma ponderada de los valores $[10,20,30]$ con pesos $[0.2,0.5,0.3]$?" },
+      "answer": "21",
+      "acceptedAlt": ["0.2*10+0.5*20+0.3*30"],
+      "hint": { "en": "2 + 10 + 9.", "es": "2 + 10 + 9." },
+      "solution": [ { "tex": "2+10+9 = 21", "en": "21.", "es": "21." } ]
+    },
+    {
+      "id": "dl-16-e3",
+      "answerType": "text",
+      "prompt": { "en": "Attention scores are turned into weights by the ___ function. (one word)", "es": "Las puntuaciones de atención se convierten en pesos con la función ___. (una palabra)" },
+      "answer": "softmax",
+      "acceptedAlt": [],
+      "hint": { "en": "Normalizes to sum 1.", "es": "Normaliza para sumar 1." },
+      "solution": [ { "tex": "\\text{softmax}", "en": "Softmax.", "es": "Softmax." } ]
+    },
+    {
+      "id": "dl-16-e4",
+      "answerType": "text",
+      "prompt": { "en": "The three vectors per token are query, value, and ___. (one word)", "es": "Los tres vectores por token son consulta, valor y ___. (una palabra)" },
+      "answer": "key",
+      "acceptedAlt": ["clave", "llave"],
+      "hint": { "en": "Q, K, V.", "es": "Q, K, V." },
+      "solution": [ { "tex": "Q, K, V", "en": "Key.", "es": "Clave." } ]
+    }
+  ],
+  "references": [
+    { "source": "Vaswani et al. — Attention Is All You Need (2017)", "detail": { "en": "Scaled dot-product and self-attention", "es": "Atención de producto escalar escalado y autoatención" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 12.4.5.1, attention mechanisms", "es": "Cap. 12.4.5.1, mecanismos de atención" } }
+  ]
+}

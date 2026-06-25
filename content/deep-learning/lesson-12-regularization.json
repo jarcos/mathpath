@@ -1,0 +1,80 @@
+{
+  "id": "dl-12-regularization",
+  "subjectId": "deep-learning",
+  "order": 12,
+  "estimatedMinutes": 35,
+  "title": { "en": "Regularization in Deep Learning", "es": "Regularización en aprendizaje profundo" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Deep nets have so many parameters they can memorize the training set, fitting noise and **overfitting**. Regularization is any technique that improves *test* performance, often by adding a constraint or penalty. The classic one is **weight decay** ($L_2$): add $\\frac{\\lambda}{2}\\lVert\\theta\\rVert^2$ to the loss to keep weights small and the function smooth.",
+        "es": "Las redes profundas tienen tantos parámetros que pueden memorizar el conjunto de entrenamiento, ajustando ruido y **sobreajustando**. La regularización es cualquier técnica que mejora el rendimiento en *test*, a menudo añadiendo una restricción o penalización. La clásica es el **decaimiento de pesos** ($L_2$): añadir $\\frac{\\lambda}{2}\\lVert\\theta\\rVert^2$ a la pérdida para mantener los pesos pequeños y la función suave."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Dropout** randomly zeroes a fraction $p$ of activations each training step, forcing the network not to rely on any single neuron — like training an ensemble of sub-networks. **Early stopping** halts training when validation loss stops improving. **Data augmentation** invents new training examples (flips, crops, noise), effectively enlarging the dataset.",
+        "es": "El **dropout** pone a cero aleatoriamente una fracción $p$ de las activaciones en cada paso, forzando a la red a no depender de ninguna neurona concreta — como entrenar un conjunto de subredes. La **parada temprana** detiene el entrenamiento cuando la pérdida de validación deja de mejorar. El **aumento de datos** inventa nuevos ejemplos (volteos, recortes, ruido), agrandando de hecho el conjunto."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "With dropout rate $p$, each unit is kept with probability $1-p$; a common value is $p=0.5$ in dense layers. At test time dropout is turned off and activations are scaled so expectations match. The general lesson: more data and good regularization usually beat a bigger model on a fixed dataset.",
+        "es": "Con tasa de dropout $p$, cada unidad se conserva con probabilidad $1-p$; un valor común es $p=0.5$ en capas densas. En test el dropout se desactiva y las activaciones se escalan para que las esperanzas coincidan. La lección general: más datos y buena regularización suelen superar a un modelo más grande con un conjunto fijo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With dropout rate $p = 0.3$, the keep probability is $1 - 0.3 = 0.7$. $L_2$ penalty $\\frac{\\lambda}{2}\\lVert\\theta\\rVert^2$ with $\\lambda = 0.01$ and $\\lVert\\theta\\rVert^2 = 200$ adds $\\frac{0.01}{2}\\cdot 200 = 1$ to the loss.",
+        "es": "Con tasa de dropout $p = 0.3$, la probabilidad de conservar es $1 - 0.3 = 0.7$. La penalización $L_2$ $\\frac{\\lambda}{2}\\lVert\\theta\\rVert^2$ con $\\lambda = 0.01$ y $\\lVert\\theta\\rVert^2 = 200$ añade $\\frac{0.01}{2}\\cdot 200 = 1$ a la pérdida."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-12-e1",
+      "answerType": "number",
+      "prompt": { "en": "Dropout rate $p=0.3$: keep probability $1-p$?", "es": "Tasa de dropout $p=0.3$: ¿probabilidad de conservar $1-p$?" },
+      "answer": "0.7",
+      "acceptedAlt": ["1-0.3", "7/10"],
+      "hint": { "en": "1 − 0.3.", "es": "1 − 0.3." },
+      "solution": [ { "tex": "1 - 0.3 = 0.7", "en": "0.7.", "es": "0.7." } ]
+    },
+    {
+      "id": "dl-12-e2",
+      "answerType": "number",
+      "prompt": { "en": "$L_2$ penalty $\\frac{\\lambda}{2}\\lVert\\theta\\rVert^2$ with $\\lambda=0.01$, $\\lVert\\theta\\rVert^2=200$?", "es": "Penalización $L_2$ $\\frac{\\lambda}{2}\\lVert\\theta\\rVert^2$ con $\\lambda=0.01$, $\\lVert\\theta\\rVert^2=200$?" },
+      "answer": "1",
+      "acceptedAlt": ["0.01/2*200"],
+      "hint": { "en": "0.005 × 200.", "es": "0.005 × 200." },
+      "solution": [ { "tex": "\\frac{0.01}{2}\\cdot 200 = 1", "en": "One.", "es": "Uno." } ]
+    },
+    {
+      "id": "dl-12-e3",
+      "answerType": "text",
+      "prompt": { "en": "Fitting noise in the training set instead of the pattern is called ___. (one word)", "es": "Ajustar el ruido del entrenamiento en vez del patrón se llama ___. (una palabra)" },
+      "answer": "overfitting",
+      "acceptedAlt": ["sobreajuste", "overfit"],
+      "hint": { "en": "Opposite of generalizing.", "es": "Lo contrario de generalizar." },
+      "solution": [ { "tex": "\\text{overfitting}", "en": "Overfitting.", "es": "Sobreajuste." } ]
+    },
+    {
+      "id": "dl-12-e4",
+      "answerType": "text",
+      "prompt": { "en": "Randomly zeroing activations during training is called ___. (one word)", "es": "Poner a cero activaciones al azar durante el entrenamiento se llama ___. (una palabra)" },
+      "answer": "dropout",
+      "acceptedAlt": [],
+      "hint": { "en": "Drops units out.", "es": "Descarta unidades." },
+      "solution": [ { "tex": "\\text{dropout}", "en": "Dropout.", "es": "Dropout." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 7, regularization for deep learning", "es": "Cap. 7, regularización para aprendizaje profundo" } },
+    { "source": "Srivastava et al. — Dropout (2014)", "detail": { "en": "Dropout as regularization", "es": "Dropout como regularización" } }
+  ]
+}

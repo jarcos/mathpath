@@ -1,0 +1,80 @@
+{
+  "id": "dl-15-generative",
+  "subjectId": "deep-learning",
+  "order": 15,
+  "estimatedMinutes": 35,
+  "title": { "en": "Generative Models: GANs & VAEs", "es": "Modelos generativos: GAN y VAE" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Generative** models learn the data distribution well enough to produce new, realistic samples — faces, voices, molecules. They contrast with **discriminative** models, which only learn the boundary between classes. The headline families are **VAEs**, **GANs**, and **diffusion** models.",
+        "es": "Los modelos **generativos** aprenden la distribución de los datos lo bastante bien como para producir muestras nuevas y realistas — caras, voces, moléculas. Contrastan con los modelos **discriminativos**, que solo aprenden la frontera entre clases. Las familias principales son los **VAE**, las **GAN** y los modelos de **difusión**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **GAN** (Generative Adversarial Network) trains two networks against each other: a **generator** turns random noise into fake samples, and a **discriminator** tries to tell real from fake. They play a minimax game; as the discriminator improves, the generator is pushed to make ever more convincing samples, until fakes are indistinguishable from real data.",
+        "es": "Una **GAN** (red generativa adversaria) entrena dos redes una contra otra: un **generador** convierte ruido aleatorio en muestras falsas, y un **discriminador** intenta distinguir lo real de lo falso. Juegan un juego minimax; conforme el discriminador mejora, el generador se ve empujado a crear muestras cada vez más convincentes, hasta que las falsas son indistinguibles de los datos reales."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **VAE** instead learns a probabilistic latent space and generates by sampling from it and decoding — more stable to train than a GAN but often blurrier. **Diffusion** models, the basis of modern image generators, learn to reverse a gradual noising process, denoising pure noise step by step into a sample. All three turn random noise into structured data.",
+        "es": "Un **VAE** en cambio aprende un espacio latente probabilístico y genera muestreando de él y decodificando — más estable de entrenar que una GAN pero a menudo más borroso. Los modelos de **difusión**, base de los generadores de imágenes modernos, aprenden a revertir un proceso gradual de adición de ruido, eliminando ruido puro paso a paso hasta obtener una muestra. Los tres convierten ruido aleatorio en datos estructurados."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A GAN has $2$ networks (generator + discriminator). If a discriminator outputs probability $0.5$ that a sample is real, it is maximally uncertain — the ideal end state where it cannot distinguish real from generated.",
+        "es": "Una GAN tiene $2$ redes (generador + discriminador). Si un discriminador produce probabilidad $0.5$ de que una muestra sea real, está en máxima incertidumbre — el estado final ideal donde no puede distinguir lo real de lo generado."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-15-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many networks does a GAN train against each other?", "es": "¿Cuántas redes entrena una GAN una contra otra?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Generator and discriminator.", "es": "Generador y discriminador." },
+      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "dl-15-e2",
+      "answerType": "text",
+      "prompt": { "en": "In a GAN, the network that creates fake samples is the ___. (one word)", "es": "En una GAN, la red que crea muestras falsas es el ___. (una palabra)" },
+      "answer": "generator",
+      "acceptedAlt": ["generador"],
+      "hint": { "en": "It generates.", "es": "Genera." },
+      "solution": [ { "tex": "G(z)", "en": "Generator.", "es": "Generador." } ]
+    },
+    {
+      "id": "dl-15-e3",
+      "answerType": "number",
+      "prompt": { "en": "A perfectly fooled discriminator outputs what probability a sample is real?", "es": "Un discriminador perfectamente engañado da ¿qué probabilidad de que una muestra sea real?" },
+      "answer": "0.5",
+      "acceptedAlt": ["1/2"],
+      "hint": { "en": "Maximal uncertainty.", "es": "Máxima incertidumbre." },
+      "solution": [ { "tex": "0.5", "en": "Coin flip.", "es": "Cara o cruz." } ]
+    },
+    {
+      "id": "dl-15-e4",
+      "answerType": "text",
+      "prompt": { "en": "Models that reverse a gradual noising process are ___ models. (one word)", "es": "Los modelos que revierten un proceso gradual de ruido son modelos de ___. (una palabra)" },
+      "answer": "diffusion",
+      "acceptedAlt": ["difusión", "difusion"],
+      "hint": { "en": "Denoise step by step.", "es": "Quitan ruido paso a paso." },
+      "solution": [ { "tex": "\\text{diffusion}", "en": "Diffusion.", "es": "Difusión." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 20, deep generative models", "es": "Cap. 20, modelos generativos profundos" } },
+    { "source": "Goodfellow et al. — Generative Adversarial Nets (2014)", "detail": { "en": "Original GAN", "es": "GAN original" } }
+  ]
+}

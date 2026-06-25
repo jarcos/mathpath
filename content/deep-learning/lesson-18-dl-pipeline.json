@@ -1,0 +1,79 @@
+{
+  "id": "dl-18-pipeline",
+  "subjectId": "deep-learning",
+  "order": 18,
+  "estimatedMinutes": 35,
+  "title": { "en": "The Deep Learning Pipeline", "es": "El flujo de trabajo del aprendizaje profundo" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Building a deep model is an iterative pipeline, not a single shot. The stages: (1) **collect and split** data into train / validation / test; (2) **preprocess** (normalize, augment); (3) **choose an architecture**; (4) **train** with an optimizer; (5) **evaluate** on held-out data; (6) **tune** hyperparameters and repeat; (7) **deploy**. The golden rule: never let test data leak into training or tuning.",
+        "es": "Construir un modelo profundo es un flujo iterativo, no un disparo único. Las etapas: (1) **recoger y dividir** datos en entrenamiento / validación / test; (2) **preprocesar** (normalizar, aumentar); (3) **elegir una arquitectura**; (4) **entrenar** con un optimizador; (5) **evaluar** con datos reservados; (6) **ajustar** hiperparámetros y repetir; (7) **desplegar**. La regla de oro: nunca dejes que los datos de test se filtren al entrenamiento o al ajuste."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **validation** set guides hyperparameter choices; the **test** set, touched only once at the end, gives an honest performance estimate. Diagnose by comparing errors: high training error means **underfitting** (model too weak — go bigger or train longer); low training but high validation error means **overfitting** (regularize or get more data).",
+        "es": "El conjunto de **validación** guía las decisiones de hiperparámetros; el conjunto de **test**, tocado solo una vez al final, da una estimación honesta del rendimiento. Diagnostica comparando errores: un error de entrenamiento alto indica **subajuste** (modelo demasiado débil — agrándalo o entrena más); error de entrenamiento bajo pero de validación alto indica **sobreajuste** (regulariza o consigue más datos)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A practical workflow ratio is splitting data e.g. $80\\%$ train / $10\\%$ validation / $10\\%$ test. Across this whole subject you have seen the building blocks — convolution, recurrence, attention, embeddings, optimization, normalization, regularization, transfer learning, generation. The next subjects assemble them into NLP/Transformers, reinforcement learning, and vision systems.",
+        "es": "Una proporción práctica de trabajo es dividir los datos p. ej. $80\\%$ entrenamiento / $10\\%$ validación / $10\\%$ test. A lo largo de esta asignatura has visto los bloques — convolución, recurrencia, atención, embeddings, optimización, normalización, regularización, transferencia, generación. Las próximas asignaturas los ensamblan en PLN/Transformers, aprendizaje por refuerzo y sistemas de visión."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Splitting $1000$ examples $80/10/10$ gives $800$ train, $100$ validation, $100$ test. A model with training accuracy $99\\%$ but validation accuracy $70\\%$ is overfitting (gap $99 - 70 = 29$ points).",
+        "es": "Dividir $1000$ ejemplos $80/10/10$ da $800$ de entrenamiento, $100$ de validación, $100$ de test. Un modelo con precisión de entrenamiento del $99\\%$ pero de validación del $70\\%$ está sobreajustando (brecha $99 - 70 = 29$ puntos)."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-18-e1",
+      "answerType": "number",
+      "prompt": { "en": "Split 1000 examples 80/10/10: how many training examples?", "es": "Divide 1000 ejemplos 80/10/10: ¿cuántos de entrenamiento?" },
+      "answer": "800",
+      "acceptedAlt": ["0.8*1000"],
+      "hint": { "en": "80% of 1000.", "es": "80% de 1000." },
+      "solution": [ { "tex": "0.8\\cdot 1000 = 800", "en": "800.", "es": "800." } ]
+    },
+    {
+      "id": "dl-18-e2",
+      "answerType": "number",
+      "prompt": { "en": "Train acc 99%, validation acc 70%: the overfitting gap in points?", "es": "Precisión entren. 99%, validación 70%: ¿brecha de sobreajuste en puntos?" },
+      "answer": "29",
+      "acceptedAlt": ["99-70"],
+      "hint": { "en": "99 − 70.", "es": "99 − 70." },
+      "solution": [ { "tex": "99 - 70 = 29", "en": "29 points.", "es": "29 puntos." } ]
+    },
+    {
+      "id": "dl-18-e3",
+      "answerType": "text",
+      "prompt": { "en": "The split touched only once, for the final honest estimate, is the ___ set. (one word)", "es": "El conjunto tocado solo una vez, para la estimación final honesta, es el conjunto de ___. (una palabra)" },
+      "answer": "test",
+      "acceptedAlt": ["prueba"],
+      "hint": { "en": "Not train, not validation.", "es": "No entren., no validación." },
+      "solution": [ { "tex": "\\text{test set}", "en": "Test.", "es": "Test." } ]
+    },
+    {
+      "id": "dl-18-e4",
+      "answerType": "text",
+      "prompt": { "en": "High training error (model too weak) is called ___. (one word)", "es": "Un error de entrenamiento alto (modelo demasiado débil) se llama ___. (una palabra)" },
+      "answer": "underfitting",
+      "acceptedAlt": ["subajuste", "underfit"],
+      "hint": { "en": "Opposite of overfitting.", "es": "Lo contrario de sobreajuste." },
+      "solution": [ { "tex": "\\text{underfitting}", "en": "Underfitting.", "es": "Subajuste." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 11, practical methodology", "es": "Cap. 11, metodología práctica" } }
+  ]
+}

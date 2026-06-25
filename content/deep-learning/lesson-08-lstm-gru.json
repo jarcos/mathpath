@@ -1,0 +1,80 @@
+{
+  "id": "dl-08-lstm-gru",
+  "subjectId": "deep-learning",
+  "order": 8,
+  "estimatedMinutes": 35,
+  "title": { "en": "LSTM, GRU & the Vanishing Gradient", "es": "LSTM, GRU y el gradiente que se desvanece" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "In a plain RNN the gradient is multiplied by the recurrent weight at every step. If that factor is below $1$ the gradient **vanishes** exponentially over long sequences; if above $1$ it **explodes**. As a result, simple RNNs struggle to learn dependencies more than ~10 steps apart.",
+        "es": "En una RNN simple el gradiente se multiplica por el peso recurrente en cada paso. Si ese factor es menor que $1$, el gradiente se **desvanece** exponencialmente en secuencias largas; si es mayor que $1$, **explota**. Por eso las RNN simples tienen dificultad para aprender dependencias separadas más de ~10 pasos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **LSTM** (Long Short-Term Memory) fixes this with a **cell state** carried almost unchanged across steps, regulated by **gates** — small sigmoid networks that decide what to forget, what to write, and what to output. Because the cell state is updated additively, gradients flow through it without repeated shrinking, letting LSTMs learn long-range dependencies.",
+        "es": "La **LSTM** (memoria larga a corto plazo) lo soluciona con un **estado de celda** que se transporta casi sin cambios entre pasos, regulado por **puertas** — pequeñas redes sigmoide que deciden qué olvidar, qué escribir y qué emitir. Como el estado de celda se actualiza de forma aditiva, los gradientes fluyen por él sin encogerse repetidamente, permitiendo a las LSTM aprender dependencias de largo alcance."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **GRU** (Gated Recurrent Unit) is a streamlined cousin with just two gates (reset and update) and no separate cell state — fewer parameters, often comparable performance. A sigmoid gate outputs a value in $(0,1)$; an output near $1$ means 'let almost everything through', near $0$ means 'block it'.",
+        "es": "La **GRU** (unidad recurrente con puertas) es una prima simplificada con solo dos puertas (reinicio y actualización) y sin estado de celda separado — menos parámetros, a menudo rendimiento comparable. Una puerta sigmoide produce un valor en $(0,1)$; una salida cercana a $1$ significa 'deja pasar casi todo', cercana a $0$ significa 'bloquéalo'."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A forget gate value of $0.9$ multiplied into a cell state of $10$ keeps $0.9\\cdot 10 = 9$. If a recurrent factor is $0.8$, after $10$ steps the gradient scales by $0.8^{10}\\approx 0.107$ — already a tenfold shrink, illustrating vanishing.",
+        "es": "Un valor de puerta de olvido de $0.9$ multiplicado por un estado de celda de $10$ conserva $0.9\\cdot 10 = 9$. Si un factor recurrente es $0.8$, tras $10$ pasos el gradiente se escala por $0.8^{10}\\approx 0.107$ — ya una reducción de diez veces, ilustrando el desvanecimiento."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-08-e1",
+      "answerType": "text",
+      "prompt": { "en": "Over long sequences plain-RNN gradients tend to ___ (shrink to zero). (one word)", "es": "En secuencias largas los gradientes de RNN simples tienden a ___ (encogerse a cero). (una palabra)" },
+      "answer": "vanish",
+      "acceptedAlt": ["desvanecerse", "vanishing", "desvanecer"],
+      "hint": { "en": "Vanishing gradient.", "es": "Gradiente que se desvanece." },
+      "solution": [ { "tex": "\\to 0", "en": "Vanish.", "es": "Desvanecerse." } ]
+    },
+    {
+      "id": "dl-08-e2",
+      "answerType": "text",
+      "prompt": { "en": "LSTMs and GRUs control information flow with ___. (one word)", "es": "Las LSTM y GRU controlan el flujo de información con ___. (una palabra)" },
+      "answer": "gates",
+      "acceptedAlt": ["puertas", "gate", "puerta"],
+      "hint": { "en": "Forget / input / output.", "es": "Olvido / entrada / salida." },
+      "solution": [ { "tex": "\\sigma(\\cdot)", "en": "Gates.", "es": "Puertas." } ]
+    },
+    {
+      "id": "dl-08-e3",
+      "answerType": "number",
+      "prompt": { "en": "Forget gate 0.9 times cell state 10: kept value?", "es": "Puerta de olvido 0.9 por estado de celda 10: ¿valor conservado?" },
+      "answer": "9",
+      "acceptedAlt": ["0.9*10"],
+      "hint": { "en": "0.9 × 10.", "es": "0.9 × 10." },
+      "solution": [ { "tex": "0.9\\cdot 10 = 9", "en": "Nine.", "es": "Nueve." } ]
+    },
+    {
+      "id": "dl-08-e4",
+      "answerType": "number",
+      "prompt": { "en": "How many gates does a GRU have?", "es": "¿Cuántas puertas tiene una GRU?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Reset and update.", "es": "Reinicio y actualización." },
+      "solution": [ { "tex": "2", "en": "Two: reset, update.", "es": "Dos: reinicio, actualización." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 10.7, the long-term dependency problem; LSTM and gated units", "es": "Cap. 10.7, el problema de dependencias a largo plazo; LSTM y unidades con puertas" } },
+    { "source": "Hochreiter & Schmidhuber — Long Short-Term Memory (1997)", "detail": { "en": "Original LSTM", "es": "LSTM original" } }
+  ]
+}

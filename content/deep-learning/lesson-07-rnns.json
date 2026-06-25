@@ -1,0 +1,79 @@
+{
+  "id": "dl-07-rnns",
+  "subjectId": "deep-learning",
+  "order": 7,
+  "estimatedMinutes": 35,
+  "title": { "en": "Recurrent Neural Networks", "es": "Redes neuronales recurrentes" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Text, audio and time series are **sequences** of variable length. A **recurrent neural network (RNN)** processes them one step at a time, maintaining a **hidden state** $h_t$ that summarizes everything seen so far. At each step it combines the new input $x_t$ with the previous state: $h_t = f(W_x x_t + W_h h_{t-1} + b)$.",
+        "es": "El texto, el audio y las series temporales son **secuencias** de longitud variable. Una **red neuronal recurrente (RNN)** las procesa paso a paso, manteniendo un **estado oculto** $h_t$ que resume todo lo visto hasta ahora. En cada paso combina la nueva entrada $x_t$ con el estado previo: $h_t = f(W_x x_t + W_h h_{t-1} + b)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Like a CNN shares filter weights across space, an RNN **shares the same weights across time** — the same $W_x, W_h$ are reused at every step. This lets one network handle sequences of any length and gives it a form of memory: the hidden state is a running summary that gets updated as new tokens arrive.",
+        "es": "Igual que una CNN comparte pesos de filtro en el espacio, una RNN **comparte los mismos pesos en el tiempo** — los mismos $W_x, W_h$ se reutilizan en cada paso. Esto permite a una red manejar secuencias de cualquier longitud y le da una forma de memoria: el estado oculto es un resumen continuo que se actualiza cuando llegan nuevos tokens."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Training uses **backpropagation through time (BPTT)**: unroll the network across all time steps and backpropagate as if it were one very deep feedforward net. This is powerful but creates a problem — the repeated multiplication by $W_h$ makes gradients shrink or blow up over long sequences, the **vanishing/exploding gradient** issue addressed next.",
+        "es": "El entrenamiento usa **retropropagación a través del tiempo (BPTT)**: se desenrolla la red en todos los pasos y se retropropaga como si fuera una red feedforward muy profunda. Es potente pero crea un problema — la multiplicación repetida por $W_h$ hace que los gradientes se encojan o exploten en secuencias largas, el problema de **gradiente que se desvanece/explota** que veremos a continuación."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Scalar RNN with $h_t = w_h h_{t-1} + w_x x_t$, $w_h = 0.5$, $w_x = 1$, $h_0 = 0$, inputs $x_1 = 2, x_2 = 4$. Then $h_1 = 0.5\\cdot 0 + 1\\cdot 2 = 2$, and $h_2 = 0.5\\cdot 2 + 1\\cdot 4 = 5$.",
+        "es": "RNN escalar con $h_t = w_h h_{t-1} + w_x x_t$, $w_h = 0.5$, $w_x = 1$, $h_0 = 0$, entradas $x_1 = 2, x_2 = 4$. Entonces $h_1 = 0.5\\cdot 0 + 1\\cdot 2 = 2$, y $h_2 = 0.5\\cdot 2 + 1\\cdot 4 = 5$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-07-e1",
+      "answerType": "text",
+      "prompt": { "en": "An RNN keeps a running summary in its hidden ___. (one word)", "es": "Una RNN mantiene un resumen continuo en su ___ oculto. (una palabra)" },
+      "answer": "state",
+      "acceptedAlt": ["estado"],
+      "hint": { "en": "h_t.", "es": "h_t." },
+      "solution": [ { "tex": "h_t", "en": "State.", "es": "Estado." } ]
+    },
+    {
+      "id": "dl-07-e2",
+      "answerType": "number",
+      "prompt": { "en": "$h_t = 0.5 h_{t-1} + x_t$, $h_0=0$, $x_1=2$: compute $h_1$.", "es": "$h_t = 0.5 h_{t-1} + x_t$, $h_0=0$, $x_1=2$: calcula $h_1$." },
+      "answer": "2",
+      "acceptedAlt": ["0.5*0+2"],
+      "hint": { "en": "0.5·0 + 2.", "es": "0.5·0 + 2." },
+      "solution": [ { "tex": "0.5\\cdot 0 + 2 = 2", "en": "h_1 = 2.", "es": "h_1 = 2." } ]
+    },
+    {
+      "id": "dl-07-e3",
+      "answerType": "number",
+      "prompt": { "en": "Continue: $x_2=4$, $h_1=2$: compute $h_2 = 0.5\\cdot 2 + 4$.", "es": "Continúa: $x_2=4$, $h_1=2$: calcula $h_2 = 0.5\\cdot 2 + 4$." },
+      "answer": "5",
+      "acceptedAlt": ["0.5*2+4"],
+      "hint": { "en": "1 + 4.", "es": "1 + 4." },
+      "solution": [ { "tex": "0.5\\cdot 2 + 4 = 5", "en": "h_2 = 5.", "es": "h_2 = 5." } ]
+    },
+    {
+      "id": "dl-07-e4",
+      "answerType": "text",
+      "prompt": { "en": "RNNs reuse the same weights across ___. (one word)", "es": "Las RNN reutilizan los mismos pesos a lo largo del ___. (una palabra)" },
+      "answer": "time",
+      "acceptedAlt": ["tiempo"],
+      "hint": { "en": "Steps over time.", "es": "Pasos en el tiempo." },
+      "solution": [ { "tex": "\\text{shared over time}", "en": "Time.", "es": "Tiempo." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 10.1–10.2, recurrent networks and BPTT", "es": "Cap. 10.1–10.2, redes recurrentes y BPTT" } }
+  ]
+}

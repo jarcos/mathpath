@@ -158,7 +158,7 @@ The `sources/Foundations/` corpus turns the old placeholder ML track into a real
 | 6 | 🟢 **Statistics & Probability** · `statistics` **(DONE — 16 lessons)** | 16 | Pearl *Probabilistic Reasoning* (1988); AIMA; Goodfellow ch. 3 |
 | 7 | 🟢 **Machine Learning Foundations** · `ml-foundations` **(DONE — 18 lessons)** | 18 | Russell & Norvig *AIMA* (1995); Goodfellow Part II |
 | 8 | 🟢 **Neural Networks** · `neural-networks` **(DONE — 16 lessons)** | 16 | Rumelhart & McClelland *PDP* (1986); Goodfellow ch. 6 |
-| 9 | ⚪ **Deep Learning** · `deep-learning` | ~18 | Goodfellow, Bengio, Courville *Deep Learning* (2016) |
+| 9 | 🟢 **Deep Learning** · `deep-learning` **(DONE — 18 lessons)** | 18 | Goodfellow, Bengio, Courville *Deep Learning* (2016) |
 | 10 | ⚪ **NLP & Transformers** · `nlp-transformers` | ~16 | Jurafsky & Martin *SLP*; Vaswani et al. *Attention Is All You Need* (2017) |
 | 11 | ⚪ **Reinforcement Learning** · `reinforcement-learning` | ~16 | Sutton & Barto *RL: An Introduction* (2018) |
 | 12 | ⚪ **Knowledge Representation & Reasoning** · `knowledge-representation` | ~14 | Brachman & Levesque (2004); Pearl *Probabilistic Reasoning* (1988) |

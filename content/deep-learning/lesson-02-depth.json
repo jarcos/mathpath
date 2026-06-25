@@ -1,0 +1,79 @@
+{
+  "id": "dl-02-depth",
+  "subjectId": "deep-learning",
+  "order": 2,
+  "estimatedMinutes": 30,
+  "title": { "en": "Why Depth Helps", "es": "Por qué ayuda la profundidad" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The universal approximation theorem says one hidden layer *can* represent any function — so why go deep? Because depth is far more **efficient**. A deep network can represent some functions with exponentially fewer neurons than a shallow one would need, by **reusing** features across layers instead of relearning them.",
+        "es": "El teorema de aproximación universal dice que una capa oculta *puede* representar cualquier función — entonces, ¿por qué ir en profundidad? Porque la profundidad es mucho más **eficiente**. Una red profunda puede representar algunas funciones con exponencialmente menos neuronas que una poco profunda, al **reutilizar** características entre capas en lugar de reaprenderlas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Each layer builds on the **previous** layer's output, composing simple features into complex ones. In an image model, layer 1 finds **edges**, layer 2 combines edges into corners and textures, layer 3 into parts, layer 4 into whole objects. This compositional reuse is what gives depth its power.",
+        "es": "Cada capa se construye sobre la salida de la capa **anterior**, componiendo características simples en complejas. En un modelo de imágenes, la capa 1 halla **bordes**, la capa 2 combina bordes en esquinas y texturas, la capa 3 en partes, la capa 4 en objetos completos. Esta reutilización composicional es lo que da poder a la profundidad."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The trade-off is that deeper networks are harder to train (vanishing gradients, more data needed) — which is exactly why the innovations of the last decade (ReLU, batch norm, residual connections) mattered so much. They made very deep networks trainable in practice.",
+        "es": "El compromiso es que las redes más profundas son más difíciles de entrenar (gradientes que se desvanecen, más datos necesarios) — por eso las innovaciones de la última década (ReLU, normalización por lotes, conexiones residuales) fueron tan importantes. Hicieron entrenables en la práctica las redes muy profundas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A network with $5$ hidden layers has $5$ levels of feature composition. The first layer in a vision model typically learns simple features like **edges**, each later layer building on the **previous** one.",
+        "es": "Una red con $5$ capas ocultas tiene $5$ niveles de composición de características. La primera capa en un modelo de visión suele aprender características simples como **bordes**, y cada capa posterior se construye sobre la **anterior**."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-02-e1",
+      "answerType": "text",
+      "prompt": { "en": "Deep nets are more parameter-___ than shallow ones. (one word)", "es": "Las redes profundas son más ___ en parámetros que las poco profundas. (una palabra)" },
+      "answer": "efficient",
+      "acceptedAlt": ["eficientes", "eficiente"],
+      "hint": { "en": "Fewer neurons for the same function.", "es": "Menos neuronas para la misma función." },
+      "solution": [ { "tex": "\\text{efficient}", "en": "Efficient.", "es": "Eficientes." } ]
+    },
+    {
+      "id": "dl-02-e2",
+      "answerType": "text",
+      "prompt": { "en": "Early layers of a vision network learn simple features like ___. (one word)", "es": "Las capas iniciales de una red de visión aprenden características simples como ___. (una palabra)" },
+      "answer": "edges",
+      "acceptedAlt": ["bordes"],
+      "hint": { "en": "Then shapes, then objects.", "es": "Luego formas, luego objetos." },
+      "solution": [ { "tex": "\\text{edges}", "en": "Edges.", "es": "Bordes." } ]
+    },
+    {
+      "id": "dl-02-e3",
+      "answerType": "number",
+      "prompt": { "en": "How many hidden layers does a 5-hidden-layer network have?", "es": "¿Cuántas capas ocultas tiene una red de 5 capas ocultas?" },
+      "answer": "5",
+      "acceptedAlt": [],
+      "hint": { "en": "As stated.", "es": "Como se indica." },
+      "solution": [ { "tex": "5", "en": "Five.", "es": "Cinco." } ]
+    },
+    {
+      "id": "dl-02-e4",
+      "answerType": "text",
+      "prompt": { "en": "Each layer builds features from the ___ layer's output. (one word)", "es": "Cada capa construye características a partir de la salida de la capa ___. (una palabra)" },
+      "answer": "previous",
+      "acceptedAlt": ["anterior"],
+      "hint": { "en": "The one before it.", "es": "La de antes." },
+      "solution": [ { "tex": "\\text{layer } l-1", "en": "Previous.", "es": "Anterior." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 6.4, depth and representational efficiency", "es": "Cap. 6.4, profundidad y eficiencia representacional" } }
+  ]
+}

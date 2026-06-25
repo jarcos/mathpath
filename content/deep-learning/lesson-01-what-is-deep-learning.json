@@ -1,0 +1,79 @@
+{
+  "id": "dl-01-what-is-dl",
+  "subjectId": "deep-learning",
+  "order": 1,
+  "estimatedMinutes": 35,
+  "title": { "en": "What Is Deep Learning?", "es": "¿Qué es el aprendizaje profundo?" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Deep learning** is the branch of machine learning that uses neural networks with **many layers**. A network counts as 'deep' once it has more than one hidden layer — and modern models stack tens or hundreds. Depth is not just bigger; it changes what the network can learn, by composing simple transformations into rich ones.",
+        "es": "El **aprendizaje profundo** es la rama del aprendizaje automático que usa redes neuronales con **muchas capas**. Una red es 'profunda' cuando tiene más de una capa oculta — y los modelos modernos apilan decenas o cientos. La profundidad no es solo más grande; cambia lo que la red puede aprender, al componer transformaciones simples en otras ricas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The defining idea is **hierarchical feature learning**: each layer learns features built from the previous layer's output. In vision, early layers detect edges, middle layers detect shapes, and deep layers detect objects. The network discovers this **hierarchy** automatically — no human hand-crafts the features.",
+        "es": "La idea definitoria es el **aprendizaje jerárquico de características**: cada capa aprende características construidas a partir de la salida de la anterior. En visión, las capas iniciales detectan bordes, las intermedias formas, y las profundas objetos. La red descubre esta **jerarquía** automáticamente — ningún humano diseña a mano las características."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Deep learning sits inside machine learning, which sits inside artificial intelligence. What made it explode after 2012 was the combination of three things: big **data**, powerful **GPUs**, and better algorithms (ReLU, backprop tricks, architectures). This subject builds on the neural-network foundations directly.",
+        "es": "El aprendizaje profundo está dentro del aprendizaje automático, que está dentro de la inteligencia artificial. Lo que lo hizo explotar tras 2012 fue la combinación de tres cosas: grandes **datos**, **GPU** potentes y mejores algoritmos (ReLU, trucos de backprop, arquitecturas). Esta asignatura se construye directamente sobre los fundamentos de las redes neuronales."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A network with $2$ or more hidden layers is 'deep'. Deep learning is a subfield of **machine** learning. Its signature is learning a **hierarchy** of features automatically rather than hand-engineering them.",
+        "es": "Una red con $2$ o más capas ocultas es 'profunda'. El aprendizaje profundo es un subcampo del aprendizaje **automático**. Su sello es aprender una **jerarquía** de características automáticamente en lugar de diseñarlas a mano."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "dl-01-e1",
+      "answerType": "text",
+      "prompt": { "en": "Deep learning uses neural networks with many ___. (one word)", "es": "El aprendizaje profundo usa redes neuronales con muchas ___. (una palabra)" },
+      "answer": "layers",
+      "acceptedAlt": ["capas"],
+      "hint": { "en": "Depth.", "es": "Profundidad." },
+      "solution": [ { "tex": "\\text{many layers}", "en": "Layers.", "es": "Capas." } ]
+    },
+    {
+      "id": "dl-01-e2",
+      "answerType": "number",
+      "prompt": { "en": "At least how many hidden layers make a network 'deep'?", "es": "¿Al menos cuántas capas ocultas hacen 'profunda' una red?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "More than one.", "es": "Más de una." },
+      "solution": [ { "tex": "\\ge 2", "en": "Two or more.", "es": "Dos o más." } ]
+    },
+    {
+      "id": "dl-01-e3",
+      "answerType": "text",
+      "prompt": { "en": "Deep learning learns a ___ of features. (one word)", "es": "El aprendizaje profundo aprende una ___ de características. (una palabra)" },
+      "answer": "hierarchy",
+      "acceptedAlt": ["jerarquía", "jerarquia"],
+      "hint": { "en": "Edges → shapes → objects.", "es": "Bordes → formas → objetos." },
+      "solution": [ { "tex": "\\text{hierarchy}", "en": "Hierarchy.", "es": "Jerarquía." } ]
+    },
+    {
+      "id": "dl-01-e4",
+      "answerType": "text",
+      "prompt": { "en": "Deep learning is a subfield of ___ learning. (one word)", "es": "El aprendizaje profundo es un subcampo del aprendizaje ___. (una palabra)" },
+      "answer": "machine",
+      "acceptedAlt": ["automático", "automatico", "máquina", "maquina"],
+      "hint": { "en": "ML.", "es": "ML." },
+      "solution": [ { "tex": "DL \\subset ML", "en": "Machine learning.", "es": "Aprendizaje automático." } ]
+    }
+  ],
+  "references": [
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 1, introduction; depth and hierarchy", "es": "Cap. 1, introducción; profundidad y jerarquía" } }
+  ]
+}
