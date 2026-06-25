@@ -1,0 +1,79 @@
+{
+  "id": "aif-01-what-is-ai",
+  "subjectId": "ai-foundations",
+  "order": 1,
+  "estimatedMinutes": 30,
+  "title": { "en": "What Is Artificial Intelligence?", "es": "¿Qué es la inteligencia artificial?" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Artificial intelligence** is the study of building machines that perform tasks we associate with intelligence — reasoning, learning, perceiving, using language, acting toward goals. Russell & Norvig organize definitions along two axes: thinking vs **acting**, and human-like vs **rational**. This yields four views: thinking humanly, thinking rationally, acting humanly, and acting rationally.",
+        "es": "La **inteligencia artificial** es el estudio de construir máquinas que realizan tareas que asociamos con la inteligencia — razonar, aprender, percibir, usar el lenguaje, actuar hacia metas. Russell y Norvig organizan las definiciones en dos ejes: pensar vs **actuar**, y de forma humana vs **racional**. Esto da cuatro visiones: pensar humanamente, pensar racionalmente, actuar humanamente y actuar racionalmente."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "AI as a field was founded at the **Dartmouth** workshop in **1956**, where John McCarthy coined the term 'artificial intelligence'. The decades since saw cycles of optimism and disappointment — the so-called **AI winters** — punctuated by breakthroughs in search, expert systems, and finally machine learning.",
+        "es": "La IA como campo se fundó en el taller de **Dartmouth** en **1956**, donde John McCarthy acuñó el término 'inteligencia artificial'. Las décadas siguientes vieron ciclos de optimismo y decepción — los llamados **inviernos de la IA** — salpicados por avances en búsqueda, sistemas expertos y finalmente aprendizaje automático."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A useful modern lens is the **rational agent**: an entity that perceives its environment and acts to maximize its expected performance. This 'acting rationally' view unifies the field — search, logic, learning and planning are all tools an agent uses to choose good actions. This subject steps back from techniques to ask the foundational and philosophical questions.",
+        "es": "Una lente moderna útil es el **agente racional**: una entidad que percibe su entorno y actúa para maximizar su desempeño esperado. Esta visión de 'actuar racionalmente' unifica el campo — búsqueda, lógica, aprendizaje y planificación son herramientas que un agente usa para elegir buenas acciones. Esta asignatura se aparta de las técnicas para plantear las preguntas fundacionales y filosóficas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "AI was founded as a field at Dartmouth in $1956$. Russell & Norvig's two axes (human/rational × thinking/acting) yield $2\\times 2 = 4$ definitions of AI.",
+        "es": "La IA se fundó como campo en Dartmouth en $1956$. Los dos ejes de Russell y Norvig (humano/racional × pensar/actuar) dan $2\\times 2 = 4$ definiciones de IA."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "aif-01-e1",
+      "answerType": "number",
+      "prompt": { "en": "In what year was the founding Dartmouth AI workshop held?", "es": "¿En qué año se celebró el taller fundacional de Dartmouth sobre IA?" },
+      "answer": "1956",
+      "acceptedAlt": [],
+      "hint": { "en": "Mid-1950s.", "es": "Mediados de los 50." },
+      "solution": [ { "tex": "1956", "en": "1956.", "es": "1956." } ]
+    },
+    {
+      "id": "aif-01-e2",
+      "answerType": "number",
+      "prompt": { "en": "How many definitions of AI come from the 2×2 (human/rational × think/act) grid?", "es": "¿Cuántas definiciones de IA da la rejilla 2×2 (humano/racional × pensar/actuar)?" },
+      "answer": "4",
+      "acceptedAlt": ["2*2"],
+      "hint": { "en": "2 × 2.", "es": "2 × 2." },
+      "solution": [ { "tex": "4", "en": "Four.", "es": "Cuatro." } ]
+    },
+    {
+      "id": "aif-01-e3",
+      "answerType": "text",
+      "prompt": { "en": "Who coined the term 'artificial intelligence'? (surname)", "es": "¿Quién acuñó el término 'inteligencia artificial'? (apellido)" },
+      "answer": "mccarthy",
+      "acceptedAlt": ["john mccarthy"],
+      "hint": { "en": "John ___.", "es": "John ___." },
+      "solution": [ { "tex": "\\text{McCarthy}", "en": "McCarthy.", "es": "McCarthy." } ]
+    },
+    {
+      "id": "aif-01-e4",
+      "answerType": "text",
+      "prompt": { "en": "The unifying modern notion is the rational ___. (one word)", "es": "La noción moderna unificadora es el ___ racional. (una palabra)" },
+      "answer": "agent",
+      "acceptedAlt": ["agente"],
+      "hint": { "en": "Perceives and acts.", "es": "Percibe y actúa." },
+      "solution": [ { "tex": "\\text{rational agent}", "en": "Agent.", "es": "Agente." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 1, what is AI; the four approaches", "es": "Cap. 1, qué es la IA; los cuatro enfoques" } }
+  ]
+}

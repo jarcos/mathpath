@@ -1,0 +1,79 @@
+{
+  "id": "aif-12-foundation-models",
+  "subjectId": "ai-foundations",
+  "order": 12,
+  "estimatedMinutes": 35,
+  "title": { "en": "Foundation Models: Opportunities & Risks", "es": "Modelos fundacionales: oportunidades y riesgos" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Bommasani et al. (2021) named **foundation models**: very large models pretrained on broad data that can be **adapted** to a huge range of downstream tasks. Their defining traits are **emergence** (capabilities not explicitly trained for appear with scale) and **homogenization** (one model underlies many applications).",
+        "es": "Bommasani et al. (2021) acuñaron los **modelos fundacionales**: modelos muy grandes preentrenados con datos amplios que pueden **adaptarse** a una enorme variedad de tareas posteriores. Sus rasgos definitorios son la **emergencia** (aparecen con la escala capacidades para las que no se entrenó explícitamente) y la **homogeneización** (un modelo sustenta muchas aplicaciones)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Homogenization is double-edged. It is efficient — improve the base model and everything built on it improves. But it also creates a **single point of failure**: a flaw or bias in the foundation model propagates to every downstream system. Concentration of these expensive models in a few labs raises concerns about power and access.",
+        "es": "La homogeneización es de doble filo. Es eficiente — mejora el modelo base y todo lo construido sobre él mejora. Pero también crea un **punto único de fallo**: un defecto o sesgo en el modelo fundacional se propaga a cada sistema posterior. La concentración de estos modelos costosos en pocos laboratorios suscita preocupaciones sobre poder y acceso."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Risks span misinformation and **hallucination** (confident false output), bias at scale, misuse, environmental cost, and opacity. Yet the opportunities — broad capability, rapid adaptation, accessibility of advanced AI — are immense. Foundation models crystallize the central tension of modern AI: unprecedented capability paired with unprecedented responsibility.",
+        "es": "Los riesgos abarcan la desinformación y la **alucinación** (salida falsa con confianza), el sesgo a escala, el mal uso, el coste ambiental y la opacidad. Aun así, las oportunidades — capacidad amplia, adaptación rápida, accesibilidad de IA avanzada — son inmensas. Los modelos fundacionales cristalizan la tensión central de la IA moderna: una capacidad sin precedentes unida a una responsabilidad sin precedentes."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Capabilities appearing at scale that weren't explicitly trained for are called emergence. When one foundation model underlies many apps, a single flaw propagates — the homogenization risk.",
+        "es": "Las capacidades que aparecen con la escala sin haberse entrenado explícitamente se llaman emergencia. Cuando un modelo fundacional sustenta muchas apps, un solo defecto se propaga — el riesgo de homogeneización."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "aif-12-e1",
+      "answerType": "text",
+      "prompt": { "en": "Large models pretrained on broad data and adapted to many tasks are ___ models. (one word)", "es": "Los modelos grandes preentrenados con datos amplios y adaptados a muchas tareas son modelos ___. (una palabra)" },
+      "answer": "foundation",
+      "acceptedAlt": ["fundacionales", "fundacional"],
+      "hint": { "en": "They are a foundation.", "es": "Son una base." },
+      "solution": [ { "tex": "\\text{foundation models}", "en": "Foundation.", "es": "Fundacionales." } ]
+    },
+    {
+      "id": "aif-12-e2",
+      "answerType": "text",
+      "prompt": { "en": "Capabilities appearing with scale, not explicitly trained, are called ___. (one word)", "es": "Las capacidades que aparecen con la escala, sin entrenarse explícitamente, se llaman ___. (una palabra)" },
+      "answer": "emergence",
+      "acceptedAlt": ["emergencia", "emergent", "emergente"],
+      "hint": { "en": "Emergent abilities.", "es": "Capacidades emergentes." },
+      "solution": [ { "tex": "\\text{emergence}", "en": "Emergence.", "es": "Emergencia." } ]
+    },
+    {
+      "id": "aif-12-e3",
+      "answerType": "text",
+      "prompt": { "en": "Confident false output from a model is called a ___. (one word)", "es": "Una salida falsa con confianza de un modelo se llama una ___. (una palabra)" },
+      "answer": "hallucination",
+      "acceptedAlt": ["alucinación", "alucinacion"],
+      "hint": { "en": "Made-up facts.", "es": "Hechos inventados." },
+      "solution": [ { "tex": "\\text{hallucination}", "en": "Hallucination.", "es": "Alucinación." } ]
+    },
+    {
+      "id": "aif-12-e4",
+      "answerType": "text",
+      "prompt": { "en": "One model underlying many apps creates ___ (the spreading of a single flaw). (one word)", "es": "Un modelo que sustenta muchas apps crea ___ (la difusión de un solo defecto). (una palabra)" },
+      "answer": "homogenization",
+      "acceptedAlt": ["homogeneización", "homogeneizacion", "homogenisation"],
+      "hint": { "en": "Everything becomes similar.", "es": "Todo se vuelve similar." },
+      "solution": [ { "tex": "\\text{homogenization}", "en": "Homogenization.", "es": "Homogeneización." } ]
+    }
+  ],
+  "references": [
+    { "source": "Bommasani et al. — On the Opportunities and Risks of Foundation Models (2021)", "detail": { "en": "Emergence and homogenization", "es": "Emergencia y homogeneización" } }
+  ]
+}

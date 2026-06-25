@@ -1,0 +1,79 @@
+{
+  "id": "aif-13-superintelligence",
+  "subjectId": "ai-foundations",
+  "order": 13,
+  "estimatedMinutes": 35,
+  "title": { "en": "Superintelligence & Existential Risk", "es": "Superinteligencia y riesgo existencial" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Superintelligence** denotes an intellect vastly exceeding the best human minds across virtually all domains. Bostrom argues that if AI reaches human level, recursive self-improvement could trigger an **intelligence explosion** — a rapid, runaway jump to superintelligence, sometimes called the **singularity** (a term popularized by I.J. Good and Vinge).",
+        "es": "La **superinteligencia** denota un intelecto que excede vastamente a las mejores mentes humanas en prácticamente todos los dominios. Bostrom argumenta que si la IA alcanza el nivel humano, la automejora recursiva podría desencadenar una **explosión de inteligencia** — un salto rápido y desbocado hacia la superinteligencia, a veces llamado la **singularidad** (término popularizado por I.J. Good y Vinge)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **existential-risk** argument: a misaligned superintelligence could pursue goals catastrophically at odds with human survival, not from malice but from indifference — like us paving over an anthill. The **orthogonality thesis** holds that intelligence and goals are independent: a system can be extremely capable yet have arbitrary, even trivial, final goals.",
+        "es": "El argumento del **riesgo existencial**: una superinteligencia desalineada podría perseguir objetivos catastróficamente reñidos con la supervivencia humana, no por malicia sino por indiferencia — como nosotros al pavimentar sobre un hormiguero. La **tesis de la ortogonalidad** sostiene que la inteligencia y los objetivos son independientes: un sistema puede ser extremadamente capaz y tener objetivos finales arbitrarios, incluso triviales."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Skeptics counter that human-level AGI may be far off, that intelligence may not explode, and that incremental safety work suffices. The debate is genuinely **open** and the views span a wide spectrum. The reasonable stance most researchers share: take both the immense benefits and the serious risks seriously, and invest in safety **proportionally** to capability.",
+        "es": "Los escépticos replican que la AGI de nivel humano puede estar lejos, que la inteligencia puede no explotar, y que el trabajo de seguridad incremental basta. El debate está genuinamente **abierto** y las posturas abarcan un amplio espectro. La postura razonable que comparten la mayoría de investigadores: tomar en serio tanto los inmensos beneficios como los riesgos serios, e invertir en seguridad de forma **proporcional** a la capacidad."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The thesis that intelligence and final goals are independent is the orthogonality thesis. A rapid runaway jump to superintelligence is called an intelligence explosion (or singularity).",
+        "es": "La tesis de que la inteligencia y los objetivos finales son independientes es la tesis de la ortogonalidad. Un salto rápido y desbocado a la superinteligencia se llama explosión de inteligencia (o singularidad)."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "aif-13-e1",
+      "answerType": "text",
+      "prompt": { "en": "An intellect far exceeding humans across all domains is a ___. (one word)", "es": "Un intelecto que excede a los humanos en todos los dominios es una ___. (una palabra)" },
+      "answer": "superintelligence",
+      "acceptedAlt": ["superinteligencia"],
+      "hint": { "en": "Super + intelligence.", "es": "Super + inteligencia." },
+      "solution": [ { "tex": "\\text{superintelligence}", "en": "Superintelligence.", "es": "Superinteligencia." } ]
+    },
+    {
+      "id": "aif-13-e2",
+      "answerType": "text",
+      "prompt": { "en": "The thesis that intelligence and goals are independent is the ___ thesis. (one word)", "es": "La tesis de que la inteligencia y los objetivos son independientes es la tesis de la ___. (una palabra)" },
+      "answer": "orthogonality",
+      "acceptedAlt": ["ortogonalidad"],
+      "hint": { "en": "Independent axes.", "es": "Ejes independientes." },
+      "solution": [ { "tex": "\\text{orthogonality}", "en": "Orthogonality.", "es": "Ortogonalidad." } ]
+    },
+    {
+      "id": "aif-13-e3",
+      "answerType": "text",
+      "prompt": { "en": "A rapid runaway jump in capability is an intelligence ___. (one word)", "es": "Un salto rápido y desbocado en capacidad es una ___ de inteligencia. (una palabra)" },
+      "answer": "explosion",
+      "acceptedAlt": ["explosión", "explosion"],
+      "hint": { "en": "Also: singularity.", "es": "También: singularidad." },
+      "solution": [ { "tex": "\\text{intelligence explosion}", "en": "Explosion.", "es": "Explosión." } ]
+    },
+    {
+      "id": "aif-13-e4",
+      "answerType": "text",
+      "prompt": { "en": "Is there scientific consensus that superintelligence is imminent? (yes/no)", "es": "¿Hay consenso científico de que la superinteligencia es inminente? (sí/no)" },
+      "answer": "no",
+      "acceptedAlt": ["no"],
+      "hint": { "en": "The debate is open.", "es": "El debate está abierto." },
+      "solution": [ { "tex": "\\text{no}", "en": "No — it's debated.", "es": "No — está en debate." } ]
+    }
+  ],
+  "references": [
+    { "source": "Bostrom — Superintelligence (2014)", "detail": { "en": "Intelligence explosion, orthogonality thesis", "es": "Explosión de inteligencia, tesis de ortogonalidad" } }
+  ]
+}

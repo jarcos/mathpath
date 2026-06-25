@@ -1,0 +1,79 @@
+{
+  "id": "aif-06-dreyfus",
+  "subjectId": "ai-foundations",
+  "order": 6,
+  "estimatedMinutes": 30,
+  "title": { "en": "Dreyfus & the Limits of Formalism", "es": "Dreyfus y los límites del formalismo" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Philosopher Hubert **Dreyfus** was an early, fierce critic of symbolic AI. In 'What Computers Can't Do' (1972) he argued that human intelligence rests on **embodied**, intuitive know-how and a background of common sense that cannot be captured by explicit rules. Much of what we know is **tacit** — we cannot even state it.",
+        "es": "El filósofo Hubert **Dreyfus** fue un crítico temprano y feroz de la IA simbólica. En 'What Computers Can't Do' (1972) argumentó que la inteligencia humana descansa en un saber-hacer intuitivo y **encarnado** y en un trasfondo de sentido común que no pueden capturar reglas explícitas. Gran parte de lo que sabemos es **tácito** — ni siquiera podemos enunciarlo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Drawing on the phenomenology of Heidegger and Merleau-Ponty, Dreyfus stressed that expertise is not rule-following but a fluid, situational coping shaped by having a **body** in a **world**. The endless background knowledge a human brings — the **frame problem** writ large — resists the neat symbol systems of GOFAI.",
+        "es": "Apoyándose en la fenomenología de Heidegger y Merleau-Ponty, Dreyfus subrayó que la pericia no es seguir reglas sino un afrontamiento fluido y situacional moldeado por tener un **cuerpo** en un **mundo**. El conocimiento de trasfondo infinito que un humano aporta — el **problema del marco** a lo grande — resiste a los pulcros sistemas de símbolos de la GOFAI."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Ridiculed at first, Dreyfus was substantially vindicated: symbolic AI did stall on exactly the perceptual, commonsense tasks he flagged. Intriguingly, modern **connectionist** systems — learning embodied, statistical know-how rather than explicit rules — align more closely with his view, making his critique freshly relevant.",
+        "es": "Ridiculizado al principio, Dreyfus fue en gran medida reivindicado: la IA simbólica sí se estancó justo en las tareas perceptuales y de sentido común que señaló. Curiosamente, los sistemas **conexionistas** modernos — que aprenden un saber-hacer estadístico y encarnado en vez de reglas explícitas — encajan más con su visión, haciendo su crítica nuevamente relevante."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Dreyfus argued intelligence is embodied and that much knowledge is tacit (cannot be made explicit). His 1972 book targeted symbolic (GOFAI) AI, not connectionism.",
+        "es": "Dreyfus argumentó que la inteligencia es encarnada y que mucho conocimiento es tácito (no puede hacerse explícito). Su libro de 1972 apuntó a la IA simbólica (GOFAI), no al conexionismo."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "aif-06-e1",
+      "answerType": "text",
+      "prompt": { "en": "Dreyfus stressed that intelligence is ___ (rooted in having a body). (one word)", "es": "Dreyfus subrayó que la inteligencia es ___ (arraigada en tener un cuerpo). (una palabra)" },
+      "answer": "embodied",
+      "acceptedAlt": ["encarnada", "corporeizada"],
+      "hint": { "en": "Has a body.", "es": "Tiene un cuerpo." },
+      "solution": [ { "tex": "\\text{embodied}", "en": "Embodied.", "es": "Encarnada." } ]
+    },
+    {
+      "id": "aif-06-e2",
+      "answerType": "text",
+      "prompt": { "en": "Knowledge we have but cannot state explicitly is ___ knowledge. (one word)", "es": "El conocimiento que tenemos pero no podemos enunciar es conocimiento ___. (una palabra)" },
+      "answer": "tacit",
+      "acceptedAlt": ["tácito", "tacito"],
+      "hint": { "en": "Implicit, unspoken.", "es": "Implícito, no dicho." },
+      "solution": [ { "tex": "\\text{tacit}", "en": "Tacit.", "es": "Tácito." } ]
+    },
+    {
+      "id": "aif-06-e3",
+      "answerType": "text",
+      "prompt": { "en": "Dreyfus's critique mainly targeted ___ AI (the rule-based kind). (one word)", "es": "La crítica de Dreyfus apuntó sobre todo a la IA ___ (la basada en reglas). (una palabra)" },
+      "answer": "symbolic",
+      "acceptedAlt": ["simbólica", "simbolica", "gofai"],
+      "hint": { "en": "GOFAI.", "es": "GOFAI." },
+      "solution": [ { "tex": "\\text{symbolic}", "en": "Symbolic.", "es": "Simbólica." } ]
+    },
+    {
+      "id": "aif-06-e4",
+      "answerType": "number",
+      "prompt": { "en": "Year of Dreyfus's 'What Computers Can't Do'?", "es": "¿Año de 'What Computers Can't Do' de Dreyfus?" },
+      "answer": "1972",
+      "acceptedAlt": [],
+      "hint": { "en": "Early 1970s.", "es": "Principios de los 70." },
+      "solution": [ { "tex": "1972", "en": "1972.", "es": "1972." } ]
+    }
+  ],
+  "references": [
+    { "source": "Dreyfus — What Computers Can't Do (1972); What Computers Still Can't Do (1992)", "detail": { "en": "Embodiment critique of symbolic AI", "es": "Crítica de la encarnación a la IA simbólica" } }
+  ]
+}

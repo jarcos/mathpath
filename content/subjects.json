@@ -414,7 +414,7 @@
       "id": "ai-foundations",
       "icon": "🧭",
       "targetDays": 30,
-      "status": "coming-soon",
+      "status": "available",
       "plannedLessons": 14,
       "source": "Turing (1950); Searle (1980); Dreyfus (1992); Brooks (1991); Simon (1995); Bommasani et al. (2021)",
       "name": { "en": "AI Foundations & Philosophy", "es": "Fundamentos y filosofía de la IA" },
@@ -422,7 +422,22 @@
         "en": "The Turing test, the Chinese Room, symbolic vs connectionist AI, and foundation models. Conceptual, reading-based.",
         "es": "El test de Turing, la habitación china, IA simbólica vs conexionista y modelos fundacionales. Conceptual, basado en lecturas."
       },
-      "lessons": []
+      "lessons": [
+        "ai-foundations/lesson-01-what-is-ai.json",
+        "ai-foundations/lesson-02-turing-test.json",
+        "ai-foundations/lesson-03-symbolic-vs-connectionist.json",
+        "ai-foundations/lesson-04-strong-weak-ai.json",
+        "ai-foundations/lesson-05-chinese-room.json",
+        "ai-foundations/lesson-06-dreyfus.json",
+        "ai-foundations/lesson-07-brooks.json",
+        "ai-foundations/lesson-08-consciousness.json",
+        "ai-foundations/lesson-09-symbol-grounding.json",
+        "ai-foundations/lesson-10-ethics-bias.json",
+        "ai-foundations/lesson-11-alignment.json",
+        "ai-foundations/lesson-12-foundation-models.json",
+        "ai-foundations/lesson-13-superintelligence.json",
+        "ai-foundations/lesson-14-synthesis.json"
+      ]
     },
     {
       "id": "active-inference",

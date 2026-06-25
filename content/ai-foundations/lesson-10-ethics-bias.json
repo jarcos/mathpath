@@ -1,0 +1,79 @@
+{
+  "id": "aif-10-ethics",
+  "subjectId": "ai-foundations",
+  "order": 10,
+  "estimatedMinutes": 35,
+  "title": { "en": "AI Ethics: Bias & Fairness", "es": "Ética de la IA: sesgo y equidad" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "As AI makes consequential decisions — loans, hiring, parole, medical triage — its **ethics** become urgent. A central concern is **bias**: models trained on historical data absorb and can amplify the prejudices in that data. If past hiring favored one group, a model learning from it may perpetuate the pattern.",
+        "es": "Cuando la IA toma decisiones de consecuencia — préstamos, contratación, libertad condicional, triaje médico — su **ética** se vuelve urgente. Una preocupación central es el **sesgo**: los modelos entrenados con datos históricos absorben y pueden amplificar los prejuicios de esos datos. Si la contratación pasada favoreció a un grupo, un modelo que aprenda de ella puede perpetuar el patrón."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Fairness** is surprisingly hard to define, and impossibility results show several reasonable criteria — equal accuracy, equal false-positive rates, calibration — generally **cannot all hold at once** when base rates differ. So fairness involves explicit value choices, not just better engineering. Removing the protected attribute doesn't suffice, since **proxies** (e.g. zip code) leak it back in.",
+        "es": "La **equidad** es sorprendentemente difícil de definir, y resultados de imposibilidad muestran que varios criterios razonables — igual exactitud, igual tasa de falsos positivos, calibración — en general **no pueden cumplirse todos a la vez** cuando las tasas base difieren. Así que la equidad implica elecciones de valor explícitas, no solo mejor ingeniería. Quitar el atributo protegido no basta, pues los **proxies** (p. ej. el código postal) lo reintroducen."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Beyond bias, AI ethics spans **transparency** (can decisions be explained?), **accountability** (who is responsible?), **privacy**, and the concentration of power. Frameworks and regulation (e.g. the EU AI Act) are emerging. The key lesson: technical choices encode values, so building AI responsibly is a socio-technical task, not a purely technical one.",
+        "es": "Más allá del sesgo, la ética de la IA abarca la **transparencia** (¿pueden explicarse las decisiones?), la **rendición de cuentas** (¿quién es responsable?), la **privacidad** y la concentración de poder. Surgen marcos y regulación (p. ej. la Ley de IA de la UE). La lección clave: las elecciones técnicas codifican valores, así que construir IA de forma responsable es una tarea socio-técnica, no puramente técnica."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A feature like zip code that correlates with a protected attribute is a proxy. Impossibility results say multiple fairness criteria generally cannot all be satisfied simultaneously when base rates differ.",
+        "es": "Una característica como el código postal que correlaciona con un atributo protegido es un proxy. Los resultados de imposibilidad dicen que múltiples criterios de equidad en general no pueden satisfacerse todos a la vez cuando las tasas base difieren."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "aif-10-e1",
+      "answerType": "text",
+      "prompt": { "en": "Models trained on historical data can absorb and amplify ___. (one word)", "es": "Los modelos entrenados con datos históricos pueden absorber y amplificar el ___. (una palabra)" },
+      "answer": "bias",
+      "acceptedAlt": ["sesgo"],
+      "hint": { "en": "Prejudice in data.", "es": "Prejuicio en los datos." },
+      "solution": [ { "tex": "\\text{bias}", "en": "Bias.", "es": "Sesgo." } ]
+    },
+    {
+      "id": "aif-10-e2",
+      "answerType": "text",
+      "prompt": { "en": "A feature like zip code that secretly carries a protected attribute is a ___. (one word)", "es": "Una característica como el código postal que porta en secreto un atributo protegido es un ___. (una palabra)" },
+      "answer": "proxy",
+      "acceptedAlt": ["proxi"],
+      "hint": { "en": "Stands in for it.", "es": "Lo sustituye." },
+      "solution": [ { "tex": "\\text{proxy}", "en": "Proxy.", "es": "Proxy." } ]
+    },
+    {
+      "id": "aif-10-e3",
+      "answerType": "text",
+      "prompt": { "en": "Whether a model's decisions can be explained is its ___. (one word)", "es": "Si las decisiones de un modelo pueden explicarse es su ___. (una palabra)" },
+      "answer": "transparency",
+      "acceptedAlt": ["transparencia"],
+      "hint": { "en": "Opposite of opacity.", "es": "Opuesto de opacidad." },
+      "solution": [ { "tex": "\\text{transparency}", "en": "Transparency.", "es": "Transparencia." } ]
+    },
+    {
+      "id": "aif-10-e4",
+      "answerType": "number",
+      "prompt": { "en": "Can all reasonable fairness criteria hold at once when base rates differ? (1 = yes, 0 = no)", "es": "¿Pueden cumplirse a la vez todos los criterios razonables de equidad cuando difieren las tasas base? (1 = sí, 0 = no)" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Impossibility results.", "es": "Resultados de imposibilidad." },
+      "solution": [ { "tex": "0", "en": "No.", "es": "No." } ]
+    }
+  ],
+  "references": [
+    { "source": "Barocas, Hardt & Narayanan — Fairness and Machine Learning (2019)", "detail": { "en": "Bias, fairness, impossibility results", "es": "Sesgo, equidad, resultados de imposibilidad" } }
+  ]
+}

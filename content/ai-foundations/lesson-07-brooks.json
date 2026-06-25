@@ -1,0 +1,79 @@
+{
+  "id": "aif-07-brooks",
+  "subjectId": "ai-foundations",
+  "order": 7,
+  "estimatedMinutes": 30,
+  "title": { "en": "Brooks & Situated Robotics", "es": "Brooks y la robótica situada" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "In 1991 Rodney **Brooks** challenged the symbolic mainstream with a provocative slogan: 'Intelligence without representation.' He argued robots don't need a rich internal world model; instead, intelligence can **emerge** from simple behaviors interacting with the real world. His famous line: 'the world is its own best model.'",
+        "es": "En 1991 Rodney **Brooks** desafió la corriente simbólica con un lema provocador: 'inteligencia sin representación'. Argumentó que los robots no necesitan un rico modelo interno del mundo; en su lugar, la inteligencia puede **emerger** de comportamientos simples que interactúan con el mundo real. Su frase famosa: 'el mundo es su propio mejor modelo'."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "His **subsumption architecture** stacks simple reactive **behaviors** (avoid obstacles, wander, explore), with higher layers overriding lower ones. There is no central planner manipulating symbols — coherent behavior emerges from the layered interaction of sensors and actuators directly coupled to the environment.",
+        "es": "Su **arquitectura de subsunción** apila **comportamientos** reactivos simples (evitar obstáculos, deambular, explorar), con capas superiores anulando a las inferiores. No hay un planificador central que manipule símbolos — el comportamiento coherente emerge de la interacción por capas de sensores y actuadores acoplados directamente al entorno."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Brooks's work launched **behavior-based** and **embodied** robotics, and the broader insight that cognition is **situated** — shaped by a body acting in a real environment, echoing Dreyfus. The lineage runs from his insect-like robots to modern learning-based robots that acquire skills through interaction rather than pre-programmed world models.",
+        "es": "El trabajo de Brooks lanzó la robótica **basada en comportamientos** y **encarnada**, y la idea más amplia de que la cognición es **situada** — moldeada por un cuerpo que actúa en un entorno real, haciendo eco de Dreyfus. El linaje va desde sus robots tipo insecto hasta los robots modernos basados en aprendizaje que adquieren habilidades por interacción en vez de modelos del mundo preprogramados."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Brooks's slogan was 'intelligence without representation' (1991). His design that layers reactive behaviors is the subsumption architecture. Cognition shaped by acting in the world is called situated.",
+        "es": "El lema de Brooks fue 'inteligencia sin representación' (1991). Su diseño que apila comportamientos reactivos es la arquitectura de subsunción. La cognición moldeada por actuar en el mundo se llama situada."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "aif-07-e1",
+      "answerType": "text",
+      "prompt": { "en": "Brooks argued for intelligence without ___. (one word)", "es": "Brooks abogó por la inteligencia sin ___. (una palabra)" },
+      "answer": "representation",
+      "acceptedAlt": ["representación", "representacion"],
+      "hint": { "en": "No internal world model.", "es": "Sin modelo interno del mundo." },
+      "solution": [ { "tex": "\\text{representation}", "en": "Representation.", "es": "Representación." } ]
+    },
+    {
+      "id": "aif-07-e2",
+      "answerType": "text",
+      "prompt": { "en": "Brooks's layered reactive design is the ___ architecture. (one word)", "es": "El diseño reactivo por capas de Brooks es la arquitectura de ___. (una palabra)" },
+      "answer": "subsumption",
+      "acceptedAlt": ["subsunción", "subsuncion"],
+      "hint": { "en": "Higher layers subsume lower.", "es": "Las capas altas subsumen a las bajas." },
+      "solution": [ { "tex": "\\text{subsumption}", "en": "Subsumption.", "es": "Subsunción." } ]
+    },
+    {
+      "id": "aif-07-e3",
+      "answerType": "text",
+      "prompt": { "en": "Cognition shaped by a body acting in a real environment is ___. (one word)", "es": "La cognición moldeada por un cuerpo que actúa en un entorno real es ___. (una palabra)" },
+      "answer": "situated",
+      "acceptedAlt": ["situada"],
+      "hint": { "en": "Situated cognition.", "es": "Cognición situada." },
+      "solution": [ { "tex": "\\text{situated}", "en": "Situated.", "es": "Situada." } ]
+    },
+    {
+      "id": "aif-07-e4",
+      "answerType": "text",
+      "prompt": { "en": "In Brooks's view, coherent intelligence ___ from simple behaviors. (one word)", "es": "Según Brooks, la inteligencia coherente ___ de comportamientos simples. (una palabra)" },
+      "answer": "emerges",
+      "acceptedAlt": ["emerge", "emerger"],
+      "hint": { "en": "Emergence.", "es": "Emergencia." },
+      "solution": [ { "tex": "\\text{emerges}", "en": "Emerges.", "es": "Emerge." } ]
+    }
+  ],
+  "references": [
+    { "source": "Brooks — Intelligence Without Representation (1991)", "detail": { "en": "Subsumption architecture; situated robotics", "es": "Arquitectura de subsunción; robótica situada" } }
+  ]
+}

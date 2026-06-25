@@ -1,0 +1,79 @@
+{
+  "id": "aif-09-grounding",
+  "subjectId": "ai-foundations",
+  "order": 9,
+  "estimatedMinutes": 30,
+  "title": { "en": "Symbol Grounding & Intentionality", "es": "Anclaje de símbolos e intencionalidad" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Harnad's **symbol grounding problem** asks: how do the symbols inside a system get their **meaning**? In a pure symbol system, each symbol is defined only in terms of other symbols — like looking up a word in a dictionary written entirely in a language you don't know. Meaning never bottoms out in anything real.",
+        "es": "El **problema del anclaje de símbolos** de Harnad pregunta: ¿cómo obtienen su **significado** los símbolos dentro de un sistema? En un sistema de símbolos puro, cada símbolo se define solo en términos de otros símbolos — como buscar una palabra en un diccionario escrito por completo en un idioma que no conoces. El significado nunca toca fondo en algo real."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The proposed cure is **grounding**: connect symbols to the world through perception and action, so 'apple' links to actual sensed apples, not just other words. This is why **embodiment** keeps recurring — a body gives symbols their referents. Related is **intentionality** (Brentano, Searle): the 'aboutness' of mental states, how thoughts can be *about* things.",
+        "es": "La cura propuesta es el **anclaje (grounding)**: conectar los símbolos con el mundo a través de la percepción y la acción, para que 'manzana' se enlace con manzanas realmente percibidas, no solo con otras palabras. Por eso la **encarnación** reaparece — un cuerpo da a los símbolos sus referentes. Relacionada está la **intencionalidad** (Brentano, Searle): el 'ser-acerca-de' de los estados mentales, cómo los pensamientos pueden ser *sobre* cosas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "These ideas sharpen the Chinese Room: Searle's man manipulates ungrounded symbols, which is why (the argument goes) he lacks understanding. Modern multimodal models that link language to images and robot action are, in part, engineering attempts to **ground** language — bringing a decades-old philosophical problem into practical machine learning.",
+        "es": "Estas ideas afilan la habitación china: el hombre de Searle manipula símbolos no anclados, razón por la cual (según el argumento) carece de comprensión. Los modelos multimodales modernos que ligan el lenguaje a imágenes y a la acción robótica son, en parte, intentos de ingeniería de **anclar** el lenguaje — llevando un problema filosófico de décadas al aprendizaje automático práctico."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Connecting the symbol 'apple' to perceived apples is grounding. The 'aboutness' of a mental state — that a thought is about something — is intentionality.",
+        "es": "Conectar el símbolo 'manzana' con manzanas percibidas es el anclaje. El 'ser-acerca-de' de un estado mental — que un pensamiento es sobre algo — es la intencionalidad."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "aif-09-e1",
+      "answerType": "text",
+      "prompt": { "en": "Connecting symbols to the world via perception is symbol ___. (one word)", "es": "Conectar símbolos con el mundo vía percepción es el ___ de símbolos. (una palabra)" },
+      "answer": "grounding",
+      "acceptedAlt": ["anclaje", "anclar", "grounding"],
+      "hint": { "en": "Grounds meaning.", "es": "Ancla el significado." },
+      "solution": [ { "tex": "\\text{grounding}", "en": "Grounding.", "es": "Anclaje." } ]
+    },
+    {
+      "id": "aif-09-e2",
+      "answerType": "text",
+      "prompt": { "en": "The 'aboutness' of mental states is called ___. (one word)", "es": "El 'ser-acerca-de' de los estados mentales se llama ___. (una palabra)" },
+      "answer": "intentionality",
+      "acceptedAlt": ["intencionalidad"],
+      "hint": { "en": "Thoughts about things.", "es": "Pensamientos sobre cosas." },
+      "solution": [ { "tex": "\\text{intentionality}", "en": "Intentionality.", "es": "Intencionalidad." } ]
+    },
+    {
+      "id": "aif-09-e3",
+      "answerType": "text",
+      "prompt": { "en": "A body giving symbols their referents reflects the importance of ___. (one word)", "es": "Un cuerpo que da a los símbolos sus referentes refleja la importancia de la ___. (una palabra)" },
+      "answer": "embodiment",
+      "acceptedAlt": ["encarnación", "encarnacion", "corporeización"],
+      "hint": { "en": "Having a body.", "es": "Tener un cuerpo." },
+      "solution": [ { "tex": "\\text{embodiment}", "en": "Embodiment.", "es": "Encarnación." } ]
+    },
+    {
+      "id": "aif-09-e4",
+      "answerType": "text",
+      "prompt": { "en": "Models linking language to images and action try to ___ language. (one word)", "es": "Los modelos que ligan lenguaje a imágenes y acción intentan ___ el lenguaje. (una palabra)" },
+      "answer": "ground",
+      "acceptedAlt": ["anclar", "grounding", "anclaje"],
+      "hint": { "en": "Grounding again.", "es": "Anclaje de nuevo." },
+      "solution": [ { "tex": "\\text{ground}", "en": "Ground.", "es": "Anclar." } ]
+    }
+  ],
+  "references": [
+    { "source": "Harnad — The Symbol Grounding Problem (1990)", "detail": { "en": "Symbol grounding", "es": "Anclaje de símbolos" } }
+  ]
+}

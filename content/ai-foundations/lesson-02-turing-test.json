@@ -1,0 +1,79 @@
+{
+  "id": "aif-02-turing-test",
+  "subjectId": "ai-foundations",
+  "order": 2,
+  "estimatedMinutes": 30,
+  "title": { "en": "The Turing Test", "es": "El test de Turing" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "In his **1950** paper 'Computing Machinery and Intelligence', Alan **Turing** replaced the vague question 'Can machines think?' with an operational test: the **imitation game**. A human judge converses by text with a human and a machine; if the judge cannot reliably tell which is which, the machine passes. Behavior, not inner essence, is the criterion.",
+        "es": "En su artículo de **1950** 'Computing Machinery and Intelligence', Alan **Turing** sustituyó la vaga pregunta '¿pueden pensar las máquinas?' por una prueba operacional: el **juego de imitación**. Un juez humano conversa por texto con un humano y una máquina; si el juez no puede distinguir con fiabilidad cuál es cuál, la máquina pasa. El criterio es el comportamiento, no la esencia interna."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Turing's move was deliberately **behavioral**: it sidesteps unanswerable questions about consciousness by judging only observable performance. He also anticipated and rebutted objections — the theological, the 'heads in the sand', the mathematical (Gödel), and the famous **Lady Lovelace** objection that machines can only do what we tell them.",
+        "es": "El movimiento de Turing fue deliberadamente **conductista**: esquiva preguntas irresolubles sobre la conciencia juzgando solo el desempeño observable. También anticipó y rebatió objeciones — la teológica, la de 'cabezas en la arena', la matemática (Gödel) y la famosa objeción de **Lady Lovelace** de que las máquinas solo pueden hacer lo que les indicamos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Critics argue the test rewards **deception** over genuine intelligence and ignores perception and action. Yet it remains a landmark: it framed AI as an empirical, behavioral question and inspired the **Loebner Prize**. Modern chatbots can fool some judges briefly, reopening debate about what, if anything, passing really shows.",
+        "es": "Los críticos sostienen que el test premia el **engaño** sobre la inteligencia genuina e ignora la percepción y la acción. Aun así sigue siendo un hito: planteó la IA como una pregunta empírica y conductual e inspiró el **Premio Loebner**. Los chatbots modernos pueden engañar brevemente a algunos jueces, reabriendo el debate sobre qué demuestra realmente, si algo, superarlo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Turing proposed his test in $1950$. The game involves $3$ participants: a judge, a human, and a machine. The test judges intelligence by behavior alone.",
+        "es": "Turing propuso su test en $1950$. El juego involucra $3$ participantes: un juez, un humano y una máquina. El test juzga la inteligencia solo por el comportamiento."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "aif-02-e1",
+      "answerType": "number",
+      "prompt": { "en": "Year Turing published 'Computing Machinery and Intelligence'?", "es": "¿Año en que Turing publicó 'Computing Machinery and Intelligence'?" },
+      "answer": "1950",
+      "acceptedAlt": [],
+      "hint": { "en": "1950.", "es": "1950." },
+      "solution": [ { "tex": "1950", "en": "1950.", "es": "1950." } ]
+    },
+    {
+      "id": "aif-02-e2",
+      "answerType": "number",
+      "prompt": { "en": "How many participants are in the imitation game (judge + human + machine)?", "es": "¿Cuántos participantes hay en el juego de imitación (juez + humano + máquina)?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "Count the roles.", "es": "Cuenta los roles." },
+      "solution": [ { "tex": "3", "en": "Three.", "es": "Tres." } ]
+    },
+    {
+      "id": "aif-02-e3",
+      "answerType": "text",
+      "prompt": { "en": "Turing's test judges intelligence by ___ alone (not inner essence). (one word)", "es": "El test de Turing juzga la inteligencia solo por el ___ (no la esencia interna). (una palabra)" },
+      "answer": "behavior",
+      "acceptedAlt": ["behaviour", "comportamiento", "conducta"],
+      "hint": { "en": "Observable performance.", "es": "Desempeño observable." },
+      "solution": [ { "tex": "\\text{behavior}", "en": "Behavior.", "es": "Comportamiento." } ]
+    },
+    {
+      "id": "aif-02-e4",
+      "answerType": "text",
+      "prompt": { "en": "Turing's original name for the test was the ___ game. (one word)", "es": "El nombre original de Turing para el test era el juego de ___. (una palabra)" },
+      "answer": "imitation",
+      "acceptedAlt": ["imitación", "imitacion"],
+      "hint": { "en": "Imitating a human.", "es": "Imitar a un humano." },
+      "solution": [ { "tex": "\\text{imitation game}", "en": "Imitation.", "es": "Imitación." } ]
+    }
+  ],
+  "references": [
+    { "source": "Turing — Computing Machinery and Intelligence (1950)", "detail": { "en": "The imitation game", "es": "El juego de imitación" } }
+  ]
+}

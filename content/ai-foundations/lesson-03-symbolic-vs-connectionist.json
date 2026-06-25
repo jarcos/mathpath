@@ -1,0 +1,80 @@
+{
+  "id": "aif-03-symbolic-connectionist",
+  "subjectId": "ai-foundations",
+  "order": 3,
+  "estimatedMinutes": 35,
+  "title": { "en": "Symbolic vs Connectionist AI", "es": "IA simbólica vs conexionista" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two great traditions have competed in AI. **Symbolic AI** (also called **GOFAI**, 'Good Old-Fashioned AI') represents knowledge as explicit symbols and rules, and reasons by manipulating them — logic, search, expert systems. Its strengths are transparency and precise reasoning; its weakness is brittleness in messy, perceptual domains.",
+        "es": "Dos grandes tradiciones han competido en la IA. La **IA simbólica** (también llamada **GOFAI**, 'Good Old-Fashioned AI') representa el conocimiento como símbolos y reglas explícitos, y razona manipulándolos — lógica, búsqueda, sistemas expertos. Sus fortalezas son la transparencia y el razonamiento preciso; su debilidad es la fragilidad en dominios perceptuales y desordenados."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Connectionism** instead uses **neural networks**: knowledge lives in the weights of many simple units, learned from data rather than hand-coded. Its strengths are perception, robustness to noise, and learning from examples; its weaknesses are opacity and difficulty with explicit multi-step reasoning. The 2010s deep-learning revolution was a connectionist triumph.",
+        "es": "El **conexionismo** en cambio usa **redes neuronales**: el conocimiento vive en los pesos de muchas unidades simples, aprendidos de datos en vez de codificados a mano. Sus fortalezas son la percepción, la robustez al ruido y el aprendizaje a partir de ejemplos; sus debilidades son la opacidad y la dificultad con el razonamiento explícito de varios pasos. La revolución del aprendizaje profundo de los 2010 fue un triunfo conexionista."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The grounding idea is Newell & Simon's **physical symbol system hypothesis**: a physical symbol system has the necessary and sufficient means for general intelligent action. Connectionists dispute this. Today the frontier is **neuro-symbolic** AI — combining learned perception with symbolic reasoning to get the best of both.",
+        "es": "La idea de base es la **hipótesis del sistema de símbolos físicos** de Newell y Simon: un sistema de símbolos físicos tiene los medios necesarios y suficientes para la acción inteligente general. Los conexionistas la discuten. Hoy la frontera es la IA **neuro-simbólica** — combinar la percepción aprendida con el razonamiento simbólico para obtener lo mejor de ambos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Symbolic AI is nicknamed GOFAI. There are $2$ main historical paradigms (symbolic and connectionist), and their modern fusion is called neuro-symbolic AI.",
+        "es": "La IA simbólica se apoda GOFAI. Hay $2$ paradigmas históricos principales (simbólico y conexionista), y su fusión moderna se llama IA neuro-simbólica."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "aif-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many main historical AI paradigms (symbolic, connectionist)?", "es": "¿Cuántos paradigmas históricos principales de IA (simbólico, conexionista)?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Symbols and networks.", "es": "Símbolos y redes." },
+      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "aif-03-e2",
+      "answerType": "text",
+      "prompt": { "en": "The nickname for symbolic AI is ___ (acronym).", "es": "El apodo de la IA simbólica es ___ (siglas)." },
+      "answer": "gofai",
+      "acceptedAlt": [],
+      "hint": { "en": "Good Old-Fashioned AI.", "es": "Good Old-Fashioned AI." },
+      "solution": [ { "tex": "\\text{GOFAI}", "en": "GOFAI.", "es": "GOFAI." } ]
+    },
+    {
+      "id": "aif-03-e3",
+      "answerType": "text",
+      "prompt": { "en": "The paradigm that learns knowledge in network weights is ___. (one word)", "es": "El paradigma que aprende el conocimiento en los pesos de una red es el ___. (una palabra)" },
+      "answer": "connectionism",
+      "acceptedAlt": ["conexionismo", "connectionist", "conexionista"],
+      "hint": { "en": "Neural networks.", "es": "Redes neuronales." },
+      "solution": [ { "tex": "\\text{connectionism}", "en": "Connectionism.", "es": "Conexionismo." } ]
+    },
+    {
+      "id": "aif-03-e4",
+      "answerType": "text",
+      "prompt": { "en": "Combining learned perception with symbolic reasoning is ___-symbolic AI. (one word)", "es": "Combinar percepción aprendida con razonamiento simbólico es la IA ___-simbólica. (una palabra)" },
+      "answer": "neuro",
+      "acceptedAlt": ["neuro-symbolic", "neurosimbólica", "neurosimbolica"],
+      "hint": { "en": "Neuro-___.", "es": "___-simbólica." },
+      "solution": [ { "tex": "\\text{neuro-symbolic}", "en": "Neuro.", "es": "Neuro." } ]
+    }
+  ],
+  "references": [
+    { "source": "Newell & Simon — Computer Science as Empirical Inquiry (1976)", "detail": { "en": "Physical symbol system hypothesis", "es": "Hipótesis del sistema de símbolos físicos" } },
+    { "source": "Haugeland — Artificial Intelligence: The Very Idea (1985)", "detail": { "en": "GOFAI", "es": "GOFAI" } }
+  ]
+}

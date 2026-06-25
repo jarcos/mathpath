@@ -1,0 +1,80 @@
+{
+  "id": "aif-08-consciousness",
+  "subjectId": "ai-foundations",
+  "order": 8,
+  "estimatedMinutes": 35,
+  "title": { "en": "Consciousness & the Hard Problem", "es": "Conciencia y el problema difícil" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Could a machine be **conscious** — have subjective experience? Philosopher David Chalmers split the issue into the **easy problems** (explaining functions: attention, reportability, integration) and the **hard problem**: why is there any *subjective experience* at all? Even a complete functional account seems to leave the felt quality unexplained.",
+        "es": "¿Podría una máquina ser **consciente** — tener experiencia subjetiva? El filósofo David Chalmers dividió la cuestión en los **problemas fáciles** (explicar funciones: atención, reportabilidad, integración) y el **problema difícil**: ¿por qué hay alguna *experiencia subjetiva* en absoluto? Incluso una explicación funcional completa parece dejar sin explicar la cualidad sentida."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The felt qualities of experience — the redness of red, the painfulness of pain — are called **qualia**. Thought experiments probe them: Nagel's 'What is it like to be a bat?', the inverted spectrum, and the philosophical **zombie** — a being functionally identical to us but with no inner experience. If zombies are conceivable, function may not entail consciousness.",
+        "es": "Las cualidades sentidas de la experiencia — el rojo del rojo, lo doloroso del dolor — se llaman **qualia**. Experimentos mentales las sondean: '¿Cómo es ser un murciélago?' de Nagel, el espectro invertido, y el **zombi** filosófico — un ser funcionalmente idéntico a nosotros pero sin experiencia interna. Si los zombis son concebibles, la función puede no implicar conciencia."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Positions range widely: **functionalism** says the right functional organization suffices for mind (so AI could be conscious); **biological naturalism** (Searle) ties consciousness to brains; **panpsychism** treats experience as fundamental. There is no consensus, and whether AI systems could ever be conscious — and how we'd know — remains deeply open.",
+        "es": "Las posturas varían mucho: el **funcionalismo** dice que la organización funcional correcta basta para una mente (así la IA podría ser consciente); el **naturalismo biológico** (Searle) liga la conciencia a los cerebros; el **panpsiquismo** trata la experiencia como fundamental. No hay consenso, y si los sistemas de IA podrían alguna vez ser conscientes — y cómo lo sabríamos — sigue profundamente abierto."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The felt qualities of experience are called qualia. The question of why subjective experience exists at all is the hard problem of consciousness, named by Chalmers.",
+        "es": "Las cualidades sentidas de la experiencia se llaman qualia. La pregunta de por qué existe la experiencia subjetiva es el problema difícil de la conciencia, nombrado por Chalmers."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "aif-08-e1",
+      "answerType": "text",
+      "prompt": { "en": "The felt qualities of experience (the redness of red) are ___. (one word)", "es": "Las cualidades sentidas de la experiencia (el rojo del rojo) son los ___. (una palabra)" },
+      "answer": "qualia",
+      "acceptedAlt": [],
+      "hint": { "en": "Singular: quale.", "es": "Singular: quale." },
+      "solution": [ { "tex": "\\text{qualia}", "en": "Qualia.", "es": "Qualia." } ]
+    },
+    {
+      "id": "aif-08-e2",
+      "answerType": "text",
+      "prompt": { "en": "Why subjective experience exists at all is the ___ problem. (one word)", "es": "Por qué existe la experiencia subjetiva es el problema ___. (una palabra)" },
+      "answer": "hard",
+      "acceptedAlt": ["difícil", "dificil"],
+      "hint": { "en": "Hard vs easy.", "es": "Difícil vs fácil." },
+      "solution": [ { "tex": "\\text{hard problem}", "en": "Hard.", "es": "Difícil." } ]
+    },
+    {
+      "id": "aif-08-e3",
+      "answerType": "text",
+      "prompt": { "en": "A being functionally identical to us but with no inner experience is a philosophical ___. (one word)", "es": "Un ser funcionalmente idéntico a nosotros pero sin experiencia interna es un ___ filosófico. (una palabra)" },
+      "answer": "zombie",
+      "acceptedAlt": ["zombi"],
+      "hint": { "en": "No qualia inside.", "es": "Sin qualia dentro." },
+      "solution": [ { "tex": "\\text{zombie}", "en": "Zombie.", "es": "Zombi." } ]
+    },
+    {
+      "id": "aif-08-e4",
+      "answerType": "text",
+      "prompt": { "en": "The view that the right functional organization suffices for mind is ___. (one word)", "es": "La visión de que la organización funcional correcta basta para una mente es el ___. (una palabra)" },
+      "answer": "functionalism",
+      "acceptedAlt": ["funcionalismo"],
+      "hint": { "en": "Function over substrate.", "es": "Función sobre sustrato." },
+      "solution": [ { "tex": "\\text{functionalism}", "en": "Functionalism.", "es": "Funcionalismo." } ]
+    }
+  ],
+  "references": [
+    { "source": "Chalmers — Facing Up to the Problem of Consciousness (1995)", "detail": { "en": "Hard problem; qualia", "es": "Problema difícil; qualia" } },
+    { "source": "Nagel — What Is It Like to Be a Bat? (1974)", "detail": { "en": "Subjective experience", "es": "Experiencia subjetiva" } }
+  ]
+}
