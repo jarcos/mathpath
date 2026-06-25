@@ -22,3 +22,6 @@ sources/
 # Stray Vite/electron-vite temp configs
 electron.vite.config.*.mjs
 !electron.vite.config.mjs
+
+# Local-only project docs (dashboard, specs) — kept on disk, not distributed
+docs/

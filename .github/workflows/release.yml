@@ -1,0 +1,66 @@
+name: Release
+
+# Builds packaged installers on native runners (so native modules and the
+# Windows NSIS installer build correctly) and attaches them to a GitHub Release.
+# Triggered by pushing a v* tag, or run manually from the Actions tab.
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            ebflag: --mac
+            artifacts: |
+              dist/*.dmg
+              dist/*.zip
+          - os: windows-latest
+            ebflag: --win
+            artifacts: |
+              dist/*.exe
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Bundle Pyodide science wheels (offline Python)
+        run: npm run setup:pyodide:wheels
+
+      - name: Build renderer + main
+        run: npm run build
+
+      - name: Package
+        run: npx electron-builder ${{ matrix.ebflag }} --publish never
+
+      # Manual runs (no tag): keep the installers as downloadable run artifacts.
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathpath-${{ matrix.os }}
+          path: ${{ matrix.artifacts }}
+          if-no-files-found: error
+
+      # Tag pushes: attach the installers to the matching GitHub Release.
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.artifacts }}
+          fail_on_unmatched_files: true

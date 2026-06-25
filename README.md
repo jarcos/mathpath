@@ -2,25 +2,40 @@
 
 > An offline desktop app to learn mathematics from pre-university level all the way to machine learning and AI.
 
-MathPath is a single-user, fully-offline **Electron** application that teaches maths as a structured ladder: it starts with pre-university algebra and climbs through functions, calculus, and linear algebra toward the foundations of machine learning. Lessons mix clear explanations with **worked examples**, **live function graphs**, and **exercises whose answers are checked symbolically** — so `1/2`, `0.5`, and `2/4` are all accepted, and `(x+1)^2` matches `x^2+2x+1`.
+MathPath is a single-user, fully-offline **Electron** application that teaches maths and ML as a structured ladder: it starts with pre-university algebra and climbs through functions, calculus and linear algebra into a full **AI / machine-learning track**. Lessons mix clear explanations with **worked examples**, **live graphs**, **runnable Python**, and **exercises checked symbolically** — so `1/2`, `0.5` and `2/4` are all accepted, and `(x+1)^2` matches `x^2+2x+1`.
 
 Everything runs locally. No accounts, no network, no telemetry. Your progress lives in a local SQLite file.
 
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg) ![Platform: Electron](https://img.shields.io/badge/Platform-Electron-47848F.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![Platform: Electron](https://img.shields.io/badge/Platform-Electron-47848F.svg)
+![Lessons](https://img.shields.io/badge/lessons-241-6c8cff.svg)
+![Bilingual](https://img.shields.io/badge/i18n-EN%20%2F%20ES-8a6cff.svg)
+
+---
+
+## ⬇️ Download
+
+Grab the latest packaged app from the [**Releases**](../../releases/latest) page.
+
+- **macOS (Apple Silicon)** — `MathPath-*-arm64.dmg`. The build is signed but not notarized, so on first launch right-click **MathPath.app → Open → Open**, or run `xattr -dr com.apple.quarantine /Applications/MathPath.app`.
+- **Windows** — `MathPath-*-Setup.exe` (NSIS installer), produced by CI (see [Building & releasing](#-building--releasing)).
+
+Prefer to run from source? See [Getting started](#-getting-started).
 
 ---
 
 ## ✨ Features
 
-- **A full maths ladder** — five subjects, 87 lessons: Pre-University Algebra, Functions & Pre-Calculus, Introduction to Calculus, Linear Algebra & Geometry, and Linear Maps & Transformations. (An AI/ML track is on the roadmap.)
-- **Textbook-depth lessons** — intuition, formal statements, multiple worked examples, common pitfalls, and a cited "Sources & further reading" section on every lesson.
-- **Symbolic answer checking** — exercises are validated with [mathjs](https://mathjs.org), accepting any mathematically equivalent form (fractions, decimals, rearranged expressions).
-- **Step-by-step solutions** — every exercise reveals a worked solution on demand, with hints.
-- **Live graphs** — a lightweight, dependency-free SVG plotter renders `y = f(x)` for parabolas, sine waves, exponentials, and more.
-- **Adaptive 30-day plan** — each subject is scoped to a month; if you fall behind, the remaining lessons re-spread across the days left.
-- **Bilingual** — full **English / Spanish** toggle for both the interface and all lesson content.
-- **Light & dark themes** — a top-bar toggle; your choice is remembered.
-- **Local-only data** — progress, attempts, settings, and study plans are stored in SQLite in your OS user-data folder.
+- **Two complete tracks, 241 lessons across 15 subjects.**
+  - *Mathematics* — Pre-University Algebra, Functions & Pre-Calculus, Calculus, Linear Algebra & Geometry, Linear Maps & Transformations.
+  - *AI & Machine Learning* — Statistics & Probability, ML Foundations, Neural Networks, Deep Learning, NLP & Transformers, Computer Vision, Reinforcement Learning, Knowledge Representation, AI Foundations & Philosophy, Active Inference.
+- **Runnable Python, offline.** Computational lessons embed real snippets and code exercises (NumPy / Pandas / SciPy / scikit-learn / SymPy) that execute in-app via a bundled [Pyodide](https://pyodide.org) runtime — no network. TensorFlow/PyTorch appear as clearly-labelled static reference (Pyodide can't run them).
+- **Symbol glossary + notation boxes.** Every symbol (λ, σ, ∇, …) is named; each lesson shows a "Symbols in this lesson" box, and a searchable Glossary page covers the whole curriculum — bilingual.
+- **Textbook-depth lessons** with intuition, worked examples, prerequisite recall boxes, a cited "Sources & further reading" section, and live SVG function graphs.
+- **Rich exercises** — symbolic short-answer (validated with [mathjs](https://mathjs.org)), runnable code exercises (graded by returned value), and conceptual multiple-choice with per-option explanations. Step-by-step solutions and hints on demand; your solved state persists.
+- **Adaptive 30-day plan** per subject, with prev/next lesson navigation and a "resume where you left off" card.
+- **Bilingual** (English / Spanish) UI *and* content, **light & dark** themes — all remembered.
+- **Local-only data** — progress, attempts, settings and plans in SQLite in your OS user-data folder.
 
 ---
 
@@ -28,95 +43,83 @@ Everything runs locally. No accounts, no network, no telemetry. Your progress li
 
 ### Prerequisites
 
-- **Node.js 18+** and npm (developed on Node 22+).
-- On macOS: **Xcode command-line tools** (`xcode-select --install`) — needed to compile the native SQLite module.
+- **Node.js 20 LTS** recommended, and npm.
+- **macOS:** Xcode command-line tools (`xcode-select --install`) to compile the native SQLite module.
+- For the in-app **Run** (Python) feature: **Python 3** with `numpy pandas scikit-learn scipy sympy` is only needed to run the content *verifier* (`npm run verify:code`); the app itself ships Pyodide and needs nothing extra.
 
 ### Install & run
 
 ```bash
-git clone https://github.com/<your-username>/mathpath.git
+git clone https://github.com/jarcos/mathpath.git
 cd mathpath
-npm install      # installs deps and rebuilds better-sqlite3 for Electron
-npm run dev      # launches the app with hot reload
+npm install                  # deps + electron-rebuild of better-sqlite3 + Pyodide core
+npm run setup:pyodide:wheels # one-time: download the science wheels for offline Run (~130 MB)
+npm run dev                  # launch with hot reload
 ```
 
-`npm install` runs a `postinstall` step (`electron-rebuild`) that compiles `better-sqlite3` against your installed Electron version.
+`npm install` runs a `postinstall` step that rebuilds `better-sqlite3` for Electron and copies the Pyodide core into `src/renderer/public/pyodide/`. `setup:pyodide:wheels` then fetches the NumPy/Pandas/SciPy/scikit-learn/SymPy wheels so code runs fully offline. Both folders are git-ignored.
 
-> **Note on very new Node versions.** `better-sqlite3` only needs to be built against **Electron's** bundled V8, not your system Node. If your system Node is very new (e.g. v24+) the default native build may fail. In that case install without build scripts and rebuild for Electron explicitly:
+> **Very new Node versions.** `better-sqlite3` only needs to build against *Electron's* V8. If a very new system Node breaks the native build:
 > ```bash
 > npm install --ignore-scripts
-> node node_modules/electron/install.js      # fetch the Electron binary
-> npx electron-rebuild -f -w better-sqlite3  # build SQLite for Electron
-> npm run dev
+> node node_modules/electron/install.js
+> npx electron-rebuild -f -w better-sqlite3
+> npm run setup:pyodide:wheels && npm run dev
 > ```
 
-### Other scripts
+### Scripts
 
 ```bash
-npm run verify:content   # checks every lesson's answers with mathjs (build gate)
+npm run verify           # all gates: content (mathjs) + glossary + code (CPython)
+npm run verify:content   # mathjs-checks every answer / acceptedAlt
+npm run verify:glossary  # glossary integrity + symbol detection
+npm run verify:code      # executes every runnable snippet & code-exercise (needs the Python libs)
 npm run build            # production build into ./out
-npm run dist             # build a packaged installer for the current OS
+npm run dist:mac         # package macOS  -> dist/*.dmg, *.zip   (builds first)
+npm run dist:win         # package Windows -> dist/*.exe (NSIS)  (builds first; run on Windows)
+npm run dist:linux       # package Linux  -> dist/*.AppImage, *.deb (builds first)
 ```
 
-### Packaged installers
+Native modules don't cross-compile and the Windows installer needs a Windows host, so multi-platform packaging is done in CI — see below.
 
-MathPath packages into native installers with
-[electron-builder](https://www.electron.build/):
+---
+
+## 🏗 Building & releasing
+
+Packaging uses [electron-builder](https://www.electron.build/). The included GitHub Actions workflow (`.github/workflows/release.yml`) builds **macOS** and **Windows** (and Linux) on their native runners and attaches the installers to a GitHub Release whenever a `v*` tag is pushed:
 
 ```bash
-npm run dist:mac     # macOS  -> dist/*.dmg, *.zip
-npm run dist:win     # Windows -> dist/*.exe (NSIS)
-npm run dist:linux   # Linux   -> dist/*.AppImage, *.deb
+npm version patch          # or edit package.json version
+git push --follow-tags     # tag push triggers the release build for all OSes
 ```
 
-`dist` runs `verify:content` + `build` first, then packages `out/` into `dist/`.
-Build on the target OS (native modules don't cross-compile). See
-[`BUILD.md`](BUILD.md) for prerequisites and reproducible-build notes.
+You can also run it manually from the **Actions** tab (workflow_dispatch). Bundle size note: the offline Python wheels add ~130 MB; see [`BUILD.md`](BUILD.md) for trimming, signing and reproducible-build notes.
 
 ---
 
 ## 📚 How the content works
 
-Each lesson is a JSON file under `content/<subject>/`. Every learner-facing string is an `{ "en": ..., "es": ... }` pair, and prose supports `**bold**` plus LaTeX via `$inline$` and `$$display$$` (rendered with KaTeX).
+Each lesson is a JSON file under `content/<subject>/`. Every learner-facing string is an `{ "en": ..., "es": ... }` pair; prose supports `**bold**` and LaTeX via `$inline$` / `$$display$$` (KaTeX).
 
-```jsonc
-{
-  "id": "algebra-02-quadratic-equations",
-  "subjectId": "algebra",
-  "order": 7,
-  "title": { "en": "Quadratic Equations", "es": "Ecuaciones cuadráticas" },
-  "sections": [
-    { "type": "prose",   "content": { "en": "...", "es": "..." } },
-    { "type": "example", "title": {...}, "content": {...} },
-    { "type": "graph",   "fn": "x^2 - 5*x + 6", "domain": [-1, 6], "caption": {...} }
-  ],
-  "exercises": [
-    {
-      "id": "algebra-02-e1",
-      "answerType": "set",            // number | expression | set | text
-      "prompt": { "en": "...", "es": "..." },
-      "answer": "2, 3",
-      "acceptedAlt": ["3, 2"],         // other forms also accepted
-      "hint": { "en": "...", "es": "..." },
-      "solution": [ { "tex": "(x-2)(x-3)=0", "en": "...", "es": "..." } ]
-    }
-  ],
-  "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)",
-      "detail": { "en": "Ch. 1.5, Quadratic Equations", "es": "Cap. 1.5" } }
-  ]
-}
-```
+**Section types:** `prose`, `example`, `graph` (`fn` plotted with the SVG plotter), `prereq` (links prior lessons), and `code` (runnable Python, or `runnable: false` static reference).
 
-### Correctness gate
+**Exercise `answerType`s:** `number`, `expression`, `set`, `text` (all mathjs-graded), `mcq` (choices with explanations), and `code` (a function graded by its returned value in Pyodide).
 
-Because lesson content is authored with the help of an LLM, **every exercise is verified**: `npm run verify:content` parses each answer with mathjs, evaluates each graph function, and asserts that every `acceptedAlt` is mathematically equivalent to the canonical answer. The build should be gated on this passing.
+A curated, bilingual `content/glossary.json` powers the symbol glossary and the auto "Symbols in this lesson" boxes.
+
+### Correctness gates
+
+Because content is authored with LLM assistance, **everything is verified** before it ships (`npm run verify`):
+
+1. **mathjs** — every answer parses and every `acceptedAlt` is equivalent to the canonical answer; every graph function evaluates.
+2. **glossary** — structural integrity + symbol-detection across all lessons.
+3. **code** — every runnable snippet (EN *and* ES) and every code-exercise reference solution is executed (CPython, restricted to the Pyodide-supported libraries) and its output/tests checked. TensorFlow/PyTorch static snippets are checked in an optional tier when those libraries are present.
 
 ### Adding a subject or lesson
 
-1. Create the lesson JSON under `content/<subject>/`.
-2. Reference it in `content/subjects.json` (set the subject `status` to `"available"`).
-3. Run `npm run verify:content`.
+1. Create the lesson JSON under `content/<subject>/` and reference it in `content/subjects.json`.
+2. Keep all text bilingual; make answers verifiable.
+3. Run `npm run verify`.
 
 ---
 
@@ -126,46 +129,40 @@ Because lesson content is authored with the help of an LLM, **every exercise is 
 src/
   main/        Electron main process + SQLite data layer + IPC handlers
   preload/     Secure contextBridge (the only renderer ↔ main channel)
-  shared/      validate.js — mathjs symbolic/numeric answer checker
+  shared/      validate.js (mathjs checker) · notation.js (symbol detection)
   renderer/    React UI (Vite)
     src/
       AppContext.jsx     language, theme & progress state
-      lib/plan.js        adaptive 30-day scheduling (pure, testable)
-      components/        MathText (KaTeX), FunctionGraph (SVG), Exercise, ...
-      pages/             Dashboard, SubjectView, LessonView
-content/       lesson JSON (the curriculum) + index loader
-scripts/       verify-content.mjs — build-time correctness gate
-docs/          project.html — live project dashboard
+      lib/plan.js        adaptive 30-day scheduling
+      lib/pyodide.js     lazy, offline Pyodide loader for in-app Python
+      components/        MathText, FunctionGraph, Exercise, CodeBlock, NotationBox
+      pages/             Dashboard, SubjectView, LessonView, GlossaryView
+    public/pyodide/      bundled Pyodide runtime + wheels (git-ignored, generated)
+content/       lesson JSON (the curriculum), subjects.json, glossary.json
+scripts/       verify-content.mjs · verify-glossary.mjs · verify-code.py
+               copy-pyodide.mjs · fetch-pyodide-wheels.mjs
+build/         app icons (.icns/.ico/.png) + macOS entitlements
+.github/workflows/release.yml   multi-OS packaged-release CI
 ```
 
-Security note: the renderer runs with `contextIsolation` on and `nodeIntegration` off; it can only call the methods whitelisted in `src/preload/index.js`.
-
----
-
-## 🛣 Roadmap
-
-- ✅ **Math ladder** — Algebra, Functions, Calculus, Linear Algebra, Linear Maps (all shipped, textbook depth).
-- ⏳ **AI / ML track** — Statistics & Probability, Machine Learning Foundations, Neural Networks, Deep Learning, NLP & Transformers, Reinforcement Learning, Knowledge Representation, Computer Vision, AI Foundations & Philosophy, Active Inference.
-- ✅ Packaged installers (`.dmg`, `.exe`, `.AppImage`) via electron-builder — see [`BUILD.md`](BUILD.md).
-
-See `CURRICULUM.md` for the full lesson-by-lesson map.
+Security: the renderer runs with `contextIsolation` on and `nodeIntegration` off; it can only call the methods whitelisted in `src/preload/index.js`.
 
 ---
 
 ## 📖 About the content & sources
 
-The lessons are **original explanatory material**, written to teach each topic from first principles. Each lesson cites the textbooks and references that informed it (e.g. Stewart's *Precalculus* and *Calculus*, Strang's *Introduction to Linear Algebra*, Pólya's *How to Solve It*, and UOC engineering-maths modules).
+The lessons are **original explanatory material**, written to teach each topic from first principles, citing the textbooks that informed them (Stewart, Larson, Salas, Strang, Pólya, Russell & Norvig's *AIMA*, Goodfellow et al.'s *Deep Learning*, UOC engineering-maths modules, and more).
 
-**Those reference works are copyrighted and are NOT included in this repository.** The `content/` lessons do not reproduce them. If you want the original source PDFs for your own study, obtain them legally and place them in a local (git-ignored) `sources/` folder.
+**Those reference works are copyrighted and are NOT included in this repository.** The `content/` lessons do not reproduce them. To study from the originals, obtain them legally and place them in a local, git-ignored `sources/` folder.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome — new lessons, translations, bug fixes, or a packaged-build setup. Please:
+Contributions welcome — new lessons, translations, bug fixes. Please:
 
 1. Keep all learner-facing text bilingual (`en` + `es`).
-2. Make exercises verifiable: run `npm run verify:content` and ensure it passes.
+2. Make content verifiable: `npm run verify` must pass.
 3. Keep lessons original (don't paste copyrighted text); cite sources in the `references` field.
 
 ---
