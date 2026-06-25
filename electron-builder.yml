@@ -1,0 +1,67 @@
+# electron-builder configuration for MathPath
+# Docs: https://www.electron.build/configuration/configuration
+#
+# Build with:  npm run dist           (current OS)
+#              npm run dist:mac        (macOS dmg + zip)
+#              npm run dist:linux      (AppImage + deb)
+#              npm run dist:win        (NSIS installer)
+#
+# The renderer bundle already contains all lesson content (imported at build
+# time via import.meta.glob), so no content/ files are shipped separately.
+# better-sqlite3 is a native module and is unpacked from the asar so its
+# prebuilt .node binary can be loaded at runtime.
+
+appId: com.jarcos.mathpath
+productName: MathPath
+copyright: Copyright © 2026 Jose Arcos
+
+# What goes inside the app package. We ship only the compiled output and the
+# manifest; source, content/ and sources/ are never bundled (content is already
+# baked into out/renderer).
+files:
+  - out/**
+  - package.json
+
+# Native module must be readable as a real file, not from inside the asar.
+asarUnpack:
+  - "**/node_modules/better-sqlite3/**"
+
+# Build resources (icons, entitlements) live here.
+directories:
+  buildResources: build
+  output: dist
+
+# ---- macOS ----
+mac:
+  category: public.app-category.education
+  target:
+    - dmg
+    - zip
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  # icon: build/icon.icns   # add a 512x512+ .icns to enable a custom icon
+
+# ---- Linux ----
+linux:
+  category: Education
+  target:
+    - AppImage
+    - deb
+  maintainer: Jose Arcos
+  # icon: build/icon.png    # add a 512x512 .png to enable a custom icon
+
+# ---- Windows ----
+win:
+  target:
+    - nsis
+  # icon: build/icon.ico    # add a 256x256 .ico to enable a custom icon
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+
+# Offline app: no auto-update server.
+publish: null

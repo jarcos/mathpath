@@ -55,7 +55,23 @@ npm run dev      # launches the app with hot reload
 ```bash
 npm run verify:content   # checks every lesson's answers with mathjs (build gate)
 npm run build            # production build into ./out
+npm run dist             # build a packaged installer for the current OS
 ```
+
+### Packaged installers
+
+MathPath packages into native installers with
+[electron-builder](https://www.electron.build/):
+
+```bash
+npm run dist:mac     # macOS  -> dist/*.dmg, *.zip
+npm run dist:win     # Windows -> dist/*.exe (NSIS)
+npm run dist:linux   # Linux   -> dist/*.AppImage, *.deb
+```
+
+`dist` runs `verify:content` + `build` first, then packages `out/` into `dist/`.
+Build on the target OS (native modules don't cross-compile). See
+[`BUILD.md`](BUILD.md) for prerequisites and reproducible-build notes.
 
 ---
 
@@ -130,7 +146,7 @@ Security note: the renderer runs with `contextIsolation` on and `nodeIntegration
 
 - ✅ **Math ladder** — Algebra, Functions, Calculus, Linear Algebra, Linear Maps (all shipped, textbook depth).
 - ⏳ **AI / ML track** — Statistics & Probability, Machine Learning Foundations, Neural Networks, Deep Learning, NLP & Transformers, Reinforcement Learning, Knowledge Representation, Computer Vision, AI Foundations & Philosophy, Active Inference.
-- ⏳ Packaged installers (`.dmg`, `.exe`, `.AppImage`).
+- ✅ Packaged installers (`.dmg`, `.exe`, `.AppImage`) via electron-builder — see [`BUILD.md`](BUILD.md).
 
 See `CURRICULUM.md` for the full lesson-by-lesson map.
 

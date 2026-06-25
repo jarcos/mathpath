@@ -29,6 +29,7 @@ npm install            # deps + electron-rebuild of better-sqlite3 (needs Xcode 
 npm run dev            # launch with hot reload
 npm run verify:content # mathjs-check every answer/acceptedAlt  ← run before finishing
 npm run build          # production build into ./out
+npm run dist           # package an installer for the current OS (see BUILD.md)
 ```
 
 ## Architecture
@@ -79,8 +80,9 @@ computer-vision (14, M18), ai-foundations (14, M19), active-inference (12, M20).
 `ai-foundations` and `active-inference` are reading-based (text / MCQ + light
 math). See `CURRICULUM.md` and `sources/INDEX.md`.
 
-Remaining: **M21** packaging / distributable (electron-builder installer +
-reproducible-build docs).
+**M21 complete**: electron-builder packaging (`npm run dist` / `dist:mac` /
+`dist:win` / `dist:linux`), config in `electron-builder.yml`, mac entitlements in
+`build/`, reproducible-build docs in `BUILD.md`. **All milestones done.**
 
 ## Workflow rules
 
