@@ -42,6 +42,13 @@ mac:
   entitlements: build/entitlements.mac.plist
   entitlementsInherit: build/entitlements.mac.plist
   icon: build/icon.icns
+  # Signed with the "Developer ID Application" cert auto-discovered in the
+  # keychain (or imported from CSC_LINK in CI). Notarization runs automatically
+  # when Apple credentials are in the environment (APPLE_ID +
+  # APPLE_APP_SPECIFIC_PASSWORD, or an App Store Connect API key); without them
+  # electron-builder signs and skips notarization rather than failing.
+  notarize:
+    teamId: L3WX9JGL2T
 
 # ---- Linux ----
 linux:

@@ -89,18 +89,54 @@ For byte-stable, auditable builds:
 5. **Record the inputs.** The git commit, `package-lock.json` hash, Node version
    and OS fully determine the output; capture them alongside the artifacts.
 
-## Code signing & notarization (optional, per-platform)
+## Code signing & notarization
 
-Not required to run locally. For distribution outside your own machine:
+### macOS — sign + notarize so a downloaded app opens with no warnings
 
-- **macOS:** set `CSC_LINK` / `CSC_KEY_PASSWORD` (Developer ID cert) and
-  `APPLE_ID` / `APPLE_APP_SPECIFIC_PASSWORD` / `APPLE_TEAM_ID` for notarization.
-  Hardened runtime + entitlements are already configured in
-  `electron-builder.yml` and `build/entitlements.mac.plist`.
-- **Windows:** set `CSC_LINK` / `CSC_KEY_PASSWORD` to an Authenticode cert.
+Hardened runtime, entitlements, and `notarize.teamId` (`L3WX9JGL2T`) are already
+configured. electron-builder auto-discovers the **Developer ID Application**
+certificate from your login keychain, so a local `npm run dist:mac` already
+*signs* the app. To also *notarize* it (required for a downloaded build to open
+without Gatekeeper prompts), provide Apple credentials in the environment, then
+build:
 
-Unsigned builds run fine locally; users may need to bypass Gatekeeper /
-SmartScreen on first launch.
+```bash
+# one-time: create an app-specific password at appleid.apple.com
+export APPLE_ID="you@example.com"
+export APPLE_APP_SPECIFIC_PASSWORD="xxxx-xxxx-xxxx-xxxx"
+export APPLE_TEAM_ID="L3WX9JGL2T"
+npm run dist:mac     # signs with Developer ID, notarizes, and staples the ticket
+```
+
+(App Store Connect API keys also work: `APPLE_API_KEY` / `APPLE_API_KEY_ID` /
+`APPLE_API_ISSUER`.) Without these vars the build still succeeds — signed but not
+notarized.
+
+Verify the result:
+
+```bash
+spctl -a -vvv -t install "dist/mac-arm64/MathPath.app"   # expect: accepted, source=Notarized Developer ID
+xcrun stapler validate "dist/MathPath-0.1.0-arm64.dmg"   # expect: The validate action worked!
+```
+
+### CI (recommended for releases)
+
+The release workflow signs + notarizes on the macOS runner when these **repo
+secrets** are set (Settings → Secrets and variables → Actions):
+
+- `CSC_LINK` — base64 of your Developer ID `.p12` (`base64 -i cert.p12 | pbcopy`)
+- `CSC_KEY_PASSWORD` — the `.p12` export password
+- `APPLE_ID`, `APPLE_APP_SPECIFIC_PASSWORD`, `APPLE_TEAM_ID`
+
+`CSC_*` are scoped to the macOS job so they are never used as a Windows
+certificate. With no secrets, CI still produces an (ad-hoc-signed, un-notarized)
+build.
+
+### Windows
+
+Currently shipped unsigned (SmartScreen may warn → *More info → Run anyway*). To
+sign, add an Authenticode cert as `CSC_LINK` / `CSC_KEY_PASSWORD` for the Windows
+job.
 
 ## App icon
 
