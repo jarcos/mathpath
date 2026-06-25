@@ -1,0 +1,79 @@
+{
+  "id": "kr-01-what-is-kr",
+  "subjectId": "knowledge-representation",
+  "order": 1,
+  "estimatedMinutes": 30,
+  "title": { "en": "What Is Knowledge Representation?", "es": "¿Qué es la representación del conocimiento?" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Knowledge representation and reasoning (KRR)** is the branch of AI that asks how to encode what an agent knows in a form a computer can **reason** over to draw new conclusions. Where machine learning extracts patterns from data, KRR works with **explicit, symbolic** knowledge — facts and rules written down so that inference can act on them.",
+        "es": "La **representación del conocimiento y el razonamiento (KRR)** es la rama de la IA que pregunta cómo codificar lo que un agente sabe en una forma sobre la que una computadora pueda **razonar** para sacar nuevas conclusiones. Donde el aprendizaje automático extrae patrones de datos, la KRR trabaja con conocimiento **explícito y simbólico** — hechos y reglas escritos para que la inferencia actúe sobre ellos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A representation has two parts: **syntax** (the formal symbols and how they combine) and **semantics** (what those symbols mean — which states of the world make them true). A good representation is expressive enough to capture the domain, yet restricted enough that reasoning stays computationally **tractable** — a constant tension in the field.",
+        "es": "Una representación tiene dos partes: **sintaxis** (los símbolos formales y cómo se combinan) y **semántica** (qué significan esos símbolos — qué estados del mundo los hacen verdaderos). Una buena representación es lo bastante expresiva para capturar el dominio, pero lo bastante restringida para que el razonamiento siga siendo computacionalmente **tratable** — una tensión constante en el campo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **knowledge representation hypothesis** (Brachman & Levesque) holds that intelligent behavior can arise from manipulating symbolic structures that stand for knowledge. This tradition gave us logic-based AI, expert systems, ontologies and today's knowledge graphs — complementary to, not replaced by, modern neural methods.",
+        "es": "La **hipótesis de la representación del conocimiento** (Brachman y Levesque) sostiene que el comportamiento inteligente puede surgir de manipular estructuras simbólicas que representan conocimiento. Esta tradición nos dio la IA basada en lógica, los sistemas expertos, las ontologías y los grafos de conocimiento actuales — complementaria a los métodos neuronales modernos, no reemplazada por ellos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The two parts of any representation scheme are syntax and semantics — that is $2$ parts. 'All men are mortal; Socrates is a man; therefore Socrates is mortal' is a piece of explicit, symbolic knowledge KRR can encode.",
+        "es": "Las dos partes de todo esquema de representación son la sintaxis y la semántica — es decir, $2$ partes. 'Todos los hombres son mortales; Sócrates es un hombre; por tanto Sócrates es mortal' es un fragmento de conocimiento explícito y simbólico que la KRR puede codificar."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-01-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many parts does a representation have (syntax + semantics)?", "es": "¿Cuántas partes tiene una representación (sintaxis + semántica)?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Form and meaning.", "es": "Forma y significado." },
+      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "kr-01-e2",
+      "answerType": "text",
+      "prompt": { "en": "The part of a representation defining what symbols mean is the ___. (one word)", "es": "La parte de una representación que define qué significan los símbolos es la ___. (una palabra)" },
+      "answer": "semantics",
+      "acceptedAlt": ["semántica", "semantica"],
+      "hint": { "en": "Meaning, not form.", "es": "Significado, no forma." },
+      "solution": [ { "tex": "\\text{semantics}", "en": "Semantics.", "es": "Semántica." } ]
+    },
+    {
+      "id": "kr-01-e3",
+      "answerType": "text",
+      "prompt": { "en": "KRR works with explicit ___ knowledge (facts and rules). (one word)", "es": "La KRR trabaja con conocimiento ___ explícito (hechos y reglas). (una palabra)" },
+      "answer": "symbolic",
+      "acceptedAlt": ["simbólico", "simbolico"],
+      "hint": { "en": "Symbols, not weights.", "es": "Símbolos, no pesos." },
+      "solution": [ { "tex": "\\text{symbolic}", "en": "Symbolic.", "es": "Simbólico." } ]
+    },
+    {
+      "id": "kr-01-e4",
+      "answerType": "text",
+      "prompt": { "en": "Reasoning that stays computationally feasible is called ___. (one word)", "es": "El razonamiento que sigue siendo computacionalmente factible se llama ___. (una palabra)" },
+      "answer": "tractable",
+      "acceptedAlt": ["tratable"],
+      "hint": { "en": "Not intractable.", "es": "No intratable." },
+      "solution": [ { "tex": "\\text{tractable}", "en": "Tractable.", "es": "Tratable." } ]
+    }
+  ],
+  "references": [
+    { "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)", "detail": { "en": "Ch. 1, the KR hypothesis", "es": "Cap. 1, la hipótesis de la KR" } }
+  ]
+}

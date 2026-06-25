@@ -1,0 +1,79 @@
+{
+  "id": "kr-04-inference",
+  "subjectId": "knowledge-representation",
+  "order": 4,
+  "estimatedMinutes": 35,
+  "title": { "en": "Inference & Entailment", "es": "Inferencia y consecuencia lógica" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Entailment** is the core semantic relation: a knowledge base $KB$ **entails** a sentence $\\alpha$ (written $KB \\models \\alpha$) if $\\alpha$ is true in **every** model where $KB$ is true. **Inference** is the syntactic process of deriving entailed sentences mechanically. We want inference that is **sound** (derives only true things) and **complete** (can derive everything entailed).",
+        "es": "La **consecuencia lógica (entailment)** es la relación semántica central: una base de conocimiento $KB$ **implica** una sentencia $\\alpha$ (escrito $KB \\models \\alpha$) si $\\alpha$ es verdadera en **todo** modelo donde $KB$ es verdadera. La **inferencia** es el proceso sintáctico de derivar sentencias implicadas mecánicamente. Queremos inferencia **correcta (sound)** (deriva solo cosas verdaderas) y **completa** (puede derivar todo lo implicado)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The most famous inference rule is **modus ponens**: from $P$ and $P \\rightarrow Q$, conclude $Q$. From 'it is raining' and 'if it is raining then the ground is wet', infer 'the ground is wet'. Chaining many such steps lets a system derive distant conclusions from a handful of facts and rules.",
+        "es": "La regla de inferencia más famosa es el **modus ponens**: de $P$ y $P \\rightarrow Q$, concluir $Q$. De 'está lloviendo' y 'si está lloviendo entonces el suelo está mojado', inferir 'el suelo está mojado'. Encadenar muchos pasos así permite a un sistema derivar conclusiones lejanas a partir de un puñado de hechos y reglas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Resolution** is a single, refutation-complete rule for propositional (and first-order) logic: to prove $KB \\models \\alpha$, add $\\neg\\alpha$ to $KB$ and derive a contradiction (the empty clause). It underlies automated theorem provers and the logic-programming language Prolog. Modus tollens (from $\\neg Q$ and $P\\rightarrow Q$, conclude $\\neg P$) is another sound rule.",
+        "es": "La **resolución** es una única regla, completa por refutación, para la lógica proposicional (y de primer orden): para probar $KB \\models \\alpha$, añade $\\neg\\alpha$ a $KB$ y deriva una contradicción (la cláusula vacía). Sustenta los demostradores automáticos de teoremas y el lenguaje de programación lógica Prolog. El modus tollens (de $\\neg Q$ y $P\\rightarrow Q$, concluir $\\neg P$) es otra regla correcta."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Modus ponens: given $P=1$ (raining) and $P \\rightarrow Q$ true, $Q$ must be $1$ (wet). Modus tollens: given $Q=0$ and $P \\rightarrow Q$, then $P=0$.",
+        "es": "Modus ponens: dado $P=1$ (lloviendo) y $P \\rightarrow Q$ verdadero, $Q$ debe ser $1$ (mojado). Modus tollens: dado $Q=0$ y $P \\rightarrow Q$, entonces $P=0$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-04-e1",
+      "answerType": "number",
+      "prompt": { "en": "Modus ponens: $P=1$ and $P\\rightarrow Q$ true. What is $Q$?", "es": "Modus ponens: $P=1$ y $P\\rightarrow Q$ verdadero. ¿Cuánto vale $Q$?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "The conclusion follows.", "es": "La conclusión se sigue." },
+      "solution": [ { "tex": "Q=1", "en": "True.", "es": "Verdadero." } ]
+    },
+    {
+      "id": "kr-04-e2",
+      "answerType": "number",
+      "prompt": { "en": "Modus tollens: $Q=0$ and $P\\rightarrow Q$ true. What is $P$?", "es": "Modus tollens: $Q=0$ y $P\\rightarrow Q$ verdadero. ¿Cuánto vale $P$?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "If P were 1, Q would be 1.", "es": "Si P fuera 1, Q sería 1." },
+      "solution": [ { "tex": "P=0", "en": "False.", "es": "Falso." } ]
+    },
+    {
+      "id": "kr-04-e3",
+      "answerType": "text",
+      "prompt": { "en": "Inference that derives only true conclusions is ___. (one word)", "es": "La inferencia que deriva solo conclusiones verdaderas es ___. (una palabra)" },
+      "answer": "sound",
+      "acceptedAlt": ["correcta", "válida", "valida"],
+      "hint": { "en": "Sound vs complete.", "es": "Correcta vs completa." },
+      "solution": [ { "tex": "\\text{sound}", "en": "Sound.", "es": "Correcta." } ]
+    },
+    {
+      "id": "kr-04-e4",
+      "answerType": "text",
+      "prompt": { "en": "The refutation-complete rule used by Prolog and theorem provers is ___. (one word)", "es": "La regla completa por refutación usada por Prolog y demostradores es la ___. (una palabra)" },
+      "answer": "resolution",
+      "acceptedAlt": ["resolución", "resolucion"],
+      "hint": { "en": "Derives the empty clause.", "es": "Deriva la cláusula vacía." },
+      "solution": [ { "tex": "\\text{resolution}", "en": "Resolution.", "es": "Resolución." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 7.5, propositional inference and resolution", "es": "Cap. 7.5, inferencia proposicional y resolución" } }
+  ]
+}

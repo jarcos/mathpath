@@ -1,0 +1,80 @@
+{
+  "id": "kr-13-commonsense",
+  "subjectId": "knowledge-representation",
+  "order": 13,
+  "estimatedMinutes": 30,
+  "title": { "en": "Commonsense & the Frame Problem", "es": "Sentido común y el problema del marco" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Humans effortlessly know things no one states: water is wet, dropped objects fall, you can't be in two places at once. Encoding this **commonsense knowledge** has proven one of AI's hardest problems — the sheer breadth is staggering, and most of it is never written down because it is too obvious to mention.",
+        "es": "Los humanos saben sin esfuerzo cosas que nadie enuncia: el agua moja, los objetos que caen descienden, no puedes estar en dos sitios a la vez. Codificar este **conocimiento de sentido común** ha resultado uno de los problemas más difíciles de la IA — la amplitud es asombrosa, y la mayor parte nunca se escribe porque es demasiado obvia para mencionarla."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The classic technical obstacle is the **frame problem**: when an action changes the world, how do you concisely represent everything that **stays the same**? If I paint a wall, the wall's color changes but its position, the room's temperature, and a million other facts persist — yet logic must somehow not re-derive them all. Specifying these **non-effects** efficiently is surprisingly hard.",
+        "es": "El obstáculo técnico clásico es el **problema del marco (frame problem)**: cuando una acción cambia el mundo, ¿cómo representar de forma concisa todo lo que **permanece igual**? Si pinto una pared, su color cambia pero su posición, la temperatura de la sala y un millón de hechos más persisten — y la lógica debe de algún modo no re-derivarlos todos. Especificar estos **no-efectos** eficientemente es sorprendentemente difícil."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Approaches include the **situation calculus** with **frame axioms**, the closed-world assumption, and large hand-built knowledge bases like **Cyc**. Modern large language models absorb much commonsense implicitly from text, but reliable, verifiable commonsense reasoning remains open — a meeting point of symbolic KR and learned models.",
+        "es": "Los enfoques incluyen el **cálculo de situaciones** con **axiomas de marco**, la hipótesis del mundo cerrado y grandes bases de conocimiento hechas a mano como **Cyc**. Los grandes modelos de lenguaje modernos absorben mucho sentido común implícitamente del texto, pero el razonamiento de sentido común fiable y verificable sigue abierto — un punto de encuentro entre la KR simbólica y los modelos aprendidos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If painting a wall changes only its color, then of $5$ tracked facts (color, position, height, weight, room temperature) just $1$ changes and $4$ persist. Concisely stating those $4$ non-changes is the frame problem.",
+        "es": "Si pintar una pared cambia solo su color, entonces de $5$ hechos rastreados (color, posición, altura, peso, temperatura de la sala) solo $1$ cambia y $4$ persisten. Enunciar de forma concisa esos $4$ no-cambios es el problema del marco."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-13-e1",
+      "answerType": "number",
+      "prompt": { "en": "Of 5 facts, painting changes only color. How many persist unchanged?", "es": "De 5 hechos, pintar cambia solo el color. ¿Cuántos persisten sin cambio?" },
+      "answer": "4",
+      "acceptedAlt": ["5-1"],
+      "hint": { "en": "5 − 1.", "es": "5 − 1." },
+      "solution": [ { "tex": "5-1 = 4", "en": "Four.", "es": "Cuatro." } ]
+    },
+    {
+      "id": "kr-13-e2",
+      "answerType": "text",
+      "prompt": { "en": "Representing what stays the same after an action is the ___ problem. (one word)", "es": "Representar lo que permanece igual tras una acción es el problema del ___. (una palabra)" },
+      "answer": "frame",
+      "acceptedAlt": ["marco"],
+      "hint": { "en": "Frame ___.", "es": "Problema del ___." },
+      "solution": [ { "tex": "\\text{frame problem}", "en": "Frame.", "es": "Marco." } ]
+    },
+    {
+      "id": "kr-13-e3",
+      "answerType": "text",
+      "prompt": { "en": "Knowledge everyone has but no one states is ___ knowledge. (one word)", "es": "El conocimiento que todos tienen pero nadie enuncia es conocimiento de ___ común. (una palabra)" },
+      "answer": "commonsense",
+      "acceptedAlt": ["sentido", "common-sense", "común"],
+      "hint": { "en": "Common sense.", "es": "Sentido común." },
+      "solution": [ { "tex": "\\text{commonsense}", "en": "Commonsense.", "es": "Sentido común." } ]
+    },
+    {
+      "id": "kr-13-e4",
+      "answerType": "text",
+      "prompt": { "en": "The large hand-built commonsense knowledge base is ___. (one word)", "es": "La gran base de conocimiento de sentido común hecha a mano es ___. (una palabra)" },
+      "answer": "cyc",
+      "acceptedAlt": [],
+      "hint": { "en": "Lenat's project.", "es": "El proyecto de Lenat." },
+      "solution": [ { "tex": "\\text{Cyc}", "en": "Cyc.", "es": "Cyc." } ]
+    }
+  ],
+  "references": [
+    { "source": "McCarthy & Hayes — Some Philosophical Problems from the Standpoint of AI (1969)", "detail": { "en": "The frame problem", "es": "El problema del marco" } },
+    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 10–12, reasoning about actions; situation calculus", "es": "Cap. 10–12, razonamiento sobre acciones; cálculo de situaciones" } }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "kr-05-fol",
+  "subjectId": "knowledge-representation",
+  "order": 5,
+  "estimatedMinutes": 40,
+  "title": { "en": "First-Order Logic", "es": "Lógica de primer orden" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Propositional logic can't say 'all humans are mortal' compactly — it would need one proposition per human. **First-order logic (FOL)** adds **objects**, **predicates** (relations over objects, e.g. $\\text{Mortal}(x)$), **functions**, and crucially **quantifiers**. This vastly increases expressive power.",
+        "es": "La lógica proposicional no puede decir 'todos los humanos son mortales' de forma compacta — necesitaría una proposición por humano. La **lógica de primer orden (FOL)** añade **objetos**, **predicados** (relaciones sobre objetos, p. ej. $\\text{Mortal}(x)$), **funciones** y, crucialmente, **cuantificadores**. Esto aumenta enormemente el poder expresivo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **universal** quantifier $\\forall$ ('for all') and the **existential** quantifier $\\exists$ ('there exists') range over objects. 'All humans are mortal' becomes $\\forall x\\,(\\text{Human}(x) \\rightarrow \\text{Mortal}(x))$. 'Someone is happy' becomes $\\exists x\\,\\text{Happy}(x)$. Quantifiers let one formula make claims about entire domains.",
+        "es": "El cuantificador **universal** $\\forall$ ('para todo') y el cuantificador **existencial** $\\exists$ ('existe') recorren objetos. 'Todos los humanos son mortales' se vuelve $\\forall x\\,(\\text{Human}(x) \\rightarrow \\text{Mortal}(x))$. 'Alguien es feliz' se vuelve $\\exists x\\,\\text{Happy}(x)$. Los cuantificadores permiten que una fórmula haga afirmaciones sobre dominios enteros."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The two quantifiers are linked by negation: $\\neg\\forall x\\,P(x) \\equiv \\exists x\\,\\neg P(x)$ ('not all' equals 'some not'). FOL is far more expressive than propositional logic, but the price is that inference becomes **semi-decidable** — provable theorems can be found, but no algorithm is guaranteed to halt on non-theorems.",
+        "es": "Los dos cuantificadores están ligados por la negación: $\\neg\\forall x\\,P(x) \\equiv \\exists x\\,\\neg P(x)$ ('no todos' es igual a 'algunos no'). La FOL es mucho más expresiva que la lógica proposicional, pero el precio es que la inferencia se vuelve **semidecidible** — los teoremas demostrables pueden hallarse, pero ningún algoritmo garantiza detenerse en los no-teoremas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "'All humans are mortal' uses the universal quantifier $\\forall$. FOL adds quantifiers, predicates, functions, and objects to propositional logic — that is $4$ new ingredients. The negation of $\\forall x\\,P(x)$ is $\\exists x\\,\\neg P(x)$.",
+        "es": "'Todos los humanos son mortales' usa el cuantificador universal $\\forall$. La FOL añade cuantificadores, predicados, funciones y objetos a la lógica proposicional — son $4$ ingredientes nuevos. La negación de $\\forall x\\,P(x)$ es $\\exists x\\,\\neg P(x)$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-05-e1",
+      "answerType": "text",
+      "prompt": { "en": "The quantifier meaning 'for all' is the ___ quantifier. (one word)", "es": "El cuantificador que significa 'para todo' es el cuantificador ___. (una palabra)" },
+      "answer": "universal",
+      "acceptedAlt": ["universal"],
+      "hint": { "en": "Symbol ∀.", "es": "Símbolo ∀." },
+      "solution": [ { "tex": "\\forall", "en": "Universal.", "es": "Universal." } ]
+    },
+    {
+      "id": "kr-05-e2",
+      "answerType": "text",
+      "prompt": { "en": "The quantifier meaning 'there exists' is the ___ quantifier. (one word)", "es": "El cuantificador que significa 'existe' es el cuantificador ___. (una palabra)" },
+      "answer": "existential",
+      "acceptedAlt": ["existencial"],
+      "hint": { "en": "Symbol ∃.", "es": "Símbolo ∃." },
+      "solution": [ { "tex": "\\exists", "en": "Existential.", "es": "Existencial." } ]
+    },
+    {
+      "id": "kr-05-e3",
+      "answerType": "text",
+      "prompt": { "en": "A relation over objects like Mortal(x) is a ___. (one word)", "es": "Una relación sobre objetos como Mortal(x) es un ___. (una palabra)" },
+      "answer": "predicate",
+      "acceptedAlt": ["predicado"],
+      "hint": { "en": "Predicate logic.", "es": "Lógica de predicados." },
+      "solution": [ { "tex": "\\text{Mortal}(x)", "en": "Predicate.", "es": "Predicado." } ]
+    },
+    {
+      "id": "kr-05-e4",
+      "answerType": "text",
+      "prompt": { "en": "$\\neg\\forall x\\,P(x)$ is equivalent to $\\exists x\\,\\neg P(x)$. The leading quantifier on the right is the ___ quantifier. (one word)", "es": "$\\neg\\forall x\\,P(x)$ equivale a $\\exists x\\,\\neg P(x)$. El cuantificador principal de la derecha es el ___. (una palabra)" },
+      "answer": "existential",
+      "acceptedAlt": ["existencial"],
+      "hint": { "en": "∃.", "es": "∃." },
+      "solution": [ { "tex": "\\exists", "en": "Existential.", "es": "Existencial." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 8, first-order logic", "es": "Cap. 8, lógica de primer orden" } }
+  ]
+}

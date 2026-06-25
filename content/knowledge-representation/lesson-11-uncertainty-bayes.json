@@ -1,0 +1,80 @@
+{
+  "id": "kr-11-uncertainty",
+  "subjectId": "knowledge-representation",
+  "order": 11,
+  "estimatedMinutes": 40,
+  "title": { "en": "Reasoning Under Uncertainty", "es": "Razonamiento bajo incertidumbre" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Logic is binary, but the real world is uncertain — diagnoses, sensor readings, and predictions are rarely certain. The dominant framework is **probability theory**: degrees of belief are numbers in $[0,1]$. A central tool is **Bayes' rule**, which inverts conditional probabilities: $P(H\\mid E) = \\dfrac{P(E\\mid H)\\,P(H)}{P(E)}$.",
+        "es": "La lógica es binaria, pero el mundo real es incierto — diagnósticos, lecturas de sensores y predicciones rara vez son seguros. El marco dominante es la **teoría de la probabilidad**: los grados de creencia son números en $[0,1]$. Una herramienta central es la **regla de Bayes**, que invierte probabilidades condicionales: $P(H\\mid E) = \\dfrac{P(E\\mid H)\\,P(H)}{P(E)}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Bayes lets an agent update belief in a hypothesis $H$ given evidence $E$. The **prior** $P(H)$ is belief before evidence; the **likelihood** $P(E\\mid H)$ is how expected the evidence is if $H$ holds; the **posterior** $P(H\\mid E)$ is the updated belief. This is the mathematical heart of learning from data and of rational belief revision.",
+        "es": "Bayes permite a un agente actualizar la creencia en una hipótesis $H$ dada la evidencia $E$. La **previa** $P(H)$ es la creencia antes de la evidencia; la **verosimilitud** $P(E\\mid H)$ es cuán esperada es la evidencia si $H$ se cumple; la **posterior** $P(H\\mid E)$ es la creencia actualizada. Este es el corazón matemático del aprendizaje a partir de datos y de la revisión racional de creencias."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A famous lesson is **base-rate neglect**: even a highly accurate test for a rare disease yields many false positives, so the posterior probability of disease given a positive test can be surprisingly low. Probabilistic reasoning, championed by Judea Pearl, brought rigor to uncertain AI and underlies Bayesian networks (next lesson).",
+        "es": "Una lección famosa es el **olvido de la tasa base**: incluso un test muy preciso para una enfermedad rara produce muchos falsos positivos, así que la probabilidad posterior de enfermedad dado un test positivo puede ser sorprendentemente baja. El razonamiento probabilístico, defendido por Judea Pearl, dio rigor a la IA incierta y sustenta las redes bayesianas (próxima lección)."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With $P(E\\mid H)=0.8$, $P(H)=0.25$, $P(E)=0.4$: $P(H\\mid E) = \\dfrac{0.8\\cdot 0.25}{0.4} = \\dfrac{0.2}{0.4} = 0.5$. The posterior $0.5$ doubled the prior $0.25$.",
+        "es": "Con $P(E\\mid H)=0.8$, $P(H)=0.25$, $P(E)=0.4$: $P(H\\mid E) = \\dfrac{0.8\\cdot 0.25}{0.4} = \\dfrac{0.2}{0.4} = 0.5$. La posterior $0.5$ duplicó la previa $0.25$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-11-e1",
+      "answerType": "number",
+      "prompt": { "en": "Bayes: $P(H\\mid E) = \\frac{0.8\\cdot 0.25}{0.4}$?", "es": "Bayes: $P(H\\mid E) = \\frac{0.8\\cdot 0.25}{0.4}$?" },
+      "answer": "0.5",
+      "acceptedAlt": ["0.8*0.25/0.4", "1/2"],
+      "hint": { "en": "0.2 / 0.4.", "es": "0.2 / 0.4." },
+      "solution": [ { "tex": "\\frac{0.2}{0.4} = 0.5", "en": "0.5.", "es": "0.5." } ]
+    },
+    {
+      "id": "kr-11-e2",
+      "answerType": "text",
+      "prompt": { "en": "In Bayes' rule, belief before seeing evidence is the ___. (one word)", "es": "En la regla de Bayes, la creencia antes de ver evidencia es la ___. (una palabra)" },
+      "answer": "prior",
+      "acceptedAlt": ["previa", "priori"],
+      "hint": { "en": "P(H).", "es": "P(H)." },
+      "solution": [ { "tex": "P(H)", "en": "Prior.", "es": "Previa." } ]
+    },
+    {
+      "id": "kr-11-e3",
+      "answerType": "text",
+      "prompt": { "en": "The updated belief $P(H\\mid E)$ is the ___. (one word)", "es": "La creencia actualizada $P(H\\mid E)$ es la ___. (una palabra)" },
+      "answer": "posterior",
+      "acceptedAlt": ["posteriori"],
+      "hint": { "en": "After evidence.", "es": "Tras la evidencia." },
+      "solution": [ { "tex": "P(H\\mid E)", "en": "Posterior.", "es": "Posterior." } ]
+    },
+    {
+      "id": "kr-11-e4",
+      "answerType": "number",
+      "prompt": { "en": "$P(E\\mid H)=0.9$, $P(H)=0.1$, $P(E)=0.3$: posterior $\\frac{0.9\\cdot0.1}{0.3}$?", "es": "$P(E\\mid H)=0.9$, $P(H)=0.1$, $P(E)=0.3$: posterior $\\frac{0.9\\cdot0.1}{0.3}$?" },
+      "answer": "0.3",
+      "acceptedAlt": ["0.9*0.1/0.3", "3/10"],
+      "hint": { "en": "0.09 / 0.3.", "es": "0.09 / 0.3." },
+      "solution": [ { "tex": "\\frac{0.09}{0.3} = 0.3", "en": "0.3.", "es": "0.3." } ]
+    }
+  ],
+  "references": [
+    { "source": "Pearl — Probabilistic Reasoning in Intelligent Systems (1988)", "detail": { "en": "Bayesian updating", "es": "Actualización bayesiana" } },
+    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 12, quantifying uncertainty", "es": "Cap. 12, cuantificar la incertidumbre" } }
+  ]
+}

@@ -356,7 +356,7 @@
       "id": "knowledge-representation",
       "icon": "🕸",
       "targetDays": 30,
-      "status": "coming-soon",
+      "status": "available",
       "plannedLessons": 14,
       "source": "Brachman & Levesque (2004); Pearl, Probabilistic Reasoning (1988)",
       "name": { "en": "Knowledge Representation & Reasoning", "es": "Representación del conocimiento y razonamiento" },
@@ -364,7 +364,22 @@
         "en": "Logic, ontologies, inference and probabilistic reasoning.",
         "es": "Lógica, ontologías, inferencia y razonamiento probabilístico."
       },
-      "lessons": []
+      "lessons": [
+        "knowledge-representation/lesson-01-what-is-kr.json",
+        "knowledge-representation/lesson-02-propositional-logic.json",
+        "knowledge-representation/lesson-03-truth-tables.json",
+        "knowledge-representation/lesson-04-inference.json",
+        "knowledge-representation/lesson-05-first-order-logic.json",
+        "knowledge-representation/lesson-06-ontologies.json",
+        "knowledge-representation/lesson-07-semantic-networks.json",
+        "knowledge-representation/lesson-08-description-logic.json",
+        "knowledge-representation/lesson-09-rule-based-systems.json",
+        "knowledge-representation/lesson-10-nonmonotonic.json",
+        "knowledge-representation/lesson-11-uncertainty-bayes.json",
+        "knowledge-representation/lesson-12-bayesian-networks.json",
+        "knowledge-representation/lesson-13-commonsense.json",
+        "knowledge-representation/lesson-14-knowledge-graphs.json"
+      ]
     },
     {
       "id": "computer-vision",

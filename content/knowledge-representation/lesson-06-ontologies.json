@@ -1,0 +1,80 @@
+{
+  "id": "kr-06-ontologies",
+  "subjectId": "knowledge-representation",
+  "order": 6,
+  "estimatedMinutes": 35,
+  "title": { "en": "Knowledge Bases & Ontologies", "es": "Bases de conocimiento y ontologías" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **knowledge base (KB)** is a structured collection of facts and rules an agent can query and reason over. To organize knowledge about a domain we build an **ontology**: a formal specification of the **concepts** (classes), their **properties**, and the **relationships** among them. Ontologies make knowledge sharable and machine-interpretable.",
+        "es": "Una **base de conocimiento (KB)** es una colección estructurada de hechos y reglas que un agente puede consultar y sobre la que puede razonar. Para organizar el conocimiento de un dominio construimos una **ontología**: una especificación formal de los **conceptos** (clases), sus **propiedades** y las **relaciones** entre ellos. Las ontologías hacen el conocimiento compartible e interpretable por máquinas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The backbone of most ontologies is the **is-a** (subclass) hierarchy, which supports **inheritance**: a Dog is-a Mammal is-a Animal, so a Dog inherits 'breathes' from Animal without restating it. The other key relation is **instance-of**, linking an individual (Fido) to its class (Dog). Together they form a **taxonomy**.",
+        "es": "La columna vertebral de la mayoría de ontologías es la jerarquía **es-un** (subclase), que soporta la **herencia**: un Perro es-un Mamífero es-un Animal, así que un Perro hereda 'respira' de Animal sin repetirlo. La otra relación clave es **instancia-de**, que liga un individuo (Fido) a su clase (Perro). Juntas forman una **taxonomía**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Real ontologies range from upper ontologies (Cyc) to web standards (**RDF**, **OWL**, the basis of the Semantic Web) to domain ontologies (Gene Ontology in biology). Inheritance is powerful but must handle exceptions — penguins are birds that don't fly — which leads to the non-monotonic reasoning covered later.",
+        "es": "Las ontologías reales van desde ontologías superiores (Cyc) hasta estándares web (**RDF**, **OWL**, base de la Web Semántica) y ontologías de dominio (Gene Ontology en biología). La herencia es potente pero debe manejar excepciones — los pingüinos son aves que no vuelan — lo que lleva al razonamiento no monótono que veremos después."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "In the chain Dog is-a Mammal is-a Animal, a Dog inherits properties from $2$ ancestor classes. If Animal has the property 'breathes', a Dog has it by inheritance without it being stated on Dog.",
+        "es": "En la cadena Perro es-un Mamífero es-un Animal, un Perro hereda propiedades de $2$ clases ancestro. Si Animal tiene la propiedad 'respira', un Perro la tiene por herencia sin que se indique en Perro."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-06-e1",
+      "answerType": "number",
+      "prompt": { "en": "In 'Dog is-a Mammal is-a Animal', how many ancestor classes does Dog inherit from?", "es": "En 'Perro es-un Mamífero es-un Animal', ¿de cuántas clases ancestro hereda Perro?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Mammal and Animal.", "es": "Mamífero y Animal." },
+      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "kr-06-e2",
+      "answerType": "text",
+      "prompt": { "en": "A formal specification of concepts and their relationships is an ___. (one word)", "es": "Una especificación formal de conceptos y sus relaciones es una ___. (una palabra)" },
+      "answer": "ontology",
+      "acceptedAlt": ["ontología", "ontologia"],
+      "hint": { "en": "Classes + relations.", "es": "Clases + relaciones." },
+      "solution": [ { "tex": "\\text{ontology}", "en": "Ontology.", "es": "Ontología." } ]
+    },
+    {
+      "id": "kr-06-e3",
+      "answerType": "text",
+      "prompt": { "en": "The subclass relation that enables inheritance is the ___-a relation. (one word)", "es": "La relación de subclase que permite la herencia es la relación ___-un. (una palabra)" },
+      "answer": "is",
+      "acceptedAlt": ["es"],
+      "hint": { "en": "___-a.", "es": "___-un." },
+      "solution": [ { "tex": "\\text{is-a}", "en": "Is.", "es": "Es." } ]
+    },
+    {
+      "id": "kr-06-e4",
+      "answerType": "text",
+      "prompt": { "en": "The web ontology language standard is ___ (acronym).", "es": "El estándar de lenguaje de ontologías web es ___ (siglas)." },
+      "answer": "owl",
+      "acceptedAlt": [],
+      "hint": { "en": "Web Ontology Language.", "es": "Web Ontology Language." },
+      "solution": [ { "tex": "\\text{OWL}", "en": "OWL.", "es": "OWL." } ]
+    }
+  ],
+  "references": [
+    { "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)", "detail": { "en": "Ch. on frames, inheritance and ontologies", "es": "Cap. sobre marcos, herencia y ontologías" } },
+    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 10, knowledge representation and ontologies", "es": "Cap. 10, representación del conocimiento y ontologías" } }
+  ]
+}

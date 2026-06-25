@@ -1,0 +1,79 @@
+{
+  "id": "kr-09-rule-systems",
+  "subjectId": "knowledge-representation",
+  "order": 9,
+  "estimatedMinutes": 35,
+  "title": { "en": "Rule-Based Systems", "es": "Sistemas basados en reglas" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **rule-based (production) system** represents knowledge as **if-then rules**: 'IF symptoms include fever and rash THEN consider measles'. It has three parts: a **rule base**, a **working memory** of current facts, and an **inference engine** that applies rules. These powered the **expert systems** of the 1980s like MYCIN and DENDRAL.",
+        "es": "Un **sistema basado en reglas (de producción)** representa el conocimiento como **reglas si-entonces**: 'SI los síntomas incluyen fiebre y erupción ENTONCES considera sarampión'. Tiene tres partes: una **base de reglas**, una **memoria de trabajo** de hechos actuales, y un **motor de inferencia** que aplica las reglas. Estos impulsaron los **sistemas expertos** de los años 80 como MYCIN y DENDRAL."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The engine reasons in one of two directions. **Forward chaining** is data-driven: start from known facts and fire rules to derive new facts until the goal appears. **Backward chaining** is goal-driven: start from the goal and work backward to find supporting facts — the strategy used by Prolog.",
+        "es": "El motor razona en una de dos direcciones. El **encadenamiento hacia delante (forward)** es guiado por datos: parte de hechos conocidos y dispara reglas para derivar nuevos hechos hasta que aparece la meta. El **encadenamiento hacia atrás (backward)** es guiado por metas: parte de la meta y trabaja hacia atrás para hallar hechos de apoyo — la estrategia que usa Prolog."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Rule systems are transparent — you can read the rules and trace exactly why a conclusion was reached, giving **explainability** that opaque neural models lack. Their weakness is **brittleness**: they only know what was explicitly encoded and degrade ungracefully outside it, plus large rule bases become hard to maintain and can conflict.",
+        "es": "Los sistemas de reglas son transparentes — puedes leer las reglas y trazar exactamente por qué se alcanzó una conclusión, dando una **explicabilidad** que los modelos neuronales opacos no tienen. Su debilidad es la **fragilidad**: solo saben lo que se codificó explícitamente y degradan mal fuera de ello, además de que grandes bases de reglas se vuelven difíciles de mantener y pueden entrar en conflicto."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Given the fact A and rules 'A→B', 'B→C', forward chaining derives $2$ new facts (B then C). Starting instead from goal C and searching backward for support is backward chaining.",
+        "es": "Dado el hecho A y las reglas 'A→B', 'B→C', el encadenamiento hacia delante deriva $2$ hechos nuevos (B y luego C). Partir en cambio de la meta C y buscar apoyo hacia atrás es encadenamiento hacia atrás."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-09-e1",
+      "answerType": "number",
+      "prompt": { "en": "Fact A, rules A→B and B→C: how many new facts does forward chaining derive?", "es": "Hecho A, reglas A→B y B→C: ¿cuántos hechos nuevos deriva el encadenamiento hacia delante?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "B and C.", "es": "B y C." },
+      "solution": [ { "tex": "2", "en": "Two (B, C).", "es": "Dos (B, C)." } ]
+    },
+    {
+      "id": "kr-09-e2",
+      "answerType": "text",
+      "prompt": { "en": "Reasoning from facts toward the goal is ___ chaining. (one word)", "es": "Razonar desde los hechos hacia la meta es encadenamiento hacia ___. (una palabra)" },
+      "answer": "forward",
+      "acceptedAlt": ["delante", "adelante"],
+      "hint": { "en": "Data-driven.", "es": "Guiado por datos." },
+      "solution": [ { "tex": "\\text{forward}", "en": "Forward.", "es": "Hacia delante." } ]
+    },
+    {
+      "id": "kr-09-e3",
+      "answerType": "text",
+      "prompt": { "en": "The 1980s AI systems built from rules were called ___ systems. (one word)", "es": "Los sistemas de IA de los 80 construidos con reglas se llamaban sistemas ___. (una palabra)" },
+      "answer": "expert",
+      "acceptedAlt": ["expertos", "experto"],
+      "hint": { "en": "MYCIN, DENDRAL.", "es": "MYCIN, DENDRAL." },
+      "solution": [ { "tex": "\\text{expert systems}", "en": "Expert.", "es": "Expertos." } ]
+    },
+    {
+      "id": "kr-09-e4",
+      "answerType": "text",
+      "prompt": { "en": "A key strength of rule systems vs neural nets is ___ (you can trace the reasoning). (one word)", "es": "Una fortaleza clave de los sistemas de reglas frente a las redes es la ___ (puedes trazar el razonamiento). (una palabra)" },
+      "answer": "explainability",
+      "acceptedAlt": ["explicabilidad", "transparency", "transparencia"],
+      "hint": { "en": "Transparent reasoning.", "es": "Razonamiento transparente." },
+      "solution": [ { "tex": "\\text{explainability}", "en": "Explainability.", "es": "Explicabilidad." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 9, inference in first-order logic; forward/backward chaining", "es": "Cap. 9, inferencia en lógica de primer orden; encadenamiento" } }
+  ]
+}

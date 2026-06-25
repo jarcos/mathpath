@@ -1,0 +1,79 @@
+{
+  "id": "kr-08-description-logic",
+  "subjectId": "knowledge-representation",
+  "order": 8,
+  "estimatedMinutes": 35,
+  "title": { "en": "Description Logics", "es": "Lógicas descriptivas" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Description logics (DLs)** are a family of logics designed as a careful **compromise**: more structured than full first-order logic, but restricted so that key reasoning tasks stay **decidable** and efficient. They give frames and ontologies a precise formal semantics and are the foundation of the Web Ontology Language OWL.",
+        "es": "Las **lógicas descriptivas (DL)** son una familia de lógicas diseñadas como un cuidadoso **compromiso**: más estructuradas que la lógica de primer orden completa, pero restringidas para que las tareas clave de razonamiento sigan siendo **decidibles** y eficientes. Dan a los marcos y ontologías una semántica formal precisa y son la base del lenguaje OWL."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A DL knowledge base has two parts. The **TBox** ('terminology') holds general class definitions — e.g. 'a Parent is a Person with at least one child'. The **ABox** ('assertions') holds facts about specific individuals — e.g. 'Maria is a Parent'. Reasoners then answer queries like **subsumption** (is class A a subclass of B?) and **instance checking**.",
+        "es": "Una base de conocimiento DL tiene dos partes. El **TBox** ('terminología') contiene definiciones generales de clases — p. ej. 'un Padre es una Persona con al menos un hijo'. El **ABox** ('aserciones') contiene hechos sobre individuos concretos — p. ej. 'María es un Padre'. Los razonadores responden entonces consultas como la **subsunción** (¿es la clase A subclase de B?) y la **comprobación de instancia**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "DLs build complex classes from atomic ones using **constructors**: intersection ($\\sqcap$), union ($\\sqcup$), negation, and restrictions on roles ($\\exists$, $\\forall$). The art is choosing a DL expressive enough for your domain while keeping reasoning tractable — exactly the expressiveness-vs-tractability trade-off that defines the field.",
+        "es": "Las DL construyen clases complejas a partir de atómicas usando **constructores**: intersección ($\\sqcap$), unión ($\\sqcup$), negación y restricciones sobre roles ($\\exists$, $\\forall$). El arte es elegir una DL lo bastante expresiva para tu dominio manteniendo tratable el razonamiento — justo el compromiso expresividad-vs-tratabilidad que define el campo."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A DL KB has $2$ components: the TBox (class definitions) and the ABox (individual facts). Checking whether 'Student ⊑ Person' (every student is a person) is a subsumption query.",
+        "es": "Una KB en DL tiene $2$ componentes: el TBox (definiciones de clases) y el ABox (hechos sobre individuos). Comprobar si 'Estudiante ⊑ Persona' (todo estudiante es una persona) es una consulta de subsunción."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-08-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many components does a DL knowledge base have (TBox + ABox)?", "es": "¿Cuántos componentes tiene una KB en DL (TBox + ABox)?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Terminology + assertions.", "es": "Terminología + aserciones." },
+      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "kr-08-e2",
+      "answerType": "text",
+      "prompt": { "en": "The part of a DL KB holding general class definitions is the ___. (one word)", "es": "La parte de una KB en DL con las definiciones generales de clases es el ___. (una palabra)" },
+      "answer": "tbox",
+      "acceptedAlt": ["t-box"],
+      "hint": { "en": "Terminology box.", "es": "Caja de terminología." },
+      "solution": [ { "tex": "\\text{TBox}", "en": "TBox.", "es": "TBox." } ]
+    },
+    {
+      "id": "kr-08-e3",
+      "answerType": "text",
+      "prompt": { "en": "Description logics are designed to keep reasoning ___. (one word)", "es": "Las lógicas descriptivas se diseñan para mantener el razonamiento ___. (una palabra)" },
+      "answer": "decidable",
+      "acceptedAlt": ["decidible"],
+      "hint": { "en": "Guaranteed to halt.", "es": "Garantiza detenerse." },
+      "solution": [ { "tex": "\\text{decidable}", "en": "Decidable.", "es": "Decidible." } ]
+    },
+    {
+      "id": "kr-08-e4",
+      "answerType": "text",
+      "prompt": { "en": "Checking if class A is a subclass of class B is a ___ query. (one word)", "es": "Comprobar si la clase A es subclase de la clase B es una consulta de ___. (una palabra)" },
+      "answer": "subsumption",
+      "acceptedAlt": ["subsunción", "subsuncion"],
+      "hint": { "en": "A ⊑ B.", "es": "A ⊑ B." },
+      "solution": [ { "tex": "A \\sqsubseteq B", "en": "Subsumption.", "es": "Subsunción." } ]
+    }
+  ],
+  "references": [
+    { "source": "Baader et al. — The Description Logic Handbook (2003)", "detail": { "en": "TBox, ABox, reasoning", "es": "TBox, ABox, razonamiento" } }
+  ]
+}

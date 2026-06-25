@@ -1,0 +1,79 @@
+{
+  "id": "kr-02-prop-logic",
+  "subjectId": "knowledge-representation",
+  "order": 2,
+  "estimatedMinutes": 35,
+  "title": { "en": "Propositional Logic", "es": "Lógica proposicional" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Propositional logic** is the simplest formal logic. Its atoms are **propositions** — statements that are either **true** or **false**, like $P$ = 'it is raining'. We combine them with **connectives**: negation $\\neg$, conjunction $\\wedge$ (and), disjunction $\\vee$ (or), implication $\\rightarrow$, and biconditional $\\leftrightarrow$.",
+        "es": "La **lógica proposicional** es la lógica formal más simple. Sus átomos son **proposiciones** — afirmaciones que son **verdaderas** o **falsas**, como $P$ = 'está lloviendo'. Las combinamos con **conectivas**: negación $\\neg$, conjunción $\\wedge$ (y), disyunción $\\vee$ (o), implicación $\\rightarrow$ y bicondicional $\\leftrightarrow$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Representing truth numerically, take $1$ for true and $0$ for false. Then **AND** behaves like the **minimum** (or product) of its inputs, and **OR** like the **maximum**: $1 \\wedge 0 = 0$, $1 \\vee 0 = 1$. Negation flips: $\\neg 1 = 0$. These map logic onto arithmetic you can compute and check.",
+        "es": "Representando la verdad numéricamente, toma $1$ para verdadero y $0$ para falso. Entonces **AND** se comporta como el **mínimo** (o producto) de sus entradas, y **OR** como el **máximo**: $1 \\wedge 0 = 0$, $1 \\vee 0 = 1$. La negación invierte: $\\neg 1 = 0$. Esto mapea la lógica sobre aritmética que puedes calcular y comprobar."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Implication $P \\rightarrow Q$ is true except in the single case where $P$ is true and $Q$ is false. A formula true under **every** assignment is a **tautology**; one true under **none** is a **contradiction**; one true under at least one is **satisfiable**. Determining satisfiability (SAT) is the prototypical NP-complete problem.",
+        "es": "La implicación $P \\rightarrow Q$ es verdadera salvo en el único caso en que $P$ es verdadera y $Q$ es falsa. Una fórmula verdadera bajo **toda** asignación es una **tautología**; una verdadera bajo **ninguna** es una **contradicción**; una verdadera bajo al menos una es **satisfacible**. Determinar la satisfacibilidad (SAT) es el problema NP-completo prototípico."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With $1$=true, $0$=false: $P \\wedge Q$ for $P=1, Q=0$ is $\\min(1,0) = 0$. $P \\vee Q$ is $\\max(1,0) = 1$. $\\neg P$ for $P=1$ is $1 - 1 = 0$.",
+        "es": "Con $1$=verdadero, $0$=falso: $P \\wedge Q$ para $P=1, Q=0$ es $\\min(1,0) = 0$. $P \\vee Q$ es $\\max(1,0) = 1$. $\\neg P$ para $P=1$ es $1 - 1 = 0$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-02-e1",
+      "answerType": "number",
+      "prompt": { "en": "$P \\wedge Q$ with $P=1$, $Q=0$ (use min): $\\min(1,0)$?", "es": "$P \\wedge Q$ con $P=1$, $Q=0$ (usa min): $\\min(1,0)$?" },
+      "answer": "0",
+      "acceptedAlt": ["min(1,0)", "1*0"],
+      "hint": { "en": "AND needs both true.", "es": "AND necesita ambos verdaderos." },
+      "solution": [ { "tex": "\\min(1,0)=0", "en": "False.", "es": "Falso." } ]
+    },
+    {
+      "id": "kr-02-e2",
+      "answerType": "number",
+      "prompt": { "en": "$P \\vee Q$ with $P=1$, $Q=0$ (use max): $\\max(1,0)$?", "es": "$P \\vee Q$ con $P=1$, $Q=0$ (usa max): $\\max(1,0)$?" },
+      "answer": "1",
+      "acceptedAlt": ["max(1,0)"],
+      "hint": { "en": "OR needs one true.", "es": "OR necesita uno verdadero." },
+      "solution": [ { "tex": "\\max(1,0)=1", "en": "True.", "es": "Verdadero." } ]
+    },
+    {
+      "id": "kr-02-e3",
+      "answerType": "number",
+      "prompt": { "en": "$\\neg P$ with $P=1$ (use $1-P$): compute.", "es": "$\\neg P$ con $P=1$ (usa $1-P$): calcula." },
+      "answer": "0",
+      "acceptedAlt": ["1-1"],
+      "hint": { "en": "Flip true to false.", "es": "Invierte verdadero a falso." },
+      "solution": [ { "tex": "1-1=0", "en": "False.", "es": "Falso." } ]
+    },
+    {
+      "id": "kr-02-e4",
+      "answerType": "text",
+      "prompt": { "en": "A formula true under every assignment is a ___. (one word)", "es": "Una fórmula verdadera bajo toda asignación es una ___. (una palabra)" },
+      "answer": "tautology",
+      "acceptedAlt": ["tautología", "tautologia"],
+      "hint": { "en": "Always true.", "es": "Siempre verdadera." },
+      "solution": [ { "tex": "\\top", "en": "Tautology.", "es": "Tautología." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 7, propositional logic", "es": "Cap. 7, lógica proposicional" } }
+  ]
+}

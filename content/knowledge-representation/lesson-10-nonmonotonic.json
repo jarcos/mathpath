@@ -1,0 +1,80 @@
+{
+  "id": "kr-10-nonmonotonic",
+  "subjectId": "knowledge-representation",
+  "order": 10,
+  "estimatedMinutes": 35,
+  "title": { "en": "Default & Non-Monotonic Reasoning", "es": "Razonamiento por defecto y no monótono" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Classical logic is **monotonic**: adding facts never retracts a conclusion. But commonsense reasoning isn't like that. 'Birds fly' is a useful **default**, yet learning that Tweety is a penguin should **retract** the conclusion that Tweety flies. Reasoning where new information can cancel old conclusions is **non-monotonic**.",
+        "es": "La lógica clásica es **monótona**: añadir hechos nunca retracta una conclusión. Pero el razonamiento de sentido común no es así. 'Las aves vuelan' es un **defecto** útil, pero saber que Tweety es un pingüino debería **retractar** la conclusión de que Tweety vuela. El razonamiento donde la información nueva puede cancelar conclusiones antiguas es **no monótono**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Formalisms capture this. **Default logic** (Reiter) adds rules of the form 'if $P$ and it is consistent to assume $Q$, then conclude $Q$'. **Circumscription** and the **closed-world assumption** (anything not provable is taken as false, as in databases) are other approaches. They let agents jump to reasonable conclusions and revise them later.",
+        "es": "Hay formalismos que lo capturan. La **lógica por defecto** (Reiter) añade reglas de la forma 'si $P$ y es consistente asumir $Q$, entonces concluye $Q$'. La **circunscripción** y la **hipótesis del mundo cerrado** (todo lo no demostrable se toma como falso, como en bases de datos) son otros enfoques. Permiten a los agentes saltar a conclusiones razonables y revisarlas después."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Defaults handle **exceptions** via specificity: the specific fact ('penguins don't fly') overrides the general default ('birds fly'). This is exactly the inheritance-with-exceptions problem from ontologies. Non-monotonic reasoning is essential for robust commonsense AI, and remains a hard, active research area.",
+        "es": "Los defectos manejan **excepciones** por especificidad: el hecho específico ('los pingüinos no vuelan') anula el defecto general ('las aves vuelan'). Este es justo el problema de herencia con excepciones de las ontologías. El razonamiento no monótono es esencial para una IA robusta de sentido común, y sigue siendo un área difícil y activa de investigación."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Default 'birds fly' lets us conclude Tweety flies. Adding 'Tweety is a penguin' (penguins don't fly) retracts that conclusion — so the number of flying birds among {Tweety} drops from $1$ to $0$. This retraction is impossible in monotonic logic.",
+        "es": "El defecto 'las aves vuelan' nos deja concluir que Tweety vuela. Añadir 'Tweety es un pingüino' (los pingüinos no vuelan) retracta esa conclusión — así el número de aves voladoras entre {Tweety} baja de $1$ a $0$. Esta retractación es imposible en lógica monótona."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "After learning Tweety (a bird) is a penguin, how many flying birds remain in {Tweety}?", "es": "Tras saber que Tweety (un ave) es un pingüino, ¿cuántas aves voladoras quedan en {Tweety}?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "Penguins don't fly.", "es": "Los pingüinos no vuelan." },
+      "solution": [ { "tex": "0", "en": "Zero.", "es": "Cero." } ]
+    },
+    {
+      "id": "kr-10-e2",
+      "answerType": "text",
+      "prompt": { "en": "Logic where new facts never retract conclusions is ___. (one word)", "es": "La lógica donde los nuevos hechos nunca retractan conclusiones es ___. (una palabra)" },
+      "answer": "monotonic",
+      "acceptedAlt": ["monótona", "monotona", "monotonica", "monotónica"],
+      "hint": { "en": "Classical logic.", "es": "Lógica clásica." },
+      "solution": [ { "tex": "\\text{monotonic}", "en": "Monotonic.", "es": "Monótona." } ]
+    },
+    {
+      "id": "kr-10-e3",
+      "answerType": "text",
+      "prompt": { "en": "'Birds fly' used unless contradicted is a ___ rule. (one word)", "es": "'Las aves vuelan' usado salvo contradicción es una regla por ___. (una palabra)" },
+      "answer": "default",
+      "acceptedAlt": ["defecto", "por defecto"],
+      "hint": { "en": "Default logic.", "es": "Lógica por defecto." },
+      "solution": [ { "tex": "\\text{default}", "en": "Default.", "es": "Defecto." } ]
+    },
+    {
+      "id": "kr-10-e4",
+      "answerType": "text",
+      "prompt": { "en": "Treating anything not provable as false is the closed-___ assumption. (one word)", "es": "Tomar todo lo no demostrable como falso es la hipótesis del mundo ___. (una palabra)" },
+      "answer": "world",
+      "acceptedAlt": ["mundo", "cerrado"],
+      "hint": { "en": "Closed-___ assumption.", "es": "Mundo ___." },
+      "solution": [ { "tex": "\\text{closed-world}", "en": "World.", "es": "Mundo (cerrado)." } ]
+    }
+  ],
+  "references": [
+    { "source": "Reiter — A Logic for Default Reasoning (1980)", "detail": { "en": "Default logic", "es": "Lógica por defecto" } },
+    { "source": "Brachman & Levesque — Knowledge Representation and Reasoning (2004)", "detail": { "en": "Defaults and non-monotonic reasoning", "es": "Defectos y razonamiento no monótono" } }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "kr-03-truth-tables",
+  "subjectId": "knowledge-representation",
+  "order": 3,
+  "estimatedMinutes": 30,
+  "title": { "en": "Truth Tables", "es": "Tablas de verdad" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **truth table** lists the truth value of a formula for **every** combination of its variables. With $n$ propositional variables there are $2^n$ rows, because each variable independently is true or false. Truth tables give a mechanical, exhaustive way to test validity, equivalence, and satisfiability.",
+        "es": "Una **tabla de verdad** lista el valor de verdad de una fórmula para **cada** combinación de sus variables. Con $n$ variables proposicionales hay $2^n$ filas, porque cada variable es independientemente verdadera o falsa. Las tablas de verdad dan una forma mecánica y exhaustiva de probar validez, equivalencia y satisfacibilidad."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "They also prove **logical equivalences**. Two formulas are equivalent if their columns match in every row. The classic **De Morgan's laws** are $\\neg(P \\wedge Q) \\equiv \\neg P \\vee \\neg Q$ and $\\neg(P \\vee Q) \\equiv \\neg P \\wedge \\neg Q$ — negation turns AND into OR and vice versa, distributing across the terms.",
+        "es": "También demuestran **equivalencias lógicas**. Dos fórmulas son equivalentes si sus columnas coinciden en cada fila. Las clásicas **leyes de De Morgan** son $\\neg(P \\wedge Q) \\equiv \\neg P \\vee \\neg Q$ y $\\neg(P \\vee Q) \\equiv \\neg P \\wedge \\neg Q$ — la negación convierte AND en OR y viceversa, distribuyéndose sobre los términos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The exponential row count, $2^n$, is exactly why truth tables don't scale — checking a formula with $50$ variables would need over a quadrillion rows. This combinatorial explosion motivates smarter inference algorithms (resolution, DPLL/SAT solvers) instead of brute-force enumeration.",
+        "es": "El recuento exponencial de filas, $2^n$, es justo por lo que las tablas de verdad no escalan — comprobar una fórmula con $50$ variables necesitaría más de un cuatrillón de filas. Esta explosión combinatoria motiva algoritmos de inferencia más inteligentes (resolución, solucionadores DPLL/SAT) en lugar de la enumeración por fuerza bruta."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A formula with $3$ variables has $2^3 = 8$ rows. By De Morgan, $\\neg(P \\wedge Q)$ with $P=1, Q=1$ equals $\\neg P \\vee \\neg Q = 0 \\vee 0 = 0$.",
+        "es": "Una fórmula con $3$ variables tiene $2^3 = 8$ filas. Por De Morgan, $\\neg(P \\wedge Q)$ con $P=1, Q=1$ es igual a $\\neg P \\vee \\neg Q = 0 \\vee 0 = 0$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "Rows in a truth table with 3 variables: $2^3$?", "es": "Filas en una tabla de verdad con 3 variables: $2^3$?" },
+      "answer": "8",
+      "acceptedAlt": ["2^3"],
+      "hint": { "en": "2 to the 3rd.", "es": "2 a la 3." },
+      "solution": [ { "tex": "2^3 = 8", "en": "Eight.", "es": "Ocho." } ]
+    },
+    {
+      "id": "kr-03-e2",
+      "answerType": "number",
+      "prompt": { "en": "Rows for 5 variables: $2^5$?", "es": "Filas para 5 variables: $2^5$?" },
+      "answer": "32",
+      "acceptedAlt": ["2^5"],
+      "hint": { "en": "2 to the 5th.", "es": "2 a la 5." },
+      "solution": [ { "tex": "2^5 = 32", "en": "32.", "es": "32." } ]
+    },
+    {
+      "id": "kr-03-e3",
+      "answerType": "number",
+      "prompt": { "en": "De Morgan: $\\neg(P\\wedge Q)$ with $P=1,Q=1$ equals $\\neg P\\vee\\neg Q = \\max(0,0)$?", "es": "De Morgan: $\\neg(P\\wedge Q)$ con $P=1,Q=1$ es $\\neg P\\vee\\neg Q = \\max(0,0)$?" },
+      "answer": "0",
+      "acceptedAlt": ["max(0,0)"],
+      "hint": { "en": "Both negations are 0.", "es": "Ambas negaciones son 0." },
+      "solution": [ { "tex": "\\max(0,0)=0", "en": "False.", "es": "Falso." } ]
+    },
+    {
+      "id": "kr-03-e4",
+      "answerType": "text",
+      "prompt": { "en": "The laws relating $\\neg(P\\wedge Q)$ to $\\neg P\\vee\\neg Q$ are ___ De Morgan's laws (surname). (one word)", "es": "Las leyes que relacionan $\\neg(P\\wedge Q)$ con $\\neg P\\vee\\neg Q$ son las leyes de ___ (apellido). (una palabra)" },
+      "answer": "morgan",
+      "acceptedAlt": ["de morgan", "demorgan"],
+      "hint": { "en": "De ___.", "es": "De ___." },
+      "solution": [ { "tex": "\\text{De Morgan}", "en": "Morgan.", "es": "Morgan." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russell & Norvig — Artificial Intelligence: A Modern Approach", "detail": { "en": "Ch. 7.4, propositional theorem proving; logical equivalences", "es": "Cap. 7.4, demostración de teoremas proposicionales; equivalencias lógicas" } }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "kr-14-knowledge-graphs",
+  "subjectId": "knowledge-representation",
+  "order": 14,
+  "estimatedMinutes": 35,
+  "title": { "en": "Knowledge Graphs", "es": "Grafos de conocimiento" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **knowledge graph** is the modern, web-scale descendant of semantic networks: facts stored as **triples** of the form (subject, predicate, object), e.g. (Einstein, bornIn, Ulm). Each triple is an edge in a giant graph. This simple, uniform format scales to billions of facts and powers search engines, virtual assistants and recommendation.",
+        "es": "Un **grafo de conocimiento** es el descendiente moderno y a escala web de las redes semánticas: hechos almacenados como **tripletas** de la forma (sujeto, predicado, objeto), p. ej. (Einstein, nacióEn, Ulm). Cada tripleta es una arista de un grafo gigante. Este formato simple y uniforme escala a miles de millones de hechos e impulsa los buscadores, asistentes virtuales y recomendación."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The standard data model is **RDF** (triples), queried with **SPARQL**, with schema/constraints expressed in RDFS/OWL. Public knowledge graphs include **Wikidata**, **DBpedia** and Google's Knowledge Graph; enterprises build private ones over their data. The triple count and link structure let queries traverse relationships flexibly.",
+        "es": "El modelo de datos estándar es **RDF** (tripletas), consultado con **SPARQL**, con esquema/restricciones expresados en RDFS/OWL. Grafos de conocimiento públicos incluyen **Wikidata**, **DBpedia** y el Knowledge Graph de Google; las empresas construyen los suyos privados sobre sus datos. El número de tripletas y la estructura de enlaces permiten que las consultas recorran relaciones con flexibilidad."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Knowledge graphs bridge symbolic KR and machine learning. **Knowledge graph embeddings** (TransE, etc.) map entities and relations to vectors so missing links can be predicted by similarity — **link prediction**. This fusion of explicit structure with learned representations is a leading direction in **neuro-symbolic** AI, closing the loop with everything in this track.",
+        "es": "Los grafos de conocimiento tienden un puente entre la KR simbólica y el aprendizaje automático. Los **embeddings de grafos de conocimiento** (TransE, etc.) mapean entidades y relaciones a vectores para predecir enlaces faltantes por similitud — **predicción de enlaces**. Esta fusión de estructura explícita con representaciones aprendidas es una dirección puntera en la IA **neuro-simbólica**, cerrando el círculo con todo lo de esta ruta."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "The fact (Einstein, bornIn, Ulm) is a triple — it has $3$ parts: subject, predicate, object. A graph storing $1000$ such facts has $1000$ edges.",
+        "es": "El hecho (Einstein, nacióEn, Ulm) es una tripleta — tiene $3$ partes: sujeto, predicado, objeto. Un grafo que almacena $1000$ hechos así tiene $1000$ aristas."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "kr-14-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many parts does an RDF triple have (subject, predicate, object)?", "es": "¿Cuántas partes tiene una tripleta RDF (sujeto, predicado, objeto)?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "Triple.", "es": "Tripleta." },
+      "solution": [ { "tex": "3", "en": "Three.", "es": "Tres." } ]
+    },
+    {
+      "id": "kr-14-e2",
+      "answerType": "text",
+      "prompt": { "en": "Knowledge-graph facts are stored as ___ (subject-predicate-object). (one word)", "es": "Los hechos de un grafo de conocimiento se guardan como ___ (sujeto-predicado-objeto). (una palabra)" },
+      "answer": "triples",
+      "acceptedAlt": ["tripletas", "triple", "tripleta"],
+      "hint": { "en": "Three-part facts.", "es": "Hechos de tres partes." },
+      "solution": [ { "tex": "(s,p,o)", "en": "Triples.", "es": "Tripletas." } ]
+    },
+    {
+      "id": "kr-14-e3",
+      "answerType": "text",
+      "prompt": { "en": "The query language for RDF knowledge graphs is ___. (one word)", "es": "El lenguaje de consulta para grafos RDF es ___. (una palabra)" },
+      "answer": "sparql",
+      "acceptedAlt": [],
+      "hint": { "en": "Like SQL for graphs.", "es": "Como SQL para grafos." },
+      "solution": [ { "tex": "\\text{SPARQL}", "en": "SPARQL.", "es": "SPARQL." } ]
+    },
+    {
+      "id": "kr-14-e4",
+      "answerType": "text",
+      "prompt": { "en": "Predicting missing edges via embeddings is link ___. (one word)", "es": "Predecir aristas faltantes mediante embeddings es ___ de enlaces. (una palabra)" },
+      "answer": "prediction",
+      "acceptedAlt": ["predicción", "prediccion"],
+      "hint": { "en": "Link ___.", "es": "Predicción de ___." },
+      "solution": [ { "tex": "\\text{link prediction}", "en": "Prediction.", "es": "Predicción." } ]
+    }
+  ],
+  "references": [
+    { "source": "Hogan et al. — Knowledge Graphs (ACM Computing Surveys, 2021)", "detail": { "en": "RDF, triples, knowledge graphs", "es": "RDF, tripletas, grafos de conocimiento" } },
+    { "source": "Bordes et al. — Translating Embeddings for Modeling Multi-relational Data (TransE, 2013)", "detail": { "en": "Knowledge-graph embeddings", "es": "Embeddings de grafos de conocimiento" } }
+  ]
+}
