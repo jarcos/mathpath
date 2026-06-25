@@ -1,0 +1,79 @@
+{
+  "id": "ai-11-life",
+  "subjectId": "active-inference",
+  "order": 11,
+  "estimatedMinutes": 35,
+  "title": { "en": "Free Energy, Life & Homeostasis", "es": "Energía libre, vida y homeostasis" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The FEP reaches beyond brains to **life itself**. Any organism that maintains its boundary against decay must keep its internal states within viable bounds — body temperature, glucose, pH. This **homeostasis** is reframed as minimizing the surprise of interoceptive (internal) sensations: the body acts to stay in its expected, life-compatible states.",
+        "es": "El FEP llega más allá de los cerebros hasta la **vida misma**. Todo organismo que mantiene su frontera frente a la decadencia debe conservar sus estados internos dentro de límites viables — temperatura corporal, glucosa, pH. Esta **homeostasis** se reformula como minimizar la sorpresa de las sensaciones interoceptivas (internas): el cuerpo actúa para permanecer en sus estados esperados, compatibles con la vida."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Active control of internal states by anticipating needs is **allostasis** — stability through change. Hunger, thirst and thermoregulation become active inference over the body's expected setpoints: the agent acts (eats, drinks, seeks shade) to fulfill the prediction that its internal milieu stays within bounds, pre-empting rather than merely reacting.",
+        "es": "El control activo de los estados internos anticipando necesidades es la **alostasis** — estabilidad mediante el cambio. El hambre, la sed y la termorregulación se vuelven inferencia activa sobre los puntos de ajuste esperados del cuerpo: el agente actúa (come, bebe, busca sombra) para cumplir la predicción de que su medio interno se mantiene dentro de límites, anticipándose en vez de solo reaccionar."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This bridges mind and biology: emotions and drives can be read as the felt side of interoceptive inference about bodily states. The FEP thus offers a single currency — surprise/free energy — linking metabolism, physiology, perception, action and even affect, which is its grand and controversial ambition.",
+        "es": "Esto tiende un puente entre mente y biología: las emociones y los impulsos pueden leerse como el lado sentido de la inferencia interoceptiva sobre los estados corporales. El FEP ofrece así una sola moneda — sorpresa/energía libre — que liga el metabolismo, la fisiología, la percepción, la acción e incluso el afecto, lo cual es su ambición grandiosa y controvertida."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Maintaining internal states within viable bounds is homeostasis. Anticipatory regulation — acting before a need becomes critical — is called allostasis.",
+        "es": "Mantener los estados internos dentro de límites viables es la homeostasis. La regulación anticipatoria — actuar antes de que una necesidad sea crítica — se llama alostasis."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ai-11-e1",
+      "answerType": "text",
+      "prompt": { "en": "Keeping internal states (temperature, glucose) within viable bounds is ___. (one word)", "es": "Mantener los estados internos (temperatura, glucosa) dentro de límites viables es la ___. (una palabra)" },
+      "answer": "homeostasis",
+      "acceptedAlt": [],
+      "hint": { "en": "Internal stability.", "es": "Estabilidad interna." },
+      "solution": [ { "tex": "\\text{homeostasis}", "en": "Homeostasis.", "es": "Homeostasis." } ]
+    },
+    {
+      "id": "ai-11-e2",
+      "answerType": "text",
+      "prompt": { "en": "Anticipatory regulation (stability through change) is ___. (one word)", "es": "La regulación anticipatoria (estabilidad mediante el cambio) es la ___. (una palabra)" },
+      "answer": "allostasis",
+      "acceptedAlt": ["alostasis"],
+      "hint": { "en": "Allo-stasis.", "es": "Alo-stasis." },
+      "solution": [ { "tex": "\\text{allostasis}", "en": "Allostasis.", "es": "Alostasis." } ]
+    },
+    {
+      "id": "ai-11-e3",
+      "answerType": "text",
+      "prompt": { "en": "Sensing the body's internal states is ___ perception. (one word)", "es": "Percibir los estados internos del cuerpo es la percepción ___. (una palabra)" },
+      "answer": "interoceptive",
+      "acceptedAlt": ["interoceptiva", "interoception", "interocepción", "interocepcion"],
+      "hint": { "en": "Inner sensing.", "es": "Percepción interna." },
+      "solution": [ { "tex": "\\text{interoception}", "en": "Interoceptive.", "es": "Interoceptiva." } ]
+    },
+    {
+      "id": "ai-11-e4",
+      "answerType": "text",
+      "prompt": { "en": "Homeostasis is reframed as minimizing the ___ of internal sensations. (one word)", "es": "La homeostasis se reformula como minimizar la ___ de las sensaciones internas. (una palabra)" },
+      "answer": "surprise",
+      "acceptedAlt": ["sorpresa"],
+      "hint": { "en": "Same as the FEP target.", "es": "El mismo objetivo del FEP." },
+      "solution": [ { "tex": "-\\log p(o)", "en": "Surprise.", "es": "Sorpresa." } ]
+    }
+  ],
+  "references": [
+    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 3, 10, life, homeostasis and allostasis", "es": "Cap. 3, 10, vida, homeostasis y alostasis" } }
+  ]
+}

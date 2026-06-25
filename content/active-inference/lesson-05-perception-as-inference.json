@@ -1,0 +1,79 @@
+{
+  "id": "ai-05-perception",
+  "subjectId": "active-inference",
+  "order": 5,
+  "estimatedMinutes": 35,
+  "title": { "en": "Perception as Inference", "es": "La percepción como inferencia" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Active inference treats **perception** as unconscious **inference** — an idea tracing back to Helmholtz. We do not passively receive a picture of the world; the brain actively infers the most likely hidden causes of its sensations, updating beliefs $q(s)$ to minimize free energy. Perception is the brain's best **hypothesis** about what's out there.",
+        "es": "La inferencia activa trata la **percepción** como **inferencia** inconsciente — una idea que se remonta a Helmholtz. No recibimos pasivamente una imagen del mundo; el cerebro infiere activamente las causas ocultas más probables de sus sensaciones, actualizando las creencias $q(s)$ para minimizar la energía libre. La percepción es la mejor **hipótesis** del cerebro sobre lo que hay fuera."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This explains **illusions** and **ambiguous** figures: when sensory data underdetermines the cause, priors decide what we see, and bistable images (the Necker cube, duck-rabbit) flip between equally good explanations. Perception is a construction, shaped as much by expectation as by input.",
+        "es": "Esto explica las **ilusiones** y las figuras **ambiguas**: cuando los datos sensoriales no determinan la causa, las previas deciden lo que vemos, y las imágenes biestables (el cubo de Necker, el pato-conejo) alternan entre explicaciones igual de buenas. La percepción es una construcción, moldeada tanto por la expectativa como por la entrada."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Mathematically, minimizing free energy with respect to beliefs implements **Bayesian updating**: combine prior and likelihood to get the posterior. Strong priors plus weak evidence yield a belief close to the prior; strong evidence pulls it toward the data. Perception is thus a precision-weighted compromise between what we expect and what we sense.",
+        "es": "Matemáticamente, minimizar la energía libre respecto a las creencias implementa la **actualización bayesiana**: combinar previa y verosimilitud para obtener el posterior. Previas fuertes más evidencia débil dan una creencia cercana a la previa; la evidencia fuerte la tira hacia los datos. La percepción es así un compromiso ponderado por precisión entre lo que esperamos y lo que percibimos."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A bistable image like the Necker cube has $2$ equally likely interpretations, so perception flips between them. Perception minimizes free energy with respect to beliefs — i.e., it performs Bayesian inference.",
+        "es": "Una imagen biestable como el cubo de Necker tiene $2$ interpretaciones igual de probables, así que la percepción alterna entre ellas. La percepción minimiza la energía libre respecto a las creencias — es decir, realiza inferencia bayesiana."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ai-05-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many stable interpretations does a bistable figure (Necker cube) have?", "es": "¿Cuántas interpretaciones estables tiene una figura biestable (cubo de Necker)?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Bi-stable.", "es": "Bi-estable." },
+      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "ai-05-e2",
+      "answerType": "text",
+      "prompt": { "en": "Perception is unconscious ___ of hidden causes. (one word)", "es": "La percepción es ___ inconsciente de causas ocultas. (una palabra)" },
+      "answer": "inference",
+      "acceptedAlt": ["inferencia"],
+      "hint": { "en": "Helmholtz's idea.", "es": "La idea de Helmholtz." },
+      "solution": [ { "tex": "\\text{inference}", "en": "Inference.", "es": "Inferencia." } ]
+    },
+    {
+      "id": "ai-05-e3",
+      "answerType": "text",
+      "prompt": { "en": "When data underdetermines the cause, ___ decide what we see. (one word)", "es": "Cuando los datos no determinan la causa, las ___ deciden lo que vemos. (una palabra)" },
+      "answer": "priors",
+      "acceptedAlt": ["previas", "prior", "previa"],
+      "hint": { "en": "Prior expectations.", "es": "Expectativas previas." },
+      "solution": [ { "tex": "p(s)", "en": "Priors.", "es": "Previas." } ]
+    },
+    {
+      "id": "ai-05-e4",
+      "answerType": "text",
+      "prompt": { "en": "Minimizing free energy over beliefs implements ___ updating. (one word)", "es": "Minimizar la energía libre sobre las creencias implementa la actualización ___. (una palabra)" },
+      "answer": "bayesian",
+      "acceptedAlt": ["bayesiana"],
+      "hint": { "en": "Bayes.", "es": "Bayes." },
+      "solution": [ { "tex": "\\text{Bayesian}", "en": "Bayesian.", "es": "Bayesiana." } ]
+    }
+  ],
+  "references": [
+    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 4–5, perceptual inference", "es": "Cap. 4–5, inferencia perceptual" } }
+  ]
+}

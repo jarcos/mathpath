@@ -1,0 +1,79 @@
+{
+  "id": "ai-04-vfe",
+  "subjectId": "active-inference",
+  "order": 4,
+  "estimatedMinutes": 40,
+  "title": { "en": "Variational Free Energy", "es": "Energía libre variacional" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Variational free energy** $F$ is the quantity active inference minimizes. One useful decomposition is $F = \\text{Complexity} - \\text{Accuracy}$: accuracy rewards beliefs that explain the data, while complexity penalizes beliefs that stray far from the prior. Minimizing $F$ balances fitting the evidence against staying simple.",
+        "es": "La **energía libre variacional** $F$ es la cantidad que la inferencia activa minimiza. Una descomposición útil es $F = \\text{Complejidad} - \\text{Precisión(ajuste)}$: el ajuste premia las creencias que explican los datos, mientras que la complejidad penaliza las creencias que se alejan de la previa. Minimizar $F$ equilibra ajustar la evidencia con mantenerse simple."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A second decomposition reveals the bound: $F = \\text{Surprise} + \\text{KL}\\big(q(s)\\,\\|\\,p(s\\mid o)\\big)$. The **KL divergence** measures how far the approximate posterior $q$ is from the true posterior $p$. Since KL is always $\\ge 0$, $F$ is always $\\ge$ surprise — minimizing $F$ both improves the belief and tightens the bound on surprise.",
+        "es": "Una segunda descomposición revela la cota: $F = \\text{Sorpresa} + \\text{KL}\\big(q(s)\\,\\|\\,p(s\\mid o)\\big)$. La **divergencia KL** mide cuán lejos está el posterior aproximado $q$ del verdadero $p$. Como la KL es siempre $\\ge 0$, $F$ es siempre $\\ge$ sorpresa — minimizar $F$ mejora la creencia y aprieta la cota sobre la sorpresa."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "When $q$ exactly equals the true posterior, the KL term is $0$ and free energy equals surprise — the bound is tight and inference is exact. This is the same **variational inference** / ELBO machinery used in variational autoencoders, showing active inference and modern machine learning share deep mathematical roots.",
+        "es": "Cuando $q$ es exactamente igual al posterior verdadero, el término KL es $0$ y la energía libre es igual a la sorpresa — la cota es ajustada y la inferencia es exacta. Esta es la misma maquinaria de **inferencia variacional** / ELBO usada en los autocodificadores variacionales, mostrando que la inferencia activa y el aprendizaje automático moderno comparten raíces matemáticas profundas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If $q$ equals the true posterior, the KL divergence is $0$, so $F = \\text{surprise} + 0 = \\text{surprise}$. With complexity $3$ and accuracy $5$, $F = 3 - 5 = -2$.",
+        "es": "Si $q$ es igual al posterior verdadero, la divergencia KL es $0$, así que $F = \\text{sorpresa} + 0 = \\text{sorpresa}$. Con complejidad $3$ y ajuste $5$, $F = 3 - 5 = -2$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ai-04-e1",
+      "answerType": "number",
+      "prompt": { "en": "KL divergence between two identical distributions?", "es": "¿Divergencia KL entre dos distribuciones idénticas?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "No difference.", "es": "Sin diferencia." },
+      "solution": [ { "tex": "\\text{KL}=0", "en": "Zero.", "es": "Cero." } ]
+    },
+    {
+      "id": "ai-04-e2",
+      "answerType": "number",
+      "prompt": { "en": "Free energy $F = $ complexity − accuracy with complexity 3, accuracy 5?", "es": "Energía libre $F = $ complejidad − ajuste con complejidad 3, ajuste 5?" },
+      "answer": "-2",
+      "acceptedAlt": ["3-5"],
+      "hint": { "en": "3 − 5.", "es": "3 − 5." },
+      "solution": [ { "tex": "3-5 = -2", "en": "−2.", "es": "−2." } ]
+    },
+    {
+      "id": "ai-04-e3",
+      "answerType": "text",
+      "prompt": { "en": "The measure of how far $q$ is from the true posterior is the ___ divergence. (one word/abbr)", "es": "La medida de cuán lejos está $q$ del posterior verdadero es la divergencia ___. (una palabra/abrev)" },
+      "answer": "kl",
+      "acceptedAlt": ["kullback-leibler", "kullback"],
+      "hint": { "en": "Kullback–Leibler.", "es": "Kullback–Leibler." },
+      "solution": [ { "tex": "\\text{KL}", "en": "KL.", "es": "KL." } ]
+    },
+    {
+      "id": "ai-04-e4",
+      "answerType": "number",
+      "prompt": { "en": "Since KL ≥ 0, the minimum possible value of $F - \\text{surprise}$ is?", "es": "Como KL ≥ 0, el valor mínimo posible de $F - \\text{sorpresa}$ es?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "KL bottoms out at 0.", "es": "KL llega a 0." },
+      "solution": [ { "tex": "0", "en": "Zero (tight bound).", "es": "Cero (cota ajustada)." } ]
+    }
+  ],
+  "references": [
+    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 2, 4, variational free energy", "es": "Cap. 2, 4, energía libre variacional" } }
+  ]
+}

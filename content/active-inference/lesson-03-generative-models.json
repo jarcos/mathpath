@@ -1,0 +1,79 @@
+{
+  "id": "ai-03-generative",
+  "subjectId": "active-inference",
+  "order": 3,
+  "estimatedMinutes": 35,
+  "title": { "en": "Generative Models & the Bayesian Brain", "es": "Modelos generativos y el cerebro bayesiano" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Active inference assumes the brain holds a **generative model** — an internal model of how hidden causes in the world produce sensations. Formally it is a joint distribution $p(o, s)$ over observations $o$ and hidden states $s$, factorized as the **likelihood** $p(o\\mid s)$ times the **prior** $p(s)$.",
+        "es": "La inferencia activa asume que el cerebro alberga un **modelo generativo** — un modelo interno de cómo las causas ocultas del mundo producen sensaciones. Formalmente es una distribución conjunta $p(o, s)$ sobre observaciones $o$ y estados ocultos $s$, factorizada como la **verosimilitud** $p(o\\mid s)$ por la **previa** $p(s)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Perception inverts this model: given sensations, infer the hidden causes via Bayes' rule, $p(s\\mid o) = \\dfrac{p(o\\mid s)\\,p(s)}{p(o)}$. This is the **Bayesian brain** hypothesis — the brain as an inference engine that combines prior expectations with sensory evidence to form **posterior** beliefs about the world.",
+        "es": "La percepción invierte este modelo: dadas las sensaciones, inferir las causas ocultas vía la regla de Bayes, $p(s\\mid o) = \\dfrac{p(o\\mid s)\\,p(s)}{p(o)}$. Esta es la hipótesis del **cerebro bayesiano** — el cerebro como un motor de inferencia que combina expectativas previas con evidencia sensorial para formar creencias **posteriores** sobre el mundo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The exact posterior is usually intractable, so the brain holds an **approximate** posterior $q(s)$ and tunes it to be as close as possible to the true one. Free energy is precisely the objective that measures and drives this approximation — connecting the generative model to the minimization principle of the previous lessons.",
+        "es": "El posterior exacto suele ser intratable, así que el cerebro mantiene un posterior **aproximado** $q(s)$ y lo ajusta para que sea lo más cercano posible al verdadero. La energía libre es precisamente el objetivo que mide y guía esta aproximación — conectando el modelo generativo con el principio de minimización de las lecciones anteriores."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Posterior by Bayes with likelihood $p(o\\mid s)=0.8$, prior $p(s)=0.25$, evidence $p(o)=0.4$: $p(s\\mid o) = \\dfrac{0.8\\cdot0.25}{0.4} = 0.5$. The generative model factorizes as likelihood × prior.",
+        "es": "Posterior por Bayes con verosimilitud $p(o\\mid s)=0.8$, previa $p(s)=0.25$, evidencia $p(o)=0.4$: $p(s\\mid o) = \\dfrac{0.8\\cdot0.25}{0.4} = 0.5$. El modelo generativo se factoriza como verosimilitud × previa."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ai-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "Posterior $\\frac{0.8\\cdot 0.25}{0.4}$?", "es": "Posterior $\\frac{0.8\\cdot 0.25}{0.4}$?" },
+      "answer": "0.5",
+      "acceptedAlt": ["0.8*0.25/0.4", "1/2"],
+      "hint": { "en": "0.2 / 0.4.", "es": "0.2 / 0.4." },
+      "solution": [ { "tex": "0.5", "en": "0.5.", "es": "0.5." } ]
+    },
+    {
+      "id": "ai-03-e2",
+      "answerType": "text",
+      "prompt": { "en": "An internal model of how causes produce sensations is a ___ model. (one word)", "es": "Un modelo interno de cómo las causas producen sensaciones es un modelo ___. (una palabra)" },
+      "answer": "generative",
+      "acceptedAlt": ["generativo"],
+      "hint": { "en": "p(o,s).", "es": "p(o,s)." },
+      "solution": [ { "tex": "p(o,s)", "en": "Generative.", "es": "Generativo." } ]
+    },
+    {
+      "id": "ai-03-e3",
+      "answerType": "text",
+      "prompt": { "en": "The brain-as-inference-engine view is the ___ brain hypothesis. (one word)", "es": "La visión del cerebro como motor de inferencia es la hipótesis del cerebro ___. (una palabra)" },
+      "answer": "bayesian",
+      "acceptedAlt": ["bayesiano"],
+      "hint": { "en": "Uses Bayes' rule.", "es": "Usa la regla de Bayes." },
+      "solution": [ { "tex": "\\text{Bayesian brain}", "en": "Bayesian.", "es": "Bayesiano." } ]
+    },
+    {
+      "id": "ai-03-e4",
+      "answerType": "text",
+      "prompt": { "en": "Because the exact posterior is intractable, the brain holds an ___ posterior $q(s)$. (one word)", "es": "Como el posterior exacto es intratable, el cerebro mantiene un posterior ___ $q(s)$. (una palabra)" },
+      "answer": "approximate",
+      "acceptedAlt": ["aproximado", "approximated"],
+      "hint": { "en": "q approximates p.", "es": "q aproxima a p." },
+      "solution": [ { "tex": "q(s)", "en": "Approximate.", "es": "Aproximado." } ]
+    }
+  ],
+  "references": [
+    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 4, generative models", "es": "Cap. 4, modelos generativos" } }
+  ]
+}

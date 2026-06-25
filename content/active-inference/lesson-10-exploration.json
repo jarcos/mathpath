@@ -1,0 +1,80 @@
+{
+  "id": "ai-10-exploration",
+  "subjectId": "active-inference",
+  "order": 10,
+  "estimatedMinutes": 30,
+  "title": { "en": "Curiosity: Epistemic vs Pragmatic Value", "es": "Curiosidad: valor epistémico vs pragmático" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The split of expected free energy into **epistemic** and **pragmatic** value formalizes a deep idea: intelligent agents are drawn both to **achieve goals** and to **resolve uncertainty**. Pragmatic value favors outcomes the agent prefers; epistemic value favors observations that are maximally **informative** about hidden states.",
+        "es": "La división de la energía libre esperada en valor **epistémico** y **pragmático** formaliza una idea profunda: los agentes inteligentes se sienten atraídos tanto a **lograr metas** como a **resolver la incertidumbre**. El valor pragmático favorece los resultados que el agente prefiere; el valor epistémico favorece las observaciones que son máximamente **informativas** sobre los estados ocultos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Epistemic value is mathematically the expected **information gain** — how much an observation is expected to reduce uncertainty (entropy) about the world. This makes **curiosity** a first-class drive, derived rather than added. Early in learning, when uncertainty is high, agents explore; as the model sharpens, pragmatic, goal-seeking behavior dominates.",
+        "es": "El valor epistémico es matemáticamente la **ganancia de información** esperada — cuánto se espera que una observación reduzca la incertidumbre (entropía) sobre el mundo. Esto hace de la **curiosidad** un impulso de primer orden, derivado en vez de añadido. Al principio del aprendizaje, cuando la incertidumbre es alta, los agentes exploran; conforme el modelo se afina, domina la conducta pragmática orientada a metas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This recovers, from first principles, the **explore–exploit** balance that reinforcement learning handles with heuristics. It also offers a principled account of intrinsic motivation, artistic and scientific curiosity, and why boredom (no information to gain) and anxiety (too much uncertainty) feel aversive — all as facets of free-energy minimization.",
+        "es": "Esto recupera, desde primeros principios, el equilibrio **explorar–explotar** que el aprendizaje por refuerzo maneja con heurísticas. También ofrece una explicación fundamentada de la motivación intrínseca, la curiosidad artística y científica, y de por qué el aburrimiento (sin información que ganar) y la ansiedad (demasiada incertidumbre) resultan aversivos — todo como facetas de la minimización de energía libre."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Epistemic value equals expected information gain. Information gain is prior uncertainty minus posterior uncertainty: if entropy drops from $2$ bits to $0.5$ bits, the gain is $2 - 0.5 = 1.5$ bits.",
+        "es": "El valor epistémico es igual a la ganancia de información esperada. La ganancia de información es la incertidumbre previa menos la posterior: si la entropía baja de $2$ bits a $0.5$ bits, la ganancia es $2 - 0.5 = 1.5$ bits."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ai-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "Information gain if entropy drops from 2 bits to 0.5 bits: $2-0.5$?", "es": "Ganancia de información si la entropía baja de 2 a 0.5 bits: $2-0.5$?" },
+      "answer": "1.5",
+      "acceptedAlt": ["2-0.5", "3/2"],
+      "hint": { "en": "2 − 0.5.", "es": "2 − 0.5." },
+      "solution": [ { "tex": "2-0.5 = 1.5", "en": "1.5 bits.", "es": "1.5 bits." } ]
+    },
+    {
+      "id": "ai-10-e2",
+      "answerType": "text",
+      "prompt": { "en": "Epistemic value equals expected information ___. (one word)", "es": "El valor epistémico es igual a la ___ de información esperada. (una palabra)" },
+      "answer": "gain",
+      "acceptedAlt": ["ganancia"],
+      "hint": { "en": "Reduces uncertainty.", "es": "Reduce la incertidumbre." },
+      "solution": [ { "tex": "\\text{information gain}", "en": "Gain.", "es": "Ganancia." } ]
+    },
+    {
+      "id": "ai-10-e3",
+      "answerType": "text",
+      "prompt": { "en": "Active inference makes ___ a derived drive (it falls out of epistemic value). (one word)", "es": "La inferencia activa hace de la ___ un impulso derivado (surge del valor epistémico). (una palabra)" },
+      "answer": "curiosity",
+      "acceptedAlt": ["curiosidad"],
+      "hint": { "en": "Drive to explore.", "es": "Impulso a explorar." },
+      "solution": [ { "tex": "\\text{curiosity}", "en": "Curiosity.", "es": "Curiosidad." } ]
+    },
+    {
+      "id": "ai-10-e4",
+      "answerType": "text",
+      "prompt": { "en": "Value favoring preferred goal outcomes is the ___ value. (one word)", "es": "El valor que favorece los resultados-meta preferidos es el valor ___. (una palabra)" },
+      "answer": "pragmatic",
+      "acceptedAlt": ["pragmático", "pragmatico"],
+      "hint": { "en": "Goal-directed.", "es": "Orientado a metas." },
+      "solution": [ { "tex": "\\text{pragmatic}", "en": "Pragmatic.", "es": "Pragmático." } ]
+    }
+  ],
+  "references": [
+    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 7, epistemic and pragmatic value", "es": "Cap. 7, valor epistémico y pragmático" } },
+    { "source": "Friston et al. — Active inference and epistemic value (2015)", "detail": { "en": "Curiosity from free energy", "es": "Curiosidad a partir de la energía libre" } }
+  ]
+}

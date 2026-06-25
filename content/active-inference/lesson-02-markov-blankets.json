@@ -1,0 +1,79 @@
+{
+  "id": "ai-02-markov-blankets",
+  "subjectId": "active-inference",
+  "order": 2,
+  "estimatedMinutes": 35,
+  "title": { "en": "Surprise & Markov Blankets", "es": "Sorpresa y mantos de Markov" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "What separates a living thing from its environment? The FEP answers with the **Markov blanket** — a statistical boundary that conditionally separates a system's **internal** states from **external** states. Anything inside only 'sees' the outside through the blanket, which is made of **sensory** states (influenced by the world) and **active** states (influencing the world).",
+        "es": "¿Qué separa a un ser vivo de su entorno? El FEP responde con el **manto de Markov** — una frontera estadística que separa condicionalmente los estados **internos** de un sistema de los **externos**. Lo de dentro solo 've' lo de fuera a través del manto, que se compone de estados **sensoriales** (influidos por el mundo) y estados **activos** (que influyen en el mundo)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The blanket gives the system a statistical **identity**: internal and external states are independent given the blanket, so the system has a self distinct from its surroundings. To persist, the system must keep its sensory states within expected bounds — equivalently, minimize the surprise of what it senses.",
+        "es": "El manto da al sistema una **identidad** estadística: los estados internos y externos son independientes dado el manto, así que el sistema tiene un yo distinto de su entorno. Para persistir, el sistema debe mantener sus estados sensoriales dentro de límites esperados — equivalentemente, minimizar la sorpresa de lo que percibe."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Surprise relates to **entropy**: average surprise over time is the entropy of the sensory states. A system that keeps surprise low therefore keeps its sensory entropy low, resisting the second law's tendency toward disorder. This is how the FEP connects thermodynamics, information theory and biology under one principle.",
+        "es": "La sorpresa se relaciona con la **entropía**: la sorpresa promedio en el tiempo es la entropía de los estados sensoriales. Un sistema que mantiene baja la sorpresa mantiene por tanto baja su entropía sensorial, resistiendo la tendencia al desorden de la segunda ley. Así conecta el FEP la termodinámica, la teoría de la información y la biología bajo un solo principio."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A Markov blanket has $2$ kinds of states: sensory and active. Average surprise over time equals the entropy of sensory states, linking surprise to disorder.",
+        "es": "Un manto de Markov tiene $2$ tipos de estados: sensoriales y activos. La sorpresa promedio en el tiempo es igual a la entropía de los estados sensoriales, ligando la sorpresa al desorden."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ai-02-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many kinds of states make up a Markov blanket (sensory + active)?", "es": "¿Cuántos tipos de estados componen un manto de Markov (sensoriales + activos)?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Sensory and active.", "es": "Sensoriales y activos." },
+      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "ai-02-e2",
+      "answerType": "text",
+      "prompt": { "en": "The statistical boundary separating internal from external states is the Markov ___. (one word)", "es": "La frontera estadística que separa estados internos de externos es el ___ de Markov. (una palabra)" },
+      "answer": "blanket",
+      "acceptedAlt": ["manto", "manta"],
+      "hint": { "en": "Markov ___.", "es": "Manto de ___." },
+      "solution": [ { "tex": "\\text{Markov blanket}", "en": "Blanket.", "es": "Manto." } ]
+    },
+    {
+      "id": "ai-02-e3",
+      "answerType": "text",
+      "prompt": { "en": "Average surprise over time equals the ___ of sensory states. (one word)", "es": "La sorpresa promedio en el tiempo es igual a la ___ de los estados sensoriales. (una palabra)" },
+      "answer": "entropy",
+      "acceptedAlt": ["entropía", "entropia"],
+      "hint": { "en": "Disorder measure.", "es": "Medida de desorden." },
+      "solution": [ { "tex": "H", "en": "Entropy.", "es": "Entropía." } ]
+    },
+    {
+      "id": "ai-02-e4",
+      "answerType": "text",
+      "prompt": { "en": "Given the blanket, internal and external states are statistically ___. (one word)", "es": "Dado el manto, los estados internos y externos son estadísticamente ___. (una palabra)" },
+      "answer": "independent",
+      "acceptedAlt": ["independientes", "independiente"],
+      "hint": { "en": "Conditional independence.", "es": "Independencia condicional." },
+      "solution": [ { "tex": "\\text{independent}", "en": "Independent.", "es": "Independientes." } ]
+    }
+  ],
+  "references": [
+    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 3, Markov blankets and self-organization", "es": "Cap. 3, mantos de Markov y autoorganización" } }
+  ]
+}

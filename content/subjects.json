@@ -443,7 +443,7 @@
       "id": "active-inference",
       "icon": "🌀",
       "targetDays": 30,
-      "status": "coming-soon",
+      "status": "available",
       "plannedLessons": 12,
       "source": "Parr, Pezzulo & Friston, Active Inference (2022)",
       "name": { "en": "Active Inference (Advanced)", "es": "Inferencia activa (avanzado)" },
@@ -451,7 +451,20 @@
         "en": "The free energy principle and predictive processing in mind, brain and behavior.",
         "es": "El principio de energía libre y el procesamiento predictivo en mente, cerebro y conducta."
       },
-      "lessons": []
+      "lessons": [
+        "active-inference/lesson-01-free-energy-principle.json",
+        "active-inference/lesson-02-markov-blankets.json",
+        "active-inference/lesson-03-generative-models.json",
+        "active-inference/lesson-04-variational-free-energy.json",
+        "active-inference/lesson-05-perception-as-inference.json",
+        "active-inference/lesson-06-predictive-coding.json",
+        "active-inference/lesson-07-precision.json",
+        "active-inference/lesson-08-action.json",
+        "active-inference/lesson-09-expected-free-energy.json",
+        "active-inference/lesson-10-exploration.json",
+        "active-inference/lesson-11-life-homeostasis.json",
+        "active-inference/lesson-12-synthesis.json"
+      ]
     }
   ]
 }

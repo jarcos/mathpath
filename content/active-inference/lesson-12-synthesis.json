@@ -1,0 +1,79 @@
+{
+  "id": "ai-12-synthesis",
+  "subjectId": "active-inference",
+  "order": 12,
+  "estimatedMinutes": 35,
+  "title": { "en": "Synthesis & Connections", "es": "Síntesis y conexiones" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Active inference offers a single, audacious idea: perception, action, learning, attention and even life are all **free-energy minimization**. Perception updates beliefs, action changes the world, attention tunes precision, and planning minimizes expected free energy — all one optimization seen from different angles.",
+        "es": "La inferencia activa ofrece una idea única y audaz: la percepción, la acción, el aprendizaje, la atención e incluso la vida son todos **minimización de energía libre**. La percepción actualiza creencias, la acción cambia el mundo, la atención ajusta la precisión, y la planificación minimiza la energía libre esperada — todo una sola optimización vista desde distintos ángulos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The framework ties this whole AI track together. Its variational free energy is the same objective as the **ELBO** behind variational autoencoders (Deep Learning); its expected free energy reframes the **explore–exploit** trade-off of reinforcement learning; its precision-weighting echoes **attention** in transformers; and its Bayesian core links to probabilistic reasoning in knowledge representation.",
+        "es": "El marco une toda esta ruta de IA. Su energía libre variacional es el mismo objetivo que el **ELBO** tras los autocodificadores variacionales (aprendizaje profundo); su energía libre esperada reformula el compromiso **explorar–explotar** del aprendizaje por refuerzo; su ponderación por precisión hace eco de la **atención** en los transformers; y su núcleo bayesiano se enlaza con el razonamiento probabilístico de la representación del conocimiento."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Active inference is ambitious and still debated — critics question its falsifiability and practical scalability — but it stands as one of the most unifying theories in computational neuroscience and a fitting capstone for this curriculum, which began with elementary algebra and arrives at a mathematical theory of mind, brain and behavior.",
+        "es": "La inferencia activa es ambiciosa y aún debatida — los críticos cuestionan su falsabilidad y su escalabilidad práctica — pero se erige como una de las teorías más unificadoras de la neurociencia computacional y un broche apropiado para este plan de estudios, que comenzó con álgebra elemental y llega a una teoría matemática de la mente, el cerebro y la conducta."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Variational free energy is mathematically the same objective as the ELBO in variational autoencoders. The one principle behind perception, action and attention is free-energy minimization.",
+        "es": "La energía libre variacional es matemáticamente el mismo objetivo que el ELBO en los autocodificadores variacionales. El único principio tras la percepción, la acción y la atención es la minimización de energía libre."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ai-12-e1",
+      "answerType": "text",
+      "prompt": { "en": "The single principle behind perception, action and attention is free-energy ___. (one word)", "es": "El único principio tras la percepción, la acción y la atención es la ___ de energía libre. (una palabra)" },
+      "answer": "minimization",
+      "acceptedAlt": ["minimización", "minimizacion", "minimisation"],
+      "hint": { "en": "Minimize F.", "es": "Minimizar F." },
+      "solution": [ { "tex": "\\min F", "en": "Minimization.", "es": "Minimización." } ]
+    },
+    {
+      "id": "ai-12-e2",
+      "answerType": "text",
+      "prompt": { "en": "Variational free energy equals the ___ used in variational autoencoders. (acronym)", "es": "La energía libre variacional equivale al ___ usado en los autocodificadores variacionales. (siglas)" },
+      "answer": "elbo",
+      "acceptedAlt": [],
+      "hint": { "en": "Evidence Lower BOund.", "es": "Cota inferior de la evidencia." },
+      "solution": [ { "tex": "\\text{ELBO}", "en": "ELBO.", "es": "ELBO." } ]
+    },
+    {
+      "id": "ai-12-e3",
+      "answerType": "text",
+      "prompt": { "en": "Expected free energy reframes the explore–___ trade-off of RL. (one word)", "es": "La energía libre esperada reformula el compromiso explorar–___ del RL. (una palabra)" },
+      "answer": "exploit",
+      "acceptedAlt": ["explotar", "exploitation", "explotación", "explotacion"],
+      "hint": { "en": "Explore vs exploit.", "es": "Explorar vs explotar." },
+      "solution": [ { "tex": "\\text{exploit}", "en": "Exploit.", "es": "Explotar." } ]
+    },
+    {
+      "id": "ai-12-e4",
+      "answerType": "text",
+      "prompt": { "en": "Precision-weighting in active inference echoes ___ in transformers. (one word)", "es": "La ponderación por precisión en la inferencia activa hace eco de la ___ en los transformers. (una palabra)" },
+      "answer": "attention",
+      "acceptedAlt": ["atención", "atencion"],
+      "hint": { "en": "Q, K, V.", "es": "Q, K, V." },
+      "solution": [ { "tex": "\\text{attention}", "en": "Attention.", "es": "Atención." } ]
+    }
+  ],
+  "references": [
+    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 10–13, synthesis and applications", "es": "Cap. 10–13, síntesis y aplicaciones" } }
+  ]
+}

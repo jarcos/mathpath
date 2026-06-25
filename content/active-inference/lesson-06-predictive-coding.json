@@ -1,0 +1,80 @@
+{
+  "id": "ai-06-predictive-coding",
+  "subjectId": "active-inference",
+  "order": 6,
+  "estimatedMinutes": 35,
+  "title": { "en": "Predictive Coding", "es": "Codificación predictiva" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Predictive coding** is a leading neural implementation of free-energy minimization. Each cortical level **predicts** the activity of the level below and sends those predictions down; the lower level returns only the **prediction error** — the part of its activity that was *not* predicted. The brain transmits surprises, not raw data.",
+        "es": "La **codificación predictiva** es una destacada implementación neuronal de la minimización de energía libre. Cada nivel cortical **predice** la actividad del nivel inferior y envía esas predicciones hacia abajo; el nivel inferior devuelve solo el **error de predicción** — la parte de su actividad que *no* fue predicha. El cerebro transmite sorpresas, no datos crudos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Prediction error is the engine of learning and perception: errors propagate **up** the hierarchy to revise beliefs until predictions match the input and the error is explained away. This is strikingly efficient — only the unexpected residual travels, much like predictive compression of a video stream.",
+        "es": "El error de predicción es el motor del aprendizaje y la percepción: los errores se propagan hacia **arriba** en la jerarquía para revisar las creencias hasta que las predicciones coinciden con la entrada y el error queda explicado. Esto es notablemente eficiente — solo viaja el residuo inesperado, muy parecido a la compresión predictiva de un flujo de vídeo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Anatomically, this maps onto cortical microcircuits: **superficial** pyramidal cells are proposed to carry prediction errors (feedforward), **deep** pyramidal cells to carry predictions (feedback). Predictive coding gives the abstract free-energy story a concrete, testable neural form, and explains phenomena from repetition suppression to hallucinations as failures of prediction.",
+        "es": "Anatómicamente, esto se mapea sobre microcircuitos corticales: se propone que las células piramidales **superficiales** llevan los errores de predicción (hacia delante) y las **profundas** las predicciones (retroalimentación). La codificación predictiva da a la historia abstracta de la energía libre una forma neuronal concreta y comprobable, y explica fenómenos desde la supresión por repetición hasta las alucinaciones como fallos de predicción."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Prediction error is observation minus prediction. If the brain predicts $7$ and senses $10$, the error is $10 - 7 = 3$. A perfect prediction yields error $0$ — nothing to send up.",
+        "es": "El error de predicción es la observación menos la predicción. Si el cerebro predice $7$ y percibe $10$, el error es $10 - 7 = 3$. Una predicción perfecta da error $0$ — nada que enviar hacia arriba."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ai-06-e1",
+      "answerType": "number",
+      "prompt": { "en": "Prediction error if predicted 7, observed 10: $10-7$?", "es": "Error de predicción si se predijo 7 y se observó 10: $10-7$?" },
+      "answer": "3",
+      "acceptedAlt": ["10-7"],
+      "hint": { "en": "Observation − prediction.", "es": "Observación − predicción." },
+      "solution": [ { "tex": "10-7 = 3", "en": "Three.", "es": "Tres." } ]
+    },
+    {
+      "id": "ai-06-e2",
+      "answerType": "number",
+      "prompt": { "en": "Prediction error for a perfect prediction (predicted = observed)?", "es": "¿Error de predicción para una predicción perfecta (predicho = observado)?" },
+      "answer": "0",
+      "acceptedAlt": [],
+      "hint": { "en": "No surprise.", "es": "Sin sorpresa." },
+      "solution": [ { "tex": "0", "en": "Zero.", "es": "Cero." } ]
+    },
+    {
+      "id": "ai-06-e3",
+      "answerType": "text",
+      "prompt": { "en": "The signal sent UP the hierarchy is the prediction ___. (one word)", "es": "La señal enviada hacia ARRIBA en la jerarquía es el ___ de predicción. (una palabra)" },
+      "answer": "error",
+      "acceptedAlt": ["error"],
+      "hint": { "en": "The unexplained residual.", "es": "El residuo no explicado." },
+      "solution": [ { "tex": "\\epsilon", "en": "Error.", "es": "Error." } ]
+    },
+    {
+      "id": "ai-06-e4",
+      "answerType": "text",
+      "prompt": { "en": "In predictive coding, higher levels send ___ down to lower levels. (one word)", "es": "En la codificación predictiva, los niveles altos envían ___ hacia abajo a los niveles bajos. (una palabra)" },
+      "answer": "predictions",
+      "acceptedAlt": ["predicciones", "prediction", "predicción", "prediccion"],
+      "hint": { "en": "Top-down predictions.", "es": "Predicciones de arriba a abajo." },
+      "solution": [ { "tex": "\\hat{x}", "en": "Predictions.", "es": "Predicciones." } ]
+    }
+  ],
+  "references": [
+    { "source": "Rao & Ballard — Predictive coding in the visual cortex (1999)", "detail": { "en": "Predictive coding model", "es": "Modelo de codificación predictiva" } },
+    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 5, message passing and predictive coding", "es": "Cap. 5, paso de mensajes y codificación predictiva" } }
+  ]
+}

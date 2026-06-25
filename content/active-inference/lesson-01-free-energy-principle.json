@@ -1,0 +1,79 @@
+{
+  "id": "ai-01-fep",
+  "subjectId": "active-inference",
+  "order": 1,
+  "estimatedMinutes": 35,
+  "title": { "en": "The Free Energy Principle", "es": "El principio de energía libre" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **free energy principle (FEP)**, due to Karl Friston, is a sweeping theory of how living systems persist. Its claim: any self-organizing system that resists disorder must act as if it **minimizes** a quantity called **variational free energy** — an upper bound on **surprise**. Brains, cells and organisms all, on this view, are surprise-minimizing machines.",
+        "es": "El **principio de energía libre (FEP)**, de Karl Friston, es una teoría amplia de cómo persisten los sistemas vivos. Su afirmación: todo sistema autoorganizado que resiste el desorden debe actuar como si **minimizara** una cantidad llamada **energía libre variacional** — una cota superior de la **sorpresa**. Cerebros, células y organismos son, en esta visión, máquinas de minimizar la sorpresa."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Surprise** here is the technical 'surprisal': the negative log-probability of an observation under the system's model, $-\\log p(o)$. Improbable, dangerous states (a fish out of water) are high-surprise; staying alive means staying in a small set of expected, viable states — keeping surprise low on average.",
+        "es": "La **sorpresa** aquí es la 'sorpresa' técnica (surprisal): el logaritmo negativo de la probabilidad de una observación bajo el modelo del sistema, $-\\log p(o)$. Los estados improbables y peligrosos (un pez fuera del agua) son de alta sorpresa; mantenerse vivo significa permanecer en un pequeño conjunto de estados esperados y viables — manteniendo la sorpresa baja en promedio."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Surprise itself can't be evaluated directly (it requires summing over all causes), so systems minimize **free energy**, a tractable proxy that is always $\\ge$ surprise. Minimizing free energy can be done two ways — by changing beliefs (**perception**) or by changing the world (**action**) — which unifies inference and behavior, the theme of this subject.",
+        "es": "La sorpresa en sí no puede evaluarse directamente (requiere sumar sobre todas las causas), así que los sistemas minimizan la **energía libre**, un sustituto tratable que siempre es $\\ge$ sorpresa. Minimizar la energía libre se puede hacer de dos formas — cambiando creencias (**percepción**) o cambiando el mundo (**acción**) — lo que unifica inferencia y conducta, el tema de esta asignatura."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Surprise of an observation with probability $p = 0.5$ (natural log) is $-\\ln(0.5) \\approx 0.693$. A more probable observation ($p=1$) has surprise $-\\ln(1) = 0$ — no surprise at all.",
+        "es": "La sorpresa de una observación con probabilidad $p = 0.5$ (logaritmo natural) es $-\\ln(0.5) \\approx 0.693$. Una observación más probable ($p=1$) tiene sorpresa $-\\ln(1) = 0$ — ninguna sorpresa."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ai-01-e1",
+      "answerType": "number",
+      "prompt": { "en": "Surprise $-\\ln(p)$ for $p=1$?", "es": "Sorpresa $-\\ln(p)$ para $p=1$?" },
+      "answer": "0",
+      "acceptedAlt": ["-log(1)"],
+      "hint": { "en": "ln(1) = 0.", "es": "ln(1) = 0." },
+      "solution": [ { "tex": "-\\ln 1 = 0", "en": "Zero.", "es": "Cero." } ]
+    },
+    {
+      "id": "ai-01-e2",
+      "answerType": "number",
+      "prompt": { "en": "Surprise $-\\ln(0.5)$ to 3 dp?", "es": "Sorpresa $-\\ln(0.5)$ a 3 cifras?" },
+      "answer": "0.693",
+      "acceptedAlt": [],
+      "hint": { "en": "ln 2.", "es": "ln 2." },
+      "solution": [ { "tex": "-\\ln(0.5) = \\ln 2 \\approx 0.693", "en": "≈ 0.693.", "es": "≈ 0.693." } ]
+    },
+    {
+      "id": "ai-01-e3",
+      "answerType": "text",
+      "prompt": { "en": "Free energy is an upper bound on ___. (one word)", "es": "La energía libre es una cota superior de la ___. (una palabra)" },
+      "answer": "surprise",
+      "acceptedAlt": ["sorpresa", "surprisal"],
+      "hint": { "en": "−log p(o).", "es": "−log p(o)." },
+      "solution": [ { "tex": "\\ge \\text{surprise}", "en": "Surprise.", "es": "Sorpresa." } ]
+    },
+    {
+      "id": "ai-01-e4",
+      "answerType": "text",
+      "prompt": { "en": "Changing beliefs to reduce free energy is ___ (the other route is action). (one word)", "es": "Cambiar creencias para reducir la energía libre es la ___ (la otra vía es la acción). (una palabra)" },
+      "answer": "perception",
+      "acceptedAlt": ["percepción", "percepcion"],
+      "hint": { "en": "Perception vs action.", "es": "Percepción vs acción." },
+      "solution": [ { "tex": "\\text{perception}", "en": "Perception.", "es": "Percepción." } ]
+    }
+  ],
+  "references": [
+    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 1–2, the free energy principle", "es": "Cap. 1–2, el principio de energía libre" } }
+  ]
+}

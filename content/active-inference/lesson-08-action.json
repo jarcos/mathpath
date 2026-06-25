@@ -1,0 +1,79 @@
+{
+  "id": "ai-08-action",
+  "subjectId": "active-inference",
+  "order": 8,
+  "estimatedMinutes": 35,
+  "title": { "en": "Action & Active Inference", "es": "Acción e inferencia activa" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Free energy can be reduced two ways. Perception changes **beliefs** to fit the world; **action** changes the **world** to fit beliefs. This second route — acting to make your predictions come true — is what puts the 'active' in **active inference**. If you predict your hand is on the cup, you can fulfill that prediction by moving your hand.",
+        "es": "La energía libre puede reducirse de dos formas. La percepción cambia las **creencias** para ajustarse al mundo; la **acción** cambia el **mundo** para ajustarse a las creencias. Esta segunda vía — actuar para hacer realidad tus predicciones — es lo que pone lo 'activo' en la **inferencia activa**. Si predices que tu mano está en la taza, puedes cumplir esa predicción moviendo la mano."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This yields a radical account of movement: **motor commands** are not signals computed by a controller but **predictions** about proprioceptive sensations. Reflex arcs then act to suppress the resulting prediction error, moving the body to match the prediction. Action is inference 'turned outward' — fulfilling expectations through the body.",
+        "es": "Esto da una explicación radical del movimiento: las **órdenes motoras** no son señales calculadas por un controlador sino **predicciones** sobre sensaciones propioceptivas. Los arcos reflejos actúan entonces para suprimir el error de predicción resultante, moviendo el cuerpo para coincidir con la predicción. La acción es inferencia 'vuelta hacia fuera' — cumplir expectativas a través del cuerpo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "So perception and action are two sides of one coin, both minimizing the same free energy — one by updating beliefs, the other by sampling the world to confirm them. This single objective elegantly unifies what classical theories treat as separate systems for sensing and acting.",
+        "es": "Así, percepción y acción son dos caras de una misma moneda, ambas minimizando la misma energía libre — una actualizando creencias, la otra muestreando el mundo para confirmarlas. Este objetivo único unifica con elegancia lo que las teorías clásicas tratan como sistemas separados para percibir y actuar."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "There are $2$ ways to minimize free energy: update beliefs (perception) or change the world (action). In active inference, motor commands are reinterpreted as predictions about proprioception.",
+        "es": "Hay $2$ formas de minimizar la energía libre: actualizar creencias (percepción) o cambiar el mundo (acción). En la inferencia activa, las órdenes motoras se reinterpretan como predicciones sobre la propiocepción."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ai-08-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many ways can free energy be minimized (perception, action)?", "es": "¿De cuántas formas se puede minimizar la energía libre (percepción, acción)?" },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": { "en": "Beliefs or world.", "es": "Creencias o mundo." },
+      "solution": [ { "tex": "2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "ai-08-e2",
+      "answerType": "text",
+      "prompt": { "en": "The route that changes the world to fit beliefs is ___. (one word)", "es": "La vía que cambia el mundo para ajustarse a las creencias es la ___. (una palabra)" },
+      "answer": "action",
+      "acceptedAlt": ["acción", "accion"],
+      "hint": { "en": "The 'active' part.", "es": "La parte 'activa'." },
+      "solution": [ { "tex": "\\text{action}", "en": "Action.", "es": "Acción." } ]
+    },
+    {
+      "id": "ai-08-e3",
+      "answerType": "text",
+      "prompt": { "en": "Motor commands are reinterpreted as ___ about proprioception. (one word)", "es": "Las órdenes motoras se reinterpretan como ___ sobre la propiocepción. (una palabra)" },
+      "answer": "predictions",
+      "acceptedAlt": ["predicciones", "prediction", "predicción", "prediccion"],
+      "hint": { "en": "Not control signals.", "es": "No señales de control." },
+      "solution": [ { "tex": "\\hat{x}", "en": "Predictions.", "es": "Predicciones." } ]
+    },
+    {
+      "id": "ai-08-e4",
+      "answerType": "text",
+      "prompt": { "en": "Perception and action both minimize the same ___. (two words / one term)", "es": "Percepción y acción minimizan ambas la misma ___. (un término)" },
+      "answer": "free energy",
+      "acceptedAlt": ["energía libre", "energia libre", "free-energy"],
+      "hint": { "en": "F.", "es": "F." },
+      "solution": [ { "tex": "F", "en": "Free energy.", "es": "Energía libre." } ]
+    }
+  ],
+  "references": [
+    { "source": "Parr, Pezzulo & Friston — Active Inference (2022)", "detail": { "en": "Ch. 7, active inference and motor control", "es": "Cap. 7, inferencia activa y control motor" } }
+  ]
+}

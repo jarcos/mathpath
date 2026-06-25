@@ -164,7 +164,7 @@ The `sources/Foundations/` corpus turns the old placeholder ML track into a real
 | 12 | 🟢 **Knowledge Representation & Reasoning** · `knowledge-representation` **(DONE — 14 lessons)** | 14 | Brachman & Levesque (2004); Pearl *Probabilistic Reasoning* (1988) |
 | 13 | 🟢 **Computer Vision** · `computer-vision` **(DONE — 14 lessons)** | 14 | Marr *Vision* (1982); Goodfellow ch. 9 (CNNs) |
 | 14 | 🟢 **AI Foundations & Philosophy** · `ai-foundations` **(DONE — 14 lessons)** | 14 | Turing (1950); Searle (1980); Dreyfus (1992); Brooks (1991); Simon (1995); Bommasani et al. (2021) |
-| 15 | ⚪ **Active Inference** · `active-inference` (advanced) | ~12 | Parr, Pezzulo & Friston *Active Inference* (2022) |
+| 15 | 🟢 **Active Inference** · `active-inference` (advanced) **(DONE — 12 lessons)** | 12 | Parr, Pezzulo & Friston *Active Inference* (2022) |
 
 Notes:
 - `ai-foundations` and `active-inference` are **conceptual/reading-based** — they use multiple-choice / short-text questions rather than symbolic math validation.

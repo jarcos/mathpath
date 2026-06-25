@@ -66,13 +66,21 @@ docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 
 ## Curriculum status
 
-Math ladder **complete** (textbook depth, all verified): algebra (20), functions
-(16), calculus (12), linear-algebra (23), linear-maps (16). ~87 lessons / 356
-exercises / 712 checks passing.
+**Both tracks complete** (textbook depth, all verified). 241 lessons / 972
+exercises / 2151 checks passing (`npm run verify:content`).
 
-Next: **AI/ML track** (M11 Statistics onward), currently planned / coming-soon in
-`subjects.json` + `CURRICULUM.md`. `ai-foundations` and `active-inference` are
-reading-based (text / MCQ, not mathjs). See `CURRICULUM.md` and `sources/INDEX.md`.
+Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
+linear-maps (16).
+
+AI/ML track: statistics (16, M11), ml-foundations (18, M12), neural-networks
+(16, M13), deep-learning (18, M14), nlp-transformers (16, M15),
+reinforcement-learning (16, M16), knowledge-representation (14, M17),
+computer-vision (14, M18), ai-foundations (14, M19), active-inference (12, M20).
+`ai-foundations` and `active-inference` are reading-based (text / MCQ + light
+math). See `CURRICULUM.md` and `sources/INDEX.md`.
+
+Remaining: **M21** packaging / distributable (electron-builder installer +
+reproducible-build docs).
 
 ## Workflow rules
 
