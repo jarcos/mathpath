@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, nativeImage } from 'electron'
 import {
   initDb,
   getSetting,
@@ -14,6 +14,12 @@ import {
 } from './db.js'
 
 const isDev = !app.isPackaged
+
+// Show "MathPath" (not "Electron") and the brand icon. In a packaged build the
+// name comes from productName and the icon from the bundle; in dev we set them
+// at runtime. On macOS the menu-bar app name in dev still shows "Electron"
+// (it's the unsigned Electron binary's bundle name) — that's fixed once packaged.
+app.setName('MathPath')
 
 function createWindow() {
   // Dev/runtime window icon (Linux/Windows + dev dock). Packaged macOS uses the
@@ -72,6 +78,12 @@ function registerIpc() {
 }
 
 app.whenReady().then(() => {
+  // Dev: replace Electron's default Dock icon with the brand icon (macOS).
+  if (isDev && process.platform === 'darwin' && app.dock) {
+    const img = nativeImage.createFromPath(join(import.meta.dirname, '../../build/icon.png'))
+    if (!img.isEmpty()) app.dock.setIcon(img)
+  }
+
   initDb()
   registerIpc()
   createWindow()

@@ -5,8 +5,9 @@
       <stop offset="1" stop-color="#8a6cff"/>
     </linearGradient>
   </defs>
-  <rect x="0" y="0" width="1024" height="1024" rx="224" ry="224" fill="url(#g)"/>
-  <text x="512" y="512" text-anchor="middle" dominant-baseline="central"
+  <!-- macOS icon grid: 824x824 rounded square centered on a 1024 transparent canvas -->
+  <rect x="100" y="100" width="824" height="824" rx="185" ry="185" fill="url(#g)"/>
+  <text x="512" y="528" text-anchor="middle" dominant-baseline="central"
         font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
-        font-size="620" font-weight="700" fill="#ffffff">π</text>
+        font-size="500" font-weight="700" fill="#ffffff">π</text>
 </svg>
