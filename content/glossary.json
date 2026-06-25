@@ -1,0 +1,1683 @@
+{
+  "symbols": [
+    {
+      "id": "alpha",
+      "display": "\\alpha",
+      "tex": [
+        "\\alpha"
+      ],
+      "uni": [
+        "α"
+      ],
+      "read": {
+        "en": "alpha",
+        "es": "alfa"
+      },
+      "meaning": {
+        "en": "A learning rate, significance level, or generic angle/coefficient.",
+        "es": "Tasa de aprendizaje, nivel de significación o ángulo/coeficiente genérico."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "beta",
+      "display": "\\beta",
+      "tex": [
+        "\\beta"
+      ],
+      "uni": [
+        "β"
+      ],
+      "read": {
+        "en": "beta",
+        "es": "beta"
+      },
+      "meaning": {
+        "en": "A regression coefficient or a generic parameter/angle.",
+        "es": "Coeficiente de regresión o parámetro/ángulo genérico."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "gamma",
+      "display": "\\gamma",
+      "tex": [
+        "\\gamma"
+      ],
+      "uni": [
+        "γ"
+      ],
+      "read": {
+        "en": "gamma",
+        "es": "gamma"
+      },
+      "meaning": {
+        "en": "A discount factor (RL), learning-rate decay, or the Gamma function.",
+        "es": "Factor de descuento (RL), decaimiento de tasa o la función Gamma."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "delta",
+      "display": "\\delta",
+      "tex": [
+        "\\delta"
+      ],
+      "uni": [
+        "δ"
+      ],
+      "read": {
+        "en": "delta",
+        "es": "delta"
+      },
+      "meaning": {
+        "en": "A small change or error term; the TD-error in reinforcement learning.",
+        "es": "Un cambio pequeño o término de error; el error TD en aprendizaje por refuerzo."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "epsilon",
+      "display": "\\varepsilon",
+      "tex": [
+        "\\varepsilon",
+        "\\epsilon"
+      ],
+      "uni": [
+        "ε"
+      ],
+      "read": {
+        "en": "epsilon",
+        "es": "épsilon"
+      },
+      "meaning": {
+        "en": "A tiny positive quantity, or the exploration rate in ε-greedy policies.",
+        "es": "Una cantidad positiva diminuta, o la tasa de exploración en políticas ε-codiciosas."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "eta",
+      "display": "\\eta",
+      "tex": [
+        "\\eta"
+      ],
+      "uni": [
+        "η"
+      ],
+      "read": {
+        "en": "eta",
+        "es": "eta"
+      },
+      "meaning": {
+        "en": "The learning rate (step size) in gradient descent.",
+        "es": "La tasa de aprendizaje (tamaño de paso) en el descenso de gradiente."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "theta",
+      "display": "\\theta",
+      "tex": [
+        "\\theta"
+      ],
+      "uni": [
+        "θ"
+      ],
+      "read": {
+        "en": "theta",
+        "es": "theta"
+      },
+      "meaning": {
+        "en": "Model parameters/weights, or an angle.",
+        "es": "Parámetros/pesos del modelo, o un ángulo."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "kappa",
+      "display": "\\kappa",
+      "tex": [
+        "\\kappa"
+      ],
+      "uni": [
+        "κ"
+      ],
+      "read": {
+        "en": "kappa",
+        "es": "kappa"
+      },
+      "meaning": {
+        "en": "A condition number or generic constant.",
+        "es": "Número de condición o constante genérica."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "lambda",
+      "display": "\\lambda",
+      "tex": [
+        "\\lambda"
+      ],
+      "uni": [
+        "λ"
+      ],
+      "read": {
+        "en": "lambda",
+        "es": "lambda"
+      },
+      "meaning": {
+        "en": "A rate (e.g. Poisson average per interval), eigenvalue, or regularization strength.",
+        "es": "Una tasa (p. ej. media de Poisson por intervalo), autovalor o fuerza de regularización."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "mu",
+      "display": "\\mu",
+      "tex": [
+        "\\mu"
+      ],
+      "uni": [
+        "μ"
+      ],
+      "read": {
+        "en": "mu",
+        "es": "mu"
+      },
+      "meaning": {
+        "en": "The mean of a distribution.",
+        "es": "La media de una distribución."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "nu",
+      "display": "\\nu",
+      "tex": [
+        "\\nu"
+      ],
+      "uni": [
+        "ν"
+      ],
+      "read": {
+        "en": "nu",
+        "es": "nu"
+      },
+      "meaning": {
+        "en": "Degrees of freedom or a generic frequency.",
+        "es": "Grados de libertad o frecuencia genérica."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "xi",
+      "display": "\\xi",
+      "tex": [
+        "\\xi"
+      ],
+      "uni": [
+        "ξ"
+      ],
+      "read": {
+        "en": "xi",
+        "es": "xi"
+      },
+      "meaning": {
+        "en": "A random variable or slack variable.",
+        "es": "Variable aleatoria o variable de holgura."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "pi",
+      "display": "\\pi",
+      "tex": [
+        "\\pi"
+      ],
+      "uni": [
+        "π"
+      ],
+      "read": {
+        "en": "pi",
+        "es": "pi"
+      },
+      "meaning": {
+        "en": "The constant 3.14159…, or a policy in reinforcement learning.",
+        "es": "La constante 3,14159…, o una política en aprendizaje por refuerzo."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "rho",
+      "display": "\\rho",
+      "tex": [
+        "\\rho"
+      ],
+      "uni": [
+        "ρ"
+      ],
+      "read": {
+        "en": "rho",
+        "es": "ro"
+      },
+      "meaning": {
+        "en": "A correlation coefficient or spectral radius.",
+        "es": "Coeficiente de correlación o radio espectral."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "sigma",
+      "display": "\\sigma",
+      "tex": [
+        "\\sigma"
+      ],
+      "uni": [
+        "σ"
+      ],
+      "read": {
+        "en": "sigma",
+        "es": "sigma"
+      },
+      "meaning": {
+        "en": "The standard deviation, or the sigmoid/activation function σ(·).",
+        "es": "La desviación típica, o la función sigmoide/activación σ(·)."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "tau",
+      "display": "\\tau",
+      "tex": [
+        "\\tau"
+      ],
+      "uni": [
+        "τ"
+      ],
+      "read": {
+        "en": "tau",
+        "es": "tau"
+      },
+      "meaning": {
+        "en": "A time constant, threshold, or trajectory.",
+        "es": "Constante de tiempo, umbral o trayectoria."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "phi",
+      "display": "\\phi",
+      "tex": [
+        "\\phi",
+        "\\varphi"
+      ],
+      "uni": [
+        "φ"
+      ],
+      "read": {
+        "en": "phi",
+        "es": "fi"
+      },
+      "meaning": {
+        "en": "A feature map φ(x) or basis function.",
+        "es": "Un mapa de características φ(x) o función base."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "chi",
+      "display": "\\chi",
+      "tex": [
+        "\\chi"
+      ],
+      "uni": [
+        "χ"
+      ],
+      "read": {
+        "en": "chi",
+        "es": "ji"
+      },
+      "meaning": {
+        "en": "Used in the chi-squared (χ²) statistic.",
+        "es": "Se usa en el estadístico ji-cuadrado (χ²)."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "psi",
+      "display": "\\psi",
+      "tex": [
+        "\\psi"
+      ],
+      "uni": [
+        "ψ"
+      ],
+      "read": {
+        "en": "psi",
+        "es": "psi"
+      },
+      "meaning": {
+        "en": "A generic function or wavefunction.",
+        "es": "Función genérica o función de onda."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "omega",
+      "display": "\\omega",
+      "tex": [
+        "\\omega"
+      ],
+      "uni": [
+        "ω"
+      ],
+      "read": {
+        "en": "omega",
+        "es": "omega"
+      },
+      "meaning": {
+        "en": "An angular frequency or an outcome in a sample space.",
+        "es": "Frecuencia angular o un resultado del espacio muestral."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "Gamma",
+      "display": "\\Gamma",
+      "tex": [
+        "\\Gamma"
+      ],
+      "uni": [
+        "Γ"
+      ],
+      "read": {
+        "en": "capital gamma",
+        "es": "gamma mayúscula"
+      },
+      "meaning": {
+        "en": "The Gamma function Γ(n) = (n−1)!.",
+        "es": "La función Gamma Γ(n) = (n−1)!."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "Delta",
+      "display": "\\Delta",
+      "tex": [
+        "\\Delta"
+      ],
+      "uni": [
+        "Δ"
+      ],
+      "read": {
+        "en": "capital delta",
+        "es": "delta mayúscula"
+      },
+      "meaning": {
+        "en": "A (finite) change in a quantity, e.g. Δx.",
+        "es": "Un cambio (finito) de una cantidad, p. ej. Δx."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "Theta",
+      "display": "\\Theta",
+      "tex": [
+        "\\Theta"
+      ],
+      "uni": [
+        "Θ"
+      ],
+      "read": {
+        "en": "capital theta",
+        "es": "theta mayúscula"
+      },
+      "meaning": {
+        "en": "Asymptotic tight bound Θ(·) in complexity.",
+        "es": "Cota ajustada asintótica Θ(·) en complejidad."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "Sigma",
+      "display": "\\Sigma",
+      "tex": [
+        "\\Sigma"
+      ],
+      "uni": [
+        "Σ"
+      ],
+      "read": {
+        "en": "capital sigma",
+        "es": "sigma mayúscula"
+      },
+      "meaning": {
+        "en": "A covariance matrix, or summation when used as ∑.",
+        "es": "Una matriz de covarianza, o sumatorio cuando se usa como ∑."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "Pi",
+      "display": "\\Pi",
+      "tex": [
+        "\\Pi"
+      ],
+      "uni": [
+        "Π"
+      ],
+      "read": {
+        "en": "capital pi",
+        "es": "pi mayúscula"
+      },
+      "meaning": {
+        "en": "Product of a sequence (∏).",
+        "es": "Producto de una secuencia (∏)."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "Phi",
+      "display": "\\Phi",
+      "tex": [
+        "\\Phi"
+      ],
+      "uni": [
+        "Φ"
+      ],
+      "read": {
+        "en": "capital phi",
+        "es": "fi mayúscula"
+      },
+      "meaning": {
+        "en": "The standard-normal CDF Φ(z).",
+        "es": "La función de distribución normal estándar Φ(z)."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "Omega",
+      "display": "\\Omega",
+      "tex": [
+        "\\Omega"
+      ],
+      "uni": [
+        "Ω"
+      ],
+      "read": {
+        "en": "capital omega",
+        "es": "omega mayúscula"
+      },
+      "meaning": {
+        "en": "The sample space, or asymptotic lower bound Ω(·).",
+        "es": "El espacio muestral, o cota inferior asintótica Ω(·)."
+      },
+      "category": "greek"
+    },
+    {
+      "id": "sum",
+      "display": "\\sum",
+      "tex": [
+        "\\sum"
+      ],
+      "uni": [
+        "∑"
+      ],
+      "read": {
+        "en": "sum (sigma)",
+        "es": "sumatorio (sigma)"
+      },
+      "meaning": {
+        "en": "Add up a sequence of terms.",
+        "es": "Suma una secuencia de términos."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "prod",
+      "display": "\\prod",
+      "tex": [
+        "\\prod"
+      ],
+      "uni": [
+        "∏"
+      ],
+      "read": {
+        "en": "product (pi)",
+        "es": "productorio (pi)"
+      },
+      "meaning": {
+        "en": "Multiply a sequence of terms.",
+        "es": "Multiplica una secuencia de términos."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "int",
+      "display": "\\int",
+      "tex": [
+        "\\int"
+      ],
+      "uni": [
+        "∫"
+      ],
+      "read": {
+        "en": "integral",
+        "es": "integral"
+      },
+      "meaning": {
+        "en": "The integral — area under a curve / accumulation.",
+        "es": "La integral — área bajo la curva / acumulación."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "nabla",
+      "display": "\\nabla",
+      "tex": [
+        "\\nabla"
+      ],
+      "uni": [
+        "∇"
+      ],
+      "read": {
+        "en": "nabla (del)",
+        "es": "nabla"
+      },
+      "meaning": {
+        "en": "The gradient: vector of partial derivatives.",
+        "es": "El gradiente: vector de derivadas parciales."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "partial",
+      "display": "\\partial",
+      "tex": [
+        "\\partial"
+      ],
+      "uni": [
+        "∂"
+      ],
+      "read": {
+        "en": "partial (d)",
+        "es": "parcial"
+      },
+      "meaning": {
+        "en": "A partial derivative with respect to one variable.",
+        "es": "Una derivada parcial respecto a una variable."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "sqrt",
+      "display": "\\sqrt{x}",
+      "tex": [
+        "\\sqrt"
+      ],
+      "uni": [
+        "√"
+      ],
+      "read": {
+        "en": "square root",
+        "es": "raíz cuadrada"
+      },
+      "meaning": {
+        "en": "The square (or n-th) root.",
+        "es": "La raíz cuadrada (o n-ésima)."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "cdot",
+      "display": "a\\cdot b",
+      "tex": [
+        "\\cdot"
+      ],
+      "uni": [
+        "·"
+      ],
+      "read": {
+        "en": "dot (times)",
+        "es": "por (punto)"
+      },
+      "meaning": {
+        "en": "Multiplication, or the dot product of vectors.",
+        "es": "Multiplicación, o el producto escalar de vectores."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "times",
+      "display": "a\\times b",
+      "tex": [
+        "\\times"
+      ],
+      "uni": [
+        "×"
+      ],
+      "read": {
+        "en": "times (cross)",
+        "es": "por (cruz)"
+      },
+      "meaning": {
+        "en": "Multiplication, or the cross product / Cartesian product.",
+        "es": "Multiplicación, o producto vectorial / cartesiano."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "div",
+      "display": "a\\div b",
+      "tex": [
+        "\\div"
+      ],
+      "uni": [
+        "÷"
+      ],
+      "read": {
+        "en": "divided by",
+        "es": "dividido por"
+      },
+      "meaning": {
+        "en": "Division.",
+        "es": "División."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "pm",
+      "display": "\\pm",
+      "tex": [
+        "\\pm"
+      ],
+      "uni": [
+        "±"
+      ],
+      "read": {
+        "en": "plus-minus",
+        "es": "más-menos"
+      },
+      "meaning": {
+        "en": "Both the positive and negative value.",
+        "es": "Tanto el valor positivo como el negativo."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "circ",
+      "display": "f\\circ g",
+      "tex": [
+        "\\circ"
+      ],
+      "uni": [
+        "∘"
+      ],
+      "read": {
+        "en": "composed with (ring)",
+        "es": "compuesto con"
+      },
+      "meaning": {
+        "en": "Function composition: (f∘g)(x)=f(g(x)).",
+        "es": "Composición de funciones: (f∘g)(x)=f(g(x))."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "infty",
+      "display": "\\infty",
+      "tex": [
+        "\\infty"
+      ],
+      "uni": [
+        "∞"
+      ],
+      "read": {
+        "en": "infinity",
+        "es": "infinito"
+      },
+      "meaning": {
+        "en": "Grows without bound.",
+        "es": "Crece sin límite."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "norm",
+      "display": "\\lVert x\\rVert",
+      "tex": [
+        "\\lVert",
+        "\\rVert",
+        "\\Vert"
+      ],
+      "uni": [
+        "‖"
+      ],
+      "read": {
+        "en": "norm of",
+        "es": "norma de"
+      },
+      "meaning": {
+        "en": "The length/magnitude of a vector.",
+        "es": "La longitud/magnitud de un vector."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "binom",
+      "display": "\\binom{n}{k}",
+      "tex": [
+        "\\binom"
+      ],
+      "uni": [],
+      "read": {
+        "en": "n choose k",
+        "es": "n sobre k"
+      },
+      "meaning": {
+        "en": "The binomial coefficient — ways to choose k from n.",
+        "es": "El coeficiente binomial — formas de elegir k de n."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "dots",
+      "display": "\\cdots",
+      "tex": [
+        "\\dots",
+        "\\cdots",
+        "\\ldots"
+      ],
+      "uni": [
+        "…"
+      ],
+      "read": {
+        "en": "and so on (ellipsis)",
+        "es": "y así sucesivamente"
+      },
+      "meaning": {
+        "en": "The pattern continues.",
+        "es": "El patrón continúa."
+      },
+      "category": "operator"
+    },
+    {
+      "id": "to",
+      "display": "\\to",
+      "tex": [
+        "\\to",
+        "\\rightarrow"
+      ],
+      "uni": [
+        "→"
+      ],
+      "read": {
+        "en": "goes to / maps to",
+        "es": "tiende a / va a"
+      },
+      "meaning": {
+        "en": "Approaches a value, or maps to.",
+        "es": "Se aproxima a un valor, o se aplica a."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "mapsto",
+      "display": "\\mapsto",
+      "tex": [
+        "\\mapsto"
+      ],
+      "uni": [
+        "↦"
+      ],
+      "read": {
+        "en": "maps to",
+        "es": "se aplica en"
+      },
+      "meaning": {
+        "en": "Sends an input to an output (x ↦ f(x)).",
+        "es": "Envía una entrada a una salida (x ↦ f(x))."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "Rightarrow",
+      "display": "\\Rightarrow",
+      "tex": [
+        "\\Rightarrow",
+        "\\implies"
+      ],
+      "uni": [
+        "⇒"
+      ],
+      "read": {
+        "en": "implies",
+        "es": "implica"
+      },
+      "meaning": {
+        "en": "Logical implication: if … then.",
+        "es": "Implicación lógica: si … entonces."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "leftrightarrow",
+      "display": "\\leftrightarrow",
+      "tex": [
+        "\\leftrightarrow",
+        "\\iff"
+      ],
+      "uni": [
+        "↔"
+      ],
+      "read": {
+        "en": "if and only if",
+        "es": "si y solo si"
+      },
+      "meaning": {
+        "en": "Logical equivalence in both directions.",
+        "es": "Equivalencia lógica en ambos sentidos."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "approx",
+      "display": "\\approx",
+      "tex": [
+        "\\approx"
+      ],
+      "uni": [
+        "≈"
+      ],
+      "read": {
+        "en": "approximately equal",
+        "es": "aproximadamente igual"
+      },
+      "meaning": {
+        "en": "Almost equal to.",
+        "es": "Casi igual a."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "neq",
+      "display": "\\neq",
+      "tex": [
+        "\\neq",
+        "\\ne"
+      ],
+      "uni": [
+        "≠"
+      ],
+      "read": {
+        "en": "not equal",
+        "es": "distinto de"
+      },
+      "meaning": {
+        "en": "Is different from.",
+        "es": "Es diferente de."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "equiv",
+      "display": "\\equiv",
+      "tex": [
+        "\\equiv"
+      ],
+      "uni": [
+        "≡"
+      ],
+      "read": {
+        "en": "equivalent / defined as",
+        "es": "equivalente / definido como"
+      },
+      "meaning": {
+        "en": "Identically equal or defined to be.",
+        "es": "Idénticamente igual o definido como."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "le",
+      "display": "\\le",
+      "tex": [
+        "\\le",
+        "\\leq"
+      ],
+      "uni": [
+        "≤"
+      ],
+      "read": {
+        "en": "less than or equal",
+        "es": "menor o igual"
+      },
+      "meaning": {
+        "en": "At most.",
+        "es": "Como mucho."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "ge",
+      "display": "\\ge",
+      "tex": [
+        "\\ge",
+        "\\geq"
+      ],
+      "uni": [
+        "≥"
+      ],
+      "read": {
+        "en": "greater than or equal",
+        "es": "mayor o igual"
+      },
+      "meaning": {
+        "en": "At least.",
+        "es": "Como mínimo."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "sim",
+      "display": "\\sim",
+      "tex": [
+        "\\sim"
+      ],
+      "uni": [
+        "∼"
+      ],
+      "read": {
+        "en": "distributed as",
+        "es": "distribuido como"
+      },
+      "meaning": {
+        "en": "'Follows the distribution', e.g. X ∼ N(0,1).",
+        "es": "'Sigue la distribución', p. ej. X ∼ N(0,1)."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "propto",
+      "display": "\\propto",
+      "tex": [
+        "\\propto"
+      ],
+      "uni": [
+        "∝"
+      ],
+      "read": {
+        "en": "proportional to",
+        "es": "proporcional a"
+      },
+      "meaning": {
+        "en": "Equal up to a constant factor.",
+        "es": "Igual salvo un factor constante."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "models",
+      "display": "\\models",
+      "tex": [
+        "\\models"
+      ],
+      "uni": [
+        "⊨"
+      ],
+      "read": {
+        "en": "entails",
+        "es": "implica (semánticamente)"
+      },
+      "meaning": {
+        "en": "Logically entails / is a model of.",
+        "es": "Implica lógicamente / es un modelo de."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "equivto",
+      "display": "\\equiv",
+      "tex": [
+        "\\cong"
+      ],
+      "uni": [
+        "≅"
+      ],
+      "read": {
+        "en": "congruent to",
+        "es": "congruente con"
+      },
+      "meaning": {
+        "en": "Congruent / isomorphic to.",
+        "es": "Congruente / isomorfo a."
+      },
+      "category": "relation"
+    },
+    {
+      "id": "in",
+      "display": "x\\in A",
+      "tex": [
+        "\\in"
+      ],
+      "uni": [
+        "∈"
+      ],
+      "read": {
+        "en": "in (element of)",
+        "es": "en (pertenece a)"
+      },
+      "meaning": {
+        "en": "Is a member of the set.",
+        "es": "Es un elemento del conjunto."
+      },
+      "category": "set"
+    },
+    {
+      "id": "notin",
+      "display": "x\\notin A",
+      "tex": [
+        "\\notin"
+      ],
+      "uni": [
+        "∉"
+      ],
+      "read": {
+        "en": "not in",
+        "es": "no pertenece a"
+      },
+      "meaning": {
+        "en": "Is not a member of the set.",
+        "es": "No es un elemento del conjunto."
+      },
+      "category": "set"
+    },
+    {
+      "id": "subset",
+      "display": "A\\subset B",
+      "tex": [
+        "\\subset",
+        "\\subseteq"
+      ],
+      "uni": [
+        "⊂",
+        "⊆"
+      ],
+      "read": {
+        "en": "subset of",
+        "es": "subconjunto de"
+      },
+      "meaning": {
+        "en": "Every element of A is in B.",
+        "es": "Todo elemento de A está en B."
+      },
+      "category": "set"
+    },
+    {
+      "id": "cup",
+      "display": "A\\cup B",
+      "tex": [
+        "\\cup"
+      ],
+      "uni": [
+        "∪"
+      ],
+      "read": {
+        "en": "union",
+        "es": "unión"
+      },
+      "meaning": {
+        "en": "Elements in A or B.",
+        "es": "Elementos en A o en B."
+      },
+      "category": "set"
+    },
+    {
+      "id": "cap",
+      "display": "A\\cap B",
+      "tex": [
+        "\\cap"
+      ],
+      "uni": [
+        "∩"
+      ],
+      "read": {
+        "en": "intersection",
+        "es": "intersección"
+      },
+      "meaning": {
+        "en": "Elements in both A and B.",
+        "es": "Elementos en A y en B."
+      },
+      "category": "set"
+    },
+    {
+      "id": "forall",
+      "display": "\\forall",
+      "tex": [
+        "\\forall"
+      ],
+      "uni": [
+        "∀"
+      ],
+      "read": {
+        "en": "for all",
+        "es": "para todo"
+      },
+      "meaning": {
+        "en": "Holds for every element.",
+        "es": "Se cumple para todo elemento."
+      },
+      "category": "set"
+    },
+    {
+      "id": "exists",
+      "display": "\\exists",
+      "tex": [
+        "\\exists"
+      ],
+      "uni": [
+        "∃"
+      ],
+      "read": {
+        "en": "there exists",
+        "es": "existe"
+      },
+      "meaning": {
+        "en": "At least one element satisfies it.",
+        "es": "Al menos un elemento lo cumple."
+      },
+      "category": "set"
+    },
+    {
+      "id": "emptyset",
+      "display": "\\emptyset",
+      "tex": [
+        "\\emptyset",
+        "\\varnothing"
+      ],
+      "uni": [
+        "∅"
+      ],
+      "read": {
+        "en": "empty set",
+        "es": "conjunto vacío"
+      },
+      "meaning": {
+        "en": "The set with no elements.",
+        "es": "El conjunto sin elementos."
+      },
+      "category": "set"
+    },
+    {
+      "id": "R",
+      "display": "\\mathbb{R}",
+      "tex": [
+        "\\mathbb{R}"
+      ],
+      "uni": [
+        "ℝ"
+      ],
+      "read": {
+        "en": "the reals",
+        "es": "los reales"
+      },
+      "meaning": {
+        "en": "The set of real numbers.",
+        "es": "El conjunto de los números reales."
+      },
+      "category": "set"
+    },
+    {
+      "id": "N",
+      "display": "\\mathbb{N}",
+      "tex": [
+        "\\mathbb{N}"
+      ],
+      "uni": [
+        "ℕ"
+      ],
+      "read": {
+        "en": "the naturals",
+        "es": "los naturales"
+      },
+      "meaning": {
+        "en": "The set of natural (counting) numbers.",
+        "es": "El conjunto de los números naturales."
+      },
+      "category": "set"
+    },
+    {
+      "id": "Z",
+      "display": "\\mathbb{Z}",
+      "tex": [
+        "\\mathbb{Z}"
+      ],
+      "uni": [
+        "ℤ"
+      ],
+      "read": {
+        "en": "the integers",
+        "es": "los enteros"
+      },
+      "meaning": {
+        "en": "The set of integers.",
+        "es": "El conjunto de los números enteros."
+      },
+      "category": "set"
+    },
+    {
+      "id": "Q",
+      "display": "\\mathbb{Q}",
+      "tex": [
+        "\\mathbb{Q}"
+      ],
+      "uni": [
+        "ℚ"
+      ],
+      "read": {
+        "en": "the rationals",
+        "es": "los racionales"
+      },
+      "meaning": {
+        "en": "The set of rational numbers.",
+        "es": "El conjunto de los números racionales."
+      },
+      "category": "set"
+    },
+    {
+      "id": "C",
+      "display": "\\mathbb{C}",
+      "tex": [
+        "\\mathbb{C}"
+      ],
+      "uni": [
+        "ℂ"
+      ],
+      "read": {
+        "en": "the complexes",
+        "es": "los complejos"
+      },
+      "meaning": {
+        "en": "The set of complex numbers.",
+        "es": "El conjunto de los números complejos."
+      },
+      "category": "set"
+    },
+    {
+      "id": "E",
+      "display": "\\mathbb{E}",
+      "tex": [
+        "\\mathbb{E}"
+      ],
+      "uni": [
+        "𝔼"
+      ],
+      "read": {
+        "en": "expected value",
+        "es": "valor esperado"
+      },
+      "meaning": {
+        "en": "The expectation (mean) of a random variable.",
+        "es": "La esperanza (media) de una variable aleatoria."
+      },
+      "category": "set"
+    },
+    {
+      "id": "neg",
+      "display": "\\neg",
+      "tex": [
+        "\\neg",
+        "\\lnot"
+      ],
+      "uni": [
+        "¬"
+      ],
+      "read": {
+        "en": "not",
+        "es": "no (negación)"
+      },
+      "meaning": {
+        "en": "Logical negation.",
+        "es": "Negación lógica."
+      },
+      "category": "logic"
+    },
+    {
+      "id": "wedge",
+      "display": "\\wedge",
+      "tex": [
+        "\\wedge",
+        "\\land"
+      ],
+      "uni": [
+        "∧"
+      ],
+      "read": {
+        "en": "and",
+        "es": "y (conjunción)"
+      },
+      "meaning": {
+        "en": "Logical AND.",
+        "es": "Y lógico (conjunción)."
+      },
+      "category": "logic"
+    },
+    {
+      "id": "vee",
+      "display": "\\vee",
+      "tex": [
+        "\\vee",
+        "\\lor"
+      ],
+      "uni": [
+        "∨"
+      ],
+      "read": {
+        "en": "or",
+        "es": "o (disyunción)"
+      },
+      "meaning": {
+        "en": "Logical OR.",
+        "es": "O lógico (disyunción)."
+      },
+      "category": "logic"
+    },
+    {
+      "id": "top",
+      "display": "\\top",
+      "tex": [
+        "\\top"
+      ],
+      "uni": [
+        "⊤"
+      ],
+      "read": {
+        "en": "top (true)",
+        "es": "verdadero"
+      },
+      "meaning": {
+        "en": "Always true / transpose marker.",
+        "es": "Siempre verdadero / marca de traspuesta."
+      },
+      "category": "logic"
+    },
+    {
+      "id": "bot",
+      "display": "\\bot",
+      "tex": [
+        "\\bot",
+        "\\perp"
+      ],
+      "uni": [
+        "⊥"
+      ],
+      "read": {
+        "en": "bottom (false)",
+        "es": "falso"
+      },
+      "meaning": {
+        "en": "Always false / perpendicular.",
+        "es": "Siempre falso / perpendicular."
+      },
+      "category": "logic"
+    },
+    {
+      "id": "hat",
+      "display": "\\hat{y}",
+      "tex": [
+        "\\hat"
+      ],
+      "uni": [],
+      "read": {
+        "en": "hat",
+        "es": "sombrero"
+      },
+      "meaning": {
+        "en": "An estimate or prediction, e.g. ŷ.",
+        "es": "Una estimación o predicción, p. ej. ŷ."
+      },
+      "category": "accent"
+    },
+    {
+      "id": "bar",
+      "display": "\\bar{x}",
+      "tex": [
+        "\\bar",
+        "\\overline"
+      ],
+      "uni": [],
+      "read": {
+        "en": "bar",
+        "es": "barra"
+      },
+      "meaning": {
+        "en": "The mean/average, e.g. x̄.",
+        "es": "La media/promedio, p. ej. x̄."
+      },
+      "category": "accent"
+    },
+    {
+      "id": "vec",
+      "display": "\\vec{v}",
+      "tex": [
+        "\\vec"
+      ],
+      "uni": [],
+      "read": {
+        "en": "vector",
+        "es": "vector"
+      },
+      "meaning": {
+        "en": "Marks a vector quantity.",
+        "es": "Marca una cantidad vectorial."
+      },
+      "category": "accent"
+    },
+    {
+      "id": "lim",
+      "display": "\\lim",
+      "tex": [
+        "\\lim"
+      ],
+      "uni": [],
+      "read": {
+        "en": "limit",
+        "es": "límite"
+      },
+      "meaning": {
+        "en": "The value a function approaches.",
+        "es": "El valor al que tiende una función."
+      },
+      "category": "function"
+    },
+    {
+      "id": "det",
+      "display": "\\det",
+      "tex": [
+        "\\det"
+      ],
+      "uni": [],
+      "read": {
+        "en": "determinant",
+        "es": "determinante"
+      },
+      "meaning": {
+        "en": "A scalar measuring how a matrix scales volume.",
+        "es": "Un escalar que mide cómo una matriz escala el volumen."
+      },
+      "category": "function"
+    },
+    {
+      "id": "dim",
+      "display": "\\dim",
+      "tex": [
+        "\\dim"
+      ],
+      "uni": [],
+      "read": {
+        "en": "dimension",
+        "es": "dimensión"
+      },
+      "meaning": {
+        "en": "The number of independent directions of a space.",
+        "es": "El número de direcciones independientes de un espacio."
+      },
+      "category": "function"
+    },
+    {
+      "id": "ker",
+      "display": "\\ker",
+      "tex": [
+        "\\ker"
+      ],
+      "uni": [],
+      "read": {
+        "en": "kernel",
+        "es": "núcleo"
+      },
+      "meaning": {
+        "en": "The null space — inputs mapped to zero.",
+        "es": "El núcleo — entradas que se aplican a cero."
+      },
+      "category": "function"
+    },
+    {
+      "id": "exp",
+      "display": "\\exp",
+      "tex": [
+        "\\exp"
+      ],
+      "uni": [],
+      "read": {
+        "en": "exponential",
+        "es": "exponencial"
+      },
+      "meaning": {
+        "en": "e raised to the argument.",
+        "es": "e elevado al argumento."
+      },
+      "category": "function"
+    },
+    {
+      "id": "log",
+      "display": "\\log",
+      "tex": [
+        "\\log"
+      ],
+      "uni": [],
+      "read": {
+        "en": "log",
+        "es": "logaritmo"
+      },
+      "meaning": {
+        "en": "The logarithm (inverse of exponentiation).",
+        "es": "El logaritmo (inverso de la exponenciación)."
+      },
+      "category": "function"
+    },
+    {
+      "id": "ln",
+      "display": "\\ln",
+      "tex": [
+        "\\ln"
+      ],
+      "uni": [],
+      "read": {
+        "en": "natural log",
+        "es": "logaritmo natural"
+      },
+      "meaning": {
+        "en": "Logarithm base e.",
+        "es": "Logaritmo en base e."
+      },
+      "category": "function"
+    },
+    {
+      "id": "argmax",
+      "display": "\\arg\\max",
+      "tex": [
+        "\\arg"
+      ],
+      "uni": [],
+      "read": {
+        "en": "argmax / argmin",
+        "es": "argmax / argmin"
+      },
+      "meaning": {
+        "en": "The input that maximizes (or minimizes) a function.",
+        "es": "La entrada que maximiza (o minimiza) una función."
+      },
+      "category": "function"
+    },
+    {
+      "id": "Re",
+      "display": "\\Re",
+      "tex": [
+        "\\Re"
+      ],
+      "uni": [],
+      "read": {
+        "en": "real part",
+        "es": "parte real"
+      },
+      "meaning": {
+        "en": "The real part of a complex number.",
+        "es": "La parte real de un número complejo."
+      },
+      "category": "function"
+    },
+    {
+      "id": "Im",
+      "display": "\\Im",
+      "tex": [
+        "\\Im"
+      ],
+      "uni": [],
+      "read": {
+        "en": "imaginary part",
+        "es": "parte imaginaria"
+      },
+      "meaning": {
+        "en": "The imaginary part of a complex number.",
+        "es": "La parte imaginaria de un número complejo."
+      },
+      "category": "function"
+    },
+    {
+      "id": "gcd",
+      "display": "\\gcd",
+      "tex": [
+        "\\gcd"
+      ],
+      "uni": [],
+      "read": {
+        "en": "gcd",
+        "es": "mcd"
+      },
+      "meaning": {
+        "en": "The greatest common divisor.",
+        "es": "El máximo común divisor."
+      },
+      "category": "function"
+    },
+    {
+      "id": "mid",
+      "display": "P(A\\mid B)",
+      "tex": [
+        "\\mid"
+      ],
+      "uni": [],
+      "read": {
+        "en": "given (conditional)",
+        "es": "dado (condicional)"
+      },
+      "meaning": {
+        "en": "'Given that' in conditional probability P(A | B).",
+        "es": "'Dado que' en probabilidad condicional P(A | B)."
+      },
+      "category": "relation"
+    }
+  ]
+}

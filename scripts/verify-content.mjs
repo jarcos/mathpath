@@ -34,7 +34,43 @@ function hasBoth(obj, label, where) {
   return true
 }
 
+// Multiple-choice integrity (graded in-app by the `correct` flag, not mathjs).
+function checkMcq(ex, where) {
+  exerciseCount++
+  hasBoth(ex.prompt, 'prompt', where)
+  if (!Array.isArray(ex.choices) || ex.choices.length < 2) {
+    fail(where, 'mcq needs at least 2 choices')
+    return
+  }
+  const correct = ex.choices.filter((c) => c.correct)
+  if (correct.length !== 1) fail(where, `mcq must have exactly one correct choice (has ${correct.length})`)
+  ex.choices.forEach((c, i) => {
+    hasBoth(c.text, `choice ${i + 1} text`, where)
+    hasBoth(c.why, `choice ${i + 1} explanation`, where)
+  })
+}
+
+// Code-exercise integrity (executed for real by verify-code.py).
+function checkCodeExercise(ex, where) {
+  exerciseCount++
+  hasBoth(ex.prompt, 'prompt', where)
+  if (!ex.funcName) fail(where, 'code exercise missing funcName')
+  if (!ex.solution || typeof ex.solution !== 'string') fail(where, 'code exercise missing reference solution')
+  hasBoth(ex.starter, 'starter', where)
+  if (!Array.isArray(ex.tests) || ex.tests.length === 0) {
+    fail(where, 'code exercise needs at least one test')
+  } else {
+    ex.tests.forEach((t, i) => {
+      if (!('expected' in t)) fail(where, `test ${i + 1} missing expected`)
+      if (!Array.isArray(t.args)) fail(where, `test ${i + 1} args must be an array`)
+    })
+  }
+}
+
 function checkExercise(ex, where) {
+  if (ex.answerType === 'mcq') return checkMcq(ex, where)
+  if (ex.answerType === 'code') return checkCodeExercise(ex, where)
+
   exerciseCount++
   hasBoth(ex.prompt, 'prompt', where)
   if (!ex.answer) fail(where, 'no answer')
@@ -65,6 +101,16 @@ function checkExercise(ex, where) {
   }
 }
 
+function checkCodeSection(section, where) {
+  // The code itself is executed by verify-code.py; here we check structure only.
+  hasBoth(section.code, 'code', where)
+  if (!Array.isArray(section.lib)) fail(where, 'code section needs a lib array (may be empty)')
+  if (section.runnable === true && (section.expectedOutput == null || section.expectedOutput === '')) {
+    fail(where, 'runnable code section needs expectedOutput')
+  }
+  if (typeof section.runnable !== 'boolean') fail(where, 'code section needs a boolean runnable')
+}
+
 function checkGraph(section, where) {
   try {
     const node = math.parse(section.fn)
@@ -83,7 +129,13 @@ function checkLesson(lesson, file) {
 
   for (const section of lesson.sections || []) {
     if (section.type === 'graph') checkGraph(section, where)
-    else if (section.content) hasBoth(section.content, `${section.type} content`, where)
+    else if (section.type === 'code') checkCodeSection(section, where)
+    else if (section.type === 'prereq') {
+      hasBoth(section.note, 'prereq note', where)
+      if (!Array.isArray(section.lessons) || section.lessons.length === 0) {
+        fail(where, 'prereq section needs a non-empty lessons array')
+      }
+    } else if (section.content) hasBoth(section.content, `${section.type} content`, where)
   }
   for (const ex of lesson.exercises || []) checkExercise(ex, `${where} / ${ex.id}`)
 }

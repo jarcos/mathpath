@@ -106,3 +106,41 @@ SmartScreen on first launch.
 
 Optional — see `build/README.md`. Without a custom icon the default Electron
 icon is used.
+
+## In-app Python (Pyodide) — offline runtime
+
+Lessons in the AI/ML and computational-math tracks include **runnable Python**
+(the **Run** button). Execution uses [Pyodide](https://pyodide.org) (CPython on
+WebAssembly) entirely on-device — no network at runtime, consistent with the
+offline-first principle.
+
+- `pyodide` is a normal dependency. After `npm install`, the **postinstall** step
+  runs `scripts/copy-pyodide.mjs`, which copies the Pyodide **core** (loader,
+  wasm, stdlib) into `src/renderer/public/pyodide/`. That folder is git-ignored
+  and is served at `/pyodide/` by Vite/Electron.
+- The npm `pyodide` package ships **core only** — the science wheels are not
+  included. Run **`npm run setup:pyodide:wheels`** once to download the wheels for
+  `numpy pandas scipy scikit-learn sympy` (+ deps) for the installed Pyodide
+  version into the same folder (≈ 131 MB). After this the runtime is fully offline
+  (verified: Pyodide loads all five libs from the local bundle with no network).
+- Re-copy core any time with `npm run setup:pyodide`; re-fetch wheels with
+  `npm run setup:pyodide:wheels` (idempotent — skips wheels already present).
+- The loader (`src/renderer/src/lib/pyodide.js`) is lazy: Pyodide boots on the
+  first **Run**, and per-lesson packages (`numpy`, `pandas`, `scikit-learn`,
+  `scipy`, `sympy`) load on demand from the local copy.
+- **Bundle size:** copying all wheels adds hundreds of MB. To slim installers,
+  copy only the wheels you actually use (numpy/pandas/scikit-learn/scipy/sympy +
+  their deps) instead of the whole dist.
+- **TensorFlow / PyTorch** snippets are shown as **static reference** (Pyodide
+  cannot run them). They are marked `runnable: false` and are verified separately
+  by the code gate in a CPython env that has TF installed.
+
+### Correctness gate for code
+
+`npm run verify` runs three gates: `verify:content` (mathjs), `verify:glossary`,
+and `verify:code`. The last (`scripts/verify-code.py`) executes every runnable
+snippet (both EN and ES) and every code-exercise reference solution in CPython —
+restricted to the Pyodide-supported library set — and checks the stated output /
+test results. It needs `numpy pandas scikit-learn scipy sympy` installed
+(`pip install ...`); heavy libs (tensorflow/torch) are an optional tier that is
+skipped with a notice if absent.

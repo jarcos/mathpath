@@ -63,6 +63,34 @@ export function AppProvider({ children }) {
 
   const recordAttempt = useCallback((payload) => window.api.attempts.record(payload), [])
 
-  const value = { lang, setLang, theme, setTheme, loc, completed, setLessonCompleted, recordAttempt, ready }
-  return <AppContext.Provider value={value}>{ready ? children : null}</AppContext.Provider>
+  // Defensive: tolerate an older/stale preload bridge that predates this API so
+  // opening a lesson never hard-crashes the view. Always resolves to an array.
+  const getSolvedForLesson = useCallback(async (lessonId) => {
+    try {
+      const fn = window.api?.attempts?.solvedForLesson
+      if (typeof fn !== 'function') return []
+      return (await fn(lessonId)) || []
+    } catch (e) {
+      console.error('getSolvedForLesson failed', e)
+      return []
+    }
+  }, [])
+
+  const value = {
+    lang,
+    setLang,
+    theme,
+    setTheme,
+    loc,
+    completed,
+    setLessonCompleted,
+    recordAttempt,
+    getSolvedForLesson,
+    ready
+  }
+  return (
+    <AppContext.Provider value={value}>
+      {ready ? children : <div className="app-loading" aria-busy="true">MathPath…</div>}
+    </AppContext.Provider>
+  )
 }

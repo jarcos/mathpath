@@ -13,7 +13,8 @@ const api = {
       ipcRenderer.invoke('progress:setLesson', lessonId, subjectId, completed)
   },
   attempts: {
-    record: (payload) => ipcRenderer.invoke('attempts:record', payload)
+    record: (payload) => ipcRenderer.invoke('attempts:record', payload),
+    solvedForLesson: (lessonId) => ipcRenderer.invoke('attempts:solvedForLesson', lessonId)
   },
   plan: {
     get: (subjectId) => ipcRenderer.invoke('plan:get', subjectId),

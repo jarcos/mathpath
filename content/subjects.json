@@ -5,9 +5,13 @@
       "icon": "∑",
       "targetDays": 30,
       "status": "available",
+      "track": "math",
       "plannedLessons": 20,
       "source": "00_Iniciación a las matemáticas para la ingeniería",
-      "name": { "en": "Pre-University Algebra", "es": "Álgebra preuniversitaria" },
+      "name": {
+        "en": "Pre-University Algebra",
+        "es": "Álgebra preuniversitaria"
+      },
       "description": {
         "en": "Numbers, equations, systems, polynomials and matrices — the foundation for everything that follows.",
         "es": "Números, ecuaciones, sistemas, polinomios y matrices: la base de todo lo que viene después."
@@ -40,9 +44,13 @@
       "icon": "ƒ",
       "targetDays": 30,
       "status": "available",
+      "track": "math",
       "plannedLessons": 16,
       "source": "00_Iniciación a las matemáticas para la ingeniería",
-      "name": { "en": "Functions & Pre-Calculus", "es": "Funciones y precálculo" },
+      "name": {
+        "en": "Functions & Pre-Calculus",
+        "es": "Funciones y precálculo"
+      },
       "description": {
         "en": "Functions, graphs, trigonometry, exponentials and logarithms.",
         "es": "Funciones, gráficas, trigonometría, exponenciales y logaritmos."
@@ -71,9 +79,13 @@
       "icon": "∫",
       "targetDays": 30,
       "status": "available",
+      "track": "math",
       "plannedLessons": 12,
       "source": "PID_00284286, PID_00284288, PID_00284285, PID_00284290, PID_00284292",
-      "name": { "en": "Introduction to Calculus", "es": "Introducción al cálculo" },
+      "name": {
+        "en": "Introduction to Calculus",
+        "es": "Introducción al cálculo"
+      },
       "description": {
         "en": "Sequences, limits, continuity, derivatives and integrals — how things change.",
         "es": "Sucesiones, límites, continuidad, derivadas e integrales: cómo cambian las cosas."
@@ -98,9 +110,13 @@
       "icon": "⎡⎤",
       "targetDays": 30,
       "status": "available",
+      "track": "math",
       "plannedLessons": 23,
       "source": "PID_00271022, PID_00269009, PID_00293765",
-      "name": { "en": "Linear Algebra & Geometry", "es": "Álgebra lineal y geometría" },
+      "name": {
+        "en": "Linear Algebra & Geometry",
+        "es": "Álgebra lineal y geometría"
+      },
       "description": {
         "en": "Complex numbers, vector spaces, matrices, determinants, linear systems and geometry.",
         "es": "Números complejos, espacios vectoriales, matrices, determinantes, sistemas lineales y geometría."
@@ -136,9 +152,13 @@
       "icon": "↦",
       "targetDays": 30,
       "status": "available",
+      "track": "math",
       "plannedLessons": 16,
       "source": "PID_00269006, PID_00269008",
-      "name": { "en": "Linear Maps & Transformations", "es": "Aplicaciones lineales y transformaciones" },
+      "name": {
+        "en": "Linear Maps & Transformations",
+        "es": "Aplicaciones lineales y transformaciones"
+      },
       "description": {
         "en": "Linear maps, eigenvalues, diagonalization and geometric transformations — the bridge to ML.",
         "es": "Aplicaciones lineales, autovalores, diagonalización y transformaciones geométricas: el puente hacia el ML."
@@ -167,9 +187,13 @@
       "icon": "σ",
       "targetDays": 30,
       "status": "available",
+      "track": "ai",
       "plannedLessons": 16,
       "source": "Pearl, Probabilistic Reasoning (1988); Russell & Norvig (AIMA); Goodfellow ch. 3",
-      "name": { "en": "Statistics & Probability", "es": "Estadística y probabilidad" },
+      "name": {
+        "en": "Statistics & Probability",
+        "es": "Estadística y probabilidad"
+      },
       "description": {
         "en": "Descriptive statistics, probability, distributions, Bayes and inference.",
         "es": "Estadística descriptiva, probabilidad, distribuciones, Bayes e inferencia."
@@ -198,9 +222,13 @@
       "icon": "⚙",
       "targetDays": 30,
       "status": "available",
+      "track": "ai",
       "plannedLessons": 18,
       "source": "Russell & Norvig, AIMA (1995); Goodfellow et al., Part II",
-      "name": { "en": "Machine Learning Foundations", "es": "Fundamentos de aprendizaje automático" },
+      "name": {
+        "en": "Machine Learning Foundations",
+        "es": "Fundamentos de aprendizaje automático"
+      },
       "description": {
         "en": "Supervised/unsupervised learning, regression, classification, loss and gradient descent.",
         "es": "Aprendizaje supervisado/no supervisado, regresión, clasificación, función de pérdida y descenso de gradiente."
@@ -231,9 +259,13 @@
       "icon": "🧠",
       "targetDays": 30,
       "status": "available",
+      "track": "ai",
       "plannedLessons": 16,
       "source": "Rumelhart & McClelland, PDP (1986); Goodfellow et al., ch. 6",
-      "name": { "en": "Neural Networks", "es": "Redes neuronales" },
+      "name": {
+        "en": "Neural Networks",
+        "es": "Redes neuronales"
+      },
       "description": {
         "en": "Perceptrons, multilayer networks, backpropagation and gradient descent.",
         "es": "Perceptrones, redes multicapa, retropropagación y descenso de gradiente."
@@ -262,9 +294,13 @@
       "icon": "◈",
       "targetDays": 30,
       "status": "available",
+      "track": "ai",
       "plannedLessons": 18,
       "source": "Goodfellow, Bengio & Courville, Deep Learning (2016)",
-      "name": { "en": "Deep Learning", "es": "Aprendizaje profundo" },
+      "name": {
+        "en": "Deep Learning",
+        "es": "Aprendizaje profundo"
+      },
       "description": {
         "en": "Convolutional networks, regularization, optimization and sequence models.",
         "es": "Redes convolucionales, regularización, optimización y modelos secuenciales."
@@ -295,9 +331,13 @@
       "icon": "💬",
       "targetDays": 30,
       "status": "available",
+      "track": "ai",
       "plannedLessons": 16,
       "source": "Jurafsky & Martin, SLP; Vaswani et al., Attention Is All You Need (2017)",
-      "name": { "en": "NLP & Transformers", "es": "PLN y transformers" },
+      "name": {
+        "en": "NLP & Transformers",
+        "es": "PLN y transformers"
+      },
       "description": {
         "en": "Language models, embeddings, attention and the transformer architecture.",
         "es": "Modelos de lenguaje, embeddings, atención y la arquitectura transformer."
@@ -326,9 +366,13 @@
       "icon": "🎯",
       "targetDays": 30,
       "status": "available",
+      "track": "ai",
       "plannedLessons": 16,
       "source": "Sutton & Barto, Reinforcement Learning: An Introduction (2018)",
-      "name": { "en": "Reinforcement Learning", "es": "Aprendizaje por refuerzo" },
+      "name": {
+        "en": "Reinforcement Learning",
+        "es": "Aprendizaje por refuerzo"
+      },
       "description": {
         "en": "Markov decision processes, value and policy methods, Q-learning and policy gradients.",
         "es": "Procesos de decisión de Markov, métodos de valor y política, Q-learning y gradientes de política."
@@ -357,9 +401,13 @@
       "icon": "🕸",
       "targetDays": 30,
       "status": "available",
+      "track": "ai",
       "plannedLessons": 14,
       "source": "Brachman & Levesque (2004); Pearl, Probabilistic Reasoning (1988)",
-      "name": { "en": "Knowledge Representation & Reasoning", "es": "Representación del conocimiento y razonamiento" },
+      "name": {
+        "en": "Knowledge Representation & Reasoning",
+        "es": "Representación del conocimiento y razonamiento"
+      },
       "description": {
         "en": "Logic, ontologies, inference and probabilistic reasoning.",
         "es": "Lógica, ontologías, inferencia y razonamiento probabilístico."
@@ -386,9 +434,13 @@
       "icon": "👁",
       "targetDays": 30,
       "status": "available",
+      "track": "ai",
       "plannedLessons": 14,
       "source": "Marr, Vision (1982); Goodfellow et al., ch. 9 (CNNs)",
-      "name": { "en": "Computer Vision", "es": "Visión por computador" },
+      "name": {
+        "en": "Computer Vision",
+        "es": "Visión por computador"
+      },
       "description": {
         "en": "Image representation, Marr's levels, convolution and visual recognition.",
         "es": "Representación de imágenes, niveles de Marr, convolución y reconocimiento visual."
@@ -415,9 +467,13 @@
       "icon": "🧭",
       "targetDays": 30,
       "status": "available",
+      "track": "ai",
       "plannedLessons": 14,
       "source": "Turing (1950); Searle (1980); Dreyfus (1992); Brooks (1991); Simon (1995); Bommasani et al. (2021)",
-      "name": { "en": "AI Foundations & Philosophy", "es": "Fundamentos y filosofía de la IA" },
+      "name": {
+        "en": "AI Foundations & Philosophy",
+        "es": "Fundamentos y filosofía de la IA"
+      },
       "description": {
         "en": "The Turing test, the Chinese Room, symbolic vs connectionist AI, and foundation models. Conceptual, reading-based.",
         "es": "El test de Turing, la habitación china, IA simbólica vs conexionista y modelos fundacionales. Conceptual, basado en lecturas."
@@ -444,9 +500,13 @@
       "icon": "🌀",
       "targetDays": 30,
       "status": "available",
+      "track": "ai",
       "plannedLessons": 12,
       "source": "Parr, Pezzulo & Friston, Active Inference (2022)",
-      "name": { "en": "Active Inference (Advanced)", "es": "Inferencia activa (avanzado)" },
+      "name": {
+        "en": "Active Inference (Advanced)",
+        "es": "Inferencia activa (avanzado)"
+      },
       "description": {
         "en": "The free energy principle and predictive processing in mind, brain and behavior.",
         "es": "El principio de energía libre y el procesamiento predictivo en mente, cerebro y conducta."

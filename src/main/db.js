@@ -95,6 +95,15 @@ export function recordAttempt({ exerciseId, lessonId, correct, userAnswer }) {
   return true
 }
 
+// Exercise IDs answered correctly at least once in this lesson, so the lesson
+// view can restore "solved" state after a reload.
+export function getSolvedExercises(lessonId) {
+  return db
+    .prepare(`SELECT DISTINCT exercise_id FROM attempts WHERE lesson_id = ? AND correct = 1`)
+    .all(lessonId)
+    .map((r) => r.exercise_id)
+}
+
 /* ---------- study plan ---------- */
 export function getPlan(subjectId) {
   return db.prepare('SELECT subject_id, start_date, target_days FROM subject_plan WHERE subject_id = ?').get(subjectId)

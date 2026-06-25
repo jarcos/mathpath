@@ -7,6 +7,7 @@ import {
   getProgress,
   setLessonCompleted,
   recordAttempt,
+  getSolvedExercises,
   getPlan,
   startPlan,
   resetPlan
@@ -15,6 +16,11 @@ import {
 const isDev = !app.isPackaged
 
 function createWindow() {
+  // Dev/runtime window icon (Linux/Windows + dev dock). Packaged macOS uses the
+  // .icns from electron-builder; this path may not exist there, so only set it
+  // in dev to avoid a missing-file warning.
+  const devIcon = join(import.meta.dirname, '../../build/icon.png')
+
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
@@ -23,6 +29,7 @@ function createWindow() {
     show: false,
     title: 'MathPath',
     backgroundColor: '#0f1220',
+    ...(isDev ? { icon: devIcon } : {}),
     webPreferences: {
       preload: join(import.meta.dirname, '../preload/index.mjs'),
       // Secure defaults: renderer has no direct Node access.
@@ -57,6 +64,7 @@ function registerIpc() {
   )
 
   ipcMain.handle('attempts:record', (_e, payload) => recordAttempt(payload))
+  ipcMain.handle('attempts:solvedForLesson', (_e, lessonId) => getSolvedExercises(lessonId))
 
   ipcMain.handle('plan:get', (_e, subjectId) => getPlan(subjectId))
   ipcMain.handle('plan:start', (_e, subjectId, targetDays) => startPlan(subjectId, targetDays))

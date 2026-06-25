@@ -1,5 +1,6 @@
 // Loads all shipped lesson content at build time so the app runs fully offline.
 import subjectsData from './subjects.json'
+import glossaryData from './glossary.json'
 
 // Eagerly import every lesson JSON in this folder tree.
 const lessonModules = import.meta.glob('./**/lesson-*.json', { eager: true })
@@ -34,4 +35,8 @@ export function getSubject(subjectId) {
 
 export function getLesson(lessonId) {
   return lessonIndex[lessonId] || null
+}
+
+export function getGlossary() {
+  return glossaryData
 }

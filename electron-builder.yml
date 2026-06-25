@@ -41,7 +41,7 @@ mac:
   gatekeeperAssess: false
   entitlements: build/entitlements.mac.plist
   entitlementsInherit: build/entitlements.mac.plist
-  # icon: build/icon.icns   # add a 512x512+ .icns to enable a custom icon
+  icon: build/icon.icns
 
 # ---- Linux ----
 linux:
@@ -50,13 +50,13 @@ linux:
     - AppImage
     - deb
   maintainer: Jose Arcos
-  # icon: build/icon.png    # add a 512x512 .png to enable a custom icon
+  icon: build/icon.png
 
 # ---- Windows ----
 win:
   target:
     - nsis
-  # icon: build/icon.ico    # add a 256x256 .ico to enable a custom icon
+  icon: build/icon.ico
 
 nsis:
   oneClick: false

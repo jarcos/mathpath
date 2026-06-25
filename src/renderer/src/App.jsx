@@ -4,6 +4,7 @@ import { useApp } from './AppContext.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import SubjectView from './pages/SubjectView.jsx'
 import LessonView from './pages/LessonView.jsx'
+import GlossaryView from './pages/GlossaryView.jsx'
 
 function LanguageToggle() {
   const { lang, setLang } = useApp()
@@ -46,14 +47,22 @@ export default function App() {
           <span className="brand-mark">π</span> {t('appName')}
         </button>
         <div className="topbar-controls">
+          <button className="nav-link" onClick={() => setView({ name: 'glossary' })}>
+            {t('navGlossary')}
+          </button>
           <ThemeToggle />
           <LanguageToggle />
         </div>
       </nav>
 
-      <main className="content">
+      <main className="content" id="app-scroll">
         {view.name === 'dashboard' && (
-          <Dashboard onOpenSubject={(subjectId) => setView({ name: 'subject', subjectId })} />
+          <Dashboard
+            onOpenSubject={(subjectId) => setView({ name: 'subject', subjectId })}
+            onOpenLesson={(subjectId, lessonId) =>
+              setView({ name: 'lesson', lessonId, subjectId })
+            }
+          />
         )}
         {view.name === 'subject' && (
           <SubjectView
@@ -68,7 +77,13 @@ export default function App() {
           <LessonView
             lessonId={view.lessonId}
             onBack={() => setView({ name: 'subject', subjectId: view.subjectId })}
+            onOpenLesson={(lessonId) =>
+              setView({ name: 'lesson', lessonId, subjectId: view.subjectId })
+            }
           />
+        )}
+        {view.name === 'glossary' && (
+          <GlossaryView onBack={() => setView({ name: 'dashboard' })} />
         )}
       </main>
     </div>
