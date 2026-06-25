@@ -1,0 +1,79 @@
+{
+  "id": "rl-11-exploration",
+  "subjectId": "reinforcement-learning",
+  "order": 11,
+  "estimatedMinutes": 35,
+  "title": { "en": "Exploration vs Exploitation", "es": "Exploración vs explotación" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "An agent that always picks the best-known action (**exploits**) may never discover a better one; an agent that always tries new things (**explores**) never cashes in. Balancing the two — the **exploration–exploitation dilemma** — is fundamental and unavoidable in RL.",
+        "es": "Un agente que siempre elige la mejor acción conocida (**explota**) puede no descubrir nunca una mejor; uno que siempre prueba cosas nuevas (**explora**) nunca aprovecha. Equilibrar ambas — el **dilema exploración–explotación** — es fundamental e inevitable en RL."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The simplest strategy is **$\\varepsilon$-greedy**: with probability $\\varepsilon$ pick a random action (explore), otherwise pick the greedy best (exploit). With $\\varepsilon = 0.1$ the agent explores $10\\%$ of the time. Often $\\varepsilon$ is **decayed** over training — explore a lot early, exploit more as estimates sharpen.",
+        "es": "La estrategia más simple es **$\\varepsilon$-voraz**: con probabilidad $\\varepsilon$ elige una acción al azar (explorar), si no elige la mejor voraz (explotar). Con $\\varepsilon = 0.1$ el agente explora el $10\\%$ del tiempo. A menudo $\\varepsilon$ se **decae** durante el entrenamiento — explorar mucho al principio, explotar más conforme las estimaciones se afinan."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Smarter schemes exist: **softmax / Boltzmann** picks actions in proportion to value, and **upper confidence bound (UCB)** adds an optimism bonus to rarely-tried actions ('optimism in the face of uncertainty'). The **multi-armed bandit** — a one-state MDP — is the classic setting where these strategies are studied in isolation.",
+        "es": "Existen esquemas más inteligentes: **softmax / Boltzmann** elige acciones en proporción a su valor, y el **límite superior de confianza (UCB)** añade un bono de optimismo a las acciones poco probadas ('optimismo frente a la incertidumbre'). El **bandido multibrazo** — un MDP de un solo estado — es el escenario clásico donde estas estrategias se estudian aisladas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With $\\varepsilon = 0.1$, the agent exploits with probability $1 - 0.1 = 0.9$. If there are $4$ actions and it explores uniformly, each non-greedy action is chosen with probability $\\varepsilon/4 = 0.1/4 = 0.025$.",
+        "es": "Con $\\varepsilon = 0.1$, el agente explota con probabilidad $1 - 0.1 = 0.9$. Si hay $4$ acciones y explora uniformemente, cada acción no voraz se elige con probabilidad $\\varepsilon/4 = 0.1/4 = 0.025$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-11-e1",
+      "answerType": "number",
+      "prompt": { "en": "$\\varepsilon$-greedy with $\\varepsilon=0.1$: probability of exploiting?", "es": "$\\varepsilon$-voraz con $\\varepsilon=0.1$: ¿probabilidad de explotar?" },
+      "answer": "0.9",
+      "acceptedAlt": ["1-0.1", "9/10"],
+      "hint": { "en": "1 − ε.", "es": "1 − ε." },
+      "solution": [ { "tex": "1-0.1 = 0.9", "en": "0.9.", "es": "0.9." } ]
+    },
+    {
+      "id": "rl-11-e2",
+      "answerType": "number",
+      "prompt": { "en": "Uniform exploration over 4 actions with $\\varepsilon=0.1$: prob of a specific explore action $0.1/4$?", "es": "Exploración uniforme sobre 4 acciones con $\\varepsilon=0.1$: prob. de una acción de exploración concreta $0.1/4$?" },
+      "answer": "0.025",
+      "acceptedAlt": ["0.1/4", "1/40"],
+      "hint": { "en": "0.1 / 4.", "es": "0.1 / 4." },
+      "solution": [ { "tex": "0.1/4 = 0.025", "en": "0.025.", "es": "0.025." } ]
+    },
+    {
+      "id": "rl-11-e3",
+      "answerType": "text",
+      "prompt": { "en": "Choosing the best-known action is to ___. (one word)", "es": "Elegir la mejor acción conocida es ___. (una palabra)" },
+      "answer": "exploit",
+      "acceptedAlt": ["explotar", "exploitation", "explotación", "explotacion"],
+      "hint": { "en": "Opposite of explore.", "es": "Opuesto de explorar." },
+      "solution": [ { "tex": "\\arg\\max Q", "en": "Exploit.", "es": "Explotar." } ]
+    },
+    {
+      "id": "rl-11-e4",
+      "answerType": "text",
+      "prompt": { "en": "The exploration method adding an optimism bonus is ___ (acronym).", "es": "El método de exploración que añade un bono de optimismo es ___ (siglas)." },
+      "answer": "ucb",
+      "acceptedAlt": [],
+      "hint": { "en": "Upper confidence bound.", "es": "Límite superior de confianza." },
+      "solution": [ { "tex": "\\text{UCB}", "en": "UCB.", "es": "UCB." } ]
+    }
+  ],
+  "references": [
+    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 2, multi-armed bandits; exploration", "es": "Cap. 2, bandidos multibrazo; exploración" } }
+  ]
+}

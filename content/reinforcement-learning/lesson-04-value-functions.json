@@ -1,0 +1,79 @@
+{
+  "id": "rl-04-value-functions",
+  "subjectId": "reinforcement-learning",
+  "order": 4,
+  "estimatedMinutes": 35,
+  "title": { "en": "Policies & Value Functions", "es": "Políticas y funciones de valor" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **policy** $\\pi(a\\mid s)$ gives the probability of taking action $a$ in state $s$. To evaluate how good a state is under a policy we use the **state-value function** $V^\\pi(s)$ — the expected return starting from $s$ and following $\\pi$ thereafter. It answers: 'how much reward can I expect from here?'",
+        "es": "Una **política** $\\pi(a\\mid s)$ da la probabilidad de tomar la acción $a$ en el estado $s$. Para evaluar qué tan bueno es un estado bajo una política usamos la **función de valor de estado** $V^\\pi(s)$ — el retorno esperado empezando en $s$ y siguiendo $\\pi$ después. Responde: '¿cuánta recompensa puedo esperar desde aquí?'"
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **action-value function** $Q^\\pi(s,a)$ is similar but fixes the first action: the expected return from taking $a$ in $s$, then following $\\pi$. Q is what most algorithms learn, because once you know $Q$ you can act greedily — pick the action with the highest Q-value — without needing a model of the environment.",
+        "es": "La **función de valor de acción** $Q^\\pi(s,a)$ es similar pero fija la primera acción: el retorno esperado de tomar $a$ en $s$ y luego seguir $\\pi$. Q es lo que la mayoría de algoritmos aprenden, porque una vez que conoces $Q$ puedes actuar de forma voraz — elegir la acción de mayor valor Q — sin necesitar un modelo del entorno."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The two are linked: $V^\\pi(s) = \\sum_a \\pi(a\\mid s)\\,Q^\\pi(s,a)$ — the state value is the policy-weighted average of action values. An **optimal policy** maximizes value in every state; its value functions are written $V^*$ and $Q^*$. Finding them is the central computational problem of RL.",
+        "es": "Las dos están ligadas: $V^\\pi(s) = \\sum_a \\pi(a\\mid s)\\,Q^\\pi(s,a)$ — el valor del estado es la media de los valores de acción ponderada por la política. Una **política óptima** maximiza el valor en cada estado; sus funciones de valor se escriben $V^*$ y $Q^*$. Hallarlas es el problema computacional central del RL."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If in state $s$ the policy picks action 1 (Q=10) with prob $0.6$ and action 2 (Q=5) with prob $0.4$, then $V(s) = 0.6\\cdot10 + 0.4\\cdot5 = 6 + 2 = 8$.",
+        "es": "Si en el estado $s$ la política elige la acción 1 (Q=10) con prob. $0.6$ y la acción 2 (Q=5) con prob. $0.4$, entonces $V(s) = 0.6\\cdot10 + 0.4\\cdot5 = 6 + 2 = 8$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-04-e1",
+      "answerType": "number",
+      "prompt": { "en": "$V(s) = 0.6\\cdot10 + 0.4\\cdot5$?", "es": "$V(s) = 0.6\\cdot10 + 0.4\\cdot5$?" },
+      "answer": "8",
+      "acceptedAlt": ["0.6*10+0.4*5"],
+      "hint": { "en": "6 + 2.", "es": "6 + 2." },
+      "solution": [ { "tex": "6+2 = 8", "en": "Eight.", "es": "Ocho." } ]
+    },
+    {
+      "id": "rl-04-e2",
+      "answerType": "text",
+      "prompt": { "en": "The function giving expected return from a state under π is the ___-value function. (one word)", "es": "La función que da el retorno esperado desde un estado bajo π es la función de valor de ___. (una palabra)" },
+      "answer": "state",
+      "acceptedAlt": ["estado"],
+      "hint": { "en": "V(s).", "es": "V(s)." },
+      "solution": [ { "tex": "V^\\pi(s)", "en": "State.", "es": "Estado." } ]
+    },
+    {
+      "id": "rl-04-e3",
+      "answerType": "number",
+      "prompt": { "en": "Greedy value: best of Q-values $\\{3, 9, 7\\}$?", "es": "Valor voraz: mejor de los valores Q $\\{3, 9, 7\\}$?" },
+      "answer": "9",
+      "acceptedAlt": ["max(3,9,7)"],
+      "hint": { "en": "The maximum.", "es": "El máximo." },
+      "solution": [ { "tex": "\\max\\{3,9,7\\} = 9", "en": "Nine.", "es": "Nueve." } ]
+    },
+    {
+      "id": "rl-04-e4",
+      "answerType": "text",
+      "prompt": { "en": "$Q(s,a)$ is the ___-value function. (one word)", "es": "$Q(s,a)$ es la función de valor de ___. (una palabra)" },
+      "answer": "action",
+      "acceptedAlt": ["acción", "accion"],
+      "hint": { "en": "Fixes the first action.", "es": "Fija la primera acción." },
+      "solution": [ { "tex": "Q^\\pi(s,a)", "en": "Action.", "es": "Acción." } ]
+    }
+  ],
+  "references": [
+    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 3.5–3.6, policies and value functions", "es": "Cap. 3.5–3.6, políticas y funciones de valor" } }
+  ]
+}

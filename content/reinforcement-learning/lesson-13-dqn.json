@@ -1,0 +1,79 @@
+{
+  "id": "rl-13-dqn",
+  "subjectId": "reinforcement-learning",
+  "order": 13,
+  "estimatedMinutes": 35,
+  "title": { "en": "Deep Q-Networks (DQN)", "es": "Redes Q profundas (DQN)" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**DQN** (DeepMind, 2015) combined Q-learning with a deep neural network to play Atari games directly from pixels, reaching human-level performance on many. The network takes a stack of screen frames and outputs a Q-value for each possible action — a single forward pass evaluates them all.",
+        "es": "**DQN** (DeepMind, 2015) combinó Q-learning con una red neuronal profunda para jugar a juegos de Atari directamente desde píxeles, alcanzando rendimiento de nivel humano en muchos. La red toma una pila de fotogramas de pantalla y produce un valor Q para cada acción posible — un solo pase hacia delante las evalúa todas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Naively training this is unstable, so DQN introduced two key tricks. **Experience replay** stores past transitions in a buffer and trains on random mini-batches, breaking the correlation between consecutive samples. A separate **target network**, a periodically-frozen copy used to compute the TD target, stops the target from chasing the weights and diverging.",
+        "es": "Entrenar esto de forma ingenua es inestable, así que DQN introdujo dos trucos clave. El **repaso de experiencia (experience replay)** guarda transiciones pasadas en un búfer y entrena con mini-lotes aleatorios, rompiendo la correlación entre muestras consecutivas. Una **red objetivo (target network)** separada, una copia congelada periódicamente usada para calcular el objetivo TD, evita que el objetivo persiga a los pesos y diverja."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "DQN loss is the squared TD error against the target network: $\\big(r + \\gamma \\max_{a'} Q_{\\text{target}}(s',a') - Q(s,a)\\big)^2$. Its success launched modern deep RL; later refinements (Double DQN, Dueling DQN, prioritized replay, Rainbow) each fixed a specific weakness.",
+        "es": "La pérdida de DQN es el error TD al cuadrado contra la red objetivo: $\\big(r + \\gamma \\max_{a'} Q_{\\text{target}}(s',a') - Q(s,a)\\big)^2$. Su éxito lanzó el RL profundo moderno; refinamientos posteriores (Double DQN, Dueling DQN, repaso priorizado, Rainbow) corrigieron cada uno una debilidad concreta."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "DQN TD error with $r=1$, $\\gamma=0.99$, target max $=10$, current $Q=2$: $1 + 0.99\\cdot10 - 2 = 10.9 - 2 = 8.9$. The squared loss is $8.9^2 = 79.21$.",
+        "es": "Error TD de DQN con $r=1$, $\\gamma=0.99$, máx. objetivo $=10$, $Q$ actual $=2$: $1 + 0.99\\cdot10 - 2 = 10.9 - 2 = 8.9$. La pérdida al cuadrado es $8.9^2 = 79.21$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-13-e1",
+      "answerType": "number",
+      "prompt": { "en": "DQN TD error $1 + 0.99\\cdot 10 - 2$?", "es": "Error TD de DQN $1 + 0.99\\cdot 10 - 2$?" },
+      "answer": "8.9",
+      "acceptedAlt": ["1+0.99*10-2"],
+      "hint": { "en": "10.9 − 2.", "es": "10.9 − 2." },
+      "solution": [ { "tex": "10.9 - 2 = 8.9", "en": "8.9.", "es": "8.9." } ]
+    },
+    {
+      "id": "rl-13-e2",
+      "answerType": "number",
+      "prompt": { "en": "Squared loss $8.9^2$?", "es": "Pérdida al cuadrado $8.9^2$?" },
+      "answer": "79.21",
+      "acceptedAlt": ["8.9^2"],
+      "hint": { "en": "8.9 × 8.9.", "es": "8.9 × 8.9." },
+      "solution": [ { "tex": "8.9^2 = 79.21", "en": "79.21.", "es": "79.21." } ]
+    },
+    {
+      "id": "rl-13-e3",
+      "answerType": "text",
+      "prompt": { "en": "Storing transitions and training on random batches is experience ___. (one word)", "es": "Guardar transiciones y entrenar con lotes aleatorios es ___ de experiencia. (una palabra)" },
+      "answer": "replay",
+      "acceptedAlt": ["repaso", "repetición", "repeticion"],
+      "hint": { "en": "Replay buffer.", "es": "Búfer de repaso." },
+      "solution": [ { "tex": "\\text{experience replay}", "en": "Replay.", "es": "Repaso." } ]
+    },
+    {
+      "id": "rl-13-e4",
+      "answerType": "text",
+      "prompt": { "en": "The periodically-frozen copy used for the TD target is the ___ network. (one word)", "es": "La copia congelada periódicamente para el objetivo TD es la red ___. (una palabra)" },
+      "answer": "target",
+      "acceptedAlt": ["objetivo"],
+      "hint": { "en": "Computes the target.", "es": "Calcula el objetivo." },
+      "solution": [ { "tex": "Q_{\\text{target}}", "en": "Target.", "es": "Objetivo." } ]
+    }
+  ],
+  "references": [
+    { "source": "Mnih et al. — Human-level control through deep reinforcement learning (DQN, 2015)", "detail": { "en": "Experience replay and target networks", "es": "Repaso de experiencia y redes objetivo" } }
+  ]
+}

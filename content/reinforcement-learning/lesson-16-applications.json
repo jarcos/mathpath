@@ -1,0 +1,80 @@
+{
+  "id": "rl-16-applications",
+  "subjectId": "reinforcement-learning",
+  "order": 16,
+  "estimatedMinutes": 35,
+  "title": { "en": "Applications & Frontiers", "es": "Aplicaciones y fronteras" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "RL's landmark successes are games. **TD-Gammon** (1992) reached expert backgammon by self-play. **AlphaGo** (2016) beat a world Go champion by combining deep RL with **Monte Carlo Tree Search**; **AlphaZero** then mastered Go, chess and shogi from scratch with **self-play** alone, learning superhuman strategy in hours.",
+        "es": "Los éxitos emblemáticos del RL son juegos. **TD-Gammon** (1992) alcanzó nivel experto en backgammon por autojuego. **AlphaGo** (2016) venció a un campeón mundial de Go combinando RL profundo con **búsqueda en árbol Monte Carlo**; **AlphaZero** después dominó Go, ajedrez y shogi desde cero solo con **autojuego (self-play)**, aprendiendo estrategia sobrehumana en horas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Beyond games, RL controls robots, datacenter cooling, recommendation, and chip design. Its most visible recent use is **RLHF** — reinforcement learning from human feedback — which fine-tunes large language models: humans rank model outputs, a **reward model** learns their preferences, and the LLM is optimized (via PPO) to score well, aligning it with human intent.",
+        "es": "Más allá de los juegos, el RL controla robots, la refrigeración de centros de datos, la recomendación y el diseño de chips. Su uso reciente más visible es el **RLHF** — aprendizaje por refuerzo a partir de retroalimentación humana — que ajusta grandes modelos de lenguaje: los humanos ordenan las salidas del modelo, un **modelo de recompensa** aprende sus preferencias, y el LLM se optimiza (vía PPO) para puntuar alto, alineándolo con la intención humana."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Open frontiers remain: **sample efficiency** (RL often needs millions of trials), **safe exploration**, **sparse rewards**, **transfer** to new tasks, and **offline RL** (learning purely from logged data). RL ties this AI track together — it is where perception (deep nets), sequential decision-making, and goal-directed behavior meet.",
+        "es": "Quedan fronteras abiertas: la **eficiencia de muestras** (el RL suele necesitar millones de ensayos), la **exploración segura**, las **recompensas escasas**, la **transferencia** a tareas nuevas, y el **RL offline** (aprender solo de datos registrados). El RL une esta ruta de IA — es donde se encuentran la percepción (redes profundas), la toma de decisiones secuencial y el comportamiento dirigido a metas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "In RLHF, if humans rank $4$ candidate responses, there are $4! = 24$ possible full orderings. AlphaZero learned with zero human game data — it used pure self-play.",
+        "es": "En RLHF, si los humanos ordenan $4$ respuestas candidatas, hay $4! = 24$ ordenaciones completas posibles. AlphaZero aprendió con cero datos humanos de partidas — usó autojuego puro."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-16-e1",
+      "answerType": "number",
+      "prompt": { "en": "Number of full orderings of 4 ranked responses: $4!$?", "es": "Número de ordenaciones completas de 4 respuestas ordenadas: $4!$?" },
+      "answer": "24",
+      "acceptedAlt": ["4!", "factorial(4)"],
+      "hint": { "en": "4 × 3 × 2 × 1.", "es": "4 × 3 × 2 × 1." },
+      "solution": [ { "tex": "4! = 24", "en": "24.", "es": "24." } ]
+    },
+    {
+      "id": "rl-16-e2",
+      "answerType": "text",
+      "prompt": { "en": "Fine-tuning LLMs with RL from ranked human preferences is ___ (acronym).", "es": "Ajustar LLMs con RL a partir de preferencias humanas ordenadas es ___ (siglas)." },
+      "answer": "rlhf",
+      "acceptedAlt": [],
+      "hint": { "en": "RL from human feedback.", "es": "RL de retroalimentación humana." },
+      "solution": [ { "tex": "\\text{RLHF}", "en": "RLHF.", "es": "RLHF." } ]
+    },
+    {
+      "id": "rl-16-e3",
+      "answerType": "text",
+      "prompt": { "en": "AlphaZero learned from scratch using ___-play. (one word)", "es": "AlphaZero aprendió desde cero usando ___-juego. (una palabra)" },
+      "answer": "self",
+      "acceptedAlt": ["auto", "self-play", "autojuego"],
+      "hint": { "en": "Plays itself.", "es": "Juega contra sí mismo." },
+      "solution": [ { "tex": "\\text{self-play}", "en": "Self.", "es": "Auto (self)." } ]
+    },
+    {
+      "id": "rl-16-e4",
+      "answerType": "text",
+      "prompt": { "en": "In RLHF, the learned model of human preferences is the ___ model. (one word)", "es": "En RLHF, el modelo aprendido de las preferencias humanas es el modelo de ___. (una palabra)" },
+      "answer": "reward",
+      "acceptedAlt": ["recompensa"],
+      "hint": { "en": "It scores outputs.", "es": "Puntúa las salidas." },
+      "solution": [ { "tex": "\\text{reward model}", "en": "Reward.", "es": "Recompensa." } ]
+    }
+  ],
+  "references": [
+    { "source": "Silver et al. — Mastering the game of Go without human knowledge (AlphaGo Zero, 2017)", "detail": { "en": "Self-play and MCTS", "es": "Autojuego y MCTS" } },
+    { "source": "Christiano et al. — Deep RL from Human Preferences (2017)", "detail": { "en": "RLHF foundations", "es": "Fundamentos de RLHF" } }
+  ]
+}

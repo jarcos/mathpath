@@ -1,0 +1,80 @@
+{
+  "id": "rl-15-actor-critic",
+  "subjectId": "reinforcement-learning",
+  "order": 15,
+  "estimatedMinutes": 35,
+  "title": { "en": "Actor-Critic Methods", "es": "Métodos actor-crítico" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Actor-critic** methods marry the two families. The **actor** is a policy $\\pi_\\theta$ that picks actions; the **critic** is a value function $\\hat{V}_w$ that judges them. The critic's estimate replaces the noisy full return as the learning signal for the actor, dramatically cutting variance while keeping the policy-gradient benefits.",
+        "es": "Los métodos **actor-crítico** casan las dos familias. El **actor** es una política $\\pi_\\theta$ que elige acciones; el **crítico** es una función de valor $\\hat{V}_w$ que las juzga. La estimación del crítico sustituye al ruidoso retorno completo como señal de aprendizaje para el actor, reduciendo drásticamente la varianza y conservando los beneficios del gradiente de política."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The critic supplies the **advantage** $A(s,a) \\approx r + \\gamma \\hat{V}(s') - \\hat{V}(s)$ — exactly the TD error — telling the actor whether an action did better or worse than expected. The actor moves toward better-than-expected actions; the critic updates its value estimate by TD. Both train together.",
+        "es": "El crítico aporta la **ventaja** $A(s,a) \\approx r + \\gamma \\hat{V}(s') - \\hat{V}(s)$ — exactamente el error TD — diciendo al actor si una acción fue mejor o peor de lo esperado. El actor se mueve hacia acciones mejores de lo esperado; el crítico actualiza su estimación de valor por TD. Ambos se entrenan juntos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Modern deep-RL workhorses are actor-critics: **A2C/A3C**, **DDPG** and **TD3** for continuous control, **SAC** with entropy-driven exploration, and **PPO**, whose clipped objective makes updates stable and which is the algorithm behind reinforcement learning from human feedback (RLHF) used to align large language models.",
+        "es": "Los caballos de batalla del RL profundo moderno son actor-críticos: **A2C/A3C**, **DDPG** y **TD3** para control continuo, **SAC** con exploración guiada por entropía, y **PPO**, cuyo objetivo recortado hace estables las actualizaciones y que es el algoritmo tras el aprendizaje por refuerzo a partir de retroalimentación humana (RLHF) usado para alinear grandes modelos de lenguaje."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Critic advantage with $r=2$, $\\gamma=0.9$, $\\hat{V}(s')=10$, $\\hat{V}(s)=8$: $A = 2 + 0.9\\cdot10 - 8 = 11 - 8 = 3$. A positive advantage tells the actor to make that action more likely.",
+        "es": "Ventaja del crítico con $r=2$, $\\gamma=0.9$, $\\hat{V}(s')=10$, $\\hat{V}(s)=8$: $A = 2 + 0.9\\cdot10 - 8 = 11 - 8 = 3$. Una ventaja positiva le dice al actor que haga esa acción más probable."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-15-e1",
+      "answerType": "number",
+      "prompt": { "en": "Advantage $2 + 0.9\\cdot 10 - 8$?", "es": "Ventaja $2 + 0.9\\cdot 10 - 8$?" },
+      "answer": "3",
+      "acceptedAlt": ["2+0.9*10-8"],
+      "hint": { "en": "11 − 8.", "es": "11 − 8." },
+      "solution": [ { "tex": "11-8 = 3", "en": "Three.", "es": "Tres." } ]
+    },
+    {
+      "id": "rl-15-e2",
+      "answerType": "text",
+      "prompt": { "en": "The component that picks actions (the policy) is the ___. (one word)", "es": "El componente que elige acciones (la política) es el ___. (una palabra)" },
+      "answer": "actor",
+      "acceptedAlt": [],
+      "hint": { "en": "It acts.", "es": "Actúa." },
+      "solution": [ { "tex": "\\pi_\\theta", "en": "Actor.", "es": "Actor." } ]
+    },
+    {
+      "id": "rl-15-e3",
+      "answerType": "text",
+      "prompt": { "en": "The component that estimates value (judges actions) is the ___. (one word)", "es": "El componente que estima el valor (juzga acciones) es el ___. (una palabra)" },
+      "answer": "critic",
+      "acceptedAlt": ["crítico", "critico"],
+      "hint": { "en": "It critiques.", "es": "Critica." },
+      "solution": [ { "tex": "\\hat{V}_w", "en": "Critic.", "es": "Crítico." } ]
+    },
+    {
+      "id": "rl-15-e4",
+      "answerType": "text",
+      "prompt": { "en": "The stable clipped actor-critic used in RLHF is ___ (acronym).", "es": "El actor-crítico recortado y estable usado en RLHF es ___ (siglas)." },
+      "answer": "ppo",
+      "acceptedAlt": [],
+      "hint": { "en": "Proximal Policy Optimization.", "es": "Optimización de política proximal." },
+      "solution": [ { "tex": "\\text{PPO}", "en": "PPO.", "es": "PPO." } ]
+    }
+  ],
+  "references": [
+    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 13.5, actor-critic methods", "es": "Cap. 13.5, métodos actor-crítico" } },
+    { "source": "Schulman et al. — Proximal Policy Optimization Algorithms (2017)", "detail": { "en": "PPO", "es": "PPO" } }
+  ]
+}

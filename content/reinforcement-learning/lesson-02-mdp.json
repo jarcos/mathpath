@@ -1,0 +1,79 @@
+{
+  "id": "rl-02-mdp",
+  "subjectId": "reinforcement-learning",
+  "order": 2,
+  "estimatedMinutes": 35,
+  "title": { "en": "Markov Decision Processes", "es": "Procesos de decisión de Markov" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "RL problems are formalized as a **Markov Decision Process (MDP)**, a tuple $(S, A, P, R, \\gamma)$: a set of **states** $S$, **actions** $A$, a **transition** function $P(s'\\mid s,a)$ giving the probability of the next state, a **reward** function $R$, and a **discount factor** $\\gamma$. The MDP is the mathematical skeleton of nearly all of RL.",
+        "es": "Los problemas de RL se formalizan como un **proceso de decisión de Markov (MDP)**, una tupla $(S, A, P, R, \\gamma)$: un conjunto de **estados** $S$, **acciones** $A$, una función de **transición** $P(s'\\mid s,a)$ que da la probabilidad del siguiente estado, una función de **recompensa** $R$, y un **factor de descuento** $\\gamma$. El MDP es el esqueleto matemático de casi todo el RL."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The key assumption is the **Markov property**: the future depends only on the **current** state, not the full history. In other words, the current state captures everything relevant for deciding what to do next. This makes the math tractable — we can reason one step at a time.",
+        "es": "La hipótesis clave es la **propiedad de Markov**: el futuro depende solo del estado **actual**, no de toda la historia. Dicho de otro modo, el estado actual captura todo lo relevante para decidir qué hacer a continuación. Esto hace tratable la matemática — podemos razonar un paso a la vez."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "From a state, the transition probabilities over possible next states must sum to $1$ for each action — they form a probability distribution. Solving an MDP means finding an **optimal policy** $\\pi^*$ that maximizes expected discounted return from every state. The rest of the subject builds the tools to do exactly that.",
+        "es": "Desde un estado, las probabilidades de transición sobre los posibles estados siguientes deben sumar $1$ para cada acción — forman una distribución de probabilidad. Resolver un MDP significa hallar una **política óptima** $\\pi^*$ que maximice el retorno descontado esperado desde cada estado. El resto de la asignatura construye las herramientas para lograr justo eso."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If from state $s$ action $a$ leads to $s_1$ with probability $0.7$ and $s_2$ with probability $p$, then $0.7 + p = 1$, so $p = 0.3$. The property that only the current state matters is the Markov property.",
+        "es": "Si desde el estado $s$ la acción $a$ lleva a $s_1$ con probabilidad $0.7$ y a $s_2$ con probabilidad $p$, entonces $0.7 + p = 1$, así que $p = 0.3$. La propiedad de que solo importa el estado actual es la propiedad de Markov."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-02-e1",
+      "answerType": "number",
+      "prompt": { "en": "Transitions to $s_1$ (0.7) and $s_2$ ($p$) must sum to 1. Find $p$.", "es": "Las transiciones a $s_1$ (0.7) y $s_2$ ($p$) deben sumar 1. Halla $p$." },
+      "answer": "0.3",
+      "acceptedAlt": ["1-0.7", "3/10"],
+      "hint": { "en": "1 − 0.7.", "es": "1 − 0.7." },
+      "solution": [ { "tex": "1-0.7 = 0.3", "en": "0.3.", "es": "0.3." } ]
+    },
+    {
+      "id": "rl-02-e2",
+      "answerType": "text",
+      "prompt": { "en": "The assumption that the future depends only on the current state is the ___ property. (one word)", "es": "La hipótesis de que el futuro depende solo del estado actual es la propiedad de ___. (una palabra)" },
+      "answer": "markov",
+      "acceptedAlt": [],
+      "hint": { "en": "Named after a mathematician.", "es": "Por un matemático." },
+      "solution": [ { "tex": "\\text{Markov}", "en": "Markov.", "es": "Markov." } ]
+    },
+    {
+      "id": "rl-02-e3",
+      "answerType": "number",
+      "prompt": { "en": "Transition probabilities from one state-action over all next states sum to?", "es": "Las probabilidades de transición desde un par estado-acción sobre todos los siguientes suman?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "It's a distribution.", "es": "Es una distribución." },
+      "solution": [ { "tex": "\\sum_{s'} P(s'\\mid s,a) = 1", "en": "One.", "es": "Uno." } ]
+    },
+    {
+      "id": "rl-02-e4",
+      "answerType": "number",
+      "prompt": { "en": "How many elements are in the MDP tuple $(S,A,P,R,\\gamma)$?", "es": "¿Cuántos elementos tiene la tupla MDP $(S,A,P,R,\\gamma)$?" },
+      "answer": "5",
+      "acceptedAlt": [],
+      "hint": { "en": "Count them.", "es": "Cuéntalos." },
+      "solution": [ { "tex": "5", "en": "Five.", "es": "Cinco." } ]
+    }
+  ],
+  "references": [
+    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 3, finite Markov decision processes", "es": "Cap. 3, procesos de decisión de Markov finitos" } }
+  ]
+}

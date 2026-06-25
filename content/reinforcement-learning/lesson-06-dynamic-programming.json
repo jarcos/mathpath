@@ -1,0 +1,79 @@
+{
+  "id": "rl-06-dp",
+  "subjectId": "reinforcement-learning",
+  "order": 6,
+  "estimatedMinutes": 35,
+  "title": { "en": "Dynamic Programming", "es": "Programación dinámica" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "When the MDP is fully known (we have $P$ and $R$), **dynamic programming (DP)** solves it exactly by repeatedly applying the Bellman equation. **Policy evaluation** computes $V^\\pi$ for a fixed policy by sweeping through states and updating each value from its successors until they stop changing (convergence).",
+        "es": "Cuando el MDP se conoce por completo (tenemos $P$ y $R$), la **programación dinámica (DP)** lo resuelve exactamente aplicando repetidamente la ecuación de Bellman. La **evaluación de política** calcula $V^\\pi$ para una política fija recorriendo los estados y actualizando cada valor a partir de sus sucesores hasta que dejan de cambiar (convergencia)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Policy iteration** alternates two steps: evaluate the current policy, then **improve** it by acting greedily with respect to the new values. Each round produces a policy at least as good as the last, and the process converges to the optimal policy in finitely many steps. **Value iteration** merges the two by applying the Bellman *optimality* update directly.",
+        "es": "La **iteración de política** alterna dos pasos: evaluar la política actual, y luego **mejorarla** actuando de forma voraz respecto a los nuevos valores. Cada ronda produce una política al menos tan buena como la anterior, y el proceso converge a la política óptima en un número finito de pasos. La **iteración de valor** fusiona los dos aplicando la actualización de *optimalidad* de Bellman directamente."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "DP is the gold standard but has a fatal limitation: it needs a **model** of the environment and sweeps over **all** states, which is impossible when states are too many or the dynamics unknown. That limitation motivates the model-free, sample-based methods (Monte Carlo, TD) in the coming lessons — DP gives the theory they approximate.",
+        "es": "La DP es el estándar de oro pero tiene una limitación fatal: necesita un **modelo** del entorno y recorre **todos** los estados, lo cual es imposible cuando hay demasiados o la dinámica es desconocida. Esa limitación motiva los métodos sin modelo basados en muestras (Monte Carlo, TD) de las próximas lecciones — la DP da la teoría que ellos aproximan."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A one-step value update with reward $3$, $\\gamma=0.8$, and successor value $5$: $V \\leftarrow 3 + 0.8\\cdot 5 = 3 + 4 = 7$. Improvement then picks, in each state, the action with the highest resulting value.",
+        "es": "Una actualización de valor de un paso con recompensa $3$, $\\gamma=0.8$ y valor sucesor $5$: $V \\leftarrow 3 + 0.8\\cdot 5 = 3 + 4 = 7$. La mejora elige luego, en cada estado, la acción con el mayor valor resultante."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-06-e1",
+      "answerType": "number",
+      "prompt": { "en": "Value update $3 + 0.8\\cdot 5$?", "es": "Actualización de valor $3 + 0.8\\cdot 5$?" },
+      "answer": "7",
+      "acceptedAlt": ["3+0.8*5"],
+      "hint": { "en": "3 + 4.", "es": "3 + 4." },
+      "solution": [ { "tex": "3+4 = 7", "en": "Seven.", "es": "Siete." } ]
+    },
+    {
+      "id": "rl-06-e2",
+      "answerType": "text",
+      "prompt": { "en": "Computing $V^\\pi$ for a fixed policy is policy ___. (one word)", "es": "Calcular $V^\\pi$ para una política fija es ___ de política. (una palabra)" },
+      "answer": "evaluation",
+      "acceptedAlt": ["evaluación", "evaluacion"],
+      "hint": { "en": "Evaluate the policy.", "es": "Evaluar la política." },
+      "solution": [ { "tex": "V^\\pi", "en": "Evaluation.", "es": "Evaluación." } ]
+    },
+    {
+      "id": "rl-06-e3",
+      "answerType": "text",
+      "prompt": { "en": "DP requires a ___ of the environment (transition + reward). (one word)", "es": "La DP requiere un ___ del entorno (transición + recompensa). (una palabra)" },
+      "answer": "model",
+      "acceptedAlt": ["modelo"],
+      "hint": { "en": "P and R known.", "es": "P y R conocidos." },
+      "solution": [ { "tex": "P, R", "en": "Model.", "es": "Modelo." } ]
+    },
+    {
+      "id": "rl-06-e4",
+      "answerType": "text",
+      "prompt": { "en": "Alternating evaluation and greedy improvement is policy ___. (one word)", "es": "Alternar evaluación y mejora voraz es ___ de política. (una palabra)" },
+      "answer": "iteration",
+      "acceptedAlt": ["iteración", "iteracion"],
+      "hint": { "en": "Repeat the cycle.", "es": "Repetir el ciclo." },
+      "solution": [ { "tex": "\\text{policy iteration}", "en": "Iteration.", "es": "Iteración." } ]
+    }
+  ],
+  "references": [
+    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 4, dynamic programming", "es": "Cap. 4, programación dinámica" } }
+  ]
+}

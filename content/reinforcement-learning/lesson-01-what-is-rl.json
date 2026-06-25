@@ -1,0 +1,79 @@
+{
+  "id": "rl-01-what-is-rl",
+  "subjectId": "reinforcement-learning",
+  "order": 1,
+  "estimatedMinutes": 30,
+  "title": { "en": "What Is Reinforcement Learning?", "es": "¿Qué es el aprendizaje por refuerzo?" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Reinforcement learning (RL)** is learning by **trial and error** to maximize reward. An **agent** takes **actions** in an **environment**, which responds with a new **state** and a numeric **reward**. Unlike supervised learning there are no labeled correct answers — the agent must discover which actions pay off by trying them.",
+        "es": "El **aprendizaje por refuerzo (RL)** es aprender por **ensayo y error** para maximizar la recompensa. Un **agente** toma **acciones** en un **entorno**, que responde con un nuevo **estado** y una **recompensa** numérica. A diferencia del aprendizaje supervisado no hay respuestas correctas etiquetadas — el agente debe descubrir qué acciones rinden probándolas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The loop repeats: observe state $s_t$, choose action $a_t$, receive reward $r_{t+1}$ and next state $s_{t+1}$. The agent's behavior is its **policy** $\\pi$, a mapping from states to actions. The goal is to learn a policy that maximizes the **cumulative** reward over time, not just the immediate one.",
+        "es": "El bucle se repite: observar el estado $s_t$, elegir la acción $a_t$, recibir la recompensa $r_{t+1}$ y el siguiente estado $s_{t+1}$. El comportamiento del agente es su **política** $\\pi$, un mapeo de estados a acciones. El objetivo es aprender una política que maximice la recompensa **acumulada** en el tiempo, no solo la inmediata."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "RL's defining challenges are **delayed reward** (an action's payoff may come much later) and the **exploration–exploitation** trade-off (try new actions vs. cash in known good ones). It powers game-playing agents (Atari, Go), robotics, and the fine-tuning of language models from human feedback.",
+        "es": "Los retos definitorios del RL son la **recompensa diferida** (el beneficio de una acción puede llegar mucho después) y el compromiso **exploración–explotación** (probar acciones nuevas vs. aprovechar las buenas conocidas). Impulsa agentes que juegan (Atari, Go), la robótica y el ajuste de modelos de lenguaje a partir de retroalimentación humana."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If an agent receives rewards $+1, 0, +2$ over three steps, the total reward is $1 + 0 + 2 = 3$. The mapping from states to actions the agent follows is called its policy.",
+        "es": "Si un agente recibe recompensas $+1, 0, +2$ en tres pasos, la recompensa total es $1 + 0 + 2 = 3$. El mapeo de estados a acciones que sigue el agente se llama su política."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-01-e1",
+      "answerType": "number",
+      "prompt": { "en": "Total reward from $+1, 0, +2$?", "es": "¿Recompensa total de $+1, 0, +2$?" },
+      "answer": "3",
+      "acceptedAlt": ["1+0+2"],
+      "hint": { "en": "Add them.", "es": "Súmalas." },
+      "solution": [ { "tex": "1+0+2 = 3", "en": "Three.", "es": "Tres." } ]
+    },
+    {
+      "id": "rl-01-e2",
+      "answerType": "text",
+      "prompt": { "en": "The decision-maker that takes actions is the ___. (one word)", "es": "El que toma decisiones y ejecuta acciones es el ___. (una palabra)" },
+      "answer": "agent",
+      "acceptedAlt": ["agente"],
+      "hint": { "en": "Acts in the environment.", "es": "Actúa en el entorno." },
+      "solution": [ { "tex": "\\text{agent}", "en": "Agent.", "es": "Agente." } ]
+    },
+    {
+      "id": "rl-01-e3",
+      "answerType": "text",
+      "prompt": { "en": "The agent's mapping from states to actions is its ___. (one word)", "es": "El mapeo del agente de estados a acciones es su ___. (una palabra)" },
+      "answer": "policy",
+      "acceptedAlt": ["política", "politica"],
+      "hint": { "en": "Denoted π.", "es": "Se denota π." },
+      "solution": [ { "tex": "\\pi", "en": "Policy.", "es": "Política." } ]
+    },
+    {
+      "id": "rl-01-e4",
+      "answerType": "text",
+      "prompt": { "en": "Trying new actions vs using known good ones is the ___–exploitation trade-off. (one word)", "es": "Probar acciones nuevas vs usar buenas conocidas es el compromiso ___–explotación. (una palabra)" },
+      "answer": "exploration",
+      "acceptedAlt": ["exploración", "exploracion"],
+      "hint": { "en": "Explore vs exploit.", "es": "Explorar vs explotar." },
+      "solution": [ { "tex": "\\text{exploration}", "en": "Exploration.", "es": "Exploración." } ]
+    }
+  ],
+  "references": [
+    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2nd ed., 2018)", "detail": { "en": "Ch. 1, the RL problem", "es": "Cap. 1, el problema del RL" } }
+  ]
+}

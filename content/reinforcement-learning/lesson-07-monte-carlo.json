@@ -1,0 +1,79 @@
+{
+  "id": "rl-07-monte-carlo",
+  "subjectId": "reinforcement-learning",
+  "order": 7,
+  "estimatedMinutes": 35,
+  "title": { "en": "Monte Carlo Methods", "es": "Métodos de Monte Carlo" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "When the model is unknown, we learn from **experience** instead. **Monte Carlo (MC)** methods estimate values by **averaging actual returns** from sampled episodes. Play an episode to the end, compute the return from each visited state, and average those returns over many episodes — the law of large numbers makes the average converge to the true value.",
+        "es": "Cuando el modelo es desconocido, aprendemos de la **experiencia**. Los métodos de **Monte Carlo (MC)** estiman valores **promediando retornos reales** de episodios muestreados. Juega un episodio hasta el final, calcula el retorno desde cada estado visitado, y promedia esos retornos sobre muchos episodios — la ley de los grandes números hace que la media converja al valor verdadero."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "MC is **model-free** (no $P$ or $R$ needed) and unbiased, but it must wait until an episode **terminates** to compute returns, so it only works for episodic tasks. Variance can be high because a return depends on a whole chain of random actions and transitions.",
+        "es": "MC es **sin modelo** (no necesita $P$ ni $R$) e insesgado, pero debe esperar a que un episodio **termine** para calcular retornos, así que solo funciona en tareas episódicas. La varianza puede ser alta porque un retorno depende de toda una cadena de acciones y transiciones aleatorias."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Estimates are updated incrementally: $V(s) \\leftarrow V(s) + \\alpha\\,[G - V(s)]$, nudging the old estimate toward the observed return $G$ by a step size $\\alpha$. This 'move toward the target' form reappears in every learning method that follows — only the target $G$ changes.",
+        "es": "Las estimaciones se actualizan de forma incremental: $V(s) \\leftarrow V(s) + \\alpha\\,[G - V(s)]$, empujando la estimación antigua hacia el retorno observado $G$ con un paso $\\alpha$. Esta forma de 'moverse hacia el objetivo' reaparece en todo método de aprendizaje posterior — solo cambia el objetivo $G$."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Returns $4, 6, 8$ for visits to a state average to $(4+6+8)/3 = 6$. Incremental update from $V=5$ with target $G=9$, $\\alpha=0.1$: $5 + 0.1(9-5) = 5 + 0.4 = 5.4$.",
+        "es": "Retornos $4, 6, 8$ para visitas a un estado promedian $(4+6+8)/3 = 6$. Actualización incremental desde $V=5$ con objetivo $G=9$, $\\alpha=0.1$: $5 + 0.1(9-5) = 5 + 0.4 = 5.4$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-07-e1",
+      "answerType": "number",
+      "prompt": { "en": "Average of returns $4, 6, 8$?", "es": "¿Media de los retornos $4, 6, 8$?" },
+      "answer": "6",
+      "acceptedAlt": ["(4+6+8)/3", "mean([4,6,8])"],
+      "hint": { "en": "Sum / 3.", "es": "Suma / 3." },
+      "solution": [ { "tex": "18/3 = 6", "en": "Six.", "es": "Seis." } ]
+    },
+    {
+      "id": "rl-07-e2",
+      "answerType": "number",
+      "prompt": { "en": "Incremental update $5 + 0.1(9-5)$?", "es": "Actualización incremental $5 + 0.1(9-5)$?" },
+      "answer": "5.4",
+      "acceptedAlt": ["5+0.1*(9-5)", "27/5"],
+      "hint": { "en": "5 + 0.4.", "es": "5 + 0.4." },
+      "solution": [ { "tex": "5+0.4 = 5.4", "en": "5.4.", "es": "5.4." } ]
+    },
+    {
+      "id": "rl-07-e3",
+      "answerType": "text",
+      "prompt": { "en": "MC estimates values by ___ observed returns. (one word)", "es": "MC estima valores ___ los retornos observados. (una palabra)" },
+      "answer": "averaging",
+      "acceptedAlt": ["promediando", "average", "promediar"],
+      "hint": { "en": "Take the mean.", "es": "Toma la media." },
+      "solution": [ { "tex": "\\frac{1}{N}\\sum G", "en": "Averaging.", "es": "Promediando." } ]
+    },
+    {
+      "id": "rl-07-e4",
+      "answerType": "text",
+      "prompt": { "en": "MC needs each episode to ___ before updating. (one word)", "es": "MC necesita que cada episodio ___ antes de actualizar. (una palabra)" },
+      "answer": "terminate",
+      "acceptedAlt": ["termine", "terminar", "end"],
+      "hint": { "en": "Reach the end.", "es": "Llegar al final." },
+      "solution": [ { "tex": "\\text{terminate}", "en": "Terminate.", "es": "Terminar." } ]
+    }
+  ],
+  "references": [
+    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 5, Monte Carlo methods", "es": "Cap. 5, métodos de Monte Carlo" } }
+  ]
+}

@@ -325,7 +325,7 @@
       "id": "reinforcement-learning",
       "icon": "🎯",
       "targetDays": 30,
-      "status": "coming-soon",
+      "status": "available",
       "plannedLessons": 16,
       "source": "Sutton & Barto, Reinforcement Learning: An Introduction (2018)",
       "name": { "en": "Reinforcement Learning", "es": "Aprendizaje por refuerzo" },
@@ -333,7 +333,24 @@
         "en": "Markov decision processes, value and policy methods, Q-learning and policy gradients.",
         "es": "Procesos de decisión de Markov, métodos de valor y política, Q-learning y gradientes de política."
       },
-      "lessons": []
+      "lessons": [
+        "reinforcement-learning/lesson-01-what-is-rl.json",
+        "reinforcement-learning/lesson-02-mdp.json",
+        "reinforcement-learning/lesson-03-returns-discounting.json",
+        "reinforcement-learning/lesson-04-value-functions.json",
+        "reinforcement-learning/lesson-05-bellman.json",
+        "reinforcement-learning/lesson-06-dynamic-programming.json",
+        "reinforcement-learning/lesson-07-monte-carlo.json",
+        "reinforcement-learning/lesson-08-td-learning.json",
+        "reinforcement-learning/lesson-09-q-learning.json",
+        "reinforcement-learning/lesson-10-sarsa.json",
+        "reinforcement-learning/lesson-11-exploration.json",
+        "reinforcement-learning/lesson-12-function-approximation.json",
+        "reinforcement-learning/lesson-13-dqn.json",
+        "reinforcement-learning/lesson-14-policy-gradients.json",
+        "reinforcement-learning/lesson-15-actor-critic.json",
+        "reinforcement-learning/lesson-16-applications.json"
+      ]
     },
     {
       "id": "knowledge-representation",

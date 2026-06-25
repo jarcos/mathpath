@@ -1,0 +1,79 @@
+{
+  "id": "rl-08-td",
+  "subjectId": "reinforcement-learning",
+  "order": 8,
+  "estimatedMinutes": 40,
+  "title": { "en": "Temporal-Difference Learning", "es": "Aprendizaje por diferencia temporal" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Temporal-difference (TD)** learning blends the best of DP and MC. Like MC it learns from raw experience with no model; like DP it **bootstraps** — it updates a value estimate using another value estimate, without waiting for the episode to finish. This makes TD the workhorse of modern RL.",
+        "es": "El aprendizaje por **diferencia temporal (TD)** combina lo mejor de DP y MC. Como MC aprende de la experiencia cruda sin modelo; como DP hace **bootstrapping** — actualiza una estimación de valor usando otra estimación, sin esperar a que el episodio termine. Esto convierte a TD en el caballo de batalla del RL moderno."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The simplest version, **TD(0)**, updates after every step: $V(s) \\leftarrow V(s) + \\alpha\\,[\\,r + \\gamma V(s') - V(s)\\,]$. The bracketed quantity $\\delta = r + \\gamma V(s') - V(s)$ is the **TD error** — the gap between the predicted value and the slightly better estimate after seeing one real reward and the next state.",
+        "es": "La versión más simple, **TD(0)**, actualiza tras cada paso: $V(s) \\leftarrow V(s) + \\alpha\\,[\\,r + \\gamma V(s') - V(s)\\,]$. La cantidad entre corchetes $\\delta = r + \\gamma V(s') - V(s)$ es el **error TD** — la diferencia entre el valor predicho y la estimación algo mejor tras ver una recompensa real y el siguiente estado."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "TD's target $r + \\gamma V(s')$ is biased (it uses an imperfect estimate) but low-variance and available every step, so TD usually learns faster than MC in practice. The TD error $\\delta$ also has a striking biological parallel: it resembles the dopamine reward-prediction-error signal in the brain.",
+        "es": "El objetivo de TD $r + \\gamma V(s')$ es sesgado (usa una estimación imperfecta) pero de baja varianza y disponible en cada paso, así que TD suele aprender más rápido que MC en la práctica. El error TD $\\delta$ tiene además un sorprendente paralelo biológico: se parece a la señal dopaminérgica de error de predicción de recompensa en el cerebro."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With $V(s)=5$, reward $r=2$, $V(s')=10$, $\\gamma=0.9$: TD error $\\delta = 2 + 0.9\\cdot10 - 5 = 11 - 5 = 6$. Update with $\\alpha=0.1$: $5 + 0.1\\cdot 6 = 5.6$.",
+        "es": "Con $V(s)=5$, recompensa $r=2$, $V(s')=10$, $\\gamma=0.9$: error TD $\\delta = 2 + 0.9\\cdot10 - 5 = 11 - 5 = 6$. Actualización con $\\alpha=0.1$: $5 + 0.1\\cdot 6 = 5.6$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-08-e1",
+      "answerType": "number",
+      "prompt": { "en": "TD error $\\delta = 2 + 0.9\\cdot 10 - 5$?", "es": "Error TD $\\delta = 2 + 0.9\\cdot 10 - 5$?" },
+      "answer": "6",
+      "acceptedAlt": ["2+0.9*10-5"],
+      "hint": { "en": "11 − 5.", "es": "11 − 5." },
+      "solution": [ { "tex": "11-5 = 6", "en": "Six.", "es": "Seis." } ]
+    },
+    {
+      "id": "rl-08-e2",
+      "answerType": "number",
+      "prompt": { "en": "TD update $5 + 0.1\\cdot 6$?", "es": "Actualización TD $5 + 0.1\\cdot 6$?" },
+      "answer": "5.6",
+      "acceptedAlt": ["5+0.1*6", "28/5"],
+      "hint": { "en": "5 + 0.6.", "es": "5 + 0.6." },
+      "solution": [ { "tex": "5+0.6 = 5.6", "en": "5.6.", "es": "5.6." } ]
+    },
+    {
+      "id": "rl-08-e3",
+      "answerType": "text",
+      "prompt": { "en": "Updating an estimate from another estimate is called ___. (one word)", "es": "Actualizar una estimación a partir de otra estimación se llama ___. (una palabra)" },
+      "answer": "bootstrapping",
+      "acceptedAlt": ["bootstrap"],
+      "hint": { "en": "DP does it too.", "es": "DP también lo hace." },
+      "solution": [ { "tex": "r+\\gamma V(s')", "en": "Bootstrapping.", "es": "Bootstrapping." } ]
+    },
+    {
+      "id": "rl-08-e4",
+      "answerType": "text",
+      "prompt": { "en": "$\\delta = r + \\gamma V(s') - V(s)$ is the TD ___. (one word)", "es": "$\\delta = r + \\gamma V(s') - V(s)$ es el ___ TD. (una palabra)" },
+      "answer": "error",
+      "acceptedAlt": ["error"],
+      "hint": { "en": "δ.", "es": "δ." },
+      "solution": [ { "tex": "\\delta", "en": "Error.", "es": "Error." } ]
+    }
+  ],
+  "references": [
+    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 6, temporal-difference learning", "es": "Cap. 6, aprendizaje por diferencia temporal" } }
+  ]
+}

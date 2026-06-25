@@ -1,0 +1,79 @@
+{
+  "id": "rl-03-returns",
+  "subjectId": "reinforcement-learning",
+  "order": 3,
+  "estimatedMinutes": 35,
+  "title": { "en": "Returns & Discounting", "es": "Retornos y descuento" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The agent maximizes the **return** $G_t$ — the total reward from time $t$ onward. To keep this finite in ongoing tasks and to prefer sooner rewards, future rewards are **discounted** by a factor $\\gamma \\in [0,1)$ per step: $G_t = r_{t+1} + \\gamma r_{t+2} + \\gamma^2 r_{t+3} + \\cdots$",
+        "es": "El agente maximiza el **retorno** $G_t$ — la recompensa total desde el instante $t$ en adelante. Para mantenerlo finito en tareas continuas y para preferir recompensas más cercanas, las recompensas futuras se **descuentan** por un factor $\\gamma \\in [0,1)$ por paso: $G_t = r_{t+1} + \\gamma r_{t+2} + \\gamma^2 r_{t+3} + \\cdots$"
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **discount factor** $\\gamma$ tunes the horizon. $\\gamma = 0$ is myopic (only the next reward matters); $\\gamma$ near $1$ is far-sighted (the agent values the distant future almost as much as the present). A reward $r$ received $k$ steps later is worth $\\gamma^k r$ now.",
+        "es": "El **factor de descuento** $\\gamma$ ajusta el horizonte. $\\gamma = 0$ es miope (solo importa la siguiente recompensa); $\\gamma$ cerca de $1$ es previsor (el agente valora el futuro lejano casi tanto como el presente). Una recompensa $r$ recibida $k$ pasos después vale $\\gamma^k r$ ahora."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A constant reward $r$ forever has a clean closed form via the geometric series: $G = r + \\gamma r + \\gamma^2 r + \\cdots = \\dfrac{r}{1-\\gamma}$. For example, $+1$ each step with $\\gamma = 0.9$ gives $\\dfrac{1}{1-0.9} = 10$. Discounting connects RL directly to the geometric series you learned in algebra.",
+        "es": "Una recompensa constante $r$ para siempre tiene una forma cerrada limpia vía la serie geométrica: $G = r + \\gamma r + \\gamma^2 r + \\cdots = \\dfrac{r}{1-\\gamma}$. Por ejemplo, $+1$ cada paso con $\\gamma = 0.9$ da $\\dfrac{1}{1-0.9} = 10$. El descuento conecta el RL directamente con la serie geométrica que aprendiste en álgebra."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Rewards $r_1=1, r_2=2, r_3=4$ with $\\gamma=0.5$: $G = 1 + 0.5\\cdot2 + 0.25\\cdot4 = 1 + 1 + 1 = 3$. An infinite stream of $+1$ with $\\gamma=0.9$ totals $1/(1-0.9) = 10$.",
+        "es": "Recompensas $r_1=1, r_2=2, r_3=4$ con $\\gamma=0.5$: $G = 1 + 0.5\\cdot2 + 0.25\\cdot4 = 1 + 1 + 1 = 3$. Un flujo infinito de $+1$ con $\\gamma=0.9$ suma $1/(1-0.9) = 10$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "rl-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "Discounted return $1 + 0.5\\cdot2 + 0.25\\cdot4$?", "es": "Retorno descontado $1 + 0.5\\cdot2 + 0.25\\cdot4$?" },
+      "answer": "3",
+      "acceptedAlt": ["1+0.5*2+0.25*4"],
+      "hint": { "en": "1 + 1 + 1.", "es": "1 + 1 + 1." },
+      "solution": [ { "tex": "1+1+1 = 3", "en": "Three.", "es": "Tres." } ]
+    },
+    {
+      "id": "rl-03-e2",
+      "answerType": "number",
+      "prompt": { "en": "Infinite $+1$ per step, $\\gamma=0.9$: $\\frac{1}{1-0.9}$?", "es": "Infinito $+1$ por paso, $\\gamma=0.9$: $\\frac{1}{1-0.9}$?" },
+      "answer": "10",
+      "acceptedAlt": ["1/(1-0.9)", "1/0.1"],
+      "hint": { "en": "1 / 0.1.", "es": "1 / 0.1." },
+      "solution": [ { "tex": "\\frac{1}{0.1} = 10", "en": "Ten.", "es": "Diez." } ]
+    },
+    {
+      "id": "rl-03-e3",
+      "answerType": "number",
+      "prompt": { "en": "Present value of reward 8 received 2 steps later with $\\gamma=0.5$: $0.5^2\\cdot 8$?", "es": "Valor presente de recompensa 8 recibida 2 pasos después con $\\gamma=0.5$: $0.5^2\\cdot 8$?" },
+      "answer": "2",
+      "acceptedAlt": ["0.5^2*8"],
+      "hint": { "en": "0.25 × 8.", "es": "0.25 × 8." },
+      "solution": [ { "tex": "0.25\\cdot 8 = 2", "en": "Two.", "es": "Dos." } ]
+    },
+    {
+      "id": "rl-03-e4",
+      "answerType": "text",
+      "prompt": { "en": "The factor $\\gamma$ that weights future rewards is the ___ factor. (one word)", "es": "El factor $\\gamma$ que pondera las recompensas futuras es el factor de ___. (una palabra)" },
+      "answer": "discount",
+      "acceptedAlt": ["descuento"],
+      "hint": { "en": "γ.", "es": "γ." },
+      "solution": [ { "tex": "\\gamma", "en": "Discount.", "es": "Descuento." } ]
+    }
+  ],
+  "references": [
+    { "source": "Sutton & Barto — Reinforcement Learning: An Introduction (2018)", "detail": { "en": "Ch. 3.3–3.4, returns and discounting", "es": "Cap. 3.3–3.4, retornos y descuento" } }
+  ]
+}
