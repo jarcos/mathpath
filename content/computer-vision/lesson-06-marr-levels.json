@@ -1,0 +1,79 @@
+{
+  "id": "cv-06-marr",
+  "subjectId": "computer-vision",
+  "order": 6,
+  "estimatedMinutes": 30,
+  "title": { "en": "Marr's Levels of Analysis", "es": "Los niveles de análisis de Marr" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "David Marr argued that any information-processing system should be understood at **three levels**: the **computational** level (what problem is being solved and why), the **algorithmic** level (what representations and procedures solve it), and the **implementational** level (how it is physically realized — in neurons or transistors).",
+        "es": "David Marr sostuvo que todo sistema de procesamiento de información debe entenderse en **tres niveles**: el nivel **computacional** (qué problema se resuelve y por qué), el nivel **algorítmico** (qué representaciones y procedimientos lo resuelven) y el nivel **de implementación** (cómo se realiza físicamente — en neuronas o transistores)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Marr also proposed a representational pipeline for vision. The **primal sketch** captures edges, blobs and bars from raw intensity. The **2.5-D sketch** adds surface orientation and depth from the viewer's vantage point. Finally a **3-D model** gives an object-centered, viewpoint-independent representation suitable for recognition.",
+        "es": "Marr también propuso una canalización de representación para la visión. El **esbozo primario (primal sketch)** captura bordes, manchas y barras a partir de la intensidad cruda. El **esbozo 2.5-D** añade orientación de superficie y profundidad desde el punto de vista del observador. Finalmente un **modelo 3-D** da una representación centrada en el objeto e independiente del punto de vista, apta para el reconocimiento."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The framework's lasting lesson is **separation of concerns**: understand *what* and *why* (computational level) before *how*. Two systems — a brain and a CNN — can solve the same computational problem with very different algorithms and hardware. Marr's levels remain a touchstone for analyzing both biological and artificial vision.",
+        "es": "La lección perdurable del marco es la **separación de preocupaciones**: entender *qué* y *por qué* (nivel computacional) antes que *cómo*. Dos sistemas — un cerebro y una CNN — pueden resolver el mismo problema computacional con algoritmos y hardware muy distintos. Los niveles de Marr siguen siendo una referencia para analizar la visión biológica y artificial."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Marr defined $3$ levels of analysis. The level describing the representations and procedures (not the goal, not the hardware) is the algorithmic level.",
+        "es": "Marr definió $3$ niveles de análisis. El nivel que describe las representaciones y procedimientos (no el objetivo, no el hardware) es el nivel algorítmico."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-06-e1",
+      "answerType": "number",
+      "prompt": { "en": "How many levels of analysis did Marr propose?", "es": "¿Cuántos niveles de análisis propuso Marr?" },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": { "en": "Computational, algorithmic, implementational.", "es": "Computacional, algorítmico, implementación." },
+      "solution": [ { "tex": "3", "en": "Three.", "es": "Tres." } ]
+    },
+    {
+      "id": "cv-06-e2",
+      "answerType": "text",
+      "prompt": { "en": "The level describing WHAT problem is solved and WHY is the ___ level. (one word)", "es": "El nivel que describe QUÉ problema se resuelve y POR QUÉ es el nivel ___. (una palabra)" },
+      "answer": "computational",
+      "acceptedAlt": ["computacional"],
+      "hint": { "en": "Goal level.", "es": "Nivel de objetivo." },
+      "solution": [ { "tex": "\\text{computational}", "en": "Computational.", "es": "Computacional." } ]
+    },
+    {
+      "id": "cv-06-e3",
+      "answerType": "text",
+      "prompt": { "en": "Marr's first representation, capturing edges and blobs, is the primal ___. (one word)", "es": "La primera representación de Marr, que capta bordes y manchas, es el ___ primario. (una palabra)" },
+      "answer": "sketch",
+      "acceptedAlt": ["esbozo", "boceto"],
+      "hint": { "en": "Primal ___.", "es": "Esbozo ___." },
+      "solution": [ { "tex": "\\text{primal sketch}", "en": "Sketch.", "es": "Esbozo." } ]
+    },
+    {
+      "id": "cv-06-e4",
+      "answerType": "text",
+      "prompt": { "en": "The viewer-centered representation with depth is the ___-D sketch. (number-word)", "es": "La representación centrada en el observador con profundidad es el esbozo ___-D. (número)" },
+      "answer": "2.5",
+      "acceptedAlt": ["2.5-D", "2,5"],
+      "hint": { "en": "Between 2 and 3.", "es": "Entre 2 y 3." },
+      "solution": [ { "tex": "2.5\\text{-D}", "en": "2.5-D.", "es": "2.5-D." } ]
+    }
+  ],
+  "references": [
+    { "source": "Marr — Vision (1982)", "detail": { "en": "Three levels; primal/2.5-D/3-D sketches", "es": "Tres niveles; esbozos primario/2.5-D/3-D" } }
+  ]
+}

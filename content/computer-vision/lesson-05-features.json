@@ -1,0 +1,80 @@
+{
+  "id": "cv-05-features",
+  "subjectId": "computer-vision",
+  "order": 5,
+  "estimatedMinutes": 35,
+  "title": { "en": "Features & Keypoints", "es": "Características y puntos clave" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Edges are 1-D; to match images we want distinctive **keypoints** — points easy to locate precisely and recognize again. **Corners**, where intensity changes in two directions, are ideal because they are well-localized. The **Harris corner detector** finds them by analyzing how a small window's content changes when shifted.",
+        "es": "Los bordes son 1-D; para emparejar imágenes queremos **puntos clave** distintivos — puntos fáciles de localizar con precisión y reconocer de nuevo. Las **esquinas**, donde la intensidad cambia en dos direcciones, son ideales porque están bien localizadas. El **detector de esquinas de Harris** las halla analizando cómo cambia el contenido de una ventana pequeña al desplazarla."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A keypoint needs a **descriptor** — a vector summarizing the local appearance so the same physical point can be matched across images. **SIFT** (Scale-Invariant Feature Transform) produces descriptors robust to scale, rotation and illumination changes, classically a $128$-dimensional vector built from local gradient histograms.",
+        "es": "Un punto clave necesita un **descriptor** — un vector que resume la apariencia local para poder emparejar el mismo punto físico entre imágenes. **SIFT** (transformada de características invariante a escala) produce descriptores robustos a cambios de escala, rotación e iluminación, clásicamente un vector de $128$ dimensiones construido a partir de histogramas locales de gradiente."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Matching keypoints across images enables panorama stitching, object recognition, 3-D reconstruction and visual tracking. Two descriptors are compared by **distance** (e.g. Euclidean); the nearest neighbor — if clearly closer than the second-nearest — is accepted as a match. Hand-crafted features like SIFT dominated until deep features learned end-to-end surpassed them.",
+        "es": "Emparejar puntos clave entre imágenes permite el cosido de panoramas, el reconocimiento de objetos, la reconstrucción 3-D y el seguimiento visual. Dos descriptores se comparan por **distancia** (p. ej. euclídea); el vecino más cercano — si es claramente más cercano que el segundo — se acepta como coincidencia. Las características hechas a mano como SIFT dominaron hasta que las características profundas aprendidas de extremo a extremo las superaron."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A SIFT descriptor is a $128$-dimensional vector. Euclidean distance between descriptors $[0,0]$ and $[3,4]$ is $\\sqrt{3^2+4^2} = 5$ — small distance means a likely match.",
+        "es": "Un descriptor SIFT es un vector de $128$ dimensiones. La distancia euclídea entre los descriptores $[0,0]$ y $[3,4]$ es $\\sqrt{3^2+4^2} = 5$ — una distancia pequeña indica una coincidencia probable."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-05-e1",
+      "answerType": "number",
+      "prompt": { "en": "Dimensionality of a classic SIFT descriptor?", "es": "¿Dimensión de un descriptor SIFT clásico?" },
+      "answer": "128",
+      "acceptedAlt": [],
+      "hint": { "en": "4×4 cells × 8 orientations.", "es": "4×4 celdas × 8 orientaciones." },
+      "solution": [ { "tex": "128", "en": "128.", "es": "128." } ]
+    },
+    {
+      "id": "cv-05-e2",
+      "answerType": "number",
+      "prompt": { "en": "Euclidean distance between $[0,0]$ and $[3,4]$: $\\sqrt{3^2+4^2}$?", "es": "Distancia euclídea entre $[0,0]$ y $[3,4]$: $\\sqrt{3^2+4^2}$?" },
+      "answer": "5",
+      "acceptedAlt": ["sqrt(25)", "sqrt(3^2+4^2)"],
+      "hint": { "en": "√25.", "es": "√25." },
+      "solution": [ { "tex": "5", "en": "Five.", "es": "Cinco." } ]
+    },
+    {
+      "id": "cv-05-e3",
+      "answerType": "text",
+      "prompt": { "en": "Points where intensity changes in two directions are ___. (one word)", "es": "Los puntos donde la intensidad cambia en dos direcciones son ___. (una palabra)" },
+      "answer": "corners",
+      "acceptedAlt": ["esquinas", "corner", "esquina"],
+      "hint": { "en": "Harris detects them.", "es": "Harris las detecta." },
+      "solution": [ { "tex": "\\text{corners}", "en": "Corners.", "es": "Esquinas." } ]
+    },
+    {
+      "id": "cv-05-e4",
+      "answerType": "text",
+      "prompt": { "en": "The scale-invariant descriptor by Lowe is ___ (acronym).", "es": "El descriptor invariante a escala de Lowe es ___ (siglas)." },
+      "answer": "sift",
+      "acceptedAlt": [],
+      "hint": { "en": "Scale-Invariant Feature Transform.", "es": "Scale-Invariant Feature Transform." },
+      "solution": [ { "tex": "\\text{SIFT}", "en": "SIFT.", "es": "SIFT." } ]
+    }
+  ],
+  "references": [
+    { "source": "Harris & Stephens — A Combined Corner and Edge Detector (1988)", "detail": { "en": "Harris corners", "es": "Esquinas de Harris" } },
+    { "source": "Lowe — Distinctive Image Features from Scale-Invariant Keypoints (SIFT, 2004)", "detail": { "en": "SIFT", "es": "SIFT" } }
+  ]
+}

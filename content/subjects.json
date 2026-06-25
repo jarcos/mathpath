@@ -385,7 +385,7 @@
       "id": "computer-vision",
       "icon": "👁",
       "targetDays": 30,
-      "status": "coming-soon",
+      "status": "available",
       "plannedLessons": 14,
       "source": "Marr, Vision (1982); Goodfellow et al., ch. 9 (CNNs)",
       "name": { "en": "Computer Vision", "es": "Visión por computador" },
@@ -393,7 +393,22 @@
         "en": "Image representation, Marr's levels, convolution and visual recognition.",
         "es": "Representación de imágenes, niveles de Marr, convolución y reconocimiento visual."
       },
-      "lessons": []
+      "lessons": [
+        "computer-vision/lesson-01-what-is-cv.json",
+        "computer-vision/lesson-02-images-as-arrays.json",
+        "computer-vision/lesson-03-filtering.json",
+        "computer-vision/lesson-04-edge-detection.json",
+        "computer-vision/lesson-05-features.json",
+        "computer-vision/lesson-06-marr-levels.json",
+        "computer-vision/lesson-07-geometry.json",
+        "computer-vision/lesson-08-color-histograms.json",
+        "computer-vision/lesson-09-cnns-vision.json",
+        "computer-vision/lesson-10-classification.json",
+        "computer-vision/lesson-11-object-detection.json",
+        "computer-vision/lesson-12-segmentation.json",
+        "computer-vision/lesson-13-vision-transformers.json",
+        "computer-vision/lesson-14-3d-applications.json"
+      ]
     },
     {
       "id": "ai-foundations",

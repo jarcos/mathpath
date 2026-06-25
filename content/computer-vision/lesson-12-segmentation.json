@@ -1,0 +1,80 @@
+{
+  "id": "cv-12-segmentation",
+  "subjectId": "computer-vision",
+  "order": 12,
+  "estimatedMinutes": 35,
+  "title": { "en": "Semantic Segmentation", "es": "Segmentación semántica" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Semantic segmentation** is the finest-grained labeling: assign a class to **every pixel** (road, car, person, sky). The output is a label map the same size as the input. **Instance segmentation** goes further, separating individual objects of the same class (car #1 vs car #2), and **panoptic** segmentation unifies both.",
+        "es": "La **segmentación semántica** es el etiquetado más fino: asignar una clase a **cada píxel** (carretera, coche, persona, cielo). La salida es un mapa de etiquetas del mismo tamaño que la entrada. La **segmentación de instancias** va más allá, separando objetos individuales de la misma clase (coche n.º 1 vs coche n.º 2), y la segmentación **panóptica** unifica ambas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The standard architecture is the **encoder-decoder**: the encoder (a CNN) downsamples to capture context, then the decoder **upsamples** back to full resolution to produce per-pixel labels. **U-Net** adds **skip connections** from encoder to decoder so fine spatial detail lost in downsampling is restored, crucial for sharp boundaries.",
+        "es": "La arquitectura estándar es el **codificador-decodificador**: el codificador (una CNN) reduce la resolución para captar contexto, y luego el decodificador **aumenta** de nuevo a resolución completa para producir etiquetas por píxel. **U-Net** añade **conexiones de salto** del codificador al decodificador para restaurar el detalle espacial fino perdido al reducir, crucial para fronteras nítidas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Segmentation quality uses **IoU per class**, averaged into **mean IoU (mIoU)**. It powers autonomous driving (which pixels are road?), medical imaging (tumor boundaries), and photo editing (background removal). Pixel-level labels are expensive to annotate, motivating weakly-supervised and self-supervised approaches.",
+        "es": "La calidad de segmentación usa la **IoU por clase**, promediada en la **IoU media (mIoU)**. Impulsa la conducción autónoma (¿qué píxeles son carretera?), la imagen médica (fronteras de tumores) y la edición de fotos (eliminación de fondo). Las etiquetas a nivel de píxel son caras de anotar, lo que motiva enfoques débilmente supervisados y autosupervisados."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Mean IoU over $3$ classes with IoUs $0.6, 0.8, 0.7$ is $\\tfrac{0.6+0.8+0.7}{3} = \\tfrac{2.1}{3} = 0.7$. A $256\\times 256$ segmentation output has $65536$ labeled pixels.",
+        "es": "La IoU media sobre $3$ clases con IoU $0.6, 0.8, 0.7$ es $\\tfrac{0.6+0.8+0.7}{3} = \\tfrac{2.1}{3} = 0.7$. Una salida de segmentación de $256\\times 256$ tiene $65536$ píxeles etiquetados."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-12-e1",
+      "answerType": "number",
+      "prompt": { "en": "Mean IoU of $0.6, 0.8, 0.7$: $\\frac{0.6+0.8+0.7}{3}$?", "es": "IoU media de $0.6, 0.8, 0.7$: $\\frac{0.6+0.8+0.7}{3}$?" },
+      "answer": "0.7",
+      "acceptedAlt": ["(0.6+0.8+0.7)/3", "2.1/3"],
+      "hint": { "en": "2.1 / 3.", "es": "2.1 / 3." },
+      "solution": [ { "tex": "2.1/3 = 0.7", "en": "0.7.", "es": "0.7." } ]
+    },
+    {
+      "id": "cv-12-e2",
+      "answerType": "number",
+      "prompt": { "en": "Pixels labeled in a $256\\times 256$ segmentation map: $256^2$?", "es": "Píxeles etiquetados en un mapa de segmentación de $256\\times 256$: $256^2$?" },
+      "answer": "65536",
+      "acceptedAlt": ["256^2", "256*256"],
+      "hint": { "en": "256 × 256.", "es": "256 × 256." },
+      "solution": [ { "tex": "256^2 = 65536", "en": "65,536.", "es": "65.536." } ]
+    },
+    {
+      "id": "cv-12-e3",
+      "answerType": "text",
+      "prompt": { "en": "Labeling every pixel with a class is semantic ___. (one word)", "es": "Etiquetar cada píxel con una clase es ___ semántica. (una palabra)" },
+      "answer": "segmentation",
+      "acceptedAlt": ["segmentación", "segmentacion"],
+      "hint": { "en": "Per-pixel classification.", "es": "Clasificación por píxel." },
+      "solution": [ { "tex": "\\text{segmentation}", "en": "Segmentation.", "es": "Segmentación." } ]
+    },
+    {
+      "id": "cv-12-e4",
+      "answerType": "text",
+      "prompt": { "en": "The segmentation architecture with encoder-decoder skip connections is ___. (one word)", "es": "La arquitectura de segmentación con conexiones de salto codificador-decodificador es ___. (una palabra)" },
+      "answer": "unet",
+      "acceptedAlt": ["u-net"],
+      "hint": { "en": "U-shaped.", "es": "Forma de U." },
+      "solution": [ { "tex": "\\text{U-Net}", "en": "U-Net.", "es": "U-Net." } ]
+    }
+  ],
+  "references": [
+    { "source": "Ronneberger et al. — U-Net (2015)", "detail": { "en": "Encoder-decoder segmentation", "es": "Segmentación codificador-decodificador" } },
+    { "source": "Long et al. — Fully Convolutional Networks for Semantic Segmentation (2015)", "detail": { "en": "FCN", "es": "FCN" } }
+  ]
+}

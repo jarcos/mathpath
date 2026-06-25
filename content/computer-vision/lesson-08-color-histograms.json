@@ -1,0 +1,79 @@
+{
+  "id": "cv-08-color",
+  "subjectId": "computer-vision",
+  "order": 8,
+  "estimatedMinutes": 30,
+  "title": { "en": "Color & Histograms", "es": "Color e histogramas" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Color is usually stored as **RGB**, but other **color spaces** suit different tasks. **HSV** (Hue, Saturation, Value) separates color (hue) from brightness, making it easier to threshold a color robustly under changing light. **Grayscale** conversion collapses RGB to one channel, a common luminance formula being $Y = 0.299R + 0.587G + 0.114B$.",
+        "es": "El color suele almacenarse como **RGB**, pero otros **espacios de color** convienen a distintas tareas. **HSV** (Tono, Saturación, Valor) separa el color (tono) del brillo, facilitando umbralizar un color de forma robusta bajo luz cambiante. La conversión a **escala de grises** colapsa el RGB a un canal, siendo una fórmula común de luminancia $Y = 0.299R + 0.587G + 0.114B$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "An **image histogram** counts how many pixels fall in each intensity bin. It summarizes the distribution of brightness or color and is the basis for **thresholding** (separating foreground from background) and **histogram equalization**, which spreads intensities to improve contrast.",
+        "es": "Un **histograma de imagen** cuenta cuántos píxeles caen en cada intervalo de intensidad. Resume la distribución de brillo o color y es la base de la **umbralización** (separar primer plano del fondo) y de la **ecualización de histograma**, que extiende las intensidades para mejorar el contraste."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Histograms are also compact image **descriptors**: a color histogram captures overall palette regardless of spatial arrangement, useful for image retrieval. Two images can be compared by **histogram distance** (e.g. chi-squared or intersection). Like bag-of-words in NLP, they discard layout but remain a fast, robust summary.",
+        "es": "Los histogramas también son **descriptores** compactos de imagen: un histograma de color captura la paleta global sin importar la disposición espacial, útil para la recuperación de imágenes. Dos imágenes se comparan por **distancia de histograma** (p. ej. chi-cuadrado o intersección). Como la bolsa de palabras en PLN, descartan la disposición pero siguen siendo un resumen rápido y robusto."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Grayscale of pure green $(R,G,B)=(0,255,0)$: $Y = 0.299\\cdot0 + 0.587\\cdot255 + 0.114\\cdot0 = 0.587\\cdot255 \\approx 149.7$. A histogram over $256$ intensity levels has $256$ bins.",
+        "es": "Gris del verde puro $(R,G,B)=(0,255,0)$: $Y = 0.299\\cdot0 + 0.587\\cdot255 + 0.114\\cdot0 = 0.587\\cdot255 \\approx 149.7$. Un histograma sobre $256$ niveles de intensidad tiene $256$ intervalos."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-08-e1",
+      "answerType": "number",
+      "prompt": { "en": "Grayscale of pure green: $0.587\\cdot 255$ (to 1 dp)?", "es": "Gris del verde puro: $0.587\\cdot 255$ (a 1 cifra)?" },
+      "answer": "149.7",
+      "acceptedAlt": [],
+      "hint": { "en": "0.587 × 255.", "es": "0.587 × 255." },
+      "solution": [ { "tex": "0.587\\cdot255 \\approx 149.7", "en": "≈ 149.7.", "es": "≈ 149.7." } ]
+    },
+    {
+      "id": "cv-08-e2",
+      "answerType": "number",
+      "prompt": { "en": "Bins in a histogram over 256 intensity levels?", "es": "Intervalos en un histograma sobre 256 niveles de intensidad?" },
+      "answer": "256",
+      "acceptedAlt": [],
+      "hint": { "en": "One per level.", "es": "Uno por nivel." },
+      "solution": [ { "tex": "256", "en": "256.", "es": "256." } ]
+    },
+    {
+      "id": "cv-08-e3",
+      "answerType": "text",
+      "prompt": { "en": "The color space separating hue from brightness is ___. (acronym)", "es": "El espacio de color que separa tono del brillo es ___. (siglas)" },
+      "answer": "hsv",
+      "acceptedAlt": [],
+      "hint": { "en": "Hue, Saturation, Value.", "es": "Tono, Saturación, Valor." },
+      "solution": [ { "tex": "\\text{HSV}", "en": "HSV.", "es": "HSV." } ]
+    },
+    {
+      "id": "cv-08-e4",
+      "answerType": "text",
+      "prompt": { "en": "Spreading intensities to improve contrast is histogram ___. (one word)", "es": "Extender las intensidades para mejorar el contraste es ___ de histograma. (una palabra)" },
+      "answer": "equalization",
+      "acceptedAlt": ["ecualización", "ecualizacion", "equalisation"],
+      "hint": { "en": "Equalize the histogram.", "es": "Ecualizar el histograma." },
+      "solution": [ { "tex": "\\text{equalization}", "en": "Equalization.", "es": "Ecualización." } ]
+    }
+  ],
+  "references": [
+    { "source": "Szeliski — Computer Vision: Algorithms and Applications", "detail": { "en": "Ch. 2–3, color spaces and histograms", "es": "Cap. 2–3, espacios de color e histogramas" } }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "cv-03-filtering",
+  "subjectId": "computer-vision",
+  "order": 3,
+  "estimatedMinutes": 35,
+  "title": { "en": "Image Filtering & Convolution", "es": "Filtrado de imágenes y convolución" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Most low-level vision is done by **filtering**: slide a small **kernel** over the image and compute, at each location, a weighted sum of the neighborhood. This is **convolution** — the same operation that powers CNNs. The kernel's weights determine the effect: blurring, sharpening, or edge detection.",
+        "es": "Gran parte de la visión de bajo nivel se hace por **filtrado**: deslizar un pequeño **kernel/núcleo** sobre la imagen y calcular, en cada posición, una suma ponderada del vecindario. Esto es la **convolución** — la misma operación que impulsa las CNN. Los pesos del kernel determinan el efecto: difuminar, enfocar o detectar bordes."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **box blur** averages each pixel with its neighbors — a $3\\times 3$ kernel of all $\\tfrac{1}{9}$ smooths noise. A **Gaussian blur** weights nearer pixels more, giving smoother results. Blurring is **low-pass** (it keeps slow variation, removes fine detail). Importantly, the convolution kernel weights sum to $1$ for blurs, so overall brightness is preserved.",
+        "es": "Un **desenfoque de caja (box blur)** promedia cada píxel con sus vecinos — un kernel $3\\times 3$ de todos $\\tfrac{1}{9}$ suaviza el ruido. Un **desenfoque gaussiano** pondera más los píxeles cercanos, dando resultados más suaves. El desenfoque es **paso-bajo** (conserva la variación lenta, elimina el detalle fino). Es importante que los pesos del kernel sumen $1$ en los desenfoques, para preservar el brillo global."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Sharpening and edge detection use kernels with negative weights that emphasize **differences** between a pixel and its surroundings — these are **high-pass** filters. The convolution operation is linear and shift-invariant, which is exactly why it generalizes across the image and why CNNs reuse the same kernel everywhere (weight sharing).",
+        "es": "El enfoque y la detección de bordes usan kernels con pesos negativos que enfatizan las **diferencias** entre un píxel y su entorno — son filtros **paso-alto**. La convolución es lineal e invariante al desplazamiento, justo por lo que generaliza por toda la imagen y por lo que las CNN reutilizan el mismo kernel en todas partes (compartir pesos)."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "A $3\\times 3$ box-blur kernel has $9$ entries each $\\tfrac{1}{9}$, summing to $9\\cdot\\tfrac{1}{9} = 1$. Averaging the patch $[10, 20, 30]$ with weights $\\tfrac{1}{3}$ each gives $\\tfrac{10+20+30}{3} = 20$.",
+        "es": "Un kernel de desenfoque de caja $3\\times 3$ tiene $9$ entradas cada una $\\tfrac{1}{9}$, sumando $9\\cdot\\tfrac{1}{9} = 1$. Promediar el parche $[10, 20, 30]$ con pesos $\\tfrac{1}{3}$ cada uno da $\\tfrac{10+20+30}{3} = 20$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-03-e1",
+      "answerType": "number",
+      "prompt": { "en": "Sum of a $3\\times 3$ box-blur kernel ($9$ entries of $1/9$): $9\\cdot\\frac{1}{9}$?", "es": "Suma de un kernel box-blur $3\\times 3$ ($9$ entradas de $1/9$): $9\\cdot\\frac{1}{9}$?" },
+      "answer": "1",
+      "acceptedAlt": ["9*(1/9)"],
+      "hint": { "en": "9 × 1/9.", "es": "9 × 1/9." },
+      "solution": [ { "tex": "9\\cdot\\frac{1}{9} = 1", "en": "One.", "es": "Uno." } ]
+    },
+    {
+      "id": "cv-03-e2",
+      "answerType": "number",
+      "prompt": { "en": "Average (blur) of $[10,20,30]$: $\\frac{10+20+30}{3}$?", "es": "Promedio (blur) de $[10,20,30]$: $\\frac{10+20+30}{3}$?" },
+      "answer": "20",
+      "acceptedAlt": ["(10+20+30)/3", "mean([10,20,30])"],
+      "hint": { "en": "60 / 3.", "es": "60 / 3." },
+      "solution": [ { "tex": "60/3 = 20", "en": "20.", "es": "20." } ]
+    },
+    {
+      "id": "cv-03-e3",
+      "answerType": "text",
+      "prompt": { "en": "Blurring keeps slow variation and removes fine detail: it is a ___-pass filter. (one word)", "es": "El desenfoque conserva variación lenta y quita detalle fino: es un filtro paso-___. (una palabra)" },
+      "answer": "low",
+      "acceptedAlt": ["bajo"],
+      "hint": { "en": "Low or high?", "es": "¿Bajo o alto?" },
+      "solution": [ { "tex": "\\text{low-pass}", "en": "Low.", "es": "Bajo." } ]
+    },
+    {
+      "id": "cv-03-e4",
+      "answerType": "text",
+      "prompt": { "en": "Sliding a kernel and summing weighted neighborhoods is ___. (one word)", "es": "Deslizar un kernel y sumar vecindarios ponderados es ___. (una palabra)" },
+      "answer": "convolution",
+      "acceptedAlt": ["convolución", "convolucion"],
+      "hint": { "en": "Same as in CNNs.", "es": "Igual que en las CNN." },
+      "solution": [ { "tex": "*", "en": "Convolution.", "es": "Convolución." } ]
+    }
+  ],
+  "references": [
+    { "source": "Szeliski — Computer Vision: Algorithms and Applications", "detail": { "en": "Ch. 3, image processing and filtering", "es": "Cap. 3, procesamiento y filtrado de imágenes" } }
+  ]
+}

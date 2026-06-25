@@ -1,0 +1,80 @@
+{
+  "id": "cv-09-cnns",
+  "subjectId": "computer-vision",
+  "order": 9,
+  "estimatedMinutes": 35,
+  "title": { "en": "CNNs for Vision", "es": "CNN para visión" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The 2012 breakthrough (**AlexNet** on ImageNet) replaced hand-crafted features with **convolutional neural networks** that learn features end-to-end. Early layers learn edges and textures (echoing Marr's primal sketch), deeper layers learn parts and objects — a learned hierarchy that no engineer specifies.",
+        "es": "El avance de 2012 (**AlexNet** en ImageNet) sustituyó las características hechas a mano por **redes neuronales convolucionales** que aprenden características de extremo a extremo. Las capas iniciales aprenden bordes y texturas (haciendo eco del esbozo primario de Marr), las profundas aprenden partes y objetos — una jerarquía aprendida que ningún ingeniero especifica."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A vision CNN stacks convolution + ReLU + pooling blocks, shrinking spatial size while growing channel depth, then ends in fully connected layers and a softmax over classes. A key sizing fact: a convolution with kernel $k$, stride $s$, padding $p$ on an input of size $W$ outputs $\\big\\lfloor\\tfrac{W - k + 2p}{s}\\big\\rfloor + 1$.",
+        "es": "Una CNN de visión apila bloques convolución + ReLU + pooling, reduciendo el tamaño espacial mientras crece la profundidad de canales, y termina en capas totalmente conectadas y un softmax sobre las clases. Un dato clave de dimensionado: una convolución con kernel $k$, paso $s$, relleno $p$ sobre una entrada de tamaño $W$ produce $\\big\\lfloor\\tfrac{W - k + 2p}{s}\\big\\rfloor + 1$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Landmark vision CNNs — AlexNet, VGG, GoogLeNet, ResNet — drove ImageNet error from $\\sim 26\\%$ (2011) below $5\\%$ within a few years. **ResNet's** residual connections enabled networks hundreds of layers deep. These pretrained backbones are now reused (transfer learning) as the front end of detection and segmentation systems.",
+        "es": "Las CNN de visión emblemáticas — AlexNet, VGG, GoogLeNet, ResNet — bajaron el error de ImageNet del $\\sim 26\\%$ (2011) a menos del $5\\%$ en pocos años. Las conexiones residuales de **ResNet** permitieron redes de cientos de capas. Estas redes troncales preentrenadas se reutilizan ahora (transferencia) como front-end de sistemas de detección y segmentación."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Output size for input $W=32$, kernel $k=3$, stride $s=1$, padding $p=0$: $\\lfloor(32-3+0)/1\\rfloor + 1 = 29 + 1 = 30$. With padding $p=1$ it would stay $32$ ('same' convolution).",
+        "es": "Tamaño de salida para entrada $W=32$, kernel $k=3$, paso $s=1$, relleno $p=0$: $\\lfloor(32-3+0)/1\\rfloor + 1 = 29 + 1 = 30$. Con relleno $p=1$ se mantendría en $32$ (convolución 'same')."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-09-e1",
+      "answerType": "number",
+      "prompt": { "en": "Conv output size: $W=32$, $k=3$, $s=1$, $p=0$: $(32-3)/1 + 1$?", "es": "Tamaño de salida conv: $W=32$, $k=3$, $s=1$, $p=0$: $(32-3)/1 + 1$?" },
+      "answer": "30",
+      "acceptedAlt": ["(32-3)/1+1"],
+      "hint": { "en": "29 + 1.", "es": "29 + 1." },
+      "solution": [ { "tex": "29+1 = 30", "en": "30.", "es": "30." } ]
+    },
+    {
+      "id": "cv-09-e2",
+      "answerType": "number",
+      "prompt": { "en": "Output with $W=7$, $k=3$, $s=2$, $p=0$: $\\lfloor(7-3)/2\\rfloor + 1$?", "es": "Salida con $W=7$, $k=3$, $s=2$, $p=0$: $\\lfloor(7-3)/2\\rfloor + 1$?" },
+      "answer": "3",
+      "acceptedAlt": ["floor((7-3)/2)+1"],
+      "hint": { "en": "⌊4/2⌋ + 1.", "es": "⌊4/2⌋ + 1." },
+      "solution": [ { "tex": "2+1 = 3", "en": "3.", "es": "3." } ]
+    },
+    {
+      "id": "cv-09-e3",
+      "answerType": "text",
+      "prompt": { "en": "The 2012 CNN that won ImageNet is ___. (one word)", "es": "La CNN de 2012 que ganó ImageNet es ___. (una palabra)" },
+      "answer": "alexnet",
+      "acceptedAlt": [],
+      "hint": { "en": "Named after Krizhevsky.", "es": "Por Krizhevsky." },
+      "solution": [ { "tex": "\\text{AlexNet}", "en": "AlexNet.", "es": "AlexNet." } ]
+    },
+    {
+      "id": "cv-09-e4",
+      "answerType": "text",
+      "prompt": { "en": "The CNN with residual connections enabling very deep nets is ___. (one word)", "es": "La CNN con conexiones residuales que permite redes muy profundas es ___. (una palabra)" },
+      "answer": "resnet",
+      "acceptedAlt": [],
+      "hint": { "en": "Residual network.", "es": "Red residual." },
+      "solution": [ { "tex": "\\text{ResNet}", "en": "ResNet.", "es": "ResNet." } ]
+    }
+  ],
+  "references": [
+    { "source": "Krizhevsky et al. — ImageNet Classification with Deep CNNs (AlexNet, 2012)", "detail": { "en": "Deep CNNs for vision", "es": "CNN profundas para visión" } },
+    { "source": "Goodfellow, Bengio & Courville — Deep Learning (2016)", "detail": { "en": "Ch. 9, convolutional networks", "es": "Cap. 9, redes convolucionales" } }
+  ]
+}

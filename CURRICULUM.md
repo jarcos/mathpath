@@ -162,7 +162,7 @@ The `sources/Foundations/` corpus turns the old placeholder ML track into a real
 | 10 | 🟢 **NLP & Transformers** · `nlp-transformers` **(DONE — 16 lessons)** | 16 | Jurafsky & Martin *SLP*; Vaswani et al. *Attention Is All You Need* (2017) |
 | 11 | 🟢 **Reinforcement Learning** · `reinforcement-learning` **(DONE — 16 lessons)** | 16 | Sutton & Barto *RL: An Introduction* (2018) |
 | 12 | 🟢 **Knowledge Representation & Reasoning** · `knowledge-representation` **(DONE — 14 lessons)** | 14 | Brachman & Levesque (2004); Pearl *Probabilistic Reasoning* (1988) |
-| 13 | ⚪ **Computer Vision** · `computer-vision` | ~14 | Marr *Vision* (1982); Goodfellow ch. 9 (CNNs) |
+| 13 | 🟢 **Computer Vision** · `computer-vision` **(DONE — 14 lessons)** | 14 | Marr *Vision* (1982); Goodfellow ch. 9 (CNNs) |
 | 14 | ⚪ **AI Foundations & Philosophy** · `ai-foundations` | ~14 | Turing (1950); Searle (1980); Dreyfus (1992); Brooks (1991); Simon (1995); Bommasani et al. (2021) |
 | 15 | ⚪ **Active Inference** · `active-inference` (advanced) | ~12 | Parr, Pezzulo & Friston *Active Inference* (2022) |
 

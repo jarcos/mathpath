@@ -1,0 +1,79 @@
+{
+  "id": "cv-10-classification",
+  "subjectId": "computer-vision",
+  "order": 10,
+  "estimatedMinutes": 30,
+  "title": { "en": "Image Classification", "es": "Clasificación de imágenes" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Image classification** assigns a whole image to one of $K$ categories — the canonical vision benchmark (ImageNet has $1000$ classes). The network outputs a vector of $K$ scores (**logits**), turned into a probability distribution by **softmax**, and the predicted class is the **argmax**.",
+        "es": "La **clasificación de imágenes** asigna una imagen entera a una de $K$ categorías — el punto de referencia canónico de la visión (ImageNet tiene $1000$ clases). La red produce un vector de $K$ puntuaciones (**logits**), convertidas en distribución de probabilidad por **softmax**, y la clase predicha es el **argmax**."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Training minimizes **cross-entropy** between predicted probabilities and the true one-hot label. Performance is measured by **accuracy** — fraction correct. Benchmarks also report **top-5 accuracy**: the true label is counted correct if it is among the model's $5$ highest-scoring guesses, forgiving near-misses among many similar classes.",
+        "es": "El entrenamiento minimiza la **entropía cruzada** entre las probabilidades predichas y la etiqueta verdadera one-hot. El rendimiento se mide por la **exactitud** — fracción de aciertos. Los puntos de referencia también reportan la **exactitud top-5**: la etiqueta verdadera cuenta como acierto si está entre las $5$ predicciones de mayor puntuación, perdonando casi-errores entre muchas clases similares."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Classifiers can be fooled: tiny, imperceptible **adversarial** perturbations can flip a prediction, revealing that CNN features differ from human perception. Robustness, calibration (do confidence scores match real accuracy?), and fairness across groups are active concerns when deploying classifiers in the real world.",
+        "es": "Los clasificadores pueden engañarse: perturbaciones **adversarias** diminutas e imperceptibles pueden invertir una predicción, revelando que las características de las CNN difieren de la percepción humana. La robustez, la calibración (¿coinciden las puntuaciones de confianza con la exactitud real?) y la equidad entre grupos son preocupaciones activas al desplegar clasificadores en el mundo real."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With class scores $[2, 5, 1]$, the prediction is the argmax — class index $2$ (the $5$). Accuracy with $920$ correct of $1000$ is $920/1000 = 0.92$.",
+        "es": "Con puntuaciones de clase $[2, 5, 1]$, la predicción es el argmax — el índice de clase $2$ (el $5$). La exactitud con $920$ aciertos de $1000$ es $920/1000 = 0.92$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-10-e1",
+      "answerType": "number",
+      "prompt": { "en": "Highest of class scores $[2,5,1]$ (the argmax value)?", "es": "Mayor de las puntuaciones $[2,5,1]$ (el valor del argmax)?" },
+      "answer": "5",
+      "acceptedAlt": ["max(2,5,1)"],
+      "hint": { "en": "The maximum score.", "es": "La puntuación máxima." },
+      "solution": [ { "tex": "\\max = 5", "en": "Five.", "es": "Cinco." } ]
+    },
+    {
+      "id": "cv-10-e2",
+      "answerType": "number",
+      "prompt": { "en": "Accuracy: 920 correct of 1000?", "es": "Exactitud: 920 aciertos de 1000?" },
+      "answer": "0.92",
+      "acceptedAlt": ["920/1000", "23/25"],
+      "hint": { "en": "920 / 1000.", "es": "920 / 1000." },
+      "solution": [ { "tex": "0.92", "en": "0.92.", "es": "0.92." } ]
+    },
+    {
+      "id": "cv-10-e3",
+      "answerType": "text",
+      "prompt": { "en": "Scores are turned into class probabilities by the ___ function. (one word)", "es": "Las puntuaciones se vuelven probabilidades de clase con la función ___. (una palabra)" },
+      "answer": "softmax",
+      "acceptedAlt": [],
+      "hint": { "en": "Normalizes to sum 1.", "es": "Normaliza para sumar 1." },
+      "solution": [ { "tex": "\\text{softmax}", "en": "Softmax.", "es": "Softmax." } ]
+    },
+    {
+      "id": "cv-10-e4",
+      "answerType": "text",
+      "prompt": { "en": "Tiny perturbations that flip predictions are called ___ examples. (one word)", "es": "Las perturbaciones diminutas que invierten predicciones son ejemplos ___. (una palabra)" },
+      "answer": "adversarial",
+      "acceptedAlt": ["adversarios", "adversariales"],
+      "hint": { "en": "Adversarial attacks.", "es": "Ataques adversarios." },
+      "solution": [ { "tex": "\\text{adversarial}", "en": "Adversarial.", "es": "Adversarios." } ]
+    }
+  ],
+  "references": [
+    { "source": "Russakovsky et al. — ImageNet Large Scale Visual Recognition Challenge (2015)", "detail": { "en": "Classification benchmark and top-5", "es": "Punto de referencia de clasificación y top-5" } }
+  ]
+}

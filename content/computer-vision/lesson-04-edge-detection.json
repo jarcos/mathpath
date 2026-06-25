@@ -1,0 +1,80 @@
+{
+  "id": "cv-04-edges",
+  "subjectId": "computer-vision",
+  "order": 4,
+  "estimatedMinutes": 35,
+  "title": { "en": "Edge Detection", "es": "Detección de bordes" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Edges** — sharp changes in intensity — mark object boundaries and are among the most informative low-level features. Mathematically an edge is where the image **gradient** is large. The gradient $\\nabla I = (I_x, I_y)$ collects the rate of change in the $x$ and $y$ directions, computed by convolving with derivative kernels.",
+        "es": "Los **bordes** — cambios bruscos de intensidad — marcan las fronteras de los objetos y están entre las características de bajo nivel más informativas. Matemáticamente un borde está donde el **gradiente** de la imagen es grande. El gradiente $\\nabla I = (I_x, I_y)$ reúne la tasa de cambio en las direcciones $x$ e $y$, calculada convolucionando con kernels de derivada."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **Sobel** operator estimates $I_x$ and $I_y$ with small $3\\times 3$ kernels. The **edge strength** at a pixel is the gradient magnitude $\\lVert\\nabla I\\rVert = \\sqrt{I_x^2 + I_y^2}$, and the edge **orientation** is $\\arctan(I_y/I_x)$. Thresholding the magnitude gives a binary edge map.",
+        "es": "El operador **Sobel** estima $I_x$ e $I_y$ con pequeños kernels $3\\times 3$. La **fuerza del borde** en un píxel es la magnitud del gradiente $\\lVert\\nabla I\\rVert = \\sqrt{I_x^2 + I_y^2}$, y la **orientación** del borde es $\\arctan(I_y/I_x)$. Umbralizar la magnitud da un mapa binario de bordes."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **Canny** edge detector (1986) is the classic full pipeline: smooth with Gaussian, compute gradients, apply **non-maximum suppression** to thin edges to one pixel, then **hysteresis thresholding** with two thresholds to link strong and weak edges. Canny remains a standard baseline decades later.",
+        "es": "El detector de bordes de **Canny** (1986) es la canalización clásica completa: suavizar con gaussiano, calcular gradientes, aplicar **supresión de no-máximos** para adelgazar los bordes a un píxel, y luego **umbralización por histéresis** con dos umbrales para enlazar bordes fuertes y débiles. Canny sigue siendo una referencia estándar décadas después."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "With gradient components $I_x = 3$ and $I_y = 4$, the edge magnitude is $\\sqrt{3^2 + 4^2} = \\sqrt{9+16} = \\sqrt{25} = 5$. A larger magnitude means a stronger edge.",
+        "es": "Con componentes de gradiente $I_x = 3$ e $I_y = 4$, la magnitud del borde es $\\sqrt{3^2 + 4^2} = \\sqrt{9+16} = \\sqrt{25} = 5$. Una magnitud mayor significa un borde más fuerte."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-04-e1",
+      "answerType": "number",
+      "prompt": { "en": "Gradient magnitude with $I_x=3$, $I_y=4$: $\\sqrt{3^2+4^2}$?", "es": "Magnitud del gradiente con $I_x=3$, $I_y=4$: $\\sqrt{3^2+4^2}$?" },
+      "answer": "5",
+      "acceptedAlt": ["sqrt(3^2+4^2)", "sqrt(25)"],
+      "hint": { "en": "√(9+16).", "es": "√(9+16)." },
+      "solution": [ { "tex": "\\sqrt{25} = 5", "en": "Five.", "es": "Cinco." } ]
+    },
+    {
+      "id": "cv-04-e2",
+      "answerType": "number",
+      "prompt": { "en": "Gradient magnitude with $I_x=6$, $I_y=8$: $\\sqrt{36+64}$?", "es": "Magnitud con $I_x=6$, $I_y=8$: $\\sqrt{36+64}$?" },
+      "answer": "10",
+      "acceptedAlt": ["sqrt(100)", "sqrt(6^2+8^2)"],
+      "hint": { "en": "√100.", "es": "√100." },
+      "solution": [ { "tex": "\\sqrt{100} = 10", "en": "Ten.", "es": "Diez." } ]
+    },
+    {
+      "id": "cv-04-e3",
+      "answerType": "text",
+      "prompt": { "en": "An edge is where the image ___ is large. (one word)", "es": "Un borde está donde el ___ de la imagen es grande. (una palabra)" },
+      "answer": "gradient",
+      "acceptedAlt": ["gradiente"],
+      "hint": { "en": "∇I.", "es": "∇I." },
+      "solution": [ { "tex": "\\nabla I", "en": "Gradient.", "es": "Gradiente." } ]
+    },
+    {
+      "id": "cv-04-e4",
+      "answerType": "text",
+      "prompt": { "en": "The classic full edge-detection pipeline (1986) is the ___ detector. (one word)", "es": "La canalización clásica completa de detección de bordes (1986) es el detector de ___. (una palabra)" },
+      "answer": "canny",
+      "acceptedAlt": [],
+      "hint": { "en": "John F. ___.", "es": "John F. ___." },
+      "solution": [ { "tex": "\\text{Canny}", "en": "Canny.", "es": "Canny." } ]
+    }
+  ],
+  "references": [
+    { "source": "Canny — A Computational Approach to Edge Detection (1986)", "detail": { "en": "The Canny edge detector", "es": "El detector de bordes de Canny" } },
+    { "source": "Szeliski — Computer Vision: Algorithms and Applications", "detail": { "en": "Ch. 4, feature detection; edges", "es": "Cap. 4, detección de características; bordes" } }
+  ]
+}

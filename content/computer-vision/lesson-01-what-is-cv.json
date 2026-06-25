@@ -1,0 +1,80 @@
+{
+  "id": "cv-01-what-is-cv",
+  "subjectId": "computer-vision",
+  "order": 1,
+  "estimatedMinutes": 30,
+  "title": { "en": "What Is Computer Vision?", "es": "¿Qué es la visión por computador?" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Computer vision** is the science of getting machines to **understand images** — to recover meaning (objects, scenes, motion, 3-D structure) from raw arrays of pixels. It is sometimes called an **inverse** problem: the world projects onto a 2-D image, and vision tries to undo that projection to infer what produced it.",
+        "es": "La **visión por computador** es la ciencia de lograr que las máquinas **entiendan imágenes** — recuperar significado (objetos, escenas, movimiento, estructura 3-D) a partir de arreglos crudos de píxeles. A veces se llama un problema **inverso**: el mundo se proyecta sobre una imagen 2-D, y la visión intenta deshacer esa proyección para inferir qué la produjo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "It is hard because the mapping is **ambiguous**: countless 3-D scenes produce the same 2-D image, and lighting, viewpoint, occlusion and clutter all change the pixels of the very same object. Humans solve this effortlessly using enormous prior knowledge; machines must learn or encode those priors.",
+        "es": "Es difícil porque el mapeo es **ambiguo**: incontables escenas 3-D producen la misma imagen 2-D, y la iluminación, el punto de vista, la oclusión y el desorden cambian los píxeles del mismísimo objeto. Los humanos lo resuelven sin esfuerzo usando enorme conocimiento previo; las máquinas deben aprender o codificar esos supuestos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The field spans a ladder of tasks: **classification** (what is in the image?), **detection** (where are the objects?), **segmentation** (which pixel belongs to what?), and **3-D reconstruction**. After decades of hand-engineered features, deep **convolutional networks** (2012 onward) and later vision transformers transformed the field, reaching or exceeding human accuracy on many benchmarks.",
+        "es": "El campo abarca una escala de tareas: **clasificación** (¿qué hay en la imagen?), **detección** (¿dónde están los objetos?), **segmentación** (¿qué píxel pertenece a qué?) y **reconstrucción 3-D**. Tras décadas de características hechas a mano, las **redes convolucionales** profundas (desde 2012) y luego los transformers de visión transformaron el campo, alcanzando o superando la precisión humana en muchos puntos de referencia."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Vision inverts a projection from $3$ dimensions to $2$ — losing $3 - 2 = 1$ dimension (depth), which is why depth must be inferred. The task 'which pixel belongs to which object' is segmentation.",
+        "es": "La visión invierte una proyección de $3$ dimensiones a $2$ — perdiendo $3 - 2 = 1$ dimensión (la profundidad), por lo que la profundidad debe inferirse. La tarea '¿qué píxel pertenece a qué objeto?' es la segmentación."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-01-e1",
+      "answerType": "number",
+      "prompt": { "en": "Dimensions lost projecting a 3-D scene to a 2-D image: $3-2$?", "es": "Dimensiones perdidas al proyectar una escena 3-D a una imagen 2-D: $3-2$?" },
+      "answer": "1",
+      "acceptedAlt": ["3-2"],
+      "hint": { "en": "3 − 2.", "es": "3 − 2." },
+      "solution": [ { "tex": "3-2 = 1", "en": "One (depth).", "es": "Una (profundidad)." } ]
+    },
+    {
+      "id": "cv-01-e2",
+      "answerType": "text",
+      "prompt": { "en": "Recovering 3-D meaning from a 2-D image is an ___ problem. (one word)", "es": "Recuperar significado 3-D de una imagen 2-D es un problema ___. (una palabra)" },
+      "answer": "inverse",
+      "acceptedAlt": ["inverso"],
+      "hint": { "en": "Undoing projection.", "es": "Deshacer la proyección." },
+      "solution": [ { "tex": "\\text{inverse}", "en": "Inverse.", "es": "Inverso." } ]
+    },
+    {
+      "id": "cv-01-e3",
+      "answerType": "text",
+      "prompt": { "en": "Labeling each pixel by which object it belongs to is ___. (one word)", "es": "Etiquetar cada píxel por el objeto al que pertenece es ___. (una palabra)" },
+      "answer": "segmentation",
+      "acceptedAlt": ["segmentación", "segmentacion"],
+      "hint": { "en": "Per-pixel labels.", "es": "Etiquetas por píxel." },
+      "solution": [ { "tex": "\\text{segmentation}", "en": "Segmentation.", "es": "Segmentación." } ]
+    },
+    {
+      "id": "cv-01-e4",
+      "answerType": "text",
+      "prompt": { "en": "The network type that revolutionized vision in 2012 is the ___ network. (one word)", "es": "El tipo de red que revolucionó la visión en 2012 es la red ___. (una palabra)" },
+      "answer": "convolutional",
+      "acceptedAlt": ["convolucional", "CNN"],
+      "hint": { "en": "CNN.", "es": "CNN." },
+      "solution": [ { "tex": "\\text{CNN}", "en": "Convolutional.", "es": "Convolucional." } ]
+    }
+  ],
+  "references": [
+    { "source": "Marr — Vision (1982)", "detail": { "en": "Vision as an information-processing problem", "es": "La visión como problema de procesamiento de información" } },
+    { "source": "Szeliski — Computer Vision: Algorithms and Applications", "detail": { "en": "Ch. 1, introduction", "es": "Cap. 1, introducción" } }
+  ]
+}

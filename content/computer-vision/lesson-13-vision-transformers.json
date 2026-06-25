@@ -1,0 +1,80 @@
+{
+  "id": "cv-13-vit",
+  "subjectId": "computer-vision",
+  "order": 13,
+  "estimatedMinutes": 35,
+  "title": { "en": "Vision Transformers", "es": "Transformers de visión" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **Vision Transformer (ViT, 2020)** brought the Transformer from NLP to images. Its key move: split the image into a grid of fixed-size **patches** (e.g. $16\\times 16$), flatten each into a vector, and treat the sequence of patches like word tokens. Self-attention then relates every patch to every other — global context from layer one.",
+        "es": "El **Vision Transformer (ViT, 2020)** trajo el Transformer del PLN a las imágenes. Su movimiento clave: dividir la imagen en una rejilla de **parches** de tamaño fijo (p. ej. $16\\times 16$), aplanar cada uno en un vector, y tratar la secuencia de parches como tokens de palabras. La autoatención relaciona entonces cada parche con todos los demás — contexto global desde la primera capa."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Each patch is linearly embedded, given a **positional embedding** (since attention is order-agnostic), and processed by standard Transformer blocks. Unlike CNNs, ViT has little built-in spatial bias, so it needs **large training data** to learn it — but at scale it matches or beats CNNs, and pretraining transfers well.",
+        "es": "Cada parche se incrusta linealmente, recibe un **embedding posicional** (ya que la atención ignora el orden), y se procesa con bloques Transformer estándar. A diferencia de las CNN, ViT tiene poco sesgo espacial incorporado, así que necesita **muchos datos** de entrenamiento para aprenderlo — pero a escala iguala o supera a las CNN, y el preentrenamiento transfiere bien."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "ViT and hybrids (Swin Transformer, DETR for detection) now dominate vision benchmarks, and the patch idea underlies multimodal models like **CLIP** that align images and text in a shared embedding space. The convergence of vision and language on one architecture — the Transformer — is a defining theme of modern AI.",
+        "es": "ViT e híbridos (Swin Transformer, DETR para detección) dominan ahora los puntos de referencia de visión, y la idea de los parches sustenta modelos multimodales como **CLIP** que alinean imágenes y texto en un espacio de embedding compartido. La convergencia de visión y lenguaje en una sola arquitectura — el Transformer — es un tema definitorio de la IA moderna."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Splitting a $224\\times 224$ image into $16\\times 16$ patches gives $(224/16)^2 = 14^2 = 196$ patches — the sequence length the Transformer processes.",
+        "es": "Dividir una imagen de $224\\times 224$ en parches de $16\\times 16$ da $(224/16)^2 = 14^2 = 196$ parches — la longitud de secuencia que procesa el Transformer."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-13-e1",
+      "answerType": "number",
+      "prompt": { "en": "Patches in a $224\\times 224$ image with $16\\times 16$ patches: $(224/16)^2$?", "es": "Parches en una imagen $224\\times 224$ con parches $16\\times 16$: $(224/16)^2$?" },
+      "answer": "196",
+      "acceptedAlt": ["(224/16)^2", "14^2"],
+      "hint": { "en": "14².", "es": "14²." },
+      "solution": [ { "tex": "14^2 = 196", "en": "196.", "es": "196." } ]
+    },
+    {
+      "id": "cv-13-e2",
+      "answerType": "number",
+      "prompt": { "en": "Patches per row for a 224-wide image with 16-wide patches: $224/16$?", "es": "Parches por fila para una imagen de ancho 224 con parches de ancho 16: $224/16$?" },
+      "answer": "14",
+      "acceptedAlt": ["224/16"],
+      "hint": { "en": "224 / 16.", "es": "224 / 16." },
+      "solution": [ { "tex": "224/16 = 14", "en": "14.", "es": "14." } ]
+    },
+    {
+      "id": "cv-13-e3",
+      "answerType": "text",
+      "prompt": { "en": "ViT splits an image into a sequence of ___. (one word)", "es": "ViT divide una imagen en una secuencia de ___. (una palabra)" },
+      "answer": "patches",
+      "acceptedAlt": ["parches", "patch", "parche"],
+      "hint": { "en": "Like tokens.", "es": "Como tokens." },
+      "solution": [ { "tex": "\\text{patches}", "en": "Patches.", "es": "Parches." } ]
+    },
+    {
+      "id": "cv-13-e4",
+      "answerType": "text",
+      "prompt": { "en": "The model aligning images and text in a shared space is ___. (one word)", "es": "El modelo que alinea imágenes y texto en un espacio compartido es ___. (una palabra)" },
+      "answer": "clip",
+      "acceptedAlt": [],
+      "hint": { "en": "Contrastive image-text.", "es": "Imagen-texto contrastivo." },
+      "solution": [ { "tex": "\\text{CLIP}", "en": "CLIP.", "es": "CLIP." } ]
+    }
+  ],
+  "references": [
+    { "source": "Dosovitskiy et al. — An Image is Worth 16x16 Words (ViT, 2021)", "detail": { "en": "Vision Transformer", "es": "Vision Transformer" } },
+    { "source": "Radford et al. — Learning Transferable Visual Models (CLIP, 2021)", "detail": { "en": "Image-text alignment", "es": "Alineación imagen-texto" } }
+  ]
+}

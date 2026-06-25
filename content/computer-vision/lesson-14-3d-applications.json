@@ -1,0 +1,80 @@
+{
+  "id": "cv-14-3d",
+  "subjectId": "computer-vision",
+  "order": 14,
+  "estimatedMinutes": 35,
+  "title": { "en": "3-D Vision & Applications", "es": "Visión 3-D y aplicaciones" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Recovering 3-D structure from 2-D images is a core goal. **Stereo vision** uses two cameras: the horizontal shift of a point between the two images — its **disparity** — is inversely related to depth. Closer objects shift more. With baseline $b$ and focal length $f$, depth $Z = \\dfrac{f\\,b}{d}$ for disparity $d$.",
+        "es": "Recuperar estructura 3-D de imágenes 2-D es un objetivo central. La **visión estéreo** usa dos cámaras: el desplazamiento horizontal de un punto entre las dos imágenes — su **disparidad** — está inversamente relacionado con la profundidad. Los objetos más cercanos se desplazan más. Con línea base $b$ y distancia focal $f$, la profundidad $Z = \\dfrac{f\\,b}{d}$ para disparidad $d$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Structure from Motion (SfM)** reconstructs 3-D scenes and camera poses from many overlapping photos; **SLAM** does it in real time for robots and AR. Newer methods like **NeRF** (Neural Radiance Fields) learn a continuous 3-D scene from images to render novel viewpoints photorealistically.",
+        "es": "La **estructura a partir del movimiento (SfM)** reconstruye escenas 3-D y poses de cámara a partir de muchas fotos solapadas; el **SLAM** lo hace en tiempo real para robots y RA. Métodos más nuevos como **NeRF** (campos de radiancia neuronales) aprenden una escena 3-D continua a partir de imágenes para renderizar nuevos puntos de vista de forma fotorrealista."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Computer vision now permeates daily life: face recognition, medical diagnosis, autonomous vehicles, document OCR, agricultural monitoring, and augmented reality. This subject completes the perception pillar of the AI track — bridging raw pixels (signal) to symbolic understanding (meaning), the same arc Marr charted decades ago.",
+        "es": "La visión por computador impregna ahora la vida diaria: reconocimiento facial, diagnóstico médico, vehículos autónomos, OCR de documentos, monitoreo agrícola y realidad aumentada. Esta asignatura completa el pilar de percepción de la ruta de IA — tendiendo un puente de los píxeles crudos (señal) a la comprensión simbólica (significado), el mismo arco que Marr trazó hace décadas."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Stereo depth with focal $f=800$, baseline $b=0.1$ m, disparity $d=40$ px: $Z = \\dfrac{800\\cdot 0.1}{40} = \\dfrac{80}{40} = 2$ m. Doubling the disparity to $80$ would halve the depth to $1$ m — closer.",
+        "es": "Profundidad estéreo con focal $f=800$, línea base $b=0.1$ m, disparidad $d=40$ px: $Z = \\dfrac{800\\cdot 0.1}{40} = \\dfrac{80}{40} = 2$ m. Duplicar la disparidad a $80$ reduciría la profundidad a $1$ m — más cerca."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-14-e1",
+      "answerType": "number",
+      "prompt": { "en": "Stereo depth $Z = \\frac{800\\cdot 0.1}{40}$?", "es": "Profundidad estéreo $Z = \\frac{800\\cdot 0.1}{40}$?" },
+      "answer": "2",
+      "acceptedAlt": ["800*0.1/40", "80/40"],
+      "hint": { "en": "80 / 40.", "es": "80 / 40." },
+      "solution": [ { "tex": "\\frac{80}{40} = 2", "en": "2 m.", "es": "2 m." } ]
+    },
+    {
+      "id": "cv-14-e2",
+      "answerType": "number",
+      "prompt": { "en": "Same setup but disparity 80: $Z = \\frac{80}{80}$?", "es": "Mismo caso pero disparidad 80: $Z = \\frac{80}{80}$?" },
+      "answer": "1",
+      "acceptedAlt": ["80/80"],
+      "hint": { "en": "Bigger disparity = closer.", "es": "Mayor disparidad = más cerca." },
+      "solution": [ { "tex": "\\frac{80}{80} = 1", "en": "1 m.", "es": "1 m." } ]
+    },
+    {
+      "id": "cv-14-e3",
+      "answerType": "text",
+      "prompt": { "en": "The horizontal shift of a point between two stereo images is its ___. (one word)", "es": "El desplazamiento horizontal de un punto entre dos imágenes estéreo es su ___. (una palabra)" },
+      "answer": "disparity",
+      "acceptedAlt": ["disparidad"],
+      "hint": { "en": "Inversely related to depth.", "es": "Inversa a la profundidad." },
+      "solution": [ { "tex": "d", "en": "Disparity.", "es": "Disparidad." } ]
+    },
+    {
+      "id": "cv-14-e4",
+      "answerType": "text",
+      "prompt": { "en": "The neural method learning a 3-D scene to render new views is ___ (acronym).", "es": "El método neuronal que aprende una escena 3-D para renderizar nuevas vistas es ___ (siglas)." },
+      "answer": "nerf",
+      "acceptedAlt": [],
+      "hint": { "en": "Neural Radiance Fields.", "es": "Campos de radiancia neuronales." },
+      "solution": [ { "tex": "\\text{NeRF}", "en": "NeRF.", "es": "NeRF." } ]
+    }
+  ],
+  "references": [
+    { "source": "Hartley & Zisserman — Multiple View Geometry (2004)", "detail": { "en": "Stereo and structure from motion", "es": "Estéreo y estructura a partir del movimiento" } },
+    { "source": "Mildenhall et al. — NeRF (2020)", "detail": { "en": "Neural radiance fields", "es": "Campos de radiancia neuronales" } }
+  ]
+}

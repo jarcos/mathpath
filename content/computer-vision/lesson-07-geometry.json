@@ -1,0 +1,79 @@
+{
+  "id": "cv-07-geometry",
+  "subjectId": "computer-vision",
+  "order": 7,
+  "estimatedMinutes": 35,
+  "title": { "en": "Image Transformations & Geometry", "es": "Transformaciones e geometría de imágenes" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "Geometric transformations move pixels to new locations: **translation** (shift), **rotation**, **scaling**, and **shear**. Many are **linear** and represented by matrices, so applying them is matrix multiplication on pixel coordinates — connecting vision directly to the linear algebra track.",
+        "es": "Las transformaciones geométricas mueven los píxeles a nuevas posiciones: **traslación** (desplazamiento), **rotación**, **escalado** y **cizallamiento**. Muchas son **lineales** y se representan con matrices, así que aplicarlas es multiplicación matricial sobre las coordenadas de los píxeles — conectando la visión directamente con la ruta de álgebra lineal."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Translation isn't linear in 2-D coordinates, so vision uses **homogeneous coordinates**: append a $1$ to each point, turning translation, rotation and scaling all into single $3\\times 3$ matrix multiplications. The most general such transform is the **homography**, which maps any plane to any other and underlies panorama stitching and perspective correction.",
+        "es": "La traslación no es lineal en coordenadas 2-D, así que la visión usa **coordenadas homogéneas**: añadir un $1$ a cada punto, convirtiendo traslación, rotación y escalado en una sola multiplicación de matrices $3\\times 3$. La transformación más general de este tipo es la **homografía**, que mapea cualquier plano a cualquier otro y sustenta el cosido de panoramas y la corrección de perspectiva."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "When pixels land between grid positions after a transform, their values are filled by **interpolation** (nearest-neighbor, bilinear). The pinhole **camera model** $x = K[R\\,|\\,t]X$ formalizes how a 3-D point $X$ projects to a 2-D pixel $x$ via intrinsic ($K$) and extrinsic ($R, t$) parameters — the basis of calibration and 3-D reconstruction.",
+        "es": "Cuando los píxeles caen entre posiciones de la rejilla tras una transformación, sus valores se rellenan por **interpolación** (vecino más cercano, bilineal). El modelo de **cámara estenopeica** $x = K[R\\,|\\,t]X$ formaliza cómo un punto 3-D $X$ se proyecta a un píxel 2-D $x$ vía parámetros intrínsecos ($K$) y extrínsecos ($R, t$) — la base de la calibración y la reconstrucción 3-D."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "Scaling the point $x=4$ by factor $1.5$ gives $4\\cdot 1.5 = 6$. Translating $x=4$ by $+3$ gives $7$ — easy with homogeneous coordinates as one matrix multiply.",
+        "es": "Escalar el punto $x=4$ por factor $1.5$ da $4\\cdot 1.5 = 6$. Trasladar $x=4$ en $+3$ da $7$ — fácil con coordenadas homogéneas como una multiplicación de matrices."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-07-e1",
+      "answerType": "number",
+      "prompt": { "en": "Scale point 4 by factor 1.5: $4\\cdot 1.5$?", "es": "Escala el punto 4 por factor 1.5: $4\\cdot 1.5$?" },
+      "answer": "6",
+      "acceptedAlt": ["4*1.5"],
+      "hint": { "en": "4 × 1.5.", "es": "4 × 1.5." },
+      "solution": [ { "tex": "4\\cdot 1.5 = 6", "en": "Six.", "es": "Seis." } ]
+    },
+    {
+      "id": "cv-07-e2",
+      "answerType": "number",
+      "prompt": { "en": "Translate point 4 by +3: $4+3$?", "es": "Traslada el punto 4 en +3: $4+3$?" },
+      "answer": "7",
+      "acceptedAlt": ["4+3"],
+      "hint": { "en": "4 + 3.", "es": "4 + 3." },
+      "solution": [ { "tex": "4+3 = 7", "en": "Seven.", "es": "Siete." } ]
+    },
+    {
+      "id": "cv-07-e3",
+      "answerType": "text",
+      "prompt": { "en": "Appending a 1 so translation becomes a matrix multiply uses ___ coordinates. (one word)", "es": "Añadir un 1 para que la traslación sea multiplicación matricial usa coordenadas ___. (una palabra)" },
+      "answer": "homogeneous",
+      "acceptedAlt": ["homogéneas", "homogeneas"],
+      "hint": { "en": "Projective trick.", "es": "Truco proyectivo." },
+      "solution": [ { "tex": "[x,y,1]", "en": "Homogeneous.", "es": "Homogéneas." } ]
+    },
+    {
+      "id": "cv-07-e4",
+      "answerType": "text",
+      "prompt": { "en": "The general plane-to-plane transform behind panorama stitching is a ___. (one word)", "es": "La transformación general plano-a-plano tras el cosido de panoramas es una ___. (una palabra)" },
+      "answer": "homography",
+      "acceptedAlt": ["homografía", "homografia"],
+      "hint": { "en": "3×3 projective matrix.", "es": "Matriz proyectiva 3×3." },
+      "solution": [ { "tex": "H", "en": "Homography.", "es": "Homografía." } ]
+    }
+  ],
+  "references": [
+    { "source": "Hartley & Zisserman — Multiple View Geometry in Computer Vision (2004)", "detail": { "en": "Homogeneous coordinates, homographies, camera model", "es": "Coordenadas homogéneas, homografías, modelo de cámara" } }
+  ]
+}

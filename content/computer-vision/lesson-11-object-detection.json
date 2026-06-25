@@ -1,0 +1,80 @@
+{
+  "id": "cv-11-detection",
+  "subjectId": "computer-vision",
+  "order": 11,
+  "estimatedMinutes": 35,
+  "title": { "en": "Object Detection", "es": "Detección de objetos" },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Object detection** goes beyond classification: it finds **what** objects are present **and where**, drawing a **bounding box** around each and labeling it. An image may contain many objects of different classes, so the output is a variable-length list of (box, class, confidence) triples.",
+        "es": "La **detección de objetos** va más allá de la clasificación: encuentra **qué** objetos hay **y dónde**, dibujando una **caja delimitadora (bounding box)** alrededor de cada uno y etiquetándolo. Una imagen puede contener muchos objetos de distintas clases, así que la salida es una lista de longitud variable de tripletas (caja, clase, confianza)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Detection quality is measured by **Intersection over Union (IoU)**: the area where a predicted box and the ground-truth box overlap, divided by the area of their union. $\\text{IoU} = \\dfrac{\\text{intersection}}{\\text{union}}$, ranging $0$ (no overlap) to $1$ (perfect). A detection usually counts as correct if IoU exceeds a threshold like $0.5$.",
+        "es": "La calidad de detección se mide por la **intersección sobre unión (IoU)**: el área donde una caja predicha y la caja verdadera se solapan, dividida por el área de su unión. $\\text{IoU} = \\dfrac{\\text{intersección}}{\\text{unión}}$, de $0$ (sin solape) a $1$ (perfecto). Una detección suele contar como correcta si la IoU supera un umbral como $0.5$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Architectures split into **two-stage** detectors (R-CNN family: propose regions, then classify — accurate) and **one-stage** detectors (**YOLO**, SSD: predict boxes and classes in a single pass — fast, real-time). **Non-maximum suppression** removes duplicate overlapping boxes, and **mean Average Precision (mAP)** summarizes accuracy across classes and IoU thresholds.",
+        "es": "Las arquitecturas se dividen en detectores de **dos etapas** (familia R-CNN: proponer regiones, luego clasificar — preciso) y de **una etapa** (**YOLO**, SSD: predecir cajas y clases en una sola pasada — rápido, en tiempo real). La **supresión de no-máximos** elimina cajas solapadas duplicadas, y la **precisión media promedio (mAP)** resume la exactitud entre clases y umbrales de IoU."
+      }
+    },
+    {
+      "type": "example",
+      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "content": {
+        "en": "If a predicted and true box overlap in area $20$ and their union is $50$, then $\\text{IoU} = 20/50 = 0.4$ — below a $0.5$ threshold, so this detection would be rejected.",
+        "es": "Si una caja predicha y la verdadera se solapan en área $20$ y su unión es $50$, entonces $\\text{IoU} = 20/50 = 0.4$ — por debajo de un umbral $0.5$, así que esta detección se rechazaría."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cv-11-e1",
+      "answerType": "number",
+      "prompt": { "en": "IoU with intersection 20 and union 50: $20/50$?", "es": "IoU con intersección 20 y unión 50: $20/50$?" },
+      "answer": "0.4",
+      "acceptedAlt": ["20/50", "2/5"],
+      "hint": { "en": "20 / 50.", "es": "20 / 50." },
+      "solution": [ { "tex": "20/50 = 0.4", "en": "0.4.", "es": "0.4." } ]
+    },
+    {
+      "id": "cv-11-e2",
+      "answerType": "number",
+      "prompt": { "en": "IoU of two identical perfectly-overlapping boxes?", "es": "IoU de dos cajas idénticas perfectamente solapadas?" },
+      "answer": "1",
+      "acceptedAlt": [],
+      "hint": { "en": "Intersection = union.", "es": "Intersección = unión." },
+      "solution": [ { "tex": "\\frac{A}{A} = 1", "en": "One.", "es": "Uno." } ]
+    },
+    {
+      "id": "cv-11-e3",
+      "answerType": "text",
+      "prompt": { "en": "The box drawn around a detected object is the bounding ___. (one word)", "es": "La caja dibujada alrededor de un objeto detectado es la caja ___. (una palabra)" },
+      "answer": "box",
+      "acceptedAlt": ["caja", "delimitadora"],
+      "hint": { "en": "Bounding ___.", "es": "Caja ___." },
+      "solution": [ { "tex": "\\text{bounding box}", "en": "Box.", "es": "Caja." } ]
+    },
+    {
+      "id": "cv-11-e4",
+      "answerType": "text",
+      "prompt": { "en": "The fast one-stage real-time detector is ___ (acronym).", "es": "El detector rápido de una etapa en tiempo real es ___ (siglas)." },
+      "answer": "yolo",
+      "acceptedAlt": [],
+      "hint": { "en": "You Only Look Once.", "es": "You Only Look Once." },
+      "solution": [ { "tex": "\\text{YOLO}", "en": "YOLO.", "es": "YOLO." } ]
+    }
+  ],
+  "references": [
+    { "source": "Redmon et al. — You Only Look Once (YOLO, 2016)", "detail": { "en": "One-stage detection", "es": "Detección de una etapa" } },
+    { "source": "Girshick et al. — Rich feature hierarchies (R-CNN, 2014)", "detail": { "en": "Two-stage detection", "es": "Detección de dos etapas" } }
+  ]
+}
