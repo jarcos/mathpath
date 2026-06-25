@@ -22,9 +22,11 @@ files:
   - out/**
   - package.json
 
-# Native module must be readable as a real file, not from inside the asar.
-asarUnpack:
-  - "**/node_modules/better-sqlite3/**"
+# Ship the app as plain files (no asar). The app:// protocol serves the renderer
+# and the bundled Pyodide wasm/wheels via net.fetch with real file paths and
+# proper HTTP range support; asar complicates range reads of the large wasm.
+# better-sqlite3's native .node also loads directly as a real file.
+asar: false
 
 # Build resources (icons, entitlements) live here.
 directories:

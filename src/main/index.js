@@ -1,5 +1,6 @@
-import { join } from 'path'
-import { app, shell, BrowserWindow, ipcMain, nativeImage } from 'electron'
+import { join, extname } from 'path'
+import { pathToFileURL } from 'node:url'
+import { app, shell, BrowserWindow, ipcMain, nativeImage, protocol, net } from 'electron'
 import {
   initDb,
   getSetting,
@@ -14,6 +15,20 @@ import {
 } from './db.js'
 
 const isDev = !app.isPackaged
+
+// Packaged builds serve the renderer over a privileged "app://" scheme instead
+// of file://. This is required for the in-app Pyodide runtime: Pyodide loads its
+// wasm and wheels with fetch(), which Chromium blocks under file://. A standard,
+// secure, fetch-enabled scheme makes offline Python work. (Dev uses the
+// electron-vite http dev server, where fetch already works.)
+if (!isDev) {
+  protocol.registerSchemesAsPrivileged([
+    {
+      scheme: 'app',
+      privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true }
+    }
+  ])
+}
 
 // Show "MathPath" (not "Electron") and the brand icon. In a packaged build the
 // name comes from productName and the icon from the bundle; in dev we set them
@@ -56,7 +71,7 @@ function createWindow() {
   if (isDev && process.env.ELECTRON_RENDERER_URL) {
     win.loadURL(process.env.ELECTRON_RENDERER_URL)
   } else {
-    win.loadFile(join(import.meta.dirname, '../renderer/index.html'))
+    win.loadURL('app://bundle/index.html')
   }
 }
 
@@ -78,6 +93,38 @@ function registerIpc() {
 }
 
 app.whenReady().then(() => {
+  // Serve packaged renderer files (incl. the bundled Pyodide assets) over app://.
+  if (!isDev) {
+    const rendererRoot = join(import.meta.dirname, '../renderer')
+    const MIME = {
+      '.html': 'text/html',
+      '.js': 'text/javascript',
+      '.mjs': 'text/javascript',
+      '.css': 'text/css',
+      '.json': 'application/json',
+      '.wasm': 'application/wasm',
+      '.svg': 'image/svg+xml',
+      '.png': 'image/png',
+      '.woff2': 'font/woff2',
+      '.woff': 'font/woff',
+      '.ttf': 'font/ttf'
+    }
+    protocol.handle('app', async (request) => {
+      let rel = decodeURIComponent(new URL(request.url).pathname)
+      if (!rel || rel === '/') rel = '/index.html'
+      const filePath = join(rendererRoot, rel.replace(/\.\.(\/|\\|$)/g, ''))
+      const res = await net.fetch(pathToFileURL(filePath).toString())
+      // Force correct MIME for module scripts and wasm (Chromium is strict).
+      const type = MIME[extname(filePath).toLowerCase()]
+      if (type) {
+        const headers = new Headers(res.headers)
+        headers.set('content-type', type)
+        return new Response(res.body, { status: res.status, headers })
+      }
+      return res
+    })
+  }
+
   // Dev: replace Electron's default Dock icon with the brand icon (macOS).
   if (isDev && process.platform === 'darwin' && app.dock) {
     const img = nativeImage.createFromPath(join(import.meta.dirname, '../../build/icon.png'))

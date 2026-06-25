@@ -8,7 +8,9 @@
 // Pyodide is loaded by injecting its loader script and bundled wheels are read
 // from `indexURL`, which avoids the bundler trying to pre-process the wasm.
 
-const PYODIDE_BASE = (import.meta?.env?.BASE_URL || '/') + 'pyodide/'
+// Resolve relative to the current document so it works under the dev http server
+// and the packaged app:// scheme alike (absolute URL avoids file:// pitfalls).
+const PYODIDE_BASE = new URL('pyodide/', document.baseURI).href
 
 let _scriptPromise = null
 let _pyodidePromise = null
