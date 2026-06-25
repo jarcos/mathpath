@@ -101,16 +101,17 @@
     </div>
   </header>
   <div class="meta">
-    <span><b>Status:</b> Full math ladder shipped (5 subjects, textbook depth) · light/dark themes · 10-subject AI/ML track planned</span>
+    <span><b>Status:</b> v1 · UX overhaul · M22 glossary · M23 code infra · <b>M24 complete</b>: all 14 AI/ML + computational-math subjects upgraded (runnable Python, MCQs, prereqs) — 184 code sections, 1,019 exercises, all green. Next: M25 (algebra/functions depth)</span>
     <span><b>Platform:</b> Electron (macOS)</span>
-    <span><b>Updated:</b> 24 Jun 2026</span>
+    <span><b>Updated:</b> 25 Jun 2026</span>
   </div>
 
   <!-- DESCRIPTION -->
   <h2><span class="dot"></span>Project Description</h2>
   <div class="card">
     <p class="lead">MathPath is a single-user, fully offline desktop application that teaches mathematics in a structured ladder — starting at pre-university level and building toward the linear algebra, calculus and statistics that underpin machine learning and deep learning.</p>
-    <p style="color:var(--muted); margin-bottom:0">Each big subject is scoped to a ~30-day adaptive study plan. Lessons combine explanations, worked examples and live function graphs; exercises are checked <b>symbolically</b> (so <code>1/2</code>, <code>0.5</code> and <code>2/4</code> all count as correct) and reveal step-by-step solutions on demand. All content is bilingual (English / Spanish) and pre-generated at build time, with curriculum sourced from UOC engineering-maths modules and verified by an automated mathjs gate. Progress, attempts and plans live locally in SQLite — no accounts, no network.</p>
+    <p style="color:var(--muted)">Each big subject is scoped to a ~30-day adaptive study plan. Lessons combine explanations, worked examples and live function graphs; exercises are checked <b>symbolically</b> (so <code>1/2</code>, <code>0.5</code> and <code>2/4</code> all count as correct) and reveal step-by-step solutions on demand. All content is bilingual (English / Spanish) and pre-generated at build time, with curriculum sourced from UOC engineering-maths modules and verified by an automated mathjs gate. Progress, attempts and plans live locally in SQLite — no accounts, no network.</p>
+    <p style="color:var(--muted); margin-bottom:0"><b>Content Upgrade (in progress).</b> The v1 curriculum is being deepened: every symbol (λ, σ, ∇, …) is named on first use and collected in a searchable <b>global glossary</b>; advanced lessons gain intuition-before-formalism, prerequisite recall boxes, more worked examples and visuals; and the AI/ML + computational-math subjects gain <b>runnable Python</b> (NumPy / Pandas / scikit-learn in-app via Pyodide, with TensorFlow/PyTorch as labelled static reference). Correctness stays gated — runnable snippets and code exercises execute in the verify step (Pyodide for parity; a separate CPython+TF job for the static deep-learning code).</p>
   </div>
 
   <!-- TECH STACK -->
@@ -123,13 +124,15 @@
     <span class="chip"><b>function-plot</b> · graphs</span>
     <span class="chip"><b>KaTeX</b> · math rendering</span>
     <span class="chip"><b>i18next</b> · EN / ES</span>
+    <span class="chip"><b>Pyodide</b> · in-app Python (offline)</span>
+    <span class="chip"><b>NumPy / Pandas / SciPy / scikit-learn</b> · runnable code</span>
   </div>
 
   <!-- REQUIREMENTS -->
   <h2><span class="dot"></span>Requirements</h2>
   <div class="card grid cols-2">
     <div class="req"><div class="ic">✓</div><div><h4>Electron e-learning app</h4><p>Cross-platform desktop app, currently running on macOS.</p></div></div>
-    <div class="req"><div class="ic partial">◑</div><div><h4>Pre-university → ML/AI coverage</h4><p>Full ladder mapped; Algebra complete, ML track planned.</p></div></div>
+    <div class="req"><div class="ic">✓</div><div><h4>Pre-university → ML/AI coverage</h4><p>Both tracks complete: 5 math + 10 AI/ML subjects, 241 lessons.</p></div></div>
     <div class="req"><div class="ic">✓</div><div><h4>Step-by-step exercises + in-app validation</h4><p>Symbolic checking via mathjs; worked solutions reveal on demand.</p></div></div>
     <div class="req"><div class="ic">✓</div><div><h4>Progress bar &amp; per-lesson completion</h4><p>Per-subject and overall progress; each lesson checkable.</p></div></div>
     <div class="req"><div class="ic">✓</div><div><h4>Divided into big subjects</h4><p>Algebra, Functions, Calculus, Linear Algebra, Linear Maps, + ML track.</p></div></div>
@@ -137,6 +140,10 @@
     <div class="req"><div class="ic">✓</div><div><h4>English with Spanish toggle</h4><p>All UI and lesson content bilingual; instant switch.</p></div></div>
     <div class="req"><div class="ic">✓</div><div><h4>Single-user, local data</h4><p>SQLite in the OS user-data folder; no accounts or network.</p></div></div>
     <div class="req"><div class="ic">✓</div><div><h4>Node.js libraries for plotting graphs</h4><p>function-plot (D3-based) renders y = f(x) in lessons.</p></div></div>
+    <div class="req"><div class="ic todo">○</div><div><h4>Every symbol named + global glossary</h4><p>Inline first-use gloss (how to read λ, σ, ∇…) and a searchable glossary across all subjects.</p></div></div>
+    <div class="req"><div class="ic todo">○</div><div><h4>Deeper theory on advanced topics</h4><p>Intuition before formalism, prerequisite recall boxes, more worked examples and visuals.</p></div></div>
+    <div class="req"><div class="ic todo">○</div><div><h4>Runnable Python in lessons</h4><p>NumPy/Pandas/scikit-learn run in-app via Pyodide; TensorFlow/PyTorch as labelled static reference.</p></div></div>
+    <div class="req"><div class="ic todo">○</div><div><h4>Code exercises + code correctness gate</h4><p>Fixed-signature code exercises graded on returned value; snippets executed in the verify step.</p></div></div>
   </div>
 
   <!-- MILESTONES -->
@@ -167,7 +174,12 @@
       <div class="ms done"><div class="node"></div><h4>M18 · Computer Vision <span class="pill ok">Done</span></h4><p>14 lessons · images as arrays, filtering/convolution, edge detection, features/SIFT, Marr's levels, geometry &amp; homographies, color &amp; histograms, CNNs, classification, object detection (IoU), segmentation (U-Net), vision transformers, 3-D/stereo · verified.</p></div>
       <div class="ms done"><div class="node"></div><h4>M19 · AI Foundations &amp; Philosophy <span class="pill ok">Done</span></h4><p>14 lessons · what is AI, Turing test, symbolic vs connectionist, strong/weak AI, Chinese Room, Dreyfus, Brooks, consciousness, symbol grounding, ethics/bias, alignment, foundation models, superintelligence, synthesis · verified.</p></div>
       <div class="ms done"><div class="node"></div><h4>M20 · Active Inference (advanced) <span class="pill ok">Done</span></h4><p>12 lessons · free energy principle, Markov blankets, generative models, variational free energy, perception as inference, predictive coding, precision/attention, action, expected free energy, curiosity, life/homeostasis, synthesis · verified. <strong>Full AI/ML track complete.</strong></p></div>
-      <div class="ms done"><div class="node"></div><h4>M21 · Packaging &amp; distributable <span class="pill ok">Done</span></h4><p>electron-builder config (dmg/zip, NSIS, AppImage/deb), mac entitlements, asar-unpacked better-sqlite3, dist scripts, reproducible-build docs (BUILD.md). <strong>Project complete.</strong></p></div>
+      <div class="ms done"><div class="node"></div><h4>M21 · Packaging &amp; distributable <span class="pill ok">Done</span></h4><p>electron-builder config (dmg/zip, NSIS, AppImage/deb), mac entitlements, asar-unpacked better-sqlite3, dist scripts, reproducible-build docs (BUILD.md). <strong>v1 complete.</strong></p></div>
+      <div class="ms done"><div class="node"></div><h4>M22 · Symbol glossary &amp; notation pass <span class="pill ok">Done</span></h4><p>Curated bilingual <strong>glossary of 89 symbols</strong> (content/glossary.json) covering every Greek letter, operator, relation, set and named operator used in the curriculum. Shared detection util auto-generates a collapsible <strong>"Symbols in this lesson"</strong> box on each lesson (204/241 lessons surface symbols, no per-lesson authoring) — e.g. Poisson now reads λ → "lambda". New searchable <strong>Glossary page</strong> + topbar link, grouped by category, bilingual. New <code>verify:glossary</code> gate (integrity + detection) folded into <code>npm run verify</code>; content gate still green.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M23 · Code infrastructure <span class="pill ok">Done</span></h4><p>New <code>code</code> section + <code>code</code>/<code>mcq</code> exercise types (schema + verifiers). <strong>CodeBlock</strong> with zero-dependency Python highlighting + Run; lazy offline <strong>Pyodide</strong> loader (bundled via <code>copy-pyodide.mjs</code>, served locally). Code exercises graded by returned value (Pyodide, numeric tolerance); MCQ with per-choice explanations. New <strong>CPython code gate</strong> (<code>verify:code</code>) executes every runnable snippet in EN+ES and every reference solution — folded into <code>npm run verify</code> (content + glossary + code). <strong>Pilot: statistics</strong> — runnable NumPy/Pandas/SciPy sections in L1/L2/L12, a code exercise and an MCQ; all gates green (negative-tested).</p></div>
+      <div class="ms done"><div class="node"></div><h4>M24 · Depth + code rollout <span class="pill ok">Done</span></h4><p><strong>All 14 in-scope subjects upgraded &amp; verified.</strong> New <code>prereq</code> "Before this lesson" box (clickable cross-subject links). Computational math (statistics, calculus, linear-algebra, linear-maps) and the full AI/ML track (ml-foundations, neural-networks, deep-learning, nlp-transformers, computer-vision, reinforcement-learning, knowledge-representation, ai-foundations, active-inference). Runnable Python in every computational lesson (NumPy / Pandas / SciPy / scikit-learn / SymPy), <strong>TensorFlow static references</strong> for the deep-learning hybrid path, and explained MCQs for the reading-based philosophy lessons. In-process code gate: full <code>npm run verify</code> ~4s. <strong>Totals: 184 code sections, 16 code exercises, 30 MCQs, 1,019 exercises, 2,151 math checks — all green.</strong> Offline Pyodide runtime proven on macOS (wheels bundled, no network). Pure-math depth-prose pass for algebra/functions remains as M25.</p></div>
+      <div class="ms"><div class="node"></div><h4>M25 · Math-ladder depth pass <span class="pill todo">Planned</span></h4><p>Apply depth + exercise upgrades (no code) to algebra/functions and the rest of the pure-math ladder. Refresh this dashboard after each milestone.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M26 · UX &amp; navigation overhaul <span class="pill ok">Done</span></h4><p>Prev/Next lesson navigation with subject context; dashboard grouped into Math / AI tracks with a one-click <strong>Resume</strong> card; exercise correctness now persists (solved state + "X of Y solved" tally) via a new attempts read; sticky reading-progress bar; richer lesson header (subject · est. minutes · exercises); loading screen; focus-visible &amp; reduced-motion a11y. All new UI strings bilingual. Content gate still green (241/972/2151).</p></div>
     </div>
   </div>
 
@@ -235,9 +247,38 @@
     {id:'t27', col:'done', text:'Active Inference (12) — M20', tag:'AI track'},
     {id:'t28', col:'done', text:'Package distributable (electron-builder)', tag:'Infra'},
     {id:'t29', col:'done', text:'Build & rebuild workflow docs (BUILD.md)', tag:'Docs'},
+    // Content Upgrade phase (M22–M25)
+    {id:'t32', col:'done', text:'Scope upgrade + write UPGRADE-SPEC.md', tag:'Upgrade'},
+    {id:'t33', col:'done', text:'M22 · Global symbol glossary (89) + Glossary page', tag:'Upgrade'},
+    {id:'t34', col:'done', text:'M22 · Auto notation boxes on lessons + verify:glossary', tag:'Upgrade'},
+    {id:'t35', col:'done', text:'M23 · code/mcq schema + CodeBlock + Pyodide runner', tag:'Upgrade'},
+    {id:'t36', col:'done', text:'M23 · verify:code gate (CPython) + statistics pilot', tag:'Upgrade'},
+    {id:'t37a', col:'done', text:'M24 · Prereq box infra + first verified code batch (6 subjects)', tag:'Upgrade'},
+    {id:'t37b', col:'done', text:'M24 · statistics fully upgraded (16/16)', tag:'Upgrade'},
+    {id:'t37c', col:'done', text:'M24 · calculus fully upgraded (12/12)', tag:'Upgrade'},
+    {id:'t37d', col:'done', text:'M24 · linear-algebra fully upgraded (23/23)', tag:'Upgrade'},
+    {id:'t37e', col:'done', text:'M24 · linear-maps fully upgraded (16/16) — math track done', tag:'Upgrade'},
+    {id:'t37f', col:'done', text:'M24 · ml-foundations fully upgraded (18/18) + fast in-process code gate', tag:'Upgrade'},
+    {id:'t37g', col:'done', text:'M24 · neural-networks fully upgraded (16/16)', tag:'Upgrade'},
+    {id:'t37h', col:'done', text:'M24 · deep-learning fully upgraded (18/18, incl. TF static)', tag:'Upgrade'},
+    {id:'t37i', col:'done', text:'M24 · nlp-transformers fully upgraded (16/16)', tag:'Upgrade'},
+    {id:'t37j', col:'done', text:'M24 · computer-vision fully upgraded (14/14)', tag:'Upgrade'},
+    {id:'t37k', col:'done', text:'M24 · reinforcement-learning fully upgraded (16/16)', tag:'Upgrade'},
+    {id:'t37l', col:'done', text:'M24 · knowledge-representation fully upgraded (14/14)', tag:'Upgrade'},
+    {id:'t37m', col:'done', text:'M24 · ai-foundations upgraded (14/14, explained MCQs)', tag:'Upgrade'},
+    {id:'t37n', col:'done', text:'M24 · active-inference upgraded (12/12) — M24 COMPLETE (14 subjects)', tag:'Upgrade'},
+    {id:'t40b', col:'todo', text:'M25 · Depth-prose pass: algebra & functions (pure-math ladder)', tag:'Upgrade'},
+    {id:'t38', col:'todo', text:'M24 · Per-lesson intuition + worked-example depth pass', tag:'Upgrade'},
+    {id:'t39', col:'todo', text:'M25 · Depth pass on pure-math ladder', tag:'Upgrade'},
+    // UX overhaul (M26)
+    {id:'t40', col:'done', text:'M26 · Prev/Next lesson navigation', tag:'UX'},
+    {id:'t41', col:'done', text:'M26 · Dashboard tracks + Resume card + progress counts', tag:'UX'},
+    {id:'t42', col:'done', text:'M26 · Persisted exercise state + solved tally', tag:'UX'},
+    {id:'t43', col:'done', text:'M26 · Reading progress + richer lesson header', tag:'UX'},
+    {id:'t44', col:'done', text:'M26 · Loading screen + a11y (focus, reduced-motion)', tag:'UX'},
   ];
 
-  const STORE = 'mathpath-kanban-v1';
+  const STORE = 'mathpath-kanban-v19';
   function load(){
     try{ const s = localStorage.getItem(STORE); if(s) return JSON.parse(s); }catch(e){}
     return DEFAULT_TASKS.map(t=>({...t}));
