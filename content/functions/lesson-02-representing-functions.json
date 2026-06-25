@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 2,
   "estimatedMinutes": 40,
-  "title": { "en": "Representing Functions", "es": "Representación de una función" },
+  "title": {
+    "en": "Representing Functions",
+    "es": "Representación de una función"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "One function can be described in four complementary ways — the \"rule of four\": as a **formula** ($f(x) = x^2$), a **table** of input/output pairs, a **graph**, and a **verbal** description. Fluency means moving freely between them, because each reveals something the others hide: the formula is exact, the table is concrete, the graph shows shape and trend, words give meaning.",
         "es": "Una función se puede describir de cuatro maneras complementarias — la \"regla de cuatro\": como **fórmula** ($f(x) = x^2$), como **tabla** de pares entrada/salida, como **gráfica** y como **descripción verbal**. La soltura consiste en moverse libremente entre ellas, porque cada una revela algo que las otras ocultan: la fórmula es exacta, la tabla concreta, la gráfica muestra forma y tendencia, las palabras dan significado."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-01-concept"
+      ],
+      "note": {
+        "en": "Builds on the concept of a function.",
+        "es": "Se apoya en el concepto de función."
       }
     },
     {
@@ -22,7 +35,10 @@
     {
       "type": "graph",
       "fn": "x^2",
-      "domain": [-3, 3],
+      "domain": [
+        -3,
+        3
+      ],
       "caption": {
         "en": "The graph of $f(x) = x^2$. The point above $x = 2$ has height $f(2) = 4$; the lowest point (the vertex) is at the origin.",
         "es": "La gráfica de $f(x) = x^2$. El punto sobre $x = 2$ tiene altura $f(2) = 4$; el punto más bajo (el vértice) está en el origen."
@@ -37,10 +53,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — intercepts", "es": "Ejemplo resuelto — cortes con los ejes" },
+      "title": {
+        "en": "Worked example — intercepts",
+        "es": "Ejemplo resuelto — cortes con los ejes"
+      },
       "content": {
         "en": "For $f(x) = 2x - 6$: the y-intercept is $f(0) = -6$; the x-intercept solves $2x - 6 = 0$, giving $x = 3$. So the line passes through $(0, -6)$ and $(3, 0)$ — two points are enough to draw it.",
         "es": "Para $f(x) = 2x - 6$: la ordenada en el origen es $f(0) = -6$; el corte con el eje x resuelve $2x - 6 = 0$, dando $x = 3$. Así la recta pasa por $(0, -6)$ y $(3, 0)$ — dos puntos bastan para dibujarla."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "The same rule $f(x)=x^2$ can be a table, a graph (a parabola), or a formula — all equivalent.",
+        "es": "La misma regla $f(x)=x^2$ puede ser una tabla, una gráfica (una parábola) o una fórmula — todo equivalente."
       }
     }
   ],
@@ -48,43 +78,164 @@
     {
       "id": "functions-02-e1",
       "answerType": "number",
-      "prompt": { "en": "For $f(x) = x^2$, read off $f(2)$.", "es": "Para $f(x) = x^2$, halla $f(2)$." },
+      "prompt": {
+        "en": "For $f(x) = x^2$, read off $f(2)$.",
+        "es": "Para $f(x) = x^2$, halla $f(2)$."
+      },
       "answer": "4",
-      "acceptedAlt": ["2^2"],
-      "hint": { "en": "Square 2.", "es": "Eleva 2 al cuadrado." },
-      "solution": [ { "tex": "f(2) = 2^2 = 4", "en": "Evaluate.", "es": "Evalúa." } ]
+      "acceptedAlt": [
+        "2^2"
+      ],
+      "hint": {
+        "en": "Square 2.",
+        "es": "Eleva 2 al cuadrado."
+      },
+      "solution": [
+        {
+          "tex": "f(2) = 2^2 = 4",
+          "en": "Evaluate.",
+          "es": "Evalúa."
+        }
+      ]
     },
     {
       "id": "functions-02-e2",
       "answerType": "number",
-      "prompt": { "en": "Find the y-intercept of $f(x) = x^2 - 4$.", "es": "Halla la ordenada en el origen de $f(x) = x^2 - 4$." },
+      "prompt": {
+        "en": "Find the y-intercept of $f(x) = x^2 - 4$.",
+        "es": "Halla la ordenada en el origen de $f(x) = x^2 - 4$."
+      },
       "answer": "-4",
-      "acceptedAlt": ["0^2-4"],
-      "hint": { "en": "Compute f(0).", "es": "Calcula f(0)." },
-      "solution": [ { "tex": "f(0) = 0 - 4 = -4", "en": "The y-intercept is f(0).", "es": "La ordenada es f(0)." } ]
+      "acceptedAlt": [
+        "0^2-4"
+      ],
+      "hint": {
+        "en": "Compute f(0).",
+        "es": "Calcula f(0)."
+      },
+      "solution": [
+        {
+          "tex": "f(0) = 0 - 4 = -4",
+          "en": "The y-intercept is f(0).",
+          "es": "La ordenada es f(0)."
+        }
+      ]
     },
     {
       "id": "functions-02-e3",
       "answerType": "number",
-      "prompt": { "en": "Find the y-intercept of $f(x) = 2x + 3$.", "es": "Halla la ordenada en el origen de $f(x) = 2x + 3$." },
+      "prompt": {
+        "en": "Find the y-intercept of $f(x) = 2x + 3$.",
+        "es": "Halla la ordenada en el origen de $f(x) = 2x + 3$."
+      },
       "answer": "3",
-      "acceptedAlt": ["2*0+3"],
-      "hint": { "en": "Evaluate at x = 0.", "es": "Evalúa en x = 0." },
-      "solution": [ { "tex": "f(0) = 3", "en": "The constant term.", "es": "El término independiente." } ]
+      "acceptedAlt": [
+        "2*0+3"
+      ],
+      "hint": {
+        "en": "Evaluate at x = 0.",
+        "es": "Evalúa en x = 0."
+      },
+      "solution": [
+        {
+          "tex": "f(0) = 3",
+          "en": "The constant term.",
+          "es": "El término independiente."
+        }
+      ]
     },
     {
       "id": "functions-02-e4",
       "answerType": "number",
-      "prompt": { "en": "Find the x-intercept (root) of $f(x) = 2x - 6$.", "es": "Halla el corte con el eje x (raíz) de $f(x) = 2x - 6$." },
+      "prompt": {
+        "en": "Find the x-intercept (root) of $f(x) = 2x - 6$.",
+        "es": "Halla el corte con el eje x (raíz) de $f(x) = 2x - 6$."
+      },
       "answer": "3",
-      "acceptedAlt": ["6/2"],
-      "hint": { "en": "Solve 2x - 6 = 0.", "es": "Resuelve 2x - 6 = 0." },
-      "solution": [ { "tex": "2x - 6 = 0 \\Rightarrow x = 3", "en": "Set f(x) = 0.", "es": "Iguala f(x) = 0." } ]
+      "acceptedAlt": [
+        "6/2"
+      ],
+      "hint": {
+        "en": "Solve 2x - 6 = 0.",
+        "es": "Resuelve 2x - 6 = 0."
+      },
+      "solution": [
+        {
+          "tex": "2x - 6 = 0 \\Rightarrow x = 3",
+          "en": "Set f(x) = 0.",
+          "es": "Iguala f(x) = 0."
+        }
+      ]
+    },
+    {
+      "id": "functions-02-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The **vertical line test** checks whether a graph represents...",
+        "es": "La **prueba de la recta vertical** comprueba si una gráfica representa..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "a function",
+            "es": "una función"
+          },
+          "correct": true,
+          "why": {
+            "en": "If any vertical line hits the curve twice, it's not a function.",
+            "es": "Si una recta vertical corta la curva dos veces, no es función."
+          }
+        },
+        {
+          "text": {
+            "en": "a straight line",
+            "es": "una recta"
+          },
+          "correct": false,
+          "why": {
+            "en": "It's about single-valuedness, not straightness.",
+            "es": "Trata de la unicidad, no de ser recta."
+          }
+        },
+        {
+          "text": {
+            "en": "an even function",
+            "es": "una función par"
+          },
+          "correct": false,
+          "why": {
+            "en": "Evenness is a different (symmetry) test.",
+            "es": "La paridad es otra prueba (simetría)."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Two hits on one vertical line?",
+        "es": "¿Dos cortes en una vertical?"
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 2.2–2.3, Graphs of Functions", "es": "Cap. 2.2–2.3, Gráficas de funciones" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 1.5, analyzing graphs of functions", "es": "Cap. 1.5, análisis de gráficas de funciones" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones' — representación", "es": "Apartado 'Funciones' — representación" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 2.2–2.3, Graphs of Functions",
+        "es": "Cap. 2.2–2.3, Gráficas de funciones"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 1.5, analyzing graphs of functions",
+        "es": "Cap. 1.5, análisis de gráficas de funciones"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones' — representación",
+        "es": "Apartado 'Funciones' — representación"
+      }
+    }
   ]
 }

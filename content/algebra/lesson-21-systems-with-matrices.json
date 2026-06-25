@@ -3,13 +3,27 @@
   "subjectId": "algebra",
   "order": 20,
   "estimatedMinutes": 50,
-  "title": { "en": "Solving Systems with Matrices", "es": "Resolución de sistemas con matrices" },
+  "title": {
+    "en": "Solving Systems with Matrices",
+    "es": "Resolución de sistemas con matrices"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Everything in this subject converges here. A linear system can be packaged as a single matrix equation $A\\mathbf{x} = \\mathbf{b}$, where $A$ holds the coefficients, $\\mathbf{x}$ the unknowns, and $\\mathbf{b}$ the right-hand sides. For $x + y = 5$, $x - y = 1$, the coefficient matrix is $A = \\begin{pmatrix}1 & 1\\\\ 1 & -1\\end{pmatrix}$, $\\mathbf{x} = \\begin{pmatrix}x\\\\ y\\end{pmatrix}$, $\\mathbf{b} = \\begin{pmatrix}5\\\\ 1\\end{pmatrix}$.",
         "es": "Todo en esta asignatura converge aquí. Un sistema lineal se empaqueta como una única ecuación matricial $A\\mathbf{x} = \\mathbf{b}$, donde $A$ guarda los coeficientes, $\\mathbf{x}$ las incógnitas y $\\mathbf{b}$ los términos de la derecha. Para $x + y = 5$, $x - y = 1$, la matriz de coeficientes es $A = \\begin{pmatrix}1 & 1\\\\ 1 & -1\\end{pmatrix}$, $\\mathbf{x} = \\begin{pmatrix}x\\\\ y\\end{pmatrix}$, $\\mathbf{b} = \\begin{pmatrix}5\\\\ 1\\end{pmatrix}$."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-20-determinant-inverse",
+        "algebra-12-systems-3x3-gauss"
+      ],
+      "note": {
+        "en": "Builds on the inverse and Gaussian elimination.",
+        "es": "Se apoya en la inversa y la eliminación de Gauss."
       }
     },
     {
@@ -28,7 +42,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — Cramer's rule", "es": "Ejemplo resuelto — regla de Cramer" },
+      "title": {
+        "en": "Worked example — Cramer's rule",
+        "es": "Ejemplo resuelto — regla de Cramer"
+      },
       "content": {
         "en": "For $A = \\begin{pmatrix}1 & 1\\\\ 1 & -1\\end{pmatrix}$, $\\det A = (1)(-1) - (1)(1) = -2 \\neq 0$. Replace column 1 with $\\mathbf{b}$: $\\det\\begin{pmatrix}5 & 1\\\\ 1 & -1\\end{pmatrix} = -6$, so $x = \\tfrac{-6}{-2} = 3$. Replace column 2: $\\det\\begin{pmatrix}1 & 5\\\\ 1 & 1\\end{pmatrix} = -4$, so $y = \\tfrac{-4}{-2} = 2$.",
         "es": "Para $A = \\begin{pmatrix}1 & 1\\\\ 1 & -1\\end{pmatrix}$, $\\det A = (1)(-1) - (1)(1) = -2 \\neq 0$. Sustituye la columna 1 por $\\mathbf{b}$: $\\det\\begin{pmatrix}5 & 1\\\\ 1 & -1\\end{pmatrix} = -6$, así $x = \\tfrac{-6}{-2} = 3$. Sustituye la columna 2: $\\det\\begin{pmatrix}1 & 5\\\\ 1 & 1\\end{pmatrix} = -4$, así $y = \\tfrac{-4}{-2} = 2$."
@@ -40,58 +57,197 @@
         "en": "When $\\det A = 0$, both methods fail — there is no inverse and Cramer divides by zero. That is not a defect but information: the system has either no solution or infinitely many, exactly the cases the Rouché–Fröbenius analysis classifies. The matrix viewpoint you have built here scales directly to the full Linear Algebra subject.",
         "es": "Cuando $\\det A = 0$, ambos métodos fallan — no hay inversa y Cramer divide entre cero. No es un defecto sino información: el sistema no tiene solución o tiene infinitas, justo los casos que clasifica el análisis de Rouché–Fröbenius. El punto de vista matricial que has construido aquí escala directamente a la asignatura completa de Álgebra lineal."
       }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "For $A\\mathbf{x}=\\mathbf{b}$ with $A$ invertible, $\\mathbf{x} = A^{-1}\\mathbf{b}$.",
+        "es": "Para $A\\mathbf{x}=\\mathbf{b}$ con $A$ invertible, $\\mathbf{x} = A^{-1}\\mathbf{b}$."
+      }
     }
   ],
   "exercises": [
     {
       "id": "algebra-21-e1",
       "answerType": "number",
-      "prompt": { "en": "For $x + y = 5$, $x - y = 1$, compute the coefficient determinant $\\det\\begin{pmatrix}1 & 1\\\\ 1 & -1\\end{pmatrix}$.", "es": "Para $x + y = 5$, $x - y = 1$, calcula el determinante de coeficientes $\\det\\begin{pmatrix}1 & 1\\\\ 1 & -1\\end{pmatrix}$." },
+      "prompt": {
+        "en": "For $x + y = 5$, $x - y = 1$, compute the coefficient determinant $\\det\\begin{pmatrix}1 & 1\\\\ 1 & -1\\end{pmatrix}$.",
+        "es": "Para $x + y = 5$, $x - y = 1$, calcula el determinante de coeficientes $\\det\\begin{pmatrix}1 & 1\\\\ 1 & -1\\end{pmatrix}$."
+      },
       "answer": "-2",
-      "acceptedAlt": ["1*(-1)-1*1", "det([[1,1],[1,-1]])"],
-      "hint": { "en": "ad − bc.", "es": "ad − bc." },
+      "acceptedAlt": [
+        "1*(-1)-1*1",
+        "det([[1,1],[1,-1]])"
+      ],
+      "hint": {
+        "en": "ad − bc.",
+        "es": "ad − bc."
+      },
       "solution": [
-        { "tex": "\\det = (1)(-1) - (1)(1)", "en": "Apply ad − bc.", "es": "Aplica ad − bc." },
-        { "tex": "= -2", "en": "Result.", "es": "Resultado." }
+        {
+          "tex": "\\det = (1)(-1) - (1)(1)",
+          "en": "Apply ad − bc.",
+          "es": "Aplica ad − bc."
+        },
+        {
+          "tex": "= -2",
+          "en": "Result.",
+          "es": "Resultado."
+        }
       ]
     },
     {
       "id": "algebra-21-e2",
       "answerType": "number",
-      "prompt": { "en": "By Cramer's rule, $x = \\dfrac{\\det\\begin{pmatrix}5 & 1\\\\ 1 & -1\\end{pmatrix}}{-2}$. Find $x$.", "es": "Por la regla de Cramer, $x = \\dfrac{\\det\\begin{pmatrix}5 & 1\\\\ 1 & -1\\end{pmatrix}}{-2}$. Halla $x$." },
+      "prompt": {
+        "en": "By Cramer's rule, $x = \\dfrac{\\det\\begin{pmatrix}5 & 1\\\\ 1 & -1\\end{pmatrix}}{-2}$. Find $x$.",
+        "es": "Por la regla de Cramer, $x = \\dfrac{\\det\\begin{pmatrix}5 & 1\\\\ 1 & -1\\end{pmatrix}}{-2}$. Halla $x$."
+      },
       "answer": "3",
-      "acceptedAlt": ["det([[5,1],[1,-1]])/-2", "(-6)/(-2)"],
-      "hint": { "en": "Numerator det = 5·(−1) − 1·1 = −6.", "es": "Determinante del numerador = 5·(−1) − 1·1 = −6." },
+      "acceptedAlt": [
+        "det([[5,1],[1,-1]])/-2",
+        "(-6)/(-2)"
+      ],
+      "hint": {
+        "en": "Numerator det = 5·(−1) − 1·1 = −6.",
+        "es": "Determinante del numerador = 5·(−1) − 1·1 = −6."
+      },
       "solution": [
-        { "tex": "\\det A_x = (5)(-1) - (1)(1) = -6", "en": "Compute the numerator.", "es": "Calcula el numerador." },
-        { "tex": "x = \\frac{-6}{-2} = 3", "en": "Divide.", "es": "Divide." }
+        {
+          "tex": "\\det A_x = (5)(-1) - (1)(1) = -6",
+          "en": "Compute the numerator.",
+          "es": "Calcula el numerador."
+        },
+        {
+          "tex": "x = \\frac{-6}{-2} = 3",
+          "en": "Divide.",
+          "es": "Divide."
+        }
       ]
     },
     {
       "id": "algebra-21-e3",
       "answerType": "number",
-      "prompt": { "en": "By Cramer's rule, $y = \\dfrac{\\det\\begin{pmatrix}1 & 5\\\\ 1 & 1\\end{pmatrix}}{-2}$. Find $y$.", "es": "Por la regla de Cramer, $y = \\dfrac{\\det\\begin{pmatrix}1 & 5\\\\ 1 & 1\\end{pmatrix}}{-2}$. Halla $y$." },
+      "prompt": {
+        "en": "By Cramer's rule, $y = \\dfrac{\\det\\begin{pmatrix}1 & 5\\\\ 1 & 1\\end{pmatrix}}{-2}$. Find $y$.",
+        "es": "Por la regla de Cramer, $y = \\dfrac{\\det\\begin{pmatrix}1 & 5\\\\ 1 & 1\\end{pmatrix}}{-2}$. Halla $y$."
+      },
       "answer": "2",
-      "acceptedAlt": ["det([[1,5],[1,1]])/-2", "(-4)/(-2)"],
-      "hint": { "en": "Numerator det = 1·1 − 5·1 = −4.", "es": "Determinante del numerador = 1·1 − 5·1 = −4." },
+      "acceptedAlt": [
+        "det([[1,5],[1,1]])/-2",
+        "(-4)/(-2)"
+      ],
+      "hint": {
+        "en": "Numerator det = 1·1 − 5·1 = −4.",
+        "es": "Determinante del numerador = 1·1 − 5·1 = −4."
+      },
       "solution": [
-        { "tex": "\\det A_y = (1)(1) - (5)(1) = -4", "en": "Compute the numerator.", "es": "Calcula el numerador." },
-        { "tex": "y = \\frac{-4}{-2} = 2", "en": "Divide.", "es": "Divide." }
+        {
+          "tex": "\\det A_y = (1)(1) - (5)(1) = -4",
+          "en": "Compute the numerator.",
+          "es": "Calcula el numerador."
+        },
+        {
+          "tex": "y = \\frac{-4}{-2} = 2",
+          "en": "Divide.",
+          "es": "Divide."
+        }
       ]
     },
     {
       "id": "algebra-21-e4",
       "answerType": "number",
-      "prompt": { "en": "Cramer's rule fails when the coefficient determinant equals which value?", "es": "La regla de Cramer falla cuando el determinante de coeficientes vale qué valor?" },
+      "prompt": {
+        "en": "Cramer's rule fails when the coefficient determinant equals which value?",
+        "es": "La regla de Cramer falla cuando el determinante de coeficientes vale qué valor?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "You can't divide by it.", "es": "No puedes dividir entre él." },
-      "solution": [ { "tex": "\\det A = 0", "en": "Division by zero — no unique solution.", "es": "División entre cero — sin solución única." } ]
+      "hint": {
+        "en": "You can't divide by it.",
+        "es": "No puedes dividir entre él."
+      },
+      "solution": [
+        {
+          "tex": "\\det A = 0",
+          "en": "Division by zero — no unique solution.",
+          "es": "División entre cero — sin solución única."
+        }
+      ]
+    },
+    {
+      "id": "algebra-21-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "To solve $A\\mathbf{x}=\\mathbf{b}$ when $A$ is invertible, compute:",
+        "es": "Para resolver $A\\mathbf{x}=\\mathbf{b}$ cuando $A$ es invertible, calcula:"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$\\mathbf{x} = A^{-1}\\mathbf{b}$",
+            "es": "$\\mathbf{x} = A^{-1}\\mathbf{b}$"
+          },
+          "correct": true,
+          "why": {
+            "en": "Multiply both sides by A⁻¹ on the left.",
+            "es": "Multiplica ambos lados por A⁻¹ por la izquierda."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\mathbf{x} = \\mathbf{b}A^{-1}$",
+            "es": "$\\mathbf{x} = \\mathbf{b}A^{-1}$"
+          },
+          "correct": false,
+          "why": {
+            "en": "Order matters; A⁻¹ goes on the left.",
+            "es": "El orden importa; A⁻¹ va a la izquierda."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\mathbf{x} = A\\mathbf{b}$",
+            "es": "$\\mathbf{x} = A\\mathbf{b}$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That uses A, not its inverse.",
+            "es": "Eso usa A, no su inversa."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Left-multiply by the inverse.",
+        "es": "Multiplica por la inversa a la izquierda."
+      }
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 2.5 (inverse) & Ch. 5 (Cramer's rule)", "es": "Cap. 2.5 (inversa) y Cap. 5 (regla de Cramer)" } },
-    { "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)", "detail": { "en": "Matrix form; Gauss and Cramer methods", "es": "Forma matricial; métodos de Gauss y Cramer" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Matrices' — resolución de sistemas", "es": "Apartado 'Matrices' — resolución de sistemas" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 2.5 (inverse) & Ch. 5 (Cramer's rule)",
+        "es": "Cap. 2.5 (inversa) y Cap. 5 (regla de Cramer)"
+      }
+    },
+    {
+      "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)",
+      "detail": {
+        "en": "Matrix form; Gauss and Cramer methods",
+        "es": "Forma matricial; métodos de Gauss y Cramer"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Matrices' — resolución de sistemas",
+        "es": "Apartado 'Matrices' — resolución de sistemas"
+      }
+    }
   ]
 }

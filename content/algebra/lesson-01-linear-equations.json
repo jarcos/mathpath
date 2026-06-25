@@ -3,13 +3,26 @@
   "subjectId": "algebra",
   "order": 6,
   "estimatedMinutes": 45,
-  "title": { "en": "Linear Equations", "es": "Ecuaciones de primer grado" },
+  "title": {
+    "en": "Linear Equations",
+    "es": "Ecuaciones de primer grado"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "An **equation** is a statement that two expressions are equal. To **solve** it is to find every value of the unknown that makes the statement true — its **solutions**. A **linear equation** in one variable is one that can be written $ax + b = 0$ with $a \\neq 0$: the variable appears only to the first power, never squared, rooted, or in a denominator. Such an equation has exactly **one** solution.",
         "es": "Una **ecuación** afirma que dos expresiones son iguales. **Resolverla** es hallar todo valor de la incógnita que hace cierta la afirmación — sus **soluciones**. Una **ecuación de primer grado** en una variable se puede escribir $ax + b = 0$ con $a \\neq 0$: la variable aparece solo a la primera potencia, nunca al cuadrado, bajo raíz ni en un denominador. Tiene exactamente **una** solución."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-09-algebraic-expressions"
+      ],
+      "note": {
+        "en": "Builds on algebraic expressions.",
+        "es": "Se apoya en las expresiones algebraicas."
       }
     },
     {
@@ -36,7 +49,10 @@
     {
       "type": "graph",
       "fn": "2*x - 4",
-      "domain": [-3, 7],
+      "domain": [
+        -3,
+        7
+      ],
       "caption": {
         "en": "Geometrically, solving $2x - 4 = 0$ means finding where the line $y = 2x - 4$ crosses the x-axis. That crossing — the **root** — is at $x = 2$. Every linear equation corresponds to one such intercept of a straight line.",
         "es": "Geométricamente, resolver $2x - 4 = 0$ es hallar dónde la recta $y = 2x - 4$ cruza el eje x. Ese cruce — la **raíz** — está en $x = 2$. Toda ecuación lineal corresponde a un corte así de una recta."
@@ -44,10 +60,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — variables on both sides", "es": "Ejemplo resuelto — variable en ambos lados" },
+      "title": {
+        "en": "Worked example — variables on both sides",
+        "es": "Ejemplo resuelto — variable en ambos lados"
+      },
       "content": {
         "en": "Solve $5x - 3 = 2x + 9$. Subtract $2x$: $3x - 3 = 9$. Add $3$: $3x = 12$. Divide by $3$: $x = 4$. **Check:** left $5(4)-3 = 17$, right $2(4)+9 = 17$ ✓.",
         "es": "Resuelve $5x - 3 = 2x + 9$. Resta $2x$: $3x - 3 = 9$. Suma $3$: $3x = 12$. Divide entre $3$: $x = 4$. **Comprobación:** izquierda $5(4)-3 = 17$, derecha $2(4)+9 = 17$ ✓."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$2x + 3 = 11 \\Rightarrow 2x = 8 \\Rightarrow x = 4$.",
+        "es": "$2x + 3 = 11 \\Rightarrow 2x = 8 \\Rightarrow x = 4$."
       }
     }
   ],
@@ -55,73 +85,244 @@
     {
       "id": "algebra-01-e1",
       "answerType": "number",
-      "prompt": { "en": "Solve for x:  $2x - 4 = 0$", "es": "Resuelve para x:  $2x - 4 = 0$" },
+      "prompt": {
+        "en": "Solve for x:  $2x - 4 = 0$",
+        "es": "Resuelve para x:  $2x - 4 = 0$"
+      },
       "answer": "2",
-      "acceptedAlt": ["4/2"],
-      "hint": { "en": "Add 4 to both sides, then divide by 2.", "es": "Suma 4 a ambos lados y luego divide entre 2." },
+      "acceptedAlt": [
+        "4/2"
+      ],
+      "hint": {
+        "en": "Add 4 to both sides, then divide by 2.",
+        "es": "Suma 4 a ambos lados y luego divide entre 2."
+      },
       "solution": [
-        { "tex": "2x - 4 = 0", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
-        { "tex": "2x = 4", "en": "Add 4 to both sides.", "es": "Suma 4 a ambos lados." },
-        { "tex": "x = 2", "en": "Divide both sides by 2.", "es": "Divide ambos lados entre 2." }
+        {
+          "tex": "2x - 4 = 0",
+          "en": "Start from the equation.",
+          "es": "Partimos de la ecuación."
+        },
+        {
+          "tex": "2x = 4",
+          "en": "Add 4 to both sides.",
+          "es": "Suma 4 a ambos lados."
+        },
+        {
+          "tex": "x = 2",
+          "en": "Divide both sides by 2.",
+          "es": "Divide ambos lados entre 2."
+        }
       ]
     },
     {
       "id": "algebra-01-e2",
       "answerType": "number",
-      "prompt": { "en": "Solve for x:  $3x + 6 = 0$", "es": "Resuelve para x:  $3x + 6 = 0$" },
+      "prompt": {
+        "en": "Solve for x:  $3x + 6 = 0$",
+        "es": "Resuelve para x:  $3x + 6 = 0$"
+      },
       "answer": "-2",
-      "acceptedAlt": ["-6/3"],
-      "hint": { "en": "Subtract 6 from both sides first.", "es": "Primero resta 6 a ambos lados." },
+      "acceptedAlt": [
+        "-6/3"
+      ],
+      "hint": {
+        "en": "Subtract 6 from both sides first.",
+        "es": "Primero resta 6 a ambos lados."
+      },
       "solution": [
-        { "tex": "3x + 6 = 0", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
-        { "tex": "3x = -6", "en": "Subtract 6 from both sides.", "es": "Resta 6 a ambos lados." },
-        { "tex": "x = -2", "en": "Divide both sides by 3.", "es": "Divide ambos lados entre 3." }
+        {
+          "tex": "3x + 6 = 0",
+          "en": "Start from the equation.",
+          "es": "Partimos de la ecuación."
+        },
+        {
+          "tex": "3x = -6",
+          "en": "Subtract 6 from both sides.",
+          "es": "Resta 6 a ambos lados."
+        },
+        {
+          "tex": "x = -2",
+          "en": "Divide both sides by 3.",
+          "es": "Divide ambos lados entre 3."
+        }
       ]
     },
     {
       "id": "algebra-01-e3",
       "answerType": "number",
-      "prompt": { "en": "Solve for x:  $\\tfrac{1}{2}x - 3 = 1$", "es": "Resuelve para x:  $\\tfrac{1}{2}x - 3 = 1$" },
+      "prompt": {
+        "en": "Solve for x:  $\\tfrac{1}{2}x - 3 = 1$",
+        "es": "Resuelve para x:  $\\tfrac{1}{2}x - 3 = 1$"
+      },
       "answer": "8",
-      "acceptedAlt": ["16/2"],
-      "hint": { "en": "Add 3 to both sides, then multiply by 2.", "es": "Suma 3 a ambos lados y luego multiplica por 2." },
+      "acceptedAlt": [
+        "16/2"
+      ],
+      "hint": {
+        "en": "Add 3 to both sides, then multiply by 2.",
+        "es": "Suma 3 a ambos lados y luego multiplica por 2."
+      },
       "solution": [
-        { "tex": "\\tfrac{1}{2}x - 3 = 1", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
-        { "tex": "\\tfrac{1}{2}x = 4", "en": "Add 3 to both sides.", "es": "Suma 3 a ambos lados." },
-        { "tex": "x = 8", "en": "Multiply both sides by 2.", "es": "Multiplica ambos lados por 2." }
+        {
+          "tex": "\\tfrac{1}{2}x - 3 = 1",
+          "en": "Start from the equation.",
+          "es": "Partimos de la ecuación."
+        },
+        {
+          "tex": "\\tfrac{1}{2}x = 4",
+          "en": "Add 3 to both sides.",
+          "es": "Suma 3 a ambos lados."
+        },
+        {
+          "tex": "x = 8",
+          "en": "Multiply both sides by 2.",
+          "es": "Multiplica ambos lados por 2."
+        }
       ]
     },
     {
       "id": "algebra-01-e4",
       "answerType": "number",
-      "prompt": { "en": "Solve for x:  $5 - 2x = 11$", "es": "Resuelve para x:  $5 - 2x = 11$" },
+      "prompt": {
+        "en": "Solve for x:  $5 - 2x = 11$",
+        "es": "Resuelve para x:  $5 - 2x = 11$"
+      },
       "answer": "-3",
-      "acceptedAlt": ["6/-2"],
-      "hint": { "en": "Move the 5 across first, watch the sign of the x term.", "es": "Primero pasa el 5 al otro lado y cuida el signo del término en x." },
+      "acceptedAlt": [
+        "6/-2"
+      ],
+      "hint": {
+        "en": "Move the 5 across first, watch the sign of the x term.",
+        "es": "Primero pasa el 5 al otro lado y cuida el signo del término en x."
+      },
       "solution": [
-        { "tex": "5 - 2x = 11", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
-        { "tex": "-2x = 6", "en": "Subtract 5 from both sides.", "es": "Resta 5 a ambos lados." },
-        { "tex": "x = -3", "en": "Divide both sides by -2.", "es": "Divide ambos lados entre -2." }
+        {
+          "tex": "5 - 2x = 11",
+          "en": "Start from the equation.",
+          "es": "Partimos de la ecuación."
+        },
+        {
+          "tex": "-2x = 6",
+          "en": "Subtract 5 from both sides.",
+          "es": "Resta 5 a ambos lados."
+        },
+        {
+          "tex": "x = -3",
+          "en": "Divide both sides by -2.",
+          "es": "Divide ambos lados entre -2."
+        }
       ]
     },
     {
       "id": "algebra-01-e5",
       "answerType": "number",
-      "prompt": { "en": "Solve for x:  $5x - 3 = 2x + 9$", "es": "Resuelve para x:  $5x - 3 = 2x + 9$" },
+      "prompt": {
+        "en": "Solve for x:  $5x - 3 = 2x + 9$",
+        "es": "Resuelve para x:  $5x - 3 = 2x + 9$"
+      },
       "answer": "4",
-      "acceptedAlt": ["12/3"],
-      "hint": { "en": "Gather x terms on one side.", "es": "Reúne los términos en x en un lado." },
+      "acceptedAlt": [
+        "12/3"
+      ],
+      "hint": {
+        "en": "Gather x terms on one side.",
+        "es": "Reúne los términos en x en un lado."
+      },
       "solution": [
-        { "tex": "5x - 3 = 2x + 9", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
-        { "tex": "3x = 12", "en": "Subtract 2x and add 3.", "es": "Resta 2x y suma 3." },
-        { "tex": "x = 4", "en": "Divide by 3.", "es": "Divide entre 3." }
+        {
+          "tex": "5x - 3 = 2x + 9",
+          "en": "Start from the equation.",
+          "es": "Partimos de la ecuación."
+        },
+        {
+          "tex": "3x = 12",
+          "en": "Subtract 2x and add 3.",
+          "es": "Resta 2x y suma 3."
+        },
+        {
+          "tex": "x = 4",
+          "en": "Divide by 3.",
+          "es": "Divide entre 3."
+        }
       ]
+    },
+    {
+      "id": "algebra-01-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Solve $2x + 3 = 11$:",
+        "es": "Resuelve $2x + 3 = 11$:"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$x=4$",
+            "es": "$x=4$"
+          },
+          "correct": true,
+          "why": {
+            "en": "Subtract 3, then divide by 2.",
+            "es": "Resta 3 y divide entre 2."
+          }
+        },
+        {
+          "text": {
+            "en": "$x=7$",
+            "es": "$x=7$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That forgot to divide by 2.",
+            "es": "Olvidó dividir entre 2."
+          }
+        },
+        {
+          "text": {
+            "en": "$x=5.5$",
+            "es": "$x=5.5$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That divided before subtracting 3.",
+            "es": "Dividió antes de restar 3."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Undo +3, then undo ×2.",
+        "es": "Deshaz +3 y luego ×2."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.5, Equations", "es": "Cap. 1.5, Ecuaciones" } },
-    { "source": "Long — Painless Algebra", "detail": { "en": "Solving linear equations", "es": "Resolución de ecuaciones lineales" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Ecuaciones' — ecuaciones de primer grado", "es": "Apartado 'Ecuaciones' — ecuaciones de primer grado" } },
-    { "source": "Pólya — How to Solve It", "detail": { "en": "Devising and checking a plan", "es": "Idear y comprobar un plan" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 1.5, Equations",
+        "es": "Cap. 1.5, Ecuaciones"
+      }
+    },
+    {
+      "source": "Long — Painless Algebra",
+      "detail": {
+        "en": "Solving linear equations",
+        "es": "Resolución de ecuaciones lineales"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Ecuaciones' — ecuaciones de primer grado",
+        "es": "Apartado 'Ecuaciones' — ecuaciones de primer grado"
+      }
+    },
+    {
+      "source": "Pólya — How to Solve It",
+      "detail": {
+        "en": "Devising and checking a plan",
+        "es": "Idear y comprobar un plan"
+      }
+    }
   ]
 }

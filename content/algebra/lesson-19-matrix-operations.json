@@ -3,13 +3,26 @@
   "subjectId": "algebra",
   "order": 18,
   "estimatedMinutes": 45,
-  "title": { "en": "Matrix Operations", "es": "Operaciones con matrices" },
+  "title": {
+    "en": "Matrix Operations",
+    "es": "Operaciones con matrices"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Matrices support their own arithmetic. **Addition** is entry by entry and requires equal sizes: $(A+B)_{ij} = a_{ij} + b_{ij}$. **Scalar multiplication** scales every entry: $2\\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix} = \\begin{pmatrix}2 & 4\\\\ 6 & 8\\end{pmatrix}$. These behave just like vector operations, because a matrix is, in effect, a stack of vectors.",
         "es": "Las matrices tienen su propia aritmética. La **suma** es elemento a elemento y exige el mismo tamaño: $(A+B)_{ij} = a_{ij} + b_{ij}$. La **multiplicación por escalar** escala cada elemento: $2\\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix} = \\begin{pmatrix}2 & 4\\\\ 6 & 8\\end{pmatrix}$. Se comportan igual que las operaciones con vectores, porque una matriz es, en efecto, una pila de vectores."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-18-matrices-intro"
+      ],
+      "note": {
+        "en": "Builds on the matrices intro.",
+        "es": "Se apoya en la introducción a las matrices."
       }
     },
     {
@@ -28,10 +41,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — a product entry", "es": "Ejemplo resuelto — un elemento del producto" },
+      "title": {
+        "en": "Worked example — a product entry",
+        "es": "Ejemplo resuelto — un elemento del producto"
+      },
       "content": {
         "en": "Let $A=\\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix}$, $B=\\begin{pmatrix}0 & 1\\\\ 1 & 0\\end{pmatrix}$. The $(1,1)$ entry of $AB$ is row 1 of $A$ dotted with column 1 of $B$: $(1, 2)\\cdot(0, 1) = 1\\cdot0 + 2\\cdot1 = 2$. (Multiplying by this particular $B$ swaps the columns of $A$ — a glimpse of matrices as transformations.)",
         "es": "Sean $A=\\begin{pmatrix}1 & 2\\\\ 3 & 4\\end{pmatrix}$, $B=\\begin{pmatrix}0 & 1\\\\ 1 & 0\\end{pmatrix}$. El elemento $(1,1)$ de $AB$ es la fila 1 de $A$ por la columna 1 de $B$: $(1, 2)\\cdot(0, 1) = 1\\cdot0 + 2\\cdot1 = 2$. (Multiplicar por este $B$ intercambia las columnas de $A$ — un atisbo de las matrices como transformaciones.)"
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$\\begin{bmatrix}1&2\\end{bmatrix} + \\begin{bmatrix}3&4\\end{bmatrix} = \\begin{bmatrix}4&6\\end{bmatrix}$ (same shape, entrywise).",
+        "es": "$\\begin{bmatrix}1&2\\end{bmatrix} + \\begin{bmatrix}3&4\\end{bmatrix} = \\begin{bmatrix}4&6\\end{bmatrix}$ (misma forma, entrada a entrada)."
       }
     }
   ],
@@ -39,55 +66,185 @@
     {
       "id": "algebra-19-e1",
       "answerType": "number",
-      "prompt": { "en": "With $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, what is the $(1,1)$ entry of $A+B$?", "es": "Con $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, ¿cuál es el elemento $(1,1)$ de $A+B$?" },
+      "prompt": {
+        "en": "With $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, what is the $(1,1)$ entry of $A+B$?",
+        "es": "Con $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, ¿cuál es el elemento $(1,1)$ de $A+B$?"
+      },
       "answer": "1",
-      "acceptedAlt": ["1+0"],
-      "hint": { "en": "Add the top-left entries.", "es": "Suma los elementos superiores izquierdos." },
+      "acceptedAlt": [
+        "1+0"
+      ],
+      "hint": {
+        "en": "Add the top-left entries.",
+        "es": "Suma los elementos superiores izquierdos."
+      },
       "solution": [
-        { "tex": "(A+B)_{11} = 1 + 0", "en": "Add entry by entry.", "es": "Suma elemento a elemento." },
-        { "tex": "= 1", "en": "Result.", "es": "Resultado." }
+        {
+          "tex": "(A+B)_{11} = 1 + 0",
+          "en": "Add entry by entry.",
+          "es": "Suma elemento a elemento."
+        },
+        {
+          "tex": "= 1",
+          "en": "Result.",
+          "es": "Resultado."
+        }
       ]
     },
     {
       "id": "algebra-19-e2",
       "answerType": "number",
-      "prompt": { "en": "With $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, what is the $(2,2)$ entry of $2A$?", "es": "Con $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, ¿cuál es el elemento $(2,2)$ de $2A$?" },
+      "prompt": {
+        "en": "With $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, what is the $(2,2)$ entry of $2A$?",
+        "es": "Con $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, ¿cuál es el elemento $(2,2)$ de $2A$?"
+      },
       "answer": "8",
-      "acceptedAlt": ["2*4"],
-      "hint": { "en": "Multiply the bottom-right entry by 2.", "es": "Multiplica el elemento inferior derecho por 2." },
+      "acceptedAlt": [
+        "2*4"
+      ],
+      "hint": {
+        "en": "Multiply the bottom-right entry by 2.",
+        "es": "Multiplica el elemento inferior derecho por 2."
+      },
       "solution": [
-        { "tex": "(2A)_{22} = 2\\cdot 4", "en": "Scale the entry.", "es": "Escala el elemento." },
-        { "tex": "= 8", "en": "Result.", "es": "Resultado." }
+        {
+          "tex": "(2A)_{22} = 2\\cdot 4",
+          "en": "Scale the entry.",
+          "es": "Escala el elemento."
+        },
+        {
+          "tex": "= 8",
+          "en": "Result.",
+          "es": "Resultado."
+        }
       ]
     },
     {
       "id": "algebra-19-e3",
       "answerType": "number",
-      "prompt": { "en": "With $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, what is the $(1,1)$ entry of $AB$?", "es": "Con $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, ¿cuál es el elemento $(1,1)$ de $AB$?" },
+      "prompt": {
+        "en": "With $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, what is the $(1,1)$ entry of $AB$?",
+        "es": "Con $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, ¿cuál es el elemento $(1,1)$ de $AB$?"
+      },
       "answer": "2",
-      "acceptedAlt": ["1*0+2*1"],
-      "hint": { "en": "Row 1 of A dotted with column 1 of B.", "es": "Fila 1 de A por columna 1 de B." },
+      "acceptedAlt": [
+        "1*0+2*1"
+      ],
+      "hint": {
+        "en": "Row 1 of A dotted with column 1 of B.",
+        "es": "Fila 1 de A por columna 1 de B."
+      },
       "solution": [
-        { "tex": "(AB)_{11} = 1\\cdot 0 + 2\\cdot 1", "en": "Dot row 1 with column 1.", "es": "Producto de fila 1 por columna 1." },
-        { "tex": "= 2", "en": "Result.", "es": "Resultado." }
+        {
+          "tex": "(AB)_{11} = 1\\cdot 0 + 2\\cdot 1",
+          "en": "Dot row 1 with column 1.",
+          "es": "Producto de fila 1 por columna 1."
+        },
+        {
+          "tex": "= 2",
+          "en": "Result.",
+          "es": "Resultado."
+        }
       ]
     },
     {
       "id": "algebra-19-e4",
       "answerType": "number",
-      "prompt": { "en": "Compute the dot product $(1, 2, 3)\\cdot(4, 5, 6)$.", "es": "Calcula el producto escalar $(1, 2, 3)\\cdot(4, 5, 6)$." },
+      "prompt": {
+        "en": "Compute the dot product $(1, 2, 3)\\cdot(4, 5, 6)$.",
+        "es": "Calcula el producto escalar $(1, 2, 3)\\cdot(4, 5, 6)$."
+      },
       "answer": "32",
-      "acceptedAlt": ["1*4+2*5+3*6", "dot([1,2,3],[4,5,6])"],
-      "hint": { "en": "Multiply componentwise, then add.", "es": "Multiplica componente a componente y suma." },
+      "acceptedAlt": [
+        "1*4+2*5+3*6",
+        "dot([1,2,3],[4,5,6])"
+      ],
+      "hint": {
+        "en": "Multiply componentwise, then add.",
+        "es": "Multiplica componente a componente y suma."
+      },
       "solution": [
-        { "tex": "1\\cdot4 + 2\\cdot5 + 3\\cdot6", "en": "Multiply matching components.", "es": "Multiplica componentes correspondientes." },
-        { "tex": "= 4 + 10 + 18 = 32", "en": "Add them up.", "es": "Súmalos." }
+        {
+          "tex": "1\\cdot4 + 2\\cdot5 + 3\\cdot6",
+          "en": "Multiply matching components.",
+          "es": "Multiplica componentes correspondientes."
+        },
+        {
+          "tex": "= 4 + 10 + 18 = 32",
+          "en": "Add them up.",
+          "es": "Súmalos."
+        }
       ]
+    },
+    {
+      "id": "algebra-19-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Two matrices can be **added** only if they have...",
+        "es": "Dos matrices solo pueden **sumarse** si tienen..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "the same dimensions",
+            "es": "las mismas dimensiones"
+          },
+          "correct": true,
+          "why": {
+            "en": "Addition is entrywise, so shapes must match.",
+            "es": "La suma es entrada a entrada, así que las formas deben coincidir."
+          }
+        },
+        {
+          "text": {
+            "en": "the same determinant",
+            "es": "el mismo determinante"
+          },
+          "correct": false,
+          "why": {
+            "en": "Determinants are irrelevant to addition.",
+            "es": "Los determinantes no influyen en la suma."
+          }
+        },
+        {
+          "text": {
+            "en": "square shape",
+            "es": "forma cuadrada"
+          },
+          "correct": false,
+          "why": {
+            "en": "Non-square matrices add fine if shapes match.",
+            "es": "Las no cuadradas se suman bien si las formas coinciden."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Addition is entrywise.",
+        "es": "La suma es entrada a entrada."
+      }
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 2, matrix multiplication and its meaning", "es": "Cap. 2, multiplicación de matrices y su significado" } },
-    { "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)", "detail": { "en": "Operations with matrices", "es": "Operaciones con matrices" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Matrices' — operaciones básicas", "es": "Apartado 'Matrices' — operaciones básicas" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 2, matrix multiplication and its meaning",
+        "es": "Cap. 2, multiplicación de matrices y su significado"
+      }
+    },
+    {
+      "source": "UOC — Elementos de álgebra lineal y geometría (PID_00269009)",
+      "detail": {
+        "en": "Operations with matrices",
+        "es": "Operaciones con matrices"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Matrices' — operaciones básicas",
+        "es": "Apartado 'Matrices' — operaciones básicas"
+      }
+    }
   ]
 }

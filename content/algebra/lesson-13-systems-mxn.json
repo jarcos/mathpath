@@ -3,13 +3,26 @@
   "subjectId": "algebra",
   "order": 11,
   "estimatedMinutes": 40,
-  "title": { "en": "General Systems & Solution Types", "es": "Sistemas m×n y tipos de solución" },
+  "title": {
+    "en": "General Systems & Solution Types",
+    "es": "Sistemas m×n y tipos de solución"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A general system has $m$ equations in $n$ unknowns. Whatever $m$ and $n$, exactly **three outcomes** are possible: a **unique solution**, **infinitely many** solutions, or **no solution** (the system is *inconsistent*). There is never, say, exactly two solutions — a deep and useful fact that comes from linearity.",
         "es": "Un sistema general tiene $m$ ecuaciones con $n$ incógnitas. Sean cuales sean $m$ y $n$, hay exactamente **tres resultados** posibles: **solución única**, **infinitas** soluciones o **ninguna solución** (el sistema es *incompatible*). Nunca hay, digamos, exactamente dos soluciones — un hecho profundo y útil que proviene de la linealidad."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-12-systems-3x3-gauss"
+      ],
+      "note": {
+        "en": "Builds on Gaussian elimination.",
+        "es": "Se apoya en la eliminación de Gauss."
       }
     },
     {
@@ -21,7 +34,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — reading the outcome", "es": "Ejemplo resuelto — leer el resultado" },
+      "title": {
+        "en": "Worked example — reading the outcome",
+        "es": "Ejemplo resuelto — leer el resultado"
+      },
       "content": {
         "en": "The system $x + y = 2$, $2x + 2y = 4$ has a second equation that is just twice the first — they describe the **same line**. Rank is $1 < 2$ unknowns, so there are $2 - 1 = 1$ free parameters: **infinitely many** solutions. By contrast $x + y = 2$, $x + y = 5$ is a contradiction (a sum can't be both): **no solution**.",
         "es": "El sistema $x + y = 2$, $2x + 2y = 4$ tiene una segunda ecuación que es el doble de la primera — describen la **misma recta**. El rango es $1 < 2$ incógnitas, así que hay $2 - 1 = 1$ parámetros libres: **infinitas** soluciones. En cambio $x + y = 2$, $x + y = 5$ es una contradicción (una suma no puede valer ambas): **ninguna solución**."
@@ -33,49 +49,177 @@
         "en": "This bookkeeping is captured precisely by the **Rouché–Fröbenius theorem**, which you will state formally in the Linear Algebra subject using the rank of the **augmented matrix**. For now, the takeaway is: count independent equations, compare to unknowns, and read off which of the three worlds you are in.",
         "es": "Esta contabilidad la captura con precisión el **teorema de Rouché–Fröbenius**, que enunciarás formalmente en la asignatura de Álgebra lineal usando el rango de la **matriz ampliada**. Por ahora, la idea es: cuenta las ecuaciones independientes, compáralas con las incógnitas y deduce en cuál de los tres mundos estás."
       }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "With more unknowns than independent equations, some variables are free → infinitely many solutions.",
+        "es": "Con más incógnitas que ecuaciones independientes, algunas variables quedan libres → infinitas soluciones."
+      }
     }
   ],
   "exercises": [
     {
       "id": "algebra-13-e1",
       "answerType": "number",
-      "prompt": { "en": "A consistent system has 3 unknowns and rank 2. How many free parameters?", "es": "Un sistema compatible tiene 3 incógnitas y rango 2. ¿Cuántos parámetros libres?" },
+      "prompt": {
+        "en": "A consistent system has 3 unknowns and rank 2. How many free parameters?",
+        "es": "Un sistema compatible tiene 3 incógnitas y rango 2. ¿Cuántos parámetros libres?"
+      },
       "answer": "1",
-      "acceptedAlt": ["3-2"],
-      "hint": { "en": "Free parameters = unknowns − rank.", "es": "Parámetros libres = incógnitas − rango." },
+      "acceptedAlt": [
+        "3-2"
+      ],
+      "hint": {
+        "en": "Free parameters = unknowns − rank.",
+        "es": "Parámetros libres = incógnitas − rango."
+      },
       "solution": [
-        { "tex": "n - \\text{rank} = 3 - 2", "en": "Apply the rule.", "es": "Aplica la regla." },
-        { "tex": "= 1", "en": "One free parameter.", "es": "Un parámetro libre." }
+        {
+          "tex": "n - \\text{rank} = 3 - 2",
+          "en": "Apply the rule.",
+          "es": "Aplica la regla."
+        },
+        {
+          "tex": "= 1",
+          "en": "One free parameter.",
+          "es": "Un parámetro libre."
+        }
       ]
     },
     {
       "id": "algebra-13-e2",
       "answerType": "text",
-      "prompt": { "en": "How many solutions does $x + y = 2$, $2x + 2y = 4$ have? (unique / infinite / none)", "es": "¿Cuántas soluciones tiene $x + y = 2$, $2x + 2y = 4$? (única / infinitas / ninguna)" },
+      "prompt": {
+        "en": "How many solutions does $x + y = 2$, $2x + 2y = 4$ have? (unique / infinite / none)",
+        "es": "¿Cuántas soluciones tiene $x + y = 2$, $2x + 2y = 4$? (única / infinitas / ninguna)"
+      },
       "answer": "infinite",
-      "acceptedAlt": ["infinitas", "infinitely many", "infinitas soluciones"],
-      "hint": { "en": "The second equation is just twice the first.", "es": "La segunda ecuación es el doble de la primera." },
+      "acceptedAlt": [
+        "infinitas",
+        "infinitely many",
+        "infinitas soluciones"
+      ],
+      "hint": {
+        "en": "The second equation is just twice the first.",
+        "es": "La segunda ecuación es el doble de la primera."
+      },
       "solution": [
-        { "tex": "2x + 2y = 4 \\equiv x + y = 2", "en": "The equations are dependent.", "es": "Las ecuaciones son dependientes." },
-        { "tex": "\\text{infinite}", "en": "Rank 1 < 2 unknowns → infinitely many.", "es": "Rango 1 < 2 incógnitas → infinitas." }
+        {
+          "tex": "2x + 2y = 4 \\equiv x + y = 2",
+          "en": "The equations are dependent.",
+          "es": "Las ecuaciones son dependientes."
+        },
+        {
+          "tex": "\\text{infinite}",
+          "en": "Rank 1 < 2 unknowns → infinitely many.",
+          "es": "Rango 1 < 2 incógnitas → infinitas."
+        }
       ]
     },
     {
       "id": "algebra-13-e3",
       "answerType": "text",
-      "prompt": { "en": "How many solutions does $x + y = 2$, $x + y = 5$ have? (unique / infinite / none)", "es": "¿Cuántas soluciones tiene $x + y = 2$, $x + y = 5$? (única / infinitas / ninguna)" },
+      "prompt": {
+        "en": "How many solutions does $x + y = 2$, $x + y = 5$ have? (unique / infinite / none)",
+        "es": "¿Cuántas soluciones tiene $x + y = 2$, $x + y = 5$? (única / infinitas / ninguna)"
+      },
       "answer": "none",
-      "acceptedAlt": ["ninguna", "no solution", "0"],
-      "hint": { "en": "Can a sum equal both 2 and 5?", "es": "¿Puede una suma valer 2 y 5 a la vez?" },
+      "acceptedAlt": [
+        "ninguna",
+        "no solution",
+        "0"
+      ],
+      "hint": {
+        "en": "Can a sum equal both 2 and 5?",
+        "es": "¿Puede una suma valer 2 y 5 a la vez?"
+      },
       "solution": [
-        { "tex": "x+y = 2 \\text{ and } x+y = 5", "en": "Contradiction.", "es": "Contradicción." },
-        { "tex": "\\text{none}", "en": "Inconsistent system → no solution.", "es": "Sistema incompatible → ninguna solución." }
+        {
+          "tex": "x+y = 2 \\text{ and } x+y = 5",
+          "en": "Contradiction.",
+          "es": "Contradicción."
+        },
+        {
+          "tex": "\\text{none}",
+          "en": "Inconsistent system → no solution.",
+          "es": "Sistema incompatible → ninguna solución."
+        }
       ]
+    },
+    {
+      "id": "algebra-13-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A **consistent** system with more unknowns than independent equations has...",
+        "es": "Un sistema **compatible** con más incógnitas que ecuaciones independientes tiene..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "infinitely many solutions",
+            "es": "infinitas soluciones"
+          },
+          "correct": true,
+          "why": {
+            "en": "Free variables parametrize a whole family.",
+            "es": "Las variables libres parametrizan toda una familia."
+          }
+        },
+        {
+          "text": {
+            "en": "exactly one solution",
+            "es": "exactamente una solución"
+          },
+          "correct": false,
+          "why": {
+            "en": "That needs as many independent equations as unknowns.",
+            "es": "Eso requiere tantas ecuaciones independientes como incógnitas."
+          }
+        },
+        {
+          "text": {
+            "en": "no solution",
+            "es": "ninguna solución"
+          },
+          "correct": false,
+          "why": {
+            "en": "'Consistent' means at least one solution exists.",
+            "es": "'Compatible' significa que existe al menos una solución."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Free variables?",
+        "es": "¿Variables libres?"
+      }
     }
   ],
   "references": [
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 2–3, rank and solution structure", "es": "Cap. 2–3, rango y estructura de las soluciones" } },
-    { "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)", "detail": { "en": "Discussion of systems; Rouché–Fröbenius", "es": "Discusión de sistemas; Rouché–Fröbenius" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Sistemas' — sistemas m×n", "es": "Apartado 'Sistemas' — sistemas m×n" } }
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 2–3, rank and solution structure",
+        "es": "Cap. 2–3, rango y estructura de las soluciones"
+      }
+    },
+    {
+      "source": "UOC — Sistemas de ecuaciones lineales (PID_00293765)",
+      "detail": {
+        "en": "Discussion of systems; Rouché–Fröbenius",
+        "es": "Discusión de sistemas; Rouché–Fröbenius"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Sistemas' — sistemas m×n",
+        "es": "Apartado 'Sistemas' — sistemas m×n"
+      }
+    }
   ]
 }

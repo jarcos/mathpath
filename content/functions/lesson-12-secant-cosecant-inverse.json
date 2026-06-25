@@ -3,13 +3,27 @@
   "subjectId": "functions",
   "order": 12,
   "estimatedMinutes": 35,
-  "title": { "en": "Secant, Cosecant & Inverse Trig", "es": "Secante, cosecante e inversas" },
+  "title": {
+    "en": "Secant, Cosecant & Inverse Trig",
+    "es": "Secante, cosecante e inversas"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Three reciprocal ratios complete the family: the **secant** $\\sec x = \\dfrac{1}{\\cos x}$, the **cosecant** $\\csc x = \\dfrac{1}{\\sin x}$, and the cotangent $\\cot x = \\dfrac{1}{\\tan x}$. Each is undefined wherever its denominator is zero, inheriting the asymptotes of the function it reciprocates. They appear often in calculus integrals and in physics.",
         "es": "Tres razones inversas completan la familia: la **secante** $\\sec x = \\dfrac{1}{\\cos x}$, la **cosecante** $\\csc x = \\dfrac{1}{\\sin x}$ y la cotangente $\\cot x = \\dfrac{1}{\\tan x}$. Cada una está indefinida donde su denominador se anula, heredando las asíntotas de la función que invierte. Aparecen a menudo en integrales del cálculo y en física."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-10-sine-cosine",
+        "functions-11-tangent-cotangent"
+      ],
+      "note": {
+        "en": "Builds on sine/cosine and tangent.",
+        "es": "Se apoya en seno/coseno y tangente."
       }
     },
     {
@@ -28,10 +42,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "$\\sec 0 = \\tfrac{1}{\\cos 0} = \\tfrac{1}{1} = 1$. $\\csc 90° = \\tfrac{1}{\\sin 90°} = 1$. And inverting: a right triangle with opposite $=$ adjacent has $\\tan\\theta = 1$, so $\\theta = \\arctan 1 = 45°$.",
         "es": "$\\sec 0 = \\tfrac{1}{\\cos 0} = \\tfrac{1}{1} = 1$. $\\csc 90° = \\tfrac{1}{\\sin 90°} = 1$. E invirtiendo: un triángulo rectángulo con opuesto $=$ adyacente tiene $\\tan\\theta = 1$, así $\\theta = \\arctan 1 = 45°$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$\\sec x=\\dfrac{1}{\\cos x}$, $\\csc x=\\dfrac{1}{\\sin x}$; $\\arcsin$ inverts $\\sin$ on $[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$.",
+        "es": "$\\sec x=\\dfrac{1}{\\cos x}$, $\\csc x=\\dfrac{1}{\\sin x}$; $\\arcsin$ invierte $\\sin$ en $[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}]$."
       }
     }
   ],
@@ -39,43 +67,162 @@
     {
       "id": "functions-12-e1",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\sec 0$.", "es": "Calcula $\\sec 0$." },
+      "prompt": {
+        "en": "Compute $\\sec 0$.",
+        "es": "Calcula $\\sec 0$."
+      },
       "answer": "1",
-      "acceptedAlt": ["1/cos(0)", "sec(0)"],
-      "hint": { "en": "1 / cos 0.", "es": "1 / cos 0." },
-      "solution": [ { "tex": "\\sec 0 = \\tfrac{1}{\\cos 0} = 1", "en": "Reciprocal of cos.", "es": "Inversa del coseno." } ]
+      "acceptedAlt": [
+        "1/cos(0)",
+        "sec(0)"
+      ],
+      "hint": {
+        "en": "1 / cos 0.",
+        "es": "1 / cos 0."
+      },
+      "solution": [
+        {
+          "tex": "\\sec 0 = \\tfrac{1}{\\cos 0} = 1",
+          "en": "Reciprocal of cos.",
+          "es": "Inversa del coseno."
+        }
+      ]
     },
     {
       "id": "functions-12-e2",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\csc 90°$.", "es": "Calcula $\\csc 90°$." },
+      "prompt": {
+        "en": "Compute $\\csc 90°$.",
+        "es": "Calcula $\\csc 90°$."
+      },
       "answer": "1",
-      "acceptedAlt": ["1/sin(pi/2)", "csc(pi/2)"],
-      "hint": { "en": "1 / sin 90°.", "es": "1 / sin 90°." },
-      "solution": [ { "tex": "\\csc 90° = \\tfrac{1}{\\sin 90°} = 1", "en": "Reciprocal of sin.", "es": "Inversa del seno." } ]
+      "acceptedAlt": [
+        "1/sin(pi/2)",
+        "csc(pi/2)"
+      ],
+      "hint": {
+        "en": "1 / sin 90°.",
+        "es": "1 / sin 90°."
+      },
+      "solution": [
+        {
+          "tex": "\\csc 90° = \\tfrac{1}{\\sin 90°} = 1",
+          "en": "Reciprocal of sin.",
+          "es": "Inversa del seno."
+        }
+      ]
     },
     {
       "id": "functions-12-e3",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\arcsin 1$ in degrees.", "es": "Calcula $\\arcsin 1$ en grados." },
+      "prompt": {
+        "en": "Compute $\\arcsin 1$ in degrees.",
+        "es": "Calcula $\\arcsin 1$ en grados."
+      },
       "answer": "90",
       "acceptedAlt": [],
-      "hint": { "en": "Which angle has sine 1?", "es": "¿Qué ángulo tiene seno 1?" },
-      "solution": [ { "tex": "\\sin 90° = 1 \\Rightarrow \\arcsin 1 = 90°", "en": "Invert the sine.", "es": "Invierte el seno." } ]
+      "hint": {
+        "en": "Which angle has sine 1?",
+        "es": "¿Qué ángulo tiene seno 1?"
+      },
+      "solution": [
+        {
+          "tex": "\\sin 90° = 1 \\Rightarrow \\arcsin 1 = 90°",
+          "en": "Invert the sine.",
+          "es": "Invierte el seno."
+        }
+      ]
     },
     {
       "id": "functions-12-e4",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\arctan 1$ in degrees.", "es": "Calcula $\\arctan 1$ en grados." },
+      "prompt": {
+        "en": "Compute $\\arctan 1$ in degrees.",
+        "es": "Calcula $\\arctan 1$ en grados."
+      },
       "answer": "45",
       "acceptedAlt": [],
-      "hint": { "en": "Which angle has tangent 1?", "es": "¿Qué ángulo tiene tangente 1?" },
-      "solution": [ { "tex": "\\tan 45° = 1 \\Rightarrow \\arctan 1 = 45°", "en": "Invert the tangent.", "es": "Invierte la tangente." } ]
+      "hint": {
+        "en": "Which angle has tangent 1?",
+        "es": "¿Qué ángulo tiene tangente 1?"
+      },
+      "solution": [
+        {
+          "tex": "\\tan 45° = 1 \\Rightarrow \\arctan 1 = 45°",
+          "en": "Invert the tangent.",
+          "es": "Invierte la tangente."
+        }
+      ]
+    },
+    {
+      "id": "functions-12-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The secant function $\\sec(x)$ is defined as...",
+        "es": "La función secante $\\sec(x)$ se define como..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$1/\\cos(x)$",
+            "es": "$1/\\cos(x)$"
+          },
+          "correct": true,
+          "why": {
+            "en": "Secant is the reciprocal of cosine.",
+            "es": "La secante es la inversa multiplicativa del coseno."
+          }
+        },
+        {
+          "text": {
+            "en": "$1/\\sin(x)$",
+            "es": "$1/\\sin(x)$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's cosecant.",
+            "es": "Eso es la cosecante."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\cos(x)/\\sin(x)$",
+            "es": "$\\cos(x)/\\sin(x)$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's cotangent.",
+            "es": "Eso es la cotangente."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Reciprocal of cosine.",
+        "es": "Inversa del coseno."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 5.4 & 6.4, reciprocal and inverse trigonometric functions", "es": "Cap. 5.4 y 6.4, funciones trigonométricas recíprocas e inversas" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 4.7, inverse trigonometric functions", "es": "Cap. 4.7, funciones trigonométricas inversas" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones trigonométricas' — secante, cosecante, inversas", "es": "Apartado 'Funciones trigonométricas' — secante, cosecante, inversas" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 5.4 & 6.4, reciprocal and inverse trigonometric functions",
+        "es": "Cap. 5.4 y 6.4, funciones trigonométricas recíprocas e inversas"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 4.7, inverse trigonometric functions",
+        "es": "Cap. 4.7, funciones trigonométricas inversas"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones trigonométricas' — secante, cosecante, inversas",
+        "es": "Apartado 'Funciones trigonométricas' — secante, cosecante, inversas"
+      }
+    }
   ]
 }

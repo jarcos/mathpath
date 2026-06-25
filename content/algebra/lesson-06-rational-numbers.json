@@ -3,13 +3,26 @@
   "subjectId": "algebra",
   "order": 2,
   "estimatedMinutes": 45,
-  "title": { "en": "Rational Numbers & Fractions", "es": "Números racionales y fracciones" },
+  "title": {
+    "en": "Rational Numbers & Fractions",
+    "es": "Números racionales y fracciones"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Integers let us subtract freely, but they cannot answer \"what is $3$ divided by $4$?\". For that we need the **rational numbers** $\\mathbb{Q}$: every number expressible as a ratio $\\dfrac{p}{q}$ of two integers with $q \\neq 0$. The top is the **numerator** (how many parts), the bottom the **denominator** (parts per whole). Rationals measure portions, rates and proportions — half a pizza, three-fifths of a tank, a price per kilo.",
         "es": "Los enteros permiten restar sin límite, pero no responden a \"¿cuánto es $3$ entre $4$?\". Para eso necesitamos los **números racionales** $\\mathbb{Q}$: todo número expresable como cociente $\\dfrac{p}{q}$ de dos enteros con $q \\neq 0$. Arriba va el **numerador** (cuántas partes), abajo el **denominador** (partes por unidad). Los racionales miden porciones, tasas y proporciones — media pizza, tres quintos de un depósito, un precio por kilo."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-05-natural-integer-numbers"
+      ],
+      "note": {
+        "en": "Builds on natural and integer numbers.",
+        "es": "Se apoya en los números naturales y enteros."
       }
     },
     {
@@ -28,7 +41,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — adding fractions", "es": "Ejemplo resuelto — sumar fracciones" },
+      "title": {
+        "en": "Worked example — adding fractions",
+        "es": "Ejemplo resuelto — sumar fracciones"
+      },
       "content": {
         "en": "Compute $\\tfrac{1}{2} + \\tfrac{1}{3}$. The lcm of $2$ and $3$ is $6$: rewrite as $\\tfrac{3}{6} + \\tfrac{2}{6} = \\tfrac{5}{6}$. Already in lowest terms. For division, $\\tfrac{2}{3} \\div \\tfrac{4}{5} = \\tfrac{2}{3}\\cdot\\tfrac{5}{4} = \\tfrac{10}{12} = \\tfrac{5}{6}$.",
         "es": "Calcula $\\tfrac{1}{2} + \\tfrac{1}{3}$. El mcm de $2$ y $3$ es $6$: reescribe como $\\tfrac{3}{6} + \\tfrac{2}{6} = \\tfrac{5}{6}$. Ya es irreducible. Para dividir, $\\tfrac{2}{3} \\div \\tfrac{4}{5} = \\tfrac{2}{3}\\cdot\\tfrac{5}{4} = \\tfrac{10}{12} = \\tfrac{5}{6}$."
@@ -47,73 +63,231 @@
         "en": "The rationals are **dense**: between any two of them lies another (their average), so there is no \"next\" rational after a given one. Yet, remarkably, they still leave gaps on the number line — gaps the real numbers will fill.",
         "es": "Los racionales son **densos**: entre dos cualesquiera hay otro (su promedio), así que no existe un racional \"siguiente\" a uno dado. Y aun así, sorprendentemente, dejan huecos en la recta — huecos que llenarán los números reales."
       }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$\\tfrac{2}{3} + \\tfrac{1}{6} = \\tfrac{4}{6} + \\tfrac{1}{6} = \\tfrac{5}{6}$.",
+        "es": "$\\tfrac{2}{3} + \\tfrac{1}{6} = \\tfrac{4}{6} + \\tfrac{1}{6} = \\tfrac{5}{6}$."
+      }
     }
   ],
   "exercises": [
     {
       "id": "algebra-06-e1",
       "answerType": "number",
-      "prompt": { "en": "Compute:  $\\dfrac{1}{2} + \\dfrac{1}{3}$", "es": "Calcula:  $\\dfrac{1}{2} + \\dfrac{1}{3}$" },
+      "prompt": {
+        "en": "Compute:  $\\dfrac{1}{2} + \\dfrac{1}{3}$",
+        "es": "Calcula:  $\\dfrac{1}{2} + \\dfrac{1}{3}$"
+      },
       "answer": "5/6",
-      "acceptedAlt": ["1/2+1/3"],
-      "hint": { "en": "Common denominator is 6.", "es": "El denominador común es 6." },
+      "acceptedAlt": [
+        "1/2+1/3"
+      ],
+      "hint": {
+        "en": "Common denominator is 6.",
+        "es": "El denominador común es 6."
+      },
       "solution": [
-        { "tex": "\\frac{1}{2} + \\frac{1}{3} = \\frac{3}{6} + \\frac{2}{6}", "en": "Rewrite over 6.", "es": "Reescribe sobre 6." },
-        { "tex": "= \\frac{5}{6}", "en": "Add the numerators.", "es": "Suma los numeradores." }
+        {
+          "tex": "\\frac{1}{2} + \\frac{1}{3} = \\frac{3}{6} + \\frac{2}{6}",
+          "en": "Rewrite over 6.",
+          "es": "Reescribe sobre 6."
+        },
+        {
+          "tex": "= \\frac{5}{6}",
+          "en": "Add the numerators.",
+          "es": "Suma los numeradores."
+        }
       ]
     },
     {
       "id": "algebra-06-e2",
       "answerType": "number",
-      "prompt": { "en": "Compute:  $\\dfrac{3}{4} - \\dfrac{1}{6}$", "es": "Calcula:  $\\dfrac{3}{4} - \\dfrac{1}{6}$" },
+      "prompt": {
+        "en": "Compute:  $\\dfrac{3}{4} - \\dfrac{1}{6}$",
+        "es": "Calcula:  $\\dfrac{3}{4} - \\dfrac{1}{6}$"
+      },
       "answer": "7/12",
-      "acceptedAlt": ["3/4-1/6"],
-      "hint": { "en": "Least common denominator is 12.", "es": "El mínimo común denominador es 12." },
+      "acceptedAlt": [
+        "3/4-1/6"
+      ],
+      "hint": {
+        "en": "Least common denominator is 12.",
+        "es": "El mínimo común denominador es 12."
+      },
       "solution": [
-        { "tex": "\\frac{3}{4} - \\frac{1}{6} = \\frac{9}{12} - \\frac{2}{12}", "en": "Rewrite over 12.", "es": "Reescribe sobre 12." },
-        { "tex": "= \\frac{7}{12}", "en": "Subtract the numerators.", "es": "Resta los numeradores." }
+        {
+          "tex": "\\frac{3}{4} - \\frac{1}{6} = \\frac{9}{12} - \\frac{2}{12}",
+          "en": "Rewrite over 12.",
+          "es": "Reescribe sobre 12."
+        },
+        {
+          "tex": "= \\frac{7}{12}",
+          "en": "Subtract the numerators.",
+          "es": "Resta los numeradores."
+        }
       ]
     },
     {
       "id": "algebra-06-e3",
       "answerType": "number",
-      "prompt": { "en": "Compute and simplify:  $\\dfrac{2}{3}\\cdot\\dfrac{3}{5}$", "es": "Calcula y simplifica:  $\\dfrac{2}{3}\\cdot\\dfrac{3}{5}$" },
+      "prompt": {
+        "en": "Compute and simplify:  $\\dfrac{2}{3}\\cdot\\dfrac{3}{5}$",
+        "es": "Calcula y simplifica:  $\\dfrac{2}{3}\\cdot\\dfrac{3}{5}$"
+      },
       "answer": "2/5",
-      "acceptedAlt": ["6/15"],
-      "hint": { "en": "Multiply across, then cancel.", "es": "Multiplica en línea y luego cancela." },
+      "acceptedAlt": [
+        "6/15"
+      ],
+      "hint": {
+        "en": "Multiply across, then cancel.",
+        "es": "Multiplica en línea y luego cancela."
+      },
       "solution": [
-        { "tex": "\\frac{2}{3}\\cdot\\frac{3}{5} = \\frac{6}{15}", "en": "Multiply numerators and denominators.", "es": "Multiplica numeradores y denominadores." },
-        { "tex": "= \\frac{2}{5}", "en": "Cancel the factor 3.", "es": "Cancela el factor 3." }
+        {
+          "tex": "\\frac{2}{3}\\cdot\\frac{3}{5} = \\frac{6}{15}",
+          "en": "Multiply numerators and denominators.",
+          "es": "Multiplica numeradores y denominadores."
+        },
+        {
+          "tex": "= \\frac{2}{5}",
+          "en": "Cancel the factor 3.",
+          "es": "Cancela el factor 3."
+        }
       ]
     },
     {
       "id": "algebra-06-e4",
       "answerType": "number",
-      "prompt": { "en": "Write $0.25$ as a simplified fraction.", "es": "Escribe $0.25$ como fracción simplificada." },
+      "prompt": {
+        "en": "Write $0.25$ as a simplified fraction.",
+        "es": "Escribe $0.25$ como fracción simplificada."
+      },
       "answer": "1/4",
-      "acceptedAlt": ["25/100", "0.25"],
-      "hint": { "en": "0.25 means 25 hundredths.", "es": "0.25 significa 25 centésimas." },
+      "acceptedAlt": [
+        "25/100",
+        "0.25"
+      ],
+      "hint": {
+        "en": "0.25 means 25 hundredths.",
+        "es": "0.25 significa 25 centésimas."
+      },
       "solution": [
-        { "tex": "0.25 = \\frac{25}{100}", "en": "Write as hundredths.", "es": "Escribe como centésimas." },
-        { "tex": "= \\frac{1}{4}", "en": "Simplify by 25.", "es": "Simplifica entre 25." }
+        {
+          "tex": "0.25 = \\frac{25}{100}",
+          "en": "Write as hundredths.",
+          "es": "Escribe como centésimas."
+        },
+        {
+          "tex": "= \\frac{1}{4}",
+          "en": "Simplify by 25.",
+          "es": "Simplifica entre 25."
+        }
       ]
     },
     {
       "id": "algebra-06-e5",
       "answerType": "number",
-      "prompt": { "en": "Compute:  $\\dfrac{2}{3} \\div \\dfrac{4}{5}$", "es": "Calcula:  $\\dfrac{2}{3} \\div \\dfrac{4}{5}$" },
+      "prompt": {
+        "en": "Compute:  $\\dfrac{2}{3} \\div \\dfrac{4}{5}$",
+        "es": "Calcula:  $\\dfrac{2}{3} \\div \\dfrac{4}{5}$"
+      },
       "answer": "5/6",
-      "acceptedAlt": ["(2/3)/(4/5)", "10/12"],
-      "hint": { "en": "Multiply by the reciprocal of the second.", "es": "Multiplica por el inverso de la segunda." },
+      "acceptedAlt": [
+        "(2/3)/(4/5)",
+        "10/12"
+      ],
+      "hint": {
+        "en": "Multiply by the reciprocal of the second.",
+        "es": "Multiplica por el inverso de la segunda."
+      },
       "solution": [
-        { "tex": "\\frac{2}{3}\\cdot\\frac{5}{4} = \\frac{10}{12}", "en": "Flip and multiply.", "es": "Invierte y multiplica." },
-        { "tex": "= \\frac{5}{6}", "en": "Simplify by 2.", "es": "Simplifica entre 2." }
+        {
+          "tex": "\\frac{2}{3}\\cdot\\frac{5}{4} = \\frac{10}{12}",
+          "en": "Flip and multiply.",
+          "es": "Invierte y multiplica."
+        },
+        {
+          "tex": "= \\frac{5}{6}",
+          "en": "Simplify by 2.",
+          "es": "Simplifica entre 2."
+        }
       ]
+    },
+    {
+      "id": "algebra-06-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which number is **not** rational?",
+        "es": "¿Qué número **no** es racional?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$\\sqrt{2}$",
+            "es": "$\\sqrt{2}$"
+          },
+          "correct": true,
+          "why": {
+            "en": "√2 cannot be written as a fraction of integers.",
+            "es": "√2 no puede escribirse como fracción de enteros."
+          }
+        },
+        {
+          "text": {
+            "en": "$0.75$",
+            "es": "$0.75$"
+          },
+          "correct": false,
+          "why": {
+            "en": "0.75 = 3/4, a ratio of integers.",
+            "es": "0,75 = 3/4, un cociente de enteros."
+          }
+        },
+        {
+          "text": {
+            "en": "$-\\tfrac{3}{4}$",
+            "es": "$-\\tfrac{3}{4}$"
+          },
+          "correct": false,
+          "why": {
+            "en": "Already a ratio of integers.",
+            "es": "Ya es un cociente de enteros."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Can it be written as a fraction?",
+        "es": "¿Puede escribirse como fracción?"
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.1, Real Numbers (rational numbers, decimals)", "es": "Cap. 1.1, números racionales y decimales" } },
-    { "source": "Long — Painless Algebra", "detail": { "en": "Fractions and operations", "es": "Fracciones y operaciones" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Números' — números racionales", "es": "Apartado 'Números' — números racionales" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 1.1, Real Numbers (rational numbers, decimals)",
+        "es": "Cap. 1.1, números racionales y decimales"
+      }
+    },
+    {
+      "source": "Long — Painless Algebra",
+      "detail": {
+        "en": "Fractions and operations",
+        "es": "Fracciones y operaciones"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Números' — números racionales",
+        "es": "Apartado 'Números' — números racionales"
+      }
+    }
   ]
 }

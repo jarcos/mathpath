@@ -101,7 +101,7 @@
     </div>
   </header>
   <div class="meta">
-    <span><b>Status:</b> v1 · UX overhaul · M22 glossary · M23 code infra · <b>M24 complete</b>: all 14 AI/ML + computational-math subjects upgraded (runnable Python, MCQs, prereqs) — 184 code sections, 1,019 exercises, all green. Next: M25 (algebra/functions depth)</span>
+    <span><b>Status:</b> <b>Content Upgrade complete</b> — M22 glossary · M23 runnable code · M24 (14 AI/ML + computational subjects) · M25 (algebra & functions depth). 241 lessons · 1,055 exercises · all gates green</span>
     <span><b>Platform:</b> Electron (macOS)</span>
     <span><b>Updated:</b> 25 Jun 2026</span>
   </div>
@@ -178,6 +178,7 @@
       <div class="ms done"><div class="node"></div><h4>M22 · Symbol glossary &amp; notation pass <span class="pill ok">Done</span></h4><p>Curated bilingual <strong>glossary of 89 symbols</strong> (content/glossary.json) covering every Greek letter, operator, relation, set and named operator used in the curriculum. Shared detection util auto-generates a collapsible <strong>"Symbols in this lesson"</strong> box on each lesson (204/241 lessons surface symbols, no per-lesson authoring) — e.g. Poisson now reads λ → "lambda". New searchable <strong>Glossary page</strong> + topbar link, grouped by category, bilingual. New <code>verify:glossary</code> gate (integrity + detection) folded into <code>npm run verify</code>; content gate still green.</p></div>
       <div class="ms done"><div class="node"></div><h4>M23 · Code infrastructure <span class="pill ok">Done</span></h4><p>New <code>code</code> section + <code>code</code>/<code>mcq</code> exercise types (schema + verifiers). <strong>CodeBlock</strong> with zero-dependency Python highlighting + Run; lazy offline <strong>Pyodide</strong> loader (bundled via <code>copy-pyodide.mjs</code>, served locally). Code exercises graded by returned value (Pyodide, numeric tolerance); MCQ with per-choice explanations. New <strong>CPython code gate</strong> (<code>verify:code</code>) executes every runnable snippet in EN+ES and every reference solution — folded into <code>npm run verify</code> (content + glossary + code). <strong>Pilot: statistics</strong> — runnable NumPy/Pandas/SciPy sections in L1/L2/L12, a code exercise and an MCQ; all gates green (negative-tested).</p></div>
       <div class="ms done"><div class="node"></div><h4>M24 · Depth + code rollout <span class="pill ok">Done</span></h4><p><strong>All 14 in-scope subjects upgraded &amp; verified.</strong> New <code>prereq</code> "Before this lesson" box (clickable cross-subject links). Computational math (statistics, calculus, linear-algebra, linear-maps) and the full AI/ML track (ml-foundations, neural-networks, deep-learning, nlp-transformers, computer-vision, reinforcement-learning, knowledge-representation, ai-foundations, active-inference). Runnable Python in every computational lesson (NumPy / Pandas / SciPy / scikit-learn / SymPy), <strong>TensorFlow static references</strong> for the deep-learning hybrid path, and explained MCQs for the reading-based philosophy lessons. In-process code gate: full <code>npm run verify</code> ~4s. <strong>Totals: 184 code sections, 16 code exercises, 30 MCQs, 1,019 exercises, 2,151 math checks — all green.</strong> Offline Pyodide runtime proven on macOS (wheels bundled, no network). Pure-math depth-prose pass for algebra/functions remains as M25.</p></div>
+      <div class="ms done"><div class="node"></div><h4>M25 · Pure-math depth pass <span class="pill ok">Done</span></h4><p>Depth for the code-free ladder: a prerequisite box, a second worked example, and a conceptual MCQ-with-explanations on every lesson (moving past fill-in-the-blank). ✅ <strong>algebra (20/20)</strong> and ✅ <strong>functions (16/16)</strong> — 35 prereq boxes, 36 worked examples, 36 MCQs, plus a logarithm graph. Covers misconceptions like integers vs naturals, irrationality, the discriminant, even/odd symmetry, the vertical-line test, tan undefined where cos = 0, and log as the inverse of exponentiation. All gates green; <strong>1,055 exercises</strong> total. <strong>Content Upgrade complete — every subject in the curriculum upgraded.</strong></p></div>
       <div class="ms"><div class="node"></div><h4>M25 · Math-ladder depth pass <span class="pill todo">Planned</span></h4><p>Apply depth + exercise upgrades (no code) to algebra/functions and the rest of the pure-math ladder. Refresh this dashboard after each milestone.</p></div>
       <div class="ms done"><div class="node"></div><h4>M26 · UX &amp; navigation overhaul <span class="pill ok">Done</span></h4><p>Prev/Next lesson navigation with subject context; dashboard grouped into Math / AI tracks with a one-click <strong>Resume</strong> card; exercise correctness now persists (solved state + "X of Y solved" tally) via a new attempts read; sticky reading-progress bar; richer lesson header (subject · est. minutes · exercises); loading screen; focus-visible &amp; reduced-motion a11y. All new UI strings bilingual. Content gate still green (241/972/2151).</p></div>
     </div>
@@ -267,7 +268,8 @@
     {id:'t37l', col:'done', text:'M24 · knowledge-representation fully upgraded (14/14)', tag:'Upgrade'},
     {id:'t37m', col:'done', text:'M24 · ai-foundations upgraded (14/14, explained MCQs)', tag:'Upgrade'},
     {id:'t37n', col:'done', text:'M24 · active-inference upgraded (12/12) — M24 COMPLETE (14 subjects)', tag:'Upgrade'},
-    {id:'t40b', col:'todo', text:'M25 · Depth-prose pass: algebra & functions (pure-math ladder)', tag:'Upgrade'},
+    {id:'t40b', col:'done', text:'M25 · algebra depth pass (20/20: prereqs, examples, MCQs)', tag:'Upgrade'},
+    {id:'t40c', col:'done', text:'M25 · functions depth pass (16/16) — Content Upgrade complete', tag:'Upgrade'},
     {id:'t38', col:'todo', text:'M24 · Per-lesson intuition + worked-example depth pass', tag:'Upgrade'},
     {id:'t39', col:'todo', text:'M25 · Depth pass on pure-math ladder', tag:'Upgrade'},
     // UX overhaul (M26)
@@ -278,7 +280,7 @@
     {id:'t44', col:'done', text:'M26 · Loading screen + a11y (focus, reduced-motion)', tag:'UX'},
   ];
 
-  const STORE = 'mathpath-kanban-v19';
+  const STORE = 'mathpath-kanban-v21';
   function load(){
     try{ const s = localStorage.getItem(STORE); if(s) return JSON.parse(s); }catch(e){}
     return DEFAULT_TASKS.map(t=>({...t}));

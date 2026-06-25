@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 9,
   "estimatedMinutes": 40,
-  "title": { "en": "Trigonometric Ratios", "es": "Razones trigonométricas" },
+  "title": {
+    "en": "Trigonometric Ratios",
+    "es": "Razones trigonométricas"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Trigonometry begins with the **right triangle**. For an acute angle $\\theta$, the three primary ratios relate the sides: $\\sin\\theta = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, $\\cos\\theta = \\dfrac{\\text{adjacent}}{\\text{hypotenuse}}$, $\\tan\\theta = \\dfrac{\\text{opposite}}{\\text{adjacent}}$. The mnemonic **SOH-CAH-TOA** captures all three. Because similar triangles share angles, these ratios depend only on $\\theta$, not on the triangle's size.",
         "es": "La trigonometría empieza con el **triángulo rectángulo**. Para un ángulo agudo $\\theta$, las tres razones primarias relacionan los lados: $\\sin\\theta = \\dfrac{\\text{opuesto}}{\\text{hipotenusa}}$, $\\cos\\theta = \\dfrac{\\text{adyacente}}{\\text{hipotenusa}}$, $\\tan\\theta = \\dfrac{\\text{opuesto}}{\\text{adyacente}}$. La regla **SOH-CAH-TOA** las resume. Como los triángulos semejantes comparten ángulos, estas razones dependen solo de $\\theta$, no del tamaño del triángulo."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-01-concept"
+      ],
+      "note": {
+        "en": "Builds on the concept of a function.",
+        "es": "Se apoya en el concepto de función."
       }
     },
     {
@@ -28,10 +41,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "A ramp rises at $30°$ over a slope (hypotenuse) of $10$ m. Its height is $\\text{opposite} = 10\\sin 30° = 10\\cdot\\tfrac12 = 5$ m. The ratios turn an angle and one side into the others — the basis of all surveying and navigation.",
         "es": "Una rampa sube a $30°$ sobre una pendiente (hipotenusa) de $10$ m. Su altura es $\\text{opuesto} = 10\\sin 30° = 10\\cdot\\tfrac12 = 5$ m. Las razones convierten un ángulo y un lado en los demás — la base de toda topografía y navegación."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "In a right triangle, $\\sin\\theta=\\dfrac{\\text{opp}}{\\text{hyp}}$ and $\\cos\\theta=\\dfrac{\\text{adj}}{\\text{hyp}}$.",
+        "es": "En un triángulo rectángulo, $\\sin\\theta=\\dfrac{\\text{op}}{\\text{hip}}$ y $\\cos\\theta=\\dfrac{\\text{ady}}{\\text{hip}}$."
       }
     }
   ],
@@ -39,43 +66,166 @@
     {
       "id": "functions-09-e1",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\sin 30°$.", "es": "Calcula $\\sin 30°$." },
+      "prompt": {
+        "en": "Compute $\\sin 30°$.",
+        "es": "Calcula $\\sin 30°$."
+      },
       "answer": "1/2",
-      "acceptedAlt": ["sin(pi/6)", "0.5"],
-      "hint": { "en": "A standard angle.", "es": "Un ángulo estándar." },
-      "solution": [ { "tex": "\\sin 30° = \\tfrac12", "en": "Standard value.", "es": "Valor estándar." } ]
+      "acceptedAlt": [
+        "sin(pi/6)",
+        "0.5"
+      ],
+      "hint": {
+        "en": "A standard angle.",
+        "es": "Un ángulo estándar."
+      },
+      "solution": [
+        {
+          "tex": "\\sin 30° = \\tfrac12",
+          "en": "Standard value.",
+          "es": "Valor estándar."
+        }
+      ]
     },
     {
       "id": "functions-09-e2",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\cos 60°$.", "es": "Calcula $\\cos 60°$." },
+      "prompt": {
+        "en": "Compute $\\cos 60°$.",
+        "es": "Calcula $\\cos 60°$."
+      },
       "answer": "1/2",
-      "acceptedAlt": ["cos(pi/3)", "0.5"],
-      "hint": { "en": "A standard angle.", "es": "Un ángulo estándar." },
-      "solution": [ { "tex": "\\cos 60° = \\tfrac12", "en": "Standard value.", "es": "Valor estándar." } ]
+      "acceptedAlt": [
+        "cos(pi/3)",
+        "0.5"
+      ],
+      "hint": {
+        "en": "A standard angle.",
+        "es": "Un ángulo estándar."
+      },
+      "solution": [
+        {
+          "tex": "\\cos 60° = \\tfrac12",
+          "en": "Standard value.",
+          "es": "Valor estándar."
+        }
+      ]
     },
     {
       "id": "functions-09-e3",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\tan 45°$.", "es": "Calcula $\\tan 45°$." },
+      "prompt": {
+        "en": "Compute $\\tan 45°$.",
+        "es": "Calcula $\\tan 45°$."
+      },
       "answer": "1",
-      "acceptedAlt": ["tan(pi/4)"],
-      "hint": { "en": "Opposite equals adjacent here.", "es": "Aquí opuesto = adyacente." },
-      "solution": [ { "tex": "\\tan 45° = 1", "en": "Standard value.", "es": "Valor estándar." } ]
+      "acceptedAlt": [
+        "tan(pi/4)"
+      ],
+      "hint": {
+        "en": "Opposite equals adjacent here.",
+        "es": "Aquí opuesto = adyacente."
+      },
+      "solution": [
+        {
+          "tex": "\\tan 45° = 1",
+          "en": "Standard value.",
+          "es": "Valor estándar."
+        }
+      ]
     },
     {
       "id": "functions-09-e4",
       "answerType": "text",
-      "prompt": { "en": "Sine equals opposite over which side? (one word)", "es": "El seno es el opuesto entre qué lado? (una palabra)" },
+      "prompt": {
+        "en": "Sine equals opposite over which side? (one word)",
+        "es": "El seno es el opuesto entre qué lado? (una palabra)"
+      },
       "answer": "hypotenuse",
-      "acceptedAlt": ["hipotenusa"],
-      "hint": { "en": "The longest side.", "es": "El lado más largo." },
-      "solution": [ { "tex": "\\sin\\theta = \\tfrac{\\text{opp}}{\\text{hyp}}", "en": "Over the hypotenuse.", "es": "Entre la hipotenusa." } ]
+      "acceptedAlt": [
+        "hipotenusa"
+      ],
+      "hint": {
+        "en": "The longest side.",
+        "es": "El lado más largo."
+      },
+      "solution": [
+        {
+          "tex": "\\sin\\theta = \\tfrac{\\text{opp}}{\\text{hyp}}",
+          "en": "Over the hypotenuse.",
+          "es": "Entre la hipotenusa."
+        }
+      ]
+    },
+    {
+      "id": "functions-09-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "In a right triangle, $\\sin\\theta$ equals which ratio?",
+        "es": "En un triángulo rectángulo, $\\sin\\theta$ es qué razón?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "opposite / hypotenuse",
+            "es": "opuesto / hipotenusa"
+          },
+          "correct": true,
+          "why": {
+            "en": "SOH: sine = opposite over hypotenuse.",
+            "es": "SOH: seno = opuesto sobre hipotenusa."
+          }
+        },
+        {
+          "text": {
+            "en": "adjacent / hypotenuse",
+            "es": "adyacente / hipotenusa"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's cosine.",
+            "es": "Eso es el coseno."
+          }
+        },
+        {
+          "text": {
+            "en": "opposite / adjacent",
+            "es": "opuesto / adyacente"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's tangent.",
+            "es": "Eso es la tangente."
+          }
+        }
+      ],
+      "hint": {
+        "en": "SOH-CAH-TOA.",
+        "es": "SOH-CAH-TOA."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 6.1–6.2, angle measure and right-triangle trigonometry", "es": "Cap. 6.1–6.2, medida de ángulos y trigonometría del triángulo rectángulo" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 4.3, right triangle trigonometry", "es": "Cap. 4.3, trigonometría del triángulo rectángulo" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones trigonométricas' — razones trigonométricas", "es": "Apartado 'Funciones trigonométricas' — razones trigonométricas" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 6.1–6.2, angle measure and right-triangle trigonometry",
+        "es": "Cap. 6.1–6.2, medida de ángulos y trigonometría del triángulo rectángulo"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 4.3, right triangle trigonometry",
+        "es": "Cap. 4.3, trigonometría del triángulo rectángulo"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones trigonométricas' — razones trigonométricas",
+        "es": "Apartado 'Funciones trigonométricas' — razones trigonométricas"
+      }
+    }
   ]
 }

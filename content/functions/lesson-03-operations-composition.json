@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 3,
   "estimatedMinutes": 40,
-  "title": { "en": "Operations & Composition", "es": "Operaciones y composición" },
+  "title": {
+    "en": "Operations & Composition",
+    "es": "Operaciones y composición"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "New functions are built from old ones. The four **arithmetic combinations** act pointwise: $(f+g)(x) = f(x)+g(x)$, and likewise for $-$, $\\cdot$, and $\\div$. The domain of the combination is where **both** functions are defined (and, for division, where the denominator is nonzero).",
         "es": "Las funciones nuevas se construyen a partir de otras. Las cuatro **combinaciones aritméticas** actúan punto a punto: $(f+g)(x) = f(x)+g(x)$, e igual para $-$, $\\cdot$ y $\\div$. El dominio de la combinación es donde **ambas** funciones están definidas (y, en la división, donde el denominador no se anula)."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-01-concept"
+      ],
+      "note": {
+        "en": "Builds on the concept of a function.",
+        "es": "Se apoya en el concepto de función."
       }
     },
     {
@@ -28,10 +41,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — composition", "es": "Ejemplo resuelto — composición" },
+      "title": {
+        "en": "Worked example — composition",
+        "es": "Ejemplo resuelto — composición"
+      },
       "content": {
         "en": "With $f(x)=x+1$, $g(x)=2x$, compute $(f\\circ g)(3)$ two ways. Directly: $g(3)=6$, then $f(6)=7$. Via the formula: $(f\\circ g)(x)=2x+1$, so $(f\\circ g)(3)=7$. Both agree — a good consistency check.",
         "es": "Con $f(x)=x+1$, $g(x)=2x$, calcula $(f\\circ g)(3)$ de dos formas. Directamente: $g(3)=6$, luego $f(6)=7$. Con la fórmula: $(f\\circ g)(x)=2x+1$, así $(f\\circ g)(3)=7$. Ambas coinciden — buena comprobación."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "With $f(x)=x+1$ and $g(x)=2x$: $(f\\circ g)(x)=f(g(x))=2x+1$.",
+        "es": "Con $f(x)=x+1$ y $g(x)=2x$: $(f\\circ g)(x)=f(g(x))=2x+1$."
       }
     }
   ],
@@ -39,49 +66,166 @@
     {
       "id": "functions-03-e1",
       "answerType": "expression",
-      "prompt": { "en": "With $f(x)=x+1$, $g(x)=2x$, find $(f+g)(x)$.", "es": "Con $f(x)=x+1$, $g(x)=2x$, halla $(f+g)(x)$." },
+      "prompt": {
+        "en": "With $f(x)=x+1$, $g(x)=2x$, find $(f+g)(x)$.",
+        "es": "Con $f(x)=x+1$, $g(x)=2x$, halla $(f+g)(x)$."
+      },
       "answer": "3*x + 1",
-      "acceptedAlt": ["x+1+2x", "3x+1"],
-      "hint": { "en": "Add the two rules.", "es": "Suma las dos reglas." },
-      "solution": [ { "tex": "(x+1) + 2x = 3x + 1", "en": "Combine like terms.", "es": "Agrupa semejantes." } ]
+      "acceptedAlt": [
+        "x+1+2x",
+        "3x+1"
+      ],
+      "hint": {
+        "en": "Add the two rules.",
+        "es": "Suma las dos reglas."
+      },
+      "solution": [
+        {
+          "tex": "(x+1) + 2x = 3x + 1",
+          "en": "Combine like terms.",
+          "es": "Agrupa semejantes."
+        }
+      ]
     },
     {
       "id": "functions-03-e2",
       "answerType": "expression",
-      "prompt": { "en": "With $f(x)=x+1$, $g(x)=2x$, find $(f\\circ g)(x)$.", "es": "Con $f(x)=x+1$, $g(x)=2x$, halla $(f\\circ g)(x)$." },
+      "prompt": {
+        "en": "With $f(x)=x+1$, $g(x)=2x$, find $(f\\circ g)(x)$.",
+        "es": "Con $f(x)=x+1$, $g(x)=2x$, halla $(f\\circ g)(x)$."
+      },
       "answer": "2*x + 1",
-      "acceptedAlt": ["2x+1"],
-      "hint": { "en": "f(g(x)) = g(x) + 1.", "es": "f(g(x)) = g(x) + 1." },
+      "acceptedAlt": [
+        "2x+1"
+      ],
+      "hint": {
+        "en": "f(g(x)) = g(x) + 1.",
+        "es": "f(g(x)) = g(x) + 1."
+      },
       "solution": [
-        { "tex": "(f\\circ g)(x) = f(2x) = 2x + 1", "en": "Apply g, then f.", "es": "Aplica g, luego f." }
+        {
+          "tex": "(f\\circ g)(x) = f(2x) = 2x + 1",
+          "en": "Apply g, then f.",
+          "es": "Aplica g, luego f."
+        }
       ]
     },
     {
       "id": "functions-03-e3",
       "answerType": "expression",
-      "prompt": { "en": "With $f(x)=x+1$, $g(x)=2x$, find $(g\\circ f)(x)$.", "es": "Con $f(x)=x+1$, $g(x)=2x$, halla $(g\\circ f)(x)$." },
+      "prompt": {
+        "en": "With $f(x)=x+1$, $g(x)=2x$, find $(g\\circ f)(x)$.",
+        "es": "Con $f(x)=x+1$, $g(x)=2x$, halla $(g\\circ f)(x)$."
+      },
       "answer": "2*x + 2",
-      "acceptedAlt": ["2*(x+1)"],
-      "hint": { "en": "g(f(x)) = 2·f(x).", "es": "g(f(x)) = 2·f(x)." },
+      "acceptedAlt": [
+        "2*(x+1)"
+      ],
+      "hint": {
+        "en": "g(f(x)) = 2·f(x).",
+        "es": "g(f(x)) = 2·f(x)."
+      },
       "solution": [
-        { "tex": "(g\\circ f)(x) = g(x+1) = 2(x+1) = 2x+2", "en": "Apply f, then g.", "es": "Aplica f, luego g." }
+        {
+          "tex": "(g\\circ f)(x) = g(x+1) = 2(x+1) = 2x+2",
+          "en": "Apply f, then g.",
+          "es": "Aplica f, luego g."
+        }
       ]
     },
     {
       "id": "functions-03-e4",
       "answerType": "expression",
-      "prompt": { "en": "With $f(x)=x+1$, $g(x)=2x$, find $(f\\cdot g)(x)$.", "es": "Con $f(x)=x+1$, $g(x)=2x$, halla $(f\\cdot g)(x)$." },
+      "prompt": {
+        "en": "With $f(x)=x+1$, $g(x)=2x$, find $(f\\cdot g)(x)$.",
+        "es": "Con $f(x)=x+1$, $g(x)=2x$, halla $(f\\cdot g)(x)$."
+      },
       "answer": "2*x^2 + 2*x",
-      "acceptedAlt": ["(x+1)*2x", "2x*(x+1)"],
-      "hint": { "en": "Multiply the two rules.", "es": "Multiplica las dos reglas." },
+      "acceptedAlt": [
+        "(x+1)*2x",
+        "2x*(x+1)"
+      ],
+      "hint": {
+        "en": "Multiply the two rules.",
+        "es": "Multiplica las dos reglas."
+      },
       "solution": [
-        { "tex": "(x+1)(2x) = 2x^2 + 2x", "en": "Expand the product.", "es": "Desarrolla el producto." }
+        {
+          "tex": "(x+1)(2x) = 2x^2 + 2x",
+          "en": "Expand the product.",
+          "es": "Desarrolla el producto."
+        }
       ]
+    },
+    {
+      "id": "functions-03-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$(f\\circ g)(x)$ means...",
+        "es": "$(f\\circ g)(x)$ significa..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$f(g(x))$",
+            "es": "$f(g(x))$"
+          },
+          "correct": true,
+          "why": {
+            "en": "Apply g first, then f — inner function first.",
+            "es": "Aplica g primero, luego f — la función interior primero."
+          }
+        },
+        {
+          "text": {
+            "en": "$g(f(x))$",
+            "es": "$g(f(x))$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's the opposite order, g∘f.",
+            "es": "Ese es el orden opuesto, g∘f."
+          }
+        },
+        {
+          "text": {
+            "en": "$f(x)\\cdot g(x)$",
+            "es": "$f(x)\\cdot g(x)$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's a product, not a composition.",
+            "es": "Eso es un producto, no una composición."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Inner function first.",
+        "es": "La función interior primero."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 2.7, Combining Functions; composition", "es": "Cap. 2.7, Combinación de funciones; composición" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 1.8, combinations and composite functions", "es": "Cap. 1.8, combinaciones y funciones compuestas" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones' — operaciones entre funciones", "es": "Apartado 'Funciones' — operaciones entre funciones" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 2.7, Combining Functions; composition",
+        "es": "Cap. 2.7, Combinación de funciones; composición"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 1.8, combinations and composite functions",
+        "es": "Cap. 1.8, combinaciones y funciones compuestas"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones' — operaciones entre funciones",
+        "es": "Apartado 'Funciones' — operaciones entre funciones"
+      }
+    }
   ]
 }

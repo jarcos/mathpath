@@ -3,13 +3,26 @@
   "subjectId": "algebra",
   "order": 7,
   "estimatedMinutes": 55,
-  "title": { "en": "Quadratic Equations", "es": "Ecuaciones cuadráticas" },
+  "title": {
+    "en": "Quadratic Equations",
+    "es": "Ecuaciones cuadráticas"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Linear equations describe quantities that change at a constant rate. But a great many real situations are governed by a **squared** term: the area of a square as its side grows, the height of a thrown ball over time, the power dissipated by a resistor, the path that minimizes a cost. All of these lead to a **quadratic equation** — and learning to solve them is one of the most reusable skills in all of mathematics.",
         "es": "Las ecuaciones lineales describen cantidades que cambian a ritmo constante. Pero muchísimas situaciones reales están gobernadas por un término **al cuadrado**: el área de un cuadrado cuando crece su lado, la altura de una pelota lanzada con el tiempo, la potencia disipada por una resistencia, la trayectoria que minimiza un coste. Todas conducen a una **ecuación cuadrática**, y aprender a resolverlas es una de las destrezas más reutilizables de toda la matemática."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-01-linear-equations"
+      ],
+      "note": {
+        "en": "Builds on linear equations.",
+        "es": "Se apoya en las ecuaciones lineales."
       }
     },
     {
@@ -35,7 +48,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — factoring", "es": "Ejemplo resuelto — factorización" },
+      "title": {
+        "en": "Worked example — factoring",
+        "es": "Ejemplo resuelto — factorización"
+      },
       "content": {
         "en": "Solve $x^2 - 5x + 6 = 0$. Factor: $(x-2)(x-3) = 0$. Set each factor to zero: $x - 2 = 0$ gives $x = 2$; $x - 3 = 0$ gives $x = 3$. The solution set is $\\{2, 3\\}$. **Check:** $2^2 - 5(2) + 6 = 4 - 10 + 6 = 0$ ✓ and $3^2 - 5(3) + 6 = 9 - 15 + 6 = 0$ ✓.",
         "es": "Resuelve $x^2 - 5x + 6 = 0$. Factoriza: $(x-2)(x-3) = 0$. Iguala cada factor a cero: $x - 2 = 0$ da $x = 2$; $x - 3 = 0$ da $x = 3$. El conjunto solución es $\\{2, 3\\}$. **Comprobación:** $2^2 - 5(2) + 6 = 4 - 10 + 6 = 0$ ✓ y $3^2 - 5(3) + 6 = 9 - 15 + 6 = 0$ ✓."
@@ -57,7 +73,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — completing the square", "es": "Ejemplo resuelto — completar el cuadrado" },
+      "title": {
+        "en": "Worked example — completing the square",
+        "es": "Ejemplo resuelto — completar el cuadrado"
+      },
       "content": {
         "en": "Solve $x^2 + 6x + 5 = 0$ by completing the square. Rewrite as $(x+3)^2 - 4 = 0$, so $(x+3)^2 = 4$, hence $x + 3 = \\pm 2$, giving $x = -1$ or $x = -5$. **Check** $x=-1$: $1 - 6 + 5 = 0$ ✓.",
         "es": "Resuelve $x^2 + 6x + 5 = 0$ completando el cuadrado. Reescribe como $(x+3)^2 - 4 = 0$, así $(x+3)^2 = 4$, de donde $x + 3 = \\pm 2$, dando $x = -1$ o $x = -5$. **Comprobación** $x=-1$: $1 - 6 + 5 = 0$ ✓."
@@ -72,7 +91,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — the formula", "es": "Ejemplo resuelto — la fórmula" },
+      "title": {
+        "en": "Worked example — the formula",
+        "es": "Ejemplo resuelto — la fórmula"
+      },
       "content": {
         "en": "Solve $2x^2 + 3x - 2 = 0$. Here $a=2, b=3, c=-2$. The discriminant is $b^2 - 4ac = 9 - 4(2)(-2) = 9 + 16 = 25$. So $x = \\dfrac{-3 \\pm \\sqrt{25}}{4} = \\dfrac{-3 \\pm 5}{4}$, giving $x = \\tfrac12$ or $x = -2$.",
         "es": "Resuelve $2x^2 + 3x - 2 = 0$. Aquí $a=2, b=3, c=-2$. El discriminante es $b^2 - 4ac = 9 - 4(2)(-2) = 9 + 16 = 25$. Así $x = \\dfrac{-3 \\pm \\sqrt{25}}{4} = \\dfrac{-3 \\pm 5}{4}$, dando $x = \\tfrac12$ o $x = -2$."
@@ -95,7 +117,10 @@
     {
       "type": "graph",
       "fn": "x^2 - 5*x + 6",
-      "domain": [-1, 6],
+      "domain": [
+        -1,
+        6
+      ],
       "caption": {
         "en": "The parabola $y = x^2 - 5x + 6$. Its **roots** are the x-intercepts $x = 2$ and $x = 3$; the **vertex** sits halfway between them at $x = 2.5$; the curve is symmetric about that vertical axis. Solving the equation is the algebraic version of finding where the graph crosses the x-axis.",
         "es": "La parábola $y = x^2 - 5x + 6$. Sus **raíces** son los cortes con el eje x, $x = 2$ y $x = 3$; el **vértice** está a medio camino, en $x = 2.5$; la curva es simétrica respecto a ese eje vertical. Resolver la ecuación es la versión algebraica de hallar dónde la gráfica cruza el eje x."
@@ -103,10 +128,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Common pitfalls", "es": "Errores frecuentes" },
+      "title": {
+        "en": "Common pitfalls",
+        "es": "Errores frecuentes"
+      },
       "content": {
         "en": "(a) Forgetting the $\\pm$ when taking a square root — you lose a solution. (b) Dividing both sides by $x$ to 'simplify' $x^2 = 5x$: this destroys the root $x = 0$; instead move everything to one side and factor. (c) Sign slips inside the discriminant when $c$ is negative, as in $-4ac$ with $c<0$ becoming positive. Polya's advice applies: after solving, **look back** and substitute your answers to confirm.",
         "es": "(a) Olvidar el $\\pm$ al tomar la raíz — pierdes una solución. (b) Dividir ambos lados entre $x$ para 'simplificar' $x^2 = 5x$: esto destruye la raíz $x = 0$; en su lugar pasa todo a un lado y factoriza. (c) Errores de signo en el discriminante cuando $c$ es negativo, como $-4ac$ con $c<0$ volviéndose positivo. Vale el consejo de Polya: tras resolver, **revisa** y sustituye tus respuestas para confirmar."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$x^2 - 5x + 6 = 0$ factors as $(x-2)(x-3)=0$, so $x=2$ or $x=3$.",
+        "es": "$x^2 - 5x + 6 = 0$ se factoriza $(x-2)(x-3)=0$, luego $x=2$ o $x=3$."
       }
     }
   ],
@@ -119,15 +158,29 @@
         "es": "Halla ambas raíces:  $x^2 - 5x + 6 = 0$  (escribe como  2, 3)"
       },
       "answer": "2, 3",
-      "acceptedAlt": ["3, 2"],
+      "acceptedAlt": [
+        "3, 2"
+      ],
       "hint": {
         "en": "Two numbers that multiply to 6 and add to 5.",
         "es": "Dos números que multipliquen 6 y sumen 5."
       },
       "solution": [
-        { "tex": "x^2 - 5x + 6 = 0", "en": "Start from the equation.", "es": "Partimos de la ecuación." },
-        { "tex": "(x-2)(x-3) = 0", "en": "Factor: 2 and 3 multiply to 6, add to 5.", "es": "Factoriza: 2 y 3 multiplican 6 y suman 5." },
-        { "tex": "x = 2 \\;\\text{or}\\; x = 3", "en": "Zero-product property.", "es": "Propiedad del producto nulo." }
+        {
+          "tex": "x^2 - 5x + 6 = 0",
+          "en": "Start from the equation.",
+          "es": "Partimos de la ecuación."
+        },
+        {
+          "tex": "(x-2)(x-3) = 0",
+          "en": "Factor: 2 and 3 multiply to 6, add to 5.",
+          "es": "Factoriza: 2 y 3 multiplican 6 y suman 5."
+        },
+        {
+          "tex": "x = 2 \\;\\text{or}\\; x = 3",
+          "en": "Zero-product property.",
+          "es": "Propiedad del producto nulo."
+        }
       ]
     },
     {
@@ -138,89 +191,237 @@
         "es": "Resuelve por el método de la raíz:  $x^2 - 9 = 0$"
       },
       "answer": "3, -3",
-      "acceptedAlt": ["-3, 3"],
-      "hint": { "en": "Isolate x², then take ±√.", "es": "Aísla x² y toma ±√." },
+      "acceptedAlt": [
+        "-3, 3"
+      ],
+      "hint": {
+        "en": "Isolate x², then take ±√.",
+        "es": "Aísla x² y toma ±√."
+      },
       "solution": [
-        { "tex": "x^2 = 9", "en": "Add 9 to both sides.", "es": "Suma 9 a ambos lados." },
-        { "tex": "x = \\pm 3", "en": "Take the square root of both signs.", "es": "Toma la raíz con ambos signos." }
+        {
+          "tex": "x^2 = 9",
+          "en": "Add 9 to both sides.",
+          "es": "Suma 9 a ambos lados."
+        },
+        {
+          "tex": "x = \\pm 3",
+          "en": "Take the square root of both signs.",
+          "es": "Toma la raíz con ambos signos."
+        }
       ]
     },
     {
       "id": "algebra-02-e3",
       "answerType": "set",
-      "prompt": { "en": "Solve:  $x^2 + 2x - 8 = 0$", "es": "Resuelve:  $x^2 + 2x - 8 = 0$" },
+      "prompt": {
+        "en": "Solve:  $x^2 + 2x - 8 = 0$",
+        "es": "Resuelve:  $x^2 + 2x - 8 = 0$"
+      },
       "answer": "2, -4",
-      "acceptedAlt": ["-4, 2"],
-      "hint": { "en": "Factors of -8 that add to 2.", "es": "Factores de -8 que sumen 2." },
+      "acceptedAlt": [
+        "-4, 2"
+      ],
+      "hint": {
+        "en": "Factors of -8 that add to 2.",
+        "es": "Factores de -8 que sumen 2."
+      },
       "solution": [
-        { "tex": "(x-2)(x+4) = 0", "en": "Factor.", "es": "Factoriza." },
-        { "tex": "x = 2 \\;\\text{or}\\; x = -4", "en": "Set each factor to zero.", "es": "Iguala cada factor a cero." }
+        {
+          "tex": "(x-2)(x+4) = 0",
+          "en": "Factor.",
+          "es": "Factoriza."
+        },
+        {
+          "tex": "x = 2 \\;\\text{or}\\; x = -4",
+          "en": "Set each factor to zero.",
+          "es": "Iguala cada factor a cero."
+        }
       ]
     },
     {
       "id": "algebra-02-e4",
       "answerType": "expression",
-      "prompt": { "en": "Factor completely:  $x^2 - 5x + 6$", "es": "Factoriza por completo:  $x^2 - 5x + 6$" },
+      "prompt": {
+        "en": "Factor completely:  $x^2 - 5x + 6$",
+        "es": "Factoriza por completo:  $x^2 - 5x + 6$"
+      },
       "answer": "(x-2)*(x-3)",
-      "acceptedAlt": ["(x-3)*(x-2)"],
-      "hint": { "en": "Use the root pair 2 and 3.", "es": "Usa la pareja de raíces 2 y 3." },
+      "acceptedAlt": [
+        "(x-3)*(x-2)"
+      ],
+      "hint": {
+        "en": "Use the root pair 2 and 3.",
+        "es": "Usa la pareja de raíces 2 y 3."
+      },
       "solution": [
-        { "tex": "(x-2)(x-3)", "en": "2·3 = 6 and 2 + 3 = 5.", "es": "2·3 = 6 y 2 + 3 = 5." }
+        {
+          "tex": "(x-2)(x-3)",
+          "en": "2·3 = 6 and 2 + 3 = 5.",
+          "es": "2·3 = 6 y 2 + 3 = 5."
+        }
       ]
     },
     {
       "id": "algebra-02-e5",
       "answerType": "number",
-      "prompt": { "en": "Compute the discriminant $b^2 - 4ac$ of $x^2 - 4x + 4 = 0$.", "es": "Calcula el discriminante $b^2 - 4ac$ de $x^2 - 4x + 4 = 0$." },
+      "prompt": {
+        "en": "Compute the discriminant $b^2 - 4ac$ of $x^2 - 4x + 4 = 0$.",
+        "es": "Calcula el discriminante $b^2 - 4ac$ de $x^2 - 4x + 4 = 0$."
+      },
       "answer": "0",
-      "acceptedAlt": ["(-4)^2-4*1*4"],
-      "hint": { "en": "a = 1, b = -4, c = 4.", "es": "a = 1, b = -4, c = 4." },
+      "acceptedAlt": [
+        "(-4)^2-4*1*4"
+      ],
+      "hint": {
+        "en": "a = 1, b = -4, c = 4.",
+        "es": "a = 1, b = -4, c = 4."
+      },
       "solution": [
-        { "tex": "(-4)^2 - 4(1)(4) = 16 - 16", "en": "Substitute the coefficients.", "es": "Sustituye los coeficientes." },
-        { "tex": "= 0", "en": "Δ = 0 → one repeated root.", "es": "Δ = 0 → una raíz doble." }
+        {
+          "tex": "(-4)^2 - 4(1)(4) = 16 - 16",
+          "en": "Substitute the coefficients.",
+          "es": "Sustituye los coeficientes."
+        },
+        {
+          "tex": "= 0",
+          "en": "Δ = 0 → one repeated root.",
+          "es": "Δ = 0 → una raíz doble."
+        }
       ]
     },
     {
       "id": "algebra-02-e6",
       "answerType": "number",
-      "prompt": { "en": "Completing the square, $x^2 + 6x + 5 = (x+3)^2 + c$. Find $c$.", "es": "Al completar el cuadrado, $x^2 + 6x + 5 = (x+3)^2 + c$. Halla $c$." },
+      "prompt": {
+        "en": "Completing the square, $x^2 + 6x + 5 = (x+3)^2 + c$. Find $c$.",
+        "es": "Al completar el cuadrado, $x^2 + 6x + 5 = (x+3)^2 + c$. Halla $c$."
+      },
       "answer": "-4",
-      "acceptedAlt": ["5-9"],
-      "hint": { "en": "(x+3)² = x² + 6x + 9.", "es": "(x+3)² = x² + 6x + 9." },
+      "acceptedAlt": [
+        "5-9"
+      ],
+      "hint": {
+        "en": "(x+3)² = x² + 6x + 9.",
+        "es": "(x+3)² = x² + 6x + 9."
+      },
       "solution": [
-        { "tex": "(x+3)^2 = x^2 + 6x + 9", "en": "Expand the square.", "es": "Desarrolla el cuadrado." },
-        { "tex": "5 - 9 = -4", "en": "So c = -4.", "es": "Por tanto c = -4." }
+        {
+          "tex": "(x+3)^2 = x^2 + 6x + 9",
+          "en": "Expand the square.",
+          "es": "Desarrolla el cuadrado."
+        },
+        {
+          "tex": "5 - 9 = -4",
+          "en": "So c = -4.",
+          "es": "Por tanto c = -4."
+        }
       ]
     },
     {
       "id": "algebra-02-e7",
       "answerType": "number",
-      "prompt": { "en": "By Vieta, the sum of the roots of $x^2 - 5x + 6$ is?", "es": "Por Vieta, ¿la suma de las raíces de $x^2 - 5x + 6$ es?" },
+      "prompt": {
+        "en": "By Vieta, the sum of the roots of $x^2 - 5x + 6$ is?",
+        "es": "Por Vieta, ¿la suma de las raíces de $x^2 - 5x + 6$ es?"
+      },
       "answer": "5",
-      "acceptedAlt": ["-(-5)/1"],
-      "hint": { "en": "Sum = -b/a.", "es": "Suma = -b/a." },
+      "acceptedAlt": [
+        "-(-5)/1"
+      ],
+      "hint": {
+        "en": "Sum = -b/a.",
+        "es": "Suma = -b/a."
+      },
       "solution": [
-        { "tex": "r + s = -\\tfrac{b}{a} = -\\tfrac{-5}{1}", "en": "Apply Vieta's sum.", "es": "Aplica la suma de Vieta." },
-        { "tex": "= 5", "en": "Matches 2 + 3.", "es": "Coincide con 2 + 3." }
+        {
+          "tex": "r + s = -\\tfrac{b}{a} = -\\tfrac{-5}{1}",
+          "en": "Apply Vieta's sum.",
+          "es": "Aplica la suma de Vieta."
+        },
+        {
+          "tex": "= 5",
+          "en": "Matches 2 + 3.",
+          "es": "Coincide con 2 + 3."
+        }
       ]
+    },
+    {
+      "id": "algebra-02-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "How many real roots can a quadratic equation have?",
+        "es": "¿Cuántas raíces reales puede tener una ecuación cuadrática?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "0, 1, or 2",
+            "es": "0, 1 o 2"
+          },
+          "correct": true,
+          "why": {
+            "en": "The discriminant decides: negative→0, zero→1, positive→2.",
+            "es": "El discriminante decide: negativo→0, cero→1, positivo→2."
+          }
+        },
+        {
+          "text": {
+            "en": "always exactly 2",
+            "es": "siempre exactamente 2"
+          },
+          "correct": false,
+          "why": {
+            "en": "A negative discriminant gives no real roots.",
+            "es": "Un discriminante negativo no da raíces reales."
+          }
+        },
+        {
+          "text": {
+            "en": "always exactly 1",
+            "es": "siempre exactamente 1"
+          },
+          "correct": false,
+          "why": {
+            "en": "Only when the discriminant is zero.",
+            "es": "Solo cuando el discriminante es cero."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think of the discriminant.",
+        "es": "Piensa en el discriminante."
+      }
     }
   ],
   "references": [
     {
       "source": "Stewart, Redlin & Watson — Precalculus: Mathematics for Calculus (2015)",
-      "detail": { "en": "Ch. 1.5, Quadratic Equations", "es": "Cap. 1.5, Ecuaciones cuadráticas" }
+      "detail": {
+        "en": "Ch. 1.5, Quadratic Equations",
+        "es": "Cap. 1.5, Ecuaciones cuadráticas"
+      }
     },
     {
       "source": "Long — Painless Algebra",
-      "detail": { "en": "Chapter on solving quadratic equations", "es": "Capítulo sobre resolución de ecuaciones cuadráticas" }
+      "detail": {
+        "en": "Chapter on solving quadratic equations",
+        "es": "Capítulo sobre resolución de ecuaciones cuadráticas"
+      }
     },
     {
       "source": "UOC — Iniciación a las matemáticas para la ingeniería",
-      "detail": { "en": "Section 'Ecuaciones' — ecuaciones de segundo grado", "es": "Apartado 'Ecuaciones' — ecuaciones de segundo grado" }
+      "detail": {
+        "en": "Section 'Ecuaciones' — ecuaciones de segundo grado",
+        "es": "Apartado 'Ecuaciones' — ecuaciones de segundo grado"
+      }
     },
     {
       "source": "Pólya — How to Solve It / Cómo plantear y resolver problemas",
-      "detail": { "en": "The four-step method; the 'looking back' check", "es": "El método de cuatro pasos; la fase de 'revisar'" }
+      "detail": {
+        "en": "The four-step method; the 'looking back' check",
+        "es": "El método de cuatro pasos; la fase de 'revisar'"
+      }
     }
   ]
 }

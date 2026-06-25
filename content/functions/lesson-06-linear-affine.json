@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 6,
   "estimatedMinutes": 40,
-  "title": { "en": "Linear & Affine Functions", "es": "Funciones lineales y afines" },
+  "title": {
+    "en": "Linear & Affine Functions",
+    "es": "Funciones lineales y afines"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A function of the form $f(x) = mx + b$ has a straight-line graph and models any process with a **constant rate of change** — a taxi fare that grows steadily with distance, a tank draining at a fixed rate. Strictly, $f(x)=mx$ (through the origin) is **linear**, and $f(x)=mx+b$ with $b\\neq0$ is **affine**, but in everyday use both are called \"linear functions\".",
         "es": "Una función de la forma $f(x) = mx + b$ tiene gráfica recta y modela cualquier proceso con **tasa de cambio constante** — una tarifa de taxi que crece de forma uniforme con la distancia, un depósito que se vacía a ritmo fijo. En rigor, $f(x)=mx$ (por el origen) es **lineal**, y $f(x)=mx+b$ con $b\\neq0$ es **afín**, pero en el uso cotidiano ambas se llaman \"funciones lineales\"."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-01-concept"
+      ],
+      "note": {
+        "en": "Builds on the concept of a function.",
+        "es": "Se apoya en el concepto de función."
       }
     },
     {
@@ -29,7 +42,10 @@
     {
       "type": "graph",
       "fn": "2*x + 1",
-      "domain": [-4, 4],
+      "domain": [
+        -4,
+        4
+      ],
       "caption": {
         "en": "$f(x) = 2x + 1$: slope $2$ (up two for every one across), y-intercept $1$. Every linear function looks like this — a straight line fully determined by its slope and one point.",
         "es": "$f(x) = 2x + 1$: pendiente $2$ (sube dos por cada uno que avanza), ordenada $1$. Toda función lineal se ve así — una recta determinada por su pendiente y un punto."
@@ -37,10 +53,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — slope from two points", "es": "Ejemplo resuelto — pendiente desde dos puntos" },
+      "title": {
+        "en": "Worked example — slope from two points",
+        "es": "Ejemplo resuelto — pendiente desde dos puntos"
+      },
       "content": {
         "en": "Find the line through $(1, 2)$ and $(3, 8)$. Slope $m = \\tfrac{8-2}{3-1} = \\tfrac{6}{2} = 3$. Point-slope from $(1,2)$: $y - 2 = 3(x - 1)$, i.e. $y = 3x - 1$. Check the other point: $3(3) - 1 = 8$ ✓.",
         "es": "Halla la recta por $(1, 2)$ y $(3, 8)$. Pendiente $m = \\tfrac{8-2}{3-1} = \\tfrac{6}{2} = 3$. Punto-pendiente desde $(1,2)$: $y - 2 = 3(x - 1)$, es decir $y = 3x - 1$. Comprueba el otro punto: $3(3) - 1 = 8$ ✓."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$y=2x+1$ has slope $2$ and $y$-intercept $1$; it rises 2 units per unit of $x$.",
+        "es": "$y=2x+1$ tiene pendiente $2$ y ordenada en el origen $1$; sube 2 unidades por cada unidad de $x$."
       }
     }
   ],
@@ -48,43 +78,164 @@
     {
       "id": "functions-06-e1",
       "answerType": "number",
-      "prompt": { "en": "Find the slope of the line through $(1, 2)$ and $(3, 8)$.", "es": "Halla la pendiente de la recta por $(1, 2)$ y $(3, 8)$." },
+      "prompt": {
+        "en": "Find the slope of the line through $(1, 2)$ and $(3, 8)$.",
+        "es": "Halla la pendiente de la recta por $(1, 2)$ y $(3, 8)$."
+      },
       "answer": "3",
-      "acceptedAlt": ["(8-2)/(3-1)", "6/2"],
-      "hint": { "en": "Δy / Δx.", "es": "Δy / Δx." },
-      "solution": [ { "tex": "m = \\frac{8-2}{3-1} = 3", "en": "Apply the slope formula.", "es": "Aplica la fórmula." } ]
+      "acceptedAlt": [
+        "(8-2)/(3-1)",
+        "6/2"
+      ],
+      "hint": {
+        "en": "Δy / Δx.",
+        "es": "Δy / Δx."
+      },
+      "solution": [
+        {
+          "tex": "m = \\frac{8-2}{3-1} = 3",
+          "en": "Apply the slope formula.",
+          "es": "Aplica la fórmula."
+        }
+      ]
     },
     {
       "id": "functions-06-e2",
       "answerType": "number",
-      "prompt": { "en": "For $f(x) = 2x + 1$, find $f(4)$.", "es": "Para $f(x) = 2x + 1$, halla $f(4)$." },
+      "prompt": {
+        "en": "For $f(x) = 2x + 1$, find $f(4)$.",
+        "es": "Para $f(x) = 2x + 1$, halla $f(4)$."
+      },
       "answer": "9",
-      "acceptedAlt": ["2*4+1"],
-      "hint": { "en": "Substitute 4.", "es": "Sustituye 4." },
-      "solution": [ { "tex": "f(4) = 2\\cdot 4 + 1 = 9", "en": "Evaluate.", "es": "Evalúa." } ]
+      "acceptedAlt": [
+        "2*4+1"
+      ],
+      "hint": {
+        "en": "Substitute 4.",
+        "es": "Sustituye 4."
+      },
+      "solution": [
+        {
+          "tex": "f(4) = 2\\cdot 4 + 1 = 9",
+          "en": "Evaluate.",
+          "es": "Evalúa."
+        }
+      ]
     },
     {
       "id": "functions-06-e3",
       "answerType": "number",
-      "prompt": { "en": "What is the y-intercept of $f(x) = 2x + 1$?", "es": "¿Cuál es la ordenada en el origen de $f(x) = 2x + 1$?" },
+      "prompt": {
+        "en": "What is the y-intercept of $f(x) = 2x + 1$?",
+        "es": "¿Cuál es la ordenada en el origen de $f(x) = 2x + 1$?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "The constant b.", "es": "La constante b." },
-      "solution": [ { "tex": "b = 1", "en": "f(0) = 1.", "es": "f(0) = 1." } ]
+      "hint": {
+        "en": "The constant b.",
+        "es": "La constante b."
+      },
+      "solution": [
+        {
+          "tex": "b = 1",
+          "en": "f(0) = 1.",
+          "es": "f(0) = 1."
+        }
+      ]
     },
     {
       "id": "functions-06-e4",
       "answerType": "expression",
-      "prompt": { "en": "Simplify $f(x) + x$ for $f(x) = 3x - 2$.", "es": "Simplifica $f(x) + x$ para $f(x) = 3x - 2$." },
+      "prompt": {
+        "en": "Simplify $f(x) + x$ for $f(x) = 3x - 2$.",
+        "es": "Simplifica $f(x) + x$ para $f(x) = 3x - 2$."
+      },
       "answer": "4*x - 2",
-      "acceptedAlt": ["3x-2+x", "4x-2"],
-      "hint": { "en": "Combine the x terms.", "es": "Agrupa los términos en x." },
-      "solution": [ { "tex": "(3x - 2) + x = 4x - 2", "en": "Combine like terms.", "es": "Agrupa semejantes." } ]
+      "acceptedAlt": [
+        "3x-2+x",
+        "4x-2"
+      ],
+      "hint": {
+        "en": "Combine the x terms.",
+        "es": "Agrupa los términos en x."
+      },
+      "solution": [
+        {
+          "tex": "(3x - 2) + x = 4x - 2",
+          "en": "Combine like terms.",
+          "es": "Agrupa semejantes."
+        }
+      ]
+    },
+    {
+      "id": "functions-06-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "In $y=mx+b$, the parameter $m$ is the...",
+        "es": "En $y=mx+b$, el parámetro $m$ es la..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "slope",
+            "es": "pendiente"
+          },
+          "correct": true,
+          "why": {
+            "en": "m is the rate of change; b is the y-intercept.",
+            "es": "m es la tasa de cambio; b es la ordenada en el origen."
+          }
+        },
+        {
+          "text": {
+            "en": "y-intercept",
+            "es": "ordenada en el origen"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's b, not m.",
+            "es": "Esa es b, no m."
+          }
+        },
+        {
+          "text": {
+            "en": "x-intercept",
+            "es": "abscisa en el origen"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's where y=0, derived from m and b.",
+            "es": "Es donde y=0, derivada de m y b."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Rate of change.",
+        "es": "Tasa de cambio."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.10 & 2.6, lines and linear functions", "es": "Cap. 1.10 y 2.6, rectas y funciones lineales" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 1.3, linear equations in two variables", "es": "Cap. 1.3, ecuaciones lineales en dos variables" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones polinómicas' — funciones lineales y afines", "es": "Apartado 'Funciones polinómicas' — funciones lineales y afines" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 1.10 & 2.6, lines and linear functions",
+        "es": "Cap. 1.10 y 2.6, rectas y funciones lineales"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 1.3, linear equations in two variables",
+        "es": "Cap. 1.3, ecuaciones lineales en dos variables"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones polinómicas' — funciones lineales y afines",
+        "es": "Apartado 'Funciones polinómicas' — funciones lineales y afines"
+      }
+    }
   ]
 }

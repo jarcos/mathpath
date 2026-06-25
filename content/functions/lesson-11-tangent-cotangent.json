@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 11,
   "estimatedMinutes": 35,
-  "title": { "en": "Tangent & Cotangent", "es": "Tangente y cotangente" },
+  "title": {
+    "en": "Tangent & Cotangent",
+    "es": "Tangente y cotangente"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "The **tangent** function is the ratio of the other two: $\\tan x = \\dfrac{\\sin x}{\\cos x}$. It measures slope — the steepness of the line from the origin to the unit-circle point — which is why it appears in gradients, angles of elevation, and the derivative's very definition.",
         "es": "La función **tangente** es el cociente de las otras dos: $\\tan x = \\dfrac{\\sin x}{\\cos x}$. Mide la pendiente — la inclinación de la recta del origen al punto de la circunferencia unidad — por eso aparece en gradientes, ángulos de elevación y en la propia definición de derivada."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-09-trig-ratios"
+      ],
+      "note": {
+        "en": "Builds on trigonometric ratios.",
+        "es": "Se apoya en las razones trigonométricas."
       }
     },
     {
@@ -29,7 +42,10 @@
     {
       "type": "graph",
       "fn": "tan(x)",
-      "domain": [-1.4, 1.4],
+      "domain": [
+        -1.4,
+        1.4
+      ],
       "caption": {
         "en": "$f(x) = \\tan x$ near the origin: it passes through $0$, rises ever more steeply, and races toward its asymptote near $x = \\tfrac{\\pi}{2} \\approx 1.57$.",
         "es": "$f(x) = \\tan x$ cerca del origen: pasa por $0$, sube cada vez más rápido y se dispara hacia su asíntota cerca de $x = \\tfrac{\\pi}{2} \\approx 1.57$."
@@ -37,10 +53,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "$\\tan 0 = \\tfrac{\\sin 0}{\\cos 0} = \\tfrac{0}{1} = 0$. $\\tan 45° = \\tfrac{\\sin 45°}{\\cos 45°} = 1$. At $90°$, $\\cos 90° = 0$, so $\\tan 90°$ is undefined — the asymptote.",
         "es": "$\\tan 0 = \\tfrac{\\sin 0}{\\cos 0} = \\tfrac{0}{1} = 0$. $\\tan 45° = \\tfrac{\\sin 45°}{\\cos 45°} = 1$. En $90°$, $\\cos 90° = 0$, así $\\tan 90°$ está indefinida — la asíntota."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$\\tan x=\\dfrac{\\sin x}{\\cos x}$; it's undefined where $\\cos x=0$, e.g. $x=\\tfrac{\\pi}{2}$.",
+        "es": "$\\tan x=\\dfrac{\\sin x}{\\cos x}$; no está definida donde $\\cos x=0$, p. ej. $x=\\tfrac{\\pi}{2}$."
       }
     }
   ],
@@ -48,43 +78,162 @@
     {
       "id": "functions-11-e1",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\tan 0$.", "es": "Calcula $\\tan 0$." },
+      "prompt": {
+        "en": "Compute $\\tan 0$.",
+        "es": "Calcula $\\tan 0$."
+      },
       "answer": "0",
-      "acceptedAlt": ["tan(0)"],
-      "hint": { "en": "sin 0 / cos 0.", "es": "sin 0 / cos 0." },
-      "solution": [ { "tex": "\\tan 0 = \\tfrac{0}{1} = 0", "en": "Value at zero.", "es": "Valor en cero." } ]
+      "acceptedAlt": [
+        "tan(0)"
+      ],
+      "hint": {
+        "en": "sin 0 / cos 0.",
+        "es": "sin 0 / cos 0."
+      },
+      "solution": [
+        {
+          "tex": "\\tan 0 = \\tfrac{0}{1} = 0",
+          "en": "Value at zero.",
+          "es": "Valor en cero."
+        }
+      ]
     },
     {
       "id": "functions-11-e2",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\tan 45°$.", "es": "Calcula $\\tan 45°$." },
+      "prompt": {
+        "en": "Compute $\\tan 45°$.",
+        "es": "Calcula $\\tan 45°$."
+      },
       "answer": "1",
-      "acceptedAlt": ["tan(pi/4)"],
-      "hint": { "en": "sin 45 = cos 45.", "es": "sin 45 = cos 45." },
-      "solution": [ { "tex": "\\tan 45° = 1", "en": "Standard value.", "es": "Valor estándar." } ]
+      "acceptedAlt": [
+        "tan(pi/4)"
+      ],
+      "hint": {
+        "en": "sin 45 = cos 45.",
+        "es": "sin 45 = cos 45."
+      },
+      "solution": [
+        {
+          "tex": "\\tan 45° = 1",
+          "en": "Standard value.",
+          "es": "Valor estándar."
+        }
+      ]
     },
     {
       "id": "functions-11-e3",
       "answerType": "number",
-      "prompt": { "en": "At which angle between 0° and 180° is $\\tan x$ undefined? (degrees)", "es": "¿En qué ángulo entre 0° y 180° no está definida $\\tan x$? (grados)" },
+      "prompt": {
+        "en": "At which angle between 0° and 180° is $\\tan x$ undefined? (degrees)",
+        "es": "¿En qué ángulo entre 0° y 180° no está definida $\\tan x$? (grados)"
+      },
       "answer": "90",
       "acceptedAlt": [],
-      "hint": { "en": "Where cos x = 0.", "es": "Donde cos x = 0." },
-      "solution": [ { "tex": "\\cos 90° = 0", "en": "Division by zero → undefined.", "es": "División entre cero → indefinida." } ]
+      "hint": {
+        "en": "Where cos x = 0.",
+        "es": "Donde cos x = 0."
+      },
+      "solution": [
+        {
+          "tex": "\\cos 90° = 0",
+          "en": "Division by zero → undefined.",
+          "es": "División entre cero → indefinida."
+        }
+      ]
     },
     {
       "id": "functions-11-e4",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\cot 45°$.", "es": "Calcula $\\cot 45°$." },
+      "prompt": {
+        "en": "Compute $\\cot 45°$.",
+        "es": "Calcula $\\cot 45°$."
+      },
       "answer": "1",
-      "acceptedAlt": ["1/tan(pi/4)"],
-      "hint": { "en": "cot = 1 / tan.", "es": "cot = 1 / tan." },
-      "solution": [ { "tex": "\\cot 45° = \\tfrac{1}{\\tan 45°} = 1", "en": "Reciprocal of tan.", "es": "Inversa de la tangente." } ]
+      "acceptedAlt": [
+        "1/tan(pi/4)"
+      ],
+      "hint": {
+        "en": "cot = 1 / tan.",
+        "es": "cot = 1 / tan."
+      },
+      "solution": [
+        {
+          "tex": "\\cot 45° = \\tfrac{1}{\\tan 45°} = 1",
+          "en": "Reciprocal of tan.",
+          "es": "Inversa de la tangente."
+        }
+      ]
+    },
+    {
+      "id": "functions-11-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$\\tan(x)$ is **undefined** exactly when...",
+        "es": "$\\tan(x)$ **no está definida** exactamente cuando..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$\\cos(x)=0$",
+            "es": "$\\cos(x)=0$"
+          },
+          "correct": true,
+          "why": {
+            "en": "tan = sin/cos, so cos=0 makes it blow up.",
+            "es": "tan = sin/cos, así que cos=0 la hace divergir."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\sin(x)=0$",
+            "es": "$\\sin(x)=0$"
+          },
+          "correct": false,
+          "why": {
+            "en": "Then tan = 0, which is defined.",
+            "es": "Entonces tan = 0, que sí está definida."
+          }
+        },
+        {
+          "text": {
+            "en": "$x=0$",
+            "es": "$x=0$"
+          },
+          "correct": false,
+          "why": {
+            "en": "tan(0)=0, perfectly defined.",
+            "es": "tan(0)=0, perfectamente definida."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Division by cos.",
+        "es": "División por el coseno."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 5.4, graphs of tangent, cotangent, secant, cosecant", "es": "Cap. 5.4, gráficas de tangente, cotangente, secante, cosecante" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 4.6, graphs of other trigonometric functions", "es": "Cap. 4.6, gráficas de otras funciones trigonométricas" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones trigonométricas' — tangente y cotangente", "es": "Apartado 'Funciones trigonométricas' — tangente y cotangente" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 5.4, graphs of tangent, cotangent, secant, cosecant",
+        "es": "Cap. 5.4, gráficas de tangente, cotangente, secante, cosecante"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 4.6, graphs of other trigonometric functions",
+        "es": "Cap. 4.6, gráficas de otras funciones trigonométricas"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones trigonométricas' — tangente y cotangente",
+        "es": "Apartado 'Funciones trigonométricas' — tangente y cotangente"
+      }
+    }
   ]
 }

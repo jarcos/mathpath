@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 15,
   "estimatedMinutes": 35,
-  "title": { "en": "The Logarithmic Function", "es": "La función logarítmica" },
+  "title": {
+    "en": "The Logarithmic Function",
+    "es": "La función logarítmica"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Since the logarithm inverts the exponential, the graph of $f(x) = \\log_b x$ is the **mirror image** of $b^x$ across the line $y = x$. Reflecting swaps the roles of input and output — and swaps the asymptote too: where the exponential had a horizontal asymptote, the logarithm has a **vertical** one along the y-axis.",
         "es": "Como el logaritmo invierte la exponencial, la gráfica de $f(x) = \\log_b x$ es la **imagen reflejada** de $b^x$ respecto a la recta $y = x$. Reflejar intercambia los papeles de entrada y salida — y también la asíntota: donde la exponencial tenía una asíntota horizontal, el logaritmo tiene una **vertical** sobre el eje y."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-14-logarithms"
+      ],
+      "note": {
+        "en": "Builds on logarithms.",
+        "es": "Se apoya en los logaritmos."
       }
     },
     {
@@ -29,7 +42,10 @@
     {
       "type": "graph",
       "fn": "log(x)",
-      "domain": [0.1, 8],
+      "domain": [
+        0.1,
+        8
+      ],
       "caption": {
         "en": "$f(x) = \\ln x$: defined only for $x > 0$, plunging toward $-\\infty$ near the y-axis, crossing zero at $x = 1$, then rising ever more gently.",
         "es": "$f(x) = \\ln x$: definida solo para $x > 0$, se hunde hacia $-\\infty$ cerca del eje y, corta el cero en $x = 1$ y luego sube cada vez más suavemente."
@@ -37,10 +53,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "$\\ln e = 1$ because $e^1 = e$ — the natural log of its own base. And $\\log_7 7 = 1$ for the same reason. The lower bound of the domain is $0$ (exclusive): $\\log$ is undefined at and below zero.",
         "es": "$\\ln e = 1$ porque $e^1 = e$ — el logaritmo natural de su propia base. Y $\\log_7 7 = 1$ por la misma razón. La cota inferior del dominio es $0$ (exclusiva): el $\\log$ no está definido en cero ni por debajo."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$y=\\log(x)$ grows slowly, passes through $(1,0)$, and is undefined for $x\\le 0$.",
+        "es": "$y=\\log(x)$ crece despacio, pasa por $(1,0)$ y no está definida para $x\\le 0$."
       }
     }
   ],
@@ -48,43 +78,162 @@
     {
       "id": "functions-15-e1",
       "answerType": "number",
-      "prompt": { "en": "The domain of $\\log x$ is $x > c$. What is $c$?", "es": "El dominio de $\\log x$ es $x > c$. ¿Cuánto vale $c$?" },
+      "prompt": {
+        "en": "The domain of $\\log x$ is $x > c$. What is $c$?",
+        "es": "El dominio de $\\log x$ es $x > c$. ¿Cuánto vale $c$?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "Logs need positive inputs.", "es": "Los logaritmos requieren entradas positivas." },
-      "solution": [ { "tex": "x > 0", "en": "So c = 0.", "es": "Por tanto c = 0." } ]
+      "hint": {
+        "en": "Logs need positive inputs.",
+        "es": "Los logaritmos requieren entradas positivas."
+      },
+      "solution": [
+        {
+          "tex": "x > 0",
+          "en": "So c = 0.",
+          "es": "Por tanto c = 0."
+        }
+      ]
     },
     {
       "id": "functions-15-e2",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\log_7 7$.", "es": "Calcula $\\log_7 7$." },
+      "prompt": {
+        "en": "Compute $\\log_7 7$.",
+        "es": "Calcula $\\log_7 7$."
+      },
       "answer": "1",
-      "acceptedAlt": ["log(7,7)"],
-      "hint": { "en": "Base equals argument.", "es": "La base es igual al argumento." },
-      "solution": [ { "tex": "\\log_b b = 1", "en": "Always 1.", "es": "Siempre 1." } ]
+      "acceptedAlt": [
+        "log(7,7)"
+      ],
+      "hint": {
+        "en": "Base equals argument.",
+        "es": "La base es igual al argumento."
+      },
+      "solution": [
+        {
+          "tex": "\\log_b b = 1",
+          "en": "Always 1.",
+          "es": "Siempre 1."
+        }
+      ]
     },
     {
       "id": "functions-15-e3",
       "answerType": "text",
-      "prompt": { "en": "The logarithm is the inverse of which function? (one word)", "es": "El logaritmo es el inverso de qué función? (una palabra)" },
+      "prompt": {
+        "en": "The logarithm is the inverse of which function? (one word)",
+        "es": "El logaritmo es el inverso de qué función? (una palabra)"
+      },
       "answer": "exponential",
-      "acceptedAlt": ["exponencial"],
-      "hint": { "en": "It undoes raising to a power.", "es": "Deshace la elevación a una potencia." },
-      "solution": [ { "tex": "\\log_b(b^x) = x", "en": "Inverse of the exponential.", "es": "Inverso de la exponencial." } ]
+      "acceptedAlt": [
+        "exponencial"
+      ],
+      "hint": {
+        "en": "It undoes raising to a power.",
+        "es": "Deshace la elevación a una potencia."
+      },
+      "solution": [
+        {
+          "tex": "\\log_b(b^x) = x",
+          "en": "Inverse of the exponential.",
+          "es": "Inverso de la exponencial."
+        }
+      ]
     },
     {
       "id": "functions-15-e4",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\ln e$.", "es": "Calcula $\\ln e$." },
+      "prompt": {
+        "en": "Compute $\\ln e$.",
+        "es": "Calcula $\\ln e$."
+      },
       "answer": "1",
-      "acceptedAlt": ["log(e)"],
-      "hint": { "en": "Natural log of its own base.", "es": "Logaritmo natural de su propia base." },
-      "solution": [ { "tex": "\\ln e = 1", "en": "Base equals argument.", "es": "Base igual al argumento." } ]
+      "acceptedAlt": [
+        "log(e)"
+      ],
+      "hint": {
+        "en": "Natural log of its own base.",
+        "es": "Logaritmo natural de su propia base."
+      },
+      "solution": [
+        {
+          "tex": "\\ln e = 1",
+          "en": "Base equals argument.",
+          "es": "Base igual al argumento."
+        }
+      ]
+    },
+    {
+      "id": "functions-15-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The graph of $y=\\log(x)$ crosses the x-axis at...",
+        "es": "La gráfica de $y=\\log(x)$ cruza el eje x en..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$x=1$",
+            "es": "$x=1$"
+          },
+          "correct": true,
+          "why": {
+            "en": "log(1)=0 for any base.",
+            "es": "log(1)=0 para cualquier base."
+          }
+        },
+        {
+          "text": {
+            "en": "$x=0$",
+            "es": "$x=0$"
+          },
+          "correct": false,
+          "why": {
+            "en": "log is undefined at 0.",
+            "es": "el log no está definido en 0."
+          }
+        },
+        {
+          "text": {
+            "en": "$x=10$",
+            "es": "$x=10$"
+          },
+          "correct": false,
+          "why": {
+            "en": "log₁₀(10)=1, not 0.",
+            "es": "log₁₀(10)=1, no 0."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Where does log equal 0?",
+        "es": "¿Dónde vale 0 el log?"
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 4.3, Logarithmic Functions and their graphs", "es": "Cap. 4.3, Funciones logarítmicas y sus gráficas" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 3.2, logarithmic functions and graphs", "es": "Cap. 3.2, funciones logarítmicas y gráficas" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones exponencial y logarítmica' — la función logarítmica", "es": "Apartado 'Funciones exponencial y logarítmica' — la función logarítmica" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 4.3, Logarithmic Functions and their graphs",
+        "es": "Cap. 4.3, Funciones logarítmicas y sus gráficas"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 3.2, logarithmic functions and graphs",
+        "es": "Cap. 3.2, funciones logarítmicas y gráficas"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones exponencial y logarítmica' — la función logarítmica",
+        "es": "Apartado 'Funciones exponencial y logarítmica' — la función logarítmica"
+      }
+    }
   ]
 }

@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 14,
   "estimatedMinutes": 40,
-  "title": { "en": "Logarithms", "es": "Logaritmos" },
+  "title": {
+    "en": "Logarithms",
+    "es": "Logaritmos"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A **logarithm** answers the question \"to what power must I raise the base to get this number?\". By definition, $\\log_b y = x$ means exactly $b^x = y$. So $\\log_2 8 = 3$ because $2^3 = 8$. The logarithm is the **inverse** of the exponential — it undoes exponentiation, turning multiplication problems into addition problems.",
         "es": "Un **logaritmo** responde a la pregunta \"¿a qué potencia debo elevar la base para obtener este número?\". Por definición, $\\log_b y = x$ significa exactamente $b^x = y$. Así $\\log_2 8 = 3$ porque $2^3 = 8$. El logaritmo es el **inverso** de la exponencial — deshace la exponenciación, convirtiendo problemas de multiplicación en problemas de suma."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-13-exponential"
+      ],
+      "note": {
+        "en": "The logarithm inverts the exponential.",
+        "es": "El logaritmo invierte la exponencial."
       }
     },
     {
@@ -28,10 +41,36 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — using the laws", "es": "Ejemplo resuelto — usar las leyes" },
+      "title": {
+        "en": "Worked example — using the laws",
+        "es": "Ejemplo resuelto — usar las leyes"
+      },
       "content": {
         "en": "$\\log_2 8 = 3$ directly ($2^3 = 8$). Using laws: $\\log_2 8 = \\log_2(2^3) = 3\\log_2 2 = 3\\cdot 1 = 3$. And $\\log_2 \\tfrac12 = \\log_2(2^{-1}) = -1$. The power law does the heavy lifting.",
         "es": "$\\log_2 8 = 3$ directamente ($2^3 = 8$). Con las leyes: $\\log_2 8 = \\log_2(2^3) = 3\\log_2 2 = 3\\cdot 1 = 3$. Y $\\log_2 \\tfrac12 = \\log_2(2^{-1}) = -1$. La ley de la potencia hace el trabajo pesado."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "log(x)",
+      "domain": [
+        0.1,
+        8
+      ],
+      "caption": {
+        "en": "y = ln(x): slow growth, crossing the x-axis at x = 1.",
+        "es": "y = ln(x): crecimiento lento, cruza el eje x en x = 1."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$\\log_2 8 = 3$ because $2^3=8$. The logarithm is the inverse of exponentiation.",
+        "es": "$\\log_2 8 = 3$ porque $2^3=8$. El logaritmo es el inverso de la exponenciación."
       }
     }
   ],
@@ -39,43 +78,165 @@
     {
       "id": "functions-14-e1",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\log_2 8$.", "es": "Calcula $\\log_2 8$." },
+      "prompt": {
+        "en": "Compute $\\log_2 8$.",
+        "es": "Calcula $\\log_2 8$."
+      },
       "answer": "3",
-      "acceptedAlt": ["log(8,2)"],
-      "hint": { "en": "2 to what power is 8?", "es": "¿2 elevado a qué da 8?" },
-      "solution": [ { "tex": "2^3 = 8 \\Rightarrow \\log_2 8 = 3", "en": "Invert the power.", "es": "Invierte la potencia." } ]
+      "acceptedAlt": [
+        "log(8,2)"
+      ],
+      "hint": {
+        "en": "2 to what power is 8?",
+        "es": "¿2 elevado a qué da 8?"
+      },
+      "solution": [
+        {
+          "tex": "2^3 = 8 \\Rightarrow \\log_2 8 = 3",
+          "en": "Invert the power.",
+          "es": "Invierte la potencia."
+        }
+      ]
     },
     {
       "id": "functions-14-e2",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\log_{10} 1000$.", "es": "Calcula $\\log_{10} 1000$." },
+      "prompt": {
+        "en": "Compute $\\log_{10} 1000$.",
+        "es": "Calcula $\\log_{10} 1000$."
+      },
       "answer": "3",
-      "acceptedAlt": ["log(1000,10)", "log10(1000)"],
-      "hint": { "en": "10 to what power is 1000?", "es": "¿10 elevado a qué da 1000?" },
-      "solution": [ { "tex": "10^3 = 1000 \\Rightarrow \\log_{10}1000 = 3", "en": "Invert the power.", "es": "Invierte la potencia." } ]
+      "acceptedAlt": [
+        "log(1000,10)",
+        "log10(1000)"
+      ],
+      "hint": {
+        "en": "10 to what power is 1000?",
+        "es": "¿10 elevado a qué da 1000?"
+      },
+      "solution": [
+        {
+          "tex": "10^3 = 1000 \\Rightarrow \\log_{10}1000 = 3",
+          "en": "Invert the power.",
+          "es": "Invierte la potencia."
+        }
+      ]
     },
     {
       "id": "functions-14-e3",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\log_5 1$.", "es": "Calcula $\\log_5 1$." },
+      "prompt": {
+        "en": "Compute $\\log_5 1$.",
+        "es": "Calcula $\\log_5 1$."
+      },
       "answer": "0",
-      "acceptedAlt": ["log(1,5)"],
-      "hint": { "en": "Any base to the 0 is 1.", "es": "Cualquier base a la 0 es 1." },
-      "solution": [ { "tex": "5^0 = 1 \\Rightarrow \\log_5 1 = 0", "en": "Log of 1 is always 0.", "es": "El log de 1 siempre es 0." } ]
+      "acceptedAlt": [
+        "log(1,5)"
+      ],
+      "hint": {
+        "en": "Any base to the 0 is 1.",
+        "es": "Cualquier base a la 0 es 1."
+      },
+      "solution": [
+        {
+          "tex": "5^0 = 1 \\Rightarrow \\log_5 1 = 0",
+          "en": "Log of 1 is always 0.",
+          "es": "El log de 1 siempre es 0."
+        }
+      ]
     },
     {
       "id": "functions-14-e4",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\log_2 \\tfrac12$.", "es": "Calcula $\\log_2 \\tfrac12$." },
+      "prompt": {
+        "en": "Compute $\\log_2 \\tfrac12$.",
+        "es": "Calcula $\\log_2 \\tfrac12$."
+      },
       "answer": "-1",
-      "acceptedAlt": ["log(1/2,2)"],
-      "hint": { "en": "2 to what power is 1/2?", "es": "¿2 elevado a qué da 1/2?" },
-      "solution": [ { "tex": "2^{-1} = \\tfrac12 \\Rightarrow \\log_2 \\tfrac12 = -1", "en": "Negative exponent.", "es": "Exponente negativo." } ]
+      "acceptedAlt": [
+        "log(1/2,2)"
+      ],
+      "hint": {
+        "en": "2 to what power is 1/2?",
+        "es": "¿2 elevado a qué da 1/2?"
+      },
+      "solution": [
+        {
+          "tex": "2^{-1} = \\tfrac12 \\Rightarrow \\log_2 \\tfrac12 = -1",
+          "en": "Negative exponent.",
+          "es": "Exponente negativo."
+        }
+      ]
+    },
+    {
+      "id": "functions-14-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$\\log_b(x)=y$ means exactly that...",
+        "es": "$\\log_b(x)=y$ significa exactamente que..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$b^y = x$",
+            "es": "$b^y = x$"
+          },
+          "correct": true,
+          "why": {
+            "en": "The log answers 'to what power must b be raised to get x?'.",
+            "es": "El log responde '¿a qué potencia elevar b para obtener x?'."
+          }
+        },
+        {
+          "text": {
+            "en": "$x^y = b$",
+            "es": "$x^y = b$"
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong base/exponent roles.",
+            "es": "Roles de base/exponente incorrectos."
+          }
+        },
+        {
+          "text": {
+            "en": "$y^b = x$",
+            "es": "$y^b = x$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That swaps the exponent and the result.",
+            "es": "Eso intercambia el exponente y el resultado."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Log is an exponent.",
+        "es": "El log es un exponente."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 4.3–4.4, Logarithmic Functions and Laws of Logarithms", "es": "Cap. 4.3–4.4, Funciones logarítmicas y leyes de los logaritmos" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 3.2–3.3, logarithmic functions and properties", "es": "Cap. 3.2–3.3, funciones logarítmicas y propiedades" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones exponencial y logarítmica' — el logaritmo", "es": "Apartado 'Funciones exponencial y logarítmica' — el logaritmo" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 4.3–4.4, Logarithmic Functions and Laws of Logarithms",
+        "es": "Cap. 4.3–4.4, Funciones logarítmicas y leyes de los logaritmos"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 3.2–3.3, logarithmic functions and properties",
+        "es": "Cap. 3.2–3.3, funciones logarítmicas y propiedades"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones exponencial y logarítmica' — el logaritmo",
+        "es": "Apartado 'Funciones exponencial y logarítmica' — el logaritmo"
+      }
+    }
   ]
 }

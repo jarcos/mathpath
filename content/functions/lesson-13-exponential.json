@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 13,
   "estimatedMinutes": 40,
-  "title": { "en": "The Exponential Function", "es": "La función exponencial" },
+  "title": {
+    "en": "The Exponential Function",
+    "es": "La función exponencial"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "An **exponential function** $f(x) = a^x$ (with base $a > 0$, $a \\neq 1$) puts the variable in the **exponent** — a profound change from polynomials, where the variable sits in the base. The result is **multiplicative** growth: each unit step in $x$ multiplies the output by the constant factor $a$. This is the mathematics of compound interest, populations, radioactive decay, and Moore's law.",
         "es": "Una **función exponencial** $f(x) = a^x$ (con base $a > 0$, $a \\neq 1$) pone la variable en el **exponente** — un cambio profundo frente a los polinomios, donde la variable está en la base. El resultado es un crecimiento **multiplicativo**: cada paso unitario en $x$ multiplica la salida por el factor constante $a$. Es la matemática del interés compuesto, las poblaciones, la desintegración radiactiva y la ley de Moore."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-01-concept"
+      ],
+      "note": {
+        "en": "Builds on the concept of a function.",
+        "es": "Se apoya en el concepto de función."
       }
     },
     {
@@ -29,7 +42,10 @@
     {
       "type": "graph",
       "fn": "2^x",
-      "domain": [-3, 4],
+      "domain": [
+        -3,
+        4
+      ],
       "caption": {
         "en": "$f(x) = 2^x$: always positive, passing through $(0,1)$, hugging the x-axis on the left and growing explosively on the right.",
         "es": "$f(x) = 2^x$: siempre positiva, pasa por $(0,1)$, se pega al eje x por la izquierda y crece de forma explosiva por la derecha."
@@ -37,10 +53,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — doubling", "es": "Ejemplo resuelto — duplicación" },
+      "title": {
+        "en": "Worked example — doubling",
+        "es": "Ejemplo resuelto — duplicación"
+      },
       "content": {
         "en": "$2^x$ doubles each step: $2^0 = 1$, $2^1 = 2$, $2^2 = 4$, $2^3 = 8$. A negative exponent gives a reciprocal: $(\\tfrac12)^2 = \\tfrac14$. After only $10$ steps, $2^{10} = 1024$ — the explosive nature of exponential growth.",
         "es": "$2^x$ se duplica en cada paso: $2^0 = 1$, $2^1 = 2$, $2^2 = 4$, $2^3 = 8$. Un exponente negativo da un inverso: $(\\tfrac12)^2 = \\tfrac14$. Tras solo $10$ pasos, $2^{10} = 1024$ — la naturaleza explosiva del crecimiento exponencial."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$2^x$ doubles each step: $2^0=1,\\,2^1=2,\\,2^2=4$; it's always positive.",
+        "es": "$2^x$ duplica en cada paso: $2^0=1,\\,2^1=2,\\,2^2=4$; siempre es positiva."
       }
     }
   ],
@@ -48,43 +78,165 @@
     {
       "id": "functions-13-e1",
       "answerType": "number",
-      "prompt": { "en": "Compute $2^3$.", "es": "Calcula $2^3$." },
+      "prompt": {
+        "en": "Compute $2^3$.",
+        "es": "Calcula $2^3$."
+      },
       "answer": "8",
-      "acceptedAlt": ["2^3"],
-      "hint": { "en": "2·2·2.", "es": "2·2·2." },
-      "solution": [ { "tex": "2^3 = 8", "en": "Multiply.", "es": "Multiplica." } ]
+      "acceptedAlt": [
+        "2^3"
+      ],
+      "hint": {
+        "en": "2·2·2.",
+        "es": "2·2·2."
+      },
+      "solution": [
+        {
+          "tex": "2^3 = 8",
+          "en": "Multiply.",
+          "es": "Multiplica."
+        }
+      ]
     },
     {
       "id": "functions-13-e2",
       "answerType": "number",
-      "prompt": { "en": "Compute $2^0$.", "es": "Calcula $2^0$." },
+      "prompt": {
+        "en": "Compute $2^0$.",
+        "es": "Calcula $2^0$."
+      },
       "answer": "1",
-      "acceptedAlt": ["2^0"],
-      "hint": { "en": "Anything to the 0.", "es": "Cualquier base elevada a 0." },
-      "solution": [ { "tex": "2^0 = 1", "en": "Zero exponent rule.", "es": "Regla del exponente cero." } ]
+      "acceptedAlt": [
+        "2^0"
+      ],
+      "hint": {
+        "en": "Anything to the 0.",
+        "es": "Cualquier base elevada a 0."
+      },
+      "solution": [
+        {
+          "tex": "2^0 = 1",
+          "en": "Zero exponent rule.",
+          "es": "Regla del exponente cero."
+        }
+      ]
     },
     {
       "id": "functions-13-e3",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\left(\\tfrac12\\right)^2$.", "es": "Calcula $\\left(\\tfrac12\\right)^2$." },
+      "prompt": {
+        "en": "Compute $\\left(\\tfrac12\\right)^2$.",
+        "es": "Calcula $\\left(\\tfrac12\\right)^2$."
+      },
       "answer": "1/4",
-      "acceptedAlt": ["(1/2)^2", "0.25"],
-      "hint": { "en": "Square the fraction.", "es": "Eleva la fracción al cuadrado." },
-      "solution": [ { "tex": "(\\tfrac12)^2 = \\tfrac14", "en": "Square numerator and denominator.", "es": "Eleva numerador y denominador." } ]
+      "acceptedAlt": [
+        "(1/2)^2",
+        "0.25"
+      ],
+      "hint": {
+        "en": "Square the fraction.",
+        "es": "Eleva la fracción al cuadrado."
+      },
+      "solution": [
+        {
+          "tex": "(\\tfrac12)^2 = \\tfrac14",
+          "en": "Square numerator and denominator.",
+          "es": "Eleva numerador y denominador."
+        }
+      ]
     },
     {
       "id": "functions-13-e4",
       "answerType": "number",
-      "prompt": { "en": "Compute $3^2$.", "es": "Calcula $3^2$." },
+      "prompt": {
+        "en": "Compute $3^2$.",
+        "es": "Calcula $3^2$."
+      },
       "answer": "9",
-      "acceptedAlt": ["3^2"],
-      "hint": { "en": "3·3.", "es": "3·3." },
-      "solution": [ { "tex": "3^2 = 9", "en": "Multiply.", "es": "Multiplica." } ]
+      "acceptedAlt": [
+        "3^2"
+      ],
+      "hint": {
+        "en": "3·3.",
+        "es": "3·3."
+      },
+      "solution": [
+        {
+          "tex": "3^2 = 9",
+          "en": "Multiply.",
+          "es": "Multiplica."
+        }
+      ]
+    },
+    {
+      "id": "functions-13-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The exponential function $2^x$ is always...",
+        "es": "La función exponencial $2^x$ es siempre..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "positive",
+            "es": "positiva"
+          },
+          "correct": true,
+          "why": {
+            "en": "b^x > 0 for every real x when b>0.",
+            "es": "b^x > 0 para todo x real cuando b>0."
+          }
+        },
+        {
+          "text": {
+            "en": "negative for negative x",
+            "es": "negativa para x negativo"
+          },
+          "correct": false,
+          "why": {
+            "en": "2^(−1)=0.5, still positive.",
+            "es": "2^(−1)=0,5, sigue siendo positiva."
+          }
+        },
+        {
+          "text": {
+            "en": "zero at x=0",
+            "es": "cero en x=0"
+          },
+          "correct": false,
+          "why": {
+            "en": "2^0 = 1, not 0.",
+            "es": "2^0 = 1, no 0."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Can b^x ever be ≤ 0?",
+        "es": "¿Puede b^x ser ≤ 0?"
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 4.1, Exponential Functions; the number e", "es": "Cap. 4.1, Funciones exponenciales; el número e" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 3.1, exponential functions and their graphs", "es": "Cap. 3.1, funciones exponenciales y sus gráficas" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones exponencial y logarítmica' — la función exponencial", "es": "Apartado 'Funciones exponencial y logarítmica' — la función exponencial" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 4.1, Exponential Functions; the number e",
+        "es": "Cap. 4.1, Funciones exponenciales; el número e"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 3.1, exponential functions and their graphs",
+        "es": "Cap. 3.1, funciones exponenciales y sus gráficas"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones exponencial y logarítmica' — la función exponencial",
+        "es": "Apartado 'Funciones exponencial y logarítmica' — la función exponencial"
+      }
+    }
   ]
 }

@@ -3,7 +3,10 @@
   "subjectId": "algebra",
   "order": 1,
   "estimatedMinutes": 40,
-  "title": { "en": "Natural & Integer Numbers", "es": "Números naturales y enteros" },
+  "title": {
+    "en": "Natural & Integer Numbers",
+    "es": "Números naturales y enteros"
+  },
   "sections": [
     {
       "type": "prose",
@@ -42,7 +45,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — gcd by factoring", "es": "Ejemplo resuelto — mcd por factorización" },
+      "title": {
+        "en": "Worked example — gcd by factoring",
+        "es": "Ejemplo resuelto — mcd por factorización"
+      },
       "content": {
         "en": "Find $\\gcd(12, 18)$. Factor: $12 = 2^2\\cdot 3$ and $18 = 2\\cdot 3^2$. The gcd takes the **lowest** power of each shared prime: $2^1\\cdot 3^1 = 6$. The lcm takes the **highest**: $2^2\\cdot 3^2 = 36$. Notice $\\gcd\\cdot\\text{lcm} = 6\\cdot 36 = 216 = 12\\cdot 18$ — a useful identity.",
         "es": "Halla $\\gcd(12, 18)$. Factoriza: $12 = 2^2\\cdot 3$ y $18 = 2\\cdot 3^2$. El mcd toma la potencia **menor** de cada primo común: $2^1\\cdot 3^1 = 6$. El mcm toma la **mayor**: $2^2\\cdot 3^2 = 36$. Observa que $\\gcd\\cdot\\text{mcm} = 6\\cdot 36 = 216 = 12\\cdot 18$ — una identidad útil."
@@ -50,10 +56,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Common pitfall", "es": "Error frecuente" },
+      "title": {
+        "en": "Common pitfall",
+        "es": "Error frecuente"
+      },
       "content": {
         "en": "Sign mistakes dominate early algebra. $5 - (-3)$ is **not** $2$: subtracting a negative adds, so $5 - (-3) = 8$. And $-2^2 = -4$ (the power binds before the minus) whereas $(-2)^2 = 4$. When in doubt, slow down and read left to right.",
         "es": "Los errores de signo dominan el álgebra inicial. $5 - (-3)$ **no** es $2$: restar un negativo suma, así $5 - (-3) = 8$. Y $-2^2 = -4$ (la potencia actúa antes que el signo) mientras que $(-2)^2 = 4$. Ante la duda, ve despacio y lee de izquierda a derecha."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$-5 + 8 = 3$; and $(-3)\\cdot(-4) = 12$ — two negatives multiply to a positive.",
+        "es": "$-5 + 8 = 3$; y $(-3)\\cdot(-4) = 12$ — dos negativos se multiplican dando positivo."
       }
     }
   ],
@@ -61,55 +81,184 @@
     {
       "id": "algebra-05-e1",
       "answerType": "number",
-      "prompt": { "en": "Compute:  $17 + (-8) - 5$", "es": "Calcula:  $17 + (-8) - 5$" },
+      "prompt": {
+        "en": "Compute:  $17 + (-8) - 5$",
+        "es": "Calcula:  $17 + (-8) - 5$"
+      },
       "answer": "4",
-      "acceptedAlt": ["17-8-5"],
-      "hint": { "en": "Adding a negative is the same as subtracting.", "es": "Sumar un negativo es igual que restar." },
+      "acceptedAlt": [
+        "17-8-5"
+      ],
+      "hint": {
+        "en": "Adding a negative is the same as subtracting.",
+        "es": "Sumar un negativo es igual que restar."
+      },
       "solution": [
-        { "tex": "17 + (-8) - 5 = 17 - 8 - 5", "en": "Rewrite the addition of a negative.", "es": "Reescribe la suma de un negativo." },
-        { "tex": "= 4", "en": "Compute left to right.", "es": "Calcula de izquierda a derecha." }
+        {
+          "tex": "17 + (-8) - 5 = 17 - 8 - 5",
+          "en": "Rewrite the addition of a negative.",
+          "es": "Reescribe la suma de un negativo."
+        },
+        {
+          "tex": "= 4",
+          "en": "Compute left to right.",
+          "es": "Calcula de izquierda a derecha."
+        }
       ]
     },
     {
       "id": "algebra-05-e2",
       "answerType": "number",
-      "prompt": { "en": "Compute:  $(-3)\\cdot(-4) + 2$", "es": "Calcula:  $(-3)\\cdot(-4) + 2$" },
+      "prompt": {
+        "en": "Compute:  $(-3)\\cdot(-4) + 2$",
+        "es": "Calcula:  $(-3)\\cdot(-4) + 2$"
+      },
       "answer": "14",
-      "acceptedAlt": ["(-3)*(-4)+2"],
-      "hint": { "en": "Two negatives multiply to a positive.", "es": "Dos negativos multiplicados dan positivo." },
+      "acceptedAlt": [
+        "(-3)*(-4)+2"
+      ],
+      "hint": {
+        "en": "Two negatives multiply to a positive.",
+        "es": "Dos negativos multiplicados dan positivo."
+      },
       "solution": [
-        { "tex": "(-3)\\cdot(-4) = 12", "en": "Same signs → positive.", "es": "Signos iguales → positivo." },
-        { "tex": "12 + 2 = 14", "en": "Add 2.", "es": "Suma 2." }
+        {
+          "tex": "(-3)\\cdot(-4) = 12",
+          "en": "Same signs → positive.",
+          "es": "Signos iguales → positivo."
+        },
+        {
+          "tex": "12 + 2 = 14",
+          "en": "Add 2.",
+          "es": "Suma 2."
+        }
       ]
     },
     {
       "id": "algebra-05-e3",
       "answerType": "number",
-      "prompt": { "en": "What is the greatest common divisor of 12 and 18?", "es": "¿Cuál es el máximo común divisor de 12 y 18?" },
+      "prompt": {
+        "en": "What is the greatest common divisor of 12 and 18?",
+        "es": "¿Cuál es el máximo común divisor de 12 y 18?"
+      },
       "answer": "6",
-      "acceptedAlt": ["gcd(12,18)"],
-      "hint": { "en": "Lowest power of each shared prime.", "es": "Potencia menor de cada primo común." },
+      "acceptedAlt": [
+        "gcd(12,18)"
+      ],
+      "hint": {
+        "en": "Lowest power of each shared prime.",
+        "es": "Potencia menor de cada primo común."
+      },
       "solution": [
-        { "tex": "12 = 2^2\\cdot 3,\\quad 18 = 2\\cdot 3^2", "en": "Factor both numbers.", "es": "Factoriza ambos números." },
-        { "tex": "\\gcd = 2\\cdot 3 = 6", "en": "Multiply the shared prime factors.", "es": "Multiplica los factores primos comunes." }
+        {
+          "tex": "12 = 2^2\\cdot 3,\\quad 18 = 2\\cdot 3^2",
+          "en": "Factor both numbers.",
+          "es": "Factoriza ambos números."
+        },
+        {
+          "tex": "\\gcd = 2\\cdot 3 = 6",
+          "en": "Multiply the shared prime factors.",
+          "es": "Multiplica los factores primos comunes."
+        }
       ]
     },
     {
       "id": "algebra-05-e4",
       "answerType": "number",
-      "prompt": { "en": "Compute $5 - (-3)$.", "es": "Calcula $5 - (-3)$." },
+      "prompt": {
+        "en": "Compute $5 - (-3)$.",
+        "es": "Calcula $5 - (-3)$."
+      },
       "answer": "8",
-      "acceptedAlt": ["5+3"],
-      "hint": { "en": "Subtracting a negative adds.", "es": "Restar un negativo suma." },
+      "acceptedAlt": [
+        "5+3"
+      ],
+      "hint": {
+        "en": "Subtracting a negative adds.",
+        "es": "Restar un negativo suma."
+      },
       "solution": [
-        { "tex": "5 - (-3) = 5 + 3", "en": "Two minuses make a plus.", "es": "Dos menos hacen un más." },
-        { "tex": "= 8", "en": "Add.", "es": "Suma." }
+        {
+          "tex": "5 - (-3) = 5 + 3",
+          "en": "Two minuses make a plus.",
+          "es": "Dos menos hacen un más."
+        },
+        {
+          "tex": "= 8",
+          "en": "Add.",
+          "es": "Suma."
+        }
       ]
+    },
+    {
+      "id": "algebra-05-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which value is an integer but **not** a natural number?",
+        "es": "¿Qué valor es entero pero **no** natural?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$-4$",
+            "es": "$-4$"
+          },
+          "correct": true,
+          "why": {
+            "en": "Negative whole numbers are integers but not naturals.",
+            "es": "Los enteros negativos son enteros pero no naturales."
+          }
+        },
+        {
+          "text": {
+            "en": "$7$",
+            "es": "$7$"
+          },
+          "correct": false,
+          "why": {
+            "en": "7 is both natural and integer.",
+            "es": "7 es natural y entero."
+          }
+        },
+        {
+          "text": {
+            "en": "$0.5$",
+            "es": "$0.5$"
+          },
+          "correct": false,
+          "why": {
+            "en": "0.5 isn't an integer at all.",
+            "es": "0,5 no es ni siquiera entero."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think about negatives.",
+        "es": "Piensa en los negativos."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.1, Real Numbers", "es": "Cap. 1.1, Los números reales" } },
-    { "source": "Long — Painless Algebra", "detail": { "en": "Numbers and the number line", "es": "Los números y la recta numérica" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Números' — naturales y enteros", "es": "Apartado 'Números' — naturales y enteros" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 1.1, Real Numbers",
+        "es": "Cap. 1.1, Los números reales"
+      }
+    },
+    {
+      "source": "Long — Painless Algebra",
+      "detail": {
+        "en": "Numbers and the number line",
+        "es": "Los números y la recta numérica"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Números' — naturales y enteros",
+        "es": "Apartado 'Números' — naturales y enteros"
+      }
+    }
   ]
 }

@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 10,
   "estimatedMinutes": 40,
-  "title": { "en": "Sine & Cosine Functions", "es": "Funciones seno y coseno" },
+  "title": {
+    "en": "Sine & Cosine Functions",
+    "es": "Funciones seno y coseno"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "To turn the triangle ratios into **functions** defined for every real number, we use the **unit circle**: for an angle $x$, the point on the circle of radius $1$ is $(\\cos x, \\sin x)$. As $x$ sweeps around, the coordinates trace smooth waves. This frees sine and cosine from acute angles — they now accept any input, positive or negative, large or small.",
         "es": "Para convertir las razones del triángulo en **funciones** definidas para todo número real, usamos la **circunferencia unidad**: para un ángulo $x$, el punto en la circunferencia de radio $1$ es $(\\cos x, \\sin x)$. Al recorrer $x$ toda la vuelta, las coordenadas trazan ondas suaves. Esto libera al seno y al coseno de los ángulos agudos — ahora aceptan cualquier entrada, positiva o negativa, grande o pequeña."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-09-trig-ratios"
+      ],
+      "note": {
+        "en": "Builds on trigonometric ratios.",
+        "es": "Se apoya en las razones trigonométricas."
       }
     },
     {
@@ -29,7 +42,10 @@
     {
       "type": "graph",
       "fn": "sin(x)",
-      "domain": [-6.5, 6.5],
+      "domain": [
+        -6.5,
+        6.5
+      ],
       "caption": {
         "en": "$f(x) = \\sin x$: a smooth wave of period $2\\pi$ and amplitude $1$, crossing zero at every multiple of $\\pi$ and peaking at $\\pm 1$.",
         "es": "$f(x) = \\sin x$: una onda suave de período $2\\pi$ y amplitud $1$, que cruza el cero en cada múltiplo de $\\pi$ y alcanza picos en $\\pm 1$."
@@ -37,10 +53,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — reading the wave", "es": "Ejemplo resuelto — leer la onda" },
+      "title": {
+        "en": "Worked example — reading the wave",
+        "es": "Ejemplo resuelto — leer la onda"
+      },
       "content": {
         "en": "$\\sin 0 = 0$ (the wave starts at the origin), $\\sin \\tfrac{\\pi}{2} = 1$ (first peak), $\\sin \\pi = 0$, $\\sin \\tfrac{3\\pi}{2} = -1$ (trough), and $\\sin 2\\pi = 0$ — back to start. The maximum of $\\sin x$ is $1$; the minimum of $\\cos x$ is $-1$.",
         "es": "$\\sin 0 = 0$ (la onda empieza en el origen), $\\sin \\tfrac{\\pi}{2} = 1$ (primer pico), $\\sin \\pi = 0$, $\\sin \\tfrac{3\\pi}{2} = -1$ (valle), y $\\sin 2\\pi = 0$ — vuelta al inicio. El máximo de $\\sin x$ es $1$; el mínimo de $\\cos x$ es $-1$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$\\sin$ and $\\cos$ both have period $2\\pi$ and range $[-1,1]$.",
+        "es": "$\\sin$ y $\\cos$ tienen periodo $2\\pi$ y recorrido $[-1,1]$."
       }
     }
   ],
@@ -48,43 +78,160 @@
     {
       "id": "functions-10-e1",
       "answerType": "number",
-      "prompt": { "en": "What is the period of $\\sin x$? (in radians)", "es": "¿Cuál es el período de $\\sin x$? (en radianes)" },
+      "prompt": {
+        "en": "What is the period of $\\sin x$? (in radians)",
+        "es": "¿Cuál es el período de $\\sin x$? (en radianes)"
+      },
       "answer": "2*pi",
-      "acceptedAlt": ["2pi"],
-      "hint": { "en": "It repeats every full circle.", "es": "Se repite cada vuelta completa." },
-      "solution": [ { "tex": "T = 2\\pi", "en": "One full cycle.", "es": "Un ciclo completo." } ]
+      "acceptedAlt": [
+        "2pi"
+      ],
+      "hint": {
+        "en": "It repeats every full circle.",
+        "es": "Se repite cada vuelta completa."
+      },
+      "solution": [
+        {
+          "tex": "T = 2\\pi",
+          "en": "One full cycle.",
+          "es": "Un ciclo completo."
+        }
+      ]
     },
     {
       "id": "functions-10-e2",
       "answerType": "number",
-      "prompt": { "en": "What is the maximum value of $\\sin x$?", "es": "¿Cuál es el valor máximo de $\\sin x$?" },
+      "prompt": {
+        "en": "What is the maximum value of $\\sin x$?",
+        "es": "¿Cuál es el valor máximo de $\\sin x$?"
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "The amplitude.", "es": "La amplitud." },
-      "solution": [ { "tex": "\\max \\sin x = 1", "en": "Top of the wave.", "es": "Cresta de la onda." } ]
+      "hint": {
+        "en": "The amplitude.",
+        "es": "La amplitud."
+      },
+      "solution": [
+        {
+          "tex": "\\max \\sin x = 1",
+          "en": "Top of the wave.",
+          "es": "Cresta de la onda."
+        }
+      ]
     },
     {
       "id": "functions-10-e3",
       "answerType": "number",
-      "prompt": { "en": "What is the minimum value of $\\cos x$?", "es": "¿Cuál es el valor mínimo de $\\cos x$?" },
+      "prompt": {
+        "en": "What is the minimum value of $\\cos x$?",
+        "es": "¿Cuál es el valor mínimo de $\\cos x$?"
+      },
       "answer": "-1",
       "acceptedAlt": [],
-      "hint": { "en": "The bottom of the wave.", "es": "El valle de la onda." },
-      "solution": [ { "tex": "\\min \\cos x = -1", "en": "Bottom of the wave.", "es": "Valle de la onda." } ]
+      "hint": {
+        "en": "The bottom of the wave.",
+        "es": "El valle de la onda."
+      },
+      "solution": [
+        {
+          "tex": "\\min \\cos x = -1",
+          "en": "Bottom of the wave.",
+          "es": "Valle de la onda."
+        }
+      ]
     },
     {
       "id": "functions-10-e4",
       "answerType": "number",
-      "prompt": { "en": "Compute $\\sin 0$.", "es": "Calcula $\\sin 0$." },
+      "prompt": {
+        "en": "Compute $\\sin 0$.",
+        "es": "Calcula $\\sin 0$."
+      },
       "answer": "0",
-      "acceptedAlt": ["sin(0)"],
-      "hint": { "en": "Where the sine wave starts.", "es": "Donde empieza la onda seno." },
-      "solution": [ { "tex": "\\sin 0 = 0", "en": "Value at the origin.", "es": "Valor en el origen." } ]
+      "acceptedAlt": [
+        "sin(0)"
+      ],
+      "hint": {
+        "en": "Where the sine wave starts.",
+        "es": "Donde empieza la onda seno."
+      },
+      "solution": [
+        {
+          "tex": "\\sin 0 = 0",
+          "en": "Value at the origin.",
+          "es": "Valor en el origen."
+        }
+      ]
+    },
+    {
+      "id": "functions-10-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The period of $\\sin(x)$ is...",
+        "es": "El periodo de $\\sin(x)$ es..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$2\\pi$",
+            "es": "$2\\pi$"
+          },
+          "correct": true,
+          "why": {
+            "en": "It repeats every 2π radians.",
+            "es": "Se repite cada 2π radianes."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\pi$",
+            "es": "$\\pi$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's the period of tan(x).",
+            "es": "Ese es el periodo de tan(x)."
+          }
+        },
+        {
+          "text": {
+            "en": "$1$",
+            "es": "$1$"
+          },
+          "correct": false,
+          "why": {
+            "en": "Period is measured in radians here, not 1.",
+            "es": "El periodo se mide en radianes, no en 1."
+          }
+        }
+      ],
+      "hint": {
+        "en": "How far until it repeats?",
+        "es": "¿Cuánto hasta que se repite?"
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 5.2–5.3, trigonometric functions and their graphs", "es": "Cap. 5.2–5.3, funciones trigonométricas y sus gráficas" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 4.5, graphs of sine and cosine", "es": "Cap. 4.5, gráficas de seno y coseno" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones trigonométricas' — seno y coseno", "es": "Apartado 'Funciones trigonométricas' — seno y coseno" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 5.2–5.3, trigonometric functions and their graphs",
+        "es": "Cap. 5.2–5.3, funciones trigonométricas y sus gráficas"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 4.5, graphs of sine and cosine",
+        "es": "Cap. 4.5, gráficas de seno y coseno"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones trigonométricas' — seno y coseno",
+        "es": "Apartado 'Funciones trigonométricas' — seno y coseno"
+      }
+    }
   ]
 }

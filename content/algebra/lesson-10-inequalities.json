@@ -3,13 +3,26 @@
   "subjectId": "algebra",
   "order": 8,
   "estimatedMinutes": 40,
-  "title": { "en": "Inequalities", "es": "Inecuaciones" },
+  "title": {
+    "en": "Inequalities",
+    "es": "Inecuaciones"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Not every question asks for exact equality. \"How many units must we sell to make a *profit*?\" or \"for which speeds is the braking distance *under* 50 m?\" call for **inequalities**, which compare with $<$ (less than), $\\le$ (at most), $>$ (greater than) or $\\ge$ (at least). Their solution is usually not a single number but a whole **range** of values.",
         "es": "No toda pregunta pide igualdad exacta. \"¿Cuántas unidades hay que vender para tener *beneficio*?\" o \"¿para qué velocidades la distancia de frenado es *menor* de 50 m?\" piden **inecuaciones**, que comparan con $<$ (menor), $\\le$ (a lo sumo), $>$ (mayor) o $\\ge$ (al menos). Su solución no suele ser un único número sino todo un **intervalo** de valores."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-01-linear-equations"
+      ],
+      "note": {
+        "en": "Builds on linear equations.",
+        "es": "Se apoya en las ecuaciones lineales."
       }
     },
     {
@@ -28,7 +41,10 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — the sign flip", "es": "Ejemplo resuelto — la inversión del signo" },
+      "title": {
+        "en": "Worked example — the sign flip",
+        "es": "Ejemplo resuelto — la inversión del signo"
+      },
       "content": {
         "en": "Solve $-2x < 8$. Divide both sides by $-2$ **and flip**: $x > -4$, i.e. the interval $(-4, \\infty)$. Test a point to be safe: $x = 0$ gives $-2(0) = 0 < 8$ ✓, and $0$ is indeed greater than $-4$.",
         "es": "Resuelve $-2x < 8$. Divide ambos lados entre $-2$ **e invierte**: $x > -4$, es decir el intervalo $(-4, \\infty)$. Prueba un punto por seguridad: $x = 0$ da $-2(0) = 0 < 8$ ✓, y $0$ es en efecto mayor que $-4$."
@@ -40,61 +56,202 @@
         "en": "A **double inequality** like $1 < x \\le 5$ means both conditions hold at once — the interval $(1, 5]$. You operate on all three parts together. Testing a single point from your claimed solution region (as above) is a cheap, reliable way to catch a flipped sign.",
         "es": "Una **doble desigualdad** como $1 < x \\le 5$ significa que ambas condiciones se cumplen a la vez — el intervalo $(1, 5]$. Operas sobre las tres partes juntas. Probar un único punto de la región solución (como antes) es una forma barata y fiable de detectar un signo invertido."
       }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$-2x < 6 \\Rightarrow x > -3$ — dividing by a negative flips the sign.",
+        "es": "$-2x < 6 \\Rightarrow x > -3$ — dividir por un negativo invierte el signo."
+      }
     }
   ],
   "exercises": [
     {
       "id": "algebra-10-e1",
       "answerType": "number",
-      "prompt": { "en": "Solve $2x - 4 > 0$. Enter the boundary value of $x$.", "es": "Resuelve $2x - 4 > 0$. Escribe el valor frontera de $x$." },
+      "prompt": {
+        "en": "Solve $2x - 4 > 0$. Enter the boundary value of $x$.",
+        "es": "Resuelve $2x - 4 > 0$. Escribe el valor frontera de $x$."
+      },
       "answer": "2",
-      "acceptedAlt": ["4/2"],
-      "hint": { "en": "Solve 2x - 4 = 0 for the boundary.", "es": "Resuelve 2x - 4 = 0 para la frontera." },
+      "acceptedAlt": [
+        "4/2"
+      ],
+      "hint": {
+        "en": "Solve 2x - 4 = 0 for the boundary.",
+        "es": "Resuelve 2x - 4 = 0 para la frontera."
+      },
       "solution": [
-        { "tex": "2x - 4 = 0 \\Rightarrow x = 2", "en": "The boundary is at x = 2.", "es": "La frontera está en x = 2." },
-        { "tex": "x > 2", "en": "Positive coefficient, so the solution is x > 2.", "es": "Coeficiente positivo, así que la solución es x > 2." }
+        {
+          "tex": "2x - 4 = 0 \\Rightarrow x = 2",
+          "en": "The boundary is at x = 2.",
+          "es": "La frontera está en x = 2."
+        },
+        {
+          "tex": "x > 2",
+          "en": "Positive coefficient, so the solution is x > 2.",
+          "es": "Coeficiente positivo, así que la solución es x > 2."
+        }
       ]
     },
     {
       "id": "algebra-10-e2",
       "answerType": "number",
-      "prompt": { "en": "Solve $3x + 6 \\le 0$. Enter the boundary value of $x$.", "es": "Resuelve $3x + 6 \\le 0$. Escribe el valor frontera de $x$." },
+      "prompt": {
+        "en": "Solve $3x + 6 \\le 0$. Enter the boundary value of $x$.",
+        "es": "Resuelve $3x + 6 \\le 0$. Escribe el valor frontera de $x$."
+      },
       "answer": "-2",
-      "acceptedAlt": ["-6/3"],
-      "hint": { "en": "Set 3x + 6 = 0.", "es": "Iguala 3x + 6 = 0." },
+      "acceptedAlt": [
+        "-6/3"
+      ],
+      "hint": {
+        "en": "Set 3x + 6 = 0.",
+        "es": "Iguala 3x + 6 = 0."
+      },
       "solution": [
-        { "tex": "3x + 6 = 0 \\Rightarrow x = -2", "en": "Boundary at x = -2.", "es": "Frontera en x = -2." },
-        { "tex": "x \\le -2", "en": "Solution set.", "es": "Conjunto solución." }
+        {
+          "tex": "3x + 6 = 0 \\Rightarrow x = -2",
+          "en": "Boundary at x = -2.",
+          "es": "Frontera en x = -2."
+        },
+        {
+          "tex": "x \\le -2",
+          "en": "Solution set.",
+          "es": "Conjunto solución."
+        }
       ]
     },
     {
       "id": "algebra-10-e3",
       "answerType": "number",
-      "prompt": { "en": "Solve $-2x < 8$. Enter the boundary value of $x$ (where the sign flips).", "es": "Resuelve $-2x < 8$. Escribe el valor frontera de $x$ (donde se invierte el signo)." },
+      "prompt": {
+        "en": "Solve $-2x < 8$. Enter the boundary value of $x$ (where the sign flips).",
+        "es": "Resuelve $-2x < 8$. Escribe el valor frontera de $x$ (donde se invierte el signo)."
+      },
       "answer": "-4",
-      "acceptedAlt": ["8/-2"],
-      "hint": { "en": "Divide by -2 and flip the inequality.", "es": "Divide entre -2 e invierte la desigualdad." },
+      "acceptedAlt": [
+        "8/-2"
+      ],
+      "hint": {
+        "en": "Divide by -2 and flip the inequality.",
+        "es": "Divide entre -2 e invierte la desigualdad."
+      },
       "solution": [
-        { "tex": "-2x < 8 \\Rightarrow x > -4", "en": "Divide by -2, flip the sign.", "es": "Divide entre -2, invierte el signo." },
-        { "tex": "x > -4", "en": "Boundary at x = -4.", "es": "Frontera en x = -4." }
+        {
+          "tex": "-2x < 8 \\Rightarrow x > -4",
+          "en": "Divide by -2, flip the sign.",
+          "es": "Divide entre -2, invierte el signo."
+        },
+        {
+          "tex": "x > -4",
+          "en": "Boundary at x = -4.",
+          "es": "Frontera en x = -4."
+        }
       ]
     },
     {
       "id": "algebra-10-e4",
       "answerType": "text",
-      "prompt": { "en": "Is $x = 5$ a solution of $x - 3 > 0$? Answer yes or no.", "es": "¿Es $x = 5$ solución de $x - 3 > 0$? Responde sí o no." },
+      "prompt": {
+        "en": "Is $x = 5$ a solution of $x - 3 > 0$? Answer yes or no.",
+        "es": "¿Es $x = 5$ solución de $x - 3 > 0$? Responde sí o no."
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Substitute 5 and check.", "es": "Sustituye 5 y comprueba." },
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Substitute 5 and check.",
+        "es": "Sustituye 5 y comprueba."
+      },
       "solution": [
-        { "tex": "5 - 3 = 2 > 0", "en": "The inequality holds.", "es": "La desigualdad se cumple." },
-        { "tex": "\\text{yes}", "en": "So x = 5 is a solution.", "es": "Por tanto x = 5 es solución." }
+        {
+          "tex": "5 - 3 = 2 > 0",
+          "en": "The inequality holds.",
+          "es": "La desigualdad se cumple."
+        },
+        {
+          "tex": "\\text{yes}",
+          "en": "So x = 5 is a solution.",
+          "es": "Por tanto x = 5 es solución."
+        }
       ]
+    },
+    {
+      "id": "algebra-10-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Dividing both sides of an inequality by a **negative** number requires you to...",
+        "es": "Dividir ambos lados de una desigualdad por un número **negativo** obliga a..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "flip the inequality sign",
+            "es": "invertir el signo de la desigualdad"
+          },
+          "correct": true,
+          "why": {
+            "en": "e.g. −2x<6 becomes x>−3.",
+            "es": "p. ej. −2x<6 pasa a x>−3."
+          }
+        },
+        {
+          "text": {
+            "en": "keep the sign the same",
+            "es": "mantener el mismo signo"
+          },
+          "correct": false,
+          "why": {
+            "en": "That gives the wrong solution set.",
+            "es": "Eso da el conjunto solución equivocado."
+          }
+        },
+        {
+          "text": {
+            "en": "make both sides positive",
+            "es": "hacer ambos lados positivos"
+          },
+          "correct": false,
+          "why": {
+            "en": "Not a valid inequality rule.",
+            "es": "No es una regla válida de desigualdades."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Negative division reverses order.",
+        "es": "Dividir por negativo invierte el orden."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.7, Inequalities", "es": "Cap. 1.7, Desigualdades" } },
-    { "source": "Long — Painless Algebra", "detail": { "en": "Inequalities and the sign-flip rule", "es": "Inecuaciones y la regla de inversión del signo" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Ecuaciones' — inecuaciones", "es": "Apartado 'Ecuaciones' — inecuaciones" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 1.7, Inequalities",
+        "es": "Cap. 1.7, Desigualdades"
+      }
+    },
+    {
+      "source": "Long — Painless Algebra",
+      "detail": {
+        "en": "Inequalities and the sign-flip rule",
+        "es": "Inecuaciones y la regla de inversión del signo"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Ecuaciones' — inecuaciones",
+        "es": "Apartado 'Ecuaciones' — inecuaciones"
+      }
+    }
   ]
 }

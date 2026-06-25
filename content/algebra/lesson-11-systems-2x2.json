@@ -3,13 +3,26 @@
   "subjectId": "algebra",
   "order": 9,
   "estimatedMinutes": 45,
-  "title": { "en": "Systems of 2×2 Equations", "es": "Sistemas de dos ecuaciones" },
+  "title": {
+    "en": "Systems of 2×2 Equations",
+    "es": "Sistemas de dos ecuaciones"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Many problems involve two unknowns linked by two conditions — mixing two solutions to a target concentration, finding where supply meets demand, splitting a bill two ways. A **system of two linear equations** asks for the pair $(x, y)$ that satisfies **both** equations simultaneously.",
         "es": "Muchos problemas implican dos incógnitas ligadas por dos condiciones — mezclar dos disoluciones hasta una concentración objetivo, hallar dónde la oferta iguala la demanda, repartir una cuenta. Un **sistema de dos ecuaciones lineales** busca el par $(x, y)$ que cumple **ambas** ecuaciones a la vez."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-01-linear-equations"
+      ],
+      "note": {
+        "en": "Builds on linear equations.",
+        "es": "Se apoya en las ecuaciones lineales."
       }
     },
     {
@@ -35,10 +48,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — substitution", "es": "Ejemplo resuelto — sustitución" },
+      "title": {
+        "en": "Worked example — substitution",
+        "es": "Ejemplo resuelto — sustitución"
+      },
       "content": {
         "en": "Solve $2x + 3y = 8$ and $x - y = -1$. From the second, $x = y - 1$. Substitute: $2(y-1) + 3y = 8 \\Rightarrow 5y - 2 = 8 \\Rightarrow y = 2$, so $x = 1$. **Check:** $2(1)+3(2) = 8$ ✓ and $1 - 2 = -1$ ✓.",
         "es": "Resuelve $2x + 3y = 8$ y $x - y = -1$. De la segunda, $x = y - 1$. Sustituye: $2(y-1) + 3y = 8 \\Rightarrow 5y - 2 = 8 \\Rightarrow y = 2$, así $x = 1$. **Comprobación:** $2(1)+3(2) = 8$ ✓ y $1 - 2 = -1$ ✓."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$x+y=5,\\; x-y=1$: adding gives $2x=6$, so $x=3,\\, y=2$.",
+        "es": "$x+y=5,\\; x-y=1$: al sumar, $2x=6$, luego $x=3,\\, y=2$."
       }
     }
   ],
@@ -46,56 +73,187 @@
     {
       "id": "algebra-11-e1",
       "answerType": "number",
-      "prompt": { "en": "For $x + y = 5$ and $x - y = 1$, find $x$.", "es": "Para $x + y = 5$ y $x - y = 1$, halla $x$." },
+      "prompt": {
+        "en": "For $x + y = 5$ and $x - y = 1$, find $x$.",
+        "es": "Para $x + y = 5$ y $x - y = 1$, halla $x$."
+      },
       "answer": "3",
-      "acceptedAlt": ["6/2"],
-      "hint": { "en": "Add the two equations to eliminate y.", "es": "Suma las dos ecuaciones para eliminar y." },
+      "acceptedAlt": [
+        "6/2"
+      ],
+      "hint": {
+        "en": "Add the two equations to eliminate y.",
+        "es": "Suma las dos ecuaciones para eliminar y."
+      },
       "solution": [
-        { "tex": "(x+y) + (x-y) = 5 + 1", "en": "Add the equations.", "es": "Suma las ecuaciones." },
-        { "tex": "2x = 6 \\Rightarrow x = 3", "en": "Solve for x.", "es": "Despeja x." }
+        {
+          "tex": "(x+y) + (x-y) = 5 + 1",
+          "en": "Add the equations.",
+          "es": "Suma las ecuaciones."
+        },
+        {
+          "tex": "2x = 6 \\Rightarrow x = 3",
+          "en": "Solve for x.",
+          "es": "Despeja x."
+        }
       ]
     },
     {
       "id": "algebra-11-e2",
       "answerType": "number",
-      "prompt": { "en": "For $x + y = 5$ and $x - y = 1$, find $y$.", "es": "Para $x + y = 5$ y $x - y = 1$, halla $y$." },
+      "prompt": {
+        "en": "For $x + y = 5$ and $x - y = 1$, find $y$.",
+        "es": "Para $x + y = 5$ y $x - y = 1$, halla $y$."
+      },
       "answer": "2",
-      "acceptedAlt": ["5-3"],
-      "hint": { "en": "Substitute x = 3 into the first equation.", "es": "Sustituye x = 3 en la primera ecuación." },
+      "acceptedAlt": [
+        "5-3"
+      ],
+      "hint": {
+        "en": "Substitute x = 3 into the first equation.",
+        "es": "Sustituye x = 3 en la primera ecuación."
+      },
       "solution": [
-        { "tex": "3 + y = 5", "en": "Substitute x = 3.", "es": "Sustituye x = 3." },
-        { "tex": "y = 2", "en": "Solve for y.", "es": "Despeja y." }
+        {
+          "tex": "3 + y = 5",
+          "en": "Substitute x = 3.",
+          "es": "Sustituye x = 3."
+        },
+        {
+          "tex": "y = 2",
+          "en": "Solve for y.",
+          "es": "Despeja y."
+        }
       ]
     },
     {
       "id": "algebra-11-e3",
       "answerType": "number",
-      "prompt": { "en": "For $2x + 3y = 8$ and $x - y = -1$, find $x$.", "es": "Para $2x + 3y = 8$ y $x - y = -1$, halla $x$." },
+      "prompt": {
+        "en": "For $2x + 3y = 8$ and $x - y = -1$, find $x$.",
+        "es": "Para $2x + 3y = 8$ y $x - y = -1$, halla $x$."
+      },
       "answer": "1",
       "acceptedAlt": [],
-      "hint": { "en": "From the second equation, x = y - 1. Substitute.", "es": "De la segunda, x = y - 1. Sustituye." },
+      "hint": {
+        "en": "From the second equation, x = y - 1. Substitute.",
+        "es": "De la segunda, x = y - 1. Sustituye."
+      },
       "solution": [
-        { "tex": "x = y - 1", "en": "Solve the second equation for x.", "es": "Despeja x en la segunda." },
-        { "tex": "2(y-1) + 3y = 8 \\Rightarrow 5y = 10", "en": "Substitute into the first.", "es": "Sustituye en la primera." },
-        { "tex": "y = 2,\\; x = 1", "en": "So x = 1.", "es": "Por tanto x = 1." }
+        {
+          "tex": "x = y - 1",
+          "en": "Solve the second equation for x.",
+          "es": "Despeja x en la segunda."
+        },
+        {
+          "tex": "2(y-1) + 3y = 8 \\Rightarrow 5y = 10",
+          "en": "Substitute into the first.",
+          "es": "Sustituye en la primera."
+        },
+        {
+          "tex": "y = 2,\\; x = 1",
+          "en": "So x = 1.",
+          "es": "Por tanto x = 1."
+        }
       ]
     },
     {
       "id": "algebra-11-e4",
       "answerType": "number",
-      "prompt": { "en": "For $2x + 3y = 8$ and $x - y = -1$, find $y$.", "es": "Para $2x + 3y = 8$ y $x - y = -1$, halla $y$." },
+      "prompt": {
+        "en": "For $2x + 3y = 8$ and $x - y = -1$, find $y$.",
+        "es": "Para $2x + 3y = 8$ y $x - y = -1$, halla $y$."
+      },
       "answer": "2",
-      "acceptedAlt": ["10/5"],
-      "hint": { "en": "You found 5y = 10.", "es": "Obtuviste 5y = 10." },
+      "acceptedAlt": [
+        "10/5"
+      ],
+      "hint": {
+        "en": "You found 5y = 10.",
+        "es": "Obtuviste 5y = 10."
+      },
       "solution": [
-        { "tex": "5y = 10", "en": "From the substitution.", "es": "De la sustitución." },
-        { "tex": "y = 2", "en": "Solve for y.", "es": "Despeja y." }
+        {
+          "tex": "5y = 10",
+          "en": "From the substitution.",
+          "es": "De la sustitución."
+        },
+        {
+          "tex": "y = 2",
+          "en": "Solve for y.",
+          "es": "Despeja y."
+        }
       ]
+    },
+    {
+      "id": "algebra-11-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A 2×2 linear system with **no** solution corresponds to lines that are...",
+        "es": "Un sistema lineal 2×2 **sin** solución corresponde a rectas que son..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "parallel (distinct)",
+            "es": "paralelas (distintas)"
+          },
+          "correct": true,
+          "why": {
+            "en": "Parallel lines never meet → no solution.",
+            "es": "Las rectas paralelas no se cortan → sin solución."
+          }
+        },
+        {
+          "text": {
+            "en": "identical",
+            "es": "idénticas"
+          },
+          "correct": false,
+          "why": {
+            "en": "Identical lines give infinitely many solutions.",
+            "es": "Las rectas idénticas dan infinitas soluciones."
+          }
+        },
+        {
+          "text": {
+            "en": "perpendicular",
+            "es": "perpendiculares"
+          },
+          "correct": false,
+          "why": {
+            "en": "Perpendicular lines meet at one point.",
+            "es": "Las perpendiculares se cortan en un punto."
+          }
+        }
+      ],
+      "hint": {
+        "en": "When do two lines never meet?",
+        "es": "¿Cuándo no se cruzan dos rectas?"
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 10.1–10.2, Systems of Equations", "es": "Cap. 10.1–10.2, Sistemas de ecuaciones" } },
-    { "source": "Strang — Introduction to Linear Algebra (2016)", "detail": { "en": "Ch. 1, the geometry of linear equations", "es": "Cap. 1, la geometría de las ecuaciones lineales" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Sistemas de ecuaciones'", "es": "Apartado 'Sistemas de ecuaciones'" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 10.1–10.2, Systems of Equations",
+        "es": "Cap. 10.1–10.2, Sistemas de ecuaciones"
+      }
+    },
+    {
+      "source": "Strang — Introduction to Linear Algebra (2016)",
+      "detail": {
+        "en": "Ch. 1, the geometry of linear equations",
+        "es": "Cap. 1, la geometría de las ecuaciones lineales"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Sistemas de ecuaciones'",
+        "es": "Apartado 'Sistemas de ecuaciones'"
+      }
+    }
   ]
 }

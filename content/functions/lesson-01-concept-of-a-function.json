@@ -3,7 +3,10 @@
   "subjectId": "functions",
   "order": 1,
   "estimatedMinutes": 40,
-  "title": { "en": "Concept of a Function", "es": "Concepto de función" },
+  "title": {
+    "en": "Concept of a Function",
+    "es": "Concepto de función"
+  },
   "sections": [
     {
       "type": "prose",
@@ -35,10 +38,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "Let $f(x) = 3x - 5$. Then $f(0) = -5$, $f(2) = 1$. To solve $f(x) = 1$: set $3x - 5 = 1$, so $3x = 6$, $x = 2$ — consistent with $f(2) = 1$. Evaluating forward and solving backward are two sides of the same machine.",
         "es": "Sea $f(x) = 3x - 5$. Entonces $f(0) = -5$, $f(2) = 1$. Para resolver $f(x) = 1$: plantea $3x - 5 = 1$, así $3x = 6$, $x = 2$ — coherente con $f(2) = 1$. Evaluar hacia delante y resolver hacia atrás son dos caras de la misma máquina."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$f(x)=2x+1$ gives $f(3)=7$. Every input has exactly one output.",
+        "es": "$f(x)=2x+1$ da $f(3)=7$. Cada entrada tiene exactamente una salida."
       }
     }
   ],
@@ -46,55 +63,185 @@
     {
       "id": "functions-01-e1",
       "answerType": "number",
-      "prompt": { "en": "Given $f(x) = 2x + 1$, find $f(3)$.", "es": "Dada $f(x) = 2x + 1$, halla $f(3)$." },
+      "prompt": {
+        "en": "Given $f(x) = 2x + 1$, find $f(3)$.",
+        "es": "Dada $f(x) = 2x + 1$, halla $f(3)$."
+      },
       "answer": "7",
-      "acceptedAlt": ["2*3+1"],
-      "hint": { "en": "Substitute 3 for x.", "es": "Sustituye x por 3." },
+      "acceptedAlt": [
+        "2*3+1"
+      ],
+      "hint": {
+        "en": "Substitute 3 for x.",
+        "es": "Sustituye x por 3."
+      },
       "solution": [
-        { "tex": "f(3) = 2\\cdot 3 + 1", "en": "Substitute.", "es": "Sustituye." },
-        { "tex": "= 7", "en": "Compute.", "es": "Calcula." }
+        {
+          "tex": "f(3) = 2\\cdot 3 + 1",
+          "en": "Substitute.",
+          "es": "Sustituye."
+        },
+        {
+          "tex": "= 7",
+          "en": "Compute.",
+          "es": "Calcula."
+        }
       ]
     },
     {
       "id": "functions-01-e2",
       "answerType": "number",
-      "prompt": { "en": "Given $f(x) = x^2$, find $f(-3)$.", "es": "Dada $f(x) = x^2$, halla $f(-3)$." },
+      "prompt": {
+        "en": "Given $f(x) = x^2$, find $f(-3)$.",
+        "es": "Dada $f(x) = x^2$, halla $f(-3)$."
+      },
       "answer": "9",
-      "acceptedAlt": ["(-3)^2"],
-      "hint": { "en": "Square the negative number.", "es": "Eleva al cuadrado el número negativo." },
+      "acceptedAlt": [
+        "(-3)^2"
+      ],
+      "hint": {
+        "en": "Square the negative number.",
+        "es": "Eleva al cuadrado el número negativo."
+      },
       "solution": [
-        { "tex": "f(-3) = (-3)^2", "en": "Substitute.", "es": "Sustituye." },
-        { "tex": "= 9", "en": "A negative squared is positive.", "es": "Un negativo al cuadrado es positivo." }
+        {
+          "tex": "f(-3) = (-3)^2",
+          "en": "Substitute.",
+          "es": "Sustituye."
+        },
+        {
+          "tex": "= 9",
+          "en": "A negative squared is positive.",
+          "es": "Un negativo al cuadrado es positivo."
+        }
       ]
     },
     {
       "id": "functions-01-e3",
       "answerType": "number",
-      "prompt": { "en": "Given $f(x) = 3x - 5$, for which $x$ is $f(x) = 1$?", "es": "Dada $f(x) = 3x - 5$, ¿para qué $x$ se cumple $f(x) = 1$?" },
+      "prompt": {
+        "en": "Given $f(x) = 3x - 5$, for which $x$ is $f(x) = 1$?",
+        "es": "Dada $f(x) = 3x - 5$, ¿para qué $x$ se cumple $f(x) = 1$?"
+      },
       "answer": "2",
-      "acceptedAlt": ["6/3"],
-      "hint": { "en": "Solve 3x - 5 = 1.", "es": "Resuelve 3x - 5 = 1." },
+      "acceptedAlt": [
+        "6/3"
+      ],
+      "hint": {
+        "en": "Solve 3x - 5 = 1.",
+        "es": "Resuelve 3x - 5 = 1."
+      },
       "solution": [
-        { "tex": "3x - 5 = 1 \\Rightarrow 3x = 6", "en": "Add 5.", "es": "Suma 5." },
-        { "tex": "x = 2", "en": "Divide by 3.", "es": "Divide entre 3." }
+        {
+          "tex": "3x - 5 = 1 \\Rightarrow 3x = 6",
+          "en": "Add 5.",
+          "es": "Suma 5."
+        },
+        {
+          "tex": "x = 2",
+          "en": "Divide by 3.",
+          "es": "Divide entre 3."
+        }
       ]
     },
     {
       "id": "functions-01-e4",
       "answerType": "text",
-      "prompt": { "en": "Does $y = x^2$ define a function (each x gives one y)? (yes / no)", "es": "¿Define $y = x^2$ una función (cada x da una y)? (sí / no)" },
+      "prompt": {
+        "en": "Does $y = x^2$ define a function (each x gives one y)? (yes / no)",
+        "es": "¿Define $y = x^2$ una función (cada x da una y)? (sí / no)"
+      },
       "answer": "yes",
-      "acceptedAlt": ["sí", "si"],
-      "hint": { "en": "Apply the vertical line test.", "es": "Aplica la prueba de la recta vertical." },
+      "acceptedAlt": [
+        "sí",
+        "si"
+      ],
+      "hint": {
+        "en": "Apply the vertical line test.",
+        "es": "Aplica la prueba de la recta vertical."
+      },
       "solution": [
-        { "tex": "x \\mapsto x^2", "en": "Each x has a single square.", "es": "Cada x tiene un único cuadrado." },
-        { "tex": "\\text{yes}", "en": "Passes the vertical line test.", "es": "Pasa la prueba de la recta vertical." }
+        {
+          "tex": "x \\mapsto x^2",
+          "en": "Each x has a single square.",
+          "es": "Cada x tiene un único cuadrado."
+        },
+        {
+          "tex": "\\text{yes}",
+          "en": "Passes the vertical line test.",
+          "es": "Pasa la prueba de la recta vertical."
+        }
       ]
+    },
+    {
+      "id": "functions-01-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A relation is a **function** when each input maps to...",
+        "es": "Una relación es una **función** cuando cada entrada se asigna a..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "exactly one output",
+            "es": "exactamente una salida"
+          },
+          "correct": true,
+          "why": {
+            "en": "That single-valued rule is the definition of a function.",
+            "es": "Esa regla unívoca es la definición de función."
+          }
+        },
+        {
+          "text": {
+            "en": "at least two outputs",
+            "es": "al menos dos salidas"
+          },
+          "correct": false,
+          "why": {
+            "en": "Then it wouldn't be a function.",
+            "es": "Entonces no sería una función."
+          }
+        },
+        {
+          "text": {
+            "en": "any number of outputs",
+            "es": "cualquier número de salidas"
+          },
+          "correct": false,
+          "why": {
+            "en": "Multiple outputs per input break the definition.",
+            "es": "Varias salidas por entrada rompen la definición."
+          }
+        }
+      ],
+      "hint": {
+        "en": "One input → one output.",
+        "es": "Una entrada → una salida."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 2.1, What Is a Function?", "es": "Cap. 2.1, ¿Qué es una función?" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 1.4, Functions; the vertical line test", "es": "Cap. 1.4, Funciones; la prueba de la recta vertical" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones' — concepto de función", "es": "Apartado 'Funciones' — concepto de función" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 2.1, What Is a Function?",
+        "es": "Cap. 2.1, ¿Qué es una función?"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 1.4, Functions; the vertical line test",
+        "es": "Cap. 1.4, Funciones; la prueba de la recta vertical"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones' — concepto de función",
+        "es": "Apartado 'Funciones' — concepto de función"
+      }
+    }
   ]
 }

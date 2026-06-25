@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 4,
   "estimatedMinutes": 40,
-  "title": { "en": "Properties of Functions", "es": "Características de una función" },
+  "title": {
+    "en": "Properties of Functions",
+    "es": "Características de una función"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Before graphing or analyzing a function, we describe its key features. The **domain** is every input the rule allows. Two restrictions cause almost all real-world domain limits: you cannot **divide by zero**, and (over the reals) you cannot take a **square root of a negative**. So $f(x)=\\tfrac{1}{x-2}$ excludes $x=2$, and $f(x)=\\sqrt{x}$ requires $x\\ge 0$.",
         "es": "Antes de graficar o analizar una función, describimos sus rasgos clave. El **dominio** es toda entrada que la regla permite. Dos restricciones causan casi todos los límites reales del dominio: no se puede **dividir entre cero** ni (en los reales) hacer la **raíz cuadrada de un negativo**. Así $f(x)=\\tfrac{1}{x-2}$ excluye $x=2$, y $f(x)=\\sqrt{x}$ exige $x\\ge 0$."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-01-concept"
+      ],
+      "note": {
+        "en": "Builds on the concept of a function.",
+        "es": "Se apoya en el concepto de función."
       }
     },
     {
@@ -28,10 +41,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — domain and symmetry", "es": "Ejemplo resuelto — dominio y simetría" },
+      "title": {
+        "en": "Worked example — domain and symmetry",
+        "es": "Ejemplo resuelto — dominio y simetría"
+      },
       "content": {
         "en": "For $f(x) = \\tfrac{1}{x-2}$: set the denominator to zero, $x - 2 = 0$, so the domain is all reals **except** $x = 2$. For symmetry of $g(x) = x^2$: $g(-x) = (-x)^2 = x^2 = g(x)$, so $g$ is **even**.",
         "es": "Para $f(x) = \\tfrac{1}{x-2}$: anula el denominador, $x - 2 = 0$, así el dominio es todos los reales **excepto** $x = 2$. Para la simetría de $g(x) = x^2$: $g(-x) = (-x)^2 = x^2 = g(x)$, así $g$ es **par**."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$f(x)=x^2$ is **even** ($f(-x)=f(x)$); $f(x)=x^3$ is **odd** ($f(-x)=-f(x)$).",
+        "es": "$f(x)=x^2$ es **par** ($f(-x)=f(x)$); $f(x)=x^3$ es **impar** ($f(-x)=-f(x)$)."
       }
     }
   ],
@@ -39,43 +66,160 @@
     {
       "id": "functions-04-e1",
       "answerType": "number",
-      "prompt": { "en": "Which value is excluded from the domain of $f(x)=\\dfrac{1}{x-2}$?", "es": "¿Qué valor se excluye del dominio de $f(x)=\\dfrac{1}{x-2}$?" },
+      "prompt": {
+        "en": "Which value is excluded from the domain of $f(x)=\\dfrac{1}{x-2}$?",
+        "es": "¿Qué valor se excluye del dominio de $f(x)=\\dfrac{1}{x-2}$?"
+      },
       "answer": "2",
       "acceptedAlt": [],
-      "hint": { "en": "Where is the denominator zero?", "es": "¿Dónde se anula el denominador?" },
-      "solution": [ { "tex": "x - 2 = 0 \\Rightarrow x = 2", "en": "Division by zero is undefined.", "es": "La división entre cero no está definida." } ]
+      "hint": {
+        "en": "Where is the denominator zero?",
+        "es": "¿Dónde se anula el denominador?"
+      },
+      "solution": [
+        {
+          "tex": "x - 2 = 0 \\Rightarrow x = 2",
+          "en": "Division by zero is undefined.",
+          "es": "La división entre cero no está definida."
+        }
+      ]
     },
     {
       "id": "functions-04-e2",
       "answerType": "number",
-      "prompt": { "en": "What is the smallest $x$ in the domain of $f(x)=\\sqrt{x}$?", "es": "¿Cuál es el menor $x$ del dominio de $f(x)=\\sqrt{x}$?" },
+      "prompt": {
+        "en": "What is the smallest $x$ in the domain of $f(x)=\\sqrt{x}$?",
+        "es": "¿Cuál es el menor $x$ del dominio de $f(x)=\\sqrt{x}$?"
+      },
       "answer": "0",
       "acceptedAlt": [],
-      "hint": { "en": "The radicand must be ≥ 0.", "es": "El radicando debe ser ≥ 0." },
-      "solution": [ { "tex": "x \\ge 0", "en": "So the smallest is 0.", "es": "Por tanto el menor es 0." } ]
+      "hint": {
+        "en": "The radicand must be ≥ 0.",
+        "es": "El radicando debe ser ≥ 0."
+      },
+      "solution": [
+        {
+          "tex": "x \\ge 0",
+          "en": "So the smallest is 0.",
+          "es": "Por tanto el menor es 0."
+        }
+      ]
     },
     {
       "id": "functions-04-e3",
       "answerType": "text",
-      "prompt": { "en": "Is $f(x)=x^2$ even or odd? (even / odd)", "es": "¿Es $f(x)=x^2$ par o impar? (par / impar)" },
+      "prompt": {
+        "en": "Is $f(x)=x^2$ even or odd? (even / odd)",
+        "es": "¿Es $f(x)=x^2$ par o impar? (par / impar)"
+      },
       "answer": "even",
-      "acceptedAlt": ["par"],
-      "hint": { "en": "Check f(-x).", "es": "Comprueba f(-x)." },
-      "solution": [ { "tex": "(-x)^2 = x^2", "en": "f(-x) = f(x) → even.", "es": "f(-x) = f(x) → par." } ]
+      "acceptedAlt": [
+        "par"
+      ],
+      "hint": {
+        "en": "Check f(-x).",
+        "es": "Comprueba f(-x)."
+      },
+      "solution": [
+        {
+          "tex": "(-x)^2 = x^2",
+          "en": "f(-x) = f(x) → even.",
+          "es": "f(-x) = f(x) → par."
+        }
+      ]
     },
     {
       "id": "functions-04-e4",
       "answerType": "text",
-      "prompt": { "en": "Is $f(x)=x^3$ even or odd? (even / odd)", "es": "¿Es $f(x)=x^3$ par o impar? (par / impar)" },
+      "prompt": {
+        "en": "Is $f(x)=x^3$ even or odd? (even / odd)",
+        "es": "¿Es $f(x)=x^3$ par o impar? (par / impar)"
+      },
       "answer": "odd",
-      "acceptedAlt": ["impar"],
-      "hint": { "en": "Check f(-x).", "es": "Comprueba f(-x)." },
-      "solution": [ { "tex": "(-x)^3 = -x^3", "en": "f(-x) = -f(x) → odd.", "es": "f(-x) = -f(x) → impar." } ]
+      "acceptedAlt": [
+        "impar"
+      ],
+      "hint": {
+        "en": "Check f(-x).",
+        "es": "Comprueba f(-x)."
+      },
+      "solution": [
+        {
+          "tex": "(-x)^3 = -x^3",
+          "en": "f(-x) = -f(x) → odd.",
+          "es": "f(-x) = -f(x) → impar."
+        }
+      ]
+    },
+    {
+      "id": "functions-04-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A function with $f(-x)=f(x)$ for all $x$ is called...",
+        "es": "Una función con $f(-x)=f(x)$ para todo $x$ se llama..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "even",
+            "es": "par"
+          },
+          "correct": true,
+          "why": {
+            "en": "Even functions are symmetric about the y-axis.",
+            "es": "Las funciones pares son simétricas respecto al eje y."
+          }
+        },
+        {
+          "text": {
+            "en": "odd",
+            "es": "impar"
+          },
+          "correct": false,
+          "why": {
+            "en": "Odd functions satisfy f(−x)=−f(x).",
+            "es": "Las impares cumplen f(−x)=−f(x)."
+          }
+        },
+        {
+          "text": {
+            "en": "invertible",
+            "es": "invertible"
+          },
+          "correct": false,
+          "why": {
+            "en": "Symmetry doesn't imply invertibility.",
+            "es": "La simetría no implica invertibilidad."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Symmetry about the y-axis.",
+        "es": "Simetría respecto al eje y."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 2.3–2.5, domain, increasing/decreasing, symmetry", "es": "Cap. 2.3–2.5, dominio, crecimiento/decrecimiento, simetría" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 1.5, even and odd functions", "es": "Cap. 1.5, funciones pares e impares" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones' — características", "es": "Apartado 'Funciones' — características" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 2.3–2.5, domain, increasing/decreasing, symmetry",
+        "es": "Cap. 2.3–2.5, dominio, crecimiento/decrecimiento, simetría"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 1.5, even and odd functions",
+        "es": "Cap. 1.5, funciones pares e impares"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones' — características",
+        "es": "Apartado 'Funciones' — características"
+      }
+    }
   ]
 }

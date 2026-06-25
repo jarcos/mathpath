@@ -3,13 +3,26 @@
   "subjectId": "algebra",
   "order": 13,
   "estimatedMinutes": 35,
-  "title": { "en": "Polynomials: Definition & Value", "es": "Polinomios: definición y valor numérico" },
+  "title": {
+    "en": "Polynomials: Definition & Value",
+    "es": "Polinomios: definición y valor numérico"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A **polynomial** is a sum of terms of the form $a_k x^k$, where the exponents are **non-negative integers** — for example $P(x) = 2x^3 - x + 1$. No division by $x$, no roots of $x$, no negative powers: those would not be polynomials. Polynomials are the best-behaved functions in mathematics — smooth, defined everywhere, and easy to add, multiply, and differentiate — which is why they appear as approximations to almost everything else.",
         "es": "Un **polinomio** es una suma de términos de la forma $a_k x^k$, donde los exponentes son **enteros no negativos** — por ejemplo $P(x) = 2x^3 - x + 1$. Sin dividir entre $x$, sin raíces de $x$, sin potencias negativas: eso no serían polinomios. Los polinomios son las funciones mejor comportadas de la matemática — suaves, definidas en todas partes y fáciles de sumar, multiplicar y derivar — por eso aparecen como aproximación de casi todo lo demás."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-09-algebraic-expressions"
+      ],
+      "note": {
+        "en": "Builds on algebraic expressions.",
+        "es": "Se apoya en las expresiones algebraicas."
       }
     },
     {
@@ -28,10 +41,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — value and roots", "es": "Ejemplo resuelto — valor y raíces" },
+      "title": {
+        "en": "Worked example — value and roots",
+        "es": "Ejemplo resuelto — valor y raíces"
+      },
       "content": {
         "en": "For $P(x) = x^2 - 3x + 2$, compute $P(2) = 4 - 6 + 2 = 0$. Since the value is zero, $x = 2$ is a **root**. (Indeed $P$ factors as $(x-1)(x-2)$, so its roots are $1$ and $2$.) Evaluating at a candidate is the quickest test of whether it is a root.",
         "es": "Para $P(x) = x^2 - 3x + 2$, calcula $P(2) = 4 - 6 + 2 = 0$. Como el valor es cero, $x = 2$ es una **raíz**. (De hecho $P$ factoriza como $(x-1)(x-2)$, así que sus raíces son $1$ y $2$.) Evaluar en un candidato es la prueba más rápida de si es raíz."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "The degree of $3x^4 - 2x + 1$ is $4$ — the highest power present.",
+        "es": "El grado de $3x^4 - 2x + 1$ es $4$ — la potencia más alta presente."
       }
     }
   ],
@@ -39,55 +66,180 @@
     {
       "id": "algebra-15-e1",
       "answerType": "number",
-      "prompt": { "en": "What is the degree of $3x^4 - 2x + 1$?", "es": "¿Cuál es el grado de $3x^4 - 2x + 1$?" },
+      "prompt": {
+        "en": "What is the degree of $3x^4 - 2x + 1$?",
+        "es": "¿Cuál es el grado de $3x^4 - 2x + 1$?"
+      },
       "answer": "4",
       "acceptedAlt": [],
-      "hint": { "en": "The highest exponent.", "es": "El mayor exponente." },
+      "hint": {
+        "en": "The highest exponent.",
+        "es": "El mayor exponente."
+      },
       "solution": [
-        { "tex": "3x^4 - 2x + 1", "en": "Highest power is 4.", "es": "La mayor potencia es 4." },
-        { "tex": "\\deg = 4", "en": "Degree 4.", "es": "Grado 4." }
+        {
+          "tex": "3x^4 - 2x + 1",
+          "en": "Highest power is 4.",
+          "es": "La mayor potencia es 4."
+        },
+        {
+          "tex": "\\deg = 4",
+          "en": "Degree 4.",
+          "es": "Grado 4."
+        }
       ]
     },
     {
       "id": "algebra-15-e2",
       "answerType": "number",
-      "prompt": { "en": "For $P(x) = x^2 - 3x + 2$, find $P(2)$.", "es": "Para $P(x) = x^2 - 3x + 2$, halla $P(2)$." },
+      "prompt": {
+        "en": "For $P(x) = x^2 - 3x + 2$, find $P(2)$.",
+        "es": "Para $P(x) = x^2 - 3x + 2$, halla $P(2)$."
+      },
       "answer": "0",
-      "acceptedAlt": ["2^2-3*2+2"],
-      "hint": { "en": "Substitute x = 2.", "es": "Sustituye x = 2." },
+      "acceptedAlt": [
+        "2^2-3*2+2"
+      ],
+      "hint": {
+        "en": "Substitute x = 2.",
+        "es": "Sustituye x = 2."
+      },
       "solution": [
-        { "tex": "P(2) = 4 - 6 + 2", "en": "Substitute x = 2.", "es": "Sustituye x = 2." },
-        { "tex": "= 0", "en": "So 2 is a root.", "es": "Por tanto 2 es raíz." }
+        {
+          "tex": "P(2) = 4 - 6 + 2",
+          "en": "Substitute x = 2.",
+          "es": "Sustituye x = 2."
+        },
+        {
+          "tex": "= 0",
+          "en": "So 2 is a root.",
+          "es": "Por tanto 2 es raíz."
+        }
       ]
     },
     {
       "id": "algebra-15-e3",
       "answerType": "number",
-      "prompt": { "en": "For $P(x) = 2x^3 - x$, find $P(-1)$.", "es": "Para $P(x) = 2x^3 - x$, halla $P(-1)$." },
+      "prompt": {
+        "en": "For $P(x) = 2x^3 - x$, find $P(-1)$.",
+        "es": "Para $P(x) = 2x^3 - x$, halla $P(-1)$."
+      },
       "answer": "-1",
-      "acceptedAlt": ["2*(-1)^3-(-1)"],
-      "hint": { "en": "Remember $(-1)^3 = -1$.", "es": "Recuerda $(-1)^3 = -1$." },
+      "acceptedAlt": [
+        "2*(-1)^3-(-1)"
+      ],
+      "hint": {
+        "en": "Remember $(-1)^3 = -1$.",
+        "es": "Recuerda $(-1)^3 = -1$."
+      },
       "solution": [
-        { "tex": "P(-1) = 2(-1)^3 - (-1)", "en": "Substitute x = -1.", "es": "Sustituye x = -1." },
-        { "tex": "= -2 + 1 = -1", "en": "Compute.", "es": "Calcula." }
+        {
+          "tex": "P(-1) = 2(-1)^3 - (-1)",
+          "en": "Substitute x = -1.",
+          "es": "Sustituye x = -1."
+        },
+        {
+          "tex": "= -2 + 1 = -1",
+          "en": "Compute.",
+          "es": "Calcula."
+        }
       ]
     },
     {
       "id": "algebra-15-e4",
       "answerType": "number",
-      "prompt": { "en": "What is the leading coefficient of $5x^3 + 2x^2 - 7$?", "es": "¿Cuál es el coeficiente principal de $5x^3 + 2x^2 - 7$?" },
+      "prompt": {
+        "en": "What is the leading coefficient of $5x^3 + 2x^2 - 7$?",
+        "es": "¿Cuál es el coeficiente principal de $5x^3 + 2x^2 - 7$?"
+      },
       "answer": "5",
       "acceptedAlt": [],
-      "hint": { "en": "The coefficient of the highest-degree term.", "es": "El coeficiente del término de mayor grado." },
+      "hint": {
+        "en": "The coefficient of the highest-degree term.",
+        "es": "El coeficiente del término de mayor grado."
+      },
       "solution": [
-        { "tex": "5x^3 + \\dots", "en": "Highest term is 5x³.", "es": "El término mayor es 5x³." },
-        { "tex": "\\text{leading} = 5", "en": "Leading coefficient 5.", "es": "Coeficiente principal 5." }
+        {
+          "tex": "5x^3 + \\dots",
+          "en": "Highest term is 5x³.",
+          "es": "El término mayor es 5x³."
+        },
+        {
+          "tex": "\\text{leading} = 5",
+          "en": "Leading coefficient 5.",
+          "es": "Coeficiente principal 5."
+        }
       ]
+    },
+    {
+      "id": "algebra-15-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The degree of $3x^4 - 2x + 1$ is:",
+        "es": "El grado de $3x^4 - 2x + 1$ es:"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$4$",
+            "es": "$4$"
+          },
+          "correct": true,
+          "why": {
+            "en": "Degree is the highest exponent.",
+            "es": "El grado es el mayor exponente."
+          }
+        },
+        {
+          "text": {
+            "en": "$3$",
+            "es": "$3$"
+          },
+          "correct": false,
+          "why": {
+            "en": "3 is a coefficient, not the degree.",
+            "es": "3 es un coeficiente, no el grado."
+          }
+        },
+        {
+          "text": {
+            "en": "$1$",
+            "es": "$1$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's the constant term.",
+            "es": "Ese es el término independiente."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Highest power.",
+        "es": "La mayor potencia."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 3.1–3.2, Polynomial Functions", "es": "Cap. 3.1–3.2, Funciones polinómicas" } },
-    { "source": "Long — Painless Algebra", "detail": { "en": "Introduction to polynomials", "es": "Introducción a los polinomios" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Polinomios'", "es": "Apartado 'Polinomios'" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 3.1–3.2, Polynomial Functions",
+        "es": "Cap. 3.1–3.2, Funciones polinómicas"
+      }
+    },
+    {
+      "source": "Long — Painless Algebra",
+      "detail": {
+        "en": "Introduction to polynomials",
+        "es": "Introducción a los polinomios"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Polinomios'",
+        "es": "Apartado 'Polinomios'"
+      }
+    }
   ]
 }

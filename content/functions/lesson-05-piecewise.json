@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 5,
   "estimatedMinutes": 35,
-  "title": { "en": "Piecewise Functions", "es": "Funciones definidas a trozos" },
+  "title": {
+    "en": "Piecewise Functions",
+    "es": "Funciones definidas a trozos"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A **piecewise function** applies different rules on different parts of its domain. They model situations with thresholds: tax brackets, shipping costs that jump at weight limits, a thermostat that behaves one way below a set point and another above. The notation lists each rule with the interval where it applies: $f(x) = \\begin{cases} x^2 & x < 0 \\\\ 2x & x \\ge 0 \\end{cases}$.",
         "es": "Una **función a trozos** aplica reglas distintas en partes distintas de su dominio. Modelan situaciones con umbrales: tramos de impuestos, costes de envío que saltan en límites de peso, un termostato que se comporta de un modo bajo cierta temperatura y de otro por encima. La notación enumera cada regla con el intervalo donde se aplica: $f(x) = \\begin{cases} x^2 & x < 0 \\\\ 2x & x \\ge 0 \\end{cases}$."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-01-concept"
+      ],
+      "note": {
+        "en": "Builds on the concept of a function.",
+        "es": "Se apoya en el concepto de función."
       }
     },
     {
@@ -28,10 +41,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example", "es": "Ejemplo resuelto" },
+      "title": {
+        "en": "Worked example",
+        "es": "Ejemplo resuelto"
+      },
       "content": {
         "en": "For the $f$ above: $f(-2)$ uses the first rule since $-2 < 0$, so $f(-2) = (-2)^2 = 4$. $f(3)$ uses the second since $3 \\ge 0$, so $f(3) = 2\\cdot 3 = 6$. Always check the inequality before choosing the rule.",
         "es": "Para la $f$ anterior: $f(-2)$ usa la primera regla pues $-2 < 0$, así $f(-2) = (-2)^2 = 4$. $f(3)$ usa la segunda pues $3 \\ge 0$, así $f(3) = 2\\cdot 3 = 6$. Comprueba siempre la desigualdad antes de elegir la regla."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "The absolute value $|x|$ is piecewise: $-x$ for $x<0$ and $x$ for $x\\ge 0$.",
+        "es": "El valor absoluto $|x|$ es a trozos: $-x$ si $x<0$ y $x$ si $x\\ge 0$."
       }
     }
   ],
@@ -39,43 +66,164 @@
     {
       "id": "functions-05-e1",
       "answerType": "number",
-      "prompt": { "en": "For the piecewise $f$ above, find $f(-2)$.", "es": "Para la $f$ a trozos anterior, halla $f(-2)$." },
+      "prompt": {
+        "en": "For the piecewise $f$ above, find $f(-2)$.",
+        "es": "Para la $f$ a trozos anterior, halla $f(-2)$."
+      },
       "answer": "4",
-      "acceptedAlt": ["(-2)^2"],
-      "hint": { "en": "−2 < 0, so use x².", "es": "−2 < 0, usa x²." },
-      "solution": [ { "tex": "f(-2) = (-2)^2 = 4", "en": "Use the first rule.", "es": "Usa la primera regla." } ]
+      "acceptedAlt": [
+        "(-2)^2"
+      ],
+      "hint": {
+        "en": "−2 < 0, so use x².",
+        "es": "−2 < 0, usa x²."
+      },
+      "solution": [
+        {
+          "tex": "f(-2) = (-2)^2 = 4",
+          "en": "Use the first rule.",
+          "es": "Usa la primera regla."
+        }
+      ]
     },
     {
       "id": "functions-05-e2",
       "answerType": "number",
-      "prompt": { "en": "Find $f(3)$.", "es": "Halla $f(3)$." },
+      "prompt": {
+        "en": "Find $f(3)$.",
+        "es": "Halla $f(3)$."
+      },
       "answer": "6",
-      "acceptedAlt": ["2*3"],
-      "hint": { "en": "3 ≥ 0, so use 2x.", "es": "3 ≥ 0, usa 2x." },
-      "solution": [ { "tex": "f(3) = 2\\cdot 3 = 6", "en": "Use the second rule.", "es": "Usa la segunda regla." } ]
+      "acceptedAlt": [
+        "2*3"
+      ],
+      "hint": {
+        "en": "3 ≥ 0, so use 2x.",
+        "es": "3 ≥ 0, usa 2x."
+      },
+      "solution": [
+        {
+          "tex": "f(3) = 2\\cdot 3 = 6",
+          "en": "Use the second rule.",
+          "es": "Usa la segunda regla."
+        }
+      ]
     },
     {
       "id": "functions-05-e3",
       "answerType": "number",
-      "prompt": { "en": "Find $f(0)$.", "es": "Halla $f(0)$." },
+      "prompt": {
+        "en": "Find $f(0)$.",
+        "es": "Halla $f(0)$."
+      },
       "answer": "0",
-      "acceptedAlt": ["2*0"],
-      "hint": { "en": "0 ≥ 0, so use 2x.", "es": "0 ≥ 0, usa 2x." },
-      "solution": [ { "tex": "f(0) = 2\\cdot 0 = 0", "en": "Use the second rule.", "es": "Usa la segunda regla." } ]
+      "acceptedAlt": [
+        "2*0"
+      ],
+      "hint": {
+        "en": "0 ≥ 0, so use 2x.",
+        "es": "0 ≥ 0, usa 2x."
+      },
+      "solution": [
+        {
+          "tex": "f(0) = 2\\cdot 0 = 0",
+          "en": "Use the second rule.",
+          "es": "Usa la segunda regla."
+        }
+      ]
     },
     {
       "id": "functions-05-e4",
       "answerType": "number",
-      "prompt": { "en": "Find $f(-1)$.", "es": "Halla $f(-1)$." },
+      "prompt": {
+        "en": "Find $f(-1)$.",
+        "es": "Halla $f(-1)$."
+      },
       "answer": "1",
-      "acceptedAlt": ["(-1)^2"],
-      "hint": { "en": "−1 < 0, so use x².", "es": "−1 < 0, usa x²." },
-      "solution": [ { "tex": "f(-1) = (-1)^2 = 1", "en": "Use the first rule.", "es": "Usa la primera regla." } ]
+      "acceptedAlt": [
+        "(-1)^2"
+      ],
+      "hint": {
+        "en": "−1 < 0, so use x².",
+        "es": "−1 < 0, usa x²."
+      },
+      "solution": [
+        {
+          "tex": "f(-1) = (-1)^2 = 1",
+          "en": "Use the first rule.",
+          "es": "Usa la primera regla."
+        }
+      ]
+    },
+    {
+      "id": "functions-05-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The absolute value $|x|$ is an example of a ___ function.",
+        "es": "El valor absoluto $|x|$ es un ejemplo de función ___."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "piecewise",
+            "es": "a trozos"
+          },
+          "correct": true,
+          "why": {
+            "en": "It uses different rules on different intervals.",
+            "es": "Usa reglas distintas en intervalos distintos."
+          }
+        },
+        {
+          "text": {
+            "en": "constant",
+            "es": "constante"
+          },
+          "correct": false,
+          "why": {
+            "en": "|x| changes with x, so it isn't constant.",
+            "es": "|x| cambia con x, así que no es constante."
+          }
+        },
+        {
+          "text": {
+            "en": "periodic",
+            "es": "periódica"
+          },
+          "correct": false,
+          "why": {
+            "en": "It doesn't repeat at fixed intervals.",
+            "es": "No se repite a intervalos fijos."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Different rules on different intervals.",
+        "es": "Reglas distintas por intervalos."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 2.2, piecewise-defined functions", "es": "Cap. 2.2, funciones definidas a trozos" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 1.4, piecewise functions; absolute value", "es": "Cap. 1.4, funciones a trozos; valor absoluto" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones' — funciones definidas a trozos", "es": "Apartado 'Funciones' — funciones definidas a trozos" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 2.2, piecewise-defined functions",
+        "es": "Cap. 2.2, funciones definidas a trozos"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 1.4, piecewise functions; absolute value",
+        "es": "Cap. 1.4, funciones a trozos; valor absoluto"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones' — funciones definidas a trozos",
+        "es": "Apartado 'Funciones' — funciones definidas a trozos"
+      }
+    }
   ]
 }

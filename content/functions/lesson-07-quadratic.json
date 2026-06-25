@@ -3,13 +3,26 @@
   "subjectId": "functions",
   "order": 7,
   "estimatedMinutes": 40,
-  "title": { "en": "Quadratic Functions", "es": "Funciones cuadráticas" },
+  "title": {
+    "en": "Quadratic Functions",
+    "es": "Funciones cuadráticas"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "A **quadratic function** $f(x) = ax^2 + bx + c$ (with $a \\neq 0$) graphs as a **parabola** — the U-shaped curve traced by projectiles, satellite dishes, and suspension cables. The sign of $a$ sets the opening: $a > 0$ opens **upward** (a minimum at the bottom), $a < 0$ opens **downward** (a maximum at the top). The larger $|a|$, the narrower the parabola.",
         "es": "Una **función cuadrática** $f(x) = ax^2 + bx + c$ (con $a \\neq 0$) se representa como una **parábola** — la curva en forma de U que trazan los proyectiles, las antenas parabólicas y los cables de suspensión. El signo de $a$ marca la apertura: $a > 0$ abre **hacia arriba** (un mínimo abajo), $a < 0$ **hacia abajo** (un máximo arriba). Cuanto mayor $|a|$, más estrecha la parábola."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-06-linear-affine"
+      ],
+      "note": {
+        "en": "Builds on linear and affine functions.",
+        "es": "Se apoya en las funciones lineales y afines."
       }
     },
     {
@@ -29,7 +42,10 @@
     {
       "type": "graph",
       "fn": "x^2 - 4*x + 3",
-      "domain": [-1, 5],
+      "domain": [
+        -1,
+        5
+      ],
       "caption": {
         "en": "$f(x) = x^2 - 4x + 3$: opens upward, roots at $1$ and $3$, vertex at $x = 2$ where the minimum value $f(2) = -1$ occurs.",
         "es": "$f(x) = x^2 - 4x + 3$: abre hacia arriba, raíces en $1$ y $3$, vértice en $x = 2$ donde está el valor mínimo $f(2) = -1$."
@@ -37,10 +53,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — vertex and minimum", "es": "Ejemplo resuelto — vértice y mínimo" },
+      "title": {
+        "en": "Worked example — vertex and minimum",
+        "es": "Ejemplo resuelto — vértice y mínimo"
+      },
       "content": {
         "en": "For $f(x) = x^2 - 4x + 3$: vertex at $x = -\\tfrac{-4}{2} = 2$; the minimum value is $f(2) = 4 - 8 + 3 = -1$. Roots from $(x-1)(x-3)=0$ are $1$ and $3$, symmetric about $x = 2$ — as they must be.",
         "es": "Para $f(x) = x^2 - 4x + 3$: vértice en $x = -\\tfrac{-4}{2} = 2$; el valor mínimo es $f(2) = 4 - 8 + 3 = -1$. Las raíces de $(x-1)(x-3)=0$ son $1$ y $3$, simétricas respecto a $x = 2$ — como debe ser."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$y=x^2-4$ is a parabola opening upward, vertex $(0,-4)$, roots $x=\\pm 2$.",
+        "es": "$y=x^2-4$ es una parábola hacia arriba, vértice $(0,-4)$, raíces $x=\\pm 2$."
       }
     }
   ],
@@ -48,43 +78,168 @@
     {
       "id": "functions-07-e1",
       "answerType": "number",
-      "prompt": { "en": "Find the vertex x-coordinate of $f(x) = x^2 - 4x + 3$.", "es": "Halla la abscisa del vértice de $f(x) = x^2 - 4x + 3$." },
+      "prompt": {
+        "en": "Find the vertex x-coordinate of $f(x) = x^2 - 4x + 3$.",
+        "es": "Halla la abscisa del vértice de $f(x) = x^2 - 4x + 3$."
+      },
       "answer": "2",
-      "acceptedAlt": ["4/2", "-(-4)/(2*1)"],
-      "hint": { "en": "x = -b / (2a).", "es": "x = -b / (2a)." },
-      "solution": [ { "tex": "x = \\frac{-(-4)}{2\\cdot 1} = 2", "en": "Apply the vertex formula.", "es": "Aplica la fórmula del vértice." } ]
+      "acceptedAlt": [
+        "4/2",
+        "-(-4)/(2*1)"
+      ],
+      "hint": {
+        "en": "x = -b / (2a).",
+        "es": "x = -b / (2a)."
+      },
+      "solution": [
+        {
+          "tex": "x = \\frac{-(-4)}{2\\cdot 1} = 2",
+          "en": "Apply the vertex formula.",
+          "es": "Aplica la fórmula del vértice."
+        }
+      ]
     },
     {
       "id": "functions-07-e2",
       "answerType": "set",
-      "prompt": { "en": "Find the roots of $x^2 - 4x + 3 = 0$.", "es": "Halla las raíces de $x^2 - 4x + 3 = 0$." },
+      "prompt": {
+        "en": "Find the roots of $x^2 - 4x + 3 = 0$.",
+        "es": "Halla las raíces de $x^2 - 4x + 3 = 0$."
+      },
       "answer": "1, 3",
-      "acceptedAlt": ["3, 1"],
-      "hint": { "en": "Factor as (x-1)(x-3).", "es": "Factoriza como (x-1)(x-3)." },
-      "solution": [ { "tex": "(x-1)(x-3)=0", "en": "Factor.", "es": "Factoriza." }, { "tex": "x = 1 \\text{ or } 3", "en": "Roots.", "es": "Raíces." } ]
+      "acceptedAlt": [
+        "3, 1"
+      ],
+      "hint": {
+        "en": "Factor as (x-1)(x-3).",
+        "es": "Factoriza como (x-1)(x-3)."
+      },
+      "solution": [
+        {
+          "tex": "(x-1)(x-3)=0",
+          "en": "Factor.",
+          "es": "Factoriza."
+        },
+        {
+          "tex": "x = 1 \\text{ or } 3",
+          "en": "Roots.",
+          "es": "Raíces."
+        }
+      ]
     },
     {
       "id": "functions-07-e3",
       "answerType": "number",
-      "prompt": { "en": "Find $f(0)$ for $f(x) = x^2 - 4x + 3$.", "es": "Halla $f(0)$ para $f(x) = x^2 - 4x + 3$." },
+      "prompt": {
+        "en": "Find $f(0)$ for $f(x) = x^2 - 4x + 3$.",
+        "es": "Halla $f(0)$ para $f(x) = x^2 - 4x + 3$."
+      },
       "answer": "3",
       "acceptedAlt": [],
-      "hint": { "en": "The constant term.", "es": "El término independiente." },
-      "solution": [ { "tex": "f(0) = 3", "en": "y-intercept.", "es": "Ordenada en el origen." } ]
+      "hint": {
+        "en": "The constant term.",
+        "es": "El término independiente."
+      },
+      "solution": [
+        {
+          "tex": "f(0) = 3",
+          "en": "y-intercept.",
+          "es": "Ordenada en el origen."
+        }
+      ]
     },
     {
       "id": "functions-07-e4",
       "answerType": "number",
-      "prompt": { "en": "Find the minimum value $f(2)$ of $f(x) = x^2 - 4x + 3$.", "es": "Halla el valor mínimo $f(2)$ de $f(x) = x^2 - 4x + 3$." },
+      "prompt": {
+        "en": "Find the minimum value $f(2)$ of $f(x) = x^2 - 4x + 3$.",
+        "es": "Halla el valor mínimo $f(2)$ de $f(x) = x^2 - 4x + 3$."
+      },
       "answer": "-1",
-      "acceptedAlt": ["2^2-4*2+3"],
-      "hint": { "en": "Evaluate at the vertex x = 2.", "es": "Evalúa en el vértice x = 2." },
-      "solution": [ { "tex": "f(2) = 4 - 8 + 3 = -1", "en": "Minimum value.", "es": "Valor mínimo." } ]
+      "acceptedAlt": [
+        "2^2-4*2+3"
+      ],
+      "hint": {
+        "en": "Evaluate at the vertex x = 2.",
+        "es": "Evalúa en el vértice x = 2."
+      },
+      "solution": [
+        {
+          "tex": "f(2) = 4 - 8 + 3 = -1",
+          "en": "Minimum value.",
+          "es": "Valor mínimo."
+        }
+      ]
+    },
+    {
+      "id": "functions-07-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The graph of a quadratic function $ax^2+bx+c$ is a...",
+        "es": "La gráfica de una función cuadrática $ax^2+bx+c$ es una..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "parabola",
+            "es": "parábola"
+          },
+          "correct": true,
+          "why": {
+            "en": "Quadratics always graph as parabolas.",
+            "es": "Las cuadráticas siempre se grafican como parábolas."
+          }
+        },
+        {
+          "text": {
+            "en": "straight line",
+            "es": "recta"
+          },
+          "correct": false,
+          "why": {
+            "en": "That's a linear function.",
+            "es": "Esa es una función lineal."
+          }
+        },
+        {
+          "text": {
+            "en": "hyperbola",
+            "es": "hipérbola"
+          },
+          "correct": false,
+          "why": {
+            "en": "Hyperbolas come from rational/other forms.",
+            "es": "Las hipérbolas vienen de formas racionales u otras."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think of x².",
+        "es": "Piensa en x²."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 3.1, Quadratic Functions and Models", "es": "Cap. 3.1, Funciones cuadráticas y modelos" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 2.1, quadratic functions; vertex form", "es": "Cap. 2.1, funciones cuadráticas; forma de vértice" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones polinómicas' — funciones cuadráticas", "es": "Apartado 'Funciones polinómicas' — funciones cuadráticas" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 3.1, Quadratic Functions and Models",
+        "es": "Cap. 3.1, Funciones cuadráticas y modelos"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 2.1, quadratic functions; vertex form",
+        "es": "Cap. 2.1, funciones cuadráticas; forma de vértice"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones polinómicas' — funciones cuadráticas",
+        "es": "Apartado 'Funciones polinómicas' — funciones cuadráticas"
+      }
+    }
   ]
 }

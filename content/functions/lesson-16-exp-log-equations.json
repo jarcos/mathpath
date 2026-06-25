@@ -3,13 +3,27 @@
   "subjectId": "functions",
   "order": 16,
   "estimatedMinutes": 40,
-  "title": { "en": "Exponential & Logarithmic Equations", "es": "Ecuaciones exponenciales y logarítmicas" },
+  "title": {
+    "en": "Exponential & Logarithmic Equations",
+    "es": "Ecuaciones exponenciales y logarítmicas"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Equations with the unknown in an **exponent** — like $2^x = 8$ or $1000 = 500\\,e^{0.04t}$ — are everywhere in finance and science (\"how long until the investment doubles?\", \"when does the population reach a million?\"). Two strategies solve them, and they are inverses of each other.",
         "es": "Las ecuaciones con la incógnita en un **exponente** — como $2^x = 8$ o $1000 = 500\\,e^{0.04t}$ — están por todas partes en finanzas y ciencia (\"¿cuánto tarda en duplicarse la inversión?\", \"¿cuándo llega la población al millón?\"). Dos estrategias las resuelven, y son inversas entre sí."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-13-exponential",
+        "functions-14-logarithms"
+      ],
+      "note": {
+        "en": "Builds on exponentials and logarithms.",
+        "es": "Se apoya en exponenciales y logaritmos."
       }
     },
     {
@@ -28,10 +42,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — solving by logs", "es": "Ejemplo resuelto — resolver con logaritmos" },
+      "title": {
+        "en": "Worked example — solving by logs",
+        "es": "Ejemplo resuelto — resolver con logaritmos"
+      },
       "content": {
         "en": "Solve $10^x = 100$. Recognize $100 = 10^2$, so $x = 2$. Alternatively take $\\log_{10}$ of both sides: $x = \\log_{10}100 = 2$. For $e^x = 1$: since $e^0 = 1$, $x = 0$ (equivalently $x = \\ln 1 = 0$).",
         "es": "Resuelve $10^x = 100$. Reconoce $100 = 10^2$, así $x = 2$. Alternativamente toma $\\log_{10}$ en ambos lados: $x = \\log_{10}100 = 2$. Para $e^x = 1$: como $e^0 = 1$, $x = 0$ (equivalentemente $x = \\ln 1 = 0$)."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "Solve $2^x=8$: take $\\log_2$ of both sides → $x=\\log_2 8 = 3$.",
+        "es": "Resuelve $2^x=8$: aplica $\\log_2$ a ambos lados → $x=\\log_2 8 = 3$."
       }
     }
   ],
@@ -39,43 +67,165 @@
     {
       "id": "functions-16-e1",
       "answerType": "number",
-      "prompt": { "en": "Solve $2^x = 8$.", "es": "Resuelve $2^x = 8$." },
+      "prompt": {
+        "en": "Solve $2^x = 8$.",
+        "es": "Resuelve $2^x = 8$."
+      },
       "answer": "3",
-      "acceptedAlt": ["log(8,2)"],
-      "hint": { "en": "Write 8 as a power of 2.", "es": "Escribe 8 como potencia de 2." },
-      "solution": [ { "tex": "2^x = 2^3 \\Rightarrow x = 3", "en": "Equate exponents.", "es": "Iguala los exponentes." } ]
+      "acceptedAlt": [
+        "log(8,2)"
+      ],
+      "hint": {
+        "en": "Write 8 as a power of 2.",
+        "es": "Escribe 8 como potencia de 2."
+      },
+      "solution": [
+        {
+          "tex": "2^x = 2^3 \\Rightarrow x = 3",
+          "en": "Equate exponents.",
+          "es": "Iguala los exponentes."
+        }
+      ]
     },
     {
       "id": "functions-16-e2",
       "answerType": "number",
-      "prompt": { "en": "Solve $10^x = 100$.", "es": "Resuelve $10^x = 100$." },
+      "prompt": {
+        "en": "Solve $10^x = 100$.",
+        "es": "Resuelve $10^x = 100$."
+      },
       "answer": "2",
-      "acceptedAlt": ["log(100,10)", "log10(100)"],
-      "hint": { "en": "100 = 10².", "es": "100 = 10²." },
-      "solution": [ { "tex": "10^x = 10^2 \\Rightarrow x = 2", "en": "Equate exponents.", "es": "Iguala los exponentes." } ]
+      "acceptedAlt": [
+        "log(100,10)",
+        "log10(100)"
+      ],
+      "hint": {
+        "en": "100 = 10².",
+        "es": "100 = 10²."
+      },
+      "solution": [
+        {
+          "tex": "10^x = 10^2 \\Rightarrow x = 2",
+          "en": "Equate exponents.",
+          "es": "Iguala los exponentes."
+        }
+      ]
     },
     {
       "id": "functions-16-e3",
       "answerType": "number",
-      "prompt": { "en": "Solve $\\log_2 x = 3$.", "es": "Resuelve $\\log_2 x = 3$." },
+      "prompt": {
+        "en": "Solve $\\log_2 x = 3$.",
+        "es": "Resuelve $\\log_2 x = 3$."
+      },
       "answer": "8",
-      "acceptedAlt": ["2^3"],
-      "hint": { "en": "Rewrite in exponential form.", "es": "Reescribe en forma exponencial." },
-      "solution": [ { "tex": "x = 2^3 = 8", "en": "Exponentiate.", "es": "Aplica la exponencial." } ]
+      "acceptedAlt": [
+        "2^3"
+      ],
+      "hint": {
+        "en": "Rewrite in exponential form.",
+        "es": "Reescribe en forma exponencial."
+      },
+      "solution": [
+        {
+          "tex": "x = 2^3 = 8",
+          "en": "Exponentiate.",
+          "es": "Aplica la exponencial."
+        }
+      ]
     },
     {
       "id": "functions-16-e4",
       "answerType": "number",
-      "prompt": { "en": "Solve $e^x = 1$.", "es": "Resuelve $e^x = 1$." },
+      "prompt": {
+        "en": "Solve $e^x = 1$.",
+        "es": "Resuelve $e^x = 1$."
+      },
       "answer": "0",
-      "acceptedAlt": ["log(1)"],
-      "hint": { "en": "Any base to the 0 is 1.", "es": "Cualquier base a la 0 es 1." },
-      "solution": [ { "tex": "e^x = e^0 \\Rightarrow x = 0", "en": "Equate exponents.", "es": "Iguala los exponentes." } ]
+      "acceptedAlt": [
+        "log(1)"
+      ],
+      "hint": {
+        "en": "Any base to the 0 is 1.",
+        "es": "Cualquier base a la 0 es 1."
+      },
+      "solution": [
+        {
+          "tex": "e^x = e^0 \\Rightarrow x = 0",
+          "en": "Equate exponents.",
+          "es": "Iguala los exponentes."
+        }
+      ]
+    },
+    {
+      "id": "functions-16-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "To solve an equation like $2^x = 8$ for $x$, you should take the...",
+        "es": "Para resolver una ecuación como $2^x = 8$ en $x$, debes aplicar el..."
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "logarithm of both sides",
+            "es": "logaritmo a ambos lados"
+          },
+          "correct": true,
+          "why": {
+            "en": "The log brings the exponent down: x = log₂8 = 3.",
+            "es": "El log baja el exponente: x = log₂8 = 3."
+          }
+        },
+        {
+          "text": {
+            "en": "square root of both sides",
+            "es": "raíz cuadrada a ambos lados"
+          },
+          "correct": false,
+          "why": {
+            "en": "Roots don't isolate a variable exponent.",
+            "es": "Las raíces no despejan un exponente variable."
+          }
+        },
+        {
+          "text": {
+            "en": "derivative of both sides",
+            "es": "derivada a ambos lados"
+          },
+          "correct": false,
+          "why": {
+            "en": "Differentiation doesn't solve for x here.",
+            "es": "Derivar no despeja x aquí."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Undo an exponent with a log.",
+        "es": "Deshaz un exponente con un log."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 4.5, Exponential and Logarithmic Equations", "es": "Cap. 4.5, Ecuaciones exponenciales y logarítmicas" } },
-    { "source": "Larson — Precalculus (2014)", "detail": { "en": "Ch. 3.4, solving exponential and logarithmic equations", "es": "Cap. 3.4, resolución de ecuaciones exponenciales y logarítmicas" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Funciones exponencial y logarítmica' — ecuaciones", "es": "Apartado 'Funciones exponencial y logarítmica' — ecuaciones" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 4.5, Exponential and Logarithmic Equations",
+        "es": "Cap. 4.5, Ecuaciones exponenciales y logarítmicas"
+      }
+    },
+    {
+      "source": "Larson — Precalculus (2014)",
+      "detail": {
+        "en": "Ch. 3.4, solving exponential and logarithmic equations",
+        "es": "Cap. 3.4, resolución de ecuaciones exponenciales y logarítmicas"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Funciones exponencial y logarítmica' — ecuaciones",
+        "es": "Apartado 'Funciones exponencial y logarítmica' — ecuaciones"
+      }
+    }
   ]
 }

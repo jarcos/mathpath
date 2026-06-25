@@ -3,13 +3,26 @@
   "subjectId": "algebra",
   "order": 16,
   "estimatedMinutes": 40,
-  "title": { "en": "Exponents & Simplification", "es": "Potencias y simplificación" },
+  "title": {
+    "en": "Exponents & Simplification",
+    "es": "Potencias y simplificación"
+  },
   "sections": [
     {
       "type": "prose",
       "content": {
         "en": "Earlier we met powers of numbers; now we apply the same laws to **variables**, which is where their power for *simplification* shows. The three core laws carry over unchanged: **product** $x^a x^b = x^{a+b}$, **power of a power** $(x^a)^b = x^{ab}$, and **quotient** $\\dfrac{x^a}{x^b} = x^{a-b}$. Each one converts a complicated expression into a single clean power.",
         "es": "Antes vimos potencias de números; ahora aplicamos las mismas leyes a **variables**, que es donde se ve su potencia para *simplificar*. Las tres leyes básicas se mantienen iguales: **producto** $x^a x^b = x^{a+b}$, **potencia de una potencia** $(x^a)^b = x^{ab}$ y **cociente** $\\dfrac{x^a}{x^b} = x^{a-b}$. Cada una convierte una expresión complicada en una potencia limpia."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-07-real-numbers-powers-roots"
+      ],
+      "note": {
+        "en": "Builds on real numbers, powers and roots.",
+        "es": "Se apoya en reales, potencias y raíces."
       }
     },
     {
@@ -28,10 +41,24 @@
     },
     {
       "type": "example",
-      "title": { "en": "Worked example — combine the laws", "es": "Ejemplo resuelto — combina las leyes" },
+      "title": {
+        "en": "Worked example — combine the laws",
+        "es": "Ejemplo resuelto — combina las leyes"
+      },
       "content": {
         "en": "Simplify $\\dfrac{(x^2)^3 \\cdot x}{x^4}$. Power of a power on top: $(x^2)^3 = x^6$, times $x$ gives $x^7$. Quotient law: $x^{7-4} = x^3$. Three laws, one clean answer.",
         "es": "Simplifica $\\dfrac{(x^2)^3 \\cdot x}{x^4}$. Potencia de una potencia arriba: $(x^2)^3 = x^6$, por $x$ da $x^7$. Ley del cociente: $x^{7-4} = x^3$. Tres leyes, una respuesta limpia."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Another example",
+        "es": "Otro ejemplo"
+      },
+      "content": {
+        "en": "$x^5 \\cdot x^2 = x^{7}$; and $(x^2)^3 = x^{6}$.",
+        "es": "$x^5 \\cdot x^2 = x^{7}$; y $(x^2)^3 = x^{6}$."
       }
     }
   ],
@@ -39,67 +66,213 @@
     {
       "id": "algebra-04-e1",
       "answerType": "expression",
-      "prompt": { "en": "Simplify:  $x^2 \\cdot x^3$", "es": "Simplifica:  $x^2 \\cdot x^3$" },
+      "prompt": {
+        "en": "Simplify:  $x^2 \\cdot x^3$",
+        "es": "Simplifica:  $x^2 \\cdot x^3$"
+      },
       "answer": "x^5",
-      "acceptedAlt": ["x*x*x*x*x"],
-      "hint": { "en": "Add the exponents.", "es": "Suma los exponentes." },
+      "acceptedAlt": [
+        "x*x*x*x*x"
+      ],
+      "hint": {
+        "en": "Add the exponents.",
+        "es": "Suma los exponentes."
+      },
       "solution": [
-        { "tex": "x^2 \\cdot x^3 = x^{2+3}", "en": "Product rule: add exponents.", "es": "Regla del producto: suma exponentes." },
-        { "tex": "= x^5", "en": "Add.", "es": "Suma." }
+        {
+          "tex": "x^2 \\cdot x^3 = x^{2+3}",
+          "en": "Product rule: add exponents.",
+          "es": "Regla del producto: suma exponentes."
+        },
+        {
+          "tex": "= x^5",
+          "en": "Add.",
+          "es": "Suma."
+        }
       ]
     },
     {
       "id": "algebra-04-e2",
       "answerType": "expression",
-      "prompt": { "en": "Simplify:  $(x^3)^2$", "es": "Simplifica:  $(x^3)^2$" },
+      "prompt": {
+        "en": "Simplify:  $(x^3)^2$",
+        "es": "Simplifica:  $(x^3)^2$"
+      },
       "answer": "x^6",
-      "acceptedAlt": ["x^3*x^3"],
-      "hint": { "en": "Multiply the exponents.", "es": "Multiplica los exponentes." },
+      "acceptedAlt": [
+        "x^3*x^3"
+      ],
+      "hint": {
+        "en": "Multiply the exponents.",
+        "es": "Multiplica los exponentes."
+      },
       "solution": [
-        { "tex": "(x^3)^2 = x^{3\\cdot 2}", "en": "Power of a power: multiply exponents.", "es": "Potencia de una potencia: multiplica exponentes." },
-        { "tex": "= x^6", "en": "Multiply.", "es": "Multiplica." }
+        {
+          "tex": "(x^3)^2 = x^{3\\cdot 2}",
+          "en": "Power of a power: multiply exponents.",
+          "es": "Potencia de una potencia: multiplica exponentes."
+        },
+        {
+          "tex": "= x^6",
+          "en": "Multiply.",
+          "es": "Multiplica."
+        }
       ]
     },
     {
       "id": "algebra-04-e3",
       "answerType": "expression",
-      "prompt": { "en": "Simplify:  $\\dfrac{x^5}{x^2}$", "es": "Simplifica:  $\\dfrac{x^5}{x^2}$" },
+      "prompt": {
+        "en": "Simplify:  $\\dfrac{x^5}{x^2}$",
+        "es": "Simplifica:  $\\dfrac{x^5}{x^2}$"
+      },
       "answer": "x^3",
-      "acceptedAlt": ["x^5/x^2"],
-      "hint": { "en": "Subtract the exponents.", "es": "Resta los exponentes." },
+      "acceptedAlt": [
+        "x^5/x^2"
+      ],
+      "hint": {
+        "en": "Subtract the exponents.",
+        "es": "Resta los exponentes."
+      },
       "solution": [
-        { "tex": "\\frac{x^5}{x^2} = x^{5-2}", "en": "Quotient rule: subtract exponents.", "es": "Regla del cociente: resta exponentes." },
-        { "tex": "= x^3", "en": "Subtract.", "es": "Resta." }
+        {
+          "tex": "\\frac{x^5}{x^2} = x^{5-2}",
+          "en": "Quotient rule: subtract exponents.",
+          "es": "Regla del cociente: resta exponentes."
+        },
+        {
+          "tex": "= x^3",
+          "en": "Subtract.",
+          "es": "Resta."
+        }
       ]
     },
     {
       "id": "algebra-04-e4",
       "answerType": "expression",
-      "prompt": { "en": "Expand:  $(x + 2)^2$", "es": "Desarrolla:  $(x + 2)^2$" },
+      "prompt": {
+        "en": "Expand:  $(x + 2)^2$",
+        "es": "Desarrolla:  $(x + 2)^2$"
+      },
       "answer": "x^2 + 4*x + 4",
-      "acceptedAlt": ["(x+2)^2", "4 + 4*x + x^2"],
-      "hint": { "en": "Use $(x+k)^2 = x^2 + 2kx + k^2$ with k = 2.", "es": "Usa $(x+k)^2 = x^2 + 2kx + k^2$ con k = 2." },
+      "acceptedAlt": [
+        "(x+2)^2",
+        "4 + 4*x + x^2"
+      ],
+      "hint": {
+        "en": "Use $(x+k)^2 = x^2 + 2kx + k^2$ with k = 2.",
+        "es": "Usa $(x+k)^2 = x^2 + 2kx + k^2$ con k = 2."
+      },
       "solution": [
-        { "tex": "(x+2)^2 = x^2 + 2\\cdot 2\\cdot x + 2^2", "en": "Apply the square-of-a-binomial pattern.", "es": "Aplica el patrón del cuadrado del binomio." },
-        { "tex": "= x^2 + 4x + 4", "en": "Simplify.", "es": "Simplifica." }
+        {
+          "tex": "(x+2)^2 = x^2 + 2\\cdot 2\\cdot x + 2^2",
+          "en": "Apply the square-of-a-binomial pattern.",
+          "es": "Aplica el patrón del cuadrado del binomio."
+        },
+        {
+          "tex": "= x^2 + 4x + 4",
+          "en": "Simplify.",
+          "es": "Simplifica."
+        }
       ]
     },
     {
       "id": "algebra-04-e5",
       "answerType": "expression",
-      "prompt": { "en": "Simplify:  $\\dfrac{(x^2)^3 \\cdot x}{x^4}$", "es": "Simplifica:  $\\dfrac{(x^2)^3 \\cdot x}{x^4}$" },
+      "prompt": {
+        "en": "Simplify:  $\\dfrac{(x^2)^3 \\cdot x}{x^4}$",
+        "es": "Simplifica:  $\\dfrac{(x^2)^3 \\cdot x}{x^4}$"
+      },
       "answer": "x^3",
-      "acceptedAlt": ["(x^2)^3*x/x^4"],
-      "hint": { "en": "Top: (x²)³·x = x⁷; then divide.", "es": "Arriba: (x²)³·x = x⁷; luego divide." },
+      "acceptedAlt": [
+        "(x^2)^3*x/x^4"
+      ],
+      "hint": {
+        "en": "Top: (x²)³·x = x⁷; then divide.",
+        "es": "Arriba: (x²)³·x = x⁷; luego divide."
+      },
       "solution": [
-        { "tex": "\\frac{x^6\\cdot x}{x^4} = \\frac{x^7}{x^4}", "en": "Power of a power, then product.", "es": "Potencia de potencia, luego producto." },
-        { "tex": "= x^3", "en": "Quotient law.", "es": "Ley del cociente." }
+        {
+          "tex": "\\frac{x^6\\cdot x}{x^4} = \\frac{x^7}{x^4}",
+          "en": "Power of a power, then product.",
+          "es": "Potencia de potencia, luego producto."
+        },
+        {
+          "tex": "= x^3",
+          "en": "Quotient law.",
+          "es": "Ley del cociente."
+        }
       ]
+    },
+    {
+      "id": "algebra-04-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Simplify $x^5 \\cdot x^2$:",
+        "es": "Simplifica $x^5 \\cdot x^2$:"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$x^7$",
+            "es": "$x^7$"
+          },
+          "correct": true,
+          "why": {
+            "en": "Multiplying powers adds exponents.",
+            "es": "Al multiplicar potencias se suman los exponentes."
+          }
+        },
+        {
+          "text": {
+            "en": "$x^{10}$",
+            "es": "$x^{10}$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That multiplies the exponents (wrong rule).",
+            "es": "Eso multiplica los exponentes (regla incorrecta)."
+          }
+        },
+        {
+          "text": {
+            "en": "$x^3$",
+            "es": "$x^3$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That subtracts them (division rule).",
+            "es": "Eso los resta (regla de la división)."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Same base → add exponents.",
+        "es": "Misma base → suma exponentes."
+      }
     }
   ],
   "references": [
-    { "source": "Stewart, Redlin & Watson — Precalculus (2015)", "detail": { "en": "Ch. 1.2, Exponents and Radicals", "es": "Cap. 1.2, Exponentes y radicales" } },
-    { "source": "Long — Painless Algebra", "detail": { "en": "Laws of exponents", "es": "Leyes de los exponentes" } },
-    { "source": "UOC — Iniciación a las matemáticas para la ingeniería", "detail": { "en": "Section 'Números' — potencias; 'Polinomios' — igualdades notables", "es": "Apartado 'Números' — potencias; 'Polinomios' — igualdades notables" } }
+    {
+      "source": "Stewart, Redlin & Watson — Precalculus (2015)",
+      "detail": {
+        "en": "Ch. 1.2, Exponents and Radicals",
+        "es": "Cap. 1.2, Exponentes y radicales"
+      }
+    },
+    {
+      "source": "Long — Painless Algebra",
+      "detail": {
+        "en": "Laws of exponents",
+        "es": "Leyes de los exponentes"
+      }
+    },
+    {
+      "source": "UOC — Iniciación a las matemáticas para la ingeniería",
+      "detail": {
+        "en": "Section 'Números' — potencias; 'Polinomios' — igualdades notables",
+        "es": "Apartado 'Números' — potencias; 'Polinomios' — igualdades notables"
+      }
+    }
   ]
 }
