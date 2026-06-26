@@ -1,6 +1,7 @@
 import { join, extname } from 'path'
-import { pathToFileURL } from 'node:url'
-import { app, shell, BrowserWindow, ipcMain, nativeImage, protocol, net } from 'electron'
+import http from 'node:http'
+import { createReadStream } from 'node:fs'
+import { app, shell, BrowserWindow, ipcMain, nativeImage } from 'electron'
 import {
   initDb,
   getSetting,
@@ -16,30 +17,63 @@ import {
 
 const isDev = !app.isPackaged
 
-// Packaged builds serve the renderer over a privileged "app://" scheme instead
-// of file://. This is required for the in-app Pyodide runtime: Pyodide loads its
-// wasm and wheels with fetch(), which Chromium blocks under file://. A standard,
-// secure, fetch-enabled scheme makes offline Python work. (Dev uses the
-// electron-vite http dev server, where fetch already works.)
-if (!isDev) {
-  protocol.registerSchemesAsPrivileged([
-    {
-      scheme: 'app',
-      privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true }
-    }
-  ])
-}
-
-// Show "MathPath" (not "Electron") and the brand icon. In a packaged build the
-// name comes from productName and the icon from the bundle; in dev we set them
-// at runtime. On macOS the menu-bar app name in dev still shows "Electron"
-// (it's the unsigned Electron binary's bundle name) — that's fixed once packaged.
 app.setName('MathPath')
 
+// In a packaged build the renderer is served from a localhost HTTP server rather
+// than file://. This is required for the in-app Pyodide runtime, which loads its
+// wasm + wheels with fetch() — blocked under file://, but perfectly fine over
+// http(127.0.0.1). It also keeps everything offline (loopback only). Dev keeps
+// using the electron-vite dev server.
+let rendererBaseUrl = null
+
+const MIME = {
+  '.html': 'text/html',
+  '.js': 'text/javascript',
+  '.mjs': 'text/javascript',
+  '.css': 'text/css',
+  '.json': 'application/json',
+  '.wasm': 'application/wasm',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.woff2': 'font/woff2',
+  '.woff': 'font/woff',
+  '.ttf': 'font/ttf',
+  '.map': 'application/json'
+}
+
+function startRendererServer(root) {
+  return new Promise((resolve, reject) => {
+    const server = http.createServer((req, res) => {
+      let urlPath
+      try {
+        urlPath = decodeURIComponent(new URL(req.url, 'http://localhost').pathname)
+      } catch {
+        urlPath = '/'
+      }
+      if (!urlPath || urlPath === '/') urlPath = '/index.html'
+      const safe = urlPath.replace(/\.\.(\/|\\|$)/g, '')
+      const filePath = join(root, safe)
+      const type = MIME[extname(filePath).toLowerCase()] || 'application/octet-stream'
+      const stream = createReadStream(filePath)
+      stream.on('open', () => {
+        res.writeHead(200, { 'Content-Type': type })
+        stream.pipe(res)
+      })
+      stream.on('error', () => {
+        res.writeHead(404)
+        res.end('Not found')
+      })
+    })
+    server.on('error', reject)
+    // Port 0 = OS picks a free port; bind to loopback only.
+    server.listen(0, '127.0.0.1', () => {
+      const { port } = server.address()
+      resolve(`http://127.0.0.1:${port}`)
+    })
+  })
+}
+
 function createWindow() {
-  // Dev/runtime window icon (Linux/Windows + dev dock). Packaged macOS uses the
-  // .icns from electron-builder; this path may not exist there, so only set it
-  // in dev to avoid a missing-file warning.
   const devIcon = join(import.meta.dirname, '../../build/icon.png')
 
   const win = new BrowserWindow({
@@ -53,7 +87,6 @@ function createWindow() {
     ...(isDev ? { icon: devIcon } : {}),
     webPreferences: {
       preload: join(import.meta.dirname, '../preload/index.mjs'),
-      // Secure defaults: renderer has no direct Node access.
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: false
@@ -62,7 +95,6 @@ function createWindow() {
 
   win.once('ready-to-show', () => win.show())
 
-  // Open external links in the user's browser, never inside the app.
   win.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url)
     return { action: 'deny' }
@@ -71,7 +103,7 @@ function createWindow() {
   if (isDev && process.env.ELECTRON_RENDERER_URL) {
     win.loadURL(process.env.ELECTRON_RENDERER_URL)
   } else {
-    win.loadURL('app://bundle/index.html')
+    win.loadURL(rendererBaseUrl)
   }
 }
 
@@ -92,40 +124,11 @@ function registerIpc() {
   ipcMain.handle('plan:reset', (_e, subjectId, targetDays) => resetPlan(subjectId, targetDays))
 }
 
-app.whenReady().then(() => {
-  // Serve packaged renderer files (incl. the bundled Pyodide assets) over app://.
+app.whenReady().then(async () => {
   if (!isDev) {
-    const rendererRoot = join(import.meta.dirname, '../renderer')
-    const MIME = {
-      '.html': 'text/html',
-      '.js': 'text/javascript',
-      '.mjs': 'text/javascript',
-      '.css': 'text/css',
-      '.json': 'application/json',
-      '.wasm': 'application/wasm',
-      '.svg': 'image/svg+xml',
-      '.png': 'image/png',
-      '.woff2': 'font/woff2',
-      '.woff': 'font/woff',
-      '.ttf': 'font/ttf'
-    }
-    protocol.handle('app', async (request) => {
-      let rel = decodeURIComponent(new URL(request.url).pathname)
-      if (!rel || rel === '/') rel = '/index.html'
-      const filePath = join(rendererRoot, rel.replace(/\.\.(\/|\\|$)/g, ''))
-      const res = await net.fetch(pathToFileURL(filePath).toString())
-      // Force correct MIME for module scripts and wasm (Chromium is strict).
-      const type = MIME[extname(filePath).toLowerCase()]
-      if (type) {
-        const headers = new Headers(res.headers)
-        headers.set('content-type', type)
-        return new Response(res.body, { status: res.status, headers })
-      }
-      return res
-    })
+    rendererBaseUrl = await startRendererServer(join(import.meta.dirname, '../renderer'))
   }
 
-  // Dev: replace Electron's default Dock icon with the brand icon (macOS).
   if (isDev && process.platform === 'darwin' && app.dock) {
     const img = nativeImage.createFromPath(join(import.meta.dirname, '../../build/icon.png'))
     if (!img.isEmpty()) app.dock.setIcon(img)
