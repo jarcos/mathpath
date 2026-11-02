@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { validateAnswer } from '@shared/validate.js'
+import { gradeCases } from '@shared/pygrade.js'
 import { useApp } from '@/AppContext.jsx'
-import { runFunctionCases, valuesClose } from '@/lib/pyodide.js'
+import { runFunctionCases } from '@/lib/pyodide.js'
 import MathText from './MathText.jsx'
 
 export default function Exercise({ exercise, lessonId, index, solved = false, onSolved }) {
@@ -22,6 +23,9 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
   const [code, setCode] = useState(loc(exercise.starter) || '')
   const [codeState, setCodeState] = useState('idle') // idle | running
   const [codeFeedback, setCodeFeedback] = useState(null)
+  // Aborts the run in flight; also when the learner leaves the lesson.
+  const codeRunRef = useRef(null)
+  useEffect(() => () => codeRunRef.current?.abort(), [])
 
   const finish = (ok, userAnswer) => {
     setResult(ok ? 'correct' : 'incorrect')
@@ -44,18 +48,28 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
     setCodeState('running')
     setCodeFeedback(null)
     const argsList = exercise.tests.map((tt) => tt.args || [])
-    const res = await runFunctionCases(code, exercise.funcName, argsList, exercise.lib || [])
+    codeRunRef.current = new AbortController()
+    const res = await runFunctionCases(code, exercise.funcName, argsList, exercise.lib || [], codeRunRef.current.signal)
+    codeRunRef.current = null
+    setCodeState('idle')
+    if (res.reason === 'stopped') {
+      setCodeFeedback({ error: t('codeStopped') })
+      return
+    }
     if (!res.ok) {
-      setCodeState('idle')
-      setCodeFeedback({ error: res.error === 'missing_function' ? t('codeNoFunc', { fn: exercise.funcName }) : res.error })
+      const error =
+        res.reason === 'timeout'
+          ? t('codeTimeout')
+          : res.error === 'missing_function'
+            ? t('codeNoFunc', { fn: exercise.funcName })
+            : res.error
+      setCodeFeedback({ error })
       finish(false, code)
       return
     }
-    const passes = exercise.tests.map((tt, i) => valuesClose(res.results[i], tt.expected, tt.tol ?? 1e-9))
-    const allPass = passes.every(Boolean)
-    setCodeState('idle')
+    const passes = gradeCases(res.results, exercise.tests)
     setCodeFeedback({ passes })
-    finish(allPass, code)
+    finish(passes.every(Boolean), code)
   }
 
   const numSolved = result === 'correct'
@@ -130,9 +144,18 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
             rows={Math.max(4, code.split('\n').length + 1)}
           />
           <div className="code-exercise-actions">
-            <button className="primary small" onClick={submitCode} disabled={codeState === 'running'}>
-              {codeState === 'running' ? t('codeRunning') : t('codeRunCheck')}
-            </button>
+            {codeState === 'running' ? (
+              <>
+                <button className="primary small" onClick={() => codeRunRef.current?.abort()}>
+                  {t('codeStop')}
+                </button>
+                <span className="muted small">{t('codeRunning')}</span>
+              </>
+            ) : (
+              <button className="primary small" onClick={submitCode}>
+                {t('codeRunCheck')}
+              </button>
+            )}
           </div>
           {codeFeedback?.error && <div className="feedback bad">{codeFeedback.error}</div>}
           {codeFeedback?.passes && (

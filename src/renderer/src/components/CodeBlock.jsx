@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '@/AppContext.jsx'
 import { runCode } from '@/lib/pyodide.js'
@@ -37,12 +37,17 @@ export default function CodeBlock({ section }) {
   const [state, setState] = useState('idle') // idle | running | done
   const [output, setOutput] = useState('')
   const [ok, setOk] = useState(true)
+  // Aborts the run in flight; also when the learner leaves the lesson.
+  const runRef = useRef(null)
+  useEffect(() => () => runRef.current?.abort(), [])
 
   const run = async () => {
     setState('running')
-    const res = await runCode(code, section.lib || [])
+    runRef.current = new AbortController()
+    const res = await runCode(code, section.lib || [], runRef.current.signal)
+    runRef.current = null
     setOk(res.ok)
-    setOutput(res.output || '')
+    setOutput(res.reason ? t(res.reason === 'timeout' ? 'codeTimeout' : 'codeStopped') : res.output || '')
     setState('done')
   }
 
@@ -51,9 +56,18 @@ export default function CodeBlock({ section }) {
       <div className="code-head">
         <span className="code-lang">Python{section.lib?.length ? ` · ${section.lib.join(', ')}` : ''}</span>
         {runnable ? (
-          <button className="code-run" onClick={run} disabled={state === 'running'}>
-            {state === 'running' ? t('codeRunning') : t('codeRun')}
-          </button>
+          <span className="code-run-actions">
+            {state === 'running' && <span className="muted small">{t('codeRunning')}</span>}
+            {state === 'running' ? (
+              <button className="code-run" onClick={() => runRef.current?.abort()}>
+                {t('codeStop')}
+              </button>
+            ) : (
+              <button className="code-run" onClick={run}>
+                {t('codeRun')}
+              </button>
+            )}
+          </span>
         ) : (
           <span className="code-static-tag">{t('codeReference')}</span>
         )}

@@ -14,7 +14,36 @@ permissions:
   contents: write
 
 jobs:
+  # Nothing is packaged unless every correctness gate passes (the same
+  # `npm run verify` that `predist` runs locally).
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Python libraries for the CPython code gate
+        run: pip install numpy pandas scikit-learn scipy sympy
+
+      - name: Bundle Pyodide core + science wheels (for the Pyodide gate)
+        run: npm run setup:pyodide && npm run setup:pyodide:wheels
+
+      - name: Verify content (mathjs, glossary, CPython, Pyodide)
+        run: npm run verify
+
   build:
+    needs: verify
     strategy:
       fail-fast: false
       matrix:

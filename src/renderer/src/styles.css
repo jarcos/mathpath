@@ -380,6 +380,7 @@ button.link.back { display: inline-block; margin-bottom: 18px; }
   padding: 5px 14px; font-weight: 600; font-size: 0.82rem; cursor: pointer;
 }
 .code-run:disabled { opacity: 0.6; cursor: default; }
+.code-run-actions { display: flex; align-items: center; gap: 10px; }
 .code-static-tag { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; }
 .code-pre {
   margin: 0; padding: 14px 16px; overflow-x: auto;
@@ -407,7 +408,7 @@ button.link.back { display: inline-block; margin-bottom: 18px; }
   font-size: 0.88rem; line-height: 1.55; resize: vertical; white-space: pre; overflow-wrap: normal;
 }
 .code-editor:focus { outline: none; border-color: var(--accent); }
-.code-exercise-actions { margin-top: 10px; }
+.code-exercise-actions { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
 .code-tests { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-direction: column; gap: 3px; font-size: 0.85rem; }
 .code-tests .pass { color: var(--ok); }
 .code-tests .fail { color: var(--bad); }
