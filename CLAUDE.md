@@ -41,17 +41,22 @@ npm run dist           # package an installer for the current OS (see BUILD.md)
 ```
 src/
   main/        Electron main process + SQLite data layer (db.js) + IPC handlers
+               rendererServer.js — loopback server for the packaged renderer
   preload/     Secure contextBridge — the only renderer ↔ main channel
+               (built as CJS: the window is sandboxed)
   shared/      validate.js — mathjs answer checker, used by BOTH app and verifier
+               pygrade.js — code-exercise grader, used by BOTH app and verify:pyodide
   renderer/    React UI (Vite)
     src/
       AppContext.jsx   language + progress state, loc() content selector, theme
       lib/plan.js      adaptive 30-day scheduler (pure, testable)
+      lib/pyodide.js   runs Python in lib/pyodide.worker.js (stop + 30 s timeout)
       components/      MathText (KaTeX), FunctionGraph (custom SVG plotter on mathjs),
                        Exercise, ProgressBar
       pages/           Dashboard, SubjectView, LessonView
 content/         per-subject lessons + subjects.json + index.js
-scripts/         verify-content.mjs
+scripts/         verify-content.mjs, verify-glossary.mjs, verify-code.py (CPython),
+                 verify-pyodide.mjs (bundled Pyodide + in-app grader)
 sources/         math/ + ai/ source material; see sources/INDEX.md
 docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 ```
@@ -71,7 +76,7 @@ docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 
 ## Curriculum status
 
-**Both tracks complete** (textbook depth, all verified). 241 lessons / 972
+**Both tracks complete** (textbook depth, all verified). 241 lessons / 1055
 exercises / 2151 checks passing (`npm run verify:content`).
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),

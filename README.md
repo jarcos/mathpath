@@ -64,10 +64,11 @@ npm run dev                  # launch with hot reload
 ### Scripts
 
 ```bash
-npm run verify           # all gates: content (mathjs) + glossary + code (CPython)
+npm run verify           # all gates: content (mathjs) + glossary + code (CPython) + code (Pyodide)
 npm run verify:content   # mathjs-checks every answer / acceptedAlt
 npm run verify:glossary  # glossary integrity + symbol detection
 npm run verify:code      # executes every runnable snippet & code-exercise (needs the Python libs)
+npm run verify:pyodide   # the same, in the bundled Pyodide with the in-app grader (needs the wheels)
 npm run build            # production build into ./out
 npm run dist:mac         # package macOS  -> dist/*.dmg, *.zip   (builds first)
 npm run dist:win         # package Windows -> dist/*.exe (NSIS)  (builds first; run on Windows)
@@ -108,6 +109,7 @@ Because content is authored with LLM assistance, **everything is verified** befo
 1. **mathjs** — every answer parses and every `acceptedAlt` is equivalent to the canonical answer; every graph function evaluates.
 2. **glossary** — structural integrity + symbol-detection across all lessons.
 3. **code** — every runnable snippet (EN *and* ES) and every code-exercise reference solution is executed (CPython, restricted to the Pyodide-supported libraries) and its output/tests checked. TensorFlow/PyTorch static snippets are checked in an optional tier when those libraries are present.
+4. **Pyodide** — the same snippets and solutions run again in the bundled Pyodide, graded exactly as the app grades them, so what the learner sees in-app matches the stated output.
 
 ### Adding a subject or lesson
 
@@ -122,24 +124,26 @@ Because content is authored with LLM assistance, **everything is verified** befo
 ```
 src/
   main/        Electron main process + SQLite data layer + IPC handlers
+               + rendererServer.js (loopback server for the packaged renderer)
   preload/     Secure contextBridge (the only renderer ↔ main channel)
   shared/      validate.js (mathjs checker) · notation.js (symbol detection)
+               · pygrade.js (code-exercise grader, shared with the verifier)
   renderer/    React UI (Vite)
     src/
       AppContext.jsx     language, theme & progress state
       lib/plan.js        adaptive 30-day scheduling
-      lib/pyodide.js     lazy, offline Pyodide loader for in-app Python
+      lib/pyodide.js     lazy, offline Pyodide runner (Python runs in lib/pyodide.worker.js)
       components/        MathText, FunctionGraph, Exercise, CodeBlock, NotationBox
       pages/             Dashboard, SubjectView, LessonView, GlossaryView
     public/pyodide/      bundled Pyodide runtime + wheels (git-ignored, generated)
 content/       lesson JSON (the curriculum), subjects.json, glossary.json
-scripts/       verify-content.mjs · verify-glossary.mjs · verify-code.py
+scripts/       verify-content.mjs · verify-glossary.mjs · verify-code.py · verify-pyodide.mjs
                copy-pyodide.mjs · fetch-pyodide-wheels.mjs
 build/         app icons (.icns/.ico/.png) + macOS entitlements
 .github/workflows/release.yml   multi-OS packaged-release CI
 ```
 
-Security: the renderer runs with `contextIsolation` on and `nodeIntegration` off; it can only call the methods whitelisted in `src/preload/index.js`.
+Security: the renderer is sandboxed, with `contextIsolation` on and `nodeIntegration` off; it can only call the methods whitelisted in `src/preload/index.js`. It can't navigate away from the app, and only `https` links open (in the system browser). The packaged app's loopback server only serves files inside the renderer folder, and only to its own host.
 
 ---
 

@@ -36,9 +36,10 @@ npm install
 ## Verify content first
 
 The build is gated on content correctness. `predist` runs this automatically,
-but you can run it manually:
+and the release CI runs it before packaging, but you can run it manually:
 
 ```bash
+npm run verify           # all four gates (needs the Pyodide wheels, see below)
 npm run verify:content   # mathjs-checks every answer & acceptedAlt
 ```
 
@@ -52,7 +53,7 @@ npm run dist:linux    # Linux   -> dist/*.AppImage, *.deb
 npm run dist:dir      # unpacked app dir only (fast smoke test, no installer)
 ```
 
-`npm run dist` first runs `predist` → `verify:content` + `electron-vite build`
+`npm run dist` first runs `predist` → `verify` + `electron-vite build`
 (producing `out/`), then `electron-builder` packages `out/` into installers
 under `dist/`.
 
@@ -187,6 +188,9 @@ offline-first principle.
 - The loader (`src/renderer/src/lib/pyodide.js`) is lazy: Pyodide boots on the
   first **Run**, and per-lesson packages (`numpy`, `pandas`, `scikit-learn`,
   `scipy`, `sympy`) load on demand from the local copy.
+- Python runs in a Web Worker (`lib/pyodide.worker.js`), never on the UI thread.
+  The learner can **Stop** a run, and runs are stopped after 30 s of execution;
+  either way the worker is terminated and the next run starts a fresh one.
 - **Bundle size:** copying all wheels adds hundreds of MB. To slim installers,
   copy only the wheels you actually use (numpy/pandas/scikit-learn/scipy/sympy +
   their deps) instead of the whole dist.
@@ -196,10 +200,16 @@ offline-first principle.
 
 ### Correctness gate for code
 
-`npm run verify` runs three gates: `verify:content` (mathjs), `verify:glossary`,
-and `verify:code`. The last (`scripts/verify-code.py`) executes every runnable
-snippet (both EN and ES) and every code-exercise reference solution in CPython —
-restricted to the Pyodide-supported library set — and checks the stated output /
-test results. It needs `numpy pandas scikit-learn scipy sympy` installed
-(`pip install ...`); heavy libs (tensorflow/torch) are an optional tier that is
-skipped with a notice if absent.
+`npm run verify` runs four gates: `verify:content` (mathjs), `verify:glossary`,
+`verify:code` and `verify:pyodide`. `verify:code` (`scripts/verify-code.py`)
+executes every runnable snippet (both EN and ES) and every code-exercise
+reference solution in CPython — restricted to the Pyodide-supported library set —
+and checks the stated output / test results. It needs `numpy pandas scikit-learn
+scipy sympy` installed (`pip install ...`); heavy libs (tensorflow/torch) are an
+optional tier that is skipped with a notice if absent.
+
+`verify:pyodide` (`scripts/verify-pyodide.mjs`) runs the same snippets and
+reference solutions in the bundled Pyodide, through the grader the app uses
+(`src/shared/pygrade.js`). It catches what only differs in-app — library
+versions, print formats, warnings, value conversion — and needs the bundled
+runtime + wheels (`npm run setup:pyodide && npm run setup:pyodide:wheels`).

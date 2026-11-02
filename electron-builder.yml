@@ -27,10 +27,11 @@ files:
 # Windows runner).
 npmRebuild: false
 
-# Ship the app as plain files (no asar). The app:// protocol serves the renderer
-# and the bundled Pyodide wasm/wheels via net.fetch with real file paths and
-# proper HTTP range support; asar complicates range reads of the large wasm.
-# better-sqlite3's native .node also loads directly as a real file.
+# Ship the app as plain files (no asar). The main process serves the renderer
+# and the bundled Pyodide wasm/wheels from a loopback HTTP server
+# (src/main/rendererServer.js) that reads real file paths; asar would hide the
+# large wasm behind Electron's archive layer. better-sqlite3's native .node also
+# loads directly as a real file.
 asar: false
 
 # Build resources (icons, entitlements) live here.

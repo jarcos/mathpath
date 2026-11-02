@@ -22,14 +22,16 @@ function LanguageToggle() {
 }
 
 function ThemeToggle() {
+  const { t } = useTranslation()
   const { theme, setTheme } = useApp()
   const next = theme === 'dark' ? 'light' : 'dark'
+  const label = theme === 'dark' ? t('themeToLight') : t('themeToDark')
   return (
     <button
       className="theme-toggle"
       onClick={() => setTheme(next)}
-      title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-      aria-label="Toggle color theme"
+      title={label}
+      aria-label={label}
     >
       {theme === 'dark' ? '☀' : '☾'}
     </button>
