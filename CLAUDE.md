@@ -25,7 +25,7 @@ API keys.
 ## Commands
 
 ```bash
-npm install            # deps + electron-rebuild of better-sqlite3 (needs Xcode CLT on macOS)
+npm install            # deps + Electron + Pyodide core (use Node 22, see .nvmrc)
 npm run dev            # launch with hot reload
 npm run verify:content # mathjs-check every answer/acceptedAlt  ← run before finishing
 npm run build          # production build into ./out
@@ -91,4 +91,10 @@ math). See `CURRICULUM.md` and `sources/INDEX.md`.
 - After completing any lesson or milestone, **refresh the dashboard** at
   `docs/project.html` (description, requirements, milestone timeline, kanban).
 - Don't commit `node_modules` / `out`. They may have been built in a Linux sandbox;
-  on macOS run a fresh `npm install` (rebuilds better-sqlite3 for Electron).
+  on macOS run a fresh `npm install` under Node 22.
+- `better-sqlite3` (v13+) loads prebuilt Node-API binaries in both Node and
+  Electron: never add an `electron-rebuild` step back.
+- On macOS 27 the stock Electron binary (ad-hoc, linker-signed, no sealed
+  resources) fails `codesign --verify --deep --strict`, and the OS moves it to
+  the Trash as malware when launched. Check the signature before running
+  `npm run dev`.

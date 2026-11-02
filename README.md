@@ -43,8 +43,7 @@ Prefer to run from source? See [Getting started](#-getting-started).
 
 ### Prerequisites
 
-- **Node.js 20 LTS** recommended, and npm.
-- **macOS:** Xcode command-line tools (`xcode-select --install`) to compile the native SQLite module.
+- **Node.js 22 LTS** (22.12 or newer, see `.nvmrc`), and npm. Electron 45 requires it.
 - For the in-app **Run** (Python) feature: **Python 3** with `numpy pandas scikit-learn scipy sympy` is only needed to run the content *verifier* (`npm run verify:code`); the app itself ships Pyodide and needs nothing extra.
 
 ### Install & run
@@ -52,20 +51,14 @@ Prefer to run from source? See [Getting started](#-getting-started).
 ```bash
 git clone https://github.com/jarcos/mathpath.git
 cd mathpath
-npm install                  # deps + electron-rebuild of better-sqlite3 + Pyodide core
+npm install                  # deps + Electron + Pyodide core
 npm run setup:pyodide:wheels # one-time: download the science wheels for offline Run (~130 MB)
 npm run dev                  # launch with hot reload
 ```
 
-`npm install` runs a `postinstall` step that rebuilds `better-sqlite3` for Electron and copies the Pyodide core into `src/renderer/public/pyodide/`. `setup:pyodide:wheels` then fetches the NumPy/Pandas/SciPy/scikit-learn/SymPy wheels so code runs fully offline. Both folders are git-ignored.
+`npm install` runs a `postinstall` step that copies the Pyodide core into `src/renderer/public/pyodide/`. `setup:pyodide:wheels` then fetches the NumPy/Pandas/SciPy/scikit-learn/SymPy wheels so code runs fully offline. Both folders are git-ignored. `better-sqlite3` ships prebuilt Node-API binaries for macOS, Windows and Linux, so nothing is compiled and no C++ toolchain is needed.
 
-> **Very new Node versions.** `better-sqlite3` only needs to build against *Electron's* V8. If a very new system Node breaks the native build:
-> ```bash
-> npm install --ignore-scripts
-> node node_modules/electron/install.js
-> npx electron-rebuild -f -w better-sqlite3
-> npm run setup:pyodide:wheels && npm run dev
-> ```
+> **Use Node 22 (`nvm use`).** Under Node 24 the Electron download has been seen to unzip only partially. If `npm run dev` says Electron "failed to install correctly", run `rm -rf node_modules/electron && npm install` under Node 22.
 
 ### Scripts
 

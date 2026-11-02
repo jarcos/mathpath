@@ -7,32 +7,29 @@ offline — no content files or network access are needed at runtime.
 
 ## Prerequisites
 
-- **Node.js 20 LTS** (recommended). Newer majors (24/26) can break the
-  `better-sqlite3` native build against Electron's V8; if you hit V8 errors,
-  use Node 20 or follow the rebuild steps below.
-- Platform toolchain for native modules:
-  - **macOS:** Xcode Command Line Tools (`xcode-select --install`)
-  - **Windows:** Visual Studio Build Tools (C++ workload)
-  - **Linux:** `build-essential`, `python3`
+- **Node.js 22 LTS** (22.12 or newer, pinned in `.nvmrc` and CI). Electron 45
+  requires it.
+- No C++ toolchain: `better-sqlite3` (v13+) uses Node-API and ships prebuilt
+  binaries for macOS, Windows and Linux (x64 + arm64), so the same binary loads
+  in Node and in Electron without a rebuild.
 - You build **on the target OS**. electron-builder does not cross-compile native
   modules — build the macOS app on macOS, Windows on Windows, Linux on Linux.
 
 ## Install
 
-`node_modules` is **platform-specific** (native `better-sqlite3` + Rollup
-binaries) and is never committed. Always install fresh on each machine:
+`node_modules` is **platform-specific** (Electron + Rollup binaries) and is
+never committed. Always install fresh on each machine:
 
 ```bash
-npm install        # also runs electron-rebuild for better-sqlite3 (postinstall)
+npm install        # postinstall copies the Pyodide core
 ```
 
-If the native module fails to load (e.g. after a Node upgrade), rebuild it for
-Electron explicitly:
+If Electron reports it "failed to install correctly", its download was unzipped
+only partially (seen under Node 24). Reinstall it under Node 22:
 
 ```bash
-npm install --ignore-scripts
-node node_modules/electron/install.js
-npx electron-rebuild -f -w better-sqlite3
+rm -rf node_modules/electron
+npm install
 ```
 
 ## Verify content first
@@ -63,8 +60,8 @@ under `dist/`.
 - `out/**` — compiled main, preload, and renderer (renderer already embeds all
   lesson content).
 - `package.json` — the manifest.
-- `better-sqlite3` is **asar-unpacked** so its prebuilt `.node` binary loads at
-  runtime.
+- The app ships as plain files (`asar: false`), so `better-sqlite3`'s prebuilt
+  `.node` binary loads directly at runtime.
 - `sources/` (copyrighted reference material) and `content/` source JSON are
   **not** shipped — content is compiled into the renderer; `sources/` is
   gitignored and never distributed.
