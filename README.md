@@ -17,8 +17,8 @@ Everything runs locally. No accounts, no network, no telemetry. Your progress li
 
 Grab the latest packaged app from the [**Releases**](../../releases/latest) page.
 
-- **macOS (Apple Silicon)** — `MathPath-*-arm64.dmg`. The build is signed but not notarized, so on first launch right-click **MathPath.app → Open → Open**, or run `xattr -dr com.apple.quarantine /Applications/MathPath.app`.
-- **Windows** — `MathPath-*-Setup.exe` (NSIS installer), produced by CI (see [Building & releasing](#-building--releasing)).
+- **macOS (Apple Silicon)** — `MathPath-*-arm64.dmg` (or `-arm64-mac.zip`). Signed with a Developer ID and notarized by Apple, so it opens normally: drag it to Applications and launch.
+- **Windows** — `MathPath.Setup.*.exe` (NSIS installer), produced by CI (see [Building & releasing](#-building--releasing)). It isn't code-signed yet, so SmartScreen may warn: **More info → Run anyway**.
 
 Prefer to run from source? See [Getting started](#-getting-started).
 
