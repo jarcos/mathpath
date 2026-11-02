@@ -16,7 +16,9 @@ export default defineConfig({
     plugins: [externalizeDepsPlugin()],
     build: {
       rollupOptions: {
-        input: { index: resolve('src/preload/index.js') }
+        input: { index: resolve('src/preload/index.js') },
+        // The window is sandboxed, and sandboxed preloads must be CommonJS.
+        output: { format: 'cjs', entryFileNames: '[name].cjs' }
       }
     }
   },

@@ -1,6 +1,4 @@
-import { join, extname } from 'path'
-import http from 'node:http'
-import { createReadStream } from 'node:fs'
+import { join } from 'path'
 import { app, shell, BrowserWindow, ipcMain, nativeImage } from 'electron'
 import {
   initDb,
@@ -15,64 +13,15 @@ import {
   resetPlan
 } from './db.js'
 import { initUpdater } from './updater.js'
+import { startRendererServer } from './rendererServer.js'
 
 const isDev = !app.isPackaged
 
 app.setName('MathPath')
 
-// In a packaged build the renderer is served from a localhost HTTP server rather
-// than file://. This is required for the in-app Pyodide runtime, which loads its
-// wasm + wheels with fetch() — blocked under file://, but perfectly fine over
-// http(127.0.0.1). It also keeps everything offline (loopback only). Dev keeps
-// using the electron-vite dev server.
+// Packaged builds serve the renderer from a loopback HTTP server (see
+// rendererServer.js); dev keeps using the electron-vite dev server.
 let rendererBaseUrl = null
-
-const MIME = {
-  '.html': 'text/html',
-  '.js': 'text/javascript',
-  '.mjs': 'text/javascript',
-  '.css': 'text/css',
-  '.json': 'application/json',
-  '.wasm': 'application/wasm',
-  '.svg': 'image/svg+xml',
-  '.png': 'image/png',
-  '.woff2': 'font/woff2',
-  '.woff': 'font/woff',
-  '.ttf': 'font/ttf',
-  '.map': 'application/json'
-}
-
-function startRendererServer(root) {
-  return new Promise((resolve, reject) => {
-    const server = http.createServer((req, res) => {
-      let urlPath
-      try {
-        urlPath = decodeURIComponent(new URL(req.url, 'http://localhost').pathname)
-      } catch {
-        urlPath = '/'
-      }
-      if (!urlPath || urlPath === '/') urlPath = '/index.html'
-      const safe = urlPath.replace(/\.\.(\/|\\|$)/g, '')
-      const filePath = join(root, safe)
-      const type = MIME[extname(filePath).toLowerCase()] || 'application/octet-stream'
-      const stream = createReadStream(filePath)
-      stream.on('open', () => {
-        res.writeHead(200, { 'Content-Type': type })
-        stream.pipe(res)
-      })
-      stream.on('error', () => {
-        res.writeHead(404)
-        res.end('Not found')
-      })
-    })
-    server.on('error', reject)
-    // Port 0 = OS picks a free port; bind to loopback only.
-    server.listen(0, '127.0.0.1', () => {
-      const { port } = server.address()
-      resolve(`http://127.0.0.1:${port}`)
-    })
-  })
-}
 
 function createWindow() {
   const devIcon = join(import.meta.dirname, '../../build/icon.png')
@@ -87,18 +36,27 @@ function createWindow() {
     backgroundColor: '#0f1220',
     ...(isDev ? { icon: devIcon } : {}),
     webPreferences: {
-      preload: join(import.meta.dirname, '../preload/index.mjs'),
+      preload: join(import.meta.dirname, '../preload/index.cjs'),
       contextIsolation: true,
       nodeIntegration: false,
-      sandbox: false
+      sandbox: true
     }
   })
 
   win.once('ready-to-show', () => win.show())
 
+  // Only https links ever leave the app, and they open in the system browser.
+  const openOutside = (url) => {
+    if (/^https:\/\//i.test(url)) shell.openExternal(url)
+  }
   win.webContents.setWindowOpenHandler(({ url }) => {
-    shell.openExternal(url)
+    openOutside(url)
     return { action: 'deny' }
+  })
+  win.webContents.on('will-navigate', (event, url) => {
+    if (new URL(url).origin === new URL(win.webContents.getURL()).origin) return
+    event.preventDefault()
+    openOutside(url)
   })
 
   if (isDev && process.env.ELECTRON_RENDERER_URL) {
