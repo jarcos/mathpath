@@ -75,6 +75,14 @@ nsis:
   oneClick: false
   perMachine: false
   allowToChangeInstallationDirectory: true
+  # No spaces: GitHub renames uploaded "MathPath Setup x.exe" to
+  # "MathPath.Setup.x.exe", which would no longer match the URL in latest.yml.
+  artifactName: ${productName}-Setup-${version}.${ext}
 
-# Offline app: no auto-update server.
-publish: null
+# Opt-in updates (electron-updater) read GitHub Releases of the public repo.
+# This only writes app-update.yml into the app and latest*.yml + .blockmap next
+# to the installers; CI uploads them with `--publish never` + the release step.
+publish:
+  provider: github
+  owner: jarcos
+  repo: mathpath

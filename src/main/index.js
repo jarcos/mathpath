@@ -14,6 +14,7 @@ import {
   startPlan,
   resetPlan
 } from './db.js'
+import { initUpdater } from './updater.js'
 
 const isDev = !app.isPackaged
 
@@ -108,6 +109,8 @@ function createWindow() {
 }
 
 function registerIpc() {
+  ipcMain.handle('app:getVersion', () => app.getVersion())
+
   ipcMain.handle('settings:get', (_e, key) => getSetting(key))
   ipcMain.handle('settings:set', (_e, key, value) => setSetting(key, value))
 
@@ -137,6 +140,7 @@ app.whenReady().then(async () => {
   initDb()
   registerIpc()
   createWindow()
+  initUpdater()
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()

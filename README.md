@@ -4,7 +4,7 @@
 
 MathPath is a single-user, fully-offline **Electron** application that teaches maths and ML as a structured ladder: it starts with pre-university algebra and climbs through functions, calculus and linear algebra into a full **AI / machine-learning track**. Lessons mix clear explanations with **worked examples**, **live graphs**, **runnable Python**, and **exercises checked symbolically** — so `1/2`, `0.5` and `2/4` are all accepted, and `(x+1)^2` matches `x^2+2x+1`.
 
-Everything runs locally. No accounts, no network, no telemetry. Your progress lives in a local SQLite file.
+Everything runs locally. No accounts, no telemetry, and no network unless you opt in to update checks. Your progress lives in a local SQLite file.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Platform: Electron](https://img.shields.io/badge/Platform-Electron-47848F.svg)
@@ -18,7 +18,7 @@ Everything runs locally. No accounts, no network, no telemetry. Your progress li
 Grab the latest packaged app from the [**Releases**](../../releases/latest) page.
 
 - **macOS (Apple Silicon)** — `MathPath-*-arm64.dmg` (or `-arm64-mac.zip`). Signed with a Developer ID and notarized by Apple, so it opens normally: drag it to Applications and launch.
-- **Windows** — `MathPath.Setup.*.exe` (NSIS installer), produced by CI (see [Building & releasing](#-building--releasing)). It isn't code-signed yet, so SmartScreen may warn: **More info → Run anyway**.
+- **Windows** — `MathPath-Setup-*.exe` (NSIS installer), produced by CI (see [Building & releasing](#-building--releasing)). It isn't code-signed yet, so SmartScreen may warn: **More info → Run anyway**.
 
 Prefer to run from source? See [Getting started](#-getting-started).
 
@@ -36,6 +36,7 @@ Prefer to run from source? See [Getting started](#-getting-started).
 - **Adaptive 30-day plan** per subject, with prev/next lesson navigation and a "resume where you left off" card.
 - **Bilingual** (English / Spanish) UI *and* content, **light & dark** themes — all remembered.
 - **Local-only data** — progress, attempts, settings and plans in SQLite in your OS user-data folder.
+- **Opt-in updates** — turn on "Check for updates automatically" (or press "Check for updates") on the dashboard and new versions download in the background and install on restart. It only asks GitHub for the latest release; nothing about you is sent. Off by default.
 
 ---
 
@@ -86,7 +87,7 @@ npm version patch          # or edit package.json version
 git push --follow-tags     # tag push triggers the release build for all OSes
 ```
 
-You can also run it manually from the **Actions** tab (workflow_dispatch). Bundle size note: the offline Python wheels add ~130 MB; see [`BUILD.md`](BUILD.md) for trimming, signing and reproducible-build notes.
+Each release also carries `latest-mac.yml`, `latest.yml` and `.blockmap` files: the in-app updater reads them, so don't delete them from a release. You can also run the workflow manually from the **Actions** tab (workflow_dispatch). Bundle size note: the offline Python wheels add ~130 MB; see [`BUILD.md`](BUILD.md) for trimming, signing and reproducible-build notes.
 
 ---
 

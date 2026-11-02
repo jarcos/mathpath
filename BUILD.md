@@ -3,7 +3,8 @@
 MathPath ships as a self-contained desktop app via
 [electron-builder](https://www.electron.build/). The renderer bundle already
 contains every lesson (imported at build time), so the installer is fully
-offline — no content files or network access are needed at runtime.
+offline — no content files or network access are needed at runtime. The only
+exception is the opt-in updater (see [Updates](#updates-electron-updater)).
 
 ## Prerequisites
 
@@ -137,6 +138,28 @@ build.
 Currently shipped unsigned (SmartScreen may warn → *More info → Run anyway*). To
 sign, add an Authenticode cert as `CSC_LINK` / `CSC_KEY_PASSWORD` for the Windows
 job.
+
+## Updates (electron-updater)
+
+The packaged app can update itself from the GitHub Releases of the public
+`jarcos/mathpath` repo. It is **opt-in** (off by default): the learner turns on
+"Check for updates automatically" on the dashboard, or presses "Check for
+updates". New versions download in the background and install on restart.
+
+- `publish: github` in `electron-builder.yml` writes `app-update.yml` into the
+  app and `latest-mac.yml` / `latest.yml` + `*.blockmap` next to the
+  installers. CI still packages with `--publish never` and attaches all of them
+  to the release; a release without them is invisible to the updater.
+- macOS updates download the `.zip` (not the `.dmg`) and only apply when the old
+  and new app are signed with the same Developer ID, so keep signing in CI.
+- Windows updates use the NSIS installer. `nsis.artifactName` has no spaces
+  because GitHub turns spaces into dots on upload, which would break the URL in
+  `latest.yml`.
+- Code: `src/main/updater.js` (state pushed to the renderer on `updates:state`)
+  and `src/renderer/src/components/Updates.jsx`. Under `npm run dev` the updater
+  reports "unsupported".
+- Releases marked as prerelease are not offered (electron-updater's default).
+- The first version with the updater (0.1.4) has to be installed by hand once.
 
 ## App icon
 

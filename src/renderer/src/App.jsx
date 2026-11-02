@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard.jsx'
 import SubjectView from './pages/SubjectView.jsx'
 import LessonView from './pages/LessonView.jsx'
 import GlossaryView from './pages/GlossaryView.jsx'
+import { UpdateBanner } from './components/Updates.jsx'
 
 function LanguageToggle() {
   const { lang, setLang } = useApp()
@@ -54,6 +55,7 @@ export default function App() {
           <LanguageToggle />
         </div>
       </nav>
+      <UpdateBanner />
 
       <main className="content" id="app-scroll">
         {view.name === 'dashboard' && (

@@ -3,6 +3,9 @@ import { contextBridge, ipcRenderer } from 'electron'
 // The single, controlled bridge between the sandboxed renderer and the main
 // process. The renderer can ONLY do what is whitelisted here.
 const api = {
+  app: {
+    getVersion: () => ipcRenderer.invoke('app:getVersion')
+  },
   settings: {
     get: (key) => ipcRenderer.invoke('settings:get', key),
     set: (key, value) => ipcRenderer.invoke('settings:set', key, value)
@@ -20,6 +23,17 @@ const api = {
     get: (subjectId) => ipcRenderer.invoke('plan:get', subjectId),
     start: (subjectId, targetDays) => ipcRenderer.invoke('plan:start', subjectId, targetDays),
     reset: (subjectId, targetDays) => ipcRenderer.invoke('plan:reset', subjectId, targetDays)
+  },
+  updates: {
+    getState: () => ipcRenderer.invoke('updates:getState'),
+    check: () => ipcRenderer.invoke('updates:check'),
+    install: () => ipcRenderer.invoke('updates:install'),
+    // Subscribes to state pushes from the main process; returns an unsubscribe.
+    onState: (cb) => {
+      const listener = (_e, state) => cb(state)
+      ipcRenderer.on('updates:state', listener)
+      return () => ipcRenderer.removeListener('updates:state', listener)
+    }
   }
 }
 

@@ -77,7 +77,20 @@ const resources = {
       codeError: 'Error',
       codeTest: 'Test {{n}}',
       codeNoFunc: 'No function named {{fn}} was found in your code.',
-      prereqTitle: 'Before this lesson'
+      prereqTitle: 'Before this lesson',
+      updatesTitle: 'Updates',
+      updatesVersion: 'Version {{version}}',
+      updatesAuto: 'Check for updates automatically when MathPath starts',
+      updatesPrivacy:
+        'This is the only time MathPath goes online: it asks GitHub which version is the latest. Your progress never leaves this computer.',
+      updatesCheck: 'Check for updates',
+      updatesChecking: 'Checking…',
+      updatesUpToDate: 'You have the latest version.',
+      updatesDownloading: 'Downloading version {{version}}… {{percent}}%',
+      updatesReady: 'Version {{version}} is ready. Restart MathPath to install it.',
+      updatesRestart: 'Restart now',
+      updatesError: 'Could not check for updates. Try again later.',
+      updatesUnsupported: 'Updates only work in the installed app.'
     }
   },
   es: {
@@ -153,7 +166,20 @@ const resources = {
       codeError: 'Error',
       codeTest: 'Prueba {{n}}',
       codeNoFunc: 'No se encontró ninguna función llamada {{fn}} en tu código.',
-      prereqTitle: 'Antes de esta lección'
+      prereqTitle: 'Antes de esta lección',
+      updatesTitle: 'Actualizaciones',
+      updatesVersion: 'Versión {{version}}',
+      updatesAuto: 'Buscar actualizaciones automáticamente al abrir MathPath',
+      updatesPrivacy:
+        'Es la única vez que MathPath se conecta a internet: pregunta a GitHub cuál es la última versión. Tu progreso nunca sale de este ordenador.',
+      updatesCheck: 'Buscar actualizaciones',
+      updatesChecking: 'Buscando…',
+      updatesUpToDate: 'Tienes la última versión.',
+      updatesDownloading: 'Descargando la versión {{version}}… {{percent}} %',
+      updatesReady: 'La versión {{version}} está lista. Reinicia MathPath para instalarla.',
+      updatesRestart: 'Reiniciar ahora',
+      updatesError: 'No se pudieron buscar actualizaciones. Inténtalo más tarde.',
+      updatesUnsupported: 'Las actualizaciones solo funcionan en la app instalada.'
     }
   }
 }

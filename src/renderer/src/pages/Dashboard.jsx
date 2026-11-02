@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { getSubjects } from '@content/index.js'
 import { useApp } from '@/AppContext.jsx'
 import ProgressBar from '@/components/ProgressBar.jsx'
+import { UpdatesPanel } from '@/components/Updates.jsx'
 
 function SubjectCard({ s, loc, t, completed, onOpenSubject }) {
   const total = s.lessonObjects.length
@@ -116,6 +117,8 @@ export default function Dashboard({ onOpenSubject, onOpenLesson }) {
           </section>
         )
       })}
+
+      <UpdatesPanel />
     </div>
   )
 }

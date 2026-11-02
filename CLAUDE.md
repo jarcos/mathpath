@@ -3,13 +3,17 @@
 MathPath is an **offline Electron + React + Vite desktop app** for self-learning
 maths from pre-university level up to ML/AI. Single-user, fully local: all
 progress, attempts, settings and study plans live in a **SQLite** file
-(better-sqlite3) in the OS user-data folder. No network, no accounts, no runtime
-API keys.
+(better-sqlite3) in the OS user-data folder. No accounts, no runtime API keys;
+the only network access is the opt-in update check.
 
 ## Core principles (do not violate)
 
 - **Offline-first.** Never add runtime network calls or API-key dependencies. All
-  lesson content is pre-generated at build time and stored in `content/`.
+  lesson content is pre-generated at build time and stored in `content/`. The one
+  exception is the **opt-in updater** (`src/main/updater.js`, electron-updater):
+  it only reads the public GitHub Releases of `jarcos/mathpath`, only when the
+  `autoUpdate` setting is on or the learner presses "Check for updates", and
+  sends nothing about the learner. Don't widen it.
 - **Correctness is gated.** LLM-generated maths can be wrong. Every lesson answer
   and `acceptedAlt` MUST pass `npm run verify:content` (mathjs symbolic/numeric
   checks in `src/shared/validate.js`). Run it after any content change before

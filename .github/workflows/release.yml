@@ -19,15 +19,21 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # latest*.yml + .blockmap are what the in-app updater reads; they
+          # must be attached to the same release as the installers.
           - os: macos-latest
             ebflag: --mac
             artifacts: |
               dist/*.dmg
               dist/*.zip
+              dist/latest-mac.yml
+              dist/*.blockmap
           - os: windows-latest
             ebflag: --win
             artifacts: |
               dist/*.exe
+              dist/latest.yml
+              dist/*.blockmap
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
