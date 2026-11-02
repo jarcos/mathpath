@@ -6,6 +6,11 @@ import { useApp } from '@/AppContext.jsx'
 import { runFunctionCases } from '@/lib/pyodide.js'
 import MathText from './MathText.jsx'
 
+// After this many wrong picks a multiple-choice exercise shows the answer and
+// locks, so the learner can't click through every option. (It resets when the
+// lesson is reopened; every pick is still recorded in `attempts`.)
+const MCQ_TRIES = 2
+
 export default function Exercise({ exercise, lessonId, index, solved = false, onSolved }) {
   const { t } = useTranslation()
   const { loc, recordAttempt } = useApp()
@@ -15,17 +20,30 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
   const [showHint, setShowHint] = useState(false)
   const [showSolution, setShowSolution] = useState(false)
 
+  // The lesson loads solved exercises asynchronously, after this has mounted.
+  useEffect(() => {
+    if (solved) setResult('correct')
+  }, [solved])
+
   // Standard text/number/expression/set
   const [answer, setAnswer] = useState('')
   // MCQ
   const [picked, setPicked] = useState(null)
-  // Code
-  const [code, setCode] = useState(loc(exercise.starter) || '')
+  const [mcqMisses, setMcqMisses] = useState(0)
+  const revealed = result === 'correct' || mcqMisses >= MCQ_TRIES
+  // Code: the starter follows the language until the learner edits it.
+  const starter = loc(exercise.starter) || ''
+  const [code, setCode] = useState(starter)
+  const [codeEdited, setCodeEdited] = useState(false)
   const [codeState, setCodeState] = useState('idle') // idle | running
   const [codeFeedback, setCodeFeedback] = useState(null)
   // Aborts the run in flight; also when the learner leaves the lesson.
   const codeRunRef = useRef(null)
   useEffect(() => () => codeRunRef.current?.abort(), [])
+
+  useEffect(() => {
+    if (!codeEdited) setCode(starter)
+  }, [starter, codeEdited])
 
   const finish = (ok, userAnswer) => {
     setResult(ok ? 'correct' : 'incorrect')
@@ -40,8 +58,16 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
   }
 
   const submitMcq = () => {
-    if (picked == null) return
-    finish(!!exercise.choices[picked]?.correct, `choice ${picked}`)
+    if (picked == null || revealed) return
+    const ok = !!exercise.choices[picked]?.correct
+    if (!ok) setMcqMisses((n) => n + 1)
+    finish(ok, `choice ${picked}`)
+  }
+
+  const pickMcq = (i) => {
+    setPicked(i)
+    // A new pick clears the verdict on the previous one.
+    if (result === 'incorrect') setResult(null)
   }
 
   const submitCode = async () => {
@@ -105,12 +131,14 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
         <div className="mcq">
           <ul className="mcq-list">
             {exercise.choices.map((c, i) => {
-              const showWhy = result && (picked === i || c.correct)
+              // Until the answer is revealed, only the checked pick is explained.
+              const wrongPick = picked === i && (revealed || result === 'incorrect') && !c.correct
+              const showWhy = revealed ? picked === i || c.correct : wrongPick
               return (
                 <li
                   key={i}
                   className={`mcq-choice ${picked === i ? 'picked' : ''} ${
-                    result ? (c.correct ? 'is-correct' : picked === i ? 'is-wrong' : '') : ''
+                    revealed && c.correct ? 'is-correct' : wrongPick ? 'is-wrong' : ''
                   }`}
                 >
                   <label>
@@ -118,7 +146,8 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
                       type="radio"
                       name={exercise.id}
                       checked={picked === i}
-                      onChange={() => setPicked(i)}
+                      disabled={revealed}
+                      onChange={() => pickMcq(i)}
                     />
                     <span className="mcq-text"><MathText>{loc(c.text)}</MathText></span>
                   </label>
@@ -127,9 +156,11 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
               )
             })}
           </ul>
-          <button className="primary small" onClick={submitMcq} disabled={picked == null}>
-            {t('check')}
-          </button>
+          {!revealed && (
+            <button className="primary small" onClick={submitMcq} disabled={picked == null}>
+              {t('check')}
+            </button>
+          )}
         </div>
       )}
 
@@ -140,7 +171,10 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
             className="code-editor"
             value={code}
             spellCheck={false}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={(e) => {
+              setCode(e.target.value)
+              setCodeEdited(true)
+            }}
             rows={Math.max(4, code.split('\n').length + 1)}
           />
           <div className="code-exercise-actions">
@@ -171,7 +205,9 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
       )}
 
       {result === 'correct' && <div className="feedback ok">{t('correct')}</div>}
-      {result === 'incorrect' && <div className="feedback bad">{t('incorrect')}</div>}
+      {result === 'incorrect' && (
+        <div className="feedback bad">{type === 'mcq' && revealed ? t('mcqRevealed') : t('incorrect')}</div>
+      )}
 
       <div className="exercise-actions">
         {exercise.hint && (
