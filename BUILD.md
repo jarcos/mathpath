@@ -75,7 +75,10 @@ never clobber user progress.
 For byte-stable, auditable builds:
 
 1. **Pin the toolchain.** Use the Node version in `.nvmrc`/CI and install with
-   `npm ci` (honors `package-lock.json` exactly) rather than `npm install`.
+   `npm ci --ignore-scripts && npm run setup:pyodide` (honors
+   `package-lock.json` exactly) rather than `npm install`. Without
+   `--ignore-scripts`, `npm ci` node-gyp-compiles `better-sqlite3` because the
+   lockfile doesn't record its `gypfile: false`.
 2. **Pin Electron + electron-builder** — both are exact-ranged in
    `package.json`; `package-lock.json` locks the full tree.
 3. **Set a fixed timestamp** to avoid embedding build dates:
@@ -90,8 +93,8 @@ For byte-stable, auditable builds:
 
 ### macOS — sign + notarize so a downloaded app opens with no warnings
 
-Hardened runtime, entitlements, and `notarize.teamId` (`L3WX9JGL2T`) are already
-configured. electron-builder auto-discovers the **Developer ID Application**
+Hardened runtime, entitlements, and `notarize: true` are already configured
+(electron-builder 26 reads the team ID, `L3WX9JGL2T`, from `APPLE_TEAM_ID`). electron-builder auto-discovers the **Developer ID Application**
 certificate from your login keychain, so a local `npm run dist:mac` already
 *signs* the app. To also *notarize* it (required for a downloaded build to open
 without Gatekeeper prompts), provide Apple credentials in the environment, then

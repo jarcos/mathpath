@@ -37,8 +37,15 @@ jobs:
           node-version: 22
           cache: npm
 
+      # --ignore-scripts: npm ci would otherwise node-gyp-compile better-sqlite3
+      # (the lockfile doesn't record its `gypfile: false`), which needs a C++
+      # toolchain; its prebuilt Node-API binaries are all we need. The Electron
+      # binary isn't needed either: electron-builder downloads its own.
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
+
+      - name: Copy Pyodide core (offline Python)
+        run: npm run setup:pyodide
 
       - name: Bundle Pyodide science wheels (offline Python)
         run: npm run setup:pyodide:wheels
