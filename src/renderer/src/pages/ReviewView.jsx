@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getExercise, getExerciseIds, getSubject } from '@content/index.js'
+import { getExercise, getExerciseIds, getLesson, getPrereqs, getSubject } from '@content/index.js'
 import { endOfLocalDay, interleave } from '@shared/learning.js'
 import { instantiate, randomSeed } from '@shared/params.js'
 import { useApp } from '@/AppContext.jsx'
-import { relativeDay } from '@/lib/mastery.js'
+import { lessonStats, relativeDay } from '@/lib/mastery.js'
 import Exercise from '@/components/Exercise.jsx'
+import MasteryBadge from '@/components/MasteryBadge.jsx'
 import ProgressBar from '@/components/ProgressBar.jsx'
 
 // At most this many reviews per session; the rest wait for the next one.
@@ -15,7 +16,7 @@ const SESSION_SIZE = 20
 // The first answer to each rates its card (see Exercise, mode 'review').
 export default function ReviewView({ onBack, onOpenLesson }) {
   const { t } = useTranslation()
-  const { loc, lang } = useApp()
+  const { loc, lang, learning, completed } = useApp()
   const [items, setItems] = useState(null) // [{ exercise, lesson }]
   const [index, setIndex] = useState(0)
   const [answer, setAnswer] = useState(null) // { ok, due } for the current item
@@ -84,6 +85,15 @@ export default function ReviewView({ onBack, onOpenLesson }) {
 
   const { exercise, lesson } = items[index]
   const subject = getSubject(lesson.subjectId)
+  // After a miss: the exercise's lesson, then the prerequisites not mastered yet.
+  const levelOf = (l) => lessonStats(l, learning, completed).level
+  const goOver = [
+    lesson,
+    ...getPrereqs(lesson.id)
+      .map((id) => getLesson(id))
+      .filter((l) => l && levelOf(l) !== 'mastered')
+      .slice(0, 3)
+  ]
 
   return (
     <div className="page review-view">
@@ -116,6 +126,22 @@ export default function ReviewView({ onBack, onOpenLesson }) {
           setResults((r) => [...r, ok])
         }}
       />
+
+      {answer && !answer.ok && (
+        <aside className="prereq review-help">
+          <span className="prereq-tag">{t('reviewHelpTitle')}</span>
+          <ul className="prereq-list">
+            {goOver.map((l) => (
+              <li key={l.id}>
+                <button className="link" onClick={() => onOpenLesson(l.subjectId, l.id)}>
+                  {loc(l.title)}
+                </button>
+                <MasteryBadge level={levelOf(l)} />
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
 
       <div className="review-actions">
         {answer?.due && (
