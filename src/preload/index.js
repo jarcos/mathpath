@@ -20,7 +20,8 @@ const api = {
     solvedForLesson: (lessonId) => ipcRenderer.invoke('attempts:solvedForLesson', lessonId)
   },
   learning: {
-    state: (until) => ipcRenderer.invoke('learning:state', until)
+    state: (until) => ipcRenderer.invoke('learning:state', until),
+    activity: (since) => ipcRenderer.invoke('learning:activity', since)
   },
   review: {
     due: (until, limit, known) => ipcRenderer.invoke('review:due', until, limit, known),

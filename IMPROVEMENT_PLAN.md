@@ -144,6 +144,38 @@ Implementado como estaba previsto, con estos ajustes:
 - Repartir por `estimatedMinutes` y no por número de lecciones, incluyendo la carga de repaso del día.
 - Racha, objetivo diario y mapa de calor de actividad. Todo local.
 
+### Estado de 1.3, 1.5 y 1.6: hechos (hito M30, sin commit)
+
+- **Grafo** (`src/shared/curriculum.js`): cada lección depende de la anterior de su asignatura y de las lecciones de su caja "Antes de esta lección" (había 136 enlaces, 4 entre asignaturas). Si es la primera de su asignatura, depende además de las asignaturas de un campo nuevo `requires` en `subjects.json`. En total, **311 enlaces**.
+  - `verify:content` exige que todo prerrequisito exista y vaya antes en el orden del currículo. Eso descarta ciclos y hace que ordenar por ese orden dé un orden de estudio válido.
+  - Los `requires` elegidos (revisables):
+    - funciones ← álgebra; cálculo ← funciones; álgebra lineal ← álgebra; aplicaciones lineales ← álgebra lineal; estadística ← funciones;
+    - ML ← cálculo + álgebra lineal + estadística; redes ← ML; deep learning ← redes;
+    - NLP, visión y RL ← deep learning; representación del conocimiento ← estadística; inferencia activa ← estadística + redes;
+    - fundamentos de IA, sin requisitos.
+- **Mapa del currículo:** un punto por lección, coloreado por nivel. Al elegir una lección se ven de qué parte y qué se apoya en ella, también entre asignaturas. La caja "Antes de esta lección" muestra el nivel de cada prerrequisito y avisa si alguno está sin practicar o toca repasarlo. Cada asignatura muestra de cuáles parte, con su progreso.
+- **Prueba de nivel por asignatura:** una pregunta por lección, sin pistas ni solución, que se para tras 2 fallos seguidos. Las lecciones acertadas se marcan como completadas, y el acierto crea su tarjeta de repaso, así que lo "sabido" se comprueba después.
+- **Mi plan:**
+  - objetivo = completar una asignatura, N min/día;
+  - calcula todas las lecciones previas que faltan y las reparte por minutos estimados. El primer día descuenta los repasos reales (2 min cada uno, como mucho la mitad del día); los siguientes reservan un 25 %;
+  - una lección empieza en el día si cabe o si queda al menos medio día; las largas continúan al siguiente;
+  - muestra fecha estimada de fin, lecciones de hoy, próximos días, racha y mapa de actividad de 18 semanas;
+  - con un objetivo, la tarjeta "Continuar" del Dashboard pasa a ser "Tu plan de hoy".
+- **Arreglo de paso:** abrir una lección de otra asignatura (desde un prerrequisito) hacía que "Volver" llevara a la asignatura equivocada.
+- **Tests:** 30 (grafo, planificador, racha, actividad por día local).
+
+**Tras la revisión independiente** (sin bloqueantes):
+- **Arreglado:**
+  - el mapa de actividad perdía la celda de hoy en la hora del cambio de hora;
+  - un `studyGoal` con minutos inválidos o una asignatura sin lecciones rompía el plan, y ahora se valida al leerlo;
+  - en la prueba de nivel, un reintento ya no crea tarjeta;
+  - una asignatura sin preguntas posibles ya no rompe la prueba;
+  - la racha ya no está limitada a ~133 días.
+- **Limitaciones conocidas:**
+  - un MCQ acertado al azar en la prueba de nivel marca la lección (se puede desmarcar a mano);
+  - el plan no descuenta lo ya estudiado hoy, así que al completar una lección la siguiente pasa a ser "de hoy";
+  - un doble clic en "No lo sé" puede saltarse una pregunta.
+
 ---
 
 ## Fase 2: mejores ejercicios
@@ -218,9 +250,9 @@ La numeración sigue la de `docs/project.html`, donde el último hito terminado 
 |---|---|---|---|
 | **M27** | Fase 0 (0.1–0.8) + CI de release con `verify` | S | ✅ Publicado en v0.1.5 |
 | **M28** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) + migraciones de BD (5.3) + primeros tests (5.1) | M | ✅ Hecho, sin publicar |
-| **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | Siguiente |
-| **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | — |
-| **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | — |
+| **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | — |
+| **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Hecho, sin commit |
+| **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | Siguiente (cierra la Fase 1) |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | — |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | — |

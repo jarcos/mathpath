@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import Database from 'better-sqlite3'
 import {
+  getActivity,
   getDueReviews,
   getLearningState,
   getReviewSummary,
@@ -168,6 +169,17 @@ test('a review rates the card: a wrong answer is a lapse', () => {
   // Retrying after the first answer is recorded but doesn't re-rate the card.
   recordAttempt({ exerciseId: 'e1', lessonId: 'l1', correct: true, userAnswer: '2' })
   assert.deepEqual(cardOf(db, 'e1'), reviewed)
+})
+
+test('activity counts answers per local day', () => {
+  const path = legacyDb() // 4 answers, 30 days ago
+  initDb(path)
+  recordAttempt({ exerciseId: 'e1', lessonId: 'l1', correct: true, schedule: 'learn' })
+  recordAttempt({ exerciseId: 'e1', lessonId: 'l1', correct: true })
+  const today = new Date()
+  const key = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
+  assert.deepEqual(getActivity(inDays(-1)), [{ day: key, attempts: 2 }])
+  assert.equal(getActivity(inDays(-60)).reduce((n, d) => n + d.attempts, 0), 6)
 })
 
 test('learning state: solves after opening the solution are not clean', () => {

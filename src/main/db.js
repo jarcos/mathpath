@@ -266,6 +266,16 @@ export function getLearningState(until) {
   return { solved, due }
 }
 
+/** Answers per local calendar day (YYYY-MM-DD) since `since` (ISO), oldest first. */
+export function getActivity(since) {
+  return db
+    .prepare(
+      `SELECT date(created_at, 'localtime') AS day, COUNT(*) AS attempts
+         FROM attempts WHERE created_at >= ? GROUP BY day ORDER BY day`
+    )
+    .all(since)
+}
+
 /* ---------- reviews ---------- */
 
 // Review queries take the exercise ids the app ships (`known`), so cards of

@@ -13,8 +13,10 @@ const MCQ_TRIES = 2
 
 /**
  * One exercise. In a lesson (`mode` 'lesson') its first solve creates a review
- * card; in a review session ('review') its first answer rates that card and
- * is reported through `onResult(ok, { due })`.
+ * card; in a review session ('review') its first answer rates that card; in a
+ * placement test ('placement') only a right first answer creates one. The
+ * first answer is reported through `onResult(ok, { due })`. `assist={false}`
+ * hides hints and solutions.
  */
 export default function Exercise({
   exercise,
@@ -23,7 +25,8 @@ export default function Exercise({
   solved = false,
   onSolved,
   mode = 'lesson',
-  onResult
+  onResult,
+  assist = true
 }) {
   const { t } = useTranslation()
   const { loc, recordAttempt } = useApp()
@@ -81,14 +84,15 @@ export default function Exercise({
       usedSolution: usedSolution.current,
       timeMs: startedAt.current ? Date.now() - startedAt.current : null,
       misses: missesRef.current,
-      // Only the first answer of a review counts; retries are just recorded.
-      schedule: mode === 'review' ? (first ? 'review' : undefined) : 'learn'
+      // Only the first answer of a review or a placement question counts;
+      // retries are just recorded.
+      schedule: mode === 'lesson' ? 'learn' : first ? (mode === 'review' ? 'review' : 'learn') : undefined
     }).catch((e) => {
       console.error('recording the answer failed', e)
       return null
     })
     startedAt.current = null
-    if (mode === 'review' && first && onResult) scheduling.then((due) => onResult(ok, { due }))
+    if (first && onResult) scheduling.then((due) => onResult(ok, { due }))
     if (ok && onSolved) onSolved(exercise.id, { clean: !usedSolution.current })
     if (!ok) {
       missesRef.current += 1
@@ -263,7 +267,7 @@ export default function Exercise({
       )}
 
       <div className="exercise-actions">
-        {exercise.hint && (
+        {assist && exercise.hint && (
           <button
             className="link"
             onClick={() => {
@@ -274,7 +278,7 @@ export default function Exercise({
             {showHint ? t('hideHint') : t('showHint')}
           </button>
         )}
-        {(Array.isArray(exercise.solution) || (type === 'code' && exercise.solution)) && (
+        {assist && (Array.isArray(exercise.solution) || (type === 'code' && exercise.solution)) && (
           <button
             className="link"
             onClick={() => {

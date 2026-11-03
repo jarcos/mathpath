@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getExerciseIds, getSubjects } from '@content/index.js'
+import { getExerciseIds, getLesson, getSubject, getSubjects } from '@content/index.js'
 import { endOfLocalDay } from '@shared/learning.js'
 import { useApp } from '@/AppContext.jsx'
 import { relativeDay } from '@/lib/mastery.js'
+import { remainingLessons, useStudyGoal } from '@/lib/studyPlan.js'
 import ProgressBar from '@/components/ProgressBar.jsx'
 import { UpdatesPanel } from '@/components/Updates.jsx'
 
@@ -73,9 +74,10 @@ function SubjectCard({ s, loc, t, completed, onOpenSubject }) {
   )
 }
 
-export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview }) {
+export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview, onOpenPlan }) {
   const { t } = useTranslation()
   const { loc, completed } = useApp()
+  const [goal] = useStudyGoal()
   const subjects = getSubjects()
 
   // Overall progress across every available lesson.
@@ -108,6 +110,10 @@ export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview }
     }
   }
 
+  // With a study goal, "continue" follows the plan instead.
+  const planLeft = goal ? remainingLessons(goal, completed) : null
+  const planNext = planLeft?.length ? getLesson(planLeft[0].id) : null
+
   const tracks = [
     { id: 'math', label: t('trackMath') },
     { id: 'ai', label: t('trackAi') }
@@ -125,7 +131,32 @@ export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview }
 
       <ReviewCard onStart={onStartReview} />
 
-      {resume && (
+      {planNext && (
+        <button className="resume-card" onClick={() => onOpenLesson(planNext.subjectId, planNext.id)}>
+          <div className="resume-text">
+            <span className="resume-eyebrow">{t('planTodayCard')}</span>
+            <span className="resume-title">{loc(planNext.title)}</span>
+            <span className="muted small">
+              {t('planTodaySub', {
+                subject: loc(getSubject(goal.subjectId).name),
+                count: planLeft.length
+              })}
+            </span>
+          </div>
+          <span className="resume-cta">{t('continue')} →</span>
+        </button>
+      )}
+      {goal && !planNext && <p className="muted small review-later">{t('planGoalDone')}</p>}
+      {goal === null && (
+        <p className="muted small review-later">
+          {t('planCreatePrompt')}{' '}
+          <button className="link" onClick={onOpenPlan}>
+            {t('planCreate')} →
+          </button>
+        </p>
+      )}
+
+      {goal === null && resume && (
         <button
           className="resume-card"
           onClick={() => onOpenLesson(resume.subject.id, resume.lesson.id)}

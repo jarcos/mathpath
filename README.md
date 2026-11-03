@@ -35,6 +35,9 @@ Prefer to run from source? See [Getting started](#-getting-started).
 - **Rich exercises** — symbolic short-answer (validated with [mathjs](https://mathjs.org)), runnable code exercises (graded by returned value), and conceptual multiple-choice with per-option explanations. Step-by-step solutions and hints on demand; your solved state persists.
 - **Spaced review** — every exercise you solve comes back in a daily **Today's review** session just as you start to forget it, scheduled with [FSRS](https://github.com/open-spaced-repetition/ts-fsrs) and rated automatically (first try, with a hint, or after the solution). Sessions mix lessons.
 - **Mastery, not checkboxes** — a lesson completes itself once you solve 80% of its exercises without opening the solution, and every lesson shows where you stand: practised, mastered or due for review.
+- **My plan** — pick a goal (say, complete NLP & Transformers) and minutes per day: MathPath works out every lesson it builds on that you haven't done, spreads them over the coming days by estimated time (keeping room for reviews), and shows your finish date, streak and activity.
+- **Placement tests** — one question per lesson, no hints; the lessons you already know are marked complete so you start where you really are.
+- **Curriculum map** — every lesson of every subject at a glance, coloured by your level; pick one to see what it builds on and what builds on it. Prerequisites also show your level inside each lesson.
 - **Adaptive 30-day plan** per subject, with prev/next lesson navigation and a "resume where you left off" card.
 - **Bilingual** (English / Spanish) UI *and* content, **light & dark** themes — all remembered.
 - **Local-only data** — progress, attempts, review schedule, settings and plans in SQLite in your OS user-data folder.
@@ -117,8 +120,9 @@ Because content is authored with LLM assistance, **everything is verified** befo
 ### Adding a subject or lesson
 
 1. Create the lesson JSON under `content/<subject>/` and reference it in `content/subjects.json`.
-2. Keep all text bilingual; make answers verifiable.
-3. Run `npm run verify`.
+2. Keep all text bilingual; make answers verifiable; keep lesson and exercise ids unique.
+3. Prerequisites: a lesson builds on the previous lesson of its subject, on the lessons its `prereq` box links to, and (for a subject's first lesson) on the subjects in that subject's `requires`. They must come earlier in the curriculum order — `verify:content` checks it.
+4. Run `npm run verify`.
 
 ---
 
@@ -133,6 +137,7 @@ src/
   shared/      validate.js (mathjs checker) · notation.js (symbol detection)
                · pygrade.js (code-exercise grader, shared with the verifier)
                · learning.js (review ratings, mastery rules)
+               · curriculum.js (prerequisite graph) · planner.js (study planner, streaks)
   renderer/    React UI (Vite)
     src/
       AppContext.jsx     language, theme, progress & learning state
@@ -140,7 +145,8 @@ src/
       lib/mastery.js     per-lesson mastery from the learning state
       lib/pyodide.js     lazy, offline Pyodide runner (Python runs in lib/pyodide.worker.js)
       components/        MathText, FunctionGraph, Exercise, CodeBlock, NotationBox, MasteryBadge
-      pages/             Dashboard, SubjectView, LessonView, ReviewView, GlossaryView
+      pages/             Dashboard, SubjectView, LessonView, ReviewView, PlanView,
+                         PlacementView, MapView, GlossaryView
     public/pyodide/      bundled Pyodide runtime + wheels (git-ignored, generated)
 content/       lesson JSON (the curriculum), subjects.json, glossary.json
 scripts/       verify-content.mjs · verify-glossary.mjs · verify-code.py · verify-pyodide.mjs

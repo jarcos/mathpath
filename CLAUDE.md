@@ -53,16 +53,23 @@ src/
   shared/      validate.js — mathjs answer checker, used by BOTH app and verifier
                pygrade.js — code-exercise grader, used by BOTH app and verify:pyodide
                learning.js — review ratings + mastery rules (main AND renderer)
+               curriculum.js — prerequisite graph (renderer AND verify:content)
+               planner.js — cross-subject study planner + streaks (pure)
   renderer/    React UI (Vite)
     src/
       AppContext.jsx   language + progress + learning state, loc() selector, theme
       lib/plan.js      adaptive 30-day scheduler (pure, testable)
       lib/mastery.js   per-lesson mastery level from the learning state
+      lib/studyPlan.js the study goal (settings key `studyGoal`) + its lessons
       lib/pyodide.js   runs Python in lib/pyodide.worker.js (stop + 30 s timeout)
       components/      MathText (KaTeX), FunctionGraph (custom SVG plotter on mathjs),
                        Exercise (lesson / review modes), MasteryBadge, ProgressBar
-      pages/           Dashboard, SubjectView, LessonView, ReviewView
-content/         per-subject lessons + subjects.json + index.js
+      pages/           Dashboard, SubjectView, LessonView, ReviewView, PlanView,
+                       PlacementView, MapView
+content/         per-subject lessons + subjects.json + index.js. Prerequisites: the
+                 previous lesson, the lesson's `prereq` box, and subjects.json
+                 `requires` for a subject's first lesson; all must come earlier in
+                 the curriculum order (verify:content enforces it)
 scripts/         verify-content.mjs, verify-glossary.mjs, verify-code.py (CPython),
                  verify-pyodide.mjs (bundled Pyodide + in-app grader)
 test/            node --test unit tests

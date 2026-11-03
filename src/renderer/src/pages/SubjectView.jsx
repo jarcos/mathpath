@@ -7,7 +7,7 @@ import { lessonStats } from '@/lib/mastery.js'
 import MasteryBadge from '@/components/MasteryBadge.jsx'
 import ProgressBar from '@/components/ProgressBar.jsx'
 
-export default function SubjectView({ subjectId, onOpenLesson, onBack }) {
+export default function SubjectView({ subjectId, onOpenLesson, onBack, onOpenSubject, onPlacement }) {
   const { t } = useTranslation()
   const { loc, completed, learning } = useApp()
   const subject = getSubject(subjectId)
@@ -59,10 +59,37 @@ export default function SubjectView({ subjectId, onOpenLesson, onBack }) {
         <div>
           <h1>{loc(subject.name)}</h1>
           <p className="muted">{loc(subject.description)}</p>
+          {(subject.requires || []).length > 0 && (
+            <p className="muted small subject-requires">
+              {t('subjectRequires')}{' '}
+              {subject.requires.map((id, i) => {
+                const req = getSubject(id)
+                const done = req.lessonObjects.filter((l) => completed.has(l.id)).length
+                return (
+                  <span key={id}>
+                    {i > 0 && ' · '}
+                    <button className="link" onClick={() => onOpenSubject(id)}>
+                      {loc(req.name)}
+                    </button>{' '}
+                    ({Math.round((done / req.lessonObjects.length) * 100)} %)
+                  </span>
+                )
+              })}
+            </p>
+          )}
         </div>
       </header>
 
       <ProgressBar percent={plan.percent} label={t('overallProgress')} />
+
+      {!plan.finished && (
+        <p className="placement-offer small">
+          {t('placementOffer')}{' '}
+          <button className="link" onClick={onPlacement}>
+            {t('placementCta')} →
+          </button>
+        </p>
+      )}
 
       <section className="plan-panel">
         <div className="plan-head">

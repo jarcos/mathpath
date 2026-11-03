@@ -277,6 +277,53 @@ button.link.back { display: inline-block; margin-bottom: 18px; }
 .mastery-badge { align-self: center; }
 .mastery-need { margin: -6px 0 14px; }
 
+/* Curriculum map */
+.map-legend { list-style: none; padding: 0; margin: 0 0 12px; display: flex; gap: 18px; flex-wrap: wrap; }
+.map-legend li { display: flex; align-items: center; gap: 6px; }
+.map-scroll { overflow-x: auto; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 10px; margin-bottom: 18px; }
+.map { display: block; width: 100%; height: auto; min-width: 640px; }
+.map-subject { fill: var(--muted); font-size: 12px; }
+.map-edge { fill: none; stroke: var(--accent); stroke-width: 1.6; opacity: 0.7; }
+.map-dot { cursor: pointer; outline: none; }
+.map-dot circle, .map-key { fill: var(--panel-2); stroke: var(--border); stroke-width: 1.5; }
+.map-key { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--panel-2); }
+.map-dot.level-practiced circle { fill: var(--accent); fill-opacity: 0.45; stroke: var(--accent); }
+.map-dot.level-mastered circle { fill: var(--ok); stroke: var(--ok); }
+.map-dot.level-review circle { fill: var(--warn); stroke: var(--warn); }
+.map-key.level-practiced { background: color-mix(in srgb, var(--accent) 45%, transparent); border-color: var(--accent); }
+.map-key.level-mastered { background: var(--ok); border-color: var(--ok); }
+.map-key.level-review { background: var(--warn); border-color: var(--warn); }
+.map-dot:hover circle, .map-dot:focus-visible circle { stroke: var(--text); stroke-width: 2.5; }
+.map-dot.selected circle { stroke: var(--text); stroke-width: 3.5; }
+.map-dot.is-prereq circle, .map-dot.is-dependent circle { stroke: var(--accent); stroke-width: 3; }
+.map-panel h2 { margin: 0; font-size: 1.1rem; }
+.map-relations { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 14px; }
+@media (max-width: 620px) { .map-relations { grid-template-columns: 1fr; } }
+
+/* Placement test */
+.placement-offer { margin: 10px 0 0; color: var(--muted); }
+.placement-actions { justify-content: flex-start; }
+.subject-requires { margin: 6px 0 0; }
+
+/* Study plan */
+.plan-form { display: flex; gap: 18px; flex-wrap: wrap; margin: 12px 0 8px; }
+.plan-form label { display: flex; flex-direction: column; gap: 6px; }
+.plan-form select {
+  background: var(--bg-soft); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; font-size: 0.95rem; min-width: 240px;
+}
+.plan-finish { margin: 14px 0 0; }
+.plan-line { margin: 4px 0 10px; }
+.plan-section-title { margin: 0 0 12px; font-size: 1.1rem; }
+.plan-days { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.plan-days li { display: flex; gap: 12px; align-items: baseline; }
+.plan-day { flex: 0 0 110px; }
+.heatmap { display: grid; grid-template-rows: repeat(7, 12px); grid-auto-flow: column; grid-auto-columns: 12px; gap: 3px; overflow-x: auto; }
+.heat { border-radius: 3px; background: var(--panel-2); border: 1px solid var(--border); }
+.heat-1 { background: color-mix(in srgb, var(--ok) 35%, transparent); border-color: transparent; }
+.heat-2 { background: color-mix(in srgb, var(--ok) 65%, transparent); border-color: transparent; }
+.heat-3 { background: var(--ok); border-color: transparent; }
+
 /* Track sections on the dashboard */
 .subject-track { margin-top: 30px; }
 .track-title {
@@ -381,6 +428,8 @@ button.link.back { display: inline-block; margin-bottom: 18px; }
 .prereq-note { margin: 0 0 6px; }
 .prereq-list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 2px; }
 .prereq-list .link { padding: 2px 0; }
+.prereq-list li { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.prereq-weak { margin: 8px 0 0; color: var(--warn); }
 
 /* Code blocks */
 .code-block { margin: 22px 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--bg-soft); }
