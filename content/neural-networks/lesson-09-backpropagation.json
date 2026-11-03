@@ -18,12 +18,12 @@
     {
       "type": "prereq",
       "lessons": [
-        "calculus-07-rules-chain",
+        "mvc-08-chain-rule",
         "mlf-06-gradient-descent"
       ],
       "note": {
-        "en": "Backpropagation is the chain rule applied to a network, used to drive gradient descent.",
-        "es": "La retropropagación es la regla de la cadena aplicada a una red, usada para el descenso de gradiente."
+        "en": "Backpropagation is the multivariable chain rule applied to a network, used to drive gradient descent.",
+        "es": "La retropropagación es la regla de la cadena en varias variables aplicada a una red, usada para el descenso de gradiente."
       }
     },
     {

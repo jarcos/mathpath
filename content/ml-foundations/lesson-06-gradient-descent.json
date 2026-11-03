@@ -18,18 +18,19 @@
     {
       "type": "prereq",
       "lessons": [
-        "mlf-04-loss"
+        "mlf-04-loss",
+        "mvc-05-gradient"
       ],
       "note": {
-        "en": "Gradient descent minimizes the loss function.",
-        "es": "El descenso de gradiente minimiza la funcion de perdida."
+        "en": "Gradient descent minimizes the loss function by following its gradient.",
+        "es": "El descenso de gradiente minimiza la función de pérdida siguiendo su gradiente."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "The update rule is $w \\leftarrow w - \\eta\\,\\nabla L$, where $\\nabla L$ is the gradient (the derivative of the loss with respect to the parameters, from the Calculus subject) and $\\eta$ is the **learning rate**, the step size. The gradient points uphill, so we subtract it to go down.",
-        "es": "La regla de actualización es $w \\leftarrow w - \\eta\\,\\nabla L$, donde $\\nabla L$ es el gradiente (la derivada de la pérdida respecto a los parámetros, de la asignatura de Cálculo) y $\\eta$ es la **tasa de aprendizaje**, el tamaño del paso. El gradiente apunta cuesta arriba, así que lo restamos para bajar."
+        "en": "The update rule is $w \\leftarrow w - \\eta\\,\\nabla L$, where $\\nabla L$ is the gradient (the vector of partial derivatives of the loss with respect to the parameters, from Multivariable Calculus) and $\\eta$ is the **learning rate**, the step size. The gradient points uphill, so we subtract it to go down.",
+        "es": "La regla de actualización es $w \\leftarrow w - \\eta\\,\\nabla L$, donde $\\nabla L$ es el gradiente (el vector de derivadas parciales de la pérdida respecto a los parámetros, de Cálculo multivariable) y $\\eta$ es la **tasa de aprendizaje**, el tamaño del paso. El gradiente apunta cuesta arriba, así que lo restamos para bajar."
       }
     },
     {
