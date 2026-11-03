@@ -139,6 +139,30 @@ Legend: 🟢 available now · ⚪ planned (content not yet generated)
 
 ---
 
+## 6. 🟢 Multivariable Calculus & Optimization  ·  `multivariable`  (DONE — 14 lessons, M32)
+*Sources: Stewart, Calculus: Early Transcendentals ch. 11.10–11.11 & 14; Marsden & Tromba, Vector Calculus ch. 2–3; Deisenroth, Faisal & Ong, Mathematics for Machine Learning ch. 5 & 7; Boyd & Vandenberghe, Convex Optimization ch. 3 & 9*
+
+Placed between linear maps and the AI track: it is the calculus behind gradient descent and backpropagation. It requires `calculus` and `linear-algebra`; the critical-points lesson also links eigenvalues (`linear-maps`), and ML's gradient-descent and backprop lessons link back to its gradient and chain-rule lessons.
+
+| # | Lesson (EN) | Lección (ES) |
+|---|-------------|--------------|
+| 1 | Taylor polynomials | Polinomios de Taylor |
+| 2 | Functions of several variables | Funciones de varias variables |
+| 3 | Partial derivatives | Derivadas parciales |
+| 4 | Higher-order partial derivatives | Derivadas parciales de orden superior |
+| 5 | The gradient | El gradiente |
+| 6 | Directional derivatives & steepest ascent | Derivadas direccionales y máximo crecimiento |
+| 7 | Tangent planes & linear approximation | Plano tangente y aproximación lineal |
+| 8 | The multivariable chain rule | La regla de la cadena en varias variables |
+| 9 | Vector-valued functions & the Jacobian | Funciones vectoriales y la matriz jacobiana |
+| 10 | The Hessian & second-order Taylor | La matriz hessiana y Taylor de segundo orden |
+| 11 | Critical points & the second-derivative test | Puntos críticos y criterio de la segunda derivada |
+| 12 | Convex functions & optimization | Funciones convexas y optimización |
+| 13 | Gradient descent & Newton's method | Descenso de gradiente y método de Newton |
+| 14 | Constrained optimization: Lagrange multipliers | Optimización con restricciones: multiplicadores de Lagrange |
+
+---
+
 ## Reference library (supplementary sources in `sources/`)
 
 These enrich the math subjects already built; used for extra examples/depth, not re-generation:

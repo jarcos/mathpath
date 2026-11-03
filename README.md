@@ -8,7 +8,7 @@ Everything runs locally. No accounts, no telemetry, and no network unless you op
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Platform: Electron](https://img.shields.io/badge/Platform-Electron-47848F.svg)
-![Lessons](https://img.shields.io/badge/lessons-241-6c8cff.svg)
+![Lessons](https://img.shields.io/badge/lessons-255-6c8cff.svg)
 ![Bilingual](https://img.shields.io/badge/i18n-EN%20%2F%20ES-8a6cff.svg)
 
 ---
@@ -26,8 +26,8 @@ Prefer to run from source? See [Getting started](#-getting-started).
 
 ## ✨ Features
 
-- **Two complete tracks, 241 lessons across 15 subjects.**
-  - *Mathematics* — Pre-University Algebra, Functions & Pre-Calculus, Calculus, Linear Algebra & Geometry, Linear Maps & Transformations.
+- **Two complete tracks, 255 lessons across 16 subjects.**
+  - *Mathematics* — Pre-University Algebra, Functions & Pre-Calculus, Calculus, Linear Algebra & Geometry, Linear Maps & Transformations, Multivariable Calculus & Optimization.
   - *AI & Machine Learning* — Statistics & Probability, ML Foundations, Neural Networks, Deep Learning, NLP & Transformers, Computer Vision, Reinforcement Learning, Knowledge Representation, AI Foundations & Philosophy, Active Inference.
 - **Runnable Python, offline.** Computational lessons embed real snippets and code exercises (NumPy / Pandas / SciPy / scikit-learn / SymPy) that execute in-app via a bundled [Pyodide](https://pyodide.org) runtime — no network. TensorFlow/PyTorch appear as clearly-labelled static reference (Pyodide can't run them).
 - **Symbol glossary + notation boxes.** Every symbol (λ, σ, ∇, …) is named; each lesson shows a "Symbols in this lesson" box, and a searchable Glossary page covers the whole curriculum — bilingual.

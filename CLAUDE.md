@@ -109,11 +109,14 @@ docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 
 ## Curriculum status
 
-**Both tracks complete** (textbook depth, all verified). 241 lessons / 1055
-exercises (22 of them templates) / 4835 checks passing (`npm run verify:content`).
+**Both tracks complete** (textbook depth, all verified). 255 lessons / 1146
+exercises (36 of them templates) / 6074 checks passing (`npm run verify:content`).
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
-linear-maps (16).
+linear-maps (16), multivariable (14, M32: Taylor, partial derivatives, gradient,
+directional derivatives, linearization, chain rule, Jacobian, Hessian, critical
+points, convexity, gradient descent & Newton, Lagrange). ML's gradient-descent
+and backprop lessons link to its gradient and chain-rule lessons.
 
 AI/ML track: statistics (16, M11), ml-foundations (18, M12), neural-networks
 (16, M13), deep-learning (18, M14), nlp-transformers (16, M15),

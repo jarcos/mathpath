@@ -329,7 +329,7 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
 
 ## Fase 3: contenido
 
-1. **Huecos del currículo para llegar a ML.** Cálculo solo tiene 12 lecciones y le faltan **Taylor, derivadas parciales, gradiente, jacobiano, hessiano, regla de la cadena multivariable y Lagrange**, que es justo la base de *backprop*. Propuesta: una asignatura nueva, "Cálculo multivariable y optimización" (≈ 14 lecciones), entre `linear-maps` y `ml-foundations`.
+1. **Huecos del currículo para llegar a ML** (hecho en M32, ver abajo). Cálculo solo tiene 12 lecciones y le faltan **Taylor, derivadas parciales, gradiente, jacobiano, hessiano, regla de la cadena multivariable y Lagrange**, que es justo la base de *backprop*. Propuesta: una asignatura nueva, "Cálculo multivariable y optimización" (≈ 14 lecciones), entre `linear-maps` y `ml-foundations`.
 2. **Más profundidad donde más rinde.** Empezar por la escalera matemática (álgebra → cálculo → lineal), que alimenta todo lo demás. Cada lección suma un segundo ejemplo resuelto, un recuadro de **"errores comunes"** y un **"lo esencial"** final.
 3. **Visualizaciones** (hoy hay 14 gráficas):
    - Ampliar `FunctionGraph`: varias curvas, puntos, recta tangente y **deslizadores de parámetros**.
@@ -341,6 +341,31 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
 4. **Más ejercicios de "impleméntalo tú"** en la pista de IA (hay 16 en total): softmax, un paso de descenso del gradiente, puntuaciones de atención, actualización de Q-learning…, corregidos con Pyodide.
 5. **Examen de cierre por asignatura** con ejercicios intercalados de todas sus lecciones.
 6. **Lint de ortografía en español** dentro de `verify`. Un diccionario pequeño ya detecta unas 63 palabras sin tilde (`limite`, `numero`, `solucion`…), sobre todo en notas de prerrequisito y comentarios de código.
+
+### Estado de 3.1: hecho (hito M32, sin publicar)
+
+- **Asignatura nueva, "Cálculo multivariable y optimización"** (`multivariable`, 14 lecciones, track de matemáticas), entre `linear-maps` y la pista de IA:
+  1. polinomios de Taylor;
+  2. funciones de varias variables (curvas de nivel, límites por caminos);
+  3. derivadas parciales;
+  4. derivadas de orden superior (Schwarz, funciones armónicas);
+  5. gradiente;
+  6. derivadas direccionales y máximo crecimiento;
+  7. plano tangente y aproximación lineal;
+  8. regla de la cadena en varias variables (con grafos de cómputo y *backprop*);
+  9. matriz jacobiana;
+  10. matriz hessiana y Taylor de segundo orden;
+  11. puntos críticos y criterio de la segunda derivada (también por autovalores);
+  12. convexidad;
+  13. descenso de gradiente y método de Newton (tamaño de paso, número de condición);
+  14. multiplicadores de Lagrange (con KKT en breve).
+- **Contenido:** 91 ejercicios: 14 plantillas, 52 errores típicos, un test conceptual y un ejercicio de código por lección. Cada lección tiene unas 650–800 palabras de explicación por idioma, dos ejemplos resueltos y código ejecutable (NumPy o SymPy). Las referencias son reales: Stewart cap. 11 y 14, Marsden & Tromba, *Mathematics for Machine Learning*, Goodfellow, Boyd & Vandenberghe y Nocedal & Wright.
+- **Prerrequisitos:** la asignatura requiere `calculus` y `linear-algebra`. Los puntos críticos enlazan los autovalores de `linear-maps`. Las lecciones de descenso de gradiente (ML) y de retropropagación (redes neuronales) enlazan ahora el gradiente y la regla de la cadena de esta asignatura. El glosario suma $\mathcal{L}$ (lagrangiano o pérdida).
+- **Cómo se hizo:** escribí la lección 1 como modelo, con una guía de estilo y el temario. Cinco agentes escribieron en paralelo las otras 13, cada uno comprobando todo con SymPy y con las cuatro puertas.
+  - Dos revisiones independientes recalcularon cada número. Encontraron un error de matemáticas (una cota descrita como "por debajo" de un valor que en realidad supera por poco) y una explicación de error típico que nombraba mal la causa.
+  - El resto eran imprecisiones (el límite del paso es $2/\lambda_{\max}$, no $\lambda_{\max}$), ambigüedades (decir que la dirección se normaliza, pedir valores exactos), plantillas que mostraban $1x^2$ o $x^{1}$, comprobaciones de plantilla que repetían la fórmula y términos en español (la matriz jacobiana frente a el jacobiano). Todo está corregido.
+  - En 9 de los 14 tests la respuesta buena era la primera opción y la app no las baraja, así que se han repartido.
+- **Puertas:** 255 lecciones, 1146 ejercicios, 6074 comprobaciones y 36 plantillas. Las 3802 fórmulas TeX de la asignatura renderizan en KaTeX. El código pasa en CPython y en Pyodide.
 
 ---
 
@@ -388,7 +413,7 @@ La numeración sigue la de `docs/project.html`, donde el último hito terminado 
 | **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | ✅ Publicado en v0.3.0 |
 | **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Publicado en v0.2.0; cierre en v0.2.1; crédito implícito en v0.2.2 |
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
-| **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | — |
+| **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Hecho (sin publicar) |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | — |
 | continuo | Profundidad del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
