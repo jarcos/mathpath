@@ -193,8 +193,8 @@
       "solution": [
         {
           "tex": "[x^2]_{[[p]]}^{[[q]]} = [[q2]] - [[p2]] = [[v]]",
-          "en": "Apply the FTC.",
-          "es": "Aplica el TFC."
+          "en": "Apply the FTC. With symmetric limits (from −a to a) the result is 0: 2x is odd, so the signed areas on each side of 0 cancel.",
+          "es": "Aplica el TFC. Con límites simétricos (de −a a a) el resultado es 0: 2x es impar, así que las áreas con signo a cada lado del 0 se anulan."
         }
       ]
     }
