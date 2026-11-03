@@ -45,7 +45,9 @@ src/
                db.js — versioned migrations (PRAGMA user_version); never edit a
                  shipped migration, append a new one and cover it in test/db.test.js.
                  Before migrating it saves mathpath.db.before-vN; review cards are
-                 re-synced from attempts on every start (syncCards)
+                 re-synced from attempts on every start (syncCards).
+                 lesson_progress.source ('manual' | 'mastery' | 'placement', v3)
+                 keeps placement-test lessons out of today's study (getTodayStudy)
                review.js — FSRS scheduling (ts-fsrs 5.x; 6.x needs Node 24)
                rendererServer.js — loopback server for the packaged renderer
   preload/     Secure contextBridge — the only renderer ↔ main channel
@@ -97,7 +99,7 @@ docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 ## Curriculum status
 
 **Both tracks complete** (textbook depth, all verified). 241 lessons / 1055
-exercises (12 of them templates) / 3643 checks passing (`npm run verify:content`).
+exercises (22 of them templates) / 4901 checks passing (`npm run verify:content`).
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
 linear-maps (16).

@@ -83,7 +83,7 @@ Todo lo anterior está implementado y probado. Se ha probado de tres formas:
 - Niveles visibles: *nuevo · practicado · dominado · toca repasar* (cuando FSRS dice que la retención cae).
 - Ampliar `attempts` con `used_hint`, `used_solution`, `time_ms`.
 
-### Estado de 1.1 y 1.2: hechos (hito M28, sin publicar)
+### Estado de 1.1 y 1.2: hechos (hito M28, publicado en v0.2.0)
 
 Implementado como estaba previsto, con estos ajustes:
 
@@ -136,7 +136,7 @@ Implementado como estaba previsto, con estos ajustes:
 - Plantillas con parámetros aleatorios, por ejemplo `"Deriva $f(x)={a}x^{n}$"` con respuesta `"{a}*{n}*x^({n}-1)"`. El verificador **muestrea N instancias** y comprueba cada una con mathjs.
 - Imprescindible para que el repaso no se convierta en memorizar resultados. Además habilita un botón "practicar más".
 
-### Estado de 1.4 y 3.5: hechos (hito M31, sin commit) — la Fase 1 queda completa
+### Estado de 1.4 y 3.5: hechos (hito M31, publicado en v0.2.0)
 
 - **Plantillas** (`src/shared/params.js`):
   - `params` con rangos enteros (`int`, `exclude`) o `choices`, valores `derived` y una condición `where` (todo mathjs);
@@ -180,7 +180,7 @@ Implementado como estaba previsto, con estos ajustes:
 - Repartir por `estimatedMinutes` y no por número de lecciones, incluyendo la carga de repaso del día.
 - Racha, objetivo diario y mapa de calor de actividad. Todo local.
 
-### Estado de 1.3, 1.5 y 1.6: hechos (hito M30)
+### Estado de 1.3, 1.5 y 1.6: hechos (hito M30, publicado en v0.2.0)
 
 - **Grafo** (`src/shared/curriculum.js`): cada lección depende de la anterior de su asignatura y de las lecciones de su caja "Antes de esta lección" (había 136 enlaces, 4 entre asignaturas). Si es la primera de su asignatura, depende además de las asignaturas de un campo nuevo `requires` en `subjects.json`. En total, **311 enlaces**.
   - `verify:content` exige que todo prerrequisito exista y vaya antes en el orden del currículo. Eso descarta ciclos y hace que ordenar por ese orden dé un orden de estudio válido.
@@ -209,8 +209,47 @@ Implementado como estaba previsto, con estos ajustes:
   - la racha ya no está limitada a ~133 días.
 - **Limitaciones conocidas:**
   - un MCQ acertado al azar en la prueba de nivel marca la lección (se puede desmarcar a mano);
-  - el plan no descuenta lo ya estudiado hoy, así que al completar una lección la siguiente pasa a ser "de hoy";
+  - ~~el plan no descuenta lo ya estudiado hoy~~: resuelto en el cierre de la Fase 1;
   - un doble clic en "No lo sé" puede saltarse una pregunta.
+
+### Cierre de la Fase 1 (sin commit)
+
+Tres flecos que quedaban de 1.3, 1.4 y 1.6:
+
+- **Ayuda al fallar un repaso (1.3):** aparece "¿Te cuesta? Repasa", con la lección del ejercicio y hasta 3 prerrequisitos aún sin dominar, cada uno con su nivel.
+- **Objetivo diario (1.6):**
+  - Mi plan y la tarjeta "Tu plan de hoy" muestran "Hoy: X de Y min", u "Objetivo del día cumplido";
+  - cuentan los minutos estimados de las lecciones completadas hoy más 2 min por repaso respondido;
+  - el plan descuenta ese tiempo del día, así que al completar una lección la siguiente ya no pasa a ser "de hoy" si no queda tiempo;
+  - las lecciones que marca la prueba de nivel no cuentan. Para distinguirlas, `lesson_progress` guarda el origen (`manual`, `mastery` o `placement`) en una columna nueva: es la migración 3, con copia `mathpath.db.before-v3`;
+  - la racha cuenta el día de hoy en cuanto hay algo estudiado, aunque sea una lección completada sin responder ejercicios.
+- **Más plantillas (1.4):** 10 más, 22 en total:
+  - ecuación lineal con coeficiente negativo, raíces de x² − c y discriminante;
+  - evaluar x² + k en un negativo y resolver f(x) = y;
+  - derivada de ax² + bx e integral de 2x con límites negativos;
+  - norma con ternas pitagóricas;
+  - mediana de 4 datos desordenados y media de 3.
+
+  Las comprobaciones de `verify:content` pasan a 4901.
+- **Cursivas:** 60 lecciones usan `*cursiva*` de Markdown (162 casos, en EN y ES), y se veían con los asteriscos porque `MathText` solo entendía `**negrita**`. Ahora se muestran en cursiva. Los productos escritos en prosa, como `2*3` o `a*r^k`, se dejan como están.
+- **Tests:** 41.
+- **Probado en la build empaquetada,** con datos aislados:
+  - la migración 3 se aplica;
+  - completar una lección suma sus minutos, desmarcarla los resta y la prueba de nivel no suma;
+  - un repaso fallado muestra la ayuda y suma 2 min.
+
+**Tras la revisión independiente** (sin bloqueantes):
+- **Arreglado:**
+  - con lo ya estudiado, la regla de "medio día" comparaba con lo que quedaba y no con el día entero, así que tras 45 de 60 min una lección de 40 seguía siendo "de hoy". Tiene test;
+  - la mediana mostraba los datos siempre en el mismo orden, y bastaba promediar el primero y el último. Ahora hay 4 órdenes, con los dos centrales en sitios distintos;
+  - "Hoy: 0 de N min" ya no aparece un instante mientras se leen los minutos;
+  - el origen de la lección se valida en el proceso principal;
+  - con el objetivo del día cumplido, la tarjeta del Dashboard dice "Lo siguiente de tu plan" en vez de "Tu plan de hoy";
+  - un asterisco pegado a una fórmula (`$a$*$b$`) ya no se toma como cursiva.
+- **Se deja así:**
+  - la integral de 2x da 0 en un 8 % de las instancias, con límites simétricos. Es correcto y sirve de ejemplo de función impar;
+  - las raíces de x² − c tienen 11 variantes;
+  - los repasos de hoy no excluyen ejercicios retirados del contenido, cosa que solo importaría si se responde hoy uno que ya no existe.
 
 ---
 
@@ -285,10 +324,10 @@ La numeración sigue la de `docs/project.html`, donde el último hito terminado 
 | Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
 | **M27** | Fase 0 (0.1–0.8) + CI de release con `verify` | S | ✅ Publicado en v0.1.5 |
-| **M28** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) + migraciones de BD (5.3) + primeros tests (5.1) | M | ✅ Hecho (con commit, sin publicar) |
+| **M28** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) + migraciones de BD (5.3) + primeros tests (5.1) | M | ✅ Publicado en v0.2.0 |
 | **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | Siguiente |
-| **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Hecho (con commit) |
-| **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Hecho, sin commit (Fase 1 completa) |
+| **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Publicado en v0.2.0; cierre sin commit |
+| **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más sin commit |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | — |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | — |
