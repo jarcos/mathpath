@@ -166,13 +166,14 @@ export default function ExamView({ subjectId, onBack, onOpenLesson }) {
 
       <div className="review-actions">
         {answer ? (
-          <button className="primary" onClick={next}>
+          <button className="primary" onClick={(e) => e.detail < 2 && next()}>
             {index + 1 < questions.length ? t('reviewNext') : t('reviewFinish')}
           </button>
         ) : (
           <button
             className="link subtle"
-            onClick={() => {
+            onClick={(e) => {
+              if (e.detail > 1) return
               record(at, false)
               next()
             }}

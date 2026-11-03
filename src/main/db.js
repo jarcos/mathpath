@@ -211,9 +211,10 @@ export function setLessonCompleted(lessonId, subjectId, completed, source = 'man
 
 /**
  * What the learner has studied today (local day): lessons completed today,
- * except by a placement test, and how many reviews were answered today.
+ * except by a placement test, and how many reviews were answered today (of
+ * the `known` exercise ids, when given; see SHIPPED).
  */
-export function getTodayStudy() {
+export function getTodayStudy(known) {
   const lessons = db
     .prepare(
       `SELECT lesson_id FROM lesson_progress
@@ -226,9 +227,10 @@ export function getTodayStudy() {
     .prepare(
       `SELECT COUNT(*) AS n FROM review_cards
         WHERE json_extract(card, '$.reps') >= 2
-          AND date(json_extract(card, '$.last_review'), 'localtime') = date('now', 'localtime')`
+          AND date(json_extract(card, '$.last_review'), 'localtime') = date('now', 'localtime')
+          AND ${SHIPPED}`
     )
-    .get().n
+    .get({ known: knownParam(known) }).n
   return { lessons, reviews }
 }
 

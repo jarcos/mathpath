@@ -116,13 +116,15 @@ export default function PlacementView({ subjectId, onBack, onOpenLesson }) {
         }}
       />
 
+      {/* The buttons ignore the second click of a double click, which would
+          otherwise land on the next question's button and skip it. */}
       <div className="review-actions">
         {answer ? (
-          <button className="primary" onClick={() => next(answer.ok)}>
+          <button className="primary" onClick={(e) => e.detail < 2 && next(answer.ok)}>
             {t('reviewNext')}
           </button>
         ) : (
-          <button className="link subtle" onClick={() => next(false)}>
+          <button className="link subtle" onClick={(e) => e.detail < 2 && next(false)}>
             {t('placementDontKnow')}
           </button>
         )}

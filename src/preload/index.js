@@ -24,7 +24,7 @@ const api = {
   learning: {
     state: (until) => ipcRenderer.invoke('learning:state', until),
     activity: (since) => ipcRenderer.invoke('learning:activity', since),
-    today: () => ipcRenderer.invoke('learning:today')
+    today: (known) => ipcRenderer.invoke('learning:today', known)
   },
   review: {
     due: (until, limit, known) => ipcRenderer.invoke('review:due', until, limit, known),

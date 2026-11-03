@@ -150,11 +150,11 @@ export default function ReviewView({ onBack, onOpenLesson }) {
           </span>
         )}
         {answer ? (
-          <button className="primary" onClick={next}>
+          <button className="primary" onClick={(e) => e.detail < 2 && next()}>
             {index + 1 < items.length ? t('reviewNext') : t('reviewFinish')}
           </button>
         ) : (
-          <button className="link subtle" onClick={next}>
+          <button className="link subtle" onClick={(e) => e.detail < 2 && next()}>
             {t('reviewSkip')}
           </button>
         )}

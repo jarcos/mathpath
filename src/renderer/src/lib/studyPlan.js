@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { getLessonsNeeded, getLesson, getSubject } from '@content/index.js'
+import { getExerciseIds, getLessonsNeeded, getLesson, getSubject } from '@content/index.js'
 import { REVIEW_MINUTES } from '@shared/planner.js'
 import { useApp } from '@/AppContext.jsx'
 
@@ -62,7 +62,7 @@ export function useTodayMinutes() {
   useEffect(() => {
     let active = true
     window.api.learning
-      ?.today()
+      ?.today(getExerciseIds())
       .then(({ lessons, reviews }) => {
         if (!active) return
         const lessonMinutes = lessons.reduce((sum, id) => sum + (getLesson(id)?.estimatedMinutes || 0), 0)

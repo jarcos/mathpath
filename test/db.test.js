@@ -191,6 +191,9 @@ test("today's study: lessons completed today (not by placement) and reviews answ
   const today = getTodayStudy()
   assert.deepEqual(today.lessons, ['l-manual'])
   assert.equal(today.reviews, 1)
+  // Reviews of exercises the app no longer ships don't count.
+  assert.equal(getTodayStudy(['e1', 'e2']).reviews, 1)
+  assert.equal(getTodayStudy(['e1']).reviews, 0)
   assert.equal(db.prepare("SELECT source FROM lesson_progress WHERE lesson_id = 'l-undone'").get().source, null)
 })
 
