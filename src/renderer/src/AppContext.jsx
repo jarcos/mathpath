@@ -6,7 +6,7 @@ import { endOfLocalDay } from '@shared/learning.js'
 const AppContext = createContext(null)
 export const useApp = () => useContext(AppContext)
 
-// solved: exercise id → { lessonId, clean }; due: ids whose review is due today.
+// solved: exercise id → { lessonId, clean, firstTry }; due: ids whose review is due today.
 const EMPTY_LEARNING = { solved: new Map(), due: new Set() }
 
 export function AppProvider({ children }) {
@@ -21,7 +21,9 @@ export function AppProvider({ children }) {
     try {
       const s = await window.api.learning.state(endOfLocalDay())
       setLearning({
-        solved: new Map(s.solved.map((r) => [r.exercise_id, { lessonId: r.lesson_id, clean: r.clean }])),
+        solved: new Map(
+          s.solved.map((r) => [r.exercise_id, { lessonId: r.lesson_id, clean: r.clean, firstTry: r.firstTry }])
+        ),
         due: new Set(s.due.map((r) => r.exercise_id))
       })
     } catch (e) {

@@ -11,6 +11,7 @@ import {
   getLearningState,
   getActivity,
   getTodayStudy,
+  getMissesToday,
   getDueReviews,
   getReviewSummary,
   getPlan,
@@ -84,6 +85,7 @@ function registerIpc() {
 
   ipcMain.handle('attempts:record', (_e, payload) => recordAttempt(payload))
   ipcMain.handle('attempts:solvedForLesson', (_e, lessonId) => getSolvedExercises(lessonId))
+  ipcMain.handle('attempts:missesToday', (_e, lessonId) => getMissesToday(lessonId))
 
   ipcMain.handle('learning:state', (_e, until) => getLearningState(until))
   ipcMain.handle('learning:activity', (_e, since) => getActivity(since))

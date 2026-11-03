@@ -3,12 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { validateAnswer } from '@shared/validate.js'
 import { gradeCases } from '@shared/pygrade.js'
 import { useApp } from '@/AppContext.jsx'
+import { isGuessable } from '@/lib/mastery.js'
 import { runFunctionCases } from '@/lib/pyodide.js'
 import MathText from './MathText.jsx'
 
 // After this many wrong picks a multiple-choice exercise shows the answer and
-// locks, so the learner can't click through every option. (It resets when the
-// lesson is reopened; every pick is still recorded in `attempts`.)
+// locks, so the learner can't click through every option. It stays locked if
+// the lesson is reopened that day (`priorMisses`), and gets a review card so
+// it comes back to be answered fresh.
 const MCQ_TRIES = 2
 
 /**
@@ -17,7 +19,8 @@ const MCQ_TRIES = 2
  * placement test ('placement') only a right first answer creates one. The
  * first answer is reported through `onResult(ok, { due })`. `assist={false}`
  * hides hints and solutions. `onAnother`, for template instances, offers a
- * fresh instance once this one is answered.
+ * fresh instance once this one is answered. `priorMisses`: wrong tries already
+ * made today, for a guessable question reopened in a lesson.
  */
 export default function Exercise({
   exercise,
@@ -28,7 +31,8 @@ export default function Exercise({
   mode = 'lesson',
   onResult,
   assist = true,
-  onAnother
+  onAnother,
+  priorMisses = 0
 }) {
   const { t } = useTranslation()
   const { loc, recordAttempt } = useApp()
@@ -49,10 +53,17 @@ export default function Exercise({
     if (!startedAt.current) startedAt.current = Date.now()
   }
 
-  // The lesson loads solved exercises asynchronously, after this has mounted.
+  // The lesson loads solved exercises and today's misses asynchronously, after
+  // this has mounted.
   useEffect(() => {
     if (solved) setResult('correct')
   }, [solved])
+  useEffect(() => {
+    if (priorMisses > missesRef.current) {
+      missesRef.current = priorMisses
+      setMisses(priorMisses)
+    }
+  }, [priorMisses])
 
   // Standard text/number/expression/set
   const [answer, setAnswer] = useState('')
@@ -88,14 +99,19 @@ export default function Exercise({
       misses: missesRef.current,
       // Only the first answer of a review or a placement question counts;
       // retries are just recorded.
-      schedule: mode === 'lesson' ? 'learn' : first ? (mode === 'review' ? 'review' : 'learn') : undefined
+      schedule: mode === 'lesson' ? 'learn' : first ? (mode === 'review' ? 'review' : 'learn') : undefined,
+      mode,
+      // This wrong pick reveals a multiple-choice answer: it comes back in review.
+      revealed: mode === 'lesson' && type === 'mcq' && !ok && missesRef.current + 1 >= MCQ_TRIES
     }).catch((e) => {
       console.error('recording the answer failed', e)
       return null
     })
     startedAt.current = null
     if (first && onResult) scheduling.then((due) => onResult(ok, { due }))
-    if (ok && onSolved) onSolved(exercise.id, { clean: !usedSolution.current })
+    // A guessable answer counts towards mastery only when right first time.
+    const clean = !usedSolution.current && (!isGuessable(exercise) || missesRef.current === 0)
+    if (ok && onSolved) onSolved(exercise.id, { clean })
     if (!ok) {
       missesRef.current += 1
       setMisses(missesRef.current)
@@ -109,7 +125,9 @@ export default function Exercise({
   }
 
   const submitMcq = () => {
-    if (picked == null || revealed) return
+    // The pick just marked wrong can't be sent again (a double click would
+    // otherwise spend the last try); picking another option clears the verdict.
+    if (picked == null || revealed || result === 'incorrect') return
     finish(!!exercise.choices[picked]?.correct, `choice ${picked}`)
   }
 
@@ -215,7 +233,7 @@ export default function Exercise({
             })}
           </ul>
           {!revealed && (
-            <button className="primary small" onClick={submitMcq} disabled={picked == null}>
+            <button className="primary small" onClick={submitMcq} disabled={picked == null || result === 'incorrect'}>
               {t('check')}
             </button>
           )}
@@ -267,6 +285,7 @@ export default function Exercise({
       {result === 'incorrect' && (
         <div className="feedback bad">{type === 'mcq' && revealed ? t('mcqRevealed') : t('incorrect')}</div>
       )}
+      {result === null && type === 'mcq' && revealed && <div className="feedback bad">{t('mcqLocked')}</div>}
 
       <div className="exercise-actions">
         {assist && exercise.hint && (

@@ -21,6 +21,22 @@ export function ratingFor({ correct, usedHint = false, usedSolution = false, mis
   return RATING.good
 }
 
+const YES_NO = /^(yes|no|true|false|sí|si|verdadero|falso)$/i
+
+/** An answer that can be guessed: multiple choice, or a yes/no text answer. */
+export function isGuessable(exercise) {
+  if (exercise.answerType === 'mcq') return true
+  return exercise.answerType === 'text' && YES_NO.test(String(exercise.answer).trim())
+}
+
+/**
+ * Whether a solve (an entry of the learning state's `solved`) counts towards
+ * mastery: no solution opened, and a guessable answer also right first time.
+ */
+export function countsClean(exercise, solve) {
+  return !!solve && (isGuessable(exercise) ? solve.firstTry : solve.clean)
+}
+
 export function isMastered(clean, total) {
   return total > 0 && clean / total >= MASTERY_THRESHOLD
 }

@@ -18,7 +18,8 @@ const api = {
   },
   attempts: {
     record: (payload) => ipcRenderer.invoke('attempts:record', payload),
-    solvedForLesson: (lessonId) => ipcRenderer.invoke('attempts:solvedForLesson', lessonId)
+    solvedForLesson: (lessonId) => ipcRenderer.invoke('attempts:solvedForLesson', lessonId),
+    missesToday: (lessonId) => ipcRenderer.invoke('attempts:missesToday', lessonId)
   },
   learning: {
     state: (until) => ipcRenderer.invoke('learning:state', until),

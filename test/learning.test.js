@@ -1,6 +1,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import {
+  countsClean,
+  isGuessable,
   RATING,
   endOfLocalDay,
   interleave,
@@ -58,4 +60,21 @@ test('endOfLocalDay is the last millisecond of the local day', () => {
   assert.equal(end.getHours(), 23)
   assert.equal(end.getMinutes(), 59)
   assert.equal(end.getMilliseconds(), 999)
+})
+
+test('isGuessable: multiple choice and yes/no answers, not other answers', () => {
+  assert.equal(isGuessable({ answerType: 'mcq' }), true)
+  assert.equal(isGuessable({ answerType: 'text', answer: 'Yes' }), true)
+  assert.equal(isGuessable({ answerType: 'text', answer: 'no ' }), true)
+  assert.equal(isGuessable({ answerType: 'text', answer: 'gradient descent' }), false)
+  assert.equal(isGuessable({ answerType: 'number', answer: '1' }), false)
+})
+
+test('countsClean: a guessable answer counts only when right first time', () => {
+  const afterMiss = { clean: true, firstTry: false }
+  assert.equal(countsClean({ answerType: 'mcq' }, afterMiss), false)
+  assert.equal(countsClean({ answerType: 'number', answer: '3' }, afterMiss), true)
+  assert.equal(countsClean({ answerType: 'mcq' }, { clean: true, firstTry: true }), true)
+  assert.equal(countsClean({ answerType: 'number', answer: '3' }, { clean: false, firstTry: false }), false)
+  assert.equal(countsClean({ answerType: 'mcq' }, undefined), false)
 })

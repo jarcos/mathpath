@@ -41,7 +41,7 @@ function next(card, now, rating) {
   }
 }
 
-/** The card for an exercise solved for the first time at `now`. */
+/** The card for an exercise first solved (or first failed) at `now`. */
 export function learnCard(rating, now = new Date()) {
   return next(createEmptyCard(now), now, rating)
 }

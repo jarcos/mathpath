@@ -8,6 +8,7 @@ import {
   getActivity,
   getDueReviews,
   getLearningState,
+  getMissesToday,
   getReviewSummary,
   getSetting,
   getTodayStudy,
@@ -46,11 +47,11 @@ function legacyDb({ solves = 0 } = {}) {
 test('migrates a 0.1.x database, keeping data and backfilling review cards', () => {
   const path = legacyDb()
   const db = initDb(path)
-  assert.equal(db.pragma('user_version', { simple: true }), 3)
+  assert.equal(db.pragma('user_version', { simple: true }), 4)
   assert.equal(getSetting('language'), 'es')
 
   // The pre-migration database is kept, untouched, next to it.
-  const backup = new Database(`${path}.before-v3`, { readonly: true })
+  const backup = new Database(`${path}.before-v4`, { readonly: true })
   assert.equal(backup.pragma('user_version', { simple: true }), 0)
   assert.equal(backup.prepare('SELECT COUNT(*) AS n FROM attempts').get().n, 4)
   backup.close()
@@ -117,7 +118,7 @@ test('a corrupt attempt date does not stop the app from opening', () => {
   d.prepare('UPDATE attempts SET created_at = ? WHERE exercise_id = ?').run('not a date', 'ex-first-try')
   d.close()
   const db = initDb(path)
-  assert.equal(db.pragma('user_version', { simple: true }), 3)
+  assert.equal(db.pragma('user_version', { simple: true }), 4)
   assert.equal(db.prepare('SELECT COUNT(*) AS n FROM review_cards').get().n, 2)
 })
 
@@ -137,7 +138,7 @@ test('reviews of exercises no longer in the content are not shown or counted', (
 
 test('a first solve in a lesson creates a card; retries and re-solves do not change it', () => {
   const db = initDb(':memory:')
-  assert.equal(db.pragma('user_version', { simple: true }), 3)
+  assert.equal(db.pragma('user_version', { simple: true }), 4)
 
   recordAttempt({ exerciseId: 'e1', lessonId: 'l1', correct: false, userAnswer: '1', schedule: 'learn' })
   assert.equal(db.prepare('SELECT COUNT(*) AS n FROM review_cards').get().n, 0)
@@ -217,6 +218,53 @@ test('learning state: solves after opening the solution are not clean', () => {
     [['e1', 'l1', true], ['e2', 'l1', false], ['e3', 'l2', true]]
   )
   assert.deepEqual(due.map((d) => d.exercise_id).sort(), ['e1', 'e2', 'e3'])
+})
+
+test('learning state: a solve is first try only with no wrong try before it', () => {
+  const db = initDb(':memory:')
+  recordAttempt({ exerciseId: 'first', lessonId: 'l1', correct: true, misses: 0, schedule: 'learn' })
+  recordAttempt({ exerciseId: 'second', lessonId: 'l1', correct: false, misses: 0, schedule: 'learn' })
+  recordAttempt({ exerciseId: 'second', lessonId: 'l1', correct: true, misses: 1, schedule: 'learn' })
+  // An answer from before migration 4 (no misses recorded) gets the benefit of the doubt.
+  db.prepare("INSERT INTO attempts (exercise_id, lesson_id, correct, user_answer, created_at) VALUES ('old', 'l1', 1, 'x', ?)").run(
+    inDays(-5)
+  )
+  const solved = Object.fromEntries(getLearningState(inDays(30)).solved.map((r) => [r.exercise_id, [r.clean, r.firstTry]]))
+  assert.deepEqual(solved, { first: [true, true], second: [true, false], old: [true, true] })
+
+  // Answering it right again in the lesson doesn't make it first time...
+  recordAttempt({ exerciseId: 'second', lessonId: 'l1', correct: true, misses: 0, mode: 'lesson' })
+  const again = getLearningState(inDays(30)).solved.find((r) => r.exercise_id === 'second')
+  assert.equal(again.firstTry, false)
+  // ...answering it right first time in a later review does.
+  recordAttempt({ exerciseId: 'second', lessonId: 'l1', correct: true, misses: 0, mode: 'review', schedule: 'review' })
+  const reviewed = getLearningState(inDays(30)).solved.find((r) => r.exercise_id === 'second')
+  assert.equal(reviewed.firstTry, true)
+})
+
+test('a multiple-choice question failed until its answer shows gets a card, to come back soon', () => {
+  const db = initDb(':memory:')
+  recordAttempt({ exerciseId: 'q', lessonId: 'l1', correct: false, misses: 0, schedule: 'learn' })
+  assert.equal(db.prepare('SELECT COUNT(*) AS n FROM review_cards').get().n, 0)
+  const due = recordAttempt({ exerciseId: 'q', lessonId: 'l1', correct: false, misses: 1, schedule: 'learn', revealed: true })
+  assert.ok(due > new Date().toISOString() && due <= inDays(2))
+  assert.equal(cardOf(db, 'q').reps, 1)
+})
+
+test("today's misses: wrong tries today on a lesson's exercises never answered right", () => {
+  const db = initDb(':memory:')
+  recordAttempt({ exerciseId: 'q1', lessonId: 'l1', correct: false })
+  recordAttempt({ exerciseId: 'q1', lessonId: 'l1', correct: false })
+  recordAttempt({ exerciseId: 'q2', lessonId: 'l1', correct: false })
+  recordAttempt({ exerciseId: 'q2', lessonId: 'l1', correct: true }) // answered right: not counted
+  recordAttempt({ exerciseId: 'q3', lessonId: 'l1', correct: false })
+  db.prepare("UPDATE attempts SET created_at = ? WHERE exercise_id = 'q3'").run(inDays(-2)) // another day
+  recordAttempt({ exerciseId: 'q4', lessonId: 'l2', correct: false }) // another lesson
+  // Misses in a review, an exam or a placement test don't count against the lesson.
+  recordAttempt({ exerciseId: 'q5', lessonId: 'l1', correct: false, mode: 'review' })
+  recordAttempt({ exerciseId: 'q5', lessonId: 'l1', correct: false, mode: 'placement' })
+  recordAttempt({ exerciseId: 'q1', lessonId: 'l1', correct: false, mode: 'lesson' })
+  assert.deepEqual(getMissesToday('l1'), { q1: 3 })
 })
 
 test('a clean review also credits the lessons it builds on: partly, and only when it went well', () => {

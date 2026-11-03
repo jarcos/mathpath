@@ -5,7 +5,7 @@ import { getLessonSymbols } from '@shared/notation.js'
 import { MASTERY_THRESHOLD, isMastered } from '@shared/learning.js'
 import { hashString, instantiate, randomSeed } from '@shared/params.js'
 import { useApp } from '@/AppContext.jsx'
-import { lessonStats } from '@/lib/mastery.js'
+import { countsClean, isGuessable, lessonStats } from '@/lib/mastery.js'
 import MasteryBadge from '@/components/MasteryBadge.jsx'
 import MathText from '@/components/MathText.jsx'
 import FunctionGraph from '@/components/FunctionGraph.jsx'
@@ -103,6 +103,7 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
   const { loc, completed, setLessonCompleted, getSolvedForLesson, learning } = useApp()
   const lesson = getLesson(lessonId)
   const [solved, setSolved] = useState(() => new Set())
+  const [missesToday, setMissesToday] = useState({}) // exercise id → wrong tries today, never solved
   const [autoCompleted, setAutoCompleted] = useState(false)
   // Template exercises: a seed per visit, and how many fresh instances asked for.
   const sessionSeed = useMemo(() => randomSeed(), [lessonId])
@@ -115,7 +116,12 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
     if (el) el.scrollTo({ top: 0 })
     setAutoCompleted(false)
     setVariants({})
+    setMissesToday({})
     let active = true
+    window.api.attempts
+      ?.missesToday?.(lessonId)
+      .then((m) => active && setMissesToday(m || {}))
+      .catch(() => {})
     if (lessonId && getSolvedForLesson) {
       Promise.resolve(getSolvedForLesson(lessonId))
         .then((ids) => {
@@ -150,8 +156,9 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
   // A lesson already mastered and then unmarked by hand stays unmarked.
   const markSolved = (exId, { clean }) => {
     setSolved((prev) => new Set(prev).add(exId))
-    const before = lesson.exercises.filter((ex) => learning.solved.get(ex.id)?.clean).length
-    const after = before + (clean && !learning.solved.get(exId)?.clean ? 1 : 0)
+    const counts = (ex) => countsClean(ex, learning.solved.get(ex.id))
+    const before = lesson.exercises.filter(counts).length
+    const after = before + (clean && !counts(lesson.exercises.find((ex) => ex.id === exId)) ? 1 : 0)
     if (!done && !isMastered(before, total) && isMastered(after, total)) {
       setLessonCompleted(lesson.id, lesson.subjectId, true, 'mastery')
       setAutoCompleted(true)
@@ -217,6 +224,9 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
                 // A template's progress is shared by its instances, but a
                 // fresh instance is shown unanswered.
                 solved={!ex.params && solved.has(ex.id)}
+                // A guessable question failed today stays failed (and a
+                // multiple-choice one locked) when the lesson is reopened.
+                priorMisses={isGuessable(ex) ? missesToday[ex.id] || 0 : 0}
                 onSolved={markSolved}
                 onAnother={ex.params ? another : undefined}
               />

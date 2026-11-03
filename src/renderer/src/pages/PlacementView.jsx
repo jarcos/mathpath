@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { getSubject } from '@content/index.js'
 import { instantiate, randomSeed } from '@shared/params.js'
 import { useApp } from '@/AppContext.jsx'
+import { isGuessable } from '@/lib/mastery.js'
 import Exercise from '@/components/Exercise.jsx'
 import ProgressBar from '@/components/ProgressBar.jsx'
 
@@ -11,10 +12,14 @@ import ProgressBar from '@/components/ProgressBar.jsx'
 const STOP_AFTER = 2
 
 // One auto-graded exercise per lesson (code exercises take too long here).
+// A right answer marks the lesson complete, so it avoids questions that can be
+// guessed (multiple choice, yes/no) whenever the lesson has any other kind.
 function pickQuestions(subject) {
   return subject.lessonObjects
     .map((lesson) => {
-      const pool = lesson.exercises.filter((e) => e.answerType !== 'code')
+      const gradable = lesson.exercises.filter((e) => e.answerType !== 'code')
+      const unguessable = gradable.filter((e) => !isGuessable(e))
+      const pool = unguessable.length ? unguessable : gradable
       if (!pool.length) return null
       return { lesson, exercise: instantiate(pool[Math.floor(Math.random() * pool.length)], randomSeed()) }
     })

@@ -1,17 +1,19 @@
-import { masteryLevel } from '@shared/learning.js'
+import { countsClean, isGuessable, masteryLevel } from '@shared/learning.js'
+
+export { countsClean, isGuessable }
 
 // A lesson's progress from the learning state in AppContext.
 export function lessonStats(lesson, learning, completed) {
   let solved = 0
   let clean = 0
   let due = 0
-  for (const { id } of lesson.exercises) {
-    const s = learning.solved.get(id)
+  for (const exercise of lesson.exercises) {
+    const s = learning.solved.get(exercise.id)
     if (s) {
       solved++
-      if (s.clean) clean++
+      if (countsClean(exercise, s)) clean++
     }
-    if (learning.due.has(id)) due++
+    if (learning.due.has(exercise.id)) due++
   }
   const total = lesson.exercises.length
   const done = completed.has(lesson.id)

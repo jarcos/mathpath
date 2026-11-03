@@ -68,7 +68,17 @@ const MIGRATIONS = [
 
   // 3 — how a lesson got completed: 'manual', 'mastery' or 'placement' (NULL
   // for completions from before this migration).
-  (d) => d.exec('ALTER TABLE lesson_progress ADD COLUMN source TEXT;')
+  (d) => d.exec('ALTER TABLE lesson_progress ADD COLUMN source TEXT;'),
+
+  // 4 — wrong tries before each answer in its session, and where it was given
+  // ('lesson', 'review' — also exams — or 'placement'); NULL before this
+  // migration. A guessable answer (multiple choice, yes/no) counts towards
+  // mastery only when right first time.
+  (d) =>
+    d.exec(`
+      ALTER TABLE attempts ADD COLUMN misses INTEGER;
+      ALTER TABLE attempts ADD COLUMN mode   TEXT;
+    `)
 ]
 
 function insertCard(d, exerciseId, lessonId, card, now) {
@@ -227,6 +237,8 @@ export function getTodayStudy() {
 /**
  * Records one answer. `schedule` says what it means for spaced repetition:
  *   'learn'  — answered in a lesson: the first solve creates the review card
+ *              (so does a multiple-choice question failed until its answer
+ *              is `revealed`, rated Again so it comes back soon)
  *   'review' — first answer in a review session: rates the card; if it went
  *              well, the lessons it `buildsOn` get implicit credit
  *   absent   — retries; recorded only
@@ -242,15 +254,28 @@ export function recordAttempt({
   timeMs = null,
   misses = 0,
   schedule,
+  mode = null,
+  revealed = false,
   buildsOn = []
 }) {
   const now = new Date()
   const iso = now.toISOString()
   return db.transaction(() => {
     db.prepare(
-      `INSERT INTO attempts (exercise_id, lesson_id, correct, user_answer, created_at, used_hint, used_solution, time_ms)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
-    ).run(exerciseId, lessonId, correct ? 1 : 0, userAnswer ?? '', iso, usedHint ? 1 : 0, usedSolution ? 1 : 0, timeMs)
+      `INSERT INTO attempts (exercise_id, lesson_id, correct, user_answer, created_at, used_hint, used_solution, time_ms, misses, mode)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    ).run(
+      exerciseId,
+      lessonId,
+      correct ? 1 : 0,
+      userAnswer ?? '',
+      iso,
+      usedHint ? 1 : 0,
+      usedSolution ? 1 : 0,
+      timeMs,
+      Number.isInteger(misses) && misses >= 0 ? misses : null,
+      ATTEMPT_MODES.includes(mode) ? mode : null
+    )
 
     const row = db.prepare('SELECT due, card FROM review_cards WHERE exercise_id = ?').get(exerciseId)
     const rating = ratingFor({ correct, usedHint, usedSolution, misses })
@@ -267,7 +292,7 @@ export function recordAttempt({
         }
         return card.due.toISOString()
       }
-      if ((schedule === 'learn' || schedule === 'review') && correct && !row) {
+      if ((schedule === 'learn' || schedule === 'review') && (correct || revealed) && !row) {
         const card = learnCard(rating, now)
         insertCard(db, exerciseId, lessonId, card, iso)
         return card.due.toISOString()
@@ -279,6 +304,8 @@ export function recordAttempt({
     return row ? row.due : null
   })()
 }
+
+const ATTEMPT_MODES = ['lesson', 'review', 'placement']
 
 // Implicit repetition (see review.js): the cards of the lessons a clean review
 // builds on that fall due within the window move partly later.
@@ -298,6 +325,25 @@ function creditPrereqs(lessonIds, now) {
   }
 }
 
+/**
+ * Wrong answers given today, in the lesson itself, to the exercises of a lesson
+ * that were never answered right, so a multiple-choice question locked after
+ * its last try stays locked when the lesson is reopened the same day. (Misses
+ * in reviews, exams or placement tests don't count against the lesson.)
+ */
+export function getMissesToday(lessonId) {
+  const rows = db
+    .prepare(
+      `SELECT exercise_id, COUNT(*) AS n FROM attempts
+        WHERE lesson_id = @lessonId AND correct = 0 AND (mode IS NULL OR mode = 'lesson')
+          AND date(created_at, 'localtime') = date('now', 'localtime')
+          AND exercise_id NOT IN (SELECT exercise_id FROM attempts WHERE lesson_id = @lessonId AND correct = 1)
+        GROUP BY exercise_id`
+    )
+    .all({ lessonId })
+  return Object.fromEntries(rows.map((r) => [r.exercise_id, r.n]))
+}
+
 // Exercise IDs answered correctly at least once in this lesson, so the lesson
 // view can restore "solved" state after a reload.
 export function getSolvedExercises(lessonId) {
@@ -310,17 +356,23 @@ export function getSolvedExercises(lessonId) {
 /**
  * Everything the UI needs for mastery levels, in one query each:
  *   solved — every exercise answered correctly at least once, with `clean`
- *            when one of those answers came without opening the solution
+ *            when one of those answers came without opening the solution,
+ *            and `firstTry` when it was solved right first time (its first
+ *            right answer had no wrong try or solution before it) or has been
+ *            since in a review or exam. Answers from before migration 4 get
+ *            the benefit of the doubt.
  *   due    — exercises whose review is due by `until` (ISO)
  */
 export function getLearningState(until) {
   const solved = db
     .prepare(
-      `SELECT exercise_id, lesson_id, MIN(used_solution) = 0 AS clean
-         FROM attempts WHERE correct = 1 GROUP BY exercise_id`
+      `SELECT exercise_id, lesson_id, MIN(used_solution) = 0 AS clean,
+              MAX(used_solution = 0 AND (misses IS NULL OR misses = 0) AND (id = first_id OR mode = 'review')) AS first_try
+         FROM (SELECT *, MIN(id) OVER (PARTITION BY exercise_id) AS first_id FROM attempts WHERE correct = 1)
+        GROUP BY exercise_id`
     )
     .all()
-    .map((r) => ({ ...r, clean: !!r.clean }))
+    .map(({ first_try: firstTry, ...r }) => ({ ...r, clean: !!r.clean, firstTry: !!firstTry }))
   const due = db.prepare('SELECT exercise_id, lesson_id FROM review_cards WHERE due <= ?').all(until)
   return { solved, due }
 }
