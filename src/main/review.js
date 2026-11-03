@@ -1,4 +1,4 @@
-import { createEmptyCard, fsrs, generatorParameters } from 'ts-fsrs'
+import { createEmptyCard, fsrs, generatorParameters, Rating } from 'ts-fsrs'
 
 // Spaced-repetition scheduling (FSRS) for solved exercises. Cards are stored
 // as JSON in the review_cards table; this module only computes new states.
@@ -6,6 +6,19 @@ import { createEmptyCard, fsrs, generatorParameters } from 'ts-fsrs'
 // Reviews happen in daily sessions, so intervals are whole days (no
 // minute-level learning steps). Fuzz spreads out cards learned together.
 const scheduler = fsrs(generatorParameters({ enable_fuzz: true, enable_short_term: false }))
+
+// Implicit repetition (as in Math Academy's FIRe): a clean review of a lesson
+// partly counts for the lessons it builds on. Their cards due within the
+// window move this share of the way to where a Good review now would put them,
+// but never past the point where recall (whose stability an implicit
+// repetition doesn't raise) is predicted to drop below IMPLICIT_MIN_RETENTION.
+export const IMPLICIT_WEIGHT = 0.5
+export const IMPLICIT_WINDOW_DAYS = 7
+export const IMPLICIT_MIN_RETENTION = 0.85
+const floor = fsrs(
+  generatorParameters({ enable_fuzz: false, enable_short_term: false, request_retention: IMPLICIT_MIN_RETENTION })
+)
+const DAY = 86400000
 
 function revive(json) {
   const c = typeof json === 'string' ? JSON.parse(json) : json
@@ -41,6 +54,23 @@ const reviewTime = (card, now) => (card.last_review && now < card.last_review ? 
 export function reviewCard(stored, rating, now = new Date()) {
   const card = revive(stored)
   return next(card, reviewTime(card, now), rating)
+}
+
+/**
+ * The card after an implicit repetition at `now`: only its due date moves,
+ * `weight` of the way towards a Good review's and no further than the
+ * retention floor allows; never earlier. Its memory state (stability, reps,
+ * last review) is unchanged. Null when it wouldn't move later, or when the
+ * card is already due: that one is left for its own review, as it may well
+ * be forgotten.
+ */
+export function implicitReview(stored, now = new Date(), weight = IMPLICIT_WEIGHT) {
+  const card = revive(stored)
+  if (card.due <= now || !card.last_review) return null
+  const good = next(card, reviewTime(card, now), Rating.Good).due
+  const limit = card.last_review.getTime() + floor.next_interval(card.stability, 0) * DAY
+  const due = Math.min(card.due.getTime() + weight * (good.getTime() - card.due.getTime()), limit)
+  return due > card.due.getTime() ? { ...card, due: new Date(due) } : null
 }
 
 export function serializeCard(card) {

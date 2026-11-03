@@ -1,7 +1,7 @@
 import { rmSync } from 'node:fs'
 import Database from 'better-sqlite3'
-import { ratingFor } from '../shared/learning.js'
-import { learnCard, reviewCard, serializeCard } from './review.js'
+import { RATING, ratingFor } from '../shared/learning.js'
+import { IMPLICIT_WINDOW_DAYS, implicitReview, learnCard, reviewCard, serializeCard } from './review.js'
 
 let db
 
@@ -227,7 +227,8 @@ export function getTodayStudy() {
 /**
  * Records one answer. `schedule` says what it means for spaced repetition:
  *   'learn'  — answered in a lesson: the first solve creates the review card
- *   'review' — first answer in a review session: rates the card
+ *   'review' — first answer in a review session: rates the card; if it went
+ *              well, the lessons it `buildsOn` get implicit credit
  *   absent   — retries; recorded only
  * Returns the exercise's next review date (ISO) when it has a card, else null.
  */
@@ -240,7 +241,8 @@ export function recordAttempt({
   usedSolution = false,
   timeMs = null,
   misses = 0,
-  schedule
+  schedule,
+  buildsOn = []
 }) {
   const now = new Date()
   const iso = now.toISOString()
@@ -256,6 +258,13 @@ export function recordAttempt({
       if (schedule === 'review' && row) {
         const card = reviewCard(row.card, rating, now)
         insertCard(db, exerciseId, lessonId, card, iso)
+        if (rating === RATING.good) {
+          try {
+            creditPrereqs(buildsOn, now)
+          } catch (e) {
+            console.error('implicit review credit failed', e)
+          }
+        }
         return card.due.toISOString()
       }
       if ((schedule === 'learn' || schedule === 'review') && correct && !row) {
@@ -269,6 +278,24 @@ export function recordAttempt({
     }
     return row ? row.due : null
   })()
+}
+
+// Implicit repetition (see review.js): the cards of the lessons a clean review
+// builds on that fall due within the window move partly later.
+function creditPrereqs(lessonIds, now) {
+  const ids = Array.isArray(lessonIds) ? lessonIds.filter((id) => typeof id === 'string').slice(0, 50) : []
+  if (!ids.length) return
+  const until = new Date(now.getTime() + IMPLICIT_WINDOW_DAYS * DAY).toISOString()
+  const rows = db
+    .prepare(
+      `SELECT exercise_id, lesson_id, card FROM review_cards
+        WHERE lesson_id IN (SELECT value FROM json_each(?)) AND due <= ?`
+    )
+    .all(JSON.stringify(ids), until)
+  for (const r of rows) {
+    const card = implicitReview(r.card, now)
+    if (card) insertCard(db, r.exercise_id, r.lesson_id, card, now.toISOString())
+  }
 }
 
 // Exercise IDs answered correctly at least once in this lesson, so the lesson

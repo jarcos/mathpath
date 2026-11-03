@@ -218,3 +218,41 @@ test('learning state: solves after opening the solution are not clean', () => {
   )
   assert.deepEqual(due.map((d) => d.exercise_id).sort(), ['e1', 'e2', 'e3'])
 })
+
+test('a clean review also credits the lessons it builds on: partly, and only when it went well', () => {
+  const db = initDb(':memory:')
+  const learn = (id, lessonId) => recordAttempt({ exerciseId: id, lessonId, correct: true, schedule: 'learn' })
+  learn('base-soon', 'base')
+  learn('base-overdue', 'base')
+  learn('base-later', 'base')
+  learn('other-soon', 'other')
+  learn('adv', 'advanced')
+  const setDue = (id, iso) => {
+    const card = { ...cardOf(db, id), due: iso }
+    db.prepare('UPDATE review_cards SET due = ?, card = ? WHERE exercise_id = ?').run(iso, JSON.stringify(card), id)
+  }
+  setDue('base-soon', inDays(1))
+  setDue('other-soon', inDays(1))
+  setDue('base-later', inDays(30))
+  setDue('base-overdue', inDays(-1))
+  const before = (id) => cardOf(db, id)
+  const overdue = before('base-overdue')
+  const soon = before('base-soon')
+  const later = before('base-later')
+  const other = before('other-soon')
+
+  // A review after a hint (Hard) gives no credit...
+  recordAttempt({ exerciseId: 'adv', lessonId: 'advanced', correct: true, usedHint: true, schedule: 'review', buildsOn: ['base'] })
+  assert.deepEqual(cardOf(db, 'base-soon'), soon)
+  // ...a clean one (Good) moves a base card due soon later, keeping its memory state.
+  recordAttempt({ exerciseId: 'adv', lessonId: 'advanced', correct: true, schedule: 'review', buildsOn: ['base'] })
+  const credited = cardOf(db, 'base-soon')
+  assert.ok(credited.due > soon.due)
+  assert.deepEqual({ ...credited, due: soon.due }, soon)
+  assert.equal(db.prepare("SELECT due FROM review_cards WHERE exercise_id = 'base-soon'").get().due, credited.due)
+  // Cards already due (left for their own review), beyond the window, or of
+  // lessons it doesn't build on, are untouched.
+  assert.deepEqual(cardOf(db, 'base-overdue'), overdue)
+  assert.deepEqual(cardOf(db, 'base-later'), later)
+  assert.deepEqual(cardOf(db, 'other-soon'), other)
+})

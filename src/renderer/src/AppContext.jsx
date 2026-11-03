@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { getPrereqs } from '@content/index.js'
 import { endOfLocalDay } from '@shared/learning.js'
 
 const AppContext = createContext(null)
@@ -89,7 +90,9 @@ export function AppProvider({ children }) {
   // Resolves with the exercise's next review date (ISO) or null.
   const recordAttempt = useCallback(
     async (payload) => {
-      const due = await window.api.attempts.record(payload)
+      // A review that goes well also counts, in part, for the lessons it builds on.
+      const buildsOn = payload.schedule === 'review' ? getPrereqs(payload.lessonId) : undefined
+      const due = await window.api.attempts.record({ ...payload, buildsOn })
       refreshLearning()
       return due
     },
