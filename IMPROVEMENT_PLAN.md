@@ -342,7 +342,7 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
 5. **Examen de cierre por asignatura** con ejercicios intercalados de todas sus lecciones.
 6. **Lint de ortografía en español** dentro de `verify`. Un diccionario pequeño ya detecta unas 63 palabras sin tilde (`limite`, `numero`, `solucion`…), sobre todo en notas de prerrequisito y comentarios de código.
 
-### Estado de 3.1: hecho (hito M32, sin publicar)
+### Estado de 3.1: hecho (hito M32, publicado en v0.4.0)
 
 - **Asignatura nueva, "Cálculo multivariable y optimización"** (`multivariable`, 14 lecciones, track de matemáticas), entre `linear-maps` y la pista de IA:
   1. polinomios de Taylor;
@@ -413,7 +413,7 @@ La numeración sigue la de `docs/project.html`, donde el último hito terminado 
 | **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | ✅ Publicado en v0.3.0 |
 | **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Publicado en v0.2.0; cierre en v0.2.1; crédito implícito en v0.2.2 |
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
-| **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Hecho (sin publicar) |
+| **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | — |
 | continuo | Profundidad del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
