@@ -94,21 +94,40 @@
     {
       "id": "calculus-11-e2",
       "answerType": "number",
-      "prompt": {
-        "en": "Evaluate $\\int_0^2 x\\,dx$.",
-        "es": "Evalúa $\\int_0^2 x\\,dx$."
+      "params": {
+        "a": {
+          "int": [
+            2,
+            6
+          ]
+        },
+        "b": {
+          "int": [
+            1,
+            6
+          ]
+        }
       },
-      "answer": "2",
+      "derived": {
+        "v": "a * b^2 / 2",
+        "sq": "b^2"
+      },
+      "check": "answer == a * b^2 / 2",
+      "prompt": {
+        "en": "Evaluate $\\int_0^{[[b]]} [[a]]x\\,dx$.",
+        "es": "Calcula $\\int_0^{[[b]]} [[a]]x\\,dx$."
+      },
+      "answer": "[[v]]",
       "acceptedAlt": [
-        "2^2/2"
+        "[[a]]*[[b]]^2/2"
       ],
       "hint": {
-        "en": "Antiderivative is x²/2.",
-        "es": "La primitiva es x²/2."
+        "en": "An antiderivative of [[a]]x is [[a]]x²/2.",
+        "es": "Una primitiva de [[a]]x es [[a]]x²/2."
       },
       "solution": [
         {
-          "tex": "[\\tfrac{x^2}{2}]_0^2 = \\tfrac{4}{2} = 2",
+          "tex": "\\left[\\tfrac{[[a]]x^2}{2}\\right]_0^{[[b]]} = \\tfrac{[[a]]\\cdot [[sq]]}{2} = [[v]]",
           "en": "Apply the FTC.",
           "es": "Aplica el TFC."
         }

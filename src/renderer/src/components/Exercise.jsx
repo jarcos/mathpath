@@ -16,7 +16,8 @@ const MCQ_TRIES = 2
  * card; in a review session ('review') its first answer rates that card; in a
  * placement test ('placement') only a right first answer creates one. The
  * first answer is reported through `onResult(ok, { due })`. `assist={false}`
- * hides hints and solutions.
+ * hides hints and solutions. `onAnother`, for template instances, offers a
+ * fresh instance once this one is answered.
  */
 export default function Exercise({
   exercise,
@@ -26,7 +27,8 @@ export default function Exercise({
   onSolved,
   mode = 'lesson',
   onResult,
-  assist = true
+  assist = true,
+  onAnother
 }) {
   const { t } = useTranslation()
   const { loc, recordAttempt } = useApp()
@@ -287,6 +289,11 @@ export default function Exercise({
             }}
           >
             {showSolution ? t('hideSolution') : t('showSolution')}
+          </button>
+        )}
+        {onAnother && result && (
+          <button className="link" onClick={onAnother}>
+            {t('exerciseAnother')} ↻
           </button>
         )}
       </div>

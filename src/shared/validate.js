@@ -136,8 +136,10 @@ function matchesOne(user, candidate, type) {
  */
 export function validateAnswer(userAnswer, exercise) {
   const type = exercise.answerType || 'expression'
-  const user = clean(userAnswer)
+  let user = clean(userAnswer)
   if (!user) return false
+  // A decimal comma ("22,5", as written in Spanish) in a single number.
+  if (type === 'number') user = user.replace(/(\d),(\d)/g, '$1.$2')
   const candidates = [exercise.answer, ...(exercise.acceptedAlt || [])]
   return candidates.some((c) => matchesOne(user, c, type))
 }

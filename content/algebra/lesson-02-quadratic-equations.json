@@ -153,31 +153,60 @@
     {
       "id": "algebra-02-e1",
       "answerType": "set",
-      "prompt": {
-        "en": "Find both roots:  $x^2 - 5x + 6 = 0$  (enter as  2, 3)",
-        "es": "Halla ambas raíces:  $x^2 - 5x + 6 = 0$  (escribe como  2, 3)"
+      "params": {
+        "r1": {
+          "int": [
+            -6,
+            6
+          ],
+          "exclude": [
+            0
+          ]
+        },
+        "r2": {
+          "int": [
+            -6,
+            6
+          ],
+          "exclude": [
+            0
+          ]
+        }
       },
-      "answer": "2, 3",
+      "derived": {
+        "s": "-(r1 + r2)",
+        "p": "r1 * r2",
+        "sum": "r1 + r2",
+        "m1": "-r1",
+        "m2": "-r2"
+      },
+      "where": "r1 < r2 and abs(r1 + r2) >= 2",
+      "check": "deepEqual(sort(answers), [r1, r2]) and r1^2 + s * r1 + p == 0 and r2^2 + s * r2 + p == 0",
+      "prompt": {
+        "en": "Find both roots:  $x^2 [[s|+]]x [[p|+]] = 0$  (enter both, separated by a comma)",
+        "es": "Halla ambas raíces:  $x^2 [[s|+]]x [[p|+]] = 0$  (escríbelas separadas por una coma)"
+      },
+      "answer": "[[r1]], [[r2]]",
       "acceptedAlt": [
-        "3, 2"
+        "[[r2]], [[r1]]"
       ],
       "hint": {
-        "en": "Two numbers that multiply to 6 and add to 5.",
-        "es": "Dos números que multipliquen 6 y sumen 5."
+        "en": "Two numbers that multiply to [[p]] and add to [[sum]].",
+        "es": "Dos números que multipliquen [[p]] y sumen [[sum]]."
       },
       "solution": [
         {
-          "tex": "x^2 - 5x + 6 = 0",
+          "tex": "x^2 [[s|+]]x [[p|+]] = 0",
           "en": "Start from the equation.",
           "es": "Partimos de la ecuación."
         },
         {
-          "tex": "(x-2)(x-3) = 0",
-          "en": "Factor: 2 and 3 multiply to 6, add to 5.",
-          "es": "Factoriza: 2 y 3 multiplican 6 y suman 5."
+          "tex": "(x [[m1|+]])(x [[m2|+]]) = 0",
+          "en": "Factor: [[r1]] and [[r2]] multiply to [[p]] and add to [[sum]].",
+          "es": "Factoriza: [[r1]] y [[r2]] multiplican [[p]] y suman [[sum]]."
         },
         {
-          "tex": "x = 2 \\;\\text{or}\\; x = 3",
+          "tex": "x = [[r1]] \\;\\text{or}\\; x = [[r2]]",
           "en": "Zero-product property.",
           "es": "Propiedad del producto nulo."
         }

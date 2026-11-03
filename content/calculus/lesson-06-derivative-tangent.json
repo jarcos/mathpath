@@ -81,21 +81,41 @@
     {
       "id": "calculus-06-e1",
       "answerType": "expression",
-      "prompt": {
-        "en": "Differentiate $f(x) = x^2$.",
-        "es": "Deriva $f(x) = x^2$."
+      "params": {
+        "a": {
+          "int": [
+            2,
+            9
+          ]
+        },
+        "n": {
+          "int": [
+            3,
+            6
+          ]
+        }
       },
-      "answer": "2*x",
+      "derived": {
+        "k": "a * n",
+        "m": "n - 1"
+      },
+      "equivalentTo": "derivative('[[a]] * x^[[n]]', 'x')",
+      "prompt": {
+        "en": "Differentiate $f(x) = [[a]]x^{[[n]]}$.",
+        "es": "Deriva $f(x) = [[a]]x^{[[n]]}$."
+      },
+      "answer": "[[k]]*x^[[m]]",
       "acceptedAlt": [
-        "2x"
+        "[[k]]x^[[m]]",
+        "[[a]]*[[n]]*x^([[n]]-1)"
       ],
       "hint": {
-        "en": "Power rule: bring down the 2.",
-        "es": "Regla de la potencia: baja el 2."
+        "en": "Power rule: bring down the [[n]] and lower the power by one.",
+        "es": "Regla de la potencia: baja el [[n]] y resta uno al exponente."
       },
       "solution": [
         {
-          "tex": "\\tfrac{d}{dx}x^2 = 2x",
+          "tex": "\\tfrac{d}{dx}\\,[[a]]x^{[[n]]} = [[a]]\\cdot [[n]]\\,x^{[[m]]} = [[k]]x^{[[m]]}",
           "en": "Power rule.",
           "es": "Regla de la potencia."
         }
@@ -104,21 +124,43 @@
     {
       "id": "calculus-06-e2",
       "answerType": "number",
-      "prompt": {
-        "en": "Find the slope of the tangent to $f(x)=x^2$ at $x = 3$.",
-        "es": "Halla la pendiente de la tangente a $f(x)=x^2$ en $x = 3$."
+      "params": {
+        "a": {
+          "int": [
+            2,
+            5
+          ]
+        },
+        "c": {
+          "int": [
+            -4,
+            4
+          ],
+          "exclude": [
+            0
+          ]
+        }
       },
-      "answer": "6",
+      "derived": {
+        "k": "2 * a",
+        "v": "2 * a * c"
+      },
+      "check": "answer == 2 * a * c",
+      "prompt": {
+        "en": "Find the slope of the tangent to $f(x)=[[a]]x^2$ at $x = [[c]]$.",
+        "es": "Halla la pendiente de la tangente a $f(x)=[[a]]x^2$ en $x = [[c]]$."
+      },
+      "answer": "[[v]]",
       "acceptedAlt": [
-        "2*3"
+        "2*[[a]]*([[c]])"
       ],
       "hint": {
-        "en": "Evaluate f'(3) = 2·3.",
-        "es": "Evalúa f'(3) = 2·3."
+        "en": "Evaluate f'([[c]]) = [[k]]·([[c]]).",
+        "es": "Evalúa f'([[c]]) = [[k]]·([[c]])."
       },
       "solution": [
         {
-          "tex": "f'(x)=2x,\\; f'(3)=6",
+          "tex": "f'(x)=[[k]]x,\\; f'([[c]])=[[v]]",
           "en": "Substitute into the derivative.",
           "es": "Sustituye en la derivada."
         }

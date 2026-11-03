@@ -63,26 +63,53 @@
     {
       "id": "functions-01-e1",
       "answerType": "number",
-      "prompt": {
-        "en": "Given $f(x) = 2x + 1$, find $f(3)$.",
-        "es": "Dada $f(x) = 2x + 1$, halla $f(3)$."
+      "params": {
+        "a": {
+          "int": [
+            2,
+            9
+          ]
+        },
+        "b": {
+          "int": [
+            -9,
+            9
+          ],
+          "exclude": [
+            0
+          ]
+        },
+        "c": {
+          "int": [
+            -5,
+            5
+          ]
+        }
       },
-      "answer": "7",
+      "derived": {
+        "y": "a * c + b"
+      },
+      "check": "answer == a * c + b",
+      "prompt": {
+        "en": "Given $f(x) = [[a]]x [[b|+]]$, find $f([[c]])$.",
+        "es": "Dada $f(x) = [[a]]x [[b|+]]$, halla $f([[c]])$."
+      },
+      "answer": "[[y]]",
       "acceptedAlt": [
-        "2*3+1"
+        "[[a]]*([[c]]) + ([[b]])"
       ],
       "hint": {
-        "en": "Substitute 3 for x.",
-        "es": "Sustituye x por 3."
+        "en": "Substitute [[c]] for x.",
+        "es": "Sustituye x por [[c]]."
       },
       "solution": [
         {
-          "tex": "f(3) = 2\\cdot 3 + 1",
+          "tex": "f([[c]]) = [[a]]\\cdot ([[c]]) [[b|+]]",
           "en": "Substitute.",
           "es": "Sustituye."
         },
         {
-          "tex": "= 7",
+          "tex": "= [[y]]",
           "en": "Compute.",
           "es": "Calcula."
         }

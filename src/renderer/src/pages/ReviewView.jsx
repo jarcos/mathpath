@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getExercise, getExerciseIds, getSubject } from '@content/index.js'
 import { endOfLocalDay, interleave } from '@shared/learning.js'
+import { instantiate, randomSeed } from '@shared/params.js'
 import { useApp } from '@/AppContext.jsx'
 import { relativeDay } from '@/lib/mastery.js'
 import Exercise from '@/components/Exercise.jsx'
@@ -26,7 +27,11 @@ export default function ReviewView({ onBack, onOpenLesson }) {
     window.api.review
       .due(endOfLocalDay(), SESSION_SIZE, getExerciseIds())
       .then((rows) => {
-        const found = rows.map((r) => getExercise(r.exercise_id)).filter(Boolean)
+        // Templates come back as a fresh instance, so reviews aren't remembered answers.
+        const found = rows
+          .map((r) => getExercise(r.exercise_id))
+          .filter(Boolean)
+          .map((x) => ({ ...x, exercise: instantiate(x.exercise, randomSeed()) }))
         if (active) setItems(interleave(found, (x) => x.lesson.id))
       })
       .catch((e) => {

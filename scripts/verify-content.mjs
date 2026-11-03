@@ -15,6 +15,8 @@ import { fileURLToPath } from 'url'
 import * as math from 'mathjs'
 import { assertEquivalent, validateAnswer } from '../src/shared/validate.js'
 import { buildCurriculum, checkCurriculum } from '../src/shared/curriculum.js'
+import { fill, instantiate, leftovers } from '../src/shared/params.js'
+import katex from 'katex'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -68,11 +70,102 @@ function checkCodeExercise(ex, where) {
   }
 }
 
+// Templates (src/shared/params.js) are checked on many instances: placeholders
+// all filled, the usual answer checks, the template's own independent
+// `check` / `equivalentTo`, and every bit of TeX must render.
+const TEMPLATE_SAMPLES = 40
+let templateCount = 0
+
+function texOf(ex) {
+  const out = []
+  const strings = [ex.prompt, ex.hint, ...(ex.solution || [])].flatMap((o) => (o ? [o.en, o.es] : []))
+  for (const s of strings) for (const m of String(s || '').matchAll(/\$\$?([^$]+)\$\$?/g)) out.push(m[1])
+  for (const step of ex.solution || []) if (step.tex) out.push(step.tex)
+  return out
+}
+
+function checkTemplate(ex, where) {
+  templateCount++
+  exerciseCount++
+  if (!['number', 'expression', 'set'].includes(ex.answerType || 'expression')) {
+    return fail(where, 'templates support number, expression and set answers')
+  }
+  // The independent check must actually look at the answer.
+  const type = ex.answerType || 'expression'
+  if (type === 'expression' && !ex.equivalentTo) return fail(where, 'an expression template needs an equivalentTo')
+  if (type === 'number' && !ex.equivalentTo && !/\banswer\b/.test(ex.check || '')) {
+    return fail(where, 'a number template needs a check that uses `answer` (or an equivalentTo)')
+  }
+  if (type === 'set' && !/\banswers\b/.test(ex.check || '')) {
+    return fail(where, 'a set template needs a check that uses `answers` (the answer as a list)')
+  }
+  for (let i = 0; i < TEMPLATE_SAMPLES; i++) {
+    const before = problems.length
+    const at = `${where} [instance ${i}]`
+    let inst
+    try {
+      inst = instantiate(ex, i * 7919 + 1)
+    } catch (e) {
+      return fail(where, e.message)
+    }
+    const values = inst.instance.values
+    const left = leftovers(inst)
+    if (left.length) fail(at, `unfilled placeholders ${left.join(', ')}`)
+    else {
+      checkAnswers(inst, at)
+      if (ex.check) {
+        checkCount++
+        // `answer`: a number answer's value; `answers`: a set answer's values.
+        const value = (s) => {
+          try {
+            return math.evaluate(s)
+          } catch {
+            return null
+          }
+        }
+        const answer = value(inst.answer)
+        const answers = String(inst.answer).split(/[,;]/).map((s) => value(s.trim()))
+        let ok = false
+        try {
+          ok = math.evaluate(ex.check, { ...values, answer, answers }) === true
+        } catch (e) {
+          fail(at, `check "${ex.check}" failed to evaluate: ${e.message}`)
+        }
+        if (!ok) fail(at, `check "${ex.check}" is false for ${JSON.stringify(values)}`)
+      }
+      if (ex.equivalentTo) {
+        checkCount++
+        try {
+          const expected = String(math.evaluate(fill(ex.equivalentTo, values)))
+          if (!assertEquivalent(inst.answer, expected)) {
+            fail(at, `answer "${inst.answer}" is not equivalent to ${expected} (equivalentTo)`)
+          }
+        } catch (e) {
+          fail(at, `equivalentTo "${ex.equivalentTo}" failed to evaluate: ${e.message}`)
+        }
+      }
+      for (const tex of texOf(inst)) {
+        try {
+          katex.renderToString(tex, { throwOnError: true })
+        } catch (e) {
+          fail(at, `TeX "${tex}" does not render: ${e.message}`)
+        }
+      }
+    }
+    if (problems.length > before) return // one failing instance is enough to report
+  }
+}
+
 function checkExercise(ex, where) {
+  if (ex.params) return checkTemplate(ex, where)
   if (ex.answerType === 'mcq') return checkMcq(ex, where)
   if (ex.answerType === 'code') return checkCodeExercise(ex, where)
-
   exerciseCount++
+  checkAnswers(ex, where)
+}
+
+// The answer checks of a number / expression / set / text exercise.
+function checkAnswers(ex, where) {
   hasBoth(ex.prompt, 'prompt', where)
   if (!ex.answer) fail(where, 'no answer')
   if (!Array.isArray(ex.solution) || ex.solution.length === 0) {
@@ -92,7 +185,8 @@ function checkExercise(ex, where) {
     checkCount++
     let ok = false
     if (ex.answerType === 'set') {
-      ok = validateAnswer(alt, ex)
+      // Against the canonical answer only (the alternatives include `alt` itself).
+      ok = validateAnswer(alt, { ...ex, acceptedAlt: [] })
     } else if (ex.answerType === 'text') {
       ok = validateAnswer(alt, ex)
     } else {
@@ -182,6 +276,7 @@ console.log(`  lessons:   ${lessonCount}`)
 console.log(`  exercises: ${exerciseCount}`)
 console.log(`  equivalence/answer checks: ${checkCount}`)
 console.log(`  prerequisite links: ${edgeCount}`)
+console.log(`  exercise templates: ${templateCount} (${TEMPLATE_SAMPLES} instances each)`)
 
 if (problems.length) {
   console.log(`\n${problems.length} problem(s) found:\n`)

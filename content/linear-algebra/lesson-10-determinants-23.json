@@ -61,14 +61,57 @@
     {
       "id": "linalg-10-e1",
       "answerType": "number",
-      "prompt": {
-        "en": "$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$?",
-        "es": "¿$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$?"
+      "params": {
+        "p": {
+          "int": [
+            -5,
+            5
+          ],
+          "exclude": [
+            0
+          ]
+        },
+        "q": {
+          "int": [
+            -5,
+            5
+          ],
+          "exclude": [
+            0
+          ]
+        },
+        "r": {
+          "int": [
+            -5,
+            5
+          ],
+          "exclude": [
+            0
+          ]
+        },
+        "s": {
+          "int": [
+            -5,
+            5
+          ],
+          "exclude": [
+            0
+          ]
+        }
       },
-      "answer": "-2",
+      "derived": {
+        "ps": "p * s",
+        "qr": "q * r",
+        "d": "p * s - q * r"
+      },
+      "check": "answer == det([[p, q], [r, s]])",
+      "prompt": {
+        "en": "$\\det\\begin{pmatrix}[[p]]&[[q]]\\\\ [[r]]&[[s]]\\end{pmatrix}$?",
+        "es": "¿$\\det\\begin{pmatrix}[[p]]&[[q]]\\\\ [[r]]&[[s]]\\end{pmatrix}$?"
+      },
+      "answer": "[[d]]",
       "acceptedAlt": [
-        "1*4-2*3",
-        "det([[1,2],[3,4]])"
+        "[[p]]*([[s]]) - ([[q]])*([[r]])"
       ],
       "hint": {
         "en": "ad − bc.",
@@ -76,7 +119,7 @@
       },
       "solution": [
         {
-          "tex": "4 - 6 = -2",
+          "tex": "([[p]])([[s]]) - ([[q]])([[r]]) = [[ps]] - ([[qr]]) = [[d]]",
           "en": "Determinant.",
           "es": "Determinante."
         }

@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getLesson, getSubject, getGlossary } from '@content/index.js'
 import { getLessonSymbols } from '@shared/notation.js'
 import { MASTERY_THRESHOLD, isMastered } from '@shared/learning.js'
+import { hashString, instantiate, randomSeed } from '@shared/params.js'
 import { useApp } from '@/AppContext.jsx'
 import { lessonStats } from '@/lib/mastery.js'
 import MasteryBadge from '@/components/MasteryBadge.jsx'
@@ -103,6 +104,9 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
   const lesson = getLesson(lessonId)
   const [solved, setSolved] = useState(() => new Set())
   const [autoCompleted, setAutoCompleted] = useState(false)
+  // Template exercises: a seed per visit, and how many fresh instances asked for.
+  const sessionSeed = useMemo(() => randomSeed(), [lessonId])
+  const [variants, setVariants] = useState({})
   const topRef = useRef(null)
 
   // Reset scroll + load persisted solved exercises whenever the lesson changes.
@@ -110,6 +114,7 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
     const el = document.getElementById('app-scroll')
     if (el) el.scrollTo({ top: 0 })
     setAutoCompleted(false)
+    setVariants({})
     let active = true
     if (lessonId && getSolvedForLesson) {
       Promise.resolve(getSolvedForLesson(lessonId))
@@ -191,16 +196,32 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
             </span>
           </div>
           {toMaster > 0 && <p className="muted small mastery-need">{t('masteryNeed', { count: toMaster })}</p>}
-          {lesson.exercises.map((ex, i) => (
-            <Exercise
-              key={ex.id}
-              exercise={ex}
-              lessonId={lesson.id}
-              index={i + 1}
-              solved={solved.has(ex.id)}
-              onSolved={markSolved}
-            />
-          ))}
+          {lesson.exercises.map((ex, i) => {
+            // Templates get a fresh instance per visit, and on request.
+            const variant = variants[ex.id] || 0
+            const instanceAt = (v) => instantiate(ex, (sessionSeed ^ hashString(ex.id)) + v * 7919)
+            const instance = instanceAt(variant)
+            // The next variant with different numbers from this one.
+            const another = () => {
+              const now = JSON.stringify(instance.instance.values)
+              let v = variant + 1
+              while (v < variant + 20 && JSON.stringify(instanceAt(v).instance.values) === now) v++
+              setVariants((all) => ({ ...all, [ex.id]: v }))
+            }
+            return (
+              <Exercise
+                key={`${ex.id}-${variant}`}
+                exercise={instance}
+                lessonId={lesson.id}
+                index={i + 1}
+                // A template's progress is shared by its instances, but a
+                // fresh instance is shown unanswered.
+                solved={!ex.params && solved.has(ex.id)}
+                onSolved={markSolved}
+                onAnother={ex.params ? another : undefined}
+              />
+            )
+          })}
         </section>
       )}
 

@@ -85,66 +85,102 @@
     {
       "id": "algebra-01-e1",
       "answerType": "number",
-      "prompt": {
-        "en": "Solve for x:  $2x - 4 = 0$",
-        "es": "Resuelve para x:  $2x - 4 = 0$"
+      "params": {
+        "a": {
+          "int": [
+            2,
+            9
+          ]
+        },
+        "x": {
+          "int": [
+            1,
+            9
+          ]
+        }
       },
-      "answer": "2",
+      "derived": {
+        "b": "a * x"
+      },
+      "check": "a * answer - b == 0",
+      "prompt": {
+        "en": "Solve for x:  $[[a]]x - [[b]] = 0$",
+        "es": "Resuelve para x:  $[[a]]x - [[b]] = 0$"
+      },
+      "answer": "[[x]]",
       "acceptedAlt": [
-        "4/2"
+        "[[b]]/[[a]]"
       ],
       "hint": {
-        "en": "Add 4 to both sides, then divide by 2.",
-        "es": "Suma 4 a ambos lados y luego divide entre 2."
+        "en": "Add [[b]] to both sides, then divide by [[a]].",
+        "es": "Suma [[b]] a ambos lados y luego divide entre [[a]]."
       },
       "solution": [
         {
-          "tex": "2x - 4 = 0",
+          "tex": "[[a]]x - [[b]] = 0",
           "en": "Start from the equation.",
           "es": "Partimos de la ecuación."
         },
         {
-          "tex": "2x = 4",
-          "en": "Add 4 to both sides.",
-          "es": "Suma 4 a ambos lados."
+          "tex": "[[a]]x = [[b]]",
+          "en": "Add [[b]] to both sides.",
+          "es": "Suma [[b]] a ambos lados."
         },
         {
-          "tex": "x = 2",
-          "en": "Divide both sides by 2.",
-          "es": "Divide ambos lados entre 2."
+          "tex": "x = [[x]]",
+          "en": "Divide both sides by [[a]].",
+          "es": "Divide ambos lados entre [[a]]."
         }
       ]
     },
     {
       "id": "algebra-01-e2",
       "answerType": "number",
-      "prompt": {
-        "en": "Solve for x:  $3x + 6 = 0$",
-        "es": "Resuelve para x:  $3x + 6 = 0$"
+      "params": {
+        "a": {
+          "int": [
+            2,
+            9
+          ]
+        },
+        "x": {
+          "int": [
+            -9,
+            -1
+          ]
+        }
       },
-      "answer": "-2",
+      "derived": {
+        "b": "-a * x"
+      },
+      "check": "a * answer + b == 0",
+      "prompt": {
+        "en": "Solve for x:  $[[a]]x + [[b]] = 0$",
+        "es": "Resuelve para x:  $[[a]]x + [[b]] = 0$"
+      },
+      "answer": "[[x]]",
       "acceptedAlt": [
-        "-6/3"
+        "-[[b]]/[[a]]"
       ],
       "hint": {
-        "en": "Subtract 6 from both sides first.",
-        "es": "Primero resta 6 a ambos lados."
+        "en": "Subtract [[b]] from both sides first.",
+        "es": "Primero resta [[b]] a ambos lados."
       },
       "solution": [
         {
-          "tex": "3x + 6 = 0",
+          "tex": "[[a]]x + [[b]] = 0",
           "en": "Start from the equation.",
           "es": "Partimos de la ecuación."
         },
         {
-          "tex": "3x = -6",
-          "en": "Subtract 6 from both sides.",
-          "es": "Resta 6 a ambos lados."
+          "tex": "[[a]]x = -[[b]]",
+          "en": "Subtract [[b]] from both sides.",
+          "es": "Resta [[b]] a ambos lados."
         },
         {
-          "tex": "x = -2",
-          "en": "Divide both sides by 3.",
-          "es": "Divide ambos lados entre 3."
+          "tex": "x = [[x]]",
+          "en": "Divide both sides by [[a]].",
+          "es": "Divide ambos lados entre [[a]]."
         }
       ]
     },
@@ -217,13 +253,46 @@
     {
       "id": "algebra-01-e5",
       "answerType": "number",
-      "prompt": {
-        "en": "Solve for x:  $5x - 3 = 2x + 9$",
-        "es": "Resuelve para x:  $5x - 3 = 2x + 9$"
+      "params": {
+        "a": {
+          "int": [
+            5,
+            9
+          ]
+        },
+        "c": {
+          "int": [
+            2,
+            3
+          ]
+        },
+        "x": {
+          "int": [
+            1,
+            9
+          ]
+        },
+        "b": {
+          "int": [
+            1,
+            9
+          ]
+        }
       },
-      "answer": "4",
+      "derived": {
+        "k": "a - c",
+        "r": "(a - c) * x",
+        "d": "(a - c) * x - b"
+      },
+      "where": "k >= 2 and d != 0",
+      "check": "a * answer - b == c * answer + d",
+      "prompt": {
+        "en": "Solve for x:  $[[a]]x - [[b]] = [[c]]x [[d|+]]$",
+        "es": "Resuelve para x:  $[[a]]x - [[b]] = [[c]]x [[d|+]]$"
+      },
+      "answer": "[[x]]",
       "acceptedAlt": [
-        "12/3"
+        "[[r]]/[[k]]"
       ],
       "hint": {
         "en": "Gather x terms on one side.",
@@ -231,19 +300,19 @@
       },
       "solution": [
         {
-          "tex": "5x - 3 = 2x + 9",
+          "tex": "[[a]]x - [[b]] = [[c]]x [[d|+]]",
           "en": "Start from the equation.",
           "es": "Partimos de la ecuación."
         },
         {
-          "tex": "3x = 12",
-          "en": "Subtract 2x and add 3.",
-          "es": "Resta 2x y suma 3."
+          "tex": "[[k]]x = [[r]]",
+          "en": "Subtract [[c]]x from both sides and add [[b]].",
+          "es": "Resta [[c]]x a ambos lados y suma [[b]]."
         },
         {
-          "tex": "x = 4",
-          "en": "Divide by 3.",
-          "es": "Divide entre 3."
+          "tex": "x = [[x]]",
+          "en": "Divide by [[k]].",
+          "es": "Divide entre [[k]]."
         }
       ]
     },

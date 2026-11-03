@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getSubject } from '@content/index.js'
+import { instantiate, randomSeed } from '@shared/params.js'
 import { useApp } from '@/AppContext.jsx'
 import Exercise from '@/components/Exercise.jsx'
 import ProgressBar from '@/components/ProgressBar.jsx'
@@ -14,7 +15,8 @@ function pickQuestions(subject) {
   return subject.lessonObjects
     .map((lesson) => {
       const pool = lesson.exercises.filter((e) => e.answerType !== 'code')
-      return pool.length ? { lesson, exercise: pool[Math.floor(Math.random() * pool.length)] } : null
+      if (!pool.length) return null
+      return { lesson, exercise: instantiate(pool[Math.floor(Math.random() * pool.length)], randomSeed()) }
     })
     .filter(Boolean)
 }
@@ -29,6 +31,8 @@ export default function PlacementView({ subjectId, onBack, onOpenLesson }) {
   const questions = useMemo(() => (subject ? pickQuestions(subject) : []), [subject])
   const [index, setIndex] = useState(0)
   const [answer, setAnswer] = useState(null) // { ok } for the current question
+  const indexRef = useRef(index)
+  indexRef.current = index
   const [known, setKnown] = useState([]) // lesson ids answered correctly
   const [streak, setStreak] = useState(0) // wrong answers in a row
   const [done, setDone] = useState(false)
@@ -78,6 +82,7 @@ export default function PlacementView({ subjectId, onBack, onOpenLesson }) {
   }
 
   const { lesson, exercise } = questions[index]
+  const at = index
   return (
     <div className="page placement-view">
       <button className="link back" onClick={onBack}>
@@ -100,7 +105,10 @@ export default function PlacementView({ subjectId, onBack, onOpenLesson }) {
         index={index + 1}
         mode="placement"
         assist={false}
-        onResult={(ok) => setAnswer({ ok })}
+        onResult={(ok) => {
+          // A result arriving after "I don't know" moved on is ignored.
+          if (indexRef.current === at) setAnswer({ ok })
+        }}
       />
 
       <div className="review-actions">

@@ -71,14 +71,58 @@
     {
       "id": "linalg-16-e1",
       "answerType": "number",
-      "prompt": {
-        "en": "Dot product $(1,2,3)\\cdot(4,5,6)$?",
-        "es": "¿Producto escalar $(1,2,3)\\cdot(4,5,6)$?"
+      "params": {
+        "u1": {
+          "int": [
+            -5,
+            5
+          ]
+        },
+        "u2": {
+          "int": [
+            -5,
+            5
+          ]
+        },
+        "u3": {
+          "int": [
+            -5,
+            5
+          ]
+        },
+        "v1": {
+          "int": [
+            -5,
+            5
+          ]
+        },
+        "v2": {
+          "int": [
+            -5,
+            5
+          ]
+        },
+        "v3": {
+          "int": [
+            -5,
+            5
+          ]
+        }
       },
-      "answer": "32",
+      "derived": {
+        "w1": "u1 * v1",
+        "w2": "u2 * v2",
+        "w3": "u3 * v3",
+        "d": "u1 * v1 + u2 * v2 + u3 * v3"
+      },
+      "check": "answer == dot([u1, u2, u3], [v1, v2, v3])",
+      "prompt": {
+        "en": "Dot product $([[u1]],[[u2]],[[u3]])\\cdot([[v1]],[[v2]],[[v3]])$?",
+        "es": "¿Producto escalar $([[u1]],[[u2]],[[u3]])\\cdot([[v1]],[[v2]],[[v3]])$?"
+      },
+      "answer": "[[d]]",
       "acceptedAlt": [
-        "1*4+2*5+3*6",
-        "dot([1,2,3],[4,5,6])"
+        "([[u1]])*([[v1]]) + ([[u2]])*([[v2]]) + ([[u3]])*([[v3]])"
       ],
       "hint": {
         "en": "Sum of products of components.",
@@ -86,7 +130,7 @@
       },
       "solution": [
         {
-          "tex": "4+10+18 = 32",
+          "tex": "([[w1]]) + ([[w2]]) + ([[w3]]) = [[d]]",
           "en": "Dot product.",
           "es": "Producto escalar."
         }
