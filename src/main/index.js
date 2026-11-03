@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { app, shell, BrowserWindow, ipcMain, nativeImage } from 'electron'
+import { app, shell, BrowserWindow, dialog, ipcMain, nativeImage } from 'electron'
 import {
   initDb,
   getSetting,
@@ -8,6 +8,9 @@ import {
   setLessonCompleted,
   recordAttempt,
   getSolvedExercises,
+  getLearningState,
+  getDueReviews,
+  getReviewSummary,
   getPlan,
   startPlan,
   resetPlan
@@ -80,12 +83,28 @@ function registerIpc() {
   ipcMain.handle('attempts:record', (_e, payload) => recordAttempt(payload))
   ipcMain.handle('attempts:solvedForLesson', (_e, lessonId) => getSolvedExercises(lessonId))
 
+  ipcMain.handle('learning:state', (_e, until) => getLearningState(until))
+  ipcMain.handle('review:due', (_e, until, limit, known) => getDueReviews(until, limit, known))
+  ipcMain.handle('review:summary', (_e, until, known) => getReviewSummary(until, known))
+
   ipcMain.handle('plan:get', (_e, subjectId) => getPlan(subjectId))
   ipcMain.handle('plan:start', (_e, subjectId, targetDays) => startPlan(subjectId, targetDays))
   ipcMain.handle('plan:reset', (_e, subjectId, targetDays) => resetPlan(subjectId, targetDays))
 }
 
+// One instance at a time: a second one would share (and could migrate) the
+// same database. Opening MathPath again focuses the existing window.
+const isPrimary = app.requestSingleInstanceLock()
+if (!isPrimary) app.quit()
+app.on('second-instance', () => {
+  const win = BrowserWindow.getAllWindows()[0]
+  if (!win) return
+  if (win.isMinimized()) win.restore()
+  win.focus()
+})
+
 app.whenReady().then(async () => {
+  if (!isPrimary) return
   if (!isDev) {
     rendererBaseUrl = await startRendererServer(join(import.meta.dirname, '../renderer'))
   }
@@ -95,7 +114,16 @@ app.whenReady().then(async () => {
     if (!img.isEmpty()) app.dock.setIcon(img)
   }
 
-  initDb()
+  try {
+    initDb(join(app.getPath('userData'), 'mathpath.db'))
+  } catch (e) {
+    dialog.showErrorBox(
+      'MathPath could not open your progress',
+      `${e?.message || e}\n\nNothing was deleted. Your data is in:\n${app.getPath('userData')}`
+    )
+    app.quit()
+    return
+  }
   registerIpc()
   createWindow()
   initUpdater()

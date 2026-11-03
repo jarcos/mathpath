@@ -10,6 +10,7 @@
     "dev": "electron-vite dev",
     "build": "electron-vite build",
     "start": "electron-vite preview",
+    "test": "node --test \"test/*.test.js\"",
     "verify:content": "node scripts/verify-content.mjs",
     "verify:glossary": "node scripts/verify-glossary.mjs",
     "verify:code": "python3 scripts/verify-code.py",
@@ -34,7 +35,8 @@
     "pyodide": "^0.26.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-i18next": "^15.0.1"
+    "react-i18next": "^15.0.1",
+    "ts-fsrs": "^5.4.2"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",

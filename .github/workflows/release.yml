@@ -39,6 +39,9 @@ jobs:
       - name: Bundle Pyodide core + science wheels (for the Pyodide gate)
         run: npm run setup:pyodide && npm run setup:pyodide:wheels
 
+      - name: Unit tests (learning rules, database + migrations)
+        run: npm test
+
       - name: Verify content (mathjs, glossary, CPython, Pyodide)
         run: npm run verify
 

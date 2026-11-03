@@ -19,6 +19,13 @@ const api = {
     record: (payload) => ipcRenderer.invoke('attempts:record', payload),
     solvedForLesson: (lessonId) => ipcRenderer.invoke('attempts:solvedForLesson', lessonId)
   },
+  learning: {
+    state: (until) => ipcRenderer.invoke('learning:state', until)
+  },
+  review: {
+    due: (until, limit, known) => ipcRenderer.invoke('review:due', until, limit, known),
+    summary: (until, known) => ipcRenderer.invoke('review:summary', until, known)
+  },
   plan: {
     get: (subjectId) => ipcRenderer.invoke('plan:get', subjectId),
     start: (subjectId, targetDays) => ipcRenderer.invoke('plan:start', subjectId, targetDays),
