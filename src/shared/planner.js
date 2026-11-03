@@ -17,11 +17,12 @@ function addDays(date, n) {
  * @param lessons [{ id, minutes }] still to study, in study order
  * @param minutesPerDay the learner's daily budget
  * @param reviewsDue reviews due today
+ * @param doneToday minutes already studied today, taken off today's budget
  * @returns {{ days: [{ date, reviewMinutes, lessons: string[] }], finish: Date|null, totalMinutes }}
  *   One entry per study day, starting today. A lesson longer than a day's
  *   time is listed on the day it starts and fills the days after it.
  */
-export function planStudy({ lessons, minutesPerDay, reviewsDue = 0, today = new Date() }) {
+export function planStudy({ lessons, minutesPerDay, reviewsDue = 0, doneToday = 0, today = new Date() }) {
   const budget = Math.max(5, Number(minutesPerDay) || 0)
   const todayReview = Math.min(reviewsDue * REVIEW_MINUTES, Math.floor(budget / 2))
   const futureReview = Math.round(budget * FUTURE_REVIEW_SHARE)
@@ -34,14 +35,14 @@ export function planStudy({ lessons, minutesPerDay, reviewsDue = 0, today = new 
     const reviewMinutes = day === 0 ? todayReview : futureReview
     days.push({ date: addDays(today, day), reviewMinutes, lessons: [] })
     cap = budget - reviewMinutes
-    left = cap
+    left = Math.max(0, cap - (day === 0 ? Math.max(0, Number(doneToday) || 0) : 0))
   }
   newDay()
   for (const { id, minutes } of lessons) {
     const need = Math.max(1, minutes || 0)
     // A lesson starts today if it fits, or if at least half a day of study
     // time is left (it carries on tomorrow); otherwise it starts tomorrow.
-    if (left < Math.min(need, cap / 2)) newDay()
+    if (left <= 0 || left < Math.min(need, cap / 2)) newDay()
     days[day].lessons.push(id)
     let rest = need - left
     left -= need

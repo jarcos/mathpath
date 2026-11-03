@@ -12,8 +12,9 @@ const api = {
   },
   progress: {
     getAll: () => ipcRenderer.invoke('progress:get'),
-    setLesson: (lessonId, subjectId, completed) =>
-      ipcRenderer.invoke('progress:setLesson', lessonId, subjectId, completed)
+    // source: 'manual' | 'mastery' | 'placement'
+    setLesson: (lessonId, subjectId, completed, source) =>
+      ipcRenderer.invoke('progress:setLesson', lessonId, subjectId, completed, source)
   },
   attempts: {
     record: (payload) => ipcRenderer.invoke('attempts:record', payload),
@@ -21,7 +22,8 @@ const api = {
   },
   learning: {
     state: (until) => ipcRenderer.invoke('learning:state', until),
-    activity: (since) => ipcRenderer.invoke('learning:activity', since)
+    activity: (since) => ipcRenderer.invoke('learning:activity', since),
+    today: () => ipcRenderer.invoke('learning:today')
   },
   review: {
     due: (until, limit, known) => ipcRenderer.invoke('review:due', until, limit, known),

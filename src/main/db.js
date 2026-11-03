@@ -64,7 +64,11 @@ const MIGRATIONS = [
         updated_at  TEXT NOT NULL
       );
       CREATE INDEX review_cards_due ON review_cards(due);
-    `)
+    `),
+
+  // 3 — how a lesson got completed: 'manual', 'mastery' or 'placement' (NULL
+  // for completions from before this migration).
+  (d) => d.exec('ALTER TABLE lesson_progress ADD COLUMN source TEXT;')
 ]
 
 function insertCard(d, exerciseId, lessonId, card, now) {
@@ -173,21 +177,49 @@ export function setSetting(key, value) {
 export function getProgress() {
   return db.prepare('SELECT lesson_id, subject_id, completed, completed_at FROM lesson_progress').all()
 }
-export function setLessonCompleted(lessonId, subjectId, completed) {
+const LESSON_SOURCES = ['manual', 'mastery', 'placement']
+
+export function setLessonCompleted(lessonId, subjectId, completed, source = 'manual') {
   const now = new Date().toISOString()
+  if (!LESSON_SOURCES.includes(source)) source = 'manual'
   db.prepare(
-    `INSERT INTO lesson_progress (lesson_id, subject_id, completed, completed_at)
-     VALUES (@lessonId, @subjectId, @completed, @completedAt)
+    `INSERT INTO lesson_progress (lesson_id, subject_id, completed, completed_at, source)
+     VALUES (@lessonId, @subjectId, @completed, @completedAt, @source)
      ON CONFLICT(lesson_id) DO UPDATE SET
        completed    = @completed,
-       completed_at = CASE WHEN @completed = 1 THEN @completedAt ELSE NULL END`
+       completed_at = CASE WHEN @completed = 1 THEN @completedAt ELSE NULL END,
+       source       = CASE WHEN @completed = 1 THEN @source ELSE NULL END`
   ).run({
     lessonId,
     subjectId,
     completed: completed ? 1 : 0,
-    completedAt: completed ? now : null
+    completedAt: completed ? now : null,
+    source: completed ? source : null
   })
   return true
+}
+
+/**
+ * What the learner has studied today (local day): lessons completed today,
+ * except by a placement test, and how many reviews were answered today.
+ */
+export function getTodayStudy() {
+  const lessons = db
+    .prepare(
+      `SELECT lesson_id FROM lesson_progress
+        WHERE completed = 1 AND (source IS NULL OR source != 'placement')
+          AND date(completed_at, 'localtime') = date('now', 'localtime')`
+    )
+    .all()
+    .map((r) => r.lesson_id)
+  const reviews = db
+    .prepare(
+      `SELECT COUNT(*) AS n FROM review_cards
+        WHERE json_extract(card, '$.reps') >= 2
+          AND date(json_extract(card, '$.last_review'), 'localtime') = date('now', 'localtime')`
+    )
+    .get().n
+  return { lessons, reviews }
 }
 
 /* ---------- attempts ---------- */

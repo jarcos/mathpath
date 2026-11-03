@@ -5,7 +5,7 @@ import { endOfLocalDay } from '@shared/learning.js'
 import { dayKey, planStudy, streak } from '@shared/planner.js'
 import { useApp } from '@/AppContext.jsx'
 import { relativeDay } from '@/lib/mastery.js'
-import { remainingLessons, useStudyGoal } from '@/lib/studyPlan.js'
+import { remainingLessons, useStudyGoal, useTodayMinutes } from '@/lib/studyPlan.js'
 import ProgressBar from '@/components/ProgressBar.jsx'
 
 const MINUTE_CHOICES = [15, 30, 45, 60, 90, 120]
@@ -91,6 +91,7 @@ export default function PlanView({ onBack, onOpenLesson, onStartReview }) {
   const [editing, setEditing] = useState(false)
   const [reviewsDue, setReviewsDue] = useState(0)
   const [activity, setActivity] = useState(new Map())
+  const studied = useTodayMinutes()
 
   useEffect(() => {
     window.api.review
@@ -105,7 +106,7 @@ export default function PlanView({ onBack, onOpenLesson, onStartReview }) {
       .catch(() => {})
   }, [learning])
 
-  if (goal === undefined) return null
+  if (goal === undefined || studied === null) return null
 
   const header = (
     <>
@@ -138,11 +139,14 @@ export default function PlanView({ onBack, onOpenLesson, onStartReview }) {
   const subject = getSubject(goal.subjectId)
   const allNeeded = getLessonsNeeded(subject.lessonObjects.at(-1).id)
   const remaining = remainingLessons(goal, completed)
-  const plan = planStudy({ lessons: remaining, minutesPerDay: goal.minutes, reviewsDue })
+  const plan = planStudy({ lessons: remaining, minutesPerDay: goal.minutes, reviewsDue, doneToday: studied })
   const today = plan.days[0]
   const upcoming = plan.days.slice(1).filter((d) => d.lessons.length).slice(0, 6)
   const done = allNeeded.length - remaining.length
-  const days = streak(new Set(activity.keys()))
+  // Today counts once anything is studied, even a lesson read without answering.
+  const activeDays = new Set(activity.keys())
+  if (studied > 0) activeDays.add(dayKey(new Date()))
+  const days = streak(activeDays)
   const fmt = (d) => new Intl.DateTimeFormat(lang, { weekday: 'short', day: 'numeric', month: 'short' }).format(d)
   const fmtLong = (d) => new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', year: 'numeric' }).format(d)
 
@@ -180,6 +184,14 @@ export default function PlanView({ onBack, onOpenLesson, onStartReview }) {
           <h2>{t('planToday')}</h2>
           <span className="badge ok">{t('planStreak', { count: days })}</span>
         </div>
+        <ProgressBar
+          percent={Math.round((studied / goal.minutes) * 100)}
+          label={
+            studied >= goal.minutes
+              ? t('planTodayMet', { done: studied })
+              : t('planTodayProgress', { done: studied, total: goal.minutes })
+          }
+        />
         {reviewsDue > 0 && (
           <p className="plan-line">
             {t('planReviews', { count: reviewsDue, minutes: today.reviewMinutes })}{' '}

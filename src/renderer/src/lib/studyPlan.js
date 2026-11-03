@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { getLessonsNeeded, getLesson, getSubject } from '@content/index.js'
+import { REVIEW_MINUTES } from '@shared/planner.js'
+import { useApp } from '@/AppContext.jsx'
 
 // A stored goal, or null if missing, broken, or about a subject that is no
 // longer shipped (or has no lessons). Bad minutes fall back to 30.
@@ -46,4 +48,30 @@ export function remainingLessons(goal, completed) {
   return getLessonsNeeded(target.id)
     .filter((id) => !completed.has(id))
     .map((id) => ({ id, minutes: getLesson(id).estimatedMinutes }))
+}
+
+/**
+ * Minutes studied today: lessons completed today (not by a placement test) at
+ * their estimated time, plus answered reviews. Re-read whenever progress or
+ * the learning state changes (which also happens when the window regains focus).
+ * Null until first read.
+ */
+export function useTodayMinutes() {
+  const { completed, learning } = useApp()
+  const [minutes, setMinutes] = useState(null)
+  useEffect(() => {
+    let active = true
+    window.api.learning
+      ?.today()
+      .then(({ lessons, reviews }) => {
+        if (!active) return
+        const lessonMinutes = lessons.reduce((sum, id) => sum + (getLesson(id)?.estimatedMinutes || 0), 0)
+        setMinutes(lessonMinutes + reviews * REVIEW_MINUTES)
+      })
+      .catch(() => active && setMinutes(0))
+    return () => {
+      active = false
+    }
+  }, [completed, learning])
+  return minutes
 }

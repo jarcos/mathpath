@@ -75,8 +75,9 @@ export function AppProvider({ children }) {
   // Picks the field matching the current language from a {en, es} object.
   const loc = useCallback((obj) => (obj ? obj[lang] ?? obj.en ?? '' : ''), [lang])
 
-  const setLessonCompleted = useCallback(async (lessonId, subjectId, value) => {
-    await window.api.progress.setLesson(lessonId, subjectId, value)
+  // source: 'manual' | 'mastery' | 'placement' (placement doesn't count as study time today)
+  const setLessonCompleted = useCallback(async (lessonId, subjectId, value, source = 'manual') => {
+    await window.api.progress.setLesson(lessonId, subjectId, value, source)
     setCompleted((prev) => {
       const next = new Set(prev)
       if (value) next.add(lessonId)

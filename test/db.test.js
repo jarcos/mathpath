@@ -10,8 +10,10 @@ import {
   getLearningState,
   getReviewSummary,
   getSetting,
+  getTodayStudy,
   initDb,
-  recordAttempt
+  recordAttempt,
+  setLessonCompleted
 } from '../src/main/db.js'
 
 const DAY = 86400000
@@ -44,11 +46,11 @@ function legacyDb({ solves = 0 } = {}) {
 test('migrates a 0.1.x database, keeping data and backfilling review cards', () => {
   const path = legacyDb()
   const db = initDb(path)
-  assert.equal(db.pragma('user_version', { simple: true }), 2)
+  assert.equal(db.pragma('user_version', { simple: true }), 3)
   assert.equal(getSetting('language'), 'es')
 
   // The pre-migration database is kept, untouched, next to it.
-  const backup = new Database(`${path}.before-v2`, { readonly: true })
+  const backup = new Database(`${path}.before-v3`, { readonly: true })
   assert.equal(backup.pragma('user_version', { simple: true }), 0)
   assert.equal(backup.prepare('SELECT COUNT(*) AS n FROM attempts').get().n, 4)
   backup.close()
@@ -115,7 +117,7 @@ test('a corrupt attempt date does not stop the app from opening', () => {
   d.prepare('UPDATE attempts SET created_at = ? WHERE exercise_id = ?').run('not a date', 'ex-first-try')
   d.close()
   const db = initDb(path)
-  assert.equal(db.pragma('user_version', { simple: true }), 2)
+  assert.equal(db.pragma('user_version', { simple: true }), 3)
   assert.equal(db.prepare('SELECT COUNT(*) AS n FROM review_cards').get().n, 2)
 })
 
@@ -135,7 +137,7 @@ test('reviews of exercises no longer in the content are not shown or counted', (
 
 test('a first solve in a lesson creates a card; retries and re-solves do not change it', () => {
   const db = initDb(':memory:')
-  assert.equal(db.pragma('user_version', { simple: true }), 2)
+  assert.equal(db.pragma('user_version', { simple: true }), 3)
 
   recordAttempt({ exerciseId: 'e1', lessonId: 'l1', correct: false, userAnswer: '1', schedule: 'learn' })
   assert.equal(db.prepare('SELECT COUNT(*) AS n FROM review_cards').get().n, 0)
@@ -169,6 +171,26 @@ test('a review rates the card: a wrong answer is a lapse', () => {
   // Retrying after the first answer is recorded but doesn't re-rate the card.
   recordAttempt({ exerciseId: 'e1', lessonId: 'l1', correct: true, userAnswer: '2' })
   assert.deepEqual(cardOf(db, 'e1'), reviewed)
+})
+
+test("today's study: lessons completed today (not by placement) and reviews answered today", () => {
+  const db = initDb(':memory:')
+  setLessonCompleted('l-manual', 's', true, 'manual')
+  setLessonCompleted('l-mastery', 's', true, 'mastery')
+  setLessonCompleted('l-placed', 's', true, 'placement')
+  setLessonCompleted('l-undone', 's', true, 'manual')
+  setLessonCompleted('l-undone', 's', false)
+  // Completed on another day.
+  db.prepare("UPDATE lesson_progress SET completed_at = ? WHERE lesson_id = 'l-mastery'").run(inDays(-3))
+
+  recordAttempt({ exerciseId: 'e1', lessonId: 'l1', correct: true, schedule: 'learn' }) // learned, not a review
+  recordAttempt({ exerciseId: 'e2', lessonId: 'l1', correct: true, schedule: 'learn' })
+  recordAttempt({ exerciseId: 'e2', lessonId: 'l1', correct: false, schedule: 'review' }) // a review today
+
+  const today = getTodayStudy()
+  assert.deepEqual(today.lessons, ['l-manual'])
+  assert.equal(today.reviews, 1)
+  assert.equal(db.prepare("SELECT source FROM lesson_progress WHERE lesson_id = 'l-undone'").get().source, null)
 })
 
 test('activity counts answers per local day', () => {

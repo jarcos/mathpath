@@ -4,7 +4,7 @@ import { getExerciseIds, getLesson, getSubject, getSubjects } from '@content/ind
 import { endOfLocalDay } from '@shared/learning.js'
 import { useApp } from '@/AppContext.jsx'
 import { relativeDay } from '@/lib/mastery.js'
-import { remainingLessons, useStudyGoal } from '@/lib/studyPlan.js'
+import { remainingLessons, useStudyGoal, useTodayMinutes } from '@/lib/studyPlan.js'
 import ProgressBar from '@/components/ProgressBar.jsx'
 import { UpdatesPanel } from '@/components/Updates.jsx'
 
@@ -78,6 +78,7 @@ export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview, 
   const { t } = useTranslation()
   const { loc, completed } = useApp()
   const [goal] = useStudyGoal()
+  const studied = useTodayMinutes()
   const subjects = getSubjects()
 
   // Overall progress across every available lesson.
@@ -113,6 +114,7 @@ export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview, 
   // With a study goal, "continue" follows the plan instead.
   const planLeft = goal ? remainingLessons(goal, completed) : null
   const planNext = planLeft?.length ? getLesson(planLeft[0].id) : null
+  const met = goal && studied !== null && studied >= goal.minutes
 
   const tracks = [
     { id: 'math', label: t('trackMath') },
@@ -134,13 +136,18 @@ export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview, 
       {planNext && (
         <button className="resume-card" onClick={() => onOpenLesson(planNext.subjectId, planNext.id)}>
           <div className="resume-text">
-            <span className="resume-eyebrow">{t('planTodayCard')}</span>
+            <span className="resume-eyebrow">{t(met ? 'planNextCard' : 'planTodayCard')}</span>
             <span className="resume-title">{loc(planNext.title)}</span>
             <span className="muted small">
               {t('planTodaySub', {
                 subject: loc(getSubject(goal.subjectId).name),
                 count: planLeft.length
               })}
+              {studied !== null && ' · '}
+              {studied !== null &&
+                (met
+                  ? t('planTodayMet', { done: studied })
+                  : t('planTodayProgress', { done: studied, total: goal.minutes }))}
             </span>
           </div>
           <span className="resume-cta">{t('continue')} →</span>

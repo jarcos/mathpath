@@ -44,6 +44,21 @@ test('a lesson that spills over leaves the rest of that day for the next one', (
   assert.deepEqual(days.map((d) => d.lessons), [['a'], ['b'], ['c'], []])
 })
 
+test('time already studied today comes off today, not off later days', () => {
+  const lessons = [L('a', 20), L('b', 20)]
+  // 60 min/day, no reviews: both fit today...
+  assert.deepEqual(planStudy({ lessons, minutesPerDay: 60, today }).days[0].lessons, ['a', 'b'])
+  // ...after 30 min of study only one does (b needs 20, 10 left)...
+  const half = planStudy({ lessons, minutesPerDay: 60, doneToday: 30, today })
+  assert.deepEqual(half.days.map((d) => d.lessons), [['a'], ['b']])
+  // ...with less than half a day left, a lesson that doesn't fit waits for tomorrow...
+  const late = planStudy({ lessons: [L('a', 40)], minutesPerDay: 60, doneToday: 45, today })
+  assert.deepEqual(late.days.map((d) => d.lessons), [[], ['a']])
+  // ...and once the goal is met, the rest starts tomorrow.
+  const met = planStudy({ lessons, minutesPerDay: 60, doneToday: 75, today })
+  assert.deepEqual(met.days.map((d) => d.lessons), [[], ['a', 'b']])
+})
+
 test('a missing or broken daily budget still gives a sane plan', () => {
   for (const minutesPerDay of [undefined, null, 'abc', -10, 0]) {
     const { days } = planStudy({ lessons: [L('a', 10), L('b', 10)], minutesPerDay, today })

@@ -40,7 +40,7 @@ export default function PlacementView({ subjectId, onBack, onOpenLesson }) {
   if (!subject) return null
 
   const finish = (knownIds) => {
-    for (const id of knownIds) if (!completed.has(id)) setLessonCompleted(id, subjectId, true)
+    for (const id of knownIds) if (!completed.has(id)) setLessonCompleted(id, subjectId, true, 'placement')
     setDone(true)
   }
 

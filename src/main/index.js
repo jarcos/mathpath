@@ -10,6 +10,7 @@ import {
   getSolvedExercises,
   getLearningState,
   getActivity,
+  getTodayStudy,
   getDueReviews,
   getReviewSummary,
   getPlan,
@@ -77,8 +78,8 @@ function registerIpc() {
   ipcMain.handle('settings:set', (_e, key, value) => setSetting(key, value))
 
   ipcMain.handle('progress:get', () => getProgress())
-  ipcMain.handle('progress:setLesson', (_e, lessonId, subjectId, completed) =>
-    setLessonCompleted(lessonId, subjectId, completed)
+  ipcMain.handle('progress:setLesson', (_e, lessonId, subjectId, completed, source) =>
+    setLessonCompleted(lessonId, subjectId, completed, source)
   )
 
   ipcMain.handle('attempts:record', (_e, payload) => recordAttempt(payload))
@@ -86,6 +87,7 @@ function registerIpc() {
 
   ipcMain.handle('learning:state', (_e, until) => getLearningState(until))
   ipcMain.handle('learning:activity', (_e, since) => getActivity(since))
+  ipcMain.handle('learning:today', () => getTodayStudy())
   ipcMain.handle('review:due', (_e, until, limit, known) => getDueReviews(until, limit, known))
   ipcMain.handle('review:summary', (_e, until, known) => getReviewSummary(until, known))
 

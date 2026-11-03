@@ -153,7 +153,7 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
     const before = lesson.exercises.filter((ex) => learning.solved.get(ex.id)?.clean).length
     const after = before + (clean && !learning.solved.get(exId)?.clean ? 1 : 0)
     if (!done && !isMastered(before, total) && isMastered(after, total)) {
-      setLessonCompleted(lesson.id, lesson.subjectId, true)
+      setLessonCompleted(lesson.id, lesson.subjectId, true, 'mastery')
       setAutoCompleted(true)
     }
   }
@@ -247,7 +247,7 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
         )}
         <button
           className={done ? 'primary done' : 'primary'}
-          onClick={() => setLessonCompleted(lesson.id, lesson.subjectId, !done)}
+          onClick={() => setLessonCompleted(lesson.id, lesson.subjectId, !done, 'manual')}
         >
           {done ? t('markedComplete') : t('markComplete')}
         </button>
