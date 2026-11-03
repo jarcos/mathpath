@@ -1,0 +1,55 @@
+name: CI
+
+# Every push to main and every pull request runs the unit tests, all the
+# content gates and a production build, so a broken lesson or rule shows up
+# long before a release (release.yml runs the same gates again before it
+# packages anything).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+# A newer push to a PR branch makes the running check moot; on main every
+# commit keeps its own result.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # --ignore-scripts: see release.yml (prebuilt better-sqlite3, no Electron
+      # binary needed to test or build).
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Python libraries for the CPython code gate
+        run: pip install numpy pandas scikit-learn scipy sympy
+
+      - name: Bundle Pyodide core + science wheels (for the Pyodide gate)
+        run: npm run setup:pyodide && npm run setup:pyodide:wheels
+
+      - name: Unit tests (answer checking, learning rules, database + migrations)
+        run: npm test
+
+      - name: Verify content (mathjs, forms and mistakes, glossary, CPython, Pyodide)
+        run: npm run verify
+
+      - name: Build renderer + main
+        run: npm run build
