@@ -47,14 +47,19 @@ src/
                  Before migrating it saves mathpath.db.before-vN; review cards are
                  re-synced from attempts on every start (syncCards).
                  lesson_progress.source ('manual' | 'mastery' | 'placement', v3)
-                 keeps placement-test lessons out of today's study (getTodayStudy)
-               review.js — FSRS scheduling (ts-fsrs 5.x; 6.x needs Node 24)
+                 keeps placement-test lessons out of today's study (getTodayStudy);
+                 attempts.misses + mode (v4) mark answers right first time
+                 (firstTry) and keep lesson-only misses (getMissesToday)
+               review.js — FSRS scheduling (ts-fsrs 5.x; 6.x needs Node 24), in
+                 local days; implicitReview gives FIRe-style partial credit to
+                 the prerequisites of a clean review (creditPrereqs in db.js)
                rendererServer.js — loopback server for the packaged renderer
   preload/     Secure contextBridge — the only renderer ↔ main channel
                (built as CJS: the window is sandboxed)
   shared/      validate.js — mathjs answer checker, used by BOTH app and verifier
                pygrade.js — code-exercise grader, used by BOTH app and verify:pyodide
-               learning.js — review ratings + mastery rules (main AND renderer)
+               learning.js — review ratings + mastery rules (main AND renderer);
+                 guessable answers (MCQ, yes/no) count only when right first time
                curriculum.js — prerequisite graph (renderer AND verify:content)
                planner.js — cross-subject study planner + streaks (pure)
                params.js — template exercises: `params`/`derived`/`where`,

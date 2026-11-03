@@ -63,10 +63,10 @@ Todo lo anterior está implementado y probado. Se ha probado de tres formas:
 - Cada snippet corre en un namespace limpio, igual que en los dos verificadores.
 - `LIB_TO_PKG` queda en un único sitio (`pygrade.js`).
 
-**Pendiente para la Fase 1:**
-- El bloqueo del test multirrespuesta se reinicia al reabrir la lección.
-- Con 3 opciones y 2 intentos, adivinando se acierta 2 de cada 3 veces.
-- El dominio (1.2) debería contar solo los aciertos a la primera. `attempts` ya guarda cada elección.
+**Pendiente para la Fase 1** (resuelto en los últimos flecos de la Fase 1):
+- ~~El bloqueo del test multirrespuesta se reinicia al reabrir la lección.~~
+- ~~Con 3 opciones y 2 intentos, adivinando se acierta 2 de cada 3 veces.~~
+- ~~El dominio (1.2) debería contar solo los aciertos a la primera. `attempts` ya guarda cada elección.~~
 
 ---
 
@@ -122,14 +122,14 @@ Implementado como estaba previsto, con estos ajustes:
   - desmarcar a mano una lección dominada se respeta;
   - el estado se refresca al volver a la ventana (por si cambia el día con la app abierta);
   - el resumen de la sesión es coherente si se saltan todos los ejercicios.
-- **Matiz conocido (no se cambia):** ts-fsrs cuenta los días transcurridos por fecha UTC. Un repaso justo después de medianoche local puede contar como "0 días", lo que afecta un poco a las tarjetas de 1 día.
+- ~~**Matiz conocido:** ts-fsrs cuenta los días transcurridos por fecha UTC. Un repaso justo después de medianoche local puede contar como "0 días", lo que afecta un poco a las tarjetas de 1 día.~~ Resuelto en los últimos flecos de la Fase 1.
 
 ### 1.3 Grafo de prerrequisitos
 - Pasar los 117 bloques `prereq` a un campo `prerequisites: [lessonId]` en cada lección (hoy 124 lecciones no tienen ninguno) y validarlo en `verify`: que los ids existan y que no haya ciclos.
 - Usos:
   - Avisar al abrir una lección con prerrequisitos flojos.
   - Proponer la lección base cuando fallan los repasos.
-  - Más adelante, crédito implícito al estilo *FIRe* de [Math Academy](https://mathacademy.com/how-our-ai-works): repasar un tema avanzado cuenta como repaso parcial de sus bases.
+  - Crédito implícito al estilo *FIRe* de [Math Academy](https://mathacademy.com/how-our-ai-works): repasar un tema avanzado cuenta como repaso parcial de sus bases. Hecho en los últimos flecos de la Fase 1.
 - **Mapa visual del currículo** (DAG en SVG) que también sirva para navegar.
 
 ### 1.4 Ejercicios parametrizados (variantes)
@@ -208,9 +208,9 @@ Implementado como estaba previsto, con estos ajustes:
   - una asignatura sin preguntas posibles ya no rompe la prueba;
   - la racha ya no está limitada a ~133 días.
 - **Limitaciones conocidas:**
-  - un MCQ acertado al azar en la prueba de nivel marca la lección (se puede desmarcar a mano);
+  - ~~un MCQ acertado al azar en la prueba de nivel marca la lección~~: resuelto en los últimos flecos de la Fase 1;
   - ~~el plan no descuenta lo ya estudiado hoy~~: resuelto en el cierre de la Fase 1;
-  - un doble clic en "No lo sé" puede saltarse una pregunta.
+  - ~~un doble clic en "No lo sé" puede saltarse una pregunta~~: resuelto en los últimos flecos de la Fase 1.
 
 ### Cierre de la Fase 1 (publicado en v0.2.1)
 
@@ -246,10 +246,38 @@ Tres flecos que quedaban de 1.3, 1.4 y 1.6:
   - el origen de la lección se valida en el proceso principal;
   - con el objetivo del día cumplido, la tarjeta del Dashboard dice "Lo siguiente de tu plan" en vez de "Tu plan de hoy";
   - un asterisco pegado a una fórmula (`$a$*$b$`) ya no se toma como cursiva.
-- **Se deja así:**
-  - la integral de 2x da 0 en un 8 % de las instancias, con límites simétricos. Es correcto y sirve de ejemplo de función impar;
-  - las raíces de x² − c tienen 11 variantes;
-  - los repasos de hoy no excluyen ejercicios retirados del contenido, cosa que solo importaría si se responde hoy uno que ya no existe.
+- **Se dejó así, y se cerró después** (en los últimos flecos):
+  - la integral de 2x da 0 en un 8 % de las instancias, con límites simétricos. Es correcto, y ahora la solución explica por qué: 2x es impar;
+  - las raíces de x² − c tenían 11 variantes; ahora 19;
+  - los repasos de hoy no excluían ejercicios retirados del contenido; ahora sí.
+
+### Últimos flecos de la Fase 1 (sin publicar)
+
+Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
+
+- **Crédito implícito (1.3, estilo FIRe):** un repaso limpio (*Good*) de una lección cuenta en parte para las lecciones en las que se apoya.
+  - Las tarjetas de esos prerrequisitos que vencen en los próximos 7 días se mueven la mitad del camino hacia donde las pondría un repaso *Good* hoy.
+  - Nunca se adelantan, nunca pasan de ahí y nunca pasan del día en que el recuerdo previsto bajaría del 85 %. Su memoria (estabilidad, repeticiones, último repaso) no cambia.
+  - Las tarjetas que ya han vencido no reciben crédito: les toca su propio repaso, porque pueden estar olvidadas.
+  - Un repaso con pista, tras fallar o con la solución no da crédito. Las respuestas del examen cuentan como repaso, así que también dan crédito.
+- **Días locales en FSRS:** ts-fsrs cuenta los días entre repasos por fecha UTC. Ahora las fechas entran desplazadas a la hora local, así que un repaso a las 00:30 cuenta como "al día siguiente" de uno a las 23:30.
+- **Preguntas que se pueden adivinar** (opción múltiple y respuestas sí/no; hay 67 y 25):
+  - para el dominio solo cuentan si se aciertan a la primera: el primer acierto llegó sin fallos previos, o se acertaron a la primera en un repaso o examen posterior. `attempts` guarda ahora los fallos previos de cada respuesta y dónde se dio (lección, repaso o prueba de nivel). Es la migración 4, con copia `mathpath.db.before-v4`, y las respuestas anteriores a la migración se dan por buenas;
+  - un test bloqueado tras 2 fallos sigue bloqueado si se reabre la lección ese día, con el aviso "Sin intentos por hoy". Solo cuentan los fallos en la propia lección, no los del repaso, el examen o la prueba de nivel;
+  - al bloquearse, el test recibe una tarjeta de repaso (*Again*), así que vuelve al día siguiente para responderlo de nuevo;
+  - la prueba de nivel no las usa: todas las lecciones tienen otras preguntas.
+- **Doble clic:** en la prueba de nivel, el examen y el repaso, el segundo clic de un doble clic ya no cae en el botón de la pregunta siguiente.
+- **Tests:** 51 (días locales, también en un huso por detrás de UTC y con cambio de hora; crédito implícito; migración 4; aciertos a la primera; tests bloqueados; fallos de hoy).
+
+**Tras la revisión independiente:**
+- **Bloqueante, arreglado:** tras un fallo en un test de opción múltiple, "Comprobar" seguía activo. Un doble clic reenviaba la misma opción, gastaba el último intento y dejaba el test bloqueado todo el día. Ahora la opción marcada como fallada no se puede reenviar hasta elegir otra.
+- **Arreglado:**
+  - los fallos del examen, del repaso o de la prueba de nivel bloqueaban el test en la lección, con un aviso que prometía un repaso que no existía;
+  - el crédito implícito podía aplazar tarjetas muy atrasadas, justo las que más probablemente están olvidadas. Ahora excluye las vencidas y respeta el límite del 85 %;
+  - volver a acertar en la lección una pregunta adivinable ya resuelta al segundo intento la contaba como acertada a la primera;
+  - un error al dar el crédito implícito ya no cambia la fecha que se muestra del repaso hecho.
+- La revisión probó la conversión de zona horaria con 240.000 repasos simulados en 10 husos, entre ellos Kiritimati, Pago Pago, Lord Howe y St. John's. No encontró fallos.
+- **Probado en la build empaquetada,** con datos aislados: un repaso limpio de "Ecuaciones de primer grado" movió la tarjeta de "Expresiones algebraicas" del 5 al 6 de noviembre sin tocar su memoria. El test bloqueado se mantuvo al reabrir la lección, con su tarjeta para el día siguiente. El doble clic en "No lo sé" avanzó una sola pregunta.
 
 ---
 
