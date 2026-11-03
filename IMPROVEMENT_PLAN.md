@@ -251,7 +251,7 @@ Tres flecos que quedaban de 1.3, 1.4 y 1.6:
   - las raíces de x² − c tenían 11 variantes; ahora 19;
   - los repasos de hoy no excluían ejercicios retirados del contenido; ahora sí.
 
-### Últimos flecos de la Fase 1 (sin publicar)
+### Últimos flecos de la Fase 1 (publicado en v0.2.2)
 
 Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
 
@@ -352,9 +352,9 @@ La numeración sigue la de `docs/project.html`, donde el último hito terminado 
 | Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
 | **M27** | Fase 0 (0.1–0.8) + CI de release con `verify` | S | ✅ Publicado en v0.1.5 |
-| **M28** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) + migraciones de BD (5.3) + primeros tests (5.1) | M | ✅ Publicado en v0.2.0 |
+| **M28** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) + migraciones de BD (5.3) + primeros tests (5.1) | M | ✅ Publicado en v0.2.0; días locales y aciertos a la primera en v0.2.2 |
 | **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | Siguiente |
-| **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Publicado en v0.2.0; cierre en v0.2.1 |
+| **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Publicado en v0.2.0; cierre en v0.2.1; crédito implícito en v0.2.2 |
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | — |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
