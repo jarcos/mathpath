@@ -33,6 +33,7 @@ Prefer to run from source? See [Getting started](#-getting-started).
 - **Symbol glossary + notation boxes.** Every symbol (λ, σ, ∇, …) is named; each lesson shows a "Symbols in this lesson" box, and a searchable Glossary page covers the whole curriculum — bilingual.
 - **Textbook-depth lessons** with intuition, worked examples, prerequisite recall boxes, a cited "Sources & further reading" section, and live SVG function graphs.
 - **Rich exercises** — symbolic short-answer (validated with [mathjs](https://mathjs.org)), runnable code exercises (graded by returned value), and conceptual multiple-choice with per-option explanations. Step-by-step solutions and hints on demand; your solved state persists.
+- **Answers checked fairly** — any equal form counts, and you see how your input reads ("1/2x" as ½·x) before you check. A wrong answer says why: not in the form asked for (factored, expanded, simplified), a common mistake with its explanation, or how many values of a set are right. Word answers forgive accents, a plural and one slip.
 - **Spaced review** — every exercise you solve comes back in a daily **Today's review** session just as you start to forget it, scheduled with [FSRS](https://github.com/open-spaced-repetition/ts-fsrs) and rated automatically (first try, with a hint, or after the solution). Sessions mix lessons, and a miss points you to the lesson and the prerequisites you haven't mastered yet. A clean review also counts, in part, as a review of the lessons it builds on.
 - **Mastery, not checkboxes** — a lesson completes itself once you solve 80% of its exercises without opening the solution (multiple-choice and yes/no questions count only when right first time), and every lesson shows where you stand: practised, mastered or due for review.
 - **My plan** — pick a goal (say, complete NLP & Transformers) and minutes per day: MathPath works out every lesson it builds on that you haven't done, spreads them over the coming days by estimated time (keeping room for reviews), and shows your finish date, today's progress towards your daily minutes, streak and activity.
@@ -108,16 +109,20 @@ Each lesson is a JSON file under `content/<subject>/`. Every learner-facing stri
 
 **Exercise `answerType`s:** `number`, `expression`, `set`, `text` (all mathjs-graded), `mcq` (choices with explanations), and `code` (a function graded by its returned value in Pyodide).
 
+Optional on the mathjs-graded ones: `commonMistakes` (`[{ "answer", "feedback": {en, es} }]`, shown when that wrong answer is given) and, for `number` / `expression`, `requireForm` (`factored`, `expanded`, `simplified` or `fraction`) with `given`, the expression in the prompt, which must be refused.
+
 A curated, bilingual `content/glossary.json` powers the symbol glossary and the auto "Symbols in this lesson" boxes.
 
 ### Correctness gates
 
 Because content is authored with LLM assistance, **everything is verified** before it ships (`npm run verify`):
 
-1. **mathjs** — every answer parses and every `acceptedAlt` is equivalent to the canonical answer; every graph function evaluates.
+1. **mathjs** — every answer parses and every `acceptedAlt` is equivalent to the canonical answer; every graph function evaluates. Answers and alternatives are in their `requireForm` and `given` is refused; every common mistake is really wrong; and the one-slip tolerance for word answers accepts no other answer of the course.
 2. **glossary** — structural integrity + symbol-detection across all lessons.
 3. **code** — every runnable snippet (EN *and* ES) and every code-exercise reference solution is executed (CPython, restricted to the Pyodide-supported libraries) and its output/tests checked. TensorFlow/PyTorch static snippets are checked in an optional tier when those libraries are present.
 4. **Pyodide** — the same snippets and solutions run again in the bundled Pyodide, graded exactly as the app grades them, so what the learner sees in-app matches the stated output.
+
+CI runs the unit tests, all four gates and a build on every push to `main` and every pull request.
 
 ### Adding a subject or lesson
 

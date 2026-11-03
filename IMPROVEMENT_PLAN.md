@@ -293,6 +293,38 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
 | 2.6 | **Comprobación paso a paso** (diferencial) | El alumno escribe su desarrollo línea a línea y mathjs comprueba que cada línea es equivalente a la anterior (o que conserva las soluciones de la ecuación). Señala **en qué paso** se equivocó, sin conexión. |
 | 2.7 | Editor de código de verdad | CodeMirror 6 (offline, ligero): tabulación, números de línea y, por test, la tabla entrada / esperado / obtenido. |
 
+### Estado de 2.1–2.4 y 5.2: hechos (hito M29, sin publicar)
+
+- **Vista previa (2.1):** bajo la respuesta de los ejercicios numéricos, de expresión y de conjuntos aparece "Se lee:" con la expresión tal como la entiende mathjs, con los productos a la vista. `1/2x` se ve como $\tfrac12\cdot x$. No sale para números sueltos ni para lo que aún no se puede leer. MathLive queda para más adelante.
+- **Un fallo que había:** `2x(x+2)` o `x(x-1)` se daban por malos, porque mathjs los lee como una función llamada `x`. Ahora son productos. Además, `ln`, `sen`, `tg`, `arcsen`… se entienden como las funciones que nombran.
+- **Feedback que explica (2.2):** `checkAnswer` dice por qué una respuesta no vale:
+  - "No entiendo lo que has escrito" cuando mathjs no la puede leer. No cuenta como intento: no gasta el repaso ni suma un fallo;
+  - en conjuntos, "Correctos: 1 de 2" o "Se esperaban 2 valores y has escrito 1";
+  - errores típicos con su explicación (`commonMistakes`): **53** en 43 ejercicios, sobre todo de la escalera matemática (signos, $(a+b)^2$, potencias, fracciones, composición, regla de la cadena, derivada frente a integral…) y el par exploración/explotación de RL. `verify:content` comprueba que cada uno es de verdad incorrecto y que se reconoce.
+- **Forma de la respuesta (2.3):** `requireForm` (`factored`, `expanded`, `simplified` o `fraction`), comprobado sobre el árbol de mathjs:
+  - **factorizada:** un producto con tantos factores no constantes como la respuesta, sin un factor común dentro de los paréntesis ($x(2x+4)$ no vale para $2x(x+2)$);
+  - **desarrollada:** sin paréntesis por multiplicar y con los términos semejantes agrupados;
+  - **simplificada:** no más términos que la respuesta y nada por operar ($2+3$, $x^2\cdot x^3$, $(x^3)^2$, $x^5/x^2$, $6/15$). Si la respuesta es un número, la del alumno también ($2^3$ no vale por 8);
+  - **fracción:** entero o fracción irreducible ($0.25$ no vale por $\tfrac14$).
+  - La usan **22** ejercicios: los 19 de factorizar, desarrollar o simplificar en los que se aceptaba el propio enunciado, y 3 numéricos ("calcula y simplifica", "escribe como fracción"). Cada uno lleva `given`, la expresión del enunciado, y `verify:content` comprueba que es igual a la respuesta y que se rechaza. Se quitaron las alternativas que eran ese mismo enunciado (por ejemplo `x*x*x*x*x` para $x^5$).
+  - En lugar de `decimal` se hizo `fraction`, que es lo que pedían los ejercicios.
+- **Texto más tolerante (2.4):** no importan las tildes, las mayúsculas, los espacios ni un punto final; tampoco un plural simple. Se perdona una errata (una letra de más, de menos, cambiada o dos letras vecinas intercambiadas) en palabras de 5 letras o más sin cifras, y se avisa: "¡Correcto! Se escribe «infinitas»".
+  - `verify:content` comprueba que esa tolerancia no acepta ninguna otra respuesta del curso. Encontró 23 choques: casi todos variantes de género (profundo/profunda, simbólico/simbólica), que ahora son alternativas explícitas, y uno peligroso: **exploración/explotación**. Ahora "explotación" en un ejercicio de exploración es un error típico con su explicación, que gana a la errata.
+  - Sobran **178** alternativas del tipo `si`/`sí` y se han quitado. El plural no se aplica a palabras de una o dos letras ("e" no es plural de "es").
+  - No se han convertido en test los ejercicios conceptuales: se podrían adivinar, y desde la Fase 1 esas preguntas solo cuentan para el dominio si se aciertan a la primera.
+- **CI (5.2):** `.github/workflows/ci.yml` pasa los tests, todas las puertas de contenido y la build en cada push a main y en cada PR (Ubuntu). Linux en el release sigue pendiente.
+- **Tests:** 62, con 11 nuevos sobre la corrección (productos con paréntesis, funciones en español, motivos, conjuntos, errores típicos, cada forma, texto y vista previa).
+
+**Tras la revisión independiente** (sin bloqueantes; probó unas 250 formas naturales de escribir bien las respuestas de los 22 ejercicios con forma, sin ningún rechazo, y repasó a mano las matemáticas y la redacción de los 53 errores típicos):
+- **Arreglado:**
+  - el plural se aplicaba también a palabras de una o dos letras: "e" valía por "es" y "nos" por "no";
+  - "Se esperaban 1 valores": ahora "Valores esperados: 1";
+  - `+1/4` no se aceptaba como fracción;
+  - `sen(x)`, `tg(x)` y `ln(x)` se leían como productos;
+  - el CI cancelaba la comprobación de un commit de main si llegaba otro detrás;
+  - la explicación del error típico de `algebra-10-e3` era vaga.
+- **Aceptado a propósito:** las formas son algo permisivas con respuestas igual de limpias (`2(2x-1)` vale como simplificada de $4x-2$, y `x(1+4x)` por $4x^2+x$). No rechazan nada correcto.
+
 ---
 
 ## Fase 3: contenido
@@ -335,7 +367,7 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
 1. **Tests**:
    - Vitest para `validate.js` (equivalencias, conjuntos, texto, forma), `plan.js` (fechas y cambios de hora) y `notation.js`.
    - Un *smoke test* con Playwright `_electron`: abrir lección → resolver → reiniciar → sigue resuelto. Habría detectado el fallo 0.2.
-2. **CI en cada PR** (Ubuntu): `verify` + tests + `build`. Añadir Linux al release, ya que el README lo promete.
+2. ~~**CI en cada PR** (Ubuntu): `verify` + tests + `build`~~ (hecho en M29). Añadir Linux al release, ya que el README lo promete.
 3. **Migraciones de la BD** con `PRAGMA user_version` e índices en `attempts(lesson_id)` y `attempts(exercise_id)`. Es un requisito previo de las tablas de la Fase 1.
 4. **JSON Schema de lecciones** validado con `ajv` en `verify`, más `$schema` para tener autocompletado al escribir contenido.
 5. ESLint (con `react-hooks`) + Prettier.
@@ -353,7 +385,7 @@ La numeración sigue la de `docs/project.html`, donde el último hito terminado 
 |---|---|---|---|
 | **M27** | Fase 0 (0.1–0.8) + CI de release con `verify` | S | ✅ Publicado en v0.1.5 |
 | **M28** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) + migraciones de BD (5.3) + primeros tests (5.1) | M | ✅ Publicado en v0.2.0; días locales y aciertos a la primera en v0.2.2 |
-| **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | Siguiente |
+| **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | ✅ Hecho (sin publicar) |
 | **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Publicado en v0.2.0; cierre en v0.2.1; crédito implícito en v0.2.2 |
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | — |

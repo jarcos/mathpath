@@ -56,7 +56,13 @@ src/
                rendererServer.js — loopback server for the packaged renderer
   preload/     Secure contextBridge — the only renderer ↔ main channel
                (built as CJS: the window is sandboxed)
-  shared/      validate.js — mathjs answer checker, used by BOTH app and verifier
+  shared/      validate.js — mathjs answer checker, used by BOTH app and verifier.
+                 checkAnswer says why an answer is wrong (unparsed, form, common
+                 mistake, set count/partial); exercise fields requireForm +
+                 given (the prompt's expression, must be refused) and
+                 commonMistakes. Text answers forgive accents, a plural and one
+                 slip (5+ letters); verify:content checks the slip accepts no
+                 other answer of the course. previewTex: the "Reads as" preview
                pygrade.js — code-exercise grader, used by BOTH app and verify:pyodide
                learning.js — review ratings + mastery rules (main AND renderer);
                  guessable answers (MCQ, yes/no) count only when right first time
@@ -104,7 +110,7 @@ docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 ## Curriculum status
 
 **Both tracks complete** (textbook depth, all verified). 241 lessons / 1055
-exercises (22 of them templates) / 4901 checks passing (`npm run verify:content`).
+exercises (22 of them templates) / 4835 checks passing (`npm run verify:content`).
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
 linear-maps (16).
@@ -126,6 +132,8 @@ math). See `CURRICULUM.md` and `sources/INDEX.md`.
   moving on.
 - After completing any lesson or milestone, **refresh the dashboard** at
   `docs/project.html` (description, requirements, milestone timeline, kanban).
+- CI (`.github/workflows/ci.yml`) runs `npm test`, `npm run verify` and the build
+  on every push to main and every PR; release.yml repeats them before packaging.
 - Don't commit `node_modules` / `out`. They may have been built in a Linux sandbox;
   on macOS run a fresh `npm install` under Node 22.
 - `better-sqlite3` (v13+) loads prebuilt Node-API binaries in both Node and
