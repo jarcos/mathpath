@@ -55,6 +55,10 @@ src/
                learning.js — review ratings + mastery rules (main AND renderer)
                curriculum.js — prerequisite graph (renderer AND verify:content)
                planner.js — cross-subject study planner + streaks (pure)
+               params.js — template exercises: `params`/`derived`/`where`,
+                 `[[name]]` and `[[name|+]]` placeholders. Every template needs
+                 an independent `check` or `equivalentTo`; verify:content tests
+                 40 instances (answers, check, TeX rendering)
   renderer/    React UI (Vite)
     src/
       AppContext.jsx   language + progress + learning state, loc() selector, theme
@@ -65,7 +69,7 @@ src/
       components/      MathText (KaTeX), FunctionGraph (custom SVG plotter on mathjs),
                        Exercise (lesson / review modes), MasteryBadge, ProgressBar
       pages/           Dashboard, SubjectView, LessonView, ReviewView, PlanView,
-                       PlacementView, MapView
+                       PlacementView, ExamView, MapView
 content/         per-subject lessons + subjects.json + index.js. Prerequisites: the
                  previous lesson, the lesson's `prereq` box, and subjects.json
                  `requires` for a subject's first lesson; all must come earlier in
@@ -93,7 +97,7 @@ docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 ## Curriculum status
 
 **Both tracks complete** (textbook depth, all verified). 241 lessons / 1055
-exercises / 2151 checks passing (`npm run verify:content`).
+exercises (12 of them templates) / 3643 checks passing (`npm run verify:content`).
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
 linear-maps (16).

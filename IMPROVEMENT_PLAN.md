@@ -136,6 +136,42 @@ Implementado como estaba previsto, con estos ajustes:
 - Plantillas con parámetros aleatorios, por ejemplo `"Deriva $f(x)={a}x^{n}$"` con respuesta `"{a}*{n}*x^({n}-1)"`. El verificador **muestrea N instancias** y comprueba cada una con mathjs.
 - Imprescindible para que el repaso no se convierta en memorizar resultados. Además habilita un botón "practicar más".
 
+### Estado de 1.4 y 3.5: hechos (hito M31, sin commit) — la Fase 1 queda completa
+
+- **Plantillas** (`src/shared/params.js`):
+  - `params` con rangos enteros (`int`, `exclude`) o `choices`, valores `derived` y una condición `where` (todo mathjs);
+  - huecos `[[a]]` y `[[a|+]]` (término con signo, para que no salga "x + -3"). Se usan `[[…]]` y no `{…}` para no chocar con las llaves de LaTeX;
+  - instancias deterministas por semilla, con el mismo id, así que progreso y repaso se comparten entre instancias.
+- **Verificación:**
+  - cada plantilla debe traer un `check` independiente (condición mathjs sobre parámetros y `answer`) o `equivalentTo` (p. ej. `derivative('[[a]]*x^[[n]]', 'x')`);
+  - `verify:content` prueba 40 instancias de cada una: huecos rellenos, respuesta y alternativas, el check, y que todo el TeX renderice en KaTeX. Las comprobaciones pasan de 2151 a 3643;
+  - comprobado que detecta una respuesta mal calculada, un hueco desconocido y TeX roto.
+- **Contenido:** 12 ejercicios convertidos (ecuaciones lineales ×3, raíces de una cuadrática, evaluar f(x), pendiente, derivada por la regla de la potencia, pendiente de la tangente, integral definida, determinante 2×2, producto escalar y media). Los demás siguen igual; convertir más es trabajo de contenido.
+- **App:**
+  - en la lección, una instancia nueva por visita y un botón "Otro como este" tras responder;
+  - en el repaso y la prueba de nivel, una instancia nueva cada vez.
+- **Examen por asignatura (3.5):**
+  - 12 preguntas de lecciones al azar (prefiere plantillas), mezcladas y sin pistas;
+  - cada respuesta cuenta como repaso. Se aprueba con un 80 % a la primera;
+  - al final, las lecciones que repasar. El último resultado se guarda y se muestra en la asignatura.
+
+**Arreglado tras una revisión independiente** (sin bloqueantes):
+- **Hueco real en el gate:** las alternativas de los ejercicios `set` se comparaban también consigo mismas, así que cualquier alternativa pasaba. Afectaba a los 8 `set` ya existentes; todos eran correctos.
+  - Ahora se comparan solo con la respuesta canónica.
+  - Las plantillas tienen que atar el `check` a la respuesta: `answer` en las numéricas, `answers` (como lista) en las `set` y `equivalentTo` en las de expresión.
+  - Comprobado: una plantilla con la respuesta `[[r1]], [[r1]]` ya no pasa.
+- **Coma decimal:** "22,5" se acepta como 22.5 en respuestas numéricas, cosa que importa ahora que hay plantillas con resultados decimales. Es lo primero de 2.4, con sus tests (`test/validate.test.js`).
+- **Formato:** los números ya no salen como `1e+5`.
+- **Plantillas:** sin "1x" en una ecuación ni `x^{1}` en una derivada.
+- **Interfaz:**
+  - una plantilla ya resuelta reaparece sin responder (el progreso lo sigue contando);
+  - "Otro como este" garantiza números distintos;
+  - las variantes se reinician al cambiar de lección;
+  - un resultado tardío tras "No lo sé" ya no duplica la nota en examen y prueba de nivel;
+  - el examen se guarda en cuanto respondes la última pregunta;
+  - una fecha de examen corrupta ya no rompe la asignatura.
+- **Tests:** 39.
+
 ### 1.5 Test de nivel por asignatura
 - Entre 10 y 15 preguntas que marcan lecciones como sabidas, para que un adulto que ya domina parte del temario no empiece desde cero.
 
@@ -144,7 +180,7 @@ Implementado como estaba previsto, con estos ajustes:
 - Repartir por `estimatedMinutes` y no por número de lecciones, incluyendo la carga de repaso del día.
 - Racha, objetivo diario y mapa de calor de actividad. Todo local.
 
-### Estado de 1.3, 1.5 y 1.6: hechos (hito M30, sin commit)
+### Estado de 1.3, 1.5 y 1.6: hechos (hito M30)
 
 - **Grafo** (`src/shared/curriculum.js`): cada lección depende de la anterior de su asignatura y de las lecciones de su caja "Antes de esta lección" (había 136 enlaces, 4 entre asignaturas). Si es la primera de su asignatura, depende además de las asignaturas de un campo nuevo `requires` en `subjects.json`. En total, **311 enlaces**.
   - `verify:content` exige que todo prerrequisito exista y vaya antes en el orden del currículo. Eso descarta ciclos y hace que ordenar por ese orden dé un orden de estudio válido.
@@ -249,10 +285,10 @@ La numeración sigue la de `docs/project.html`, donde el último hito terminado 
 | Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
 | **M27** | Fase 0 (0.1–0.8) + CI de release con `verify` | S | ✅ Publicado en v0.1.5 |
-| **M28** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) + migraciones de BD (5.3) + primeros tests (5.1) | M | ✅ Hecho, sin publicar |
-| **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | — |
-| **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Hecho, sin commit |
-| **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | Siguiente (cierra la Fase 1) |
+| **M28** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) + migraciones de BD (5.3) + primeros tests (5.1) | M | ✅ Hecho (con commit, sin publicar) |
+| **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | Siguiente |
+| **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Hecho (con commit) |
+| **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Hecho, sin commit (Fase 1 completa) |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | — |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | — |

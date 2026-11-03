@@ -6,11 +6,38 @@ import { computePlan } from '@/lib/plan.js'
 import { lessonStats } from '@/lib/mastery.js'
 import MasteryBadge from '@/components/MasteryBadge.jsx'
 import ProgressBar from '@/components/ProgressBar.jsx'
+import { EXAM_PASS, examKey } from '@/pages/ExamView.jsx'
 
-export default function SubjectView({ subjectId, onOpenLesson, onBack, onOpenSubject, onPlacement }) {
+// The last exam result ({ right, total, date }) of a subject, or null.
+function useLastExam(subjectId) {
+  const [last, setLast] = useState(null)
+  useEffect(() => {
+    let active = true
+    window.api.settings
+      .get(examKey(subjectId))
+      .then((v) => {
+        let parsed = null
+        try {
+          parsed = v ? JSON.parse(v) : null
+        } catch {
+          /* ignore a broken setting */
+        }
+        const valid = parsed?.total > 0 && !Number.isNaN(new Date(parsed.date).getTime())
+        if (active) setLast(valid ? parsed : null)
+      })
+      .catch(() => {})
+    return () => {
+      active = false
+    }
+  }, [subjectId])
+  return last
+}
+
+export default function SubjectView({ subjectId, onOpenLesson, onBack, onOpenSubject, onPlacement, onExam }) {
   const { t } = useTranslation()
-  const { loc, completed, learning } = useApp()
+  const { loc, lang, completed, learning } = useApp()
   const subject = getSubject(subjectId)
+  const lastExam = useLastExam(subjectId)
   const [planRow, setPlanRow] = useState(null)
   const [loaded, setLoaded] = useState(false)
 
@@ -90,6 +117,22 @@ export default function SubjectView({ subjectId, onOpenLesson, onBack, onOpenSub
           </button>
         </p>
       )}
+      <p className="placement-offer small">
+        {t('examOffer')}{' '}
+        <button className="link" onClick={onExam}>
+          {t('examCta')} →
+        </button>
+        {lastExam && (
+          <span className={`exam-last ${lastExam.right / lastExam.total >= EXAM_PASS ? 'passed' : ''}`}>
+            {' '}
+            {t('examLast', {
+              right: lastExam.right,
+              total: lastExam.total,
+              date: new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'short' }).format(new Date(lastExam.date))
+            })}
+          </span>
+        )}
+      </p>
 
       <section className="plan-panel">
         <div className="plan-head">

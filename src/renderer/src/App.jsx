@@ -9,6 +9,7 @@ import ReviewView from './pages/ReviewView.jsx'
 import MapView from './pages/MapView.jsx'
 import PlacementView from './pages/PlacementView.jsx'
 import PlanView from './pages/PlanView.jsx'
+import ExamView from './pages/ExamView.jsx'
 import { getLesson } from '@content/index.js'
 import { UpdateBanner } from './components/Updates.jsx'
 
@@ -95,6 +96,14 @@ export default function App() {
             onOpenLesson={openLesson}
             onOpenSubject={(subjectId) => setView({ name: 'subject', subjectId })}
             onPlacement={() => setView({ name: 'placement', subjectId: view.subjectId })}
+            onExam={() => setView({ name: 'exam', subjectId: view.subjectId })}
+          />
+        )}
+        {view.name === 'exam' && (
+          <ExamView
+            subjectId={view.subjectId}
+            onBack={() => setView({ name: 'subject', subjectId: view.subjectId })}
+            onOpenLesson={openLesson}
           />
         )}
         {view.name === 'placement' && (

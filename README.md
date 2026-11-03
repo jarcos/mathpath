@@ -37,6 +37,8 @@ Prefer to run from source? See [Getting started](#-getting-started).
 - **Mastery, not checkboxes** — a lesson completes itself once you solve 80% of its exercises without opening the solution, and every lesson shows where you stand: practised, mastered or due for review.
 - **My plan** — pick a goal (say, complete NLP & Transformers) and minutes per day: MathPath works out every lesson it builds on that you haven't done, spreads them over the coming days by estimated time (keeping room for reviews), and shows your finish date, streak and activity.
 - **Placement tests** — one question per lesson, no hints; the lessons you already know are marked complete so you start where you really are.
+- **Subject exams** — mixed questions from across a subject, no hints, pass at 80%; every answer also counts as a review, and you get the lessons to go over.
+- **Fresh numbers every time** — template exercises draw new values on each visit, in reviews and exams (with "Another like this"), so practice isn't remembering answers. Every template is verified on dozens of instances.
 - **Curriculum map** — every lesson of every subject at a glance, coloured by your level; pick one to see what it builds on and what builds on it. Prerequisites also show your level inside each lesson.
 - **Adaptive 30-day plan** per subject, with prev/next lesson navigation and a "resume where you left off" card.
 - **Bilingual** (English / Spanish) UI *and* content, **light & dark** themes — all remembered.
@@ -124,6 +126,8 @@ Because content is authored with LLM assistance, **everything is verified** befo
 3. Prerequisites: a lesson builds on the previous lesson of its subject, on the lessons its `prereq` box links to, and (for a subject's first lesson) on the subjects in that subject's `requires`. They must come earlier in the curriculum order — `verify:content` checks it.
 4. Run `npm run verify`.
 
+**Template exercises.** A `number`, `expression` or `set` exercise becomes a template with `params` (e.g. `{ "a": { "int": [2, 9] } }`), optional `derived` values and a `where` condition (mathjs), and `[[a]]` / `[[a|+]]` (signed term: "+ 3", "- 2") anywhere in its text, answer and solution. It must also give an independent `check` (a mathjs condition over the parameters and `answer`) or `equivalentTo` (an expression the answer must equal, e.g. `derivative('[[a]]*x^[[n]]', 'x')`). `verify:content` checks 40 instances of each. See `src/shared/params.js`.
+
 ---
 
 ## 🗂 Project structure
@@ -138,6 +142,7 @@ src/
                · pygrade.js (code-exercise grader, shared with the verifier)
                · learning.js (review ratings, mastery rules)
                · curriculum.js (prerequisite graph) · planner.js (study planner, streaks)
+               · params.js (template exercises)
   renderer/    React UI (Vite)
     src/
       AppContext.jsx     language, theme, progress & learning state
@@ -146,7 +151,7 @@ src/
       lib/pyodide.js     lazy, offline Pyodide runner (Python runs in lib/pyodide.worker.js)
       components/        MathText, FunctionGraph, Exercise, CodeBlock, NotationBox, MasteryBadge
       pages/             Dashboard, SubjectView, LessonView, ReviewView, PlanView,
-                         PlacementView, MapView, GlossaryView
+                         PlacementView, ExamView, MapView, GlossaryView
     public/pyodide/      bundled Pyodide runtime + wheels (git-ignored, generated)
 content/       lesson JSON (the curriculum), subjects.json, glossary.json
 scripts/       verify-content.mjs · verify-glossary.mjs · verify-code.py · verify-pyodide.mjs
