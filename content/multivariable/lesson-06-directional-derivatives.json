@@ -1,0 +1,420 @@
+{
+  "id": "mvc-06-directional",
+  "subjectId": "multivariable",
+  "order": 6,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Directional Derivatives & Steepest Ascent",
+    "es": "Derivadas direccionales y máximo crecimiento"
+  },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "The gradient gives the slope along the coordinate axes, but a walker on a hillside may head in any direction, say diagonally north-east. How steep is the path she walks? That is a **directional derivative**: the rate at which $f$ changes per unit of distance when you move in a chosen direction. Partial derivatives are the special cases where the direction is an axis. Once you can answer the question for every direction, you can ask which direction is best, and that is the question every descent method answers at each step.",
+        "es": "El gradiente te da la pendiente a lo largo de los ejes, pero quien camina por una ladera puede ir en cualquier dirección, por ejemplo en diagonal hacia el noreste. ¿Qué pendiente tiene ese camino? Eso es una **derivada direccional**: la rapidez con la que cambia $f$ por unidad de distancia al avanzar en una dirección elegida. Las derivadas parciales son los casos particulares en que la dirección es un eje. Cuando sabes responder para cualquier dirección, puedes preguntar cuál es la mejor, y esa es la pregunta que responde en cada paso todo método de descenso."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Let $\\mathbf u$ be a **unit vector**, so $\\lVert\\mathbf u\\rVert = 1$. The directional derivative of $f$ at $\\mathbf a$ in the direction $\\mathbf u$ is $$D_{\\mathbf u} f(\\mathbf a) = \\lim_{h\\to 0}\\frac{f(\\mathbf a + h\\mathbf u) - f(\\mathbf a)}{h},$$ the slope of $f$ along the straight line that leaves $\\mathbf a$ at unit speed in direction $\\mathbf u$; $h$ is the distance walked. The unit length matters: if $\\mathbf v = (3,4)$ then $\\lVert\\mathbf v\\rVert = 5$, and the direction must be $\\mathbf u = \\mathbf v/5$. For a differentiable $f$ (lesson 7 makes this precise) the key formula is $$D_{\\mathbf u} f(\\mathbf a) = \\nabla f(\\mathbf a)\\cdot\\mathbf u.$$ For $\\mathbf u = (1,0)$ it returns $f_x$, and for $\\mathbf u = (0,1)$ it returns $f_y$. Its proof is the chain rule of lesson 8.",
+        "es": "Sea $\\mathbf u$ un **vector unitario**, es decir, $\\lVert\\mathbf u\\rVert = 1$. La derivada direccional de $f$ en $\\mathbf a$ en la dirección $\\mathbf u$ es $$D_{\\mathbf u} f(\\mathbf a) = \\lim_{h\\to 0}\\frac{f(\\mathbf a + h\\mathbf u) - f(\\mathbf a)}{h},$$ la pendiente de $f$ a lo largo de la recta que sale de $\\mathbf a$ a velocidad unitaria en la dirección $\\mathbf u$; $h$ es la distancia recorrida. La longitud unitaria importa: si $\\mathbf v = (3,4)$ entonces $\\lVert\\mathbf v\\rVert = 5$, y la dirección debe ser $\\mathbf u = \\mathbf v/5$. Para $f$ diferenciable (la lección 7 lo precisa), la fórmula clave es $$D_{\\mathbf u} f(\\mathbf a) = \\nabla f(\\mathbf a)\\cdot\\mathbf u.$$ Para $\\mathbf u = (1,0)$ da $f_x$, y para $\\mathbf u = (0,1)$ da $f_y$. Su demostración es la regla de la cadena de la lección 8."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — slope in a diagonal direction",
+        "es": "Ejemplo resuelto — pendiente en una dirección diagonal"
+      },
+      "content": {
+        "en": "Let $f(x,y) = x^2y$, $\\mathbf a = (1,2)$ and $\\mathbf v = (3,4)$. First the gradient: $\\nabla f = (2xy,\\ x^2)$, so $\\nabla f(1,2) = (4,\\ 1)$. Next the unit vector: $\\lVert\\mathbf v\\rVert = \\sqrt{9+16} = 5$, so $\\mathbf u = (3/5,\\ 4/5)$. Then $$D_{\\mathbf u} f(1,2) = (4,1)\\cdot\\left(\\tfrac35,\\ \\tfrac45\\right) = \\tfrac{12}{5} + \\tfrac45 = \\tfrac{16}{5} = 3.2.$$ Check it from the definition: $f(1+0.6h,\\ 2+0.8h) = (1+0.6h)^2(2+0.8h)$ has derivative $2(1)(0.6)(2) + 1\\cdot 0.8 = 3.2$ at $h = 0$. The unnormalized $\\mathbf v$ would give $16$, five times too large.",
+        "es": "Sea $f(x,y) = x^2y$, $\\mathbf a = (1,2)$ y $\\mathbf v = (3,4)$. Primero el gradiente: $\\nabla f = (2xy,\\ x^2)$, así que $\\nabla f(1,2) = (4,\\ 1)$. Después el vector unitario: $\\lVert\\mathbf v\\rVert = \\sqrt{9+16} = 5$, así que $\\mathbf u = (3/5,\\ 4/5)$. Entonces $$D_{\\mathbf u} f(1,2) = (4,1)\\cdot\\left(\\tfrac35,\\ \\tfrac45\\right) = \\tfrac{12}{5} + \\tfrac45 = \\tfrac{16}{5} = 3.2.$$ Compruébalo con la definición: $f(1+0.6h,\\ 2+0.8h) = (1+0.6h)^2(2+0.8h)$ tiene derivada $2(1)(0.6)(2) + 1\\cdot 0.8 = 3.2$ en $h = 0$. Con $\\mathbf v$ sin normalizar saldría $16$, cinco veces más."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "(1+0.6*x)^2*(2+0.8*x)",
+      "domain": [
+        -1,
+        1
+      ],
+      "caption": {
+        "en": "$f$ along the line $\\mathbf a + h\\mathbf u$, as a function of the distance $h$. Its slope at $h = 0$ is the directional derivative, $3.2$.",
+        "es": "$f$ a lo largo de la recta $\\mathbf a + h\\mathbf u$, en función de la distancia $h$. Su pendiente en $h = 0$ es la derivada direccional, $3.2$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Which direction is best? Write $\\nabla f(\\mathbf a)\\cdot\\mathbf u = \\lVert\\nabla f(\\mathbf a)\\rVert\\,\\lVert\\mathbf u\\rVert\\cos\\theta$, where $\\theta$ is the angle between $\\mathbf u$ and $\\nabla f(\\mathbf a)$. Since $\\lVert\\mathbf u\\rVert = 1$ and $-1 \\le \\cos\\theta \\le 1$, $$-\\lVert\\nabla f(\\mathbf a)\\rVert \\le D_{\\mathbf u} f(\\mathbf a) \\le \\lVert\\nabla f(\\mathbf a)\\rVert.$$ The largest rate $\\lVert\\nabla f(\\mathbf a)\\rVert$ is reached when $\\theta = 0$, that is $\\mathbf u = \\nabla f(\\mathbf a)/\\lVert\\nabla f(\\mathbf a)\\rVert$. The smallest, $-\\lVert\\nabla f(\\mathbf a)\\rVert$, is reached when $\\theta = \\pi$: this is the **direction of steepest descent**, $-\\nabla f/\\lVert\\nabla f\\rVert$. Moving perpendicular to the gradient, $\\theta = \\pi/2$, gives rate zero: that is the direction of the level curve.",
+        "es": "¿Qué dirección es la mejor? Escribe $\\nabla f(\\mathbf a)\\cdot\\mathbf u = \\lVert\\nabla f(\\mathbf a)\\rVert\\,\\lVert\\mathbf u\\rVert\\cos\\theta$, donde $\\theta$ es el ángulo entre $\\mathbf u$ y $\\nabla f(\\mathbf a)$. Como $\\lVert\\mathbf u\\rVert = 1$ y $-1 \\le \\cos\\theta \\le 1$, $$-\\lVert\\nabla f(\\mathbf a)\\rVert \\le D_{\\mathbf u} f(\\mathbf a) \\le \\lVert\\nabla f(\\mathbf a)\\rVert.$$ El ritmo máximo, $\\lVert\\nabla f(\\mathbf a)\\rVert$, se alcanza con $\\theta = 0$, es decir, con $\\mathbf u = \\nabla f(\\mathbf a)/\\lVert\\nabla f(\\mathbf a)\\rVert$. El mínimo, $-\\lVert\\nabla f(\\mathbf a)\\rVert$, se alcanza con $\\theta = \\pi$: es la **dirección de máximo descenso**, $-\\nabla f/\\lVert\\nabla f\\rVert$. Moverse perpendicular al gradiente, $\\theta = \\pi/2$, da ritmo cero: esa es la dirección de la curva de nivel."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — best and worst directions at (1,2)",
+        "es": "Ejemplo resuelto — mejor y peor dirección en (1,2)"
+      },
+      "content": {
+        "en": "Continue with $f = x^2y$ at $(1,2)$, where $\\nabla f = (4,1)$ and $\\lVert\\nabla f\\rVert = \\sqrt{17}$. The **maximum rate** of increase is $\\sqrt{17}\\approx 4.12$, along $\\mathbf u_+ = (4,1)/\\sqrt{17}$. The **steepest descent** rate is $-\\sqrt{17}$, along $\\mathbf u_- = -(4,1)/\\sqrt{17}$, whose first component is $-4/\\sqrt{17}\\approx -0.97$. Along $(-1,4)/\\sqrt{17}$, which is perpendicular to $\\nabla f$, the rate is $(4,1)\\cdot(-1,4)/\\sqrt{17} = 0$: that direction runs along the level curve $x^2y = 2$ through $(1,2)$.",
+        "es": "Sigue con $f = x^2y$ en $(1,2)$, donde $\\nabla f = (4,1)$ y $\\lVert\\nabla f\\rVert = \\sqrt{17}$. El **ritmo máximo** de crecimiento es $\\sqrt{17}\\approx 4.12$, a lo largo de $\\mathbf u_+ = (4,1)/\\sqrt{17}$. El ritmo de **máximo descenso** es $-\\sqrt{17}$, a lo largo de $\\mathbf u_- = -(4,1)/\\sqrt{17}$, cuya primera componente es $-4/\\sqrt{17}\\approx -0.97$. A lo largo de $(-1,4)/\\sqrt{17}$, que es perpendicular a $\\nabla f$, el ritmo es $(4,1)\\cdot(-1,4)/\\sqrt{17} = 0$: esa dirección recorre la curva de nivel $x^2y = 2$ que pasa por $(1,2)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Read a contour map and the rule is visible: the steepest route crosses the contour lines at right angles, and a path that follows one contour is flat. If your walking direction makes an angle $\\theta$ with $\\nabla f$, the rate is $\\lVert\\nabla f\\rVert\\cos\\theta$. Where the contour lines are close together, $\\lVert\\nabla f\\rVert$ is large, so even a short step is a steep climb; where they are far apart, the ground is gentle. This is the geometry of lesson 5, now read as a statement about rates: the length of the gradient measures how crowded the contour lines are.",
+        "es": "Mira un mapa de contorno y la regla se ve: la ruta de máxima pendiente cruza las curvas de nivel en ángulo recto, y un camino que sigue una sola curva de nivel es plano. Si tu dirección de avance forma un ángulo $\\theta$ con $\\nabla f$, el ritmo es $\\lVert\\nabla f\\rVert\\cos\\theta$. Donde las curvas de nivel están muy juntas, $\\lVert\\nabla f\\rVert$ es grande, y hasta un paso corto es una subida empinada; donde están separadas, el terreno es suave. Es la geometría de la lección 5, leída ahora como una afirmación sobre ritmos: la longitud del gradiente mide cuán apretadas están las curvas de nivel."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "In descent methods the step goes along $-\\nabla L$, and now the reason is precise. For a small step of length $\\varepsilon$ in a unit direction $\\mathbf u$, the loss changes by about $\\varepsilon D_{\\mathbf u} L \\ge -\\varepsilon\\lVert\\nabla L\\rVert$, with equality exactly for $\\mathbf u = -\\nabla L/\\lVert\\nabla L\\rVert$. So near the current point no other direction of the same length lowers the loss faster. Take the loss of lesson 5 at $(1,0)$, where $\\nabla L = (-12,\\ -6)$: the steepest descent direction is $(2,1)/\\sqrt5$, with rate $-6\\sqrt5 \\approx -13.4$. That beats moving $w$ alone (rate $-12$) or $b$ alone (rate $-6$). Plain gradient descent uses $-\\nabla L$ unnormalized, so its step length is $\\eta\\lVert\\nabla L\\rVert$.",
+        "es": "En los métodos de descenso el paso va en la dirección de $-\\nabla L$, y ahora sabemos por qué. Para un paso pequeño de longitud $\\varepsilon$ en una dirección unitaria $\\mathbf u$, la pérdida cambia aproximadamente $\\varepsilon D_{\\mathbf u} L \\ge -\\varepsilon\\lVert\\nabla L\\rVert$, con igualdad exactamente para $\\mathbf u = -\\nabla L/\\lVert\\nabla L\\rVert$. Así que, cerca del punto actual, ninguna otra dirección de la misma longitud reduce la pérdida más deprisa. Toma la pérdida de la lección 5 en $(1,0)$, donde $\\nabla L = (-12,\\ -6)$: la dirección de máximo descenso es $(2,1)/\\sqrt5$, con ritmo $-6\\sqrt5 \\approx -13.4$. Eso supera a mover solo $w$ (ritmo $-12$) o solo $b$ (ritmo $-6$). El descenso de gradiente usa $-\\nabla L$ sin normalizar, así que la longitud de su paso es $\\eta\\lVert\\nabla L\\rVert$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "def f(x, y):\n    return x**2 * y\n\n# Point a = (1, 2) and direction v = (3, 4), normalized to a unit vector u\na = (1.0, 2.0)\nv = (3.0, 4.0)\nlength = (v[0]**2 + v[1]**2) ** 0.5\nu = (v[0] / length, v[1] / length)\n\n# Central difference along the line a + t u (t is the distance walked)\nh = 1e-5\nnumeric = (f(a[0] + h*u[0], a[1] + h*u[1]) - f(a[0] - h*u[0], a[1] - h*u[1])) / (2*h)\n\n# Formula: grad f(a) . u, with grad f = (2xy, x^2)\ngrad = (2*a[0]*a[1], a[0]**2)\nformula = grad[0]*u[0] + grad[1]*u[1]\n\nprint(round(numeric, 4))\nprint(round(formula, 4))",
+        "es": "def f(x, y):\n    return x**2 * y\n\n# Punto a = (1, 2) y dirección v = (3, 4), normalizada a un vector unitario u\na = (1.0, 2.0)\nv = (3.0, 4.0)\nlength = (v[0]**2 + v[1]**2) ** 0.5\nu = (v[0] / length, v[1] / length)\n\n# Diferencia central a lo largo de la recta a + t u (t es la distancia recorrida)\nh = 1e-5\nnumeric = (f(a[0] + h*u[0], a[1] + h*u[1]) - f(a[0] - h*u[0], a[1] - h*u[1])) / (2*h)\n\n# Fórmula: grad f(a) · u, con grad f = (2xy, x^2)\ngrad = (2*a[0]*a[1], a[0]**2)\nformula = grad[0]*u[0] + grad[1]*u[1]\n\nprint(round(numeric, 4))\nprint(round(formula, 4))"
+      },
+      "expectedOutput": "3.2\n3.2",
+      "caption": {
+        "en": "A central difference along the line gives $3.2$, the same as $\\nabla f(1,2)\\cdot\\mathbf u$.",
+        "es": "Una diferencia central a lo largo de la recta da $3.2$, igual que $\\nabla f(1,2)\\cdot\\mathbf u$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-06-e1",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x,y) = x^2y$, find the directional derivative at $(1,2)$ in the direction of $\\mathbf v = (1,2)$. Use the unit vector in that direction and give the exact value.",
+        "es": "Para $f(x,y) = x^2y$, halla la derivada direccional en $(1,2)$ en la dirección de $\\mathbf v = (1,2)$. Usa el vector unitario de esa dirección y da el valor exacto."
+      },
+      "answer": "6/sqrt(5)",
+      "acceptedAlt": [
+        "6*sqrt(5)/5"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "6",
+          "feedback": {
+            "en": "$\\mathbf v = (1,2)$ is not a unit vector: its length is $\\sqrt5$. Divide by $\\sqrt5$ first. $6$ is $\\sqrt5$ times the answer.",
+            "es": "$\\mathbf v = (1,2)$ no es unitario: su longitud es $\\sqrt5$. Divide entre $\\sqrt5$ primero. $6$ es $\\sqrt5$ veces la respuesta."
+          }
+        }
+      ],
+      "hint": {
+        "en": "$D_{\\mathbf u} f = \\nabla f\\cdot\\mathbf u$ with $\\mathbf u = \\mathbf v/\\lVert\\mathbf v\\rVert$.",
+        "es": "$D_{\\mathbf u} f = \\nabla f\\cdot\\mathbf u$ con $\\mathbf u = \\mathbf v/\\lVert\\mathbf v\\rVert$."
+      },
+      "solution": [
+        {
+          "tex": "\\nabla f = (2xy,\\ x^2), \\quad \\nabla f(1,2) = (4,\\ 1)",
+          "en": "Gradient at the point.",
+          "es": "Gradiente en el punto."
+        },
+        {
+          "tex": "\\mathbf u = \\frac{(1,2)}{\\sqrt{5}}",
+          "en": "Normalize v: its length is √5.",
+          "es": "Normaliza v: su longitud es √5."
+        },
+        {
+          "tex": "D_{\\mathbf u} f(1,2) = \\frac{4\\cdot 1 + 1\\cdot 2}{\\sqrt{5}} = \\frac{6}{\\sqrt{5}}",
+          "en": "Dot product, then divide.",
+          "es": "Producto escalar y luego división."
+        }
+      ]
+    },
+    {
+      "id": "mvc-06-e2",
+      "answerType": "number",
+      "params": {
+        "p": {
+          "int": [
+            -3,
+            3
+          ],
+          "exclude": [
+            0
+          ]
+        },
+        "q": {
+          "int": [
+            -3,
+            3
+          ],
+          "exclude": [
+            0
+          ]
+        }
+      },
+      "derived": {
+        "n": "4*p + q",
+        "s": "p^2 + q^2",
+        "r": "sqrt(s)"
+      },
+      "check": "abs(answer - ((1 + 0.0001*p/r)^2*(2 + 0.0001*q/r) - (1 - 0.0001*p/r)^2*(2 - 0.0001*q/r)) / 0.0002) < 0.000001",
+      "prompt": {
+        "en": "For $f(x,y) = x^2y$, find the rate of change of $f$ at $(1,2)$ in the direction of $\\mathbf v = ([[p]],\\ [[q]])$ (use the unit vector along $\\mathbf v$). Give the exact value.",
+        "es": "Para $f(x,y) = x^2y$, halla la rapidez de cambio de $f$ en $(1,2)$ en la dirección de $\\mathbf v = ([[p]],\\ [[q]])$ (usa el vector unitario en la dirección de $\\mathbf v$). Da el valor exacto."
+      },
+      "answer": "[[n]]/sqrt([[s]])",
+      "hint": {
+        "en": "Divide $\\mathbf v$ by its length $\\sqrt{[[s]]}$, then take the dot product with $\\nabla f(1,2) = (4,1)$.",
+        "es": "Divide $\\mathbf v$ entre su longitud $\\sqrt{[[s]]}$ y luego haz el producto escalar con $\\nabla f(1,2) = (4,1)$."
+      },
+      "solution": [
+        {
+          "tex": "\\nabla f(1,2) = (4,\\ 1)",
+          "en": "Gradient at (1, 2).",
+          "es": "Gradiente en (1, 2)."
+        },
+        {
+          "tex": "\\lVert\\mathbf v\\rVert = \\sqrt{[[s]]}",
+          "en": "Length of v.",
+          "es": "Longitud de v."
+        },
+        {
+          "tex": "D_{\\mathbf u} f(1,2) = \\frac{4\\cdot([[p]]) + ([[q]])}{\\sqrt{[[s]]}} = \\frac{[[n]]}{\\sqrt{[[s]]}}",
+          "en": "Dot product of (4, 1) with v, divided by the length.",
+          "es": "Producto escalar de (4, 1) con v, dividido entre la longitud."
+        }
+      ]
+    },
+    {
+      "id": "mvc-06-e3",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "At a point where $\\nabla f \\neq 0$, in which direction does $f$ decrease fastest?",
+        "es": "En un punto donde $\\nabla f \\neq 0$, ¿en qué dirección disminuye $f$ más deprisa?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "In the direction of $\\nabla f$.",
+            "es": "En la dirección de $\\nabla f$."
+          },
+          "correct": false,
+          "why": {
+            "en": "That is the direction of fastest increase. Descent goes the opposite way.",
+            "es": "Esa es la dirección de máximo crecimiento. El descenso va en sentido contrario."
+          }
+        },
+        {
+          "text": {
+            "en": "Perpendicular to $\\nabla f$, along the level curve.",
+            "es": "Perpendicular a $\\nabla f$, a lo largo de la curva de nivel."
+          },
+          "correct": false,
+          "why": {
+            "en": "Along a level curve $f$ does not change to first order, so the rate there is zero.",
+            "es": "A lo largo de una curva de nivel $f$ no cambia en primer orden, así que el ritmo allí es cero."
+          }
+        },
+        {
+          "text": {
+            "en": "In the direction of $-\\nabla f$, the opposite of the gradient.",
+            "es": "En la dirección de $-\\nabla f$, lo opuesto al gradiente."
+          },
+          "correct": true,
+          "why": {
+            "en": "Since $D_{\\mathbf u} f = \\lVert\\nabla f\\rVert\\cos\\theta$ is smallest when $\\theta = \\pi$, the rate there is $-\\lVert\\nabla f\\rVert$.",
+            "es": "Como $D_{\\mathbf u} f = \\lVert\\nabla f\\rVert\\cos\\theta$ es mínima cuando $\\theta = \\pi$, el ritmo allí es $-\\lVert\\nabla f\\rVert$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which angle $\\theta$ makes $\\cos\\theta$ as small as possible?",
+        "es": "¿Qué ángulo $\\theta$ hace $\\cos\\theta$ lo más pequeño posible?"
+      }
+    },
+    {
+      "id": "mvc-06-e4",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x,y) = x^2y$ at $(1,2)$, what is the largest possible rate of increase $D_{\\mathbf u} f(1,2)$ over all unit vectors $\\mathbf u$? Give it exactly.",
+        "es": "Para $f(x,y) = x^2y$ en $(1,2)$, ¿cuál es el mayor ritmo posible de crecimiento $D_{\\mathbf u} f(1,2)$ sobre todos los vectores unitarios $\\mathbf u$? Dalo en forma exacta."
+      },
+      "answer": "sqrt(17)",
+      "commonMistakes": [
+        {
+          "answer": "17",
+          "feedback": {
+            "en": "That is $\\lVert\\nabla f\\rVert^2 = 4^2 + 1^2$. The maximum rate is the length itself, so take the square root.",
+            "es": "Eso es $\\lVert\\nabla f\\rVert^2 = 4^2 + 1^2$. El ritmo máximo es la longitud misma, así que hay que tomar la raíz."
+          }
+        },
+        {
+          "answer": "4",
+          "feedback": {
+            "en": "$4$ is only the $x$-rate, $f_x(1,2)$. The maximum is over all directions, and the best one is along $\\nabla f$, not along an axis.",
+            "es": "$4$ es solo el ritmo en $x$, $f_x(1,2)$. El máximo se toma sobre todas las direcciones, y la mejor es la de $\\nabla f$, no la de un eje."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The largest value of $\\nabla f\\cdot\\mathbf u$ over unit vectors $\\mathbf u$ is $\\lVert\\nabla f\\rVert$.",
+        "es": "El mayor valor de $\\nabla f\\cdot\\mathbf u$ sobre vectores unitarios $\\mathbf u$ es $\\lVert\\nabla f\\rVert$."
+      },
+      "solution": [
+        {
+          "tex": "\\nabla f(1,2) = (4,\\ 1)",
+          "en": "Gradient at (1, 2).",
+          "es": "Gradiente en (1, 2)."
+        },
+        {
+          "tex": "\\max_{\\lVert\\mathbf u\\rVert=1} D_{\\mathbf u} f(1,2) = \\lVert\\nabla f(1,2)\\rVert = \\sqrt{4^2 + 1^2} = \\sqrt{17}",
+          "en": "The maximum is reached for u in the direction of the gradient.",
+          "es": "El máximo se alcanza con u en la dirección del gradiente."
+        }
+      ]
+    },
+    {
+      "id": "mvc-06-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x,y) = x^2y$ at $(1,2)$, let $\\mathbf u$ be the unit vector of steepest descent. What is its $x$-component? Give it exactly.",
+        "es": "Para $f(x,y) = x^2y$ en $(1,2)$, sea $\\mathbf u$ el vector unitario de máximo descenso. ¿Cuánto vale su componente en $x$? Dalo en forma exacta."
+      },
+      "answer": "-4/sqrt(17)",
+      "acceptedAlt": [
+        "-4*sqrt(17)/17"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "-4",
+          "feedback": {
+            "en": "$\\mathbf u$ must have length 1. Divide $-\\nabla f = (-4,-1)$ by its length $\\sqrt{17}$.",
+            "es": "$\\mathbf u$ debe tener longitud 1. Divide $-\\nabla f = (-4,-1)$ entre su longitud $\\sqrt{17}$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The steepest descent direction is $-\\nabla f/\\lVert\\nabla f\\rVert$.",
+        "es": "La dirección de máximo descenso es $-\\nabla f/\\lVert\\nabla f\\rVert$."
+      },
+      "solution": [
+        {
+          "tex": "-\\nabla f(1,2) = (-4,\\ -1)",
+          "en": "The opposite of the gradient.",
+          "es": "Lo opuesto al gradiente."
+        },
+        {
+          "tex": "\\mathbf u = \\frac{(-4,\\ -1)}{\\sqrt{17}}, \\qquad u_x = -\\frac{4}{\\sqrt{17}}",
+          "en": "Divide by its length, √17.",
+          "es": "Divide entre su longitud, $\\sqrt{17}$."
+        }
+      ]
+    },
+    {
+      "id": "mvc-06-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `directional_derivative(grad, v)`. Given the gradient `grad` = $[f_x, f_y]$ at a point and a direction `v` that is **not** necessarily a unit vector, return the rate of change of $f$ in the direction of `v`.",
+        "es": "Completa `directional_derivative(grad, v)`. Dados el gradiente `grad` = $[f_x, f_y]$ en un punto y una dirección `v` que **no** tiene por qué ser unitaria, devuelve la rapidez de cambio de $f$ en la dirección de `v`."
+      },
+      "funcName": "directional_derivative",
+      "starter": {
+        "en": "def directional_derivative(grad, v):\n    # rate of change of f in the direction v (normalize v first)\n    pass",
+        "es": "def directional_derivative(grad, v):\n    # rapidez de cambio de f en la dirección v (normaliza v primero)\n    pass"
+      },
+      "solution": "import math\n\ndef directional_derivative(grad, v):\n    length = math.sqrt(v[0] ** 2 + v[1] ** 2)\n    return (grad[0] * v[0] + grad[1] * v[1]) / length",
+      "tests": [
+        {
+          "args": [
+            [
+              4,
+              1
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "expected": 3.2,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "expected": 0,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            [
+              3,
+              4
+            ],
+            [
+              -3,
+              -4
+            ]
+          ],
+          "expected": -5,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "expected": 2.8284271247461903,
+          "tol": 1e-09
+        }
+      ],
+      "hint": {
+        "en": "Take the dot product of grad and v, then divide by the length of v (math.sqrt).",
+        "es": "Haz el producto escalar de grad y v, y divide entre la longitud de v (math.sqrt)."
+      }
+    }
+  ],
+  "references": [
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 14.6, directional derivatives and the gradient vector",
+        "es": "Cap. 14.6, derivadas direccionales y el vector gradiente"
+      }
+    },
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 2.6, gradients and directional derivatives",
+        "es": "Cap. 2.6, gradientes y derivadas direccionales"
+      }
+    },
+    {
+      "source": "Nocedal & Wright — Numerical Optimization",
+      "detail": {
+        "en": "Ch. 2, fundamentals of unconstrained optimization (descent directions)",
+        "es": "Cap. 2, fundamentos de la optimización sin restricciones (direcciones de descenso)"
+      }
+    }
+  ]
+}

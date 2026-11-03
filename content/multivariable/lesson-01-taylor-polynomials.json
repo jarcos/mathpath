@@ -1,0 +1,393 @@
+{
+  "id": "mvc-01-taylor",
+  "subjectId": "multivariable",
+  "order": 1,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Taylor Polynomials",
+    "es": "Polinomios de Taylor"
+  },
+  "sections": [
+    {
+      "type": "prereq",
+      "lessons": [
+        "calculus-07-rules-chain",
+        "calculus-02-series-progressions"
+      ],
+      "note": {
+        "en": "Builds on derivatives and their rules, and on series.",
+        "es": "Se apoya en las derivadas y sus reglas, y en las series."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Zoom in far enough on a smooth curve and it looks like a straight line: that line is the tangent, $f(a) + f'(a)(x-a)$. Zoom out a little and the line is no longer enough, but a parabola that also bends like the curve is. **Taylor polynomials** push this idea to any degree: near a point $a$, a smooth function is almost a polynomial, and the polynomial is built only from derivatives at $a$. It is the idea behind the polynomial approximations numerical software uses for $\\sin$ and $e^x$, and the idea behind every optimizer in this subject: replace a complicated function by a simple local model, then trust the model only nearby.",
+        "es": "Si te acercas lo suficiente a una curva suave, parece una recta: esa recta es la tangente, $f(a) + f'(a)(x-a)$. Si te alejas un poco, la recta ya no basta, pero sí una parábola que además se curve como la función. Los **polinomios de Taylor** llevan esta idea a cualquier grado: cerca de un punto $a$, una función suave es casi un polinomio, y ese polinomio se construye solo con derivadas en $a$. Es la idea de las aproximaciones polinómicas con las que el software numérico calcula $\\sin$ y $e^x$, y también la idea que hay detrás de todos los optimizadores de esta asignatura: sustituir una función complicada por un modelo local sencillo y fiarse de él solo cerca."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **Taylor polynomial of degree $n$** of $f$ about $a$ is the one polynomial whose value and first $n$ derivatives at $a$ match those of $f$: $$T_n(x) = \\sum_{k=0}^{n} \\frac{f^{(k)}(a)}{k!}(x-a)^k = f(a) + f'(a)(x-a) + \\frac{f''(a)}{2!}(x-a)^2 + \\dots + \\frac{f^{(n)}(a)}{n!}(x-a)^n.$$ The factorials are there because differentiating $(x-a)^k$ $k$ times gives $k!$; dividing by it makes the $k$-th derivative of $T_n$ at $a$ exactly $f^{(k)}(a)$. When $a = 0$ it is called a **Maclaurin polynomial**. $T_1$ is the tangent line; $T_2$ adds the curvature.",
+        "es": "El **polinomio de Taylor de grado $n$** de $f$ en torno a $a$ es el único polinomio cuyo valor y cuyas $n$ primeras derivadas en $a$ coinciden con las de $f$: $$T_n(x) = \\sum_{k=0}^{n} \\frac{f^{(k)}(a)}{k!}(x-a)^k = f(a) + f'(a)(x-a) + \\frac{f''(a)}{2!}(x-a)^2 + \\dots + \\frac{f^{(n)}(a)}{n!}(x-a)^n.$$ Los factoriales están porque derivar $(x-a)^k$ $k$ veces da $k!$; al dividir por él, la derivada $k$-ésima de $T_n$ en $a$ es exactamente $f^{(k)}(a)$. Cuando $a = 0$ se llama **polinomio de Maclaurin**. $T_1$ es la recta tangente; $T_2$ añade la curvatura."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — eˣ about 0",
+        "es": "Ejemplo resuelto — eˣ en torno a 0"
+      },
+      "content": {
+        "en": "Every derivative of $e^x$ is $e^x$, and $e^0 = 1$, so all the coefficients are $\\tfrac{1}{k!}$: $$T_3(x) = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6}.$$ For $x = 0.2$: $T_1 = 1.2$, $T_2 = 1.22$, $T_3 = 1.221333\\ldots$, while $e^{0.2} = 1.221403\\ldots$ Each extra term gains roughly one more correct digit, because $0.2^k/k!$ shrinks fast.",
+        "es": "Toda derivada de $e^x$ es $e^x$, y $e^0 = 1$, así que todos los coeficientes son $\\tfrac{1}{k!}$: $$T_3(x) = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6}.$$ Para $x = 0.2$: $T_1 = 1.2$, $T_2 = 1.22$, $T_3 = 1.221333\\ldots$, mientras que $e^{0.2} = 1.221403\\ldots$ Cada término adicional gana aproximadamente una cifra correcta, porque $0.2^k/k!$ se hace pequeño muy deprisa."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A few Maclaurin expansions are worth knowing by heart: $$\\sin x = x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\dots \\qquad \\cos x = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\dots$$ $$\\ln(1+x) = x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\dots \\qquad \\frac{1}{1-x} = 1 + x + x^2 + x^3 + \\dots \\ (|x| < 1).$$ The last one is the geometric series from the series lesson. Notice the patterns: $\\sin$ is odd, so only odd powers appear; $\\cos$ is even, so only even powers. For small $x$ they give the everyday approximations $\\sin x \\approx x$ and $\\cos x \\approx 1 - x^2/2$.",
+        "es": "Conviene saberse de memoria unos cuantos desarrollos de Maclaurin: $$\\sin x = x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\dots \\qquad \\cos x = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\dots$$ $$\\ln(1+x) = x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\dots \\qquad \\frac{1}{1-x} = 1 + x + x^2 + x^3 + \\dots \\ (|x| < 1).$$ El último es la serie geométrica de la lección de series. Fíjate en los patrones: $\\sin$ es impar, así que solo aparecen potencias impares; $\\cos$ es par, así que solo pares. Para $x$ pequeño dan las aproximaciones de siempre: $\\sin x \\approx x$ y $\\cos x \\approx 1 - x^2/2$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — √x about 4",
+        "es": "Ejemplo resuelto — √x en torno a 4"
+      },
+      "content": {
+        "en": "Approximate $\\sqrt{4.1}$ with $T_2$ about $a = 4$, where the root is easy. $f(4) = 2$; $f'(x) = \\tfrac{1}{2\\sqrt{x}}$, so $f'(4) = \\tfrac14$; $f''(x) = -\\tfrac{1}{4x^{3/2}}$, so $f''(4) = -\\tfrac{1}{32}$. Then $$T_2(x) = 2 + \\frac{x-4}{4} - \\frac{(x-4)^2}{64}.$$ At $x = 4.1$: $2 + 0.025 - 0.00015625 = 2.02484375$. The true value is $2.0248457\\ldots$: five correct decimals from three derivatives at an easy point.",
+        "es": "Aproxima $\\sqrt{4.1}$ con $T_2$ en torno a $a = 4$, donde la raíz es fácil. $f(4) = 2$; $f'(x) = \\tfrac{1}{2\\sqrt{x}}$, así que $f'(4) = \\tfrac14$; $f''(x) = -\\tfrac{1}{4x^{3/2}}$, así que $f''(4) = -\\tfrac{1}{32}$. Entonces $$T_2(x) = 2 + \\frac{x-4}{4} - \\frac{(x-4)^2}{64}.$$ En $x = 4.1$: $2 + 0.025 - 0.00015625 = 2.02484375$. El valor real es $2.0248457\\ldots$: cinco decimales correctos con tres derivadas en un punto fácil."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "How good is the approximation? **Taylor's theorem** with the Lagrange remainder says that, for some $c$ between $a$ and $x$, $$f(x) - T_n(x) = \\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}.$$ You never know $c$, but you can bound the derivative. For $\\sin x$ every derivative is at most 1 in absolute value, so $T_3$ (which equals $T_4$, as the $x^4$ term is zero) has error at most $\\tfrac{|x|^5}{5!}$; at $x = 0.5$ that is $\\tfrac{1}{3840} \\approx 0.00026$. The key lesson is the power $(x-a)^{n+1}$: the error is tiny near $a$ and grows quickly away from it. A Taylor polynomial is a **local** model.",
+        "es": "¿Qué tan buena es la aproximación? El **teorema de Taylor** con el resto de Lagrange dice que, para algún $c$ entre $a$ y $x$, $$f(x) - T_n(x) = \\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}.$$ Nunca conoces $c$, pero puedes acotar la derivada. Para $\\sin x$ toda derivada vale como mucho 1 en valor absoluto, así que $T_3$ (que es igual a $T_4$, porque el término en $x^4$ es cero) tiene un error de como mucho $\\tfrac{|x|^5}{5!}$; en $x = 0.5$ eso es $\\tfrac{1}{3840} \\approx 0.00026$. La clave es la potencia $(x-a)^{n+1}$: el error es diminuto cerca de $a$ y crece deprisa al alejarse. Un polinomio de Taylor es un modelo **local**."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "exp(x) - (1 + x + x^2/2)",
+      "domain": [
+        -2,
+        2
+      ],
+      "caption": {
+        "en": "The error $e^x - T_2(x)$. It is flat and almost zero near $x = 0$, where $T_2$ was built, and grows like $\\tfrac{x^3}{6}$ as you move away: the price of a local model.",
+        "es": "El error $e^x - T_2(x)$. Es plano y casi cero cerca de $x = 0$, donde se construyó $T_2$, y crece como $\\tfrac{x^3}{6}$ al alejarse: el precio de un modelo local."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Write $x = a + h$ and the first terms read $$f(a+h) \\approx f(a) + f'(a)\\,h + \\tfrac12 f''(a)\\,h^2.$$ Read it as an optimizer would: the first-order term says which way is downhill (gradient descent uses only this), and the second-order term says how the slope itself changes, so how far it is safe to go (Newton's method uses both). Later lessons extend exactly this formula to functions of many variables, where $f'$ becomes the **gradient** and $f''$ the **Hessian** matrix.",
+        "es": "Escribe $x = a + h$ y los primeros términos quedan $$f(a+h) \\approx f(a) + f'(a)\\,h + \\tfrac12 f''(a)\\,h^2.$$ Léelo como lo haría un optimizador: el término de primer orden dice hacia dónde se baja (el descenso de gradiente solo usa este), y el de segundo orden dice cómo cambia la propia pendiente y, por tanto, hasta dónde es seguro avanzar (el método de Newton usa los dos). Las lecciones siguientes extienden justo esta fórmula a funciones de muchas variables, donde $f'$ pasa a ser el **gradiente** y $f''$ la matriz **hessiana**."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "import math\n\nx = 1.0\n# Degree-n Maclaurin polynomial of e^x at x = 1, and its error\nfor n in range(1, 6):\n    t = sum(x**k / math.factorial(k) for k in range(n + 1))\n    print(n, round(t, 6), round(abs(math.e - t), 6))",
+        "es": "import math\n\nx = 1.0\n# Polinomio de Maclaurin de grado n de e^x en x = 1, y su error\nfor n in range(1, 6):\n    t = sum(x**k / math.factorial(k) for k in range(n + 1))\n    print(n, round(t, 6), round(abs(math.e - t), 6))"
+      },
+      "expectedOutput": "1 2.0 0.718282\n2 2.5 0.218282\n3 2.666667 0.051615\n4 2.708333 0.009948\n5 2.716667 0.001615",
+      "caption": {
+        "en": "Each extra degree divides the error by roughly n + 1: the factorial in the next term wins.",
+        "es": "Cada grado más divide el error más o menos entre n + 1: gana el factorial del siguiente término."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-01-e1",
+      "answerType": "number",
+      "params": {
+        "k": {
+          "int": [
+            1,
+            4
+          ]
+        }
+      },
+      "derived": {
+        "h": "k / 10",
+        "t": "1 + h + h^2 / 2"
+      },
+      "check": "abs(answer - exp(h)) < h^3 / 3",
+      "prompt": {
+        "en": "Use the degree-2 Maclaurin polynomial $1 + x + \\tfrac{x^2}{2}$ to approximate $e^{[[h]]}$.",
+        "es": "Usa el polinomio de Maclaurin de grado 2, $1 + x + \\tfrac{x^2}{2}$, para aproximar $e^{[[h]]}$."
+      },
+      "answer": "[[t]]",
+      "hint": {
+        "en": "Substitute x = [[h]] in each term.",
+        "es": "Sustituye x = [[h]] en cada término."
+      },
+      "solution": [
+        {
+          "tex": "1 + [[h]] + \\tfrac{[[h]]^2}{2}",
+          "en": "Substitute x.",
+          "es": "Sustituye x."
+        },
+        {
+          "tex": "= [[t]]",
+          "en": "Add up.",
+          "es": "Suma."
+        }
+      ]
+    },
+    {
+      "id": "mvc-01-e2",
+      "answerType": "expression",
+      "prompt": {
+        "en": "Write the degree-3 Maclaurin polynomial of $\\sin x$.",
+        "es": "Escribe el polinomio de Maclaurin de grado 3 de $\\sin x$."
+      },
+      "answer": "x - x^3/6",
+      "commonMistakes": [
+        {
+          "answer": "x - x^3/3",
+          "feedback": {
+            "en": "The coefficient is $\\tfrac{f'''(0)}{3!}$, and $3! = 6$, not 3.",
+            "es": "El coeficiente es $\\tfrac{f'''(0)}{3!}$, y $3! = 6$, no 3."
+          }
+        },
+        {
+          "answer": "x + x^3/6",
+          "feedback": {
+            "en": "$f'''(x) = -\\cos x$, so $f'''(0) = -1$: the cubic term is negative.",
+            "es": "$f'''(x) = -\\cos x$, así que $f'''(0) = -1$: el término cúbico es negativo."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The derivatives of sin at 0 cycle 0, 1, 0, −1.",
+        "es": "Las derivadas de sen en 0 van 0, 1, 0, −1."
+      },
+      "solution": [
+        {
+          "tex": "f(0)=0,\\ f'(0)=1,\\ f''(0)=0,\\ f'''(0)=-1",
+          "en": "Derivatives at 0.",
+          "es": "Derivadas en 0."
+        },
+        {
+          "tex": "T_3(x) = x - \\frac{x^3}{3!} = x - \\frac{x^3}{6}",
+          "en": "Divide each by k!.",
+          "es": "Divide cada una entre k!."
+        }
+      ]
+    },
+    {
+      "id": "mvc-01-e3",
+      "answerType": "number",
+      "prompt": {
+        "en": "Use the tangent line of $\\sqrt{x}$ at $a = 4$ (the degree-1 Taylor polynomial) to approximate $\\sqrt{4.1}$.",
+        "es": "Usa la recta tangente de $\\sqrt{x}$ en $a = 4$ (el polinomio de Taylor de grado 1) para aproximar $\\sqrt{4.1}$."
+      },
+      "answer": "2.025",
+      "acceptedAlt": [
+        "81/40"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2.05",
+          "feedback": {
+            "en": "That uses slope $\\tfrac12$: the derivative is $f'(x) = \\tfrac{1}{2\\sqrt{x}}$, so $f'(4) = \\tfrac{1}{2\\cdot 2} = \\tfrac14$ and the change is $0.1\\cdot\\tfrac14 = 0.025$.",
+            "es": "Eso usa pendiente $\\tfrac12$: la derivada es $f'(x) = \\tfrac{1}{2\\sqrt{x}}$, así que $f'(4) = \\tfrac{1}{2\\cdot 2} = \\tfrac14$ y el cambio es $0.1\\cdot\\tfrac14 = 0.025$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "T₁(x) = f(4) + f′(4)(x − 4).",
+        "es": "T₁(x) = f(4) + f′(4)(x − 4)."
+      },
+      "solution": [
+        {
+          "tex": "f(4) = 2,\\quad f'(4) = \\tfrac{1}{2\\sqrt{4}} = \\tfrac14",
+          "en": "Value and slope at 4.",
+          "es": "Valor y pendiente en 4."
+        },
+        {
+          "tex": "T_1(4.1) = 2 + \\tfrac14(0.1) = 2.025",
+          "en": "Evaluate the tangent line.",
+          "es": "Evalúa la recta tangente."
+        }
+      ]
+    },
+    {
+      "id": "mvc-01-e4",
+      "answerType": "expression",
+      "prompt": {
+        "en": "Write the degree-2 Maclaurin polynomial of $\\ln(1+x)$.",
+        "es": "Escribe el polinomio de Maclaurin de grado 2 de $\\ln(1+x)$."
+      },
+      "answer": "x - x^2/2",
+      "commonMistakes": [
+        {
+          "answer": "x + x^2/2",
+          "feedback": {
+            "en": "$f''(x) = -\\tfrac{1}{(1+x)^2}$, so $\\tfrac{f''(0)}{2} = -\\tfrac12$: the $x^2$ term is negative.",
+            "es": "$f''(x) = -\\tfrac{1}{(1+x)^2}$, así que $\\tfrac{f''(0)}{2} = -\\tfrac12$: el término en $x^2$ es negativo."
+          }
+        }
+      ],
+      "hint": {
+        "en": "f(0) = 0, f′(x) = 1/(1 + x), f″(x) = −1/(1 + x)².",
+        "es": "f(0) = 0, f′(x) = 1/(1 + x), f″(x) = −1/(1 + x)²."
+      },
+      "solution": [
+        {
+          "tex": "f(0) = 0,\\ f'(0) = 1,\\ f''(0) = -1",
+          "en": "Derivatives at 0.",
+          "es": "Derivadas en 0."
+        },
+        {
+          "tex": "T_2(x) = x - \\frac{x^2}{2}",
+          "en": "Divide f''(0) by 2!.",
+          "es": "Divide f''(0) entre 2!."
+        }
+      ]
+    },
+    {
+      "id": "mvc-01-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "The degree-3 Maclaurin polynomial of $\\sin x$ has error at most $\\tfrac{|x|^5}{120}$. Give that bound at $x = 1$ as a fraction.",
+        "es": "El polinomio de Maclaurin de grado 3 de $\\sin x$ tiene un error de como mucho $\\tfrac{|x|^5}{120}$. Da esa cota en $x = 1$ como fracción."
+      },
+      "answer": "1/120",
+      "hint": {
+        "en": "1⁵ = 1.",
+        "es": "1⁵ = 1."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{|1|^5}{120} = \\frac{1}{120}",
+          "en": "Substitute x = 1.",
+          "es": "Sustituye x = 1."
+        }
+      ]
+    },
+    {
+      "id": "mvc-01-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Why is $T_n$ such a good approximation of $f$ **near** $a$?",
+        "es": "¿Por qué $T_n$ aproxima tan bien a $f$ **cerca** de $a$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It passes through $n+1$ points of the graph of $f$.",
+            "es": "Pasa por $n+1$ puntos de la gráfica de $f$."
+          },
+          "correct": false,
+          "why": {
+            "en": "That describes an interpolating polynomial. A Taylor polynomial uses only information at the single point a.",
+            "es": "Eso describe un polinomio interpolador. Un polinomio de Taylor solo usa información en el punto a."
+          }
+        },
+        {
+          "text": {
+            "en": "It is accurate everywhere once n is large enough.",
+            "es": "Es exacto en todas partes si n es suficientemente grande."
+          },
+          "correct": false,
+          "why": {
+            "en": "Not always: the series of $\\tfrac{1}{1-x}$ only converges for $|x| < 1$. Accuracy is guaranteed only near $a$.",
+            "es": "No siempre: la serie de $\\tfrac{1}{1-x}$ solo converge para $|x| < 1$. La precisión solo está garantizada cerca de $a$."
+          }
+        },
+        {
+          "text": {
+            "en": "It matches $f$ and its first $n$ derivatives at $a$.",
+            "es": "Coincide con $f$ y con sus $n$ primeras derivadas en $a$."
+          },
+          "correct": true,
+          "why": {
+            "en": "So the difference starts at the $(x-a)^{n+1}$ term, which is tiny when $x$ is close to $a$.",
+            "es": "Así la diferencia empieza en el término $(x-a)^{n+1}$, que es diminuto cuando $x$ está cerca de $a$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "What does the polynomial know about f?",
+        "es": "¿Qué sabe el polinomio de f?"
+      }
+    },
+    {
+      "id": "mvc-01-e7",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `taylor_exp(x, n)`: the degree-`n` Maclaurin polynomial of $e^x$, $\\sum_{k=0}^{n} \\tfrac{x^k}{k!}$, evaluated at `x`.",
+        "es": "Completa `taylor_exp(x, n)`: el polinomio de Maclaurin de grado `n` de $e^x$, $\\sum_{k=0}^{n} \\tfrac{x^k}{k!}$, evaluado en `x`."
+      },
+      "funcName": "taylor_exp",
+      "starter": {
+        "en": "import math\n\ndef taylor_exp(x, n):\n    # sum of x**k / k! for k = 0 .. n\n    pass",
+        "es": "import math\n\ndef taylor_exp(x, n):\n    # suma de x**k / k! para k = 0 .. n\n    pass"
+      },
+      "solution": "import math\n\ndef taylor_exp(x, n):\n    return sum(x**k / math.factorial(k) for k in range(n + 1))",
+      "tests": [
+        {
+          "args": [
+            1,
+            0
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            1,
+            3
+          ],
+          "expected": 2.6666666666666665,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            2,
+            4
+          ],
+          "expected": 7.0,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            0.5,
+            10
+          ],
+          "expected": 1.6487212707001282,
+          "tol": 1e-06
+        }
+      ],
+      "hint": {
+        "en": "math.factorial(k) and a sum over range(n + 1).",
+        "es": "math.factorial(k) y una suma sobre range(n + 1)."
+      }
+    }
+  ],
+  "references": [
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 11.10–11.11, Taylor and Maclaurin series; applications of Taylor polynomials and Taylor's inequality",
+        "es": "Cap. 11.10–11.11, series de Taylor y de Maclaurin; aplicaciones de los polinomios de Taylor y desigualdad de Taylor"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§5.1.1, Taylor series",
+        "es": "§5.1.1, series de Taylor"
+      }
+    }
+  ]
+}

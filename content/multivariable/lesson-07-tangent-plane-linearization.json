@@ -1,0 +1,444 @@
+{
+  "id": "mvc-07-linearization",
+  "subjectId": "multivariable",
+  "order": 7,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Tangent Planes & Linear Approximation",
+    "es": "Plano tangente y aproximación lineal"
+  },
+  "sections": [
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-15-planes"
+      ],
+      "note": {
+        "en": "Builds on planes in space and their normal vectors, and on the gradient of the previous lessons.",
+        "es": "Se apoya en los planos en el espacio y sus vectores normales, y en el gradiente de las lecciones anteriores."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Zoom in on a smooth surface $z = f(x,y)$ far enough and it looks flat, like a sheet of paper resting on a ball. That sheet is the **tangent plane**, the best flat approximation of the surface near a point. It generalizes the tangent line of one-variable calculus: a line is a good model near its point of contact, and so is a plane. Its height is an affine function of $x$ and $y$ (linear plus a constant), which is why it is also called the **linearization** of $f$. It is the first-order Taylor polynomial of lesson 1, in two variables.",
+        "es": "Si acercas lo suficiente una superficie suave $z = f(x,y)$, parece plana, como una hoja de papel apoyada sobre una pelota. Esa hoja es el **plano tangente**, la mejor aproximación plana de la superficie cerca de un punto. Generaliza la recta tangente del cálculo de una variable: una recta es buen modelo cerca de su punto de contacto, y un plano también. Su altura es una función afín de $x$ e $y$ (lineal más una constante), así que también se llama **linealización** de $f$. Es el polinomio de Taylor de primer orden de la lección 1, pero en dos variables."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Let $(a,b)$ be a point where the partial derivatives $f_x(a,b)$ and $f_y(a,b)$ exist. The **tangent plane** to $z = f(x,y)$ at $(a,b)$ is $$z = f(a,b) + f_x(a,b)\\,(x-a) + f_y(a,b)\\,(y-b).$$ It passes through $(a,b,f(a,b))$, and its slope is $f_x$ in the $x$ direction and $f_y$ in the $y$ direction. Its normal vector is $(f_x(a,b),\\ f_y(a,b),\\ -1)$. Writing the surface as $F(x,y,z) = f(x,y) - z = 0$, this is $\\nabla F$ at the point: the gradient idea of lesson 5, in three variables. The right-hand side, as a function $L(x,y)$, is the **linearization** of $f$ at $(a,b)$.",
+        "es": "Sea $(a,b)$ un punto donde existen las derivadas parciales $f_x(a,b)$ y $f_y(a,b)$. El **plano tangente** a $z = f(x,y)$ en $(a,b)$ es $$z = f(a,b) + f_x(a,b)\\,(x-a) + f_y(a,b)\\,(y-b).$$ Pasa por $(a,b,f(a,b))$, y su pendiente es $f_x$ en la dirección $x$ y $f_y$ en la dirección $y$. Su vector normal es $(f_x(a,b),\\ f_y(a,b),\\ -1)$. Si escribes la superficie como $F(x,y,z) = f(x,y) - z = 0$, ese vector es $\\nabla F$ en el punto: la idea de gradiente de la lección 5, en tres variables. El lado derecho, como función $L(x,y)$, es la **linealización** de $f$ en $(a,b)$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — tangent plane to x²y, and an estimate",
+        "es": "Ejemplo resuelto — plano tangente a x²y y una estimación"
+      },
+      "content": {
+        "en": "Let $f(x,y) = x^2y$ at $(a,b) = (2,1)$. Then $f(2,1) = 4$, $f_x = 2xy = 4$ and $f_y = x^2 = 4$, so the tangent plane is $$z = 4 + 4(x-2) + 4(y-1) = 4x + 4y - 8.$$ Use it to estimate $f(2.01,\\ 0.98)$: $L(2.01,\\ 0.98) = 4(2.01) + 4(0.98) - 8 = 3.96$. The true value is $(2.01)^2(0.98) = 3.959298$, so the error is about $0.0007$. Both points are close to $(2,1)$, and the error is of the order of the square of the distance between them, as the next sections explain.",
+        "es": "Sea $f(x,y) = x^2y$ en $(a,b) = (2,1)$. Entonces $f(2,1) = 4$, $f_x = 2xy = 4$ y $f_y = x^2 = 4$, así que el plano tangente es $$z = 4 + 4(x-2) + 4(y-1) = 4x + 4y - 8.$$ Úsalo para estimar $f(2.01,\\ 0.98)$: $L(2.01,\\ 0.98) = 4(2.01) + 4(0.98) - 8 = 3.96$. El valor real es $(2.01)^2(0.98) = 3.959298$, así que el error es de unas $0.0007$. Ambos puntos están cerca de $(2,1)$, y el error es del orden del cuadrado de la distancia entre ellos, como explican las secciones siguientes."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "x^2 - 4*x + 4",
+      "domain": [
+        0,
+        4
+      ],
+      "caption": {
+        "en": "Along $y = 1$, the error $f(x,1) - L(x,1) = x^2 - 4x + 4 = (x-2)^2$: zero at the point of tangency and growing quadratically.",
+        "es": "A lo largo de $y = 1$, el error $f(x,1) - L(x,1) = x^2 - 4x + 4 = (x-2)^2$: cero en el punto de tangencia y creciente de forma cuadrática."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Write a point near $\\mathbf a$ as $\\mathbf a + \\mathbf h$, with $\\mathbf h = (h_1, \\dots, h_n)$ small. The linearization says $$f(\\mathbf a + \\mathbf h) \\approx f(\\mathbf a) + \\nabla f(\\mathbf a)\\cdot\\mathbf h,$$ which is the one-variable formula $f(a+h) \\approx f(a) + f'(a)h$, with the derivative replaced by the gradient and the product by a dot product. It works in any number of variables; for $n = 2$, the tangent plane is its picture. The error is of second order in $\\lVert\\mathbf h\\rVert$, the same size as the Taylor remainder of lesson 1. This is the most useful formula of the subject: most optimizers replace the function by this approximation near the current point.",
+        "es": "Escribe un punto cercano a $\\mathbf a$ como $\\mathbf a + \\mathbf h$, con $\\mathbf h = (h_1, \\dots, h_n)$ pequeño. La linealización dice que $$f(\\mathbf a + \\mathbf h) \\approx f(\\mathbf a) + \\nabla f(\\mathbf a)\\cdot\\mathbf h,$$ que es la fórmula de una variable $f(a+h) \\approx f(a) + f'(a)h$, con la derivada sustituida por el gradiente y el producto por un producto escalar. Vale en cualquier número de variables; para $n = 2$, el plano tangente es su imagen. El error es de segundo orden en $\\lVert\\mathbf h\\rVert$, del mismo tamaño que el resto de Taylor de la lección 1. Es la fórmula más útil de la asignatura: la mayoría de los optimizadores sustituyen la función por esta aproximación cerca del punto actual."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Existence of the partial derivatives is not enough for a tangent plane. Take $$f(x,y) = \\frac{xy}{x^2+y^2}, \\qquad f(0,0) = 0.$$ Along both axes $f$ is zero, so $f_x(0,0) = f_y(0,0) = 0$ and the candidate plane is $z = 0$. But along the diagonal $y = x$ the function equals $\\tfrac12$ for every $x \\ne 0$. So $f$ is not even continuous at the origin, and no plane can hug its graph there. A function is **differentiable** at $\\mathbf a$ when the linearization is accurate: $f(\\mathbf a + \\mathbf h) - f(\\mathbf a) - \\nabla f(\\mathbf a)\\cdot\\mathbf h = o(\\lVert\\mathbf h\\rVert)$, which is negligible compared with $\\lVert\\mathbf h\\rVert$. The practical test: if $f_x$ and $f_y$ exist and are **continuous** near $\\mathbf a$, then $f$ is differentiable there.",
+        "es": "Que existan las derivadas parciales no basta para tener plano tangente. Toma $$f(x,y) = \\frac{xy}{x^2+y^2}, \\qquad f(0,0) = 0.$$ A lo largo de los dos ejes $f$ vale cero, así que $f_x(0,0) = f_y(0,0) = 0$ y el plano candidato es $z = 0$. Pero a lo largo de la diagonal $y = x$ la función vale $\\tfrac12$ para todo $x \\ne 0$. Así que $f$ ni siquiera es continua en el origen, y ningún plano puede pegarse a su gráfica allí. Una función es **diferenciable** en $\\mathbf a$ cuando la linealización es precisa: $f(\\mathbf a + \\mathbf h) - f(\\mathbf a) - \\nabla f(\\mathbf a)\\cdot\\mathbf h = o(\\lVert\\mathbf h\\rVert)$, es decir, despreciable frente a $\\lVert\\mathbf h\\rVert$. La prueba práctica: si $f_x$ y $f_y$ existen y son **continuas** cerca de $\\mathbf a$, entonces $f$ es diferenciable allí."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — how far a cylinder's volume moves",
+        "es": "Ejemplo resuelto — cuánto cambia el volumen de un cilindro"
+      },
+      "content": {
+        "en": "A cylinder has volume $V = \\pi r^2 h$. At $r = 2$ and $h = 5$ we measure $r$ with error $dr = 0.1$ and $h$ with error $dh = -0.2$. The **differential** estimates the change in $V$: $$dV = \\frac{\\partial V}{\\partial r}\\,dr + \\frac{\\partial V}{\\partial h}\\,dh = 2\\pi r h\\,dr + \\pi r^2\\,dh.$$ Here $dV = 2\\pi\\cdot 2\\cdot 5\\cdot 0.1 + \\pi\\cdot 4\\cdot(-0.2) = 2\\pi - 0.8\\pi = 1.2\\pi \\approx 3.77$. The exact change is $\\pi(2.1)^2(4.8) - 20\\pi = 1.168\\pi \\approx 3.67$. The estimate is close, and its error is of second order in the sizes of $dr$ and $dh$. Multiplying each partial derivative by the matching error is the everyday rule of error propagation.",
+        "es": "Un cilindro tiene volumen $V = \\pi r^2 h$. Con $r = 2$ y $h = 5$, medimos $r$ con error $dr = 0.1$ y $h$ con error $dh = -0.2$. El **diferencial** estima el cambio de $V$: $$dV = \\frac{\\partial V}{\\partial r}\\,dr + \\frac{\\partial V}{\\partial h}\\,dh = 2\\pi r h\\,dr + \\pi r^2\\,dh.$$ Aquí $dV = 2\\pi\\cdot 2\\cdot 5\\cdot 0.1 + \\pi\\cdot 4\\cdot(-0.2) = 2\\pi - 0.8\\pi = 1.2\\pi \\approx 3.77$. El cambio exacto es $\\pi(2.1)^2(4.8) - 20\\pi = 1.168\\pi \\approx 3.67$. La estimación es buena, y su error es de segundo orden en los tamaños de $dr$ y $dh$. Multiplicar cada derivada parcial por el error correspondiente es la regla habitual de propagación de errores."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Gradient descent trusts this local model. At the current point the loss $L$ is replaced by its linearization, which predicts that a step $-\\eta\\nabla L$ lowers the loss by about $\\eta\\lVert\\nabla L\\rVert^2$. That prediction is good only while the step is small. Take the loss of lesson 5 at $(1,0)$, where $L = 9$ and $\\nabla L = (-12,\\ -6)$. The linearization predicts $L = 0$ after a step with $\\eta = 0.05$, but the true loss is $2.25$. With $\\eta = 0.01$ it predicts $7.2$, and the truth is $7.29$. The learning rate therefore works as a trust radius: if it is too large, the local model lies, which is why step sizes must be chosen with care.",
+        "es": "El descenso de gradiente se fía de este modelo local. En el punto actual, la pérdida $L$ se sustituye por su linealización, que predice que un paso $-\\eta\\nabla L$ reduce la pérdida en unos $\\eta\\lVert\\nabla L\\rVert^2$. Esa predicción solo es buena mientras el paso sea pequeño. Toma la pérdida de la lección 5 en $(1,0)$, donde $L = 9$ y $\\nabla L = (-12,\\ -6)$. La linealización predice $L = 0$ tras un paso con $\\eta = 0.05$, pero la pérdida real es $2.25$. Con $\\eta = 0.01$ predice $7.2$, y la realidad es $7.29$. Por eso la tasa de aprendizaje funciona como un radio de confianza: si es demasiado grande, el modelo local miente, y hay que elegir los pasos con cuidado."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "def f(x, y):\n    return x**2 * y\n\n# Tangent plane of f at (2, 1): f(2, 1) = 4, f_x = 4, f_y = 4\na, b = 2.0, 1.0\nfx, fy = 4.0, 4.0\n\n# Move by (h, -h): compare the true value with the tangent plane\nfor h in [0.1, 0.01, 0.001]:\n    exact = f(a + h, b - h)\n    linear = f(a, b) + fx * h + fy * (-h)\n    print(f\"{exact - linear:.6f}\")",
+        "es": "def f(x, y):\n    return x**2 * y\n\n# Plano tangente de f en (2, 1): f(2, 1) = 4, f_x = 4, f_y = 4\na, b = 2.0, 1.0\nfx, fy = 4.0, 4.0\n\n# Desplazamiento (h, -h): compara el valor real con el plano tangente\nfor h in [0.1, 0.01, 0.001]:\n    exact = f(a + h, b - h)\n    linear = f(a, b) + fx * h + fy * (-h)\n    print(f\"{exact - linear:.6f}\")"
+      },
+      "expectedOutput": "-0.031000\n-0.000301\n-0.000003",
+      "caption": {
+        "en": "The error $f - L$ shrinks by about 100 each time the step shrinks by 10. It is of second order, as the theory says.",
+        "es": "El error $f - L$ se divide por unos 100 cada vez que el paso se divide por 10. Es de segundo orden, como dice la teoría."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-07-e1",
+      "answerType": "expression",
+      "prompt": {
+        "en": "Write the tangent plane to $z = x^2 + y^2$ at $(1,2)$ as $z = \\dots$, an expression in $x$ and $y$.",
+        "es": "Escribe el plano tangente a $z = x^2 + y^2$ en $(1,2)$ como $z = \\dots$, una expresión en $x$ e $y$."
+      },
+      "answer": "2*x+4*y-5",
+      "acceptedAlt": [
+        "-5+2*x+4*y"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2*(x-1)+4*(y-2)",
+          "feedback": {
+            "en": "That is only the change from the point. The plane sits at height $f(1,2) = 5$, so add 5: $2(x-1) + 4(y-2) + 5 = 2x + 4y - 5$.",
+            "es": "Eso es solo el cambio respecto al punto. El plano está a altura $f(1,2) = 5$, así que hay que sumar 5: $2(x-1) + 4(y-2) + 5 = 2x + 4y - 5$."
+          }
+        },
+        {
+          "answer": "2*x+4*y",
+          "feedback": {
+            "en": "This forgets the constant. The plane passes through $(1,2,5)$, and $2\\cdot 1 + 4\\cdot 2 = 10 \\ne 5$.",
+            "es": "Esto olvida la constante. El plano pasa por $(1,2,5)$, y $2\\cdot 1 + 4\\cdot 2 = 10 \\ne 5$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use $z = f(1,2) + f_x(1,2)(x-1) + f_y(1,2)(y-2)$, with $f_x = 2x$ and $f_y = 2y$.",
+        "es": "Usa $z = f(1,2) + f_x(1,2)(x-1) + f_y(1,2)(y-2)$, con $f_x = 2x$ y $f_y = 2y$."
+      },
+      "solution": [
+        {
+          "tex": "f(1,2) = 5,\\quad f_x(1,2) = 2,\\quad f_y(1,2) = 4",
+          "en": "Value and partial derivatives at (1, 2).",
+          "es": "Valor y derivadas parciales en (1, 2)."
+        },
+        {
+          "tex": "z = 5 + 2(x-1) + 4(y-2) = 2x + 4y - 5",
+          "en": "Insert them in the tangent-plane formula and expand.",
+          "es": "Sustitúyelos en la fórmula del plano tangente y desarrolla."
+        }
+      ]
+    },
+    {
+      "id": "mvc-07-e2",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x,y) = x^2y$, use the tangent plane at $(2,1)$ to estimate $f(2.01,\\ 0.98)$.",
+        "es": "Para $f(x,y) = x^2y$, usa el plano tangente en $(2,1)$ para estimar $f(2.01,\\ 0.98)$."
+      },
+      "answer": "3.96",
+      "acceptedAlt": [
+        "99/25"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3.959298",
+          "feedback": {
+            "en": "That is the true value of $f$. The question asks for the tangent plane's estimate, which is $4(2.01) + 4(0.98) - 8 = 3.96$.",
+            "es": "Ese es el valor real de $f$. La pregunta pide la estimación del plano tangente, que es $4(2.01) + 4(0.98) - 8 = 3.96$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compute $f(2,1)$, $f_x(2,1)$ and $f_y(2,1)$, then use $L = f(2,1) + f_x\\,\\Delta x + f_y\\,\\Delta y$.",
+        "es": "Calcula $f(2,1)$, $f_x(2,1)$ y $f_y(2,1)$, y luego usa $L = f(2,1) + f_x\\,\\Delta x + f_y\\,\\Delta y$."
+      },
+      "solution": [
+        {
+          "tex": "f(2,1) = 4,\\quad f_x(2,1) = 2xy = 4,\\quad f_y(2,1) = x^2 = 4",
+          "en": "Value and partial derivatives at (2, 1).",
+          "es": "Valor y derivadas parciales en (2, 1)."
+        },
+        {
+          "tex": "\\Delta x = 0.01,\\quad \\Delta y = -0.02",
+          "en": "Changes from (2, 1) to (2.01, 0.98).",
+          "es": "Cambios desde (2, 1) hasta (2.01, 0.98)."
+        },
+        {
+          "tex": "L = 4 + 4(0.01) + 4(-0.02) = 3.96",
+          "en": "The linear estimate.",
+          "es": "La estimación lineal."
+        }
+      ]
+    },
+    {
+      "id": "mvc-07-e3",
+      "answerType": "number",
+      "params": {
+        "p": {
+          "int": [
+            -5,
+            5
+          ],
+          "exclude": [
+            0
+          ]
+        },
+        "q": {
+          "int": [
+            -5,
+            5
+          ],
+          "exclude": [
+            0
+          ]
+        }
+      },
+      "derived": {
+        "dx": "p/100",
+        "dy": "q/100",
+        "t": "4 + 4*dx + 4*dy"
+      },
+      "check": "abs(answer - (2^2*1 + (2.0001^2*1 - 1.9999^2*1)/0.0002*dx + (2^2*1.0001 - 2^2*0.9999)/0.0002*dy)) < 0.000001",
+      "prompt": {
+        "en": "For $f(x,y) = x^2y$, use the tangent plane at $(2,1)$ to estimate $f(2 [[dx|+]],\\ 1 [[dy|+]])$.",
+        "es": "Para $f(x,y) = x^2y$, usa el plano tangente en $(2,1)$ para estimar $f(2 [[dx|+]],\\ 1 [[dy|+]])$."
+      },
+      "answer": "[[t]]",
+      "hint": {
+        "en": "$L = f(2,1) + f_x(2,1)\\,dx + f_y(2,1)\\,dy$, with $f_x = f_y = 4$ at $(2,1)$.",
+        "es": "$L = f(2,1) + f_x(2,1)\\,dx + f_y(2,1)\\,dy$, con $f_x = f_y = 4$ en $(2,1)$."
+      },
+      "solution": [
+        {
+          "tex": "L = 4 + 4([[dx]]) + 4([[dy]])",
+          "en": "Tangent plane at (2, 1): f(2,1) = 4 and f_x = f_y = 4.",
+          "es": "Plano tangente en (2, 1): f(2,1) = 4 y f_x = f_y = 4."
+        },
+        {
+          "tex": "= [[t]]",
+          "en": "Add up.",
+          "es": "Suma."
+        }
+      ]
+    },
+    {
+      "id": "mvc-07-e4",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which statement is true?",
+        "es": "¿Cuál de estas afirmaciones es cierta?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "If both partial derivatives exist at $(a,b)$, then $f$ has a tangent plane there.",
+            "es": "Si existen ambas derivadas parciales en $(a,b)$, entonces $f$ tiene plano tangente allí."
+          },
+          "correct": false,
+          "why": {
+            "en": "Not so: $f = xy/(x^2+y^2)$ has both partials at the origin, yet no tangent plane, because it is discontinuous there.",
+            "es": "No: $f = xy/(x^2+y^2)$ tiene ambas parciales en el origen, pero no tiene plano tangente, porque allí es discontinua."
+          }
+        },
+        {
+          "text": {
+            "en": "If $f_x$ and $f_y$ exist and are continuous near $(a,b)$, then $f$ has a tangent plane at $(a,b)$.",
+            "es": "Si $f_x$ y $f_y$ existen y son continuas cerca de $(a,b)$, entonces $f$ tiene plano tangente en $(a,b)$."
+          },
+          "correct": true,
+          "why": {
+            "en": "This is the practical test: continuous partial derivatives imply differentiability, so the linearization is accurate.",
+            "es": "Es la prueba práctica: las derivadas parciales continuas implican diferenciabilidad, así que la linealización es precisa."
+          }
+        },
+        {
+          "text": {
+            "en": "If $f$ is continuous at $(a,b)$, then both partial derivatives exist there.",
+            "es": "Si $f$ es continua en $(a,b)$, entonces existen ambas derivadas parciales allí."
+          },
+          "correct": false,
+          "why": {
+            "en": "Continuity is not enough for derivatives. $f(x,y) = \\sqrt{x^2+y^2}$ is continuous at the origin but has no partial derivative there: $|h|/h$ has no limit.",
+            "es": "La continuidad no basta para tener derivadas. $f(x,y) = \\sqrt{x^2+y^2}$ es continua en el origen, pero no tiene derivada parcial allí: $|h|/h$ no tiene límite."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think about the counterexample $xy/(x^2+y^2)$ from the lesson.",
+        "es": "Piensa en el contraejemplo $xy/(x^2+y^2)$ de la lección."
+      }
+    },
+    {
+      "id": "mvc-07-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "A cylinder has $r = 2$ and $h = 5$. The measurements carry errors $dr = 0.1$ and $dh = -0.2$. Estimate the change in volume $V = \\pi r^2 h$ with the differential. Give it exactly, as a multiple of $\\pi$.",
+        "es": "Un cilindro tiene $r = 2$ y $h = 5$. Las medidas tienen errores $dr = 0.1$ y $dh = -0.2$. Estima el cambio de volumen $V = \\pi r^2 h$ con el diferencial. Dalo exactamente, como múltiplo de $\\pi$."
+      },
+      "answer": "6*pi/5",
+      "acceptedAlt": [
+        "1.2*pi"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2*pi",
+          "feedback": {
+            "en": "That is only the $r$ term, $2\\pi rh\\,dr$. The $h$ term, $\\pi r^2\\,dh = -0.8\\pi$, must be added too.",
+            "es": "Eso es solo el término en $r$, $2\\pi rh\\,dr$. Hay que sumar también el término en $h$, $\\pi r^2\\,dh = -0.8\\pi$."
+          }
+        },
+        {
+          "answer": "1.168*pi",
+          "feedback": {
+            "en": "That is the exact change, $\\pi(2.1)^2(4.8) - 20\\pi$. The question asks for the differential's estimate, which is $1.2\\pi$.",
+            "es": "Ese es el cambio exacto, $\\pi(2.1)^2(4.8) - 20\\pi$. La pregunta pide la estimación con el diferencial, que es $1.2\\pi$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "$dV = 2\\pi r h\\,dr + \\pi r^2\\,dh$.",
+        "es": "$dV = 2\\pi r h\\,dr + \\pi r^2\\,dh$."
+      },
+      "solution": [
+        {
+          "tex": "dV = 2\\pi r h\\,dr + \\pi r^2\\,dh",
+          "en": "Differential of V = πr²h.",
+          "es": "Diferencial de V = πr²h."
+        },
+        {
+          "tex": "dV = 2\\pi(2)(5)(0.1) + \\pi(4)(-0.2) = 2\\pi - 0.8\\pi = \\frac{6\\pi}{5}",
+          "en": "Substitute r = 2, h = 5, dr = 0.1, dh = -0.2.",
+          "es": "Sustituye r = 2, h = 5, dr = 0.1, dh = -0.2."
+        }
+      ]
+    },
+    {
+      "id": "mvc-07-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `linearize(f0, fx, fy, a, b, x, y)`. Here $f_0 = f(a,b)$, and $f_x$ and $f_y$ are the partial derivatives at $(a,b)$. The function returns the height of the tangent plane at $(x,y)$.",
+        "es": "Completa `linearize(f0, fx, fy, a, b, x, y)`. Aquí $f_0 = f(a,b)$, y $f_x$ y $f_y$ son las derivadas parciales en $(a,b)$. La función devuelve la altura del plano tangente en $(x,y)$."
+      },
+      "funcName": "linearize",
+      "starter": {
+        "en": "def linearize(f0, fx, fy, a, b, x, y):\n    # height of the tangent plane at (x, y)\n    pass",
+        "es": "def linearize(f0, fx, fy, a, b, x, y):\n    # altura del plano tangente en (x, y)\n    pass"
+      },
+      "solution": "def linearize(f0, fx, fy, a, b, x, y):\n    return f0 + fx * (x - a) + fy * (y - b)",
+      "tests": [
+        {
+          "args": [
+            4,
+            4,
+            4,
+            2,
+            1,
+            2.01,
+            0.98
+          ],
+          "expected": 3.96,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            5,
+            2,
+            4,
+            1,
+            2,
+            1,
+            2
+          ],
+          "expected": 5,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            5,
+            2,
+            4,
+            1,
+            2,
+            2,
+            3
+          ],
+          "expected": 11,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            0,
+            1,
+            -1,
+            0,
+            0,
+            0.5,
+            0.5
+          ],
+          "expected": 0,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            1,
+            0,
+            0,
+            3,
+            3,
+            -1,
+            4
+          ],
+          "expected": 1,
+          "tol": 1e-09
+        }
+      ],
+      "hint": {
+        "en": "Start from f0 and add the change in each direction: fx·(x − a) and fy·(y − b).",
+        "es": "Parte de f0 y suma el cambio en cada dirección: fx·(x − a) y fy·(y − b)."
+      }
+    }
+  ],
+  "references": [
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 14.4, tangent planes and linear approximations",
+        "es": "Cap. 14.4, planos tangentes y aproximaciones lineales"
+      }
+    },
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 2.3, differentiation",
+        "es": "Cap. 2.3, diferenciación"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§5.8, linearization and multivariate Taylor series",
+        "es": "§5.8, linealización y series de Taylor multivariantes"
+      }
+    }
+  ]
+}

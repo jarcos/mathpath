@@ -1,0 +1,420 @@
+{
+  "id": "mvc-13-gd-newton",
+  "subjectId": "multivariable",
+  "order": 13,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Gradient Descent & Newton's Method",
+    "es": "Descenso de gradiente y método de Newton"
+  },
+  "sections": [
+    {
+      "type": "prereq",
+      "lessons": [
+        "mvc-05-gradient"
+      ],
+      "note": {
+        "en": "Uses the gradient as the direction of steepest ascent; here it becomes an update rule.",
+        "es": "Usa el gradiente como dirección de máximo crecimiento; aquí se convierte en una regla de actualización."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Imagine walking down a valley in thick fog. You cannot see the floor, but you can feel the slope under your feet, so you step in the steepest downhill direction, check again, and repeat. That is **gradient descent**: $$x_{k+1} = x_k - \\eta\\,\\nabla f(x_k), \\qquad k = 0, 1, 2, \\dots$$ The gradient points uphill (lesson 5), so subtracting it moves you downhill. The positive number $\\eta$ is the **step size**, or, in machine learning, the **learning rate**. The method needs only first derivatives, which is why it scales to millions of variables.",
+        "es": "Imagina que bajas por un valle con niebla espesa. No ves el fondo, pero notas la pendiente bajo tus pies: das un paso en la dirección de máxima bajada, vuelves a comprobarlo y repites. Eso es el **descenso de gradiente**: $$x_{k+1} = x_k - \\eta\\,\\nabla f(x_k), \\qquad k = 0, 1, 2, \\dots$$ El gradiente apunta cuesta arriba (lección 5), así que restarlo te lleva cuesta abajo. El número positivo $\\eta$ es el **tamaño de paso** o, en aprendizaje automático, la **tasa de aprendizaje**. El método solo necesita derivadas primeras, por eso escala a millones de variables."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "When should you stop? Typical rules are: the gradient is small, $\\lVert\\nabla f(x_k)\\rVert \\le \\varepsilon$; the steps have become tiny, $\\lVert x_{k+1} - x_k\\rVert \\le \\varepsilon$; or a budget of steps has run out. A zero gradient marks a critical point (lesson 11), which may be a minimum, a maximum or a saddle. For a **convex** function (lesson 12) every critical point is a global minimum, so a small gradient is a good sign that $f(x_k)$ is close to its minimum value. The gradient-norm rule is the cheapest, since the gradient is computed at every step anyway.",
+        "es": "¿Cuándo parar? Reglas habituales: el gradiente es pequeño, $\\lVert\\nabla f(x_k)\\rVert \\le \\varepsilon$; los pasos se han vuelto minúsculos, $\\lVert x_{k+1} - x_k\\rVert \\le \\varepsilon$; o se ha agotado un número máximo de pasos. Un gradiente nulo marca un punto crítico (lección 11), que puede ser un mínimo, un máximo o un punto de silla. Para una función **convexa** (lección 12) todo punto crítico es un mínimo global, así que un gradiente pequeño es buena señal de que $f(x_k)$ está cerca de su valor mínimo. La regla de la norma del gradiente es la más barata, porque el gradiente se calcula en cada paso de todos modos."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — one variable, f(x) = x²",
+        "es": "Ejemplo resuelto — una variable, f(x) = x²"
+      },
+      "content": {
+        "en": "Here $f'(x) = 2x$, so gradient descent gives $x_{k+1} = (1 - 2\\eta)\\,x_k$. This is the case $\\lambda = 2$ of the next paragraph. Start at $x_0 = 1$. With $\\eta = 0.3$ the factor is $0.4$: $x_1 = 0.4$, $x_2 = 0.16$, $x_3 = 0.064$, and the iterates shrink to $0$. With $\\eta = 0.5$ one step is enough: $x_1 = 0$. With $\\eta = 1.1$ the factor is $-1.2$: $x_1 = -1.2$, $x_2 = 1.44$, $x_3 = -1.728$, and the iterates grow. The window $0 < \\eta < 1$ is exactly $0 < \\eta < 2/\\lambda$ with $\\lambda = 2$.",
+        "es": "Aquí $f'(x) = 2x$, así que el descenso de gradiente da $x_{k+1} = (1 - 2\\eta)\\,x_k$; es el caso $\\lambda = 2$ del párrafo siguiente. Empieza en $x_0 = 1$. Con $\\eta = 0.3$ el factor es $0.4$: $x_1 = 0.4$, $x_2 = 0.16$, $x_3 = 0.064$, y las iteraciones se acercan a $0$. Con $\\eta = 0.5$ basta un paso: $x_1 = 0$. Con $\\eta = 1.1$ el factor es $-1.2$: $x_1 = -1.2$, $x_2 = 1.44$, $x_3 = -1.728$, y las iteraciones crecen. La ventana $0 < \\eta < 1$ es exactamente $0 < \\eta < 2/\\lambda$ con $\\lambda = 2$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Now the step size matters. Take a one-variable quadratic $f(x) = \\tfrac12\\lambda x^2$ with curvature $\\lambda > 0$. Then $f'(x) = \\lambda x$ and $$x_{k+1} = (1 - \\eta\\lambda)\\,x_k,$$ so $x_k = (1 - \\eta\\lambda)^k x_0$. The iterates converge to the minimum $0$ exactly when $|1 - \\eta\\lambda| < 1$, that is $$0 < \\eta < \\frac{2}{\\lambda}.$$ Inside the window a small $\\eta$ is safe but slow, because the factor is close to $1$, and $\\eta = 1/\\lambda$ lands on the minimum in one step. For $1 < \\eta\\lambda < 2$ the iterates still converge, but they zig-zag across the minimum. Beyond $2/\\lambda$ they grow.",
+        "es": "Ahora el tamaño de paso importa. Toma un cuadrático de una variable $f(x) = \\tfrac12\\lambda x^2$ con curvatura $\\lambda > 0$. Entonces $f'(x) = \\lambda x$ y $$x_{k+1} = (1 - \\eta\\lambda)\\,x_k,$$ así que $x_k = (1 - \\eta\\lambda)^k x_0$. Las iteraciones convergen al mínimo $0$ exactamente cuando $|1 - \\eta\\lambda| < 1$, es decir, $$0 < \\eta < \\frac{2}{\\lambda}.$$ Dentro de la ventana, un $\\eta$ pequeño es seguro pero lento, porque el factor está cerca de $1$, y $\\eta = 1/\\lambda$ cae en el mínimo en un solo paso. Para $1 < \\eta\\lambda < 2$ las iteraciones siguen convergiendo, pero oscilan a un lado y a otro del mínimo. Más allá de $2/\\lambda$ crecen."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Several variables add a new effect: **conditioning**. Take $f(x, y) = 5x^2 + \\tfrac12 y^2$, with curvatures $10$ along $x$ and $1$ along $y$, so $\\nabla f = (10x, y)$. With $\\eta = 0.1$ the first step gives $x_1 = 1 - 0.1\\cdot 10 = 0$: the steep coordinate reaches its minimum at once. But $y_1 = 0.9$, and the flat coordinate shrinks by only $0.9$ per step. After 100 steps it is still about $2.7\\cdot 10^{-5}$ of its starting value. The **condition number** $\\kappa = \\lambda_{\\max}/\\lambda_{\\min} = 10$ measures this stretch. Stability needs $\\eta < 2/\\lambda_{\\max} = 0.2$, and even the best fixed step multiplies the error by $\\tfrac{\\kappa-1}{\\kappa+1}$ per step in the worst direction, a number close to $1$ when $\\kappa$ is large. Large $\\kappa$ means long zig-zags across a narrow valley.",
+        "es": "Con varias variables aparece un efecto nuevo: el **condicionamiento**. Toma $f(x, y) = 5x^2 + \\tfrac12 y^2$, con curvaturas $10$ en $x$ y $1$ en $y$, así que $\\nabla f = (10x, y)$. Con $\\eta = 0.1$, el primer paso da $x_1 = 1 - 0.1\\cdot 10 = 0$: la coordenada empinada llega de golpe a su mínimo. Pero $y_1 = 0.9$, y la coordenada plana solo se multiplica por $0.9$ en cada paso. Tras 100 pasos sigue valiendo unas $2.7\\cdot 10^{-5}$ partes de su valor inicial. El **número de condición** $\\kappa = \\lambda_{\\max}/\\lambda_{\\min} = 10$ mide esta desproporción. La estabilidad exige $\\eta < 2/\\lambda_{\\max} = 0.2$, e incluso el mejor paso fijo multiplica el error por $\\tfrac{\\kappa-1}{\\kappa+1}$ en cada paso en la peor dirección, un número cercano a $1$ si $\\kappa$ es grande. Una $\\kappa$ grande significa zigzags largos a través de un valle estrecho."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "def gd(eta, steps):\n    # f(x, y) = 5x^2 + y^2/2, so grad f = (10x, y)\n    x, y = 1.0, 1.0\n    for _ in range(steps):\n        x, y = x - eta * 10 * x, y - eta * y\n    return round(x, 6), round(y, 6)\n\nfor eta in (0.1, 0.25):\n    print(eta, gd(eta, 5))",
+        "es": "def gd(eta, steps):\n    # f(x, y) = 5x^2 + y^2/2, así que grad f = (10x, y)\n    x, y = 1.0, 1.0\n    for _ in range(steps):\n        x, y = x - eta * 10 * x, y - eta * y\n    return round(x, 6), round(y, 6)\n\nfor eta in (0.1, 0.25):\n    print(eta, gd(eta, 5))"
+      },
+      "expectedOutput": "0.1 (0.0, 0.59049)\n0.25 (-7.59375, 0.237305)",
+      "caption": {
+        "en": "With $\\eta = 0.1$ the steep coordinate reaches $0$ at once, while the flat one shrinks by $0.9$ per step. With $\\eta = 0.25$, above the limit $2/10 = 0.2$, the steep coordinate flips sign and grows; the flat one still converges.",
+        "es": "Con $\\eta = 0.1$, la coordenada empinada llega a $0$ de golpe, mientras que la plana se multiplica por $0.9$ en cada paso. Con $\\eta = 0.25$, por encima del límite $2/10 = 0.2$, la coordenada empinada cambia de signo y crece; la plana sigue convergiendo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Newton's method** also uses the curvature, not only the slope. Take the second-order model from lesson 10, $f(x + h) \\approx f(x) + \\nabla f(x)\\cdot h + \\tfrac12 h^\\top H h$, and choose the step $h$ that minimizes it. Setting its gradient $\\nabla f(x) + Hh$ to zero gives $$x_{k+1} = x_k - H^{-1}\\nabla f(x_k).$$ In one variable this is $x - f'(x)/f''(x)$. On a quadratic the model is exact, so one step reaches the minimum. Near a minimum, where $H$ is positive definite, the error is roughly a constant times the square of the previous error, so the number of correct digits roughly doubles. If $H$ is not positive definite, the step can head towards a saddle or a maximum. The price is building $H$ and solving a linear system with it at every step.",
+        "es": "El **método de Newton** usa también la curvatura, no solo la pendiente. Toma el modelo de segundo orden de la lección 10, $f(x + h) \\approx f(x) + \\nabla f(x)\\cdot h + \\tfrac12 h^\\top H h$, y elige el paso $h$ que lo minimiza. Igualando a cero su gradiente, $\\nabla f(x) + Hh$, sale $$x_{k+1} = x_k - H^{-1}\\nabla f(x_k).$$ En una variable, $x - f'(x)/f''(x)$. En un cuadrático el modelo es exacto, así que un paso llega al mínimo. Cerca de un mínimo, donde $H$ es definida positiva, el error es aproximadamente una constante por el cuadrado del error anterior, así que el número de cifras correctas se duplica aproximadamente. Si $H$ no es definida positiva, el paso puede dirigirse hacia un punto de silla o un máximo. El precio es construir $H$ y resolver con ella un sistema lineal en cada paso."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — Newton on eˣ − 2x",
+        "es": "Ejemplo resuelto — Newton con eˣ − 2x"
+      },
+      "content": {
+        "en": "Here $f'(x) = e^x - 2$ and $f''(x) = e^x$, so $$x_{k+1} = x_k - \\frac{e^{x_k} - 2}{e^{x_k}} = x_k - 1 + 2e^{-x_k}.$$ The minimum is at $x^* = \\ln 2 \\approx 0.693147$, where $f' = 0$. From $x_0 = 0$: $x_1 = 1$, $x_2 = 2/e \\approx 0.735759$, $x_3 \\approx 0.694042$, $x_4 \\approx 0.693148$. The errors $x_k - x^*$ are $0.31$, $0.043$, $0.0009$ and $0.0000004$: each one is roughly the square of the one before, times a constant.",
+        "es": "Aquí $f'(x) = e^x - 2$ y $f''(x) = e^x$, así que $$x_{k+1} = x_k - \\frac{e^{x_k} - 2}{e^{x_k}} = x_k - 1 + 2e^{-x_k}.$$ El mínimo está en $x^* = \\ln 2 \\approx 0.693147$, donde $f' = 0$. Desde $x_0 = 0$: $x_1 = 1$, $x_2 = 2/e \\approx 0.735759$, $x_3 \\approx 0.694042$, $x_4 \\approx 0.693148$. Los errores $x_k - x^*$ son $0.31$, $0.043$, $0.0009$ y $0.0000004$: cada uno es, más o menos, el cuadrado del anterior por una constante."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "exp(x) - 2*x",
+      "domain": [
+        -1,
+        2
+      ],
+      "caption": {
+        "en": "$f(x) = e^x - 2x$ is convex, with its lowest point at $x = \\ln 2 \\approx 0.693$, where $f' = 0$. Newton's method from $x = 0$ is within $10^{-6}$ of it after four steps.",
+        "es": "$f(x) = e^x - 2x$ es convexa, con su punto más bajo en $x = \\ln 2 \\approx 0.693$, donde $f' = 0$. El método de Newton desde $x = 0$ está a menos de $10^{-6}$ de él tras cuatro pasos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "In machine learning $f$ is a loss averaged over the training data, and its gradient is estimated on a random **mini-batch**. This **stochastic gradient descent** (SGD) is noisy but cheap, and the noise averages out over many steps. The learning rate is the most important setting: too large and the loss diverges or zig-zags, too small and training crawls. Practitioners use warm-up and decay schedules, and **momentum** adds a fraction of the previous step to the current one, which damps zig-zagging. Plain Newton is rare for neural networks: with a million parameters the Hessian has a trillion entries and cannot even be stored. Practical methods approximate the curvature or use adaptive per-parameter steps such as Adam.",
+        "es": "En aprendizaje automático, $f$ es una pérdida promediada sobre los datos de entrenamiento, y su gradiente se estima con un **minilote** aleatorio. Este **descenso de gradiente estocástico** (SGD) es ruidoso pero barato, y el ruido se promedia a lo largo de muchos pasos. La tasa de aprendizaje es el ajuste más importante: si es demasiado grande, la pérdida diverge o zigzaguea; si es demasiado pequeña, el entrenamiento avanza a rastras. Se usan programas de calentamiento y de decaimiento, y el **momento** suma una fracción del paso anterior al actual, lo que amortigua los zigzags. El método de Newton tal cual es raro en redes neuronales: con un millón de parámetros, la hessiana tiene un billón de entradas y ni siquiera cabe en memoria. Los métodos prácticos aproximan la curvatura o usan pasos adaptativos por parámetro, como Adam."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-13-e1",
+      "answerType": "number",
+      "params": {
+        "a": {
+          "int": [
+            2,
+            4
+          ]
+        },
+        "x0": {
+          "int": [
+            1,
+            5
+          ]
+        },
+        "k": {
+          "int": [
+            1,
+            4
+          ]
+        }
+      },
+      "derived": {
+        "eta": "k / 10",
+        "xnew": "x0 - eta * 2 * a * x0"
+      },
+      "check": "abs(answer - x0 * (1 - 2 * a * eta)) < 1e-9",
+      "prompt": {
+        "en": "Let $f(x) = [[a]]x^2$. Starting from $x_0 = [[x0]]$ with step size $\\eta = [[eta]]$, compute $x_1$ after one step of gradient descent.",
+        "es": "Sea $f(x) = [[a]]x^2$. Partiendo de $x_0 = [[x0]]$ con tamaño de paso $\\eta = [[eta]]$, calcula $x_1$ tras un paso de descenso de gradiente."
+      },
+      "answer": "[[xnew]]",
+      "hint": {
+        "en": "Work out $f'(x)$ first, then subtract $\\eta f'(x_0)$ from $x_0$.",
+        "es": "Calcula primero $f'(x)$ y luego resta $\\eta f'(x_0)$ a $x_0$."
+      },
+      "solution": [
+        {
+          "tex": "f'(x) = 2\\cdot [[a]]\\cdot x",
+          "en": "Derivative.",
+          "es": "Derivada."
+        },
+        {
+          "tex": "x_1 = x_0 - \\eta\\, f'(x_0) = [[x0]] - [[eta]]\\cdot 2\\cdot [[a]]\\cdot [[x0]]",
+          "en": "One step: subtract η times the gradient.",
+          "es": "Un paso: resta η por el gradiente."
+        },
+        {
+          "tex": "= [[xnew]]",
+          "en": "Simplify.",
+          "es": "Simplifica."
+        }
+      ]
+    },
+    {
+      "id": "mvc-13-e2",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x) = x - \\ln x$ (with $x > 0$), take one Newton step from $x_0 = \\tfrac12$. What is $x_1$?",
+        "es": "Para $f(x) = x - \\ln x$ (con $x > 0$), da un paso de Newton desde $x_0 = \\tfrac12$. ¿Cuánto vale $x_1$?"
+      },
+      "answer": "3/4",
+      "acceptedAlt": [
+        "0.75"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1/4",
+          "feedback": {
+            "en": "Newton subtracts $f'/f''$. Here $f'(\\tfrac12) = -1$, so $x_0 - f'/f'' = \\tfrac12 + \\tfrac14 = \\tfrac34$; adding $f'/f''$ instead gives $\\tfrac14$.",
+            "es": "Newton resta $f'/f''$. Aquí $f'(\\tfrac12) = -1$, así que $x_0 - f'/f'' = \\tfrac12 + \\tfrac14 = \\tfrac34$; sumar $f'/f''$ en su lugar da $\\tfrac14$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "$f'(x) = 1 - 1/x$ and $f''(x) = 1/x^2$. Evaluate both at $x_0$.",
+        "es": "$f'(x) = 1 - 1/x$ y $f''(x) = 1/x^2$. Evalúalas en $x_0$."
+      },
+      "solution": [
+        {
+          "tex": "f'(x) = 1 - \\frac{1}{x},\\quad f''(x) = \\frac{1}{x^2}",
+          "en": "Derivatives.",
+          "es": "Derivadas."
+        },
+        {
+          "tex": "f'(\\tfrac12) = -1,\\quad f''(\\tfrac12) = 4",
+          "en": "Evaluate at x₀ = 1/2.",
+          "es": "Evalúa en x₀ = 1/2."
+        },
+        {
+          "tex": "x_1 = \\tfrac12 - \\frac{-1}{4} = \\tfrac34",
+          "en": "Newton step.",
+          "es": "Paso de Newton."
+        }
+      ]
+    },
+    {
+      "id": "mvc-13-e3",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x, y) = 2x^2 + 5y^2$, gradient descent converges (from any start) exactly when $0 < \\eta < \\eta^*$. Find $\\eta^*$.",
+        "es": "Para $f(x, y) = 2x^2 + 5y^2$, el descenso de gradiente converge (desde cualquier punto de partida) exactamente cuando $0 < \\eta < \\eta^*$. Halla $\\eta^*$."
+      },
+      "answer": "1/5",
+      "acceptedAlt": [
+        "0.2"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1/10",
+          "feedback": {
+            "en": "The second derivatives are $f_{xx} = 4$ and $f_{yy} = 10$, so $\\lambda_{\\max} = 10$. The limit is $2/\\lambda_{\\max} = \\tfrac15$; $\\tfrac1{10} = 1/\\lambda_{\\max}$ is the step that is exact along $y$, not the limit.",
+            "es": "Las segundas derivadas son $f_{xx} = 4$ y $f_{yy} = 10$, así que $\\lambda_{\\max} = 10$. El límite es $2/\\lambda_{\\max} = \\tfrac15$; $\\tfrac1{10} = 1/\\lambda_{\\max}$ es el paso que acierta exacto en la dirección de $y$, pero no es el límite."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Each curvature $\\lambda$ needs $\\eta\\lambda < 2$.",
+        "es": "Cada curvatura $\\lambda$ exige $\\eta\\lambda < 2$."
+      },
+      "solution": [
+        {
+          "tex": "f_{xx} = 4,\\quad f_{yy} = 10",
+          "en": "Second derivatives.",
+          "es": "Segundas derivadas."
+        },
+        {
+          "tex": "\\eta \\cdot 10 < 2",
+          "en": "The steepest direction sets the limit.",
+          "es": "La dirección más empinada fija el límite."
+        },
+        {
+          "tex": "\\eta^* = \\frac{2}{10} = \\frac15",
+          "en": "Threshold.",
+          "es": "Umbral."
+        }
+      ]
+    },
+    {
+      "id": "mvc-13-e4",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Gradient descent on a function whose level curves are very elongated ellipses (condition number 100) zig-zags across the valley. Why?",
+        "es": "El descenso de gradiente sobre una función cuyas curvas de nivel son elipses muy alargadas (número de condición 100) zigzaguea a través del valle. ¿Por qué?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The gradient vanishes along the flat direction, so gradient descent stops there and cannot move along the valley.",
+            "es": "El gradiente se anula en la dirección plana, así que el descenso se para allí y no avanza por el valle."
+          },
+          "correct": false,
+          "why": {
+            "en": "The gradient there is small but not zero, so the method does move, only slowly. It stops only when the gradient is close to zero everywhere.",
+            "es": "Allí el gradiente es pequeño pero no nulo, así que el método sí se mueve, solo que despacio. Se para solo cuando el gradiente está cerca de cero en todas partes."
+          }
+        },
+        {
+          "text": {
+            "en": "The Hessian is not symmetric, so the gradient is not a descent direction.",
+            "es": "La hessiana no es simétrica, así que el gradiente no es una dirección de descenso."
+          },
+          "correct": false,
+          "why": {
+            "en": "The Hessian of a smooth function is symmetric (Schwarz), and the negative gradient is always a descent direction, zig-zag or not.",
+            "es": "La hessiana de una función suave es simétrica (Schwarz), y el gradiente negativo es siempre una dirección de descenso, haya zigzag o no."
+          }
+        },
+        {
+          "text": {
+            "en": "The gradient points mostly across the narrow valley, so each step overshoots from one wall to the other, while progress along the valley is slow.",
+            "es": "El gradiente apunta sobre todo a través del valle estrecho, así que cada paso se pasa de una pared a la otra, mientras que el avance a lo largo del valle es lento."
+          },
+          "correct": true,
+          "why": {
+            "en": "Curvature is large across the valley, so stability forces a small step there; the flat direction then barely moves, and the path bounces between the walls.",
+            "es": "A través del valle la curvatura es grande, así que la estabilidad obliga a un paso pequeño; la dirección plana apenas se mueve, y el camino rebota entre las paredes."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which way does the gradient point on a long, narrow valley?",
+        "es": "¿Hacia dónde apunta el gradiente en un valle largo y estrecho?"
+      }
+    },
+    {
+      "id": "mvc-13-e5",
+      "answerType": "expression",
+      "prompt": {
+        "en": "For $f(x) = x^2$, write one gradient-descent step $x_{k+1}$ as a multiple of $x$, where $x = x_k$, with step size $\\eta$.",
+        "es": "Para $f(x) = x^2$, escribe un paso de descenso de gradiente $x_{k+1}$ como múltiplo de $x$, donde $x = x_k$, con tamaño de paso $\\eta$."
+      },
+      "answer": "(1 - 2*eta)*x",
+      "acceptedAlt": [
+        "x - 2*eta*x"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "(1 + 2*eta)*x",
+          "feedback": {
+            "en": "Gradient descent subtracts the gradient: $x_{k+1} = x_k - \\eta f'(x_k) = x_k - 2\\eta x_k$. With a plus sign you would climb the hill.",
+            "es": "El descenso de gradiente resta el gradiente: $x_{k+1} = x_k - \\eta f'(x_k) = x_k - 2\\eta x_k$. Con signo más subirías la cuesta."
+          }
+        }
+      ],
+      "hint": {
+        "en": "$f'(x) = 2x$, so $x_{k+1} = x - \\eta\\cdot 2x$.",
+        "es": "$f'(x) = 2x$, así que $x_{k+1} = x - \\eta\\cdot 2x$."
+      },
+      "solution": [
+        {
+          "tex": "f'(x) = 2x",
+          "en": "Derivative.",
+          "es": "Derivada."
+        },
+        {
+          "tex": "x_{k+1} = x - \\eta\\cdot 2x = (1 - 2\\eta)\\,x",
+          "en": "Subtract η times the gradient.",
+          "es": "Resta η por el gradiente."
+        }
+      ]
+    },
+    {
+      "id": "mvc-13-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `gd_quadratic(x0, y0, eta, steps)`: run `steps` steps of gradient descent on $f(x, y) = x^2 + 10y^2$, starting at $(x_0, y_0)$ with step size `eta`, and return the final point as the list `[x, y]`.",
+        "es": "Completa `gd_quadratic(x0, y0, eta, steps)`: haz `steps` pasos de descenso de gradiente sobre $f(x, y) = x^2 + 10y^2$, empezando en $(x_0, y_0)$ con tamaño de paso `eta`, y devuelve el punto final como la lista `[x, y]`."
+      },
+      "funcName": "gd_quadratic",
+      "starter": {
+        "en": "def gd_quadratic(x0, y0, eta, steps):\n    # grad f = (2x, 20y): update x and y `steps` times, then return [x, y]\n    pass",
+        "es": "def gd_quadratic(x0, y0, eta, steps):\n    # grad f = (2x, 20y): actualiza x e y `steps` veces y devuelve [x, y]\n    pass"
+      },
+      "solution": "def gd_quadratic(x0, y0, eta, steps):\n    x, y = x0, y0\n    for _ in range(steps):\n        x, y = x - eta * 2 * x, y - eta * 20 * y\n    return [x, y]",
+      "tests": [
+        {
+          "args": [
+            1,
+            1,
+            0.05,
+            10
+          ],
+          "expected": [
+            0.3486784401,
+            0.0
+          ],
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            3,
+            2,
+            0.08,
+            20
+          ],
+          "expected": [
+            0.0917713195,
+            7.31232e-05
+          ],
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            2,
+            1,
+            0.09,
+            6
+          ],
+          "expected": [
+            0.6080133428,
+            0.262144
+          ],
+          "tol": 1e-09
+        }
+      ],
+      "hint": {
+        "en": "One update is $x, y \\leftarrow x - \\eta\\cdot 2x,\\ y - \\eta\\cdot 20y$; repeat it in a loop.",
+        "es": "Una actualización es $x, y \\leftarrow x - \\eta\\cdot 2x,\\ y - \\eta\\cdot 20y$; repítela en un bucle."
+      }
+    }
+  ],
+  "references": [
+    {
+      "source": "Boyd & Vandenberghe — Convex Optimization",
+      "detail": {
+        "en": "§9.3, gradient descent method; §9.5, Newton's method",
+        "es": "§9.3, método de descenso de gradiente; §9.5, método de Newton"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§7.1, optimization using gradient descent",
+        "es": "§7.1, optimización con descenso de gradiente"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning",
+      "detail": {
+        "en": "§4.3, gradient-based optimization",
+        "es": "§4.3, optimización basada en gradientes"
+      }
+    }
+  ]
+}

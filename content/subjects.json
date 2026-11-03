@@ -187,6 +187,40 @@
       ]
     },
     {
+      "id": "multivariable",
+      "requires": ["calculus", "linear-algebra"],
+      "icon": "∇",
+      "targetDays": 30,
+      "status": "available",
+      "track": "math",
+      "plannedLessons": 14,
+      "source": "Stewart, Calculus: Early Transcendentals ch. 11 & 14; Deisenroth, Faisal & Ong, MML ch. 5 & 7",
+      "name": {
+        "en": "Multivariable Calculus & Optimization",
+        "es": "Cálculo multivariable y optimización"
+      },
+      "description": {
+        "en": "Taylor, partial derivatives, gradients, Jacobians, Hessians and Lagrange multipliers — the calculus that trains every model.",
+        "es": "Taylor, derivadas parciales, gradientes, jacobianos, hessianos y multiplicadores de Lagrange: el cálculo con el que se entrena cada modelo."
+      },
+      "lessons": [
+        "multivariable/lesson-01-taylor-polynomials.json",
+        "multivariable/lesson-02-functions-several-variables.json",
+        "multivariable/lesson-03-partial-derivatives.json",
+        "multivariable/lesson-04-higher-order-partials.json",
+        "multivariable/lesson-05-gradient.json",
+        "multivariable/lesson-06-directional-derivatives.json",
+        "multivariable/lesson-07-tangent-plane-linearization.json",
+        "multivariable/lesson-08-chain-rule.json",
+        "multivariable/lesson-09-jacobian.json",
+        "multivariable/lesson-10-hessian-taylor.json",
+        "multivariable/lesson-11-critical-points.json",
+        "multivariable/lesson-12-convexity.json",
+        "multivariable/lesson-13-gradient-descent-newton.json",
+        "multivariable/lesson-14-lagrange-multipliers.json"
+      ]
+    },
+    {
       "id": "statistics",
       "requires": ["functions"],
       "icon": "σ",

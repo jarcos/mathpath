@@ -1,0 +1,463 @@
+{
+  "id": "mvc-10-hessian",
+  "subjectId": "multivariable",
+  "order": 10,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "The Hessian & Second-Order Taylor",
+    "es": "La matriz hessiana y Taylor de segundo orden"
+  },
+  "sections": [
+    {
+      "type": "prereq",
+      "lessons": [
+        "mvc-04-higher-partials"
+      ],
+      "note": {
+        "en": "Builds on second-order partial derivatives and on Schwarz's theorem.",
+        "es": "Se apoya en las derivadas parciales de segundo orden y en el teorema de Schwarz."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The gradient tells you the slope at a point: which way is uphill, and how steeply. It does not tell you how far that slope can be trusted. Two surfaces can share the same gradient at a point and still curve in opposite ways: one bends up like a bowl, the other bends down like a dome. What separates them is **curvature**, the way the gradient itself changes as you move. For one variable, curvature is $f''$. For several variables it is recorded by a matrix, the **Hessian**, which is the subject of this lesson.",
+        "es": "El gradiente te dice la pendiente en un punto: hacia dónde sube y cuán empinado es. No dice hasta dónde puede fiarse uno de esa pendiente. Dos superficies pueden tener el mismo gradiente en un punto y curvarse en sentidos opuestos: una se curva hacia arriba como un cuenco, la otra hacia abajo como una cúpula. Lo que las separa es la **curvatura**, la forma en que cambia el propio gradiente al moverte. En una variable, la curvatura es $f''$. En varias variables se recoge con una matriz, la **hessiana**, que es el tema de esta lección."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Let $f$ have continuous second partial derivatives. The **Hessian matrix** of $f$ at $a$ collects them. For $f(x, y)$ it is $$H_f(a) = \\begin{pmatrix} f_{xx} & f_{xy} \\\\ f_{yx} & f_{yy} \\end{pmatrix}(a),$$ and in general its entries are $H_{ij} = \\dfrac{\\partial^2 f}{\\partial x_i\\,\\partial x_j}$. By Schwarz's theorem $f_{xy} = f_{yx}$, so $H$ is **symmetric**: $H = H^\\top$. The Hessian is also the Jacobian matrix of the gradient, $H_f = J_{\\nabla f}$, because row $i$ of $H$ is the gradient of $\\partial f/\\partial x_i$. The diagonal entries say how the function bends along each axis. The off-diagonal entries say how the slope in one direction changes as you move in another.",
+        "es": "Sea $f$ con segundas derivadas parciales continuas. La **matriz hessiana** de $f$ en $a$ las reúne. Para $f(x, y)$ es $$H_f(a) = \\begin{pmatrix} f_{xx} & f_{xy} \\\\ f_{yx} & f_{yy} \\end{pmatrix}(a),$$ y en general sus elementos son $H_{ij} = \\dfrac{\\partial^2 f}{\\partial x_i\\,\\partial x_j}$. Por el teorema de Schwarz, $f_{xy} = f_{yx}$, así que $H$ es **simétrica**: $H = H^\\top$. La hessiana es también la matriz jacobiana del gradiente, $H_f = J_{\\nabla f}$, porque la fila $i$ de $H$ es el gradiente de $\\partial f/\\partial x_i$. Los elementos de la diagonal indican cómo se curva la función en cada eje. Los de fuera de la diagonal indican cómo cambia la pendiente en una dirección al moverte en otra."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Lesson 1 gave the Taylor expansion of one variable, $f(a + h) \\approx f(a) + f'(a)\\,h + \\tfrac12 f''(a)\\,h^2$. Its several-variable version is $$f(a + h) \\approx f(a) + \\nabla f(a)\\cdot h + \\tfrac12\\, h^\\top H_f(a)\\, h.$$ To see where it comes from, let $g(s) = f(a + sh)$. The chain rule (lesson 8) gives $g'(s) = \\nabla f(a + sh)\\cdot h$ and $g''(s) = h^\\top H_f(a + sh)\\,h$. Applying the one-variable formula to $g$ at $s = 0$, and setting $s = 1$, gives exactly the formula above. The term $\\tfrac12 h^\\top H h$ is the quadratic form that $H$ defines in the direction $h$. The structure matches lesson 1: a constant, a linear term given by the gradient, and a quadratic term given by the curvature.",
+        "es": "La lección 1 dio el desarrollo de Taylor de una variable, $f(a + h) \\approx f(a) + f'(a)\\,h + \\tfrac12 f''(a)\\,h^2$. Su versión en varias variables es $$f(a + h) \\approx f(a) + \\nabla f(a)\\cdot h + \\tfrac12\\, h^\\top H_f(a)\\, h.$$ Para ver de dónde sale, sea $g(s) = f(a + sh)$. La regla de la cadena (lección 8) da $g'(s) = \\nabla f(a + sh)\\cdot h$ y $g''(s) = h^\\top H_f(a + sh)\\,h$. Aplicar la fórmula de una variable a $g$ en $s = 0$, y poner $s = 1$, da exactamente la fórmula anterior. El término $\\tfrac12 h^\\top H h$ es la forma cuadrática que define $H$ en la dirección $h$. La estructura coincide con la de la lección 1: una constante, un término lineal dado por el gradiente y un término cuadrático dado por la curvatura."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Example — the second-order model of x²y + y³ at (1, 2)",
+        "es": "Ejemplo resuelto — el modelo de segundo orden de x²y + y³ en (1, 2)"
+      },
+      "content": {
+        "en": "Let $f(x, y) = x^2 y + y^3$ and $a = (1, 2)$. Then $f(a) = 2 + 8 = 10$, $\\nabla f = (2xy,\\ x^2 + 3y^2)$, so $\\nabla f(a) = (4, 13)$, and $$H_f = \\begin{pmatrix} 2y & 2x \\\\ 2x & 6y \\end{pmatrix}, \\qquad H_f(a) = \\begin{pmatrix} 4 & 2 \\\\ 2 & 12 \\end{pmatrix}.$$ For $h = (0.1,\\ -0.1)$: $\\nabla f(a)\\cdot h = 0.4 - 1.3 = -0.9$. Also $h^\\top H h = 4(0.1)^2 + 2\\cdot 2\\cdot(0.1)(-0.1) + 12(-0.1)^2 = 0.12$, so $\\tfrac12 h^\\top H h = 0.06$. The quadratic model gives $10 - 0.9 + 0.06 = 9.16$, while $f(1.1, 1.9) = 9.158$. The remaining difference, $-0.002$, is a third-order term: along this line, with $h$ scaled by $s$, it equals $-0.002\\,s^3$.",
+        "es": "Sea $f(x, y) = x^2 y + y^3$ y $a = (1, 2)$. Entonces $f(a) = 2 + 8 = 10$, $\\nabla f = (2xy,\\ x^2 + 3y^2)$, así que $\\nabla f(a) = (4, 13)$, y $$H_f = \\begin{pmatrix} 2y & 2x \\\\ 2x & 6y \\end{pmatrix}, \\qquad H_f(a) = \\begin{pmatrix} 4 & 2 \\\\ 2 & 12 \\end{pmatrix}.$$ Para $h = (0.1,\\ -0.1)$: $\\nabla f(a)\\cdot h = 0.4 - 1.3 = -0.9$. Además, $h^\\top H h = 4(0.1)^2 + 2\\cdot 2\\cdot(0.1)(-0.1) + 12(-0.1)^2 = 0.12$, así que $\\tfrac12 h^\\top H h = 0.06$. El modelo cuadrático da $10 - 0.9 + 0.06 = 9.16$, mientras que $f(1.1, 1.9) = 9.158$. La diferencia restante, $-0.002$, es un término de tercer orden: a lo largo de esta recta, con $h$ multiplicado por $s$, vale $-0.002\\,s^3$."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "(1 + 0.1*x)^2*(2 - 0.1*x) + (2 - 0.1*x)^3 - (10 - 0.9*x)",
+      "domain": [
+        -3,
+        3
+      ],
+      "caption": {
+        "en": "This is the error of the first-order model along the line $a + sh$: $f(a + sh) - (10 - 0.9s) = 0.06s^2 - 0.002s^3$. The $0.06s^2$ part is the curvature term that the second-order model adds. What is left is the cubic $-0.002s^3$.",
+        "es": "Este es el error del modelo de primer orden a lo largo de la recta $a + sh$: $f(a + sh) - (10 - 0.9s) = 0.06s^2 - 0.002s^3$. La parte $0.06s^2$ es el término de curvatura que añade el modelo de segundo orden. Lo que queda es el cúbico $-0.002s^3$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Some functions are exactly quadratic. Let $A$ be a symmetric matrix and $b$ a vector, and set $f(x) = \\tfrac12 x^\\top A x + b^\\top x$. Then $\\nabla f(x) = Ax + b$, and differentiating again gives $H_f = A$ everywhere. The second-order Taylor formula is therefore not an approximation at all: it is exact, with no remainder, and the curvature is the same at every point. The factor $\\tfrac12$ is what makes $H = A$ rather than $2A$. In the Taylor formula, the term $\\tfrac12 h^\\top H h$ then returns exactly the quadratic part of $f$.",
+        "es": "Algunas funciones son exactamente cuadráticas. Sea $A$ una matriz simétrica y $b$ un vector, y define $f(x) = \\tfrac12 x^\\top A x + b^\\top x$. Entonces $\\nabla f(x) = Ax + b$, y al derivar otra vez, $H_f = A$ en todas partes. La fórmula de Taylor de segundo orden no es, pues, una aproximación: es exacta, sin resto, y la curvatura es la misma en todos los puntos. El factor $\\tfrac12$ es lo que hace que $H = A$ y no $2A$. En la fórmula de Taylor, el término $\\tfrac12 h^\\top H h$ devuelve entonces exactamente la parte cuadrática de $f$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Example — a quadratic function equals its second-order model",
+        "es": "Ejemplo resuelto — una función cuadrática coincide con su modelo de segundo orden"
+      },
+      "content": {
+        "en": "Take $f(x, y) = x^2 - xy + 2y^2$, which is $\\tfrac12 x^\\top A x$ with $A = \\begin{pmatrix} 2 & -1 \\\\ -1 & 4 \\end{pmatrix}$. At $a = (1, 1)$: $f(a) = 2$, $\\nabla f(a) = (2x - y,\\ -x + 4y) = (1, 3)$, and $H_f = A$ everywhere. Choose $h = (0.5,\\ -0.2)$. The first-order part is $\\nabla f(a)\\cdot h = 0.5 - 0.6 = -0.1$. The second-order part is $h^\\top A h = 2(0.5)^2 + 2(-1)(0.5)(-0.2) + 4(-0.2)^2 = 0.86$, so $\\tfrac12 h^\\top A h = 0.43$. The model gives $2 - 0.1 + 0.43 = 2.33$. Direct substitution, $f(1.5, 0.8) = 2.25 - 1.2 + 1.28 = 2.33$, agrees exactly, as it must for a quadratic.",
+        "es": "Toma $f(x, y) = x^2 - xy + 2y^2$, que es $\\tfrac12 x^\\top A x$ con $A = \\begin{pmatrix} 2 & -1 \\\\ -1 & 4 \\end{pmatrix}$. En $a = (1, 1)$: $f(a) = 2$, $\\nabla f(a) = (2x - y,\\ -x + 4y) = (1, 3)$, y $H_f = A$ en todas partes. Elige $h = (0.5,\\ -0.2)$. La parte de primer orden es $\\nabla f(a)\\cdot h = 0.5 - 0.6 = -0.1$. La de segundo orden es $h^\\top A h = 2(0.5)^2 + 2(-1)(0.5)(-0.2) + 4(-0.2)^2 = 0.86$, así que $\\tfrac12 h^\\top A h = 0.43$. El modelo da $2 - 0.1 + 0.43 = 2.33$. Sustituir directamente, $f(1.5, 0.8) = 2.25 - 1.2 + 1.28 = 2.33$, coincide exactamente, como debe pasar con una cuadrática."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Curvature decides how training behaves. For linear regression, the loss $L(w) = \\tfrac12\\lVert Xw - y\\rVert^2$ has gradient $X^\\top(Xw - y)$ and Hessian $X^\\top X$ for every $w$. That Hessian is constant and positive semidefinite, so the loss is convex. Its largest eigenvalue $\\lambda_{\\max}$ sets the step-size limit: gradient descent converges only when $\\eta < 2/\\lambda_{\\max}$ (lesson 13). Newton's method uses the same matrix: it builds the quadratic model from $H$ and jumps to that model's minimum. Lesson 11 reads the second-derivative test off $H$: at a critical point, a positive definite Hessian means a local minimum.",
+        "es": "La curvatura decide cómo se comporta el entrenamiento. En la regresión lineal, la pérdida $L(w) = \\tfrac12\\lVert Xw - y\\rVert^2$ tiene gradiente $X^\\top(Xw - y)$ y hessiana $X^\\top X$ para todo $w$. Esa hessiana es constante y semidefinida positiva, así que la pérdida es convexa. Su mayor autovalor $\\lambda_{\\max}$ fija el límite del tamaño de paso: el descenso de gradiente solo converge si $\\eta < 2/\\lambda_{\\max}$ (lección 13). El método de Newton usa la misma matriz: construye el modelo cuadrático con $H$ y salta al mínimo de ese modelo. La lección 11 lee el criterio de la segunda derivada en $H$: en un punto crítico, una hessiana definida positiva indica un mínimo local."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "sympy"
+      ],
+      "code": {
+        "en": "import sympy as sp\n\n# Hessian of f(x, y) = x^2 y + y^3, computed symbolically, then evaluated at (1, 2)\nx, y = sp.symbols(\"x y\")\nf = x ** 2 * y + y ** 3\nH = sp.hessian(f, (x, y))\nvalues = H.subs({x: 1, y: 2})\nprint([[int(v) for v in row] for row in values.tolist()])\nprint(\"det =\", int(values.det()))",
+        "es": "import sympy as sp\n\n# Hessiana de f(x, y) = x^2 y + y^3, calculada simbólicamente y evaluada en (1, 2)\nx, y = sp.symbols(\"x y\")\nf = x ** 2 * y + y ** 3\nH = sp.hessian(f, (x, y))\nvalues = H.subs({x: 1, y: 2})\nprint([[int(v) for v in row] for row in values.tolist()])\nprint(\"det =\", int(values.det()))"
+      },
+      "expectedOutput": "[[4, 2], [2, 12]]\ndet = 44",
+      "caption": {
+        "en": "SymPy differentiates symbolically, so the entries are exact. The symmetric matrix $\\begin{pmatrix} 4 & 2 \\\\ 2 & 12 \\end{pmatrix}$ has determinant $44$.",
+        "es": "SymPy deriva de forma simbólica, así que los elementos son exactos. La matriz simétrica $\\begin{pmatrix} 4 & 2 \\\\ 2 & 12 \\end{pmatrix}$ tiene determinante $44$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-10-e1",
+      "answerType": "number",
+      "params": {
+        "a": {
+          "int": [
+            1,
+            4
+          ]
+        },
+        "k": {
+          "int": [
+            1,
+            3
+          ]
+        }
+      },
+      "derived": {
+        "val": "2*a*k"
+      },
+      "check": "abs(answer - ((3*(1)^2 + a*(k+0.0001)^2) - (3*(1)^2 + a*(k-0.0001)^2)) / 0.0002) < 0.000001",
+      "prompt": {
+        "en": "Let $f(x, y) = x^3 + [[a]]\\,x\\,y^2$. Find the mixed partial $f_{xy}$ at $(x, y) = (1, [[k]])$.",
+        "es": "Sea $f(x, y) = x^3 + [[a]]\\,x\\,y^2$. Halla la derivada parcial mixta $f_{xy}$ en $(x, y) = (1, [[k]])$."
+      },
+      "answer": "[[val]]",
+      "hint": {
+        "en": "Differentiate once in $x$, then once in $y$. Here both orders give the same answer.",
+        "es": "Deriva una vez respecto de $x$ y luego una vez respecto de $y$. Aquí ambos órdenes dan lo mismo."
+      },
+      "solution": [
+        {
+          "tex": "f_x = 3x^2 + [[a]]\\,y^2",
+          "en": "Differentiate in x; y is a constant.",
+          "es": "Deriva respecto de x; y es constante."
+        },
+        {
+          "tex": "f_{xy} = \\frac{\\partial}{\\partial y}\\big(3x^2 + [[a]]\\,y^2\\big) = 2\\cdot [[a]]\\,y",
+          "en": "Now differentiate in y; x is a constant.",
+          "es": "Ahora deriva respecto de y; x es constante."
+        },
+        {
+          "tex": "f_{xy}(1, [[k]]) = 2\\cdot [[a]]\\cdot [[k]] = [[val]]",
+          "en": "Substitute x = 1 and y = [[k]].",
+          "es": "Sustituye x = 1 e y = [[k]]."
+        }
+      ]
+    },
+    {
+      "id": "mvc-10-e2",
+      "answerType": "expression",
+      "prompt": {
+        "en": "For $f(x, y) = x^2 y^2$, find $\\det H_f(x, y)$ as an expression in $x$ and $y$.",
+        "es": "Para $f(x, y) = x^2 y^2$, halla $\\det H_f(x, y)$ como expresión en $x$ e $y$."
+      },
+      "answer": "-12*x^2*y^2",
+      "commonMistakes": [
+        {
+          "answer": "4*x^2*y^2",
+          "feedback": {
+            "en": "That is only $f_{xx}f_{yy}$. The formula is $\\det H = f_{xx}f_{yy} - f_{xy}^2$, and $f_{xy}^2 = (4xy)^2 = 16x^2y^2$ must be subtracted: $4x^2y^2 - 16x^2y^2 = -12x^2y^2$.",
+            "es": "Eso es solo $f_{xx}f_{yy}$. La fórmula es $\\det H = f_{xx}f_{yy} - f_{xy}^2$, y hay que restar $f_{xy}^2 = (4xy)^2 = 16x^2y^2$: $4x^2y^2 - 16x^2y^2 = -12x^2y^2$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "$f_x = 2xy^2$. Compute $f_{xx}$, $f_{xy}$ and $f_{yy}$, then use $\\det H = f_{xx}f_{yy} - f_{xy}^2$.",
+        "es": "$f_x = 2xy^2$. Calcula $f_{xx}$, $f_{xy}$ y $f_{yy}$, y luego usa $\\det H = f_{xx}f_{yy} - f_{xy}^2$."
+      },
+      "solution": [
+        {
+          "tex": "f_x = 2xy^2,\\qquad f_y = 2x^2y",
+          "en": "First partial derivatives.",
+          "es": "Primeras derivadas parciales."
+        },
+        {
+          "tex": "f_{xx} = 2y^2,\\qquad f_{xy} = 4xy,\\qquad f_{yy} = 2x^2",
+          "en": "Second partial derivatives.",
+          "es": "Segundas derivadas parciales."
+        },
+        {
+          "tex": "\\det H = (2y^2)(2x^2) - (4xy)^2 = 4x^2y^2 - 16x^2y^2",
+          "en": "det H = f_xx f_yy − f_xy².",
+          "es": "det H = f_xx f_yy − f_xy²."
+        },
+        {
+          "tex": "\\det H = -12\\,x^2y^2",
+          "en": "Combine like terms.",
+          "es": "Agrupa términos semejantes."
+        }
+      ]
+    },
+    {
+      "id": "mvc-10-e3",
+      "answerType": "number",
+      "prompt": {
+        "en": "Let $f(x, y) = x^2 y + y^3$, $a = (1, 2)$ and $h = (0.1,\\ -0.1)$. Use the second-order Taylor polynomial at $a$ to estimate $f(a + h)$. Give the exact fraction.",
+        "es": "Sea $f(x, y) = x^2 y + y^3$, $a = (1, 2)$ y $h = (0.1,\\ -0.1)$. Usa el polinomio de Taylor de segundo orden en $a$ para estimar $f(a + h)$. Da la fracción exacta."
+      },
+      "answer": "229/25",
+      "acceptedAlt": [
+        "9.16"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "9.22",
+          "feedback": {
+            "en": "You left out the $\\tfrac12$ in front of $h^\\top H h$. Then the second-order term is $0.12$ instead of $0.06$, and the estimate is $10 - 0.9 + 0.12 = 9.22$.",
+            "es": "Te has olvidado del $\\tfrac12$ delante de $h^\\top H h$. Entonces el término de segundo orden vale $0.12$ en vez de $0.06$, y la estimación es $10 - 0.9 + 0.12 = 9.22$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "You need $f(a)$, $\\nabla f(a)\\cdot h$ and $\\tfrac12 h^\\top H_f(a)\\,h$, all of which appear in the worked example.",
+        "es": "Necesitas $f(a)$, $\\nabla f(a)\\cdot h$ y $\\tfrac12 h^\\top H_f(a)\\,h$, que aparecen en el ejemplo resuelto."
+      },
+      "solution": [
+        {
+          "tex": "f(1, 2) = 10,\\qquad \\nabla f(1,2) = (4,\\ 13),\\qquad H_f(1,2) = \\begin{pmatrix} 4 & 2 \\\\ 2 & 12 \\end{pmatrix}",
+          "en": "Value, gradient and Hessian at a.",
+          "es": "Valor, gradiente y hessiana en a."
+        },
+        {
+          "tex": "\\nabla f(a)\\cdot h = 4(0.1) + 13(-0.1) = -0.9",
+          "en": "First-order term.",
+          "es": "Término de primer orden."
+        },
+        {
+          "tex": "h^\\top H h = 0.04 - 0.04 + 0.12 = 0.12,\\qquad \\tfrac12\\cdot 0.12 = 0.06",
+          "en": "Second-order term, with its factor 1/2.",
+          "es": "Término de segundo orden, con su factor 1/2."
+        },
+        {
+          "tex": "f(a + h) \\approx 10 - 0.9 + 0.06 = 9.16 = \\tfrac{229}{25}",
+          "en": "Add the three terms.",
+          "es": "Suma los tres términos."
+        }
+      ]
+    },
+    {
+      "id": "mvc-10-e4",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x, y) = x^2 y + y^3$, find $\\det H_f(1, 2)$.",
+        "es": "Para $f(x, y) = x^2 y + y^3$, halla $\\det H_f(1, 2)$."
+      },
+      "answer": "44",
+      "commonMistakes": [
+        {
+          "answer": "52",
+          "feedback": {
+            "en": "The mixed partial is subtracted, not added: $\\det H = f_{xx}f_{yy} - f_{xy}^2 = 48 - 4 = 44$. Adding it would give $52$.",
+            "es": "El término mixto se resta, no se suma: $\\det H = f_{xx}f_{yy} - f_{xy}^2 = 48 - 4 = 44$. Sumarlo daría $52$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use the Hessian at (1, 2) from the worked example.",
+        "es": "Usa la hessiana en (1, 2) del ejemplo resuelto."
+      },
+      "solution": [
+        {
+          "tex": "H_f(1,2) = \\begin{pmatrix} 4 & 2 \\\\ 2 & 12 \\end{pmatrix}",
+          "en": "Hessian at (1, 2).",
+          "es": "Hessiana en (1, 2)."
+        },
+        {
+          "tex": "\\det H_f(1,2) = 4\\cdot 12 - 2^2 = 48 - 4 = 44",
+          "en": "f_xx f_yy − f_xy².",
+          "es": "f_xx f_yy − f_xy²."
+        }
+      ]
+    },
+    {
+      "id": "mvc-10-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Why is the Hessian of a smooth function always symmetric?",
+        "es": "¿Por qué la hessiana de una función suave es siempre simétrica?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Its second partials are continuous, so the order of differentiation does not matter: $f_{xy} = f_{yx}$ (Schwarz).",
+            "es": "Sus segundas derivadas parciales son continuas, así que el orden de derivación no importa: $f_{xy} = f_{yx}$ (Schwarz)."
+          },
+          "correct": true,
+          "why": {
+            "en": "Schwarz's theorem makes the two off-diagonal entries equal, so $H = H^\\top$.",
+            "es": "El teorema de Schwarz iguala los dos elementos de fuera de la diagonal, así que $H = H^\\top$."
+          }
+        },
+        {
+          "text": {
+            "en": "Because the gradient is zero at every point of a smooth function.",
+            "es": "Porque el gradiente es cero en todos los puntos de una función suave."
+          },
+          "correct": false,
+          "why": {
+            "en": "The gradient vanishes only at critical points. It says nothing about the order of differentiation.",
+            "es": "El gradiente solo se anula en los puntos críticos. No dice nada sobre el orden de derivación."
+          }
+        },
+        {
+          "text": {
+            "en": "Because every smooth function is quadratic near each point.",
+            "es": "Porque toda función suave es cuadrática cerca de cada punto."
+          },
+          "correct": false,
+          "why": {
+            "en": "Only the second-order Taylor model is quadratic, not the function itself. Symmetry comes from the order of differentiation.",
+            "es": "Solo el modelo de Taylor de segundo orden es cuadrático, no la función misma. La simetría viene del orden de derivación."
+          }
+        },
+        {
+          "text": {
+            "en": "Because the diagonal entries always equal the off-diagonal ones.",
+            "es": "Porque los elementos de la diagonal siempre son iguales a los de fuera de la diagonal."
+          },
+          "correct": false,
+          "why": {
+            "en": "Nothing forces $f_{xx} = f_{xy}$. For $f = x^2 y$, $f_{xx} = 2y$ and $f_{xy} = 2x$, which differ.",
+            "es": "Nada obliga a que $f_{xx} = f_{xy}$. Para $f = x^2 y$, $f_{xx} = 2y$ y $f_{xy} = 2x$, que no coinciden."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think about the order in which you differentiate.",
+        "es": "Piensa en el orden en que derivas."
+      }
+    },
+    {
+      "id": "mvc-10-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `hessian_fd(x, y, h)`. The function $f(x, y) = x^2 y + y^3$ is defined for you. Return its $2 \\times 2$ Hessian at $(x, y)$ as a list of rows, estimated with central second differences of step `h`. For the mixed entry use $f_{xy} \\approx \\dfrac{f(x+h, y+h) - f(x+h, y-h) - f(x-h, y+h) + f(x-h, y-h)}{4h^2}$.",
+        "es": "Completa `hessian_fd(x, y, h)`. La función $f(x, y) = x^2 y + y^3$ ya está definida. Devuelve su hessiana $2 \\times 2$ en $(x, y)$ como lista de filas, estimada con diferencias segundas centrales de paso `h`. Para el elemento mixto usa $f_{xy} \\approx \\dfrac{f(x+h, y+h) - f(x+h, y-h) - f(x-h, y+h) + f(x-h, y-h)}{4h^2}$."
+      },
+      "funcName": "hessian_fd",
+      "starter": {
+        "en": "def f(x, y):\n    return x ** 2 * y + y ** 3\n\ndef hessian_fd(x, y, h):\n    # second differences in x and in y, and the mixed difference\n    pass",
+        "es": "def f(x, y):\n    return x ** 2 * y + y ** 3\n\ndef hessian_fd(x, y, h):\n    # diferencias segundas en x y en y, y la diferencia mixta\n    pass"
+      },
+      "solution": "def f(x, y):\n    return x ** 2 * y + y ** 3\n\ndef hessian_fd(x, y, h):\n    fxx = (f(x + h, y) - 2 * f(x, y) + f(x - h, y)) / h ** 2\n    fyy = (f(x, y + h) - 2 * f(x, y) + f(x, y - h)) / h ** 2\n    fxy = (f(x + h, y + h) - f(x + h, y - h) - f(x - h, y + h) + f(x - h, y - h)) / (4 * h ** 2)\n    return [[fxx, fxy], [fxy, fyy]]",
+      "tests": [
+        {
+          "args": [
+            1,
+            2,
+            0.001
+          ],
+          "expected": [
+            [
+              4,
+              2
+            ],
+            [
+              2,
+              12
+            ]
+          ],
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            0,
+            1,
+            0.001
+          ],
+          "expected": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            -1,
+            0.5,
+            0.001
+          ],
+          "expected": [
+            [
+              1,
+              -2
+            ],
+            [
+              -2,
+              3
+            ]
+          ],
+          "tol": 1e-06
+        }
+      ],
+      "hint": {
+        "en": "A second central difference is $\\dfrac{f(x+h) - 2f(x) + f(x-h)}{h^2}$. Use it for $f_{xx}$ and $f_{yy}$.",
+        "es": "Una diferencia segunda central es $\\dfrac{f(x+h) - 2f(x) + f(x-h)}{h^2}$. Úsala para $f_{xx}$ y $f_{yy}$."
+      }
+    },
+    {
+      "id": "mvc-10-e7",
+      "answerType": "number",
+      "prompt": {
+        "en": "For the loss $L(w) = \\tfrac12\\lVert Xw - y\\rVert^2$ with $X = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$, the Hessian is $H = X^\\top X$. Find $\\det H$.",
+        "es": "Para la pérdida $L(w) = \\tfrac12\\lVert Xw - y\\rVert^2$ con $X = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$, la hessiana es $H = X^\\top X$. Halla $\\det H$."
+      },
+      "answer": "3",
+      "hint": {
+        "en": "Compute $X^\\top X$ first. Its entries are dot products of the columns of $X$.",
+        "es": "Calcula primero $X^\\top X$. Sus elementos son productos escalares de las columnas de $X$."
+      },
+      "solution": [
+        {
+          "tex": "X^\\top X = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}",
+          "en": "Dot products of the columns (1, 1, 0) and (0, 1, 1).",
+          "es": "Productos escalares de las columnas (1, 1, 0) y (0, 1, 1)."
+        },
+        {
+          "tex": "\\det H = 2\\cdot 2 - 1\\cdot 1 = 3",
+          "en": "The 2 × 2 determinant.",
+          "es": "El determinante 2 × 2."
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 3.2, Taylor's theorem",
+        "es": "Cap. 3.2, teorema de Taylor"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§5.8, linearization and multivariate Taylor series",
+        "es": "§5.8, linealización y series de Taylor multivariables"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning",
+      "detail": {
+        "en": "§4.3.1, Jacobian and Hessian matrices",
+        "es": "§4.3.1, matrices jacobiana y hessiana"
+      }
+    }
+  ]
+}

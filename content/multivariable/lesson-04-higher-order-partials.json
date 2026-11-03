@@ -1,0 +1,389 @@
+{
+  "id": "mvc-04-higher-partials",
+  "subjectId": "multivariable",
+  "order": 4,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Higher-Order Partial Derivatives",
+    "es": "Derivadas parciales de orden superior"
+  },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A partial derivative is itself a function of several variables, so you can differentiate it again. Differentiate $f_x$ with respect to $x$ and you get the **second partial** $f_{xx}$: how the slope in the $x$ direction changes as $x$ moves. Differentiate $f_x$ with respect to $y$ and you get $f_{xy}$: how the slope in $x$ changes as you move in $y$. Second partials measure **curvature**. Curvature decides whether a critical point is a valley, a peak or a saddle (lesson 11), and how far a gradient step can safely go (lesson 13).",
+        "es": "Una derivada parcial es a su vez una función de varias variables, así que se puede volver a derivar. Si derivas $f_x$ respecto de $x$ obtienes la **segunda derivada parcial** $f_{xx}$: cómo cambia la pendiente en la dirección de $x$ al moverte en $x$. Si derivas $f_x$ respecto de $y$ obtienes $f_{xy}$: cómo cambia la pendiente en $x$ al moverte en $y$. Las segundas derivadas parciales miden la **curvatura**. La curvatura decide si un punto crítico es un valle, un pico o un punto de silla (lección 11), y hasta dónde puede avanzar con seguridad un paso de gradiente (lección 13)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Write the second partials as $$f_{xx}=\\frac{\\partial^2 f}{\\partial x^2}, \\qquad f_{yy}=\\frac{\\partial^2 f}{\\partial y^2}, \\qquad f_{xy}=(f_x)_y=\\frac{\\partial^2 f}{\\partial y\\,\\partial x}, \\qquad f_{yx}=(f_y)_x=\\frac{\\partial^2 f}{\\partial x\\,\\partial y}.$$ In this course $f_{xy}$ means: differentiate first in $x$, then in $y$. Leibniz's $\\dfrac{\\partial^2 f}{\\partial y\\,\\partial x}$ reads the same way, since the operator nearest $f$ acts first. Some books swap this convention, so always check it. Higher partials follow the same pattern: $f_{xyy}$ means $x$, then $y$, then $y$. A function of two variables has four second partials, but its two mixed ones are usually equal, as the next result explains.",
+        "es": "Escribe las segundas derivadas parciales así: $$f_{xx}=\\frac{\\partial^2 f}{\\partial x^2}, \\qquad f_{yy}=\\frac{\\partial^2 f}{\\partial y^2}, \\qquad f_{xy}=(f_x)_y=\\frac{\\partial^2 f}{\\partial y\\,\\partial x}, \\qquad f_{yx}=(f_y)_x=\\frac{\\partial^2 f}{\\partial x\\,\\partial y}.$$ En este curso $f_{xy}$ significa: primero se deriva respecto de $x$ y luego respecto de $y$. La notación de Leibniz $\\dfrac{\\partial^2 f}{\\partial y\\,\\partial x}$ se lee igual, porque primero actúa el operador más cercano a $f$. Algunos libros invierten esta convención, así que conviene comprobarla siempre. Las derivadas de orden superior siguen el mismo patrón: $f_{xyy}$ significa $x$, luego $y$, luego $y$. Una función de dos variables tiene cuatro segundas derivadas parciales, pero sus dos mixtas suelen coincidir, como explica el resultado siguiente."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — all second partials of x³y² + e^(xy)",
+        "es": "Ejemplo resuelto — todas las segundas derivadas parciales de x³y² + e^(xy)"
+      },
+      "content": {
+        "en": "Let $f(x,y)=x^3y^2+e^{xy}$. **First partials:** $f_x=3x^2y^2+y\\,e^{xy}$ and $f_y=2x^3y+x\\,e^{xy}$. **Second partials:** differentiating $f_x$ in $x$ gives $f_{xx}=6xy^2+y^2e^{xy}$, and in $y$ gives $f_{xy}=6x^2y+e^{xy}+xy\\,e^{xy}$. Differentiating $f_y$ in $x$ gives $f_{yx}=6x^2y+e^{xy}+xy\\,e^{xy}$, the same as $f_{xy}$, and in $y$ gives $f_{yy}=2x^3+x^2e^{xy}$. **At $(1,1)$:** $f_{xx}=6+e$, $f_{xy}=f_{yx}=6+2e$ and $f_{yy}=2+e$. The two mixed partials agree, as Schwarz's theorem predicts.",
+        "es": "Sea $f(x,y)=x^3y^2+e^{xy}$. **Primeras derivadas:** $f_x=3x^2y^2+y\\,e^{xy}$ y $f_y=2x^3y+x\\,e^{xy}$. **Segundas derivadas:** derivando $f_x$ respecto de $x$ sale $f_{xx}=6xy^2+y^2e^{xy}$, y respecto de $y$ sale $f_{xy}=6x^2y+e^{xy}+xy\\,e^{xy}$. Derivando $f_y$ respecto de $x$ sale $f_{yx}=6x^2y+e^{xy}+xy\\,e^{xy}$, igual que $f_{xy}$, y respecto de $y$ sale $f_{yy}=2x^3+x^2e^{xy}$. **En $(1,1)$:** $f_{xx}=6+e$, $f_{xy}=f_{yx}=6+2e$ y $f_{yy}=2+e$. Las dos mixtas coinciden, como predice el teorema de Schwarz."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Schwarz's theorem** (also called Clairaut's): if $f_{xy}$ and $f_{yx}$ are continuous near a point, then $f_{xy}=f_{yx}$ at that point. The order of differentiation does not matter there. Any function built from polynomials, exponentials, logarithms and trigonometric functions by sums, products and compositions is infinitely differentiable wherever it is defined, so you may differentiate in whichever order is easier. The hypothesis does matter. The function $f=\\dfrac{xy(x^2-y^2)}{x^2+y^2}$, with $f(0,0)=0$, has $f_{xy}(0,0)=-1$ but $f_{yx}(0,0)=1$, because its second partials are not continuous at the origin. A useful check: compute a mixed partial in both orders, and if the results differ, look for a slip first.",
+        "es": "**El teorema de Schwarz** (también llamado de Clairaut): si $f_{xy}$ y $f_{yx}$ son continuas cerca de un punto, entonces $f_{xy}=f_{yx}$ en ese punto. Allí el orden de derivación no importa. Toda función construida con polinomios, exponenciales, logaritmos y funciones trigonométricas, mediante sumas, productos y composiciones, es infinitamente derivable donde está definida, así que puedes derivar en el orden que te resulte más cómodo. La hipótesis sí importa. La función $f=\\dfrac{xy(x^2-y^2)}{x^2+y^2}$, con $f(0,0)=0$, tiene $f_{xy}(0,0)=-1$ pero $f_{yx}(0,0)=1$, porque sus segundas derivadas no son continuas en el origen. Un buen control: calcula una mixta en los dos órdenes y, si los resultados difieren, busca primero un error de cálculo."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — is it harmonic?",
+        "es": "Ejemplo resuelto — ¿es armónica?"
+      },
+      "content": {
+        "en": "A function is **harmonic** when $f_{xx}+f_{yy}=0$. Test two candidates. **$g=x^3-3xy^2$:** $g_{xx}=6x$ and $g_{yy}=-6x$, so $g_{xx}+g_{yy}=0$: harmonic. **$h=x^3+3xy^2$:** $h_{xx}=6x$ and $h_{yy}=6x$, so $h_{xx}+h_{yy}=12x$, which vanishes only on the line $x=0$: not harmonic. The sign of a single term separates the two functions, and the test shows it at once.",
+        "es": "Una función es **armónica** cuando $f_{xx}+f_{yy}=0$. Probemos dos candidatas. **$g=x^3-3xy^2$:** $g_{xx}=6x$ y $g_{yy}=-6x$, así que $g_{xx}+g_{yy}=0$: es armónica. **$h=x^3+3xy^2$:** $h_{xx}=6x$ y $h_{yy}=6x$, así que $h_{xx}+h_{yy}=12x$, que solo se anula en la recta $x=0$: no es armónica. El signo de un solo término separa las dos funciones, y la prueba lo muestra de inmediato."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The equation $f_{xx}+f_{yy}=0$ is **Laplace's equation**, and the operator $\\Delta f=f_{xx}+f_{yy}$ is the **Laplacian**. Its solutions model steady states: the temperature of a plate with no heat sources, the electric potential in a region with no charge, the small vertical displacement of a stretched elastic membrane. The function $g$ above is harmonic, and so are $e^x\\sin y$ and $\\ln(x^2+y^2)$ away from the origin. The Laplacian also measures how a function bends on average: where $\\Delta f>0$, the average of $f$ on a small circle around a point is larger than its value at the center.",
+        "es": "La ecuación $f_{xx}+f_{yy}=0$ es la **ecuación de Laplace**, y el operador $\\Delta f=f_{xx}+f_{yy}$ es el **laplaciano**. Sus soluciones modelan estados estacionarios: la temperatura de una placa sin fuentes de calor, el potencial eléctrico en una región sin carga, el pequeño desplazamiento vertical de una membrana elástica tensada. La función $g$ de antes es armónica, y también lo son $e^x\\sin y$ y $\\ln(x^2+y^2)$ fuera del origen. El laplaciano mide además cómo se curva una función en promedio: donde $\\Delta f>0$, el promedio de $f$ sobre un círculo pequeño alrededor de un punto supera el valor en el centro."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "sympy"
+      ],
+      "code": {
+        "en": "import sympy as sp\n\nx, y = sp.symbols(\"x y\")\nf = x**3 * y**2 + sp.exp(x * y)\n\nfxy = sp.diff(f, x, y)   # differentiate in x, then in y\nfyx = sp.diff(f, y, x)   # differentiate in y, then in x\nprint(\"Schwarz holds:\", sp.simplify(fxy - fyx) == 0)\nprint(\"f_xy(1,1) =\", round(float(fxy.subs({x: 1, y: 1})), 6))\nprint(\"f_xx(1,1) =\", round(float(sp.diff(f, x, 2).subs({x: 1, y: 1})), 6))",
+        "es": "import sympy as sp\n\nx, y = sp.symbols(\"x y\")\nf = x**3 * y**2 + sp.exp(x * y)\n\nfxy = sp.diff(f, x, y)   # derivar respecto de x y luego respecto de y\nfyx = sp.diff(f, y, x)   # derivar respecto de y y luego respecto de x\nprint(\"Schwarz holds:\", sp.simplify(fxy - fyx) == 0)\nprint(\"f_xy(1,1) =\", round(float(fxy.subs({x: 1, y: 1})), 6))\nprint(\"f_xx(1,1) =\", round(float(sp.diff(f, x, 2).subs({x: 1, y: 1})), 6))"
+      },
+      "expectedOutput": "Schwarz holds: True\nf_xy(1,1) = 11.436564\nf_xx(1,1) = 8.718282",
+      "caption": {
+        "en": "SymPy differentiates symbolically. Schwarz's theorem shows up as the two mixed partials being equal, and the numbers match the hand results $6+2e\\approx 11.4366$ and $6+e\\approx 8.7183$.",
+        "es": "SymPy deriva de forma simbólica. El teorema de Schwarz aparece como la igualdad de las dos mixtas, y los números coinciden con los cálculos a mano $6+2e\\approx 11.4366$ y $6+e\\approx 8.7183$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "For a loss $L(w_1,\\dots,w_n)$ with many parameters, the second partials collect into the **Hessian** matrix $H$, with entries $H_{ij}=\\dfrac{\\partial^2 L}{\\partial w_i\\,\\partial w_j}$. Where the second partials are continuous, Schwarz makes $H$ symmetric. Lesson 10 develops $H$ — it says how the loss curves in every direction — and lesson 11 uses it to tell minima from saddle points. Newton's method (lesson 13) uses $H$ directly, but a network with a million weights would need a matrix with $10^{12}$ entries, which is why gradient descent with first partials dominates in practice.",
+        "es": "Para una pérdida $L(w_1,\\dots,w_n)$ con muchos parámetros, las segundas derivadas parciales forman la matriz **hessiana** $H$, con entradas $H_{ij}=\\dfrac{\\partial^2 L}{\\partial w_i\\,\\partial w_j}$. Donde las segundas derivadas son continuas, Schwarz hace $H$ simétrica. La lección 10 desarrolla $H$ (dice cómo se curva la pérdida en cada dirección) y la lección 11 la usa para distinguir mínimos de puntos de silla. El método de Newton (lección 13) usa $H$ directamente, pero una red con un millón de pesos necesitaría una matriz con $10^{12}$ entradas, por eso en la práctica domina el descenso de gradiente con derivadas primeras."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-04-e1",
+      "answerType": "expression",
+      "params": {
+        "a": {
+          "int": [
+            -3,
+            3
+          ],
+          "exclude": [
+            -1,
+            0,
+            1
+          ]
+        },
+        "n": {
+          "int": [
+            3,
+            5
+          ]
+        }
+      },
+      "derived": {
+        "c": "2*a*n",
+        "m": "n - 1"
+      },
+      "prompt": {
+        "en": "Let $f(x,y)=[[a]]x^2y^{[[n]]}$. Find $f_{xy}$: differentiate first in $x$, then in $y$.",
+        "es": "Sea $f(x,y)=[[a]]x^2y^{[[n]]}$. Halla $f_{xy}$: deriva primero respecto de $x$ y luego respecto de $y$."
+      },
+      "answer": "[[c]]*x*y^[[m]]",
+      "equivalentTo": "derivative(derivative('[[a]]*x^2*y^[[n]]', 'x'), 'y')",
+      "hint": {
+        "en": "After the $x$-derivative you have $2([[a]])\\,x\\,y^{[[n]]}$. Now differentiate in $y$.",
+        "es": "Tras derivar en $x$ queda $2([[a]])\\,x\\,y^{[[n]]}$. Ahora deriva en $y$."
+      },
+      "solution": [
+        {
+          "tex": "f_x = 2([[a]])\\,x\\,y^{[[n]]}",
+          "en": "Differentiate in x; y is a constant.",
+          "es": "Deriva respecto de x; y es constante."
+        },
+        {
+          "tex": "f_{xy} = 2([[a]])\\,[[n]]\\,x\\,y^{[[n]]-1}",
+          "en": "Differentiate in y; the power rule gives the factor n.",
+          "es": "Deriva respecto de y; la regla de la potencia da el factor n."
+        },
+        {
+          "tex": "= [[c]]\\,x\\,y^{[[m]]}",
+          "en": "Multiply the constants.",
+          "es": "Multiplica las constantes."
+        }
+      ]
+    },
+    {
+      "id": "mvc-04-e2",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x,y)=x^3y^2+e^{xy}$, find $f_{xx}(1,1)$.",
+        "es": "Para $f(x,y)=x^3y^2+e^{xy}$, halla $f_{xx}(1,1)$."
+      },
+      "answer": "6 + e",
+      "commonMistakes": [
+        {
+          "answer": "6",
+          "feedback": {
+            "en": "The exponential term also depends on $x$: $\\partial_x\\!\\left(y\\,e^{xy}\\right)=y^2e^{xy}$, which is $e$ at $(1,1)$. Without it you get only $6$.",
+            "es": "El término exponencial también depende de $x$: $\\partial_x\\!\\left(y\\,e^{xy}\\right)=y^2e^{xy}$, que vale $e$ en $(1,1)$. Sin él queda solo $6$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Differentiate $f_x = 3x^2y^2 + y\\,e^{xy}$ once more in $x$.",
+        "es": "Deriva otra vez en $x$ la expresión $f_x = 3x^2y^2 + y\\,e^{xy}$."
+      },
+      "solution": [
+        {
+          "tex": "f_x = 3x^2y^2 + y\\,e^{xy}",
+          "en": "The first partial in x.",
+          "es": "La primera derivada en x."
+        },
+        {
+          "tex": "f_{xx} = 6xy^2 + y^2 e^{xy}",
+          "en": "Differentiate again in x.",
+          "es": "Deriva otra vez en x."
+        },
+        {
+          "tex": "f_{xx}(1,1) = 6 + e",
+          "en": "Substitute x = y = 1.",
+          "es": "Sustituye x = y = 1."
+        }
+      ]
+    },
+    {
+      "id": "mvc-04-e3",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which statement about second partial derivatives is correct?",
+        "es": "¿Qué afirmación sobre las segundas derivadas parciales es correcta?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$f_{xy}=f_{yx}$ at every point where $f$ is differentiable.",
+            "es": "$f_{xy}=f_{yx}$ en todo punto donde $f$ es diferenciable."
+          },
+          "correct": false,
+          "why": {
+            "en": "Differentiability is not enough. $\\dfrac{xy(x^2-y^2)}{x^2+y^2}$ (with value 0 at the origin) is differentiable at the origin, yet there $f_{xy}=-1$ while $f_{yx}=1$: its second partials are not continuous.",
+            "es": "Ser diferenciable no basta. $\\dfrac{xy(x^2-y^2)}{x^2+y^2}$ (con valor 0 en el origen) es diferenciable en el origen y, sin embargo, allí $f_{xy}=-1$ y $f_{yx}=1$: sus segundas derivadas no son continuas."
+          }
+        },
+        {
+          "text": {
+            "en": "$f_{xy}$ equals the product $f_x\\,f_y$.",
+            "es": "$f_{xy}$ es igual al producto $f_x\\,f_y$."
+          },
+          "correct": false,
+          "why": {
+            "en": "$f_{xy}$ is a second derivative: $f_x$ differentiated in $y$. It is not a product of first partials.",
+            "es": "$f_{xy}$ es una segunda derivada: $f_x$ derivada respecto de $y$. No es un producto de primeras derivadas."
+          }
+        },
+        {
+          "text": {
+            "en": "If $f_{xy}$ and $f_{yx}$ are continuous near a point, then they are equal there.",
+            "es": "Si $f_{xy}$ y $f_{yx}$ son continuas cerca de un punto, entonces son iguales allí."
+          },
+          "correct": true,
+          "why": {
+            "en": "That is Schwarz's (Clairaut's) theorem: under that hypothesis the order of differentiation can be swapped.",
+            "es": "Es el teorema de Schwarz (Clairaut): bajo esa hipótesis se puede cambiar el orden de derivación."
+          }
+        },
+        {
+          "text": {
+            "en": "$f_{xx}$ and $f_{yy}$ are always equal.",
+            "es": "$f_{xx}$ y $f_{yy}$ son siempre iguales."
+          },
+          "correct": false,
+          "why": {
+            "en": "They measure curvature in different directions. For $x^3y^2$ they differ: $6xy^2$ against $2x^3$.",
+            "es": "Miden la curvatura en direcciones distintas. Para $x^3y^2$ son diferentes: $6xy^2$ frente a $2x^3$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which hypothesis does Schwarz's theorem need?",
+        "es": "¿Qué hipótesis necesita el teorema de Schwarz?"
+      }
+    },
+    {
+      "id": "mvc-04-e4",
+      "answerType": "number",
+      "prompt": {
+        "en": "Let $v(x,y)=x^3+3xy^2$. Find $v_{xx}(2,1)+v_{yy}(2,1)$.",
+        "es": "Sea $v(x,y)=x^3+3xy^2$. Halla $v_{xx}(2,1)+v_{yy}(2,1)$."
+      },
+      "answer": "24",
+      "commonMistakes": [
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "Zero is the Laplacian of a harmonic function, such as $x^3-3xy^2$. Here $v_{yy}=6x$, not $-6x$, so the sum is $12x=24$ at $x=2$.",
+            "es": "Cero es el laplaciano de una función armónica, como $x^3-3xy^2$. Aquí $v_{yy}=6x$, no $-6x$, así que la suma es $12x=24$ en $x=2$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Find v_xx and v_yy separately, then add them.",
+        "es": "Halla v_xx y v_yy por separado y luego súmalas."
+      },
+      "solution": [
+        {
+          "tex": "v_{xx} = 6x,\\qquad v_{yy} = 6x",
+          "en": "Differentiate twice in each variable. For v_yy: first v_y = 6xy, then 6x.",
+          "es": "Deriva dos veces en cada variable. Para v_yy: primero v_y = 6xy, luego 6x."
+        },
+        {
+          "tex": "v_{xx}+v_{yy} = 12x = 24",
+          "en": "Add, then substitute x = 2.",
+          "es": "Suma y sustituye x = 2."
+        }
+      ]
+    },
+    {
+      "id": "mvc-04-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `laplacian(x, y, h=1e-4)`: the five-point finite-difference estimate of $\\Delta u = u_{xx}+u_{yy}$ for the function `u` in the starter, $\\dfrac{u(x+h,y)+u(x-h,y)+u(x,y+h)+u(x,y-h)-4u(x,y)}{h^2}$.",
+        "es": "Completa `laplacian(x, y, h=1e-4)`: la estimación por diferencias finitas de cinco puntos de $\\Delta u = u_{xx}+u_{yy}$ para la función `u` del punto de partida, $\\dfrac{u(x+h,y)+u(x-h,y)+u(x,y+h)+u(x,y-h)-4u(x,y)}{h^2}$."
+      },
+      "funcName": "laplacian",
+      "starter": {
+        "en": "def u(x, y):\n    return x**3 + 3 * x * y**2\n\ndef laplacian(x, y, h=1e-4):\n    # five-point stencil: (u(x+h, y) + u(x-h, y) + u(x, y+h) + u(x, y-h) - 4 u(x, y)) / h^2\n    pass",
+        "es": "def u(x, y):\n    return x**3 + 3 * x * y**2\n\ndef laplacian(x, y, h=1e-4):\n    # esquema de cinco puntos: (u(x+h, y) + u(x-h, y) + u(x, y+h) + u(x, y-h) - 4 u(x, y)) / h^2\n    pass"
+      },
+      "solution": "def u(x, y):\n    return x**3 + 3 * x * y**2\n\ndef laplacian(x, y, h=1e-4):\n    return (u(x + h, y) + u(x - h, y) + u(x, y + h) + u(x, y - h) - 4 * u(x, y)) / h**2",
+      "tests": [
+        {
+          "args": [
+            2,
+            1
+          ],
+          "expected": 23.999999854140697,
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            -1,
+            0.5
+          ],
+          "expected": -11.999999927070348,
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            0,
+            0
+          ],
+          "expected": 0.0,
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            1.5,
+            -2
+          ],
+          "expected": 18.000000068241206,
+          "tol": 1e-06
+        }
+      ],
+      "hint": {
+        "en": "Compute the numerator first, then divide by h**2.",
+        "es": "Calcula primero el numerador y luego divide entre h**2."
+      }
+    },
+    {
+      "id": "mvc-04-e6",
+      "answerType": "expression",
+      "prompt": {
+        "en": "For $f(x,y)=x^2y^3$, write $f_{yy}$ as a function of $x$ and $y$.",
+        "es": "Para $f(x,y)=x^2y^3$, escribe $f_{yy}$ en función de $x$ e $y$."
+      },
+      "answer": "6*x^2*y",
+      "commonMistakes": [
+        {
+          "answer": "3*x^2*y^2",
+          "feedback": {
+            "en": "That is $f_y$, the first partial. The second derivative differentiates again in $y$: $\\partial_y(3x^2y^2)=6x^2y$.",
+            "es": "Eso es $f_y$, la primera derivada. La segunda vuelve a derivar en $y$: $\\partial_y(3x^2y^2)=6x^2y$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Differentiate in $y$ twice; $x^2$ is a constant factor.",
+        "es": "Deriva dos veces en $y$; $x^2$ es un factor constante."
+      },
+      "solution": [
+        {
+          "tex": "f_y = 3x^2y^2",
+          "en": "The first partial in y.",
+          "es": "La primera derivada en y."
+        },
+        {
+          "tex": "f_{yy} = 6x^2y",
+          "en": "Differentiate again in y.",
+          "es": "Deriva otra vez en y."
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 14.3, higher partial derivatives and Clairaut's theorem",
+        "es": "Cap. 14.3, derivadas parciales de orden superior y teorema de Clairaut"
+      }
+    },
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 3.1, iterated partial derivatives",
+        "es": "Cap. 3.1, derivadas parciales iteradas"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§5.7, higher-order derivatives",
+        "es": "§5.7, derivadas de orden superior"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning",
+      "detail": {
+        "en": "§4.3.1, Jacobian and Hessian matrices",
+        "es": "§4.3.1, matrices jacobiana y hessiana"
+      }
+    }
+  ]
+}

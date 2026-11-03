@@ -1,0 +1,445 @@
+{
+  "id": "mvc-02-several-variables",
+  "subjectId": "multivariable",
+  "order": 2,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Functions of Several Variables",
+    "es": "Funciones de varias variables"
+  },
+  "sections": [
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-05-vectors-rn"
+      ],
+      "note": {
+        "en": "Uses vectors in ℝⁿ and their lengths, from the vectors lesson.",
+        "es": "Usa vectores en ℝⁿ y sus longitudes, de la lección de vectores."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A function of one variable takes a number and returns a number. Most quantities depend on more than one thing: the temperature on a floor depends on two coordinates, the error of a model depends on every one of its weights, and the price of a flat depends on its size, its district and its age. A **function of two variables** $f(x,y)$ takes a point $(x,y)$ of the plane and returns one real number. Its **graph** is the surface $z=f(x,y)$ floating over the plane, and the height of the surface above $(x,y)$ is the value of $f$ there. The idea is the same as before, with a richer input.",
+        "es": "Una función de una variable toma un número y devuelve un número. La mayoría de las magnitudes dependen de más de una cosa: la temperatura en un punto de una planta depende de dos coordenadas, el error de un modelo depende de todos sus pesos y el precio de un piso depende de su tamaño, de su barrio y de su antigüedad. Una **función de dos variables** $f(x,y)$ toma un punto $(x,y)$ del plano y devuelve un número real. Su **gráfica** es la superficie $z=f(x,y)$ suspendida sobre el plano, y la altura de la superficie sobre $(x,y)$ es el valor de $f$ en ese punto. La idea es la misma de antes, con una entrada más rica."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Write the input as a vector $\\mathbf{x}=(x_1,\\dots,x_n)$, or $(x,y)$ when $n=2$, and call $f:D\\to\\mathbb{R}$ a function with $D\\subseteq\\mathbb{R}^n$. The **domain** $D$ is the set of inputs where the formula makes sense, and the **range** is the set of outputs. Domains follow the rules of one variable, now applied to pairs: a square root needs a radicand $\\geq 0$, a logarithm needs a positive argument, and a denominator must not be $0$. For $f(x,y)=\\sqrt{9-x^2-y^2}$ the condition $x^2+y^2\\leq 9$ describes a closed disc of radius $3$. For $g(x,y)=\\ln(x+y)$ the condition $x+y>0$ describes the open half-plane above the line $y=-x$.",
+        "es": "Escribimos la entrada como un vector $\\mathbf{x}=(x_1,\\dots,x_n)$, o como $(x,y)$ cuando $n=2$, y llamamos $f:D\\to\\mathbb{R}$ a una función con $D\\subseteq\\mathbb{R}^n$. El **dominio** $D$ es el conjunto de entradas donde la fórmula tiene sentido, y el **recorrido** es el conjunto de salidas. Los dominios siguen las reglas de una variable, ahora aplicadas a pares: una raíz cuadrada necesita un radicando $\\geq 0$, un logaritmo necesita un argumento positivo y un denominador no puede valer $0$. Para $f(x,y)=\\sqrt{9-x^2-y^2}$ la condición $x^2+y^2\\leq 9$ describe un disco cerrado de radio $3$. Para $g(x,y)=\\ln(x+y)$ la condición $x+y>0$ describe el semiplano abierto por encima de la recta $y=-x$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — domain and level curves of √(9 − x² − y²)",
+        "es": "Ejemplo resuelto — dominio y curvas de nivel de √(9 − x² − y²)"
+      },
+      "content": {
+        "en": "Let $f(x,y)=\\sqrt{9-x^2-y^2}$. **Domain:** we need $9-x^2-y^2\\geq 0$, that is $x^2+y^2\\leq 9$: the closed disc of radius $3$ centered at the origin. **Range:** the root is never negative and is largest where the radicand is largest, so $0\\leq f\\leq 3$, with $f=3$ only at the origin. **Level curves:** $f=c$ with $0\\leq c\\leq 3$ means $9-x^2-y^2=c^2$, so $x^2+y^2=9-c^2$. For $c=0$ this is the circle of radius $3$, the boundary of the domain. For $c=2$ it is the circle $x^2+y^2=5$, of radius $\\sqrt5$. For $c=3$ only the origin remains, and for $c>3$ there is no level curve at all.",
+        "es": "Sea $f(x,y)=\\sqrt{9-x^2-y^2}$. **Dominio:** necesitamos $9-x^2-y^2\\geq 0$, es decir, $x^2+y^2\\leq 9$: el disco cerrado de radio $3$ centrado en el origen. **Recorrido:** la raíz nunca es negativa y es mayor donde el radicando es mayor, así que $0\\leq f\\leq 3$, con $f=3$ solo en el origen. **Curvas de nivel:** $f=c$ con $0\\leq c\\leq 3$ significa $9-x^2-y^2=c^2$, o sea, $x^2+y^2=9-c^2$. Para $c=0$ es la circunferencia de radio $3$, la frontera del dominio. Para $c=2$ es la circunferencia $x^2+y^2=5$, de radio $\\sqrt5$. Para $c=3$ solo queda el origen, y para $c>3$ no hay ninguna curva de nivel."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **level curve** of $f$ at height $c$ is the set of points where $f$ takes the value $c$: $\\{(x,y): f(x,y)=c\\}$. Drawing several of them, each labelled with its value, gives a **contour map**, like the lines on a topographic map: where the lines crowd together, the surface is steep. Level curves are the flat picture of a surface you cannot draw in 3D. A function of three variables has **level surfaces** $f(x,y,z)=c$ instead. Two classic shapes: for $f=x^2+y^2$ the level curves with $c>0$ are circles $x^2+y^2=c$, a bowl seen from above; for the saddle $f=x^2-y^2$ they are hyperbolas, and at $c=0$ they are the two lines $y=\\pm x$.",
+        "es": "Una **curva de nivel** de $f$ a altura $c$ es el conjunto de puntos donde $f$ vale $c$: $\\{(x,y): f(x,y)=c\\}$. Dibujar varias, cada una con su valor, da un **mapa de contorno**, como las líneas de un mapa topográfico: donde las líneas se juntan, la superficie es empinada. Las curvas de nivel son la imagen plana de una superficie que no se puede dibujar en 3D. Una función de tres variables tiene, en su lugar, **superficies de nivel** $f(x,y,z)=c$. Dos formas clásicas: para $f=x^2+y^2$ las curvas de nivel con $c>0$ son circunferencias $x^2+y^2=c$, es decir, un cuenco visto desde arriba; para la silla de montar $f=x^2-y^2$ son hipérbolas, y con $c=0$ son las dos rectas $y=\\pm x$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — level curves of x² − y²",
+        "es": "Ejemplo resuelto — curvas de nivel de x² − y²"
+      },
+      "content": {
+        "en": "Let $f(x,y)=x^2-y^2$, and solve $f=c$, that is $x^2-y^2=c$, for each height. **$c=0$:** $x^2=y^2$, so $y=x$ or $y=-x$: two lines crossing at the origin, where the surface has its saddle point. **$c=1$:** $x^2=1+y^2$, so $x=\\pm\\sqrt{1+y^2}$: two branches opening left and right, through $(\\pm1,0)$. **$c=-1$:** $y^2=1+x^2$, so $y=\\pm\\sqrt{1+x^2}$: the same hyperbolas turned by $90^\\circ$, opening up and down through $(0,\\pm1)$. Near the origin the surface rises along $x$ and falls along $y$, and the level curves show both at once.",
+        "es": "Sea $f(x,y)=x^2-y^2$, y resolvemos $f=c$, es decir, $x^2-y^2=c$, para cada altura. **$c=0$:** $x^2=y^2$, así que $y=x$ o $y=-x$: dos rectas que se cruzan en el origen, donde la superficie tiene su punto de silla. **$c=1$:** $x^2=1+y^2$, así que $x=\\pm\\sqrt{1+y^2}$: dos ramas que se abren a izquierda y derecha, por $(\\pm1,0)$. **$c=-1$:** $y^2=1+x^2$, así que $y=\\pm\\sqrt{1+x^2}$: las mismas hipérbolas giradas $90^\\circ$, que se abren arriba y abajo, por $(0,\\pm1)$. Cerca del origen la superficie sube a lo largo de $x$ y baja a lo largo de $y$, y las curvas de nivel muestran las dos cosas a la vez."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "x^2 - 1",
+      "domain": [
+        -2,
+        2
+      ],
+      "caption": {
+        "en": "The cut of the saddle $x^2-y^2$ by the plane $y=1$: the curve $z=x^2-1$. Its zeros $x=\\pm1$ are the points $(\\pm1,1)$ of the level curve $f=0$.",
+        "es": "El corte de la silla $x^2-y^2$ con el plano $y=1$: la curva $z=x^2-1$. Sus ceros $x=\\pm1$ son los puntos $(\\pm1,1)$ de la curva de nivel $f=0$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **limit** $\\lim_{(x,y)\\to(a,b)} f(x,y)=L$ asks what $f$ approaches as the input approaches $(a,b)$ from **any** direction. In one variable there are two directions to check, from the left and from the right. In the plane there are infinitely many: along every line, along every parabola, and so on. The limit exists only if $f$ tends to the same $L$ along every path. That gives a test for **non-existence**: find two paths with different limits. Take $f(x,y)=\\dfrac{xy}{x^2+y^2}$ near the origin. Along the line $y=mx$ its value is $\\dfrac{m}{1+m^2}$: this is $0$ for $m=0$ (the $x$-axis) and $\\tfrac12$ for $m=1$. The two limits differ, so there is no limit at the origin, even though $f$ is zero along both axes. **Continuity** at $(a,b)$ means $\\lim f=f(a,b)$; sums, products and quotients of continuous functions are continuous where the denominator is not zero.",
+        "es": "Un **límite** $\\lim_{(x,y)\\to(a,b)} f(x,y)=L$ pregunta a qué se acerca $f$ cuando la entrada se acerca a $(a,b)$ desde **cualquier** dirección. En una variable hay dos direcciones que comprobar, por la izquierda y por la derecha. En el plano hay infinitas: a lo largo de cada recta, de cada parábola, etcétera. El límite existe solo si $f$ tiende al mismo $L$ por todos los caminos. Eso da un criterio para **demostrar que no existe**: basta encontrar dos caminos con límites distintos. Tomemos $f(x,y)=\\dfrac{xy}{x^2+y^2}$ cerca del origen. Sobre la recta $y=mx$ su valor es $\\dfrac{m}{1+m^2}$: vale $0$ para $m=0$ (el eje $x$) y $\\tfrac12$ para $m=1$. Los dos límites difieren, así que no hay límite en el origen, aunque $f$ sea cero sobre los dos ejes. La **continuidad** en $(a,b)$ significa $\\lim f=f(a,b)$; sumas, productos y cocientes de funciones continuas son continuos donde el denominador no se anula."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Machine learning lives on surfaces like these. To fit a line $\\hat y = wx + b$ to data, you minimize the squared error $L(w,b)=\\sum_i (wx_i+b-y_i)^2$. The loss depends on **two** parameters, so it is a function of two variables: a surface over the $(w,b)$ plane. For a few points it is a bowl with one lowest point, and its level curves are ellipses: the contour map an optimizer walks across. Training is the search for that lowest point. Real models have millions of parameters, so their surface lives in a space you cannot draw, but the same ideas (level sets, slices, the lowest point) still apply, and the gradient, which later lessons develop, is the guide.",
+        "es": "El aprendizaje automático vive sobre superficies como estas. Para ajustar una recta $\\hat y = wx + b$ a unos datos, se minimiza el error cuadrático $L(w,b)=\\sum_i (wx_i+b-y_i)^2$. La pérdida depende de **dos** parámetros, así que es una función de dos variables: una superficie sobre el plano $(w,b)$. Para pocos puntos es un cuenco con un único punto más bajo, y sus curvas de nivel son elipses: el mapa de contorno por el que se mueve el optimizador. Entrenar un modelo es buscar ese punto más bajo. Los modelos reales tienen millones de parámetros y su superficie vive en un espacio que no se puede dibujar, pero las mismas ideas (curvas de nivel, cortes, el punto más bajo) siguen valiendo, y el gradiente, que las lecciones siguientes desarrollan, es la guía."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# Least-squares loss L(w, b) = sum of (w*x + b - y)^2 over three points\ndata = [(0, 1), (1, 3), (2, 4)]\n\ndef loss(w, b):\n    return sum((w * x + b - y) ** 2 for x, y in data)\n\n# Grid search: w from 0 to 3 and b from 0 to 2, in steps of 0.1\nbest = None\nfor i in range(31):\n    for j in range(21):\n        w, b = i / 10, j / 10\n        L = loss(w, b)\n        if best is None or L < best[0]:\n            best = (L, w, b)\n\nprint(\"grid minimum:\", round(best[0], 4), \"at w =\", best[1], \"b =\", round(best[2], 1))\nprint(\"exact minimum:\", round(loss(1.5, 7 / 6), 4), \"at w = 1.5, b = 7/6\")",
+        "es": "# Pérdida de mínimos cuadrados L(w, b) = suma de (w*x + b - y)^2 sobre tres puntos\ndata = [(0, 1), (1, 3), (2, 4)]\n\ndef loss(w, b):\n    return sum((w * x + b - y) ** 2 for x, y in data)\n\n# Búsqueda en rejilla: w de 0 a 3 y b de 0 a 2, con paso 0.1\nbest = None\nfor i in range(31):\n    for j in range(21):\n        w, b = i / 10, j / 10\n        L = loss(w, b)\n        if best is None or L < best[0]:\n            best = (L, w, b)\n\nprint(\"grid minimum:\", round(best[0], 4), \"at w =\", best[1], \"b =\", round(best[2], 1))\nprint(\"exact minimum:\", round(loss(1.5, 7 / 6), 4), \"at w = 1.5, b = 7/6\")"
+      },
+      "expectedOutput": "grid minimum: 0.17 at w = 1.5 b = 1.2\nexact minimum: 0.1667 at w = 1.5, b = 7/6",
+      "caption": {
+        "en": "A grid search finds the lowest point of the loss up to the grid spacing: here $(1.5,\\,1.2)$. Calculus gives the exact minimizer $w=\\tfrac32$, $b=\\tfrac76$, with value $\\tfrac16$.",
+        "es": "Una búsqueda en rejilla encuentra el punto más bajo de la pérdida con la precisión de la rejilla: aquí $(1.5,\\,1.2)$. El cálculo da el minimizador exacto $w=\\tfrac32$, $b=\\tfrac76$, con valor $\\tfrac16$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-02-e1",
+      "answerType": "number",
+      "params": {
+        "k": {
+          "int": [
+            2,
+            4
+          ]
+        },
+        "p": {
+          "int": [
+            -3,
+            3
+          ],
+          "exclude": [
+            0
+          ]
+        },
+        "q": {
+          "int": [
+            -3,
+            3
+          ],
+          "exclude": [
+            0
+          ]
+        }
+      },
+      "derived": {
+        "c": "k*p^2 + q^2"
+      },
+      "check": "answer == k*p^2 + q^2",
+      "prompt": {
+        "en": "Let $f(x,y)=[[k]]x^2+y^2$. Which level curve of $f$ passes through the point $([[p]],[[q]])$? Give its level $c$.",
+        "es": "Sea $f(x,y)=[[k]]x^2+y^2$. ¿Qué curva de nivel de $f$ pasa por el punto $([[p]],[[q]])$? Indica su nivel $c$."
+      },
+      "answer": "[[c]]",
+      "hint": {
+        "en": "The level through a point is the value of f at that point.",
+        "es": "El nivel que pasa por un punto es el valor de f en ese punto."
+      },
+      "solution": [
+        {
+          "tex": "c = f([[p]],[[q]]) = [[k]]\\,([[p]])^2 + ([[q]])^2",
+          "en": "The level is the value of f at the point.",
+          "es": "El nivel es el valor de f en el punto."
+        },
+        {
+          "tex": "= [[c]]",
+          "en": "Square, multiply and add.",
+          "es": "Eleva al cuadrado, multiplica y suma."
+        }
+      ]
+    },
+    {
+      "id": "mvc-02-e2",
+      "answerType": "expression",
+      "prompt": {
+        "en": "For $f(x,y)=x^2-2y$, solve the level-curve equation $f(x,y)=c$ for $y$. Give $y$ in terms of $x$ and $c$.",
+        "es": "Para $f(x,y)=x^2-2y$, despeja $y$ en la ecuación de la curva de nivel $f(x,y)=c$. Da $y$ en función de $x$ y $c$."
+      },
+      "answer": "(x^2 - c)/2",
+      "commonMistakes": [
+        {
+          "answer": "x^2 - c/2",
+          "feedback": {
+            "en": "Divide the whole right-hand side by 2: from $-2y = c - x^2$ you get $y = \\tfrac{x^2-c}{2}$. Dividing only the $c$ leaves the $x^2$ term undivided.",
+            "es": "Divide todo el lado derecho entre 2: de $-2y = c - x^2$ sale $y = \\tfrac{x^2-c}{2}$. Dividir solo la $c$ deja sin dividir el término $x^2$."
+          }
+        },
+        {
+          "answer": "(c - x^2)/2",
+          "feedback": {
+            "en": "Check the sign: $-2y = c - x^2$ gives $y = \\tfrac{x^2-c}{2}$, which is the opposite of $\\tfrac{c-x^2}{2}$.",
+            "es": "Revisa el signo: $-2y = c - x^2$ da $y = \\tfrac{x^2-c}{2}$, que es lo contrario de $\\tfrac{c-x^2}{2}$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write x² − 2y = c, then move the 2y term to the other side.",
+        "es": "Escribe x² − 2y = c y pasa el término 2y al otro lado."
+      },
+      "solution": [
+        {
+          "tex": "x^2 - 2y = c",
+          "en": "The level-curve equation.",
+          "es": "La ecuación de la curva de nivel."
+        },
+        {
+          "tex": "2y = x^2 - c",
+          "en": "Move the terms: -2y = c - x^2, then change the sign of both sides.",
+          "es": "Pasa los términos: -2y = c - x^2, y cambia el signo de ambos lados."
+        },
+        {
+          "tex": "y = \\frac{x^2 - c}{2}",
+          "en": "Divide the whole right-hand side by 2.",
+          "es": "Divide todo el lado derecho entre 2."
+        }
+      ]
+    },
+    {
+      "id": "mvc-02-e3",
+      "answerType": "number",
+      "prompt": {
+        "en": "The level curve $f=2$ of $f(x,y)=\\sqrt{9-x^2-y^2}$ is a circle. What is its radius?",
+        "es": "La curva de nivel $f=2$ de $f(x,y)=\\sqrt{9-x^2-y^2}$ es una circunferencia. ¿Cuál es su radio?"
+      },
+      "answer": "sqrt(5)",
+      "acceptedAlt": [
+        "5^(1/2)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "The circle is $x^2+y^2=5$. Its radius is $\\sqrt5$, because $5$ is the radius squared.",
+            "es": "La circunferencia es $x^2+y^2=5$. Su radio es $\\sqrt5$, porque $5$ es el radio al cuadrado."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Square both sides of √(9 − x² − y²) = 2 first.",
+        "es": "Eleva al cuadrado ambos lados de √(9 − x² − y²) = 2 primero."
+      },
+      "solution": [
+        {
+          "tex": "9-x^2-y^2 = 2^2 = 4",
+          "en": "Square both sides.",
+          "es": "Eleva ambos lados al cuadrado."
+        },
+        {
+          "tex": "x^2+y^2 = 5",
+          "en": "This is the circle.",
+          "es": "Es la circunferencia."
+        },
+        {
+          "tex": "r = \\sqrt{5}",
+          "en": "A circle x² + y² = r² has radius r, and here r² = 5.",
+          "es": "Una circunferencia x² + y² = r² tiene radio r, y aquí r² = 5."
+        }
+      ]
+    },
+    {
+      "id": "mvc-02-e4",
+      "answerType": "set",
+      "prompt": {
+        "en": "The level curve $x^2+y^2=10$ of $f(x,y)=x^2+y^2$ meets the line $y=1$ at two points. List their $x$-coordinates.",
+        "es": "La curva de nivel $x^2+y^2=10$ de $f(x,y)=x^2+y^2$ corta a la recta $y=1$ en dos puntos. Escribe sus coordenadas $x$."
+      },
+      "answer": "3, -3",
+      "acceptedAlt": [
+        "-3, 3"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "9, -9",
+          "feedback": {
+            "en": "$9$ is $x^2$, not $x$. Substituting $y=1$ gives $x^2+1=10$, so $x^2=9$ and $x=\\pm3$.",
+            "es": "$9$ es $x^2$, no $x$. Al sustituir $y=1$ queda $x^2+1=10$, así que $x^2=9$ y $x=\\pm3$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Put y = 1 into x² + y² = 10 and solve for x.",
+        "es": "Sustituye y = 1 en x² + y² = 10 y despeja x."
+      },
+      "solution": [
+        {
+          "tex": "x^2 + 1^2 = 10",
+          "en": "Substitute y = 1.",
+          "es": "Sustituye y = 1."
+        },
+        {
+          "tex": "x^2 = 9",
+          "en": "Subtract 1.",
+          "es": "Resta 1."
+        },
+        {
+          "tex": "x = \\pm 3",
+          "en": "Take square roots: both signs are possible.",
+          "es": "Saca la raíz cuadrada: son posibles los dos signos."
+        }
+      ]
+    },
+    {
+      "id": "mvc-02-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "When does $\\lim_{(x,y)\\to(a,b)} f(x,y)$ exist?",
+        "es": "¿Cuándo existe $\\lim_{(x,y)\\to(a,b)} f(x,y)$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "When the two coordinate axes give the same limiting value.",
+            "es": "Cuando los dos ejes coordenados dan el mismo valor límite."
+          },
+          "correct": false,
+          "why": {
+            "en": "For $\\frac{xy}{x^2+y^2}$ both axes give $0$, yet along $y=x$ the value is $\\tfrac12$, so there is no limit at the origin.",
+            "es": "Para $\\frac{xy}{x^2+y^2}$ ambos ejes dan $0$, pero sobre $y=x$ el valor es $\\tfrac12$, así que no hay límite en el origen."
+          }
+        },
+        {
+          "text": {
+            "en": "When every path into $(a,b)$, curved ones included, gives the same limiting value.",
+            "es": "Cuando todos los caminos hacia $(a,b)$, también los curvos, dan el mismo valor límite."
+          },
+          "correct": true,
+          "why": {
+            "en": "A limit is one number that every approach must reach. Two paths that disagree rule it out, and only agreement along all of them supports it.",
+            "es": "Un límite es un único número al que deben llegar todas las aproximaciones. Dos caminos que no coinciden lo descartan, y solo el acuerdo en todos ellos lo sostiene."
+          }
+        },
+        {
+          "text": {
+            "en": "When $f$ is defined at $(a,b)$, because then its limit is $f(a,b)$.",
+            "es": "Cuando $f$ está definida en $(a,b)$, porque entonces su límite es $f(a,b)$."
+          },
+          "correct": false,
+          "why": {
+            "en": "That describes continuity, which needs the limit to exist first. A value at the point says nothing about what $f$ approaches nearby.",
+            "es": "Eso describe la continuidad, que exige antes que el límite exista. El valor en el punto no dice nada sobre a qué se acerca $f$ alrededor."
+          }
+        }
+      ],
+      "hint": {
+        "en": "How many paths would you need to check before you could be sure?",
+        "es": "¿Cuántos caminos tendrías que comprobar antes de estar seguro?"
+      }
+    },
+    {
+      "id": "mvc-02-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `best_grid_point(data, ws, bs)`. `data` is a list of `(x, y)` pairs and the loss of the line $y = wx + b$ is $L(w,b)=\\sum (wx+b-y)^2$ over those pairs. Return `[w, b]` for the grid point, with `w` taken from `ws` and `b` from `bs`, where $L$ is smallest. On a tie, keep the first pair found when looping over `ws` and, for each `w`, over `bs`.",
+        "es": "Completa `best_grid_point(data, ws, bs)`. `data` es una lista de pares `(x, y)` y la pérdida de la recta $y = wx + b$ es $L(w,b)=\\sum (wx+b-y)^2$ sobre esos pares. Devuelve `[w, b]` del punto de la rejilla, con `w` tomado de `ws` y `b` de `bs`, donde $L$ es menor. En un empate, quédate con el primer par que encuentres al recorrer `ws` y, para cada `w`, `bs`."
+      },
+      "funcName": "best_grid_point",
+      "starter": {
+        "en": "def best_grid_point(data, ws, bs):\n    # return [w, b] of the grid point with the smallest loss\n    pass",
+        "es": "def best_grid_point(data, ws, bs):\n    # devuelve [w, b] del punto de la rejilla con la pérdida más pequeña\n    pass"
+      },
+      "solution": "def best_grid_point(data, ws, bs):\n    best_loss = None\n    best = None\n    for w in ws:\n        for b in bs:\n            loss = sum((w * x + b - y) ** 2 for x, y in data)\n            if best_loss is None or loss < best_loss:\n                best_loss = loss\n                best = [w, b]\n    return best",
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            [
+              0,
+              1,
+              1.5,
+              2
+            ],
+            [
+              0,
+              1,
+              1.5
+            ]
+          ],
+          "expected": [
+            1.5,
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            [
+              0,
+              1,
+              2,
+              3
+            ],
+            [
+              -1,
+              0,
+              1
+            ]
+          ],
+          "expected": [
+            2,
+            0
+          ]
+        }
+      ],
+      "hint": {
+        "en": "Loop over every pair (w, b) and keep the pair with the smallest loss.",
+        "es": "Recorre todos los pares (w, b) y quédate con el de menor pérdida."
+      }
+    }
+  ],
+  "references": [
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 14.1, functions of several variables; 14.2, limits and continuity",
+        "es": "Cap. 14.1, funciones de varias variables; 14.2, límites y continuidad"
+      }
+    },
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 2.1, the geometry of real-valued functions; 2.2, limits and continuity",
+        "es": "Cap. 2.1, la geometría de las funciones de valor real; 2.2, límites y continuidad"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§7.1, optimization using gradient descent",
+        "es": "§7.1, optimización con descenso de gradiente"
+      }
+    }
+  ]
+}

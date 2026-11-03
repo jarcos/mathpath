@@ -1,0 +1,452 @@
+{
+  "id": "mvc-05-gradient",
+  "subjectId": "multivariable",
+  "order": 5,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "The Gradient",
+    "es": "El gradiente"
+  },
+  "sections": [
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-16-dot-norm-angle"
+      ],
+      "note": {
+        "en": "Builds on the dot product and the length of vectors, and on the partial derivatives of the previous lesson.",
+        "es": "Se apoya en el producto escalar y la longitud de vectores, y en las derivadas parciales de la lección anterior."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Stand on a hillside and ask which way is up. The answer depends on the direction you face: the slope to the east may be gentle while the slope to the north is steep. In one variable a derivative is a single slope. With two or more variables you have one partial slope per coordinate direction, and the **gradient** gathers all of them into one vector. It tells you in which direction a function grows fastest, and how fast, which is exactly what an optimizer needs to climb a hill or to descend one.",
+        "es": "Imagina que estás en una ladera y preguntas hacia dónde está lo más alto. La respuesta depende de hacia dónde mires: la pendiente hacia el este puede ser suave y la del norte, empinada. En una variable, una derivada es una sola pendiente. Con dos o más variables tienes una derivada parcial por cada dirección de los ejes, y el **gradiente** las reúne todas en un solo vector. Indica en qué dirección crece más deprisa una función y con qué rapidez, que es justo lo que necesita un optimizador para subir o bajar una colina."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "For a function $f(x_1, \\dots, x_n)$ the **gradient** is the vector of its partial derivatives: $$\\nabla f = \\left(\\frac{\\partial f}{\\partial x_1}, \\dots, \\frac{\\partial f}{\\partial x_n}\\right).$$ The symbol $\\nabla$ is read “nabla”. It is evaluated at a point: $\\nabla f(a)$ is a vector whose components are the partial derivatives at $a$. For $f(x,y) = x^2y$, $\\nabla f = (2xy,\\ x^2)$, so $\\nabla f(1,1) = (2,\\ 1)$. Two rules follow from the linearity of partial derivatives: $\\nabla(f+g) = \\nabla f + \\nabla g$ and $\\nabla(cf) = c\\,\\nabla f$. Two patterns are worth memorizing: $\\nabla(a\\cdot x) = a$ for a constant vector $a$, and $\\nabla\\lVert x\\rVert^2 = 2x$.",
+        "es": "Para una función $f(x_1, \\dots, x_n)$, el **gradiente** es el vector de sus derivadas parciales: $$\\nabla f = \\left(\\frac{\\partial f}{\\partial x_1}, \\dots, \\frac{\\partial f}{\\partial x_n}\\right).$$ El símbolo $\\nabla$ se lee «nabla». Se evalúa en un punto: $\\nabla f(a)$ es un vector cuyas componentes son las derivadas parciales en $a$. Para $f(x,y) = x^2y$, $\\nabla f = (2xy,\\ x^2)$, así que $\\nabla f(1,1) = (2,\\ 1)$. De la linealidad de las derivadas parciales salen dos reglas: $\\nabla(f+g) = \\nabla f + \\nabla g$ y $\\nabla(cf) = c\\,\\nabla f$. Conviene memorizar dos patrones: $\\nabla(a\\cdot x) = a$ para un vector constante $a$, y $\\nabla\\lVert x\\rVert^2 = 2x$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — gradient of x²y + y³",
+        "es": "Ejemplo resuelto — gradiente de x²y + y³"
+      },
+      "content": {
+        "en": "Let $f(x,y) = x^2y + y^3$. To get $f_x$, treat $y$ as a constant and differentiate in $x$: $f_x = 2xy$. To get $f_y$, treat $x$ as a constant: $f_y = x^2 + 3y^2$. Therefore $$\\nabla f(x,y) = (2xy,\\ x^2 + 3y^2).$$ At $(1,2)$: $\\nabla f(1,2) = (2\\cdot 1\\cdot 2,\\ 1 + 3\\cdot 4) = (4,\\ 13)$. Moving in $x$ raises $f$ at rate 4, moving in $y$ at rate 13, so $(4,13)$ points toward steepest ascent at $(1,2)$, and its length is the steepest rate. The next lessons make both statements precise.",
+        "es": "Sea $f(x,y) = x^2y + y^3$. Para $f_x$ tratamos $y$ como constante y derivamos en $x$: $f_x = 2xy$. Para $f_y$ tratamos $x$ como constante: $f_y = x^2 + 3y^2$. Por tanto $$\\nabla f(x,y) = (2xy,\\ x^2 + 3y^2).$$ En $(1,2)$: $\\nabla f(1,2) = (2\\cdot 1\\cdot 2,\\ 1 + 3\\cdot 4) = (4,\\ 13)$. Avanzar en $x$ hace crecer $f$ a ritmo 4, y avanzar en $y$ a ritmo 13, así que $(4,13)$ apunta al máximo crecimiento en $(1,2)$, y su longitud es el ritmo máximo. Las próximas lecciones precisan ambas afirmaciones."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Three facts make the gradient the answer to “where does $f$ grow fastest?”. First, $\\nabla f(a)$ points in the direction of steepest ascent. Second, its length $\\lVert\\nabla f(a)\\rVert$ is the rate of growth in that direction. Third, $\\nabla f(a)$ is perpendicular to the **level curve** $f(x,y) = c$ through $a$, because $f$ does not change along a level curve. Take $f = x^2 + y^2$ at $(1,1)$: $\\nabla f = (2,2)$ points straight away from the origin, while the level curve $x^2 + y^2 = 2$ through $(1,1)$ has tangent direction $(1,-1)$, and $(2,2)\\cdot(1,-1) = 0$. The next lesson proves the first two facts; the third is what a contour map shows, where you cross the contour lines at right angles to climb fastest.",
+        "es": "Tres hechos hacen del gradiente la respuesta a «¿dónde crece $f$ más deprisa?». Primero, $\\nabla f(a)$ apunta en la dirección de máximo crecimiento. Segundo, su longitud $\\lVert\\nabla f(a)\\rVert$ es el ritmo de crecimiento en esa dirección. Tercero, $\\nabla f(a)$ es perpendicular a la **curva de nivel** $f(x,y) = c$ que pasa por $a$, porque $f$ no cambia a lo largo de una curva de nivel. Toma $f = x^2 + y^2$ en $(1,1)$: $\\nabla f = (2,2)$ apunta hacia fuera del origen, mientras que la curva de nivel $x^2 + y^2 = 2$ que pasa por $(1,1)$ tiene dirección tangente $(1,-1)$, y $(2,2)\\cdot(1,-1) = 0$. La próxima lección demuestra los dos primeros hechos; el tercero es lo que muestra un mapa de contorno, donde cruzas las curvas de nivel en ángulo recto para subir lo más rápido posible."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "2*x",
+      "domain": [
+        -2,
+        2
+      ],
+      "caption": {
+        "en": "Along the line $y = 1$, the $x$-component of $\\nabla f$ for $f = x^2 + y^2$ is $2x$: zero on the $y$-axis, and steeper the farther you are from it.",
+        "es": "A lo largo de la recta $y = 1$, la componente en $x$ del gradiente de $f = x^2 + y^2$ es $2x$: vale cero sobre el eje $y$ y crece a medida que te alejas de él."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Where is the gradient zero? $\\nabla f(a) = 0$ means that every partial derivative vanishes at $a$: the surface is flat there, and no direction increases $f$ to first order. Such points are called **critical points**. They can be peaks, valleys or saddles. For $f = x^2 - y^2$, $\\nabla f = (2x,\\ -2y)$ vanishes only at the origin, yet the origin is neither a maximum nor a minimum: along $x$ the function rises, along $y$ it falls. A method that stops wherever $\\nabla f = 0$ can therefore stop at a saddle. Lesson 11 shows how second derivatives tell the three kinds apart.",
+        "es": "¿Dónde se anula el gradiente? $\\nabla f(a) = 0$ significa que todas las derivadas parciales se anulan en $a$: la superficie está plana allí, y ninguna dirección aumenta $f$ en primer orden. A estos puntos se les llama **puntos críticos**. Pueden ser picos, valles o puntos de silla. Para $f = x^2 - y^2$, $\\nabla f = (2x,\\ -2y)$ se anula solo en el origen, y sin embargo el origen no es ni máximo ni mínimo: a lo largo de $x$ la función sube, y a lo largo de $y$ baja. Un método que se detenga donde $\\nabla f = 0$ puede, por tanto, quedarse en un punto de silla. La lección 11 muestra cómo distinguir los tres tipos con las derivadas segundas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Most of machine learning is minimizing a loss $L(\\mathbf w)$ over many parameters $\\mathbf w = (w_1, \\dots, w_p)$. The gradient $\\nabla L(\\mathbf w)$ has one component per parameter, and each says how the loss changes when that parameter moves alone. Since $\\nabla L$ points uphill, the update $$\\mathbf w \\leftarrow \\mathbf w - \\eta\\,\\nabla L(\\mathbf w), \\qquad \\eta > 0,$$ moves downhill. The number $\\eta$ is the **learning rate**, or step size. This is **gradient descent**, the engine of training for linear models, logistic regression and neural networks alike. They differ in how many parameters they have and in how hard the gradient is to compute. Backpropagation (lesson 8) is the efficient way to get $\\nabla L$ for a deep network.",
+        "es": "Gran parte del aprendizaje automático consiste en minimizar una pérdida $L(\\mathbf w)$ sobre muchos parámetros $\\mathbf w = (w_1, \\dots, w_p)$. El gradiente $\\nabla L(\\mathbf w)$ tiene una componente por parámetro, y cada una dice cómo cambia la pérdida si ese parámetro se mueve solo. Como $\\nabla L$ apunta cuesta arriba, la actualización $$\\mathbf w \\leftarrow \\mathbf w - \\eta\\,\\nabla L(\\mathbf w), \\qquad \\eta > 0,$$ avanza cuesta abajo. El número $\\eta$ es la **tasa de aprendizaje**, o tamaño de paso. Esto es el **descenso de gradiente**, el motor del entrenamiento de modelos lineales, de la regresión logística y de las redes neuronales por igual. Se diferencian en cuántos parámetros tienen y en lo difícil que es calcular el gradiente. La retropropagación (lección 8) es la forma eficiente de obtener $\\nabla L$ en una red profunda."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — one gradient step on a loss",
+        "es": "Ejemplo resuelto — un paso de gradiente sobre una pérdida"
+      },
+      "content": {
+        "en": "A model predicts $\\hat y = wx + b$. For one data point $(x,y) = (2,5)$ the squared error is $L(w,b) = (2w + b - 5)^2$. By the chain rule, $\\partial L/\\partial w = 2(2w+b-5)\\cdot 2$ and $\\partial L/\\partial b = 2(2w+b-5)$, so $\\nabla L = 2(2w+b-5)\\,(2,\\ 1)$. At $(w,b) = (1,0)$ the residual is $2 + 0 - 5 = -3$, so $\\nabla L(1,0) = (-12,\\ -6)$ and $L(1,0) = 9$. One gradient descent step with $\\eta = 0.05$ gives $$(w,b) \\leftarrow (1,0) - 0.05\\,(-12,\\ -6) = (1.6,\\ 0.3).$$ The new residual is $2(1.6) + 0.3 - 5 = -1.5$, so the loss falls from 9 to 2.25 in one step.",
+        "es": "Un modelo predice $\\hat y = wx + b$. Para un solo dato $(x,y) = (2,5)$, el error cuadrático es $L(w,b) = (2w + b - 5)^2$. Por la regla de la cadena, $\\partial L/\\partial w = 2(2w+b-5)\\cdot 2$ y $\\partial L/\\partial b = 2(2w+b-5)$, así que $\\nabla L = 2(2w+b-5)\\,(2,\\ 1)$. En $(w,b) = (1,0)$ el residuo es $2 + 0 - 5 = -3$, así que $\\nabla L(1,0) = (-12,\\ -6)$ y $L(1,0) = 9$. Un paso de descenso de gradiente con $\\eta = 0.05$ da $$(w,b) \\leftarrow (1,0) - 0.05\\,(-12,\\ -6) = (1.6,\\ 0.3).$$ El nuevo residuo es $2(1.6) + 0.3 - 5 = -1.5$, así que la pérdida baja de 9 a 2.25 en un solo paso."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "def f(x, y):\n    return x**2 * y + y**3\n\ndef numerical_gradient(f, point, h=1e-6):\n    # central difference for each coordinate: (f(p + h e_i) - f(p - h e_i)) / (2h)\n    grad = []\n    for i in range(len(point)):\n        up = list(point)\n        down = list(point)\n        up[i] += h\n        down[i] -= h\n        grad.append((f(*up) - f(*down)) / (2 * h))\n    return grad\n\ng = numerical_gradient(f, [1.0, 2.0])\nprint([round(c, 4) for c in g])",
+        "es": "def f(x, y):\n    return x**2 * y + y**3\n\ndef numerical_gradient(f, point, h=1e-6):\n    # diferencia central en cada coordenada: (f(p + h e_i) - f(p - h e_i)) / (2h)\n    grad = []\n    for i in range(len(point)):\n        up = list(point)\n        down = list(point)\n        up[i] += h\n        down[i] -= h\n        grad.append((f(*up) - f(*down)) / (2 * h))\n    return grad\n\ng = numerical_gradient(f, [1.0, 2.0])\nprint([round(c, 4) for c in g])"
+      },
+      "expectedOutput": "[4.0, 13.0]",
+      "caption": {
+        "en": "Central differences estimate each partial derivative from two nearby values. The result matches the exact $\\nabla f(1,2) = (4, 13)$.",
+        "es": "Las diferencias centrales estiman cada derivada parcial con dos valores cercanos. El resultado coincide con $\\nabla f(1,2) = (4, 13)$."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-05-e1",
+      "answerType": "number",
+      "params": {
+        "a": {
+          "int": [
+            -5,
+            5
+          ],
+          "exclude": [
+            -1,
+            0,
+            1
+          ]
+        },
+        "b": {
+          "int": [
+            -5,
+            5
+          ],
+          "exclude": [
+            -1,
+            0,
+            1
+          ]
+        }
+      },
+      "derived": {
+        "t": "a + 12*b"
+      },
+      "check": "abs(answer - ((a*2.0001 + b*2.0001^3) - (a*1.9999 + b*1.9999^3)) / 0.0002) < 0.000001",
+      "prompt": {
+        "en": "For $f(x,y) = [[a]]x^2y [[b|+]]y^3$, find the $y$-component of $\\nabla f$ at $(1,2)$.",
+        "es": "Para $f(x,y) = [[a]]x^2y [[b|+]]y^3$, halla la componente en $y$ de $\\nabla f$ en $(1,2)$."
+      },
+      "answer": "[[t]]",
+      "hint": {
+        "en": "$\\partial f/\\partial y$ treats $x$ as a constant: differentiate $y^3$ as $3y^2$, then substitute $(1,2)$.",
+        "es": "$\\partial f/\\partial y$ trata $x$ como constante: deriva $y^3$ como $3y^2$ y luego sustituye $(1,2)$."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{\\partial f}{\\partial y} = [[a]]x^2 + 3([[b]])y^2",
+          "en": "Differentiate in y, with x held constant.",
+          "es": "Deriva respecto de y, con x constante."
+        },
+        {
+          "tex": "\\frac{\\partial f}{\\partial y}(1,2) = [[a]] + 12([[b]]) = [[t]]",
+          "en": "Substitute x = 1 and y = 2, so 3y² = 12.",
+          "es": "Sustituye x = 1 e y = 2, así que 3y² = 12."
+        }
+      ]
+    },
+    {
+      "id": "mvc-05-e2",
+      "answerType": "expression",
+      "prompt": {
+        "en": "Let $f(x,y) = e^{x^2+y}$. Write the $x$-component of $\\nabla f$ as an expression in $x$ and $y$.",
+        "es": "Sea $f(x,y) = e^{x^2+y}$. Escribe la componente en $x$ de $\\nabla f$ como expresión en $x$ e $y$."
+      },
+      "answer": "2*x*exp(x^2+y)",
+      "acceptedAlt": [
+        "2*x*e^(x^2+y)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "exp(x^2+y)",
+          "feedback": {
+            "en": "The outer function is $e^u$ with $u = x^2 + y$, but the inner derivative $\\partial u/\\partial x = 2x$ is a factor too. The chain rule multiplies by it.",
+            "es": "La función exterior es $e^u$ con $u = x^2 + y$, pero la derivada interior $\\partial u/\\partial x = 2x$ también es un factor. La regla de la cadena lo multiplica."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Treat $y$ as a constant. The derivative of $e^u$ is $e^u\\,\\partial u/\\partial x$.",
+        "es": "Trata $y$ como constante. La derivada de $e^u$ es $e^u\\,\\partial u/\\partial x$."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{\\partial f}{\\partial x} = e^{x^2+y}\\cdot \\frac{\\partial}{\\partial x}(x^2+y)",
+          "en": "Chain rule with u = x² + y; y is constant for ∂/∂x.",
+          "es": "Regla de la cadena con u = x² + y; y es constante para ∂/∂x."
+        },
+        {
+          "tex": "= e^{x^2+y}\\cdot 2x = 2x\\,e^{x^2+y}",
+          "en": "The derivative of x² + y with respect to x is 2x.",
+          "es": "La derivada de x² + y respecto de x es 2x."
+        }
+      ]
+    },
+    {
+      "id": "mvc-05-e3",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x,y) = x^2 + y^2 - 2x - 4y$, find the $x$-coordinate of the point where $\\nabla f = 0$.",
+        "es": "Para $f(x,y) = x^2 + y^2 - 2x - 4y$, halla la coordenada $x$ del punto donde $\\nabla f = 0$."
+      },
+      "answer": "1",
+      "commonMistakes": [
+        {
+          "answer": "-1",
+          "feedback": {
+            "en": "Check the sign: $\\partial f/\\partial x = 2x - 2$, because the term $-2x$ differentiates to $-2$. Solving $2x - 2 = 0$ gives $x = 1$.",
+            "es": "Revisa el signo: $\\partial f/\\partial x = 2x - 2$, porque el término $-2x$ se deriva en $-2$. Resolver $2x - 2 = 0$ da $x = 1$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Set both partial derivatives to zero: $\\partial f/\\partial x = 2x - 2$ and $\\partial f/\\partial y = 2y - 4$.",
+        "es": "Iguala a cero ambas derivadas parciales: $\\partial f/\\partial x = 2x - 2$ y $\\partial f/\\partial y = 2y - 4$."
+      },
+      "solution": [
+        {
+          "tex": "\\nabla f = (2x - 2,\\ 2y - 4)",
+          "en": "Partial derivatives.",
+          "es": "Derivadas parciales."
+        },
+        {
+          "tex": "2x - 2 = 0 \\Rightarrow x = 1,\\qquad 2y - 4 = 0 \\Rightarrow y = 2",
+          "en": "Set each component to zero.",
+          "es": "Iguala cada componente a cero."
+        }
+      ]
+    },
+    {
+      "id": "mvc-05-e4",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x,y) = x^2y$, find the exact length $\\lVert\\nabla f(1,1)\\rVert$.",
+        "es": "Para $f(x,y) = x^2y$, halla el valor exacto de la longitud $\\lVert\\nabla f(1,1)\\rVert$."
+      },
+      "answer": "sqrt(5)",
+      "acceptedAlt": [
+        "5^(1/2)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "That is the squared length, $2^2 + 1^2$. The length takes the square root: $\\sqrt{5}$.",
+            "es": "Eso es la longitud al cuadrado, $2^2 + 1^2$. La longitud lleva raíz cuadrada: $\\sqrt{5}$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "First find $\\nabla f(1,1) = (f_x, f_y)$, then use $\\lVert(u,v)\\rVert = \\sqrt{u^2+v^2}$.",
+        "es": "Primero halla $\\nabla f(1,1) = (f_x, f_y)$ y luego usa $\\lVert(u,v)\\rVert = \\sqrt{u^2+v^2}$."
+      },
+      "solution": [
+        {
+          "tex": "\\nabla f = (2xy,\\ x^2) \\Rightarrow \\nabla f(1,1) = (2,\\ 1)",
+          "en": "Partial derivatives, then the point (1, 1).",
+          "es": "Derivadas parciales y luego el punto (1, 1)."
+        },
+        {
+          "tex": "\\lVert\\nabla f(1,1)\\rVert = \\sqrt{2^2 + 1^2} = \\sqrt{5}",
+          "en": "Length of the vector.",
+          "es": "Longitud del vector."
+        }
+      ]
+    },
+    {
+      "id": "mvc-05-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which statement about the gradient $\\nabla f(a)$ is true, when $\\nabla f(a) \\neq 0$?",
+        "es": "¿Cuál de estas afirmaciones sobre el gradiente $\\nabla f(a)$ es cierta, si $\\nabla f(a) \\neq 0$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It is perpendicular to the level curve of $f$ through $a$, and points toward larger values of $f$.",
+            "es": "Es perpendicular a la curva de nivel de $f$ que pasa por $a$, y apunta hacia valores mayores de $f$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Both parts hold: $f$ stays constant along the level curve, and the gradient points in the direction of steepest increase.",
+            "es": "Se cumplen las dos cosas: $f$ se mantiene constante a lo largo de la curva de nivel, y el gradiente apunta en la dirección de máximo crecimiento."
+          }
+        },
+        {
+          "text": {
+            "en": "It is parallel to the level curve of $f$ through $a$.",
+            "es": "Es paralelo a la curva de nivel de $f$ que pasa por $a$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Along a level curve $f$ does not change, so the gradient cannot point along it. It is perpendicular.",
+            "es": "A lo largo de una curva de nivel $f$ no cambia, así que el gradiente no puede apuntar a lo largo de ella. Es perpendicular."
+          }
+        },
+        {
+          "text": {
+            "en": "It is the same vector at every point where $f$ takes the same value.",
+            "es": "Es el mismo vector en todos los puntos donde $f$ toma el mismo valor."
+          },
+          "correct": false,
+          "why": {
+            "en": "Level curves are not straight lines in general. On the circle $x^2+y^2 = 2$, $\\nabla f = 2(x,y)$ changes from point to point.",
+            "es": "Las curvas de nivel no son rectas en general. Sobre el círculo $x^2+y^2 = 2$, $\\nabla f = 2(x,y)$ cambia de un punto a otro."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think of $f = x^2 + y^2$ and its circular level curves.",
+        "es": "Piensa en $f = x^2 + y^2$ y en sus curvas de nivel circulares."
+      }
+    },
+    {
+      "id": "mvc-05-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `grad_f(x, y)`, which returns the gradient $[f_x, f_y]$ of $f(x,y) = x^2y + y^3$ as a list of two floats.",
+        "es": "Completa `grad_f(x, y)`, que devuelve el gradiente $[f_x, f_y]$ de $f(x,y) = x^2y + y^3$ como lista de dos números reales."
+      },
+      "funcName": "grad_f",
+      "starter": {
+        "en": "def grad_f(x, y):\n    # return [f_x, f_y] for f(x, y) = x^2*y + y^3\n    pass",
+        "es": "def grad_f(x, y):\n    # devuelve [f_x, f_y] para f(x, y) = x^2*y + y^3\n    pass"
+      },
+      "solution": "def grad_f(x, y):\n    return [2 * x * y, x**2 + 3 * y**2]",
+      "tests": [
+        {
+          "args": [
+            1,
+            2
+          ],
+          "expected": [
+            4.0,
+            13.0
+          ],
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            0,
+            1
+          ],
+          "expected": [
+            0.0,
+            3.0
+          ],
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            -2,
+            0.5
+          ],
+          "expected": [
+            -2.0,
+            4.75
+          ],
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            3,
+            -1
+          ],
+          "expected": [
+            -6.0,
+            12.0
+          ],
+          "tol": 1e-09
+        }
+      ],
+      "hint": {
+        "en": "Differentiate with respect to x (y fixed), then with respect to y (x fixed).",
+        "es": "Deriva respecto de x (con y fija) y después respecto de y (con x fija)."
+      }
+    },
+    {
+      "id": "mvc-05-e7",
+      "answerType": "number",
+      "prompt": {
+        "en": "The loss $L(w,b) = (2w + b - 5)^2$ comes from one data point $(x,y) = (2,5)$. Starting from $(w,b) = (1,0)$ with learning rate $\\eta = 0.05$, what is $w$ after one gradient descent step?",
+        "es": "La pérdida $L(w,b) = (2w + b - 5)^2$ viene de un solo dato $(x,y) = (2,5)$. Partiendo de $(w,b) = (1,0)$ con tasa de aprendizaje $\\eta = 0.05$, ¿cuánto vale $w$ tras un paso de descenso de gradiente?"
+      },
+      "answer": "8/5",
+      "acceptedAlt": [
+        "1.6"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1.3",
+          "feedback": {
+            "en": "You dropped the inner derivative: $\\partial(2w+b-5)/\\partial w = 2$ is a factor too. With it $\\partial L/\\partial w = 2(2w+b-5)\\cdot 2 = -12$, not $-6$; without it the step is too small.",
+            "es": "Olvidaste la derivada interior: $\\partial(2w+b-5)/\\partial w = 2$ también es un factor. Con él $\\partial L/\\partial w = 2(2w+b-5)\\cdot 2 = -12$, no $-6$; sin él el paso es demasiado pequeño."
+          }
+        },
+        {
+          "answer": "0.4",
+          "feedback": {
+            "en": "Gradient descent subtracts the gradient: $w - \\eta\\,\\partial L/\\partial w$. Adding it climbs the loss.",
+            "es": "El descenso de gradiente resta el gradiente: $w - \\eta\\,\\partial L/\\partial w$. Sumarlo sube la pérdida."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compute $\\partial L/\\partial w$ at $(1,0)$, then $w - \\eta\\,\\partial L/\\partial w$.",
+        "es": "Calcula $\\partial L/\\partial w$ en $(1,0)$ y luego $w - \\eta\\,\\partial L/\\partial w$."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{\\partial L}{\\partial w} = 2(2w+b-5)\\cdot 2 = 4(2w+b-5)",
+          "en": "Chain rule on the square, times ∂(2w + b − 5)/∂w = 2.",
+          "es": "Regla de la cadena sobre el cuadrado, por ∂(2w + b − 5)/∂w = 2."
+        },
+        {
+          "tex": "\\frac{\\partial L}{\\partial w}(1,0) = 4(-3) = -12",
+          "en": "The residual at (1, 0) is 2 + 0 − 5 = −3.",
+          "es": "El residuo en (1, 0) es 2 + 0 − 5 = −3."
+        },
+        {
+          "tex": "w \\leftarrow 1 - 0.05(-12) = 1.6 = \\tfrac{8}{5}",
+          "en": "Subtract η times the gradient.",
+          "es": "Resta η por el gradiente."
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 14.6, directional derivatives and the gradient vector",
+        "es": "Cap. 14.6, derivadas direccionales y el vector gradiente"
+      }
+    },
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 2.6, gradients and directional derivatives",
+        "es": "Cap. 2.6, gradientes y derivadas direccionales"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§5.2, partial differentiation and gradients",
+        "es": "§5.2, derivación parcial y gradientes"
+      }
+    }
+  ]
+}

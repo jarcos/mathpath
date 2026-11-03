@@ -1,0 +1,434 @@
+{
+  "id": "mvc-14-lagrange",
+  "subjectId": "multivariable",
+  "order": 14,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Constrained Optimization: Lagrange Multipliers",
+    "es": "Optimización con restricciones: multiplicadores de Lagrange"
+  },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "So far every problem has been free: move anywhere in the plane and the function decides. Real problems usually come with a **constraint**: maximise the area of a rectangle whose perimeter is fixed, or find the cheapest mix that meets a budget. Picture the level curves of $f$ as contour lines on a map, and the constraint $g(x, y) = c$ as a road along which you must walk. Climbing means crossing contour lines. At the highest point of the road, the road just touches a contour line without crossing it. That touching is the whole idea of this lesson.",
+        "es": "Hasta ahora todos los problemas eran libres: te mueves a cualquier punto del plano y la función decide. Los problemas reales suelen traer una **restricción**: maximizar el área de un rectángulo con perímetro fijo, o encontrar la mezcla más barata que cumpla un presupuesto. Imagina las curvas de nivel de $f$ como las curvas de un mapa, y la restricción $g(x, y) = c$ como una carretera por la que tienes que caminar. Subir obliga a cruzar curvas de nivel. En el punto más alto de la carretera, esta apenas toca una curva de nivel sin cruzarla. Ese contacto es la idea central de la lección."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Where does the road touch a contour? There the two curves share a tangent line, so their normal vectors are parallel. The gradient $\\nabla f$ is normal to the level curve of $f$, and $\\nabla g$ is normal to the constraint, so at the optimum $$\\nabla f(x^*) = \\lambda\\,\\nabla g(x^*), \\qquad g(x^*) = c$$ for some number $\\lambda$, the **Lagrange multiplier**. Why? Moving along the constraint cannot increase $f$ to first order, so $\\nabla f$ has no component along the constraint's tangent. That tangent is perpendicular to $\\nabla g$, so in the plane $\\nabla f$ is a multiple of $\\nabla g$. This needs $\\nabla g \\neq 0$ at the point.",
+        "es": "¿Dónde toca la carretera a una curva de nivel? Allí las dos curvas comparten recta tangente, así que sus vectores normales son paralelos. El gradiente $\\nabla f$ es normal a la curva de nivel de $f$, y $\\nabla g$ es normal a la restricción; por tanto, en el óptimo $$\\nabla f(x^*) = \\lambda\\,\\nabla g(x^*), \\qquad g(x^*) = c$$ para algún número $\\lambda$, el **multiplicador de Lagrange**. ¿Por qué? Moverse a lo largo de la restricción no puede aumentar $f$ en primer orden, así que $\\nabla f$ no tiene componente en la tangente de la restricción. Esa tangente es perpendicular a $\\nabla g$, así que en el plano $\\nabla f$ es un múltiplo de $\\nabla g$. Hace falta que $\\nabla g \\neq 0$ en el punto."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — max xy on x + y = 10",
+        "es": "Ejemplo resuelto — máximo de xy con x + y = 10"
+      },
+      "content": {
+        "en": "Let $f = xy$ and $g = x + y$, so $\\nabla f = (y, x)$ and $\\nabla g = (1, 1)$. The condition $\\nabla f = \\lambda\\nabla g$ reads $$y = \\lambda, \\qquad x = \\lambda.$$ So $x = y$, and the constraint $x + y = 10$ gives $x = y = 5$, $\\lambda = 5$. The maximum is $xy = 25$. Check: $(6, 4)$ and $(4, 6)$ both give $24$, less than $25$. A fixed sum split evenly gives the largest product.",
+        "es": "Sean $f = xy$ y $g = x + y$, así que $\\nabla f = (y, x)$ y $\\nabla g = (1, 1)$. La condición $\\nabla f = \\lambda\\nabla g$ dice $$y = \\lambda, \\qquad x = \\lambda.$$ Así que $x = y$, y la restricción $x + y = 10$ da $x = y = 5$, $\\lambda = 5$. El máximo es $xy = 25$. Comprobación: $(6, 4)$ y $(4, 6)$ dan ambos $24$, menos que $25$. Una suma fija repartida por igual da el mayor producto."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The two conditions are easier to handle as equations with the **Lagrangian** $$\\mathcal{L}(x, \\lambda) = f(x) - \\lambda\\,\\bigl(g(x) - c\\bigr).$$ Its partial derivatives in $x$ give $\\nabla f - \\lambda\\nabla g = 0$, the first condition, and its partial derivative in $\\lambda$ gives $-(g - c) = 0$, the constraint. So the recipe is: write $\\mathcal{L}$; set every partial derivative to zero; solve; compare $f$ at the candidates. The last step matters, because a solution of $\\nabla\\mathcal{L} = 0$ can be a maximum, a minimum or neither. If the constraint set is closed and bounded and $\\nabla g \\neq 0$ on it, the maximum and minimum are among the candidates, so comparing them settles the question.",
+        "es": "Las dos condiciones se manejan mejor como ecuaciones con el **lagrangiano** $$\\mathcal{L}(x, \\lambda) = f(x) - \\lambda\\,\\bigl(g(x) - c\\bigr).$$ Sus derivadas parciales respecto a $x$ dan $\\nabla f - \\lambda\\nabla g = 0$, la primera condición, y la derivada respecto a $\\lambda$ da $-(g - c) = 0$, la restricción. La receta es: escribe $\\mathcal{L}$; iguala a cero todas sus derivadas parciales; resuelve; compara $f$ en los candidatos. El último paso importa, porque una solución de $\\nabla\\mathcal{L} = 0$ puede ser un máximo, un mínimo o ninguno. Si el conjunto de restricción es cerrado y acotado, y $\\nabla g \\neq 0$ en él, el máximo y el mínimo están entre los candidatos, así que comparándolos se resuelve la cuestión."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — the closest point to the origin",
+        "es": "Ejemplo resuelto — el punto más cercano al origen"
+      },
+      "content": {
+        "en": "Minimise $f = x^2 + y^2$ (the squared distance to the origin) on the line $g = x + 2y = 5$. Here $\\nabla f = (2x, 2y)$ and $\\nabla g = (1, 2)$, so $\\nabla f = \\lambda\\nabla g$ gives $$2x = \\lambda, \\qquad 2y = 2\\lambda.$$ Hence $y = 2x$, and $x + 2y = 5$ becomes $5x = 5$: $x = 1$, $y = 2$, $\\lambda = 2$. The closest point is $(1, 2)$, at distance $\\sqrt5$. The same equations serve for a maximum or a minimum. Here $f$ is convex and the line is a convex set, so the only critical point must be the minimum.",
+        "es": "Minimiza $f = x^2 + y^2$ (la distancia al origen al cuadrado) sobre la recta $g = x + 2y = 5$. Aquí $\\nabla f = (2x, 2y)$ y $\\nabla g = (1, 2)$, así que $\\nabla f = \\lambda\\nabla g$ da $$2x = \\lambda, \\qquad 2y = 2\\lambda.$$ Por tanto $y = 2x$, y $x + 2y = 5$ queda $5x = 5$: $x = 1$, $y = 2$, $\\lambda = 2$. El punto más cercano es $(1, 2)$, a distancia $\\sqrt5$. Las mismas ecuaciones sirven para un máximo o un mínimo. Aquí $f$ es convexa y la recta es un conjunto convexo, así que el único punto crítico tiene que ser el mínimo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The multiplier has a meaning. Let $V(c)$ be the best value when the constraint is $g = c$. Then $$\\frac{dV}{dc} = \\lambda,$$ so $\\lambda$ is the price of the constraint: how much the best value changes when the budget changes by one unit. In the first example $\\lambda = 5$: raising $x + y$ from 10 to 11 raises the largest product from 25 to 30.25, about 5 per unit. In the second, the best value is $V(c) = c^2/5$, and at $c = 5$ its slope is $2 = \\lambda$.",
+        "es": "El multiplicador tiene un significado. Sea $V(c)$ el mejor valor cuando la restricción es $g = c$. Entonces $$\\frac{dV}{dc} = \\lambda,$$ así que $\\lambda$ es el precio de la restricción: cuánto cambia el mejor valor cuando el presupuesto cambia en una unidad. En el primer ejemplo, $\\lambda = 5$: subir $x + y$ de 10 a 11 sube el mayor producto de 25 a 30.25, unos 5 por unidad. En el segundo, el mejor valor es $V(c) = c^2/5$, y en $c = 5$ su pendiente es $2 = \\lambda$."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "x^2 + ((5 - x) / 2)^2",
+      "domain": [
+        -2,
+        4
+      ],
+      "caption": {
+        "en": "The objective $x^2 + y^2$ along the line $x + 2y = 5$, using $y = (5 - x)/2$. The lowest point of this parabola, at $x = 1$ with value $5$, is the closest point of the line to the origin from the worked example.",
+        "es": "La función objetivo $x^2 + y^2$ sobre la recta $x + 2y = 5$, con $y = (5 - x)/2$. El punto más bajo de esta parábola, en $x = 1$ con valor $5$, es el punto de la recta más cercano al origen del ejemplo resuelto."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Constraints can also be inequalities, $g(x) \\le c$. For a maximum, if the constraint is active the optimum satisfies $\\nabla f = \\mu\\nabla g$ with $\\mu \\ge 0$; if it is not active, $\\mu = 0$. Both cases are summarised by **complementary slackness**, $\\mu\\,(c - g(x^*)) = 0$. For instance, maximise $x$ subject to $x^2 \\le 1$: the best point is $x^* = 1$, and $1 = \\mu\\cdot 2$ gives $\\mu = \\tfrac12 \\ge 0$. With several constraints each gets its own multiplier, $\\nabla f = \\sum_i \\lambda_i\\nabla g_i$. The full set of conditions for inequalities, the **KKT conditions** (Karush–Kuhn–Tucker), is in Boyd & Vandenberghe §5.5.3.",
+        "es": "Las restricciones también pueden ser desigualdades, $g(x) \\le c$. En un máximo, si la restricción está activa, el óptimo cumple $\\nabla f = \\mu\\nabla g$ con $\\mu \\ge 0$; si no está activa, $\\mu = 0$. Ambos casos se resumen en la **holgura complementaria**, $\\mu\\,(c - g(x^*)) = 0$. Por ejemplo, maximiza $x$ sujeto a $x^2 \\le 1$: el mejor punto es $x^* = 1$, y $1 = \\mu\\cdot 2$ da $\\mu = \\tfrac12 \\ge 0$. Con varias restricciones, cada una tiene su multiplicador: $\\nabla f = \\sum_i \\lambda_i\\nabla g_i$. El conjunto completo de condiciones para desigualdades, las **condiciones KKT** (Karush–Kuhn–Tucker), aparece en Boyd y Vandenberghe, §5.5.3."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Constrained problems sit under much of machine learning. A **support vector machine** looks for the separating line with the widest margin: minimize $\\tfrac12\\lVert w\\rVert^2$ subject to $y_i(w\\cdot x_i + b) \\ge 1$. Its multipliers are non-negative, and by complementary slackness they are non-zero only for the **support vectors**, the training points on the margin. **Maximum entropy** models choose the most spread-out distribution that reproduces measured averages, and their multipliers become the weights of a softmax (the normalized exponential of the scores). A **regularised** loss, $L(w) + \\alpha\\lVert w\\rVert^2$, has, for convex losses, the same solutions as minimizing $L$ inside a budget $\\lVert w\\rVert^2 \\le R$ for a suitable $R$, with $\\alpha$ the multiplier of that budget.",
+        "es": "Los problemas con restricciones están debajo de gran parte del aprendizaje automático. Una **máquina de vectores soporte** busca la recta separadora con el margen más ancho: minimizar $\\tfrac12\\lVert w\\rVert^2$ sujeto a $y_i(w\\cdot x_i + b) \\ge 1$. Sus multiplicadores son no negativos y, por holgura complementaria, solo son distintos de cero en los **vectores soporte**, los puntos de entrenamiento sobre el margen. Los modelos de **máxima entropía** eligen la distribución más dispersa que reproduce los promedios medidos, y sus multiplicadores son los pesos de una softmax (la exponencial normalizada de las puntuaciones). Una pérdida **regularizada**, $L(w) + \\alpha\\lVert w\\rVert^2$, tiene, para pérdidas convexas, las mismas soluciones que minimizar $L$ dentro de un presupuesto $\\lVert w\\rVert^2 \\le R$ para un $R$ adecuado, con $\\alpha$ como multiplicador de ese presupuesto."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# Brute force: scan the line x + 2y = 5 and keep the point closest to the origin\nbest = None\nfor i in range(-300, 301):\n    x = i / 100\n    y = (5 - x) / 2\n    d2 = x * x + y * y\n    if best is None or d2 < best[0]:\n        best = (d2, x, y)\nprint(\"brute force:\", round(best[1], 6), round(best[2], 6), round(best[0], 6))\nprint(\"Lagrange:\", 1.0, 2.0, 5.0)",
+        "es": "# Fuerza bruta: recorre la recta x + 2y = 5 y guarda el punto más cercano al origen\nbest = None\nfor i in range(-300, 301):\n    x = i / 100\n    y = (5 - x) / 2\n    d2 = x * x + y * y\n    if best is None or d2 < best[0]:\n        best = (d2, x, y)\nprint(\"brute force:\", round(best[1], 6), round(best[2], 6), round(best[0], 6))\nprint(\"Lagrange:\", 1.0, 2.0, 5.0)"
+      },
+      "expectedOutput": "brute force: 1.0 2.0 5.0\nLagrange: 1.0 2.0 5.0",
+      "caption": {
+        "en": "The scan along the line finds the same point as the multiplier calculation, $(1, 2)$ with value $5$. A grid only approximates a minimum; the Lagrange equations give it exactly.",
+        "es": "El recorrido por la recta encuentra el mismo punto que el cálculo con multiplicadores, $(1, 2)$ con valor $5$. Una cuadrícula solo aproxima un mínimo; las ecuaciones de Lagrange lo dan exacto."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-14-e1",
+      "answerType": "number",
+      "params": {
+        "s": {
+          "int": [
+            4,
+            12
+          ]
+        }
+      },
+      "derived": {
+        "best": "s^2 / 4"
+      },
+      "check": "abs(answer - (s/2)*(s/2)) < 1e-9 and answer >= (s/3)*(2*s/3)",
+      "prompt": {
+        "en": "Maximise $xy$ subject to $x + y = [[s]]$. What is the largest value of $xy$?",
+        "es": "Maximiza $xy$ sujeto a $x + y = [[s]]$. ¿Cuál es el mayor valor de $xy$?"
+      },
+      "answer": "[[best]]",
+      "hint": {
+        "en": "Setting the x- and y-derivatives of the Lagrangian to zero gives $y = \\lambda$ and $x = \\lambda$.",
+        "es": "Igualar a cero las derivadas en $x$ y en $y$ del lagrangiano da $y = \\lambda$ y $x = \\lambda$."
+      },
+      "solution": [
+        {
+          "tex": "\\mathcal{L} = xy - \\lambda\\,(x + y - [[s]])",
+          "en": "Lagrangian with the constraint x + y - s = 0.",
+          "es": "Lagrangiano con la restricción x + y - s = 0."
+        },
+        {
+          "tex": "y = \\lambda,\\quad x = \\lambda",
+          "en": "The x- and y-equations.",
+          "es": "Las ecuaciones en x y en y."
+        },
+        {
+          "tex": "x = y = \\frac{[[s]]}{2}",
+          "en": "The constraint fixes x = y = s/2.",
+          "es": "La restricción fija x = y = s/2."
+        },
+        {
+          "tex": "xy = [[best]]",
+          "en": "Maximum value.",
+          "es": "Valor máximo."
+        }
+      ]
+    },
+    {
+      "id": "mvc-14-e2",
+      "answerType": "number",
+      "prompt": {
+        "en": "Maximise $xy$ subject to $x + 2y = 8$. With $\\nabla f = \\lambda\\nabla g$ and $\\mathcal{L} = f - \\lambda(g - c)$, what is $\\lambda$ at the optimum?",
+        "es": "Maximiza $xy$ sujeto a $x + 2y = 8$. Con $\\nabla f = \\lambda\\nabla g$ y $\\mathcal{L} = f - \\lambda(g - c)$, ¿cuánto vale $\\lambda$ en el óptimo?"
+      },
+      "answer": "2",
+      "commonMistakes": [
+        {
+          "answer": "-2",
+          "feedback": {
+            "en": "With $\\mathcal{L} = f - \\lambda(g - c)$, $\\nabla f = \\lambda\\nabla g$ gives $\\lambda = +2$. A minus sign comes from the other convention $\\mathcal{L} = f + \\lambda(g - c)$. Also $\\lambda = 2$ is the growth rate of the maximum: it is $c^2/8$, with slope $c/4 = 2$ at $c = 8$.",
+            "es": "Con $\\mathcal{L} = f - \\lambda(g - c)$, $\\nabla f = \\lambda\\nabla g$ da $\\lambda = +2$. Un signo menos aparece con la otra convención, $\\mathcal{L} = f + \\lambda(g - c)$. Además, $\\lambda = 2$ es la tasa de crecimiento del máximo: este es $c^2/8$, con pendiente $c/4 = 2$ en $c = 8$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "$\\nabla f = (y, x)$ and $\\nabla g = (1, 2)$.",
+        "es": "$\\nabla f = (y, x)$ y $\\nabla g = (1, 2)$."
+      },
+      "solution": [
+        {
+          "tex": "\\nabla f = (y, x),\\quad \\nabla g = (1, 2)",
+          "en": "Gradients.",
+          "es": "Gradientes."
+        },
+        {
+          "tex": "y = \\lambda,\\quad x = 2\\lambda",
+          "en": "Gradient condition.",
+          "es": "Condición del gradiente."
+        },
+        {
+          "tex": "x + 2y = 2\\lambda + 2\\lambda = 4\\lambda = 8 \\Rightarrow \\lambda = 2",
+          "en": "Use the constraint.",
+          "es": "Usa la restricción."
+        }
+      ]
+    },
+    {
+      "id": "mvc-14-e3",
+      "answerType": "number",
+      "prompt": {
+        "en": "Find the $y$-coordinate of the point on the line $x + 3y = 10$ closest to the origin.",
+        "es": "Halla la coordenada $y$ del punto de la recta $x + 3y = 10$ más cercano al origen."
+      },
+      "answer": "3",
+      "commonMistakes": [
+        {
+          "answer": "5/2",
+          "feedback": {
+            "en": "The gradient of $x + 3y$ is $(1, 3)$, not $(1, 1)$. From $(2x, 2y) = \\lambda(1, 3)$: $2x = \\lambda$ and $2y = 3\\lambda$, so $y = 3x$. With $x + 3y = 10$, $x = 1$ and $y = 3$. Assuming $y = x$ instead gives $y = \\tfrac52$.",
+            "es": "El gradiente de $x + 3y$ es $(1, 3)$, no $(1, 1)$. De $(2x, 2y) = \\lambda(1, 3)$: $2x = \\lambda$ y $2y = 3\\lambda$, así que $y = 3x$. Con $x + 3y = 10$, $x = 1$ e $y = 3$. Suponer $y = x$ da $y = \\tfrac52$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Minimise $x^2 + y^2$; the constraint has gradient $(1, 3)$.",
+        "es": "Minimiza $x^2 + y^2$; la restricción tiene gradiente $(1, 3)$."
+      },
+      "solution": [
+        {
+          "tex": "(2x, 2y) = \\lambda\\,(1, 3)",
+          "en": "Gradient condition.",
+          "es": "Condición del gradiente."
+        },
+        {
+          "tex": "2x = \\lambda,\\quad 2y = 3\\lambda \\Rightarrow y = 3x",
+          "en": "Eliminate λ.",
+          "es": "Elimina λ."
+        },
+        {
+          "tex": "x + 3(3x) = 10 \\Rightarrow x = 1,\\ y = 3",
+          "en": "Use the constraint.",
+          "es": "Usa la restricción."
+        }
+      ]
+    },
+    {
+      "id": "mvc-14-e4",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "At a constrained maximum of $f$ on the curve $g = c$, why is $\\nabla f$ parallel to $\\nabla g$?",
+        "es": "En un máximo condicionado de $f$ sobre la curva $g = c$, ¿por qué $\\nabla f$ es paralelo a $\\nabla g$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Because $\\nabla f$ and $\\nabla g$ always point the same way, so $\\lambda$ is always positive.",
+            "es": "Porque $\\nabla f$ y $\\nabla g$ siempre apuntan en el mismo sentido, así que $\\lambda$ es siempre positivo."
+          },
+          "correct": false,
+          "why": {
+            "en": "They can point in opposite directions, and $\\lambda$ can be negative. Only the parallelism is forced, not the sign.",
+            "es": "Pueden apuntar en sentidos opuestos, y $\\lambda$ puede ser negativo. Solo se fuerza el paralelismo, no el signo."
+          }
+        },
+        {
+          "text": {
+            "en": "Moving along the curve cannot increase $f$, so $\\nabla f$ is perpendicular to the curve; $\\nabla g$ is perpendicular to it too.",
+            "es": "Moverse por la curva no puede aumentar $f$, así que $\\nabla f$ es perpendicular a la curva; $\\nabla g$ también lo es."
+          },
+          "correct": true,
+          "why": {
+            "en": "In the plane, two vectors perpendicular to the same tangent line are parallel, so $\\nabla f = \\lambda\\nabla g$ for some $\\lambda$.",
+            "es": "En el plano, dos vectores perpendiculares a la misma recta tangente son paralelos, así que $\\nabla f = \\lambda\\nabla g$ para algún $\\lambda$."
+          }
+        },
+        {
+          "text": {
+            "en": "Because the constraint curve must be a level curve of $f$.",
+            "es": "Porque la curva de restricción tiene que ser una curva de nivel de $f$."
+          },
+          "correct": false,
+          "why": {
+            "en": "The constraint is a level curve of $g$, not of $f$. What is true at the optimum is that the two curves touch.",
+            "es": "La restricción es una curva de nivel de $g$, no de $f$. Lo que sí es cierto en el óptimo es que las dos curvas se tocan."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which directions can you move along the constraint without changing g?",
+        "es": "¿En qué direcciones puedes moverte por la restricción sin cambiar g?"
+      }
+    },
+    {
+      "id": "mvc-14-e5",
+      "answerType": "expression",
+      "prompt": {
+        "en": "For $f = x^2 y$ and $g = x + y$, take $\\mathcal{L} = f - \\lambda(g - c)$. Solve $\\frac{\\partial \\mathcal{L}}{\\partial x} = 0$ for $\\lambda$: write $\\lambda$ as an expression in $x$ and $y$.",
+        "es": "Para $f = x^2 y$ y $g = x + y$, toma $\\mathcal{L} = f - \\lambda(g - c)$. Resuelve $\\frac{\\partial \\mathcal{L}}{\\partial x} = 0$ para $\\lambda$: escribe $\\lambda$ como expresión en $x$ e $y$."
+      },
+      "answer": "2*x*y",
+      "commonMistakes": [
+        {
+          "answer": "2*x",
+          "feedback": {
+            "en": "Differentiating $x^2y$ with respect to $x$ keeps $y$ constant: $\\partial_x(x^2y) = 2xy$, not $2x$. So $\\lambda = 2xy$.",
+            "es": "Al derivar $x^2y$ respecto a $x$, $y$ es constante: $\\partial_x(x^2y) = 2xy$, no $2x$. Así que $\\lambda = 2xy$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "$\\partial_x g = 1$, so $\\partial_x\\mathcal{L} = \\partial_x f - \\lambda$.",
+        "es": "$\\partial_x g = 1$, así que $\\partial_x\\mathcal{L} = \\partial_x f - \\lambda$."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{\\partial \\mathcal{L}}{\\partial x} = 2xy - \\lambda\\cdot 1",
+          "en": "Differentiate in x (y is constant).",
+          "es": "Deriva respecto a x (y es constante)."
+        },
+        {
+          "tex": "2xy - \\lambda = 0 \\Rightarrow \\lambda = 2xy",
+          "en": "Solve for λ.",
+          "es": "Despeja λ."
+        }
+      ]
+    },
+    {
+      "id": "mvc-14-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `best_product(s, n)`: take the points $x = s\\,i/n$, $y = s - x$ for $i = 0, \\dots, n$ on the line $x + y = s$, and return the largest product $xy$ among them. Compare it with the Lagrange answer $s^2/4$.",
+        "es": "Completa `best_product(s, n)`: toma los puntos $x = s\\,i/n$, $y = s - x$ para $i = 0, \\dots, n$ sobre la recta $x + y = s$, y devuelve el mayor producto $xy$ entre ellos. Compáralo con la respuesta de Lagrange, $s^2/4$."
+      },
+      "funcName": "best_product",
+      "starter": {
+        "en": "def best_product(s, n):\n    # largest x*y over x = s*i/n, i = 0 .. n, with y = s - x\n    pass",
+        "es": "def best_product(s, n):\n    # mayor x*y con x = s*i/n, i = 0 .. n, e y = s - x\n    pass"
+      },
+      "solution": "def best_product(s, n):\n    return max((s * i / n) * (s - s * i / n) for i in range(n + 1))",
+      "tests": [
+        {
+          "args": [
+            10,
+            100
+          ],
+          "expected": 25.0,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            7,
+            10
+          ],
+          "expected": 12.25,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            6,
+            3
+          ],
+          "expected": 8.0,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            0,
+            5
+          ],
+          "expected": 0.0,
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            9,
+            4
+          ],
+          "expected": 20.25,
+          "tol": 1e-09
+        }
+      ],
+      "hint": {
+        "en": "Loop over i and keep the largest value with max(...).",
+        "es": "Recorre i y guarda el mayor valor con max(...)."
+      }
+    },
+    {
+      "id": "mvc-14-e7",
+      "answerType": "set",
+      "prompt": {
+        "en": "Find the $x$-coordinates of the critical points of $f(x, y) = x + y$ on the circle $x^2 + y^2 = 1$ (Lagrange: $\\nabla f = \\lambda\\nabla g$). Give their exact values (with square roots), separated by commas.",
+        "es": "Halla las coordenadas $x$ de los puntos críticos de $f(x, y) = x + y$ sobre la circunferencia $x^2 + y^2 = 1$ (Lagrange: $\\nabla f = \\lambda\\nabla g$). Da sus valores exactos (con raíces), separados por comas."
+      },
+      "answer": "sqrt(2)/2, -sqrt(2)/2",
+      "acceptedAlt": [
+        "1/sqrt(2), -1/sqrt(2)"
+      ],
+      "hint": {
+        "en": "The components of $\\nabla f = (1, 1)$ are equal, so $x = y$.",
+        "es": "Las componentes de $\\nabla f = (1, 1)$ son iguales, así que $x = y$."
+      },
+      "solution": [
+        {
+          "tex": "(1, 1) = \\lambda\\,(2x, 2y)",
+          "en": "Gradient condition.",
+          "es": "Condición del gradiente."
+        },
+        {
+          "tex": "x = y = \\frac{1}{2\\lambda}",
+          "en": "Equal components.",
+          "es": "Componentes iguales."
+        },
+        {
+          "tex": "2x^2 = 1 \\Rightarrow x = \\pm\\frac{\\sqrt2}{2}",
+          "en": "Constraint.",
+          "es": "Restricción."
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 14.8, Lagrange multipliers",
+        "es": "Cap. 14.8, multiplicadores de Lagrange"
+      }
+    },
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 3.4, constrained extrema and Lagrange multipliers",
+        "es": "Cap. 3.4, extremos con restricciones y multiplicadores de Lagrange"
+      }
+    },
+    {
+      "source": "Boyd & Vandenberghe — Convex Optimization",
+      "detail": {
+        "en": "§5.5.3, KKT optimality conditions",
+        "es": "§5.5.3, condiciones de optimalidad KKT"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§7.2, constrained optimization and Lagrange multipliers",
+        "es": "§7.2, optimización con restricciones y multiplicadores de Lagrange"
+      }
+    }
+  ]
+}

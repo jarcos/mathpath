@@ -1,0 +1,461 @@
+{
+  "id": "mvc-09-jacobian",
+  "subjectId": "multivariable",
+  "order": 9,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Vector-Valued Functions & the Jacobian",
+    "es": "Funciones vectoriales y la matriz jacobiana"
+  },
+  "sections": [
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-09-matrices-operations",
+        "linalg-10-determinants-23"
+      ],
+      "note": {
+        "en": "Builds on matrix operations and on determinants of 2 × 2 matrices.",
+        "es": "Se apoya en las operaciones con matrices y en los determinantes de matrices 2 × 2."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A scalar function $f$ gives one number at each point. A **vector-valued** function $F$ gives several: a position, the outputs of a model, or the new coordinates after a change of variables. Think of $F(x, y) = (x^2 - y^2,\\ 2xy)$ as a map that carries the plane into the plane, bending and stretching it. Zoom in on any point and the picture simplifies: near that point the map acts like a single matrix applied to the small displacement from the point. That matrix is the **Jacobian matrix**, the correct generalisation of the derivative to maps from $\\mathbb R^n$ to $\\mathbb R^m$.",
+        "es": "Una función escalar $f$ da un número en cada punto. Una función **vectorial** $F$ da varios: una posición, las salidas de un modelo o las nuevas coordenadas tras un cambio de variables. Piensa en $F(x, y) = (x^2 - y^2,\\ 2xy)$ como una aplicación que lleva el plano en el plano, doblándolo y estirándolo. Si haces zoom en un punto, la imagen se simplifica: cerca de ese punto, la aplicación actúa como una sola matriz sobre el pequeño desplazamiento desde el punto. Esa matriz es la **matriz jacobiana**, la generalización correcta de la derivada a aplicaciones de $\\mathbb R^n$ en $\\mathbb R^m$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Let $F = (F_1, \\dots, F_m)$ be a map from $\\mathbb R^n$ to $\\mathbb R^m$ with continuous partial derivatives. Its **Jacobian matrix** at $a$ is the $m \\times n$ array of all first partials: $$J_F(a) = \\begin{pmatrix} \\dfrac{\\partial F_1}{\\partial x_1} & \\cdots & \\dfrac{\\partial F_1}{\\partial x_n} \\\\ \\vdots & & \\vdots \\\\ \\dfrac{\\partial F_m}{\\partial x_1} & \\cdots & \\dfrac{\\partial F_m}{\\partial x_n} \\end{pmatrix}(a).$$ Row $i$ is the gradient of the component $F_i$, written as a row. Column $j$ shows how every output responds to the input $x_j$. The **linear approximation** is $F(a + h) \\approx F(a) + J_F(a)\\,h$: the vector version of $f(a + h) \\approx f(a) + f'(a)\\,h$, with an error that is negligible compared with $h$.",
+        "es": "Sea $F = (F_1, \\dots, F_m)$ una aplicación de $\\mathbb R^n$ en $\\mathbb R^m$ con derivadas parciales continuas. Su **matriz jacobiana** en $a$ es la matriz $m \\times n$ formada por todas las derivadas parciales de primer orden: $$J_F(a) = \\begin{pmatrix} \\dfrac{\\partial F_1}{\\partial x_1} & \\cdots & \\dfrac{\\partial F_1}{\\partial x_n} \\\\ \\vdots & & \\vdots \\\\ \\dfrac{\\partial F_m}{\\partial x_1} & \\cdots & \\dfrac{\\partial F_m}{\\partial x_n} \\end{pmatrix}(a).$$ La fila $i$ es el gradiente de la componente $F_i$, escrito como fila. La columna $j$ muestra cómo responde cada salida a la entrada $x_j$. La **aproximación lineal** es $F(a + h) \\approx F(a) + J_F(a)\\,h$: la versión vectorial de $f(a + h) \\approx f(a) + f'(a)\\,h$, con un error despreciable frente a $h$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Example — the Jacobian matrix of (x² − y², 2xy) at (1, 2)",
+        "es": "Ejemplo resuelto — la matriz jacobiana de (x² − y², 2xy) en (1, 2)"
+      },
+      "content": {
+        "en": "Let $F(x, y) = (x^2 - y^2,\\ 2xy)$. The gradients of its components are $\\nabla F_1 = (2x, -2y)$ and $\\nabla F_2 = (2y, 2x)$, and they become the rows: $$J_F(x, y) = \\begin{pmatrix} 2x & -2y \\\\ 2y & 2x \\end{pmatrix}, \\qquad J_F(1, 2) = \\begin{pmatrix} 2 & -4 \\\\ 4 & 2 \\end{pmatrix}.$$ Also $F(1, 2) = (-3, 4)$. For a small step $h = (0.01,\\ 0)$ the linear approximation predicts $F(1.01, 2) \\approx (-3, 4) + (0.02,\\ 0.04) = (-2.98,\\ 4.04)$. The exact value is $(-2.9799,\\ 4.04)$: the error, $0.0001$, is the size of $h^2$. One matrix predicts how both outputs change at once.",
+        "es": "Sea $F(x, y) = (x^2 - y^2,\\ 2xy)$. Los gradientes de sus componentes son $\\nabla F_1 = (2x, -2y)$ y $\\nabla F_2 = (2y, 2x)$, y pasan a ser las filas: $$J_F(x, y) = \\begin{pmatrix} 2x & -2y \\\\ 2y & 2x \\end{pmatrix}, \\qquad J_F(1, 2) = \\begin{pmatrix} 2 & -4 \\\\ 4 & 2 \\end{pmatrix}.$$ Además, $F(1, 2) = (-3, 4)$. Para un pequeño paso $h = (0.01,\\ 0)$, la aproximación lineal predice $F(1.01, 2) \\approx (-3, 4) + (0.02,\\ 0.04) = (-2.98,\\ 4.04)$. El valor exacto es $(-2.9799,\\ 4.04)$: el error, $0.0001$, tiene el tamaño de $h^2$. Una sola matriz predice cómo cambian las dos salidas a la vez."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Now compose two maps: first $G: \\mathbb R^n \\to \\mathbb R^k$, then $F: \\mathbb R^k \\to \\mathbb R^m$. Near $a$, $G$ acts like the matrix $J_G(a)$, and near $G(a)$, $F$ acts like $J_F(G(a))$. Applying one after the other multiplies the matrices, so $$J_{F\\circ G}(a) = J_F\\big(G(a)\\big)\\,J_G(a).$$ The shapes confirm it: $(m \\times k)(k \\times n)$ gives $m \\times n$. This is the one-variable chain rule $(f \\circ g)'(a) = f'(g(a))\\,g'(a)$, written with matrices. Inner Jacobians go on the right. When backpropagation runs backwards, it multiplies a row vector by one Jacobian at a time, from the output inwards, and never forms the full product.",
+        "es": "Ahora compón dos aplicaciones: primero $G: \\mathbb R^n \\to \\mathbb R^k$ y luego $F: \\mathbb R^k \\to \\mathbb R^m$. Cerca de $a$, $G$ actúa como la matriz $J_G(a)$, y cerca de $G(a)$, $F$ actúa como $J_F(G(a))$. Aplicar una después de otra multiplica las matrices: $$J_{F\\circ G}(a) = J_F\\big(G(a)\\big)\\,J_G(a).$$ Las dimensiones lo confirman: $(m \\times k)(k \\times n)$ da $m \\times n$. Es la regla de la cadena de una variable, $(f \\circ g)'(a) = f'(g(a))\\,g'(a)$, escrita con matrices. Las matrices jacobianas interiores van a la derecha. Cuando la retropropagación recorre la red hacia atrás, multiplica un vector fila por una matriz jacobiana cada vez, desde la salida hacia dentro, y nunca forma el producto completo."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Example — the chain rule as a product of Jacobian matrices",
+        "es": "Ejemplo resuelto — la regla de la cadena como producto de matrices jacobianas"
+      },
+      "content": {
+        "en": "Let $G(s, t) = (s^2,\\ st)$ and $F(x, y) = (x + y,\\ xy)$. The composition is $F(G(s, t)) = (s^2 + st,\\ s^3 t)$. At $(s, t) = (1, 2)$ we have $G(1, 2) = (1, 2)$. The Jacobian of $G$ is $J_G = \\begin{pmatrix} 2s & 0 \\\\ t & s \\end{pmatrix}$, which equals $\\begin{pmatrix} 2 & 0 \\\\ 2 & 1 \\end{pmatrix}$ there. The Jacobian of $F$ is $J_F(x, y) = \\begin{pmatrix} 1 & 1 \\\\ y & x \\end{pmatrix}$, which at $(1, 2)$ equals $\\begin{pmatrix} 1 & 1 \\\\ 2 & 1 \\end{pmatrix}$. Multiplying: $$\\begin{pmatrix} 1 & 1 \\\\ 2 & 1 \\end{pmatrix}\\begin{pmatrix} 2 & 0 \\\\ 2 & 1 \\end{pmatrix} = \\begin{pmatrix} 4 & 1 \\\\ 6 & 1 \\end{pmatrix} = J_{F\\circ G}(1, 2).$$ Differentiating $(s^2 + st,\\ s^3 t)$ directly confirms it: $\\partial_s(s^2 + st) = 2s + t = 4$ and $\\partial_s(s^3 t) = 3s^2 t = 6$.",
+        "es": "Sean $G(s, t) = (s^2,\\ st)$ y $F(x, y) = (x + y,\\ xy)$. La composición es $F(G(s, t)) = (s^2 + st,\\ s^3 t)$. En $(s, t) = (1, 2)$ tenemos $G(1, 2) = (1, 2)$. La matriz jacobiana de $G$ es $J_G = \\begin{pmatrix} 2s & 0 \\\\ t & s \\end{pmatrix}$, que allí vale $\\begin{pmatrix} 2 & 0 \\\\ 2 & 1 \\end{pmatrix}$. La de $F$ es $J_F(x, y) = \\begin{pmatrix} 1 & 1 \\\\ y & x \\end{pmatrix}$, que en $(1, 2)$ vale $\\begin{pmatrix} 1 & 1 \\\\ 2 & 1 \\end{pmatrix}$. Multiplicando: $$\\begin{pmatrix} 1 & 1 \\\\ 2 & 1 \\end{pmatrix}\\begin{pmatrix} 2 & 0 \\\\ 2 & 1 \\end{pmatrix} = \\begin{pmatrix} 4 & 1 \\\\ 6 & 1 \\end{pmatrix} = J_{F\\circ G}(1, 2).$$ Derivar $(s^2 + st,\\ s^3 t)$ directamente lo confirma: $\\partial_s(s^2 + st) = 2s + t = 4$ y $\\partial_s(s^3 t) = 3s^2 t = 6$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "When $m = n$, the **Jacobian determinant** $\\det J_F(a)$ measures how $F$ scales areas near $a$. A small square of area $A$ around $a$ is mapped to a region of area about $|\\det J_F(a)|\\,A$. The sign records orientation: positive means the map keeps it, negative means the map flips it. For polar coordinates, $F(r, \\theta) = (r\\cos\\theta,\\ r\\sin\\theta)$, $$J_F = \\begin{pmatrix} \\cos\\theta & -r\\sin\\theta \\\\ \\sin\\theta & r\\cos\\theta \\end{pmatrix}, \\qquad \\det J_F = r,$$ which is why the area element in polar coordinates is $r\\,dr\\,d\\theta$. The factor vanishes at the origin, where every angle lands on the same point.",
+        "es": "Cuando $m = n$, el **determinante jacobiano** $\\det J_F(a)$ mide cómo $F$ escala las áreas cerca de $a$. Un pequeño cuadrado de área $A$ alrededor de $a$ se transforma en una región de área aproximada $|\\det J_F(a)|\\,A$. El signo indica la orientación: positivo significa que la aplicación la conserva, negativo que la invierte. En coordenadas polares, $F(r, \\theta) = (r\\cos\\theta,\\ r\\sin\\theta)$, $$J_F = \\begin{pmatrix} \\cos\\theta & -r\\sin\\theta \\\\ \\sin\\theta & r\\cos\\theta \\end{pmatrix}, \\qquad \\det J_F = r,$$ y por eso el elemento de área en polares es $r\\,dr\\,d\\theta$. El factor se anula en el origen, donde todos los ángulos caen en el mismo punto."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Every layer of a neural network is a map from $\\mathbb R^n$ to $\\mathbb R^m$, so it has a Jacobian. For a linear layer $z = Wx$ the Jacobian is simply $W$, the weight matrix. For a layer with a nonlinearity, $z = \\sigma(Wx + b)$ applied elementwise, the chain rule gives $J = \\operatorname{diag}\\big(\\sigma'(Wx + b)\\big)\\,W$: the weight matrix with each row scaled by the slope of the activation. Backpropagation never builds these matrices. It passes the row vector $\\partial L/\\partial z$ backwards through each layer, computing $\\dfrac{\\partial L}{\\partial z}\\,J$, a vector–Jacobian product that costs about as much as the forward pass.",
+        "es": "Cada capa de una red neuronal es una aplicación de $\\mathbb R^n$ en $\\mathbb R^m$, así que tiene su matriz jacobiana. Para una capa lineal $z = Wx$, la matriz jacobiana es simplemente $W$, la matriz de pesos. Para una capa con no linealidad, $z = \\sigma(Wx + b)$ aplicada elemento a elemento, la regla de la cadena da $J = \\operatorname{diag}\\big(\\sigma'(Wx + b)\\big)\\,W$: la matriz de pesos con cada fila multiplicada por la pendiente de la activación. La retropropagación nunca construye estas matrices. Pasa el vector fila $\\partial L/\\partial z$ hacia atrás por cada capa, calculando $\\dfrac{\\partial L}{\\partial z}\\,J$, un producto vector-jacobiano que cuesta aproximadamente lo mismo que el paso hacia delante."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# Numerical Jacobian of F(x, y) = (x^2 - y^2, 2xy) at (1, 2), by central differences\ndef F(x, y):\n    return (x ** 2 - y ** 2, 2 * x * y)\n\nx0, y0, h = 1.0, 2.0, 1e-5\n# Column 1 holds the x-derivatives, column 2 the y-derivatives\ncol_x = [(p - q) / (2 * h) for p, q in zip(F(x0 + h, y0), F(x0 - h, y0))]\ncol_y = [(p - q) / (2 * h) for p, q in zip(F(x0, y0 + h), F(x0, y0 - h))]\nJ = [[round(col_x[i], 6), round(col_y[i], 6)] for i in range(2)]\nprint(J)\nprint(\"det J =\", round(J[0][0] * J[1][1] - J[0][1] * J[1][0], 6))",
+        "es": "# Matriz jacobiana numérica de F(x, y) = (x^2 - y^2, 2xy) en (1, 2), por diferencias centrales\ndef F(x, y):\n    return (x ** 2 - y ** 2, 2 * x * y)\n\nx0, y0, h = 1.0, 2.0, 1e-5\n# La columna 1 contiene las derivadas respecto de x, la columna 2 las de y\ncol_x = [(p - q) / (2 * h) for p, q in zip(F(x0 + h, y0), F(x0 - h, y0))]\ncol_y = [(p - q) / (2 * h) for p, q in zip(F(x0, y0 + h), F(x0, y0 - h))]\nJ = [[round(col_x[i], 6), round(col_y[i], 6)] for i in range(2)]\nprint(J)\nprint(\"det J =\", round(J[0][0] * J[1][1] - J[0][1] * J[1][0], 6))"
+      },
+      "expectedOutput": "[[2.0, -4.0], [4.0, 2.0]]\ndet J = 20.0",
+      "caption": {
+        "en": "Each column collects the partial derivatives with respect to one input, estimated with central differences. The rounded matrix matches the one computed by hand, and its determinant, 20, is the area scale factor at this point.",
+        "es": "Cada columna reúne las derivadas parciales respecto de una entrada, estimada con diferencias centrales. La matriz redondeada coincide con la calculada a mano, y su determinante, 20, es el factor de escala de áreas en este punto."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-09-e1",
+      "answerType": "number",
+      "params": {
+        "a": {
+          "int": [
+            1,
+            4
+          ]
+        },
+        "k": {
+          "int": [
+            1,
+            3
+          ]
+        }
+      },
+      "derived": {
+        "val": "2*a*k"
+      },
+      "check": "abs(answer - (((1)^2 + a*(k+0.0001)^2) - ((1)^2 + a*(k-0.0001)^2)) / 0.0002) < 0.000001",
+      "prompt": {
+        "en": "Let $F(x, y) = (x^2 + [[a]]\\,y^2,\\ xy)$. Find the entry in row 1, column 2 of its Jacobian matrix at $(x, y) = (1, [[k]])$.",
+        "es": "Sea $F(x, y) = (x^2 + [[a]]\\,y^2,\\ xy)$. Halla el elemento de la fila 1, columna 2 de su matriz jacobiana en $(x, y) = (1, [[k]])$."
+      },
+      "answer": "[[val]]",
+      "hint": {
+        "en": "Row 1 is the gradient of $F_1$. Column 2 is the derivative with respect to $y$.",
+        "es": "La fila 1 es el gradiente de $F_1$. La columna 2 es la derivada respecto de $y$."
+      },
+      "solution": [
+        {
+          "tex": "J_F = \\begin{pmatrix} \\partial F_1/\\partial x & \\partial F_1/\\partial y \\\\ \\partial F_2/\\partial x & \\partial F_2/\\partial y \\end{pmatrix}",
+          "en": "Row 1 holds the partials of F₁; column 2 holds the y-derivatives.",
+          "es": "La fila 1 contiene las derivadas de F₁; la columna 2, las derivadas respecto de y."
+        },
+        {
+          "tex": "F_1 = x^2 + [[a]]\\,y^2 \\quad\\Rightarrow\\quad \\frac{\\partial F_1}{\\partial y} = 2\\cdot [[a]]\\,y",
+          "en": "Differentiate F₁ with respect to y.",
+          "es": "Deriva F₁ respecto de y."
+        },
+        {
+          "tex": "\\text{at } x = 1,\\ y = [[k]]:\\quad 2\\cdot [[a]]\\cdot [[k]] = [[val]]",
+          "en": "Substitute y = [[k]].",
+          "es": "Sustituye y = [[k]]."
+        }
+      ]
+    },
+    {
+      "id": "mvc-09-e2",
+      "answerType": "expression",
+      "prompt": {
+        "en": "Let $F(r, \\theta) = (r\\cos\\theta,\\ r\\sin\\theta)$. Find the Jacobian determinant $\\det J_F$, with rows $(x, y)$ and columns $(r, \\theta)$.",
+        "es": "Sea $F(r, \\theta) = (r\\cos\\theta,\\ r\\sin\\theta)$. Halla el determinante jacobiano $\\det J_F$, con filas $(x, y)$ y columnas $(r, \\theta)$."
+      },
+      "answer": "r",
+      "commonMistakes": [
+        {
+          "answer": "r^2",
+          "feedback": {
+            "en": "The $r$ enters the determinant only once: $\\det J_F = (\\cos\\theta)(r\\cos\\theta) - (-r\\sin\\theta)(\\sin\\theta) = r$, a power of one, not two.",
+            "es": "La $r$ aparece en el determinante una sola vez: $\\det J_F = (\\cos\\theta)(r\\cos\\theta) - (-r\\sin\\theta)(\\sin\\theta) = r$, potencia uno, no dos."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Put the partials of each component in a row, then use $\\cos^2\\theta + \\sin^2\\theta = 1$.",
+        "es": "Pon las derivadas de cada componente en una fila y usa $\\cos^2\\theta + \\sin^2\\theta = 1$."
+      },
+      "solution": [
+        {
+          "tex": "J_F = \\begin{pmatrix} \\cos\\theta & -r\\sin\\theta \\\\ \\sin\\theta & r\\cos\\theta \\end{pmatrix}",
+          "en": "The first column is the r-derivative, the second the θ-derivative.",
+          "es": "La primera columna es la derivada respecto de r; la segunda, la derivada respecto de θ."
+        },
+        {
+          "tex": "\\det J_F = \\cos\\theta\\cdot r\\cos\\theta - (-r\\sin\\theta)\\sin\\theta = r\\left(\\cos^2\\theta + \\sin^2\\theta\\right)",
+          "en": "Expand the 2 × 2 determinant.",
+          "es": "Desarrolla el determinante 2 × 2."
+        },
+        {
+          "tex": "\\det J_F = r",
+          "en": "Use cos²θ + sin²θ = 1.",
+          "es": "Usa cos²θ + sin²θ = 1."
+        }
+      ]
+    },
+    {
+      "id": "mvc-09-e3",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $F(x, y) = (x^2 - y^2,\\ 2xy)$, find $\\det J_F(1, 2)$.",
+        "es": "Para $F(x, y) = (x^2 - y^2,\\ 2xy)$, halla $\\det J_F(1, 2)$."
+      },
+      "answer": "20",
+      "commonMistakes": [
+        {
+          "answer": "-12",
+          "feedback": {
+            "en": "You treated the entry $-4$ as $4$: $2\\cdot 2 - 4\\cdot 4 = -12$. Keep the sign: $\\det J_F = 2\\cdot 2 - (-4)\\cdot 4 = 20$.",
+            "es": "Has tratado el elemento $-4$ como si fuera $4$: $2\\cdot 2 - 4\\cdot 4 = -12$. Conserva el signo: $\\det J_F = 2\\cdot 2 - (-4)\\cdot 4 = 20$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use the Jacobian matrix of the worked example at (1, 2).",
+        "es": "Usa la matriz jacobiana del ejemplo resuelto en (1, 2)."
+      },
+      "solution": [
+        {
+          "tex": "J_F(1, 2) = \\begin{pmatrix} 2 & -4 \\\\ 4 & 2 \\end{pmatrix}",
+          "en": "Jacobian matrix at (1, 2).",
+          "es": "Matriz jacobiana en (1, 2)."
+        },
+        {
+          "tex": "\\det J_F(1, 2) = 2\\cdot 2 - (-4)\\cdot 4 = 4 + 16 = 20",
+          "en": "ad − bc, with b = −4 and c = 4.",
+          "es": "ad − bc, con b = −4 y c = 4."
+        },
+        {
+          "tex": "\\text{Check: } \\det J_F(x, y) = 4(x^2 + y^2) = 4\\cdot 5 = 20",
+          "en": "The general formula gives the same value.",
+          "es": "La fórmula general da el mismo valor."
+        }
+      ]
+    },
+    {
+      "id": "mvc-09-e4",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A function $f:\\mathbb R^3 \\to \\mathbb R^2$ has a Jacobian matrix. What is its shape, and what do its rows represent?",
+        "es": "Una función $f:\\mathbb R^3 \\to \\mathbb R^2$ tiene una matriz jacobiana. ¿Cuál es su forma y qué representan sus filas?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "3 × 2: the transpose, with one row per input.",
+            "es": "3 × 2: la traspuesta, con una fila por entrada."
+          },
+          "correct": false,
+          "why": {
+            "en": "That is the transpose. The Jacobian puts the outputs in its rows, so the transpose would describe something else.",
+            "es": "Eso es la traspuesta. El jacobiano pone las salidas en sus filas, así que la traspuesta describiría otra cosa."
+          }
+        },
+        {
+          "text": {
+            "en": "3 × 3: a square matrix, because there are three inputs.",
+            "es": "3 × 3: una matriz cuadrada, porque hay tres entradas."
+          },
+          "correct": false,
+          "why": {
+            "en": "A square Jacobian needs as many outputs as inputs. Here there are two outputs and three inputs.",
+            "es": "Un jacobiano cuadrado necesita tantas salidas como entradas. Aquí hay dos salidas y tres entradas."
+          }
+        },
+        {
+          "text": {
+            "en": "2 × 3: one row per output component, one column per input variable.",
+            "es": "2 × 3: una fila por componente de salida y una columna por variable de entrada."
+          },
+          "correct": true,
+          "why": {
+            "en": "Each row is the gradient of one output, so there are two rows. Each column is one input, so there are three columns.",
+            "es": "Cada fila es el gradiente de una salida, así que hay dos filas. Cada columna corresponde a una entrada, así que hay tres columnas."
+          }
+        },
+        {
+          "text": {
+            "en": "1 × 3: just the gradient of f.",
+            "es": "1 × 3: simplemente el gradiente de f."
+          },
+          "correct": false,
+          "why": {
+            "en": "A gradient is the Jacobian of a scalar function. With two outputs there are two rows, one gradient for each component.",
+            "es": "El gradiente es el jacobiano de una función escalar. Con dos salidas hay dos filas, un gradiente por componente."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Count the outputs first, then count the inputs.",
+        "es": "Cuenta primero las salidas y después las entradas."
+      }
+    },
+    {
+      "id": "mvc-09-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Let $F(x, y) = (xy,\\ x + y^2)$ and $G(t) = (t,\\ t^2)$. Find $\\dfrac{d}{dt}(F\\circ G)_2$ at $t = 1$, the derivative of the second component of $F(G(t))$.",
+        "es": "Sean $F(x, y) = (xy,\\ x + y^2)$ y $G(t) = (t,\\ t^2)$. Halla $\\dfrac{d}{dt}(F\\circ G)_2$ en $t = 1$, la derivada de la segunda componente de $F(G(t))$."
+      },
+      "answer": "5",
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "That keeps only the direct dependence on $x$: $\\partial F_2/\\partial x \\cdot x' = 1\\cdot 1$. The path through $y$ is missing: $\\partial F_2/\\partial y \\cdot y' = 2y\\cdot 2t = 4$ at $t = 1$.",
+            "es": "Eso conserva solo la dependencia directa de $x$: $\\partial F_2/\\partial x \\cdot x' = 1\\cdot 1$. Falta el camino por $y$: $\\partial F_2/\\partial y \\cdot y' = 2y\\cdot 2t = 4$ en $t = 1$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Multiply the Jacobians, $J_{F\\circ G}(1) = J_F(G(1))\\,J_G(1)$, then read the second row.",
+        "es": "Multiplica los jacobianos, $J_{F\\circ G}(1) = J_F(G(1))\\,J_G(1)$, y lee la segunda fila."
+      },
+      "solution": [
+        {
+          "tex": "G(1) = (1, 1),\\qquad J_G(t) = \\begin{pmatrix} 1 \\\\ 2t \\end{pmatrix}\\ \\Rightarrow\\ J_G(1) = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}",
+          "en": "G and its Jacobian at t = 1.",
+          "es": "G y su matriz jacobiana en t = 1."
+        },
+        {
+          "tex": "J_F(x, y) = \\begin{pmatrix} y & x \\\\ 1 & 2y \\end{pmatrix}\\ \\Rightarrow\\ J_F(1, 1) = \\begin{pmatrix} 1 & 1 \\\\ 1 & 2 \\end{pmatrix}",
+          "en": "Jacobian of F at G(1) = (1, 1).",
+          "es": "Matriz jacobiana de F en G(1) = (1, 1)."
+        },
+        {
+          "tex": "J_{F\\circ G}(1) = \\begin{pmatrix} 1 & 1 \\\\ 1 & 2 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 5 \\end{pmatrix}",
+          "en": "Multiply the matrices.",
+          "es": "Multiplica las matrices."
+        },
+        {
+          "tex": "\\text{second component: } 5",
+          "en": "Read the second row.",
+          "es": "Lee la segunda fila."
+        }
+      ]
+    },
+    {
+      "id": "mvc-09-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `jacobian_fd(x, y, h)`. The map $F(x, y) = (x^2 - y^2,\\ 2xy)$ is defined for you. Return its $2 \\times 2$ Jacobian at $(x, y)$ as a list of rows, estimated with central differences of step `h`.",
+        "es": "Completa `jacobian_fd(x, y, h)`. La aplicación $F(x, y) = (x^2 - y^2,\\ 2xy)$ ya está definida. Devuelve su matriz jacobiana $2 \\times 2$ en $(x, y)$ como lista de filas, estimada con diferencias centrales de paso `h`."
+      },
+      "funcName": "jacobian_fd",
+      "starter": {
+        "en": "def F(x, y):\n    return (x ** 2 - y ** 2, 2 * x * y)\n\ndef jacobian_fd(x, y, h):\n    # central differences: column 1 uses x, column 2 uses y\n    pass",
+        "es": "def F(x, y):\n    return (x ** 2 - y ** 2, 2 * x * y)\n\ndef jacobian_fd(x, y, h):\n    # diferencias centrales: la columna 1 usa x, la columna 2 usa y\n    pass"
+      },
+      "solution": "def F(x, y):\n    return (x ** 2 - y ** 2, 2 * x * y)\n\ndef jacobian_fd(x, y, h):\n    col_x = [(p - q) / (2 * h) for p, q in zip(F(x + h, y), F(x - h, y))]\n    col_y = [(p - q) / (2 * h) for p, q in zip(F(x, y + h), F(x, y - h))]\n    return [[col_x[0], col_y[0]], [col_x[1], col_y[1]]]",
+      "tests": [
+        {
+          "args": [
+            1,
+            2,
+            1e-05
+          ],
+          "expected": [
+            [
+              2,
+              -4
+            ],
+            [
+              4,
+              2
+            ]
+          ],
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            0,
+            1,
+            1e-05
+          ],
+          "expected": [
+            [
+              0,
+              -2
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            -1.5,
+            0.5,
+            0.0001
+          ],
+          "expected": [
+            [
+              -3,
+              -1
+            ],
+            [
+              1,
+              -3
+            ]
+          ],
+          "tol": 1e-06
+        }
+      ],
+      "hint": {
+        "en": "For the first column use $\\dfrac{F(x+h, y) - F(x-h, y)}{2h}$, and similarly for the second column with $y$.",
+        "es": "Para la primera columna usa $\\dfrac{F(x+h, y) - F(x-h, y)}{2h}$, y de forma análoga la segunda columna con $y$."
+      }
+    },
+    {
+      "id": "mvc-09-e7",
+      "answerType": "number",
+      "prompt": {
+        "en": "The linear map $F(x, y) = (x + 2y,\\ 3x - y)$ scales areas by a constant factor. What is that factor, $|\\det J_F|$?",
+        "es": "La aplicación lineal $F(x, y) = (x + 2y,\\ 3x - y)$ multiplica las áreas por un factor constante. ¿Cuál es ese factor, $|\\det J_F|$?"
+      },
+      "answer": "7",
+      "commonMistakes": [
+        {
+          "answer": "-7",
+          "feedback": {
+            "en": "$-7$ is the signed determinant: the negative sign says the map flips orientation. The area factor is its absolute value, $|-7| = 7$.",
+            "es": "$-7$ es el determinante con signo: el signo negativo indica que la aplicación invierte la orientación. El factor de área es su valor absoluto, $|-7| = 7$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "For a linear map the Jacobian is its coefficient matrix, so compute the determinant of $\\begin{pmatrix} 1 & 2 \\\\ 3 & -1 \\end{pmatrix}$.",
+        "es": "En una aplicación lineal el jacobiano es su matriz de coeficientes; calcula el determinante de $\\begin{pmatrix} 1 & 2 \\\\ 3 & -1 \\end{pmatrix}$."
+      },
+      "solution": [
+        {
+          "tex": "J_F = \\begin{pmatrix} 1 & 2 \\\\ 3 & -1 \\end{pmatrix}",
+          "en": "The Jacobian of a linear map is its coefficient matrix.",
+          "es": "El jacobiano de una aplicación lineal es su matriz de coeficientes."
+        },
+        {
+          "tex": "\\det J_F = 1\\cdot(-1) - 2\\cdot 3 = -7",
+          "en": "The 2 × 2 determinant.",
+          "es": "El determinante 2 × 2."
+        },
+        {
+          "tex": "|\\det J_F| = 7",
+          "en": "The area factor is the absolute value.",
+          "es": "El factor de área es el valor absoluto."
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 2.3, differentiation: the derivative of a map as a matrix",
+        "es": "Cap. 2.3, diferenciación: la derivada de una aplicación como matriz"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§5.3, gradients of vector-valued functions",
+        "es": "§5.3, gradientes de funciones vectoriales"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning",
+      "detail": {
+        "en": "§4.3.1, Jacobian and Hessian matrices",
+        "es": "§4.3.1, matrices jacobiana y hessiana"
+      }
+    }
+  ]
+}

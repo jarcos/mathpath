@@ -1,0 +1,495 @@
+{
+  "id": "mvc-08-chain-rule",
+  "subjectId": "multivariable",
+  "order": 8,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "The Multivariable Chain Rule",
+    "es": "La regla de la cadena en varias variables"
+  },
+  "sections": [
+    {
+      "type": "prereq",
+      "lessons": [
+        "calculus-07-rules-chain"
+      ],
+      "note": {
+        "en": "Builds on the one-variable chain rule. Partial derivatives and gradients come from the earlier lessons of this subject.",
+        "es": "Se apoya en la regla de la cadena de una variable. Las derivadas parciales y el gradiente vienen de las lecciones anteriores de esta asignatura."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Imagine a temperature map $z = f(x, y)$ and a hiker walking along a path $(x(t), y(t))$. The temperature she feels changes for two reasons at once: her position changes, and the map changes from place to place. To find how fast the temperature changes with time, follow the chain: how strongly the temperature responds to each coordinate, multiplied by how fast that coordinate moves. This is the **chain rule**, the same idea that powers backpropagation: a quantity that depends on others through intermediate steps has a rate of change that adds up over every route by which that dependence reaches it.",
+        "es": "Imagina un mapa de temperaturas $z = f(x, y)$ y una excursionista que camina por una trayectoria $(x(t), y(t))$. La temperatura que siente cambia por dos razones a la vez: cambia su posición y el mapa cambia de un lugar a otro. Para saber a qué velocidad cambia la temperatura con el tiempo, sigue la cadena: cuánto responde la temperatura a cada coordenada, multiplicado por lo deprisa que se mueve esa coordenada. Es la **regla de la cadena**, la misma idea que hay detrás de la retropropagación: una cantidad que depende de otras a través de pasos intermedios tiene una tasa de cambio que se suma sobre todos los caminos por los que llega esa dependencia."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Let $z = f(x, y)$, where $f$ has continuous partial derivatives, and let $x = x(t)$ and $y = y(t)$ be differentiable paths. Then $$\\frac{dz}{dt} = \\frac{\\partial f}{\\partial x}\\,x'(t) + \\frac{\\partial f}{\\partial y}\\,y'(t) = \\nabla f\\big(x(t), y(t)\\big)\\cdot \\big(x'(t), y'(t)\\big).$$ The partials are evaluated at the point where the path is at time $t$. Why it is true: during a small step $\\Delta t$, $x$ moves by about $x'\\,\\Delta t$ and $y$ by about $y'\\,\\Delta t$, so $z$ changes by about $f_x\\,x'\\,\\Delta t + f_y\\,y'\\,\\Delta t$. Divide by $\\Delta t$ and let it shrink to zero. The gradient form says the rate of change is the dot product of $\\nabla f$ with the velocity. If the path runs along a level curve, the velocity is perpendicular to $\\nabla f$ and $dz/dt = 0$.",
+        "es": "Sea $z = f(x, y)$, donde $f$ tiene derivadas parciales continuas, y sean $x = x(t)$ e $y = y(t)$ trayectorias derivables. Entonces $$\\frac{dz}{dt} = \\frac{\\partial f}{\\partial x}\\,x'(t) + \\frac{\\partial f}{\\partial y}\\,y'(t) = \\nabla f\\big(x(t), y(t)\\big)\\cdot \\big(x'(t), y'(t)\\big).$$ Las derivadas parciales se evalúan en el punto donde está la trayectoria en el instante $t$. Por qué es cierto: en un pequeño paso $\\Delta t$, $x$ se mueve unos $x'\\,\\Delta t$ e $y$ unos $y'\\,\\Delta t$, así que $z$ cambia unos $f_x\\,x'\\,\\Delta t + f_y\\,y'\\,\\Delta t$. Divide entre $\\Delta t$ y deja que tienda a cero. La forma con gradiente dice que la tasa de cambio es el producto escalar de $\\nabla f$ por la velocidad. Si la trayectoria recorre una curva de nivel, la velocidad es perpendicular a $\\nabla f$ y $dz/dt = 0$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Example — z = x²y along x = t, y = t²",
+        "es": "Ejemplo resuelto — z = x²y a lo largo de x = t, y = t²"
+      },
+      "content": {
+        "en": "Let $z = x^2 y$ with $x = t$ and $y = t^2$. Substitute first: $z(t) = t^2\\cdot t^2 = t^4$, so $\\dfrac{dz}{dt} = 4t^3$. Now the chain rule, with $f_x = 2xy$, $f_y = x^2$, $x' = 1$ and $y' = 2t$: $$\\frac{dz}{dt} = 2xy\\cdot 1 + x^2\\cdot 2t = 2t\\cdot t^2 + t^2\\cdot 2t = 4t^3.$$ Both calculations agree. At $t = 2$ the rate is $4\\cdot 2^3 = 32$. Each path supplies half of it there: the $x$ term is $2xy\\cdot 1 = 16$ and the $y$ term is $x^2\\cdot 2t = 16$. Dropping the $y$ term would report only $16$.",
+        "es": "Sea $z = x^2 y$ con $x = t$ e $y = t^2$. Primero sustituye: $z(t) = t^2\\cdot t^2 = t^4$, luego $\\dfrac{dz}{dt} = 4t^3$. Ahora la regla de la cadena, con $f_x = 2xy$, $f_y = x^2$, $x' = 1$ e $y' = 2t$: $$\\frac{dz}{dt} = 2xy\\cdot 1 + x^2\\cdot 2t = 2t\\cdot t^2 + t^2\\cdot 2t = 4t^3.$$ Los dos cálculos coinciden. En $t = 2$ la tasa es $4\\cdot 2^3 = 32$. Cada camino aporta la mitad: el término de $x$ vale $2xy\\cdot 1 = 16$ y el de $y$ vale $x^2\\cdot 2t = 16$. Si omitieras el término de $y$, obtendrías solo $16$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Now let $z = f(x, y)$ with $x = x(s, t)$ and $y = y(s, t)$, a function of two parameters. A partial derivative of $z$ must follow every route from $z$ to the variable, and add the routes: $$\\frac{\\partial z}{\\partial s} = \\frac{\\partial f}{\\partial x}\\,\\frac{\\partial x}{\\partial s} + \\frac{\\partial f}{\\partial y}\\,\\frac{\\partial y}{\\partial s}, \\qquad \\frac{\\partial z}{\\partial t} = \\frac{\\partial f}{\\partial x}\\,\\frac{\\partial x}{\\partial t} + \\frac{\\partial f}{\\partial y}\\,\\frac{\\partial y}{\\partial t}.$$ A **tree diagram** draws the routes: $z$ at the top, branches to $x$ and $y$, then to $s$ and $t$. For $\\partial z/\\partial s$, multiply the labels along each branch that ends at $s$, and add the products. The most common error is keeping one branch only, which treats $y$ as if it did not depend on $s$.",
+        "es": "Ahora sea $z = f(x, y)$ con $x = x(s, t)$ e $y = y(s, t)$: una función de dos parámetros. Una derivada parcial de $z$ debe seguir todos los caminos desde $z$ hasta la variable y sumar las contribuciones de todos los caminos: $$\\frac{\\partial z}{\\partial s} = \\frac{\\partial f}{\\partial x}\\,\\frac{\\partial x}{\\partial s} + \\frac{\\partial f}{\\partial y}\\,\\frac{\\partial y}{\\partial s}, \\qquad \\frac{\\partial z}{\\partial t} = \\frac{\\partial f}{\\partial x}\\,\\frac{\\partial x}{\\partial t} + \\frac{\\partial f}{\\partial y}\\,\\frac{\\partial y}{\\partial t}.$$ Un **diagrama de árbol** dibuja los caminos: $z$ arriba, ramas hacia $x$ e $y$, y luego hacia $s$ y $t$. Para $\\partial z/\\partial s$, multiplica las etiquetas a lo largo de cada rama que llega a $s$ y suma los productos. El error más común es quedarse con una sola rama, lo que equivale a tratar $y$ como si no dependiera de $s$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Sometimes $z$ is not given explicitly. A relation $F(x, y) = 0$, such as the unit circle $x^2 + y^2 - 1 = 0$, can define $y$ as a function of $x$ near any point where $F_y \\neq 0$. Differentiate both sides with respect to $x$, using the chain rule on $F(x, y(x))$: $$F_x + F_y\\,\\frac{dy}{dx} = 0 \\qquad\\text{so}\\qquad \\frac{dy}{dx} = -\\frac{F_x}{F_y}.$$ For the circle, $F_x = 2x$ and $F_y = 2y$, so $dy/dx = -x/y$. The slope is zero at the top and bottom of the circle, and undefined at the sides, where the tangent is vertical. You never solved for $y$, and the formula works wherever $F_y \\neq 0$.",
+        "es": "A veces $z$ no viene dada explícitamente. Una relación $F(x, y) = 0$, como la circunferencia unidad $x^2 + y^2 - 1 = 0$, puede definir $y$ como función de $x$ cerca de cualquier punto donde $F_y \\neq 0$. Deriva ambos lados respecto de $x$, usando la regla de la cadena en $F(x, y(x))$: $$F_x + F_y\\,\\frac{dy}{dx} = 0 \\qquad\\text{así que}\\qquad \\frac{dy}{dx} = -\\frac{F_x}{F_y}.$$ Para la circunferencia, $F_x = 2x$ y $F_y = 2y$, así que $dy/dx = -x/y$. La pendiente es cero en la parte alta y baja del círculo, e indefinida en los lados, donde la tangente es vertical. No has tenido que despejar $y$, y la fórmula funciona siempre que $F_y \\neq 0$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A neural network is a long composition of simple operations: multiply, add, apply a function. Draw each operation as a node of a **computational graph**. The **forward pass** computes every node's value from the inputs towards the output, and stores those values. The **backward pass** then computes $\\partial L/\\partial v$ for every node $v$, starting at the loss. The rule is the tree-diagram rule run backwards: $\\partial L/\\partial v$ is the sum, over all edges leaving $v$ towards the output, of the local derivative along that edge times $\\partial L$ at the node it reaches. Each local derivative is computed once and reused by every path through it, so all the gradients together cost only a small constant multiple of one forward pass, however many parameters there are.",
+        "es": "Una red neuronal es una composición larga de operaciones sencillas: multiplicar, sumar, aplicar una función. Dibuja cada operación como un nodo de un **grafo computacional**. El **paso hacia delante** calcula el valor de cada nodo desde las entradas hacia la salida, y guarda esos valores. Después, el **paso hacia atrás** calcula $\\partial L/\\partial v$ para cada nodo $v$, empezando por la pérdida. La regla es la del diagrama de árbol recorrida al revés: $\\partial L/\\partial v$ es la suma, sobre todas las aristas que salen de $v$ hacia la salida, de la derivada local a lo largo de esa arista multiplicada por $\\partial L$ en el nodo al que llega. Cada derivada local se calcula una vez y la reutiliza todo camino que pasa por ella, así que todos los gradientes juntos cuestan solo un pequeño múltiplo constante de un paso hacia delante, da igual cuántos parámetros haya."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Example — backpropagation through one neuron",
+        "es": "Ejemplo resuelto — retropropagación en una neurona"
+      },
+      "content": {
+        "en": "A single linear neuron has loss $L = (wx + b - y)^2$. Take $w = 1$, $b = 0$, $x = 2$ and $y = 5$. **Forward pass:** $u = wx = 2$, $v = u + b = 2$, $e = v - y = -3$, and $L = e^2 = 9$. **Backward pass**, starting from $\\partial L/\\partial L = 1$: $\\dfrac{\\partial L}{\\partial e} = 2e = -6$. Since $e = v - y$, $\\dfrac{\\partial L}{\\partial v} = -6$. Continuing: $\\dfrac{\\partial L}{\\partial w} = \\dfrac{\\partial L}{\\partial v}\\cdot\\dfrac{\\partial v}{\\partial u}\\cdot\\dfrac{\\partial u}{\\partial w} = -6\\cdot 1\\cdot x = -12$, and $\\dfrac{\\partial L}{\\partial b} = \\dfrac{\\partial L}{\\partial v}\\cdot\\dfrac{\\partial v}{\\partial b} = -6$. Each gradient is one product of local derivatives along the single path from the parameter to the loss. Check it directly: $\\dfrac{\\partial L}{\\partial w} = 2(wx + b - y)\\,x = 2(-3)(2) = -12$.",
+        "es": "Una neurona lineal tiene pérdida $L = (wx + b - y)^2$. Toma $w = 1$, $b = 0$, $x = 2$ e $y = 5$. **Paso hacia delante:** $u = wx = 2$, $v = u + b = 2$, $e = v - y = -3$ y $L = e^2 = 9$. **Paso hacia atrás**, empezando por $\\partial L/\\partial L = 1$: $\\dfrac{\\partial L}{\\partial e} = 2e = -6$. Como $e = v - y$, $\\dfrac{\\partial L}{\\partial v} = -6$. Sigue: $\\dfrac{\\partial L}{\\partial w} = \\dfrac{\\partial L}{\\partial v}\\cdot\\dfrac{\\partial v}{\\partial u}\\cdot\\dfrac{\\partial u}{\\partial w} = -6\\cdot 1\\cdot x = -12$, y $\\dfrac{\\partial L}{\\partial b} = \\dfrac{\\partial L}{\\partial v}\\cdot\\dfrac{\\partial v}{\\partial b} = -6$. Cada gradiente es un único producto de derivadas locales a lo largo del camino que va del parámetro a la pérdida. Compruébalo directamente: $\\dfrac{\\partial L}{\\partial w} = 2(wx + b - y)\\,x = 2(-3)(2) = -12$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Training means choosing parameters that make a loss small, and gradient descent needs $\\partial L/\\partial w$ for every weight $w$. A deep network can have millions of weights, yet backpropagation delivers all of them in one backward sweep, which is why training large models is practical. In matrix form, the backward pass passes a row vector (how the loss changes with each output of a layer) through the Jacobian of that layer, one layer at a time, without ever writing the full Jacobian down. Lesson 9 introduces these matrices, and lesson 13 turns the gradients into updates $w \\leftarrow w - \\eta\\,\\partial L/\\partial w$.",
+        "es": "Entrenar un modelo significa elegir parámetros que hagan pequeña una pérdida, y el descenso de gradiente necesita $\\partial L/\\partial w$ para cada peso $w$. Una red profunda puede tener millones de pesos, y aun así la retropropagación los calcula todos en un único barrido hacia atrás; por eso entrenar modelos grandes es práctico. En forma matricial, el paso hacia atrás pasa un vector fila (cómo cambia la pérdida con cada salida de una capa) por la matriz jacobiana de esa capa, capa a capa, sin escribir nunca el jacobiano completo. La lección 9 presenta estas matrices, y la 13 convierte los gradientes en actualizaciones $w \\leftarrow w - \\eta\\,\\partial L/\\partial w$."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "# Backprop for one neuron: L = (w*x + b - y)^2 at w = 1, b = 0, x = 2, y = 5\ndef loss(w, b, x, y):\n    return (w * x + b - y) ** 2\n\nw, b, x, y = 1.0, 0.0, 2.0, 5.0\n\n# Forward pass: store the intermediate values\nu = w * x\nv = u + b\ne = v - y\nL = e ** 2\n\n# Backward pass: start at the output and multiply local derivatives\ndL_de = 2 * e          # d(e^2)/de\ndL_dv = dL_de * 1      # de/dv = 1\ndL_dw = dL_dv * 1 * x  # dv/du = 1 and du/dw = x\ndL_db = dL_dv * 1      # dv/db = 1\n\n# Finite-difference check: nudge each parameter by a tiny h\nh = 1e-6\nfd_w = (loss(w + h, b, x, y) - loss(w - h, b, x, y)) / (2 * h)\nfd_b = (loss(w, b + h, x, y) - loss(w, b - h, x, y)) / (2 * h)\n\nprint(\"L =\", round(L, 6))\nprint(\"backprop:\", round(dL_dw, 6), round(dL_db, 6))\nprint(\"finite differences:\", round(fd_w, 6), round(fd_b, 6))",
+        "es": "# Retropropagación en una neurona: L = (w*x + b - y)^2 con w = 1, b = 0, x = 2, y = 5\ndef loss(w, b, x, y):\n    return (w * x + b - y) ** 2\n\nw, b, x, y = 1.0, 0.0, 2.0, 5.0\n\n# Paso hacia delante: guardamos los valores intermedios\nu = w * x\nv = u + b\ne = v - y\nL = e ** 2\n\n# Paso hacia atrás: empezamos en la salida y multiplicamos derivadas locales\ndL_de = 2 * e          # d(e^2)/de\ndL_dv = dL_de * 1      # de/dv = 1\ndL_dw = dL_dv * 1 * x  # dv/du = 1 y du/dw = x\ndL_db = dL_dv * 1      # dv/db = 1\n\n# Comprobación por diferencias finitas: movemos cada parámetro un h diminuto\nh = 1e-6\nfd_w = (loss(w + h, b, x, y) - loss(w - h, b, x, y)) / (2 * h)\nfd_b = (loss(w, b + h, x, y) - loss(w, b - h, x, y)) / (2 * h)\n\nprint(\"L =\", round(L, 6))\nprint(\"backprop:\", round(dL_dw, 6), round(dL_db, 6))\nprint(\"finite differences:\", round(fd_w, 6), round(fd_b, 6))"
+      },
+      "expectedOutput": "L = 9.0\nbackprop: -12.0 -6.0\nfinite differences: -12.0 -6.0",
+      "caption": {
+        "en": "The hand-written backward pass matches the finite-difference check: nudge each weight by a tiny h and watch the loss move. Each backward line multiplies the line above by a local derivative.",
+        "es": "El paso hacia atrás escrito a mano coincide con la comprobación por diferencias finitas: mueve cada peso un h diminuto y observa cómo cambia la pérdida. Cada línea hacia atrás multiplica la de arriba por una derivada local."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-08-e1",
+      "answerType": "number",
+      "params": {
+        "a": {
+          "int": [
+            1,
+            4
+          ]
+        },
+        "k": {
+          "int": [
+            1,
+            3
+          ]
+        }
+      },
+      "derived": {
+        "val": "3*a*k^2 + 2*k"
+      },
+      "check": "abs(answer - ((a*(k+0.0001)^3 + (k+0.0001)^2) - (a*(k-0.0001)^3 + (k-0.0001)^2)) / 0.0002) < 0.0001",
+      "prompt": {
+        "en": "Let $z = [[a]]\\,x y + y^2$, where $x = t^2$ and $y = t$. Find $\\dfrac{dz}{dt}$ at $t = [[k]]$.",
+        "es": "Sea $z = [[a]]\\,x y + y^2$, donde $x = t^2$ e $y = t$. Halla $\\dfrac{dz}{dt}$ en $t = [[k]]$."
+      },
+      "answer": "[[val]]",
+      "hint": {
+        "en": "Use $\\dfrac{dz}{dt} = f_x\\,x' + f_y\\,y'$ with $x' = 2t$ and $y' = 1$.",
+        "es": "Usa $\\dfrac{dz}{dt} = f_x\\,x' + f_y\\,y'$ con $x' = 2t$ e $y' = 1$."
+      },
+      "solution": [
+        {
+          "tex": "f_x = [[a]]\\,y,\\qquad f_y = [[a]]\\,x + 2y",
+          "en": "Partial derivatives of z = [[a]]xy + y².",
+          "es": "Derivadas parciales de z = [[a]]xy + y²."
+        },
+        {
+          "tex": "x' = 2t,\\qquad y' = 1",
+          "en": "Derivatives of the path.",
+          "es": "Derivadas de la trayectoria."
+        },
+        {
+          "tex": "\\frac{dz}{dt} = [[a]]\\,t\\cdot 2t + ([[a]]\\,t^2 + 2t)\\cdot 1 = 3\\cdot [[a]]\\,t^2 + 2t",
+          "en": "Chain rule, then substitute x = t² and y = t.",
+          "es": "Regla de la cadena y sustitución de x = t² e y = t."
+        },
+        {
+          "tex": "\\frac{dz}{dt}\\Big|_{t=[[k]]} = 3\\cdot [[a]]\\cdot [[k]]^2 + 2\\cdot [[k]] = [[val]]",
+          "en": "Evaluate at t = [[k]].",
+          "es": "Evalúa en t = [[k]]."
+        }
+      ]
+    },
+    {
+      "id": "mvc-08-e2",
+      "answerType": "expression",
+      "prompt": {
+        "en": "Let $z = x^2 y$, where $x = s + t$ and $y = s - t$. Find $\\dfrac{\\partial z}{\\partial s}$ as an expression in $s$ and $t$.",
+        "es": "Sea $z = x^2 y$, donde $x = s + t$ e $y = s - t$. Halla $\\dfrac{\\partial z}{\\partial s}$ como expresión en $s$ y $t$."
+      },
+      "answer": "3*s^2 + 2*s*t - t^2",
+      "commonMistakes": [
+        {
+          "answer": "2*s^2 - 2*t^2",
+          "feedback": {
+            "en": "You kept only the branch through $x$: $f_x\\,x_s = 2xy = 2(s+t)(s-t)$. The branch through $y$ also depends on $s$, with $y_s = 1$, and adds $f_y\\,y_s = x^2 = (s+t)^2$.",
+            "es": "Solo has tomado la rama por $x$: $f_x\\,x_s = 2xy = 2(s+t)(s-t)$. La rama por $y$ también depende de $s$, con $y_s = 1$, y suma $f_y\\,y_s = x^2 = (s+t)^2$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Two branches: through $x$ and through $y$. Write $f_x = 2xy$ and $f_y = x^2$.",
+        "es": "Dos ramas: por $x$ y por $y$. Escribe $f_x = 2xy$ y $f_y = x^2$."
+      },
+      "solution": [
+        {
+          "tex": "f_x = 2xy,\\qquad f_y = x^2,\\qquad x_s = 1,\\qquad y_s = 1",
+          "en": "Partials of f, and the s-derivatives of x and y.",
+          "es": "Derivadas parciales de f y derivadas de x e y respecto de s."
+        },
+        {
+          "tex": "\\frac{\\partial z}{\\partial s} = 2xy + x^2 = x(2y + x)",
+          "en": "Chain rule over both branches.",
+          "es": "Regla de la cadena sobre las dos ramas."
+        },
+        {
+          "tex": "(s+t)\\big(2(s-t) + (s+t)\\big) = (s+t)(3s - t)",
+          "en": "Substitute x = s + t and y = s − t.",
+          "es": "Sustituye x = s + t e y = s − t."
+        },
+        {
+          "tex": "(s+t)(3s-t) = 3s^2 + 2st - t^2",
+          "en": "Expand.",
+          "es": "Desarrolla."
+        }
+      ]
+    },
+    {
+      "id": "mvc-08-e3",
+      "answerType": "number",
+      "prompt": {
+        "en": "The curve $x^3 + y^3 = 3xy$ passes through $\\left(\\tfrac32, \\tfrac32\\right)$. Find $\\dfrac{dy}{dx}$ there by implicit differentiation.",
+        "es": "La curva $x^3 + y^3 = 3xy$ pasa por $\\left(\\tfrac32, \\tfrac32\\right)$. Halla $\\dfrac{dy}{dx}$ allí por derivación implícita."
+      },
+      "answer": "-1",
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "The formula is $\\dfrac{dy}{dx} = -\\dfrac{F_x}{F_y}$, with a minus sign. Here $F_x = F_y = \\tfrac94$, so the slope is $-1$, not $+1$.",
+            "es": "La fórmula es $\\dfrac{dy}{dx} = -\\dfrac{F_x}{F_y}$, con signo menos. Aquí $F_x = F_y = \\tfrac94$, así que la pendiente es $-1$, no $+1$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write $F(x, y) = x^3 + y^3 - 3xy$ and use $\\dfrac{dy}{dx} = -\\dfrac{F_x}{F_y}$.",
+        "es": "Escribe $F(x, y) = x^3 + y^3 - 3xy$ y usa $\\dfrac{dy}{dx} = -\\dfrac{F_x}{F_y}$."
+      },
+      "solution": [
+        {
+          "tex": "F(x, y) = x^3 + y^3 - 3xy = 0",
+          "en": "Write the relation as F(x, y) = 0.",
+          "es": "Escribe la relación como F(x, y) = 0."
+        },
+        {
+          "tex": "F_x = 3x^2 - 3y,\\qquad F_y = 3y^2 - 3x",
+          "en": "Partial derivatives of F.",
+          "es": "Derivadas parciales de F."
+        },
+        {
+          "tex": "F_x\\big(\\tfrac32,\\tfrac32\\big) = \\tfrac{27}{4} - \\tfrac{9}{2} = \\tfrac94,\\qquad F_y\\big(\\tfrac32,\\tfrac32\\big) = \\tfrac94",
+          "en": "Evaluate at the point.",
+          "es": "Evalúa en el punto."
+        },
+        {
+          "tex": "\\frac{dy}{dx} = -\\frac{F_x}{F_y} = -\\frac{9/4}{9/4} = -1",
+          "en": "The implicit slope.",
+          "es": "La pendiente implícita."
+        }
+      ]
+    },
+    {
+      "id": "mvc-08-e4",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Why is backpropagation so much cheaper than differentiating each weight separately?",
+        "es": "¿Por qué la retropropagación es mucho más barata que derivar cada peso por separado?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It differentiates each weight by a finite difference, which is exact and needs no derivatives at all.",
+            "es": "Deriva cada peso con una diferencia finita, que es exacta y no necesita ninguna derivada."
+          },
+          "correct": false,
+          "why": {
+            "en": "Finite differences are approximations that need two loss evaluations per weight, so their cost grows with the number of weights. They are a check, not the method.",
+            "es": "Las diferencias finitas son aproximaciones que necesitan dos evaluaciones de la pérdida por peso, así que su coste crece con el número de pesos. Sirven para comprobar, no como método."
+          }
+        },
+        {
+          "text": {
+            "en": "It applies the chain rule forwards from the inputs, once for each weight.",
+            "es": "Aplica la regla de la cadena hacia delante desde las entradas, una vez por cada peso."
+          },
+          "correct": false,
+          "why": {
+            "en": "That is forward mode. Its cost grows with the number of inputs, while backpropagation needs one backward sweep for the scalar loss.",
+            "es": "Eso es el modo hacia delante. Su coste crece con el número de entradas, mientras que la retropropagación necesita un único barrido hacia atrás para la pérdida escalar."
+          }
+        },
+        {
+          "text": {
+            "en": "It works only for linear layers, where the chain rule is simpler.",
+            "es": "Solo sirve para capas lineales, donde la regla de la cadena es más sencilla."
+          },
+          "correct": false,
+          "why": {
+            "en": "It works for any composition of differentiable operations, including nonlinear activations such as tanh.",
+            "es": "Sirve para cualquier composición de operaciones derivables, incluidas las activaciones no lineales como tanh."
+          }
+        },
+        {
+          "text": {
+            "en": "It reuses the values stored in the forward pass and sums over paths in a single backward sweep, so all the gradients together cost only a small multiple of one forward pass.",
+            "es": "Reutiliza los valores guardados en el paso hacia delante y suma sobre los caminos en un único barrido hacia atrás, así que todos los gradientes juntos cuestan solo un pequeño múltiplo de un paso hacia delante."
+          },
+          "correct": true,
+          "why": {
+            "en": "Each local derivative is computed once and shared by every path that passes through it.",
+            "es": "Cada derivada local se calcula una vez y la comparten todos los caminos que pasan por ella."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Count how many times each local derivative would be recomputed if you stored nothing.",
+        "es": "Cuenta cuántas veces se recalcularía cada derivada local si no guardaras nada."
+      }
+    },
+    {
+      "id": "mvc-08-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "A neuron has loss $L = (wx + b - y)^2$. At $w = 1$, $b = 0$, $x = 2$, $y = 5$, use backpropagation to find $\\dfrac{\\partial L}{\\partial w}$.",
+        "es": "Una neurona tiene pérdida $L = (wx + b - y)^2$. En $w = 1$, $b = 0$, $x = 2$, $y = 5$, usa la retropropagación para hallar $\\dfrac{\\partial L}{\\partial w}$."
+      },
+      "answer": "-12",
+      "commonMistakes": [
+        {
+          "answer": "-6",
+          "feedback": {
+            "en": "$-6$ is $\\partial L/\\partial b$. For $w$, the last local factor is $\\partial(wx)/\\partial w = x = 2$, so $-6\\cdot 2 = -12$.",
+            "es": "$-6$ es $\\partial L/\\partial b$. Para $w$, el último factor local es $\\partial(wx)/\\partial w = x = 2$, así que $-6\\cdot 2 = -12$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Forward: $u = wx$, $v = u + b$, $e = v - y$, $L = e^2$. Start the backward pass with $\\partial L/\\partial e = 2e$.",
+        "es": "Hacia delante: $u = wx$, $v = u + b$, $e = v - y$, $L = e^2$. Empieza el paso hacia atrás con $\\partial L/\\partial e = 2e$."
+      },
+      "solution": [
+        {
+          "tex": "u = wx = 2,\\quad v = u + b = 2,\\quad e = v - y = -3,\\quad L = e^2 = 9",
+          "en": "Forward pass.",
+          "es": "Paso hacia delante."
+        },
+        {
+          "tex": "\\frac{\\partial L}{\\partial e} = 2e = -6",
+          "en": "Local derivative of the square.",
+          "es": "Derivada local del cuadrado."
+        },
+        {
+          "tex": "\\frac{\\partial L}{\\partial v} = \\frac{\\partial L}{\\partial e}\\cdot 1 = -6",
+          "en": "e = v − y, so ∂e/∂v = 1.",
+          "es": "e = v − y, así que ∂e/∂v = 1."
+        },
+        {
+          "tex": "\\frac{\\partial L}{\\partial w} = \\frac{\\partial L}{\\partial v}\\cdot\\frac{\\partial v}{\\partial u}\\cdot\\frac{\\partial u}{\\partial w} = -6\\cdot 1\\cdot x = -12",
+          "en": "Multiply the local derivatives along w → u → v → e → L, with ∂u/∂w = x.",
+          "es": "Multiplica las derivadas locales a lo largo de w → u → v → e → L, con ∂u/∂w = x."
+        }
+      ]
+    },
+    {
+      "id": "mvc-08-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `grad_loss(w, b, x, y)`. It runs a forward pass for $L = (wx + b - y)^2$ and then the backward pass, and returns the list $[\\partial L/\\partial w,\\ \\partial L/\\partial b]$ as floats.",
+        "es": "Completa `grad_loss(w, b, x, y)`. Hace un paso hacia delante para $L = (wx + b - y)^2$ y después el paso hacia atrás, y devuelve la lista $[\\partial L/\\partial w,\\ \\partial L/\\partial b]$ como números reales."
+      },
+      "funcName": "grad_loss",
+      "starter": {
+        "en": "def grad_loss(w, b, x, y):\n    # forward pass, then backward pass\n    pass",
+        "es": "def grad_loss(w, b, x, y):\n    # paso hacia delante, y después paso hacia atrás\n    pass"
+      },
+      "solution": "def grad_loss(w, b, x, y):\n    u = w * x\n    v = u + b\n    e = v - y\n    dL_dv = 2 * e\n    dL_dw = float(dL_dv * x)\n    dL_db = float(dL_dv)\n    return [dL_dw, dL_db]",
+      "tests": [
+        {
+          "args": [
+            1,
+            0,
+            2,
+            5
+          ],
+          "expected": [
+            -12,
+            -6
+          ],
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            0.5,
+            1,
+            -1,
+            2
+          ],
+          "expected": [
+            3,
+            -3
+          ],
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            2,
+            -1,
+            3,
+            0
+          ],
+          "expected": [
+            30,
+            10
+          ],
+          "tol": 1e-09
+        },
+        {
+          "args": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "expected": [
+            0,
+            2
+          ],
+          "tol": 1e-09
+        }
+      ],
+      "hint": {
+        "en": "$\\partial L/\\partial e = 2e$. Then $\\partial L/\\partial v = \\partial L/\\partial e$, $\\partial L/\\partial w = (\\partial L/\\partial v)\\,x$ and $\\partial L/\\partial b = \\partial L/\\partial v$.",
+        "es": "$\\partial L/\\partial e = 2e$. Después $\\partial L/\\partial v = \\partial L/\\partial e$, $\\partial L/\\partial w = (\\partial L/\\partial v)\\,x$ y $\\partial L/\\partial b = \\partial L/\\partial v$."
+      }
+    },
+    {
+      "id": "mvc-08-e7",
+      "answerType": "number",
+      "prompt": {
+        "en": "Let $z = e^{xy}$ with $x = t$ and $y = t^2$. Find $\\dfrac{dz}{dt}$ at $t = 1$.",
+        "es": "Sea $z = e^{xy}$ con $x = t$ e $y = t^2$. Halla $\\dfrac{dz}{dt}$ en $t = 1$."
+      },
+      "answer": "3*e",
+      "acceptedAlt": [
+        "3*exp(1)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "e",
+          "feedback": {
+            "en": "That is only the $x$ branch: $f_x\\,x' = y e^{xy} = e$. The $y$ branch, $f_y\\,y' = x e^{xy}\\cdot 2t$, is missing. It equals $2e$ at $t = 1$.",
+            "es": "Eso es solo la rama de $x$: $f_x\\,x' = y e^{xy} = e$. Falta la rama de $y$, $f_y\\,y' = x e^{xy}\\cdot 2t$, que vale $2e$ en $t = 1$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "$f_x = y\\,e^{xy}$ and $f_y = x\\,e^{xy}$; also $x' = 1$ and $y' = 2t$.",
+        "es": "$f_x = y\\,e^{xy}$ y $f_y = x\\,e^{xy}$; además $x' = 1$ e $y' = 2t$."
+      },
+      "solution": [
+        {
+          "tex": "f_x = y\\,e^{xy},\\qquad f_y = x\\,e^{xy}",
+          "en": "Partial derivatives of z = e^{xy}.",
+          "es": "Derivadas parciales de z = e^{xy}."
+        },
+        {
+          "tex": "x' = 1,\\qquad y' = 2t",
+          "en": "Derivatives of the path.",
+          "es": "Derivadas de la trayectoria."
+        },
+        {
+          "tex": "\\frac{dz}{dt} = y\\,e^{xy} + 2t\\,x\\,e^{xy} = e^{xy}\\,(y + 2tx)",
+          "en": "Chain rule.",
+          "es": "Regla de la cadena."
+        },
+        {
+          "tex": "t = 1:\\quad x = 1,\\ y = 1,\\qquad \\frac{dz}{dt} = e\\,(1 + 2) = 3e",
+          "en": "Evaluate at t = 1.",
+          "es": "Evalúa en t = 1."
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 14.5, the chain rule",
+        "es": "Cap. 14.5, la regla de la cadena"
+      }
+    },
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 2.5, properties of the derivative (chain rule)",
+        "es": "Cap. 2.5, propiedades de la derivada (regla de la cadena)"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§5.6, backpropagation and automatic differentiation",
+        "es": "§5.6, retropropagación y diferenciación automática"
+      }
+    },
+    {
+      "source": "Goodfellow, Bengio & Courville — Deep Learning",
+      "detail": {
+        "en": "§6.5, back-propagation and other differentiation algorithms",
+        "es": "§6.5, retropropagación y otros algoritmos de diferenciación"
+      }
+    }
+  ]
+}

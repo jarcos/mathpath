@@ -1,0 +1,453 @@
+{
+  "id": "mvc-12-convexity",
+  "subjectId": "multivariable",
+  "order": 12,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Convex Functions & Optimization",
+    "es": "Funciones convexas y optimización"
+  },
+  "sections": [
+    {
+      "type": "prose",
+      "content": {
+        "en": "A convex function is shaped like a bowl. Pick any two points on its graph and join them by a straight segment, the **chord**: between the two points, the chord lies above the graph, never below. Bowls matter for optimization because they have a single bottom. A search that walks downhill cannot get trapped in a wrong valley, as it can on a wavy landscape with several valleys. This lesson makes “bowl-shaped” precise, shows how to test it, and explains why convexity is the most useful property an objective can have.",
+        "es": "Una función convexa tiene forma de cuenco. Toma dos puntos cualesquiera de su gráfica y únelos con un segmento recto, la **cuerda**: entre los dos puntos, la cuerda queda por encima de la gráfica, nunca por debajo. Los cuencos importan para la optimización porque tienen un único fondo. Una búsqueda que baja por la pendiente no puede quedarse atrapada en un valle equivocado, como sí puede ocurrir en un paisaje ondulado con varios valles. Esta lección precisa qué significa «forma de cuenco», enseña a comprobarla y explica por qué la convexidad es la propiedad más útil que puede tener una función objetivo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A set $C$ is **convex** if the segment between any two of its points stays inside $C$: a disk is convex, a ring is not. A function $f$ on a convex set is **convex** if, for all points $x,y$ of the set and every $\\theta\\in[0,1]$, $$f(\\theta x+(1-\\theta)y)\\le \\theta f(x)+(1-\\theta)f(y).$$ It is **strictly convex** when the inequality is strict whenever $x\\ne y$ and $0<\\theta<1$. Reversing the inequality defines a **concave** function. The left side is the graph and the right side is the chord, so the definition says: the graph lies below every chord.",
+        "es": "Un conjunto $C$ es **convexo** si el segmento entre dos cualesquiera de sus puntos queda dentro de $C$: un disco es convexo; un anillo, no. Una función $f$ definida sobre un conjunto convexo es **convexa** si, para todos los puntos $x,y$ del conjunto y todo $\\theta\\in[0,1]$, $$f(\\theta x+(1-\\theta)y)\\le \\theta f(x)+(1-\\theta)f(y).$$ Es **estrictamente convexa** cuando la desigualdad es estricta siempre que $x\\ne y$ y $0<\\theta<1$. Si se invierte la desigualdad, se obtiene una función **cóncava**. El lado izquierdo es la gráfica y el derecho es la cuerda, así que la definición dice: la gráfica queda por debajo de toda cuerda."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — x² satisfies the definition",
+        "es": "Ejemplo resuelto — x² cumple la definición"
+      },
+      "content": {
+        "en": "Let $u=\\theta x+(1-\\theta)y$. Expanding $u^2$ and collecting terms gives $$\\theta x^2+(1-\\theta)y^2-u^2=\\theta(1-\\theta)(x-y)^2\\ \\ge 0.$$ So $x^2$ satisfies the definition for every $\\theta\\in[0,1]$, and the vertical gap between the chord and the graph is $\\theta(1-\\theta)(x-y)^2$. This gap is positive whenever $x\\ne y$ and $0<\\theta<1$, so $x^2$ is strictly convex. At $\\theta=\\tfrac12$ the gap is $\\tfrac14(x-y)^2$: it grows with the square of the distance between the two points.",
+        "es": "Sea $u=\\theta x+(1-\\theta)y$. Al desarrollar $u^2$ y agrupar términos sale $$\\theta x^2+(1-\\theta)y^2-u^2=\\theta(1-\\theta)(x-y)^2\\ \\ge 0.$$ Así que $x^2$ cumple la definición para todo $\\theta\\in[0,1]$, y la separación vertical entre la cuerda y la gráfica es $\\theta(1-\\theta)(x-y)^2$. Esa separación es positiva siempre que $x\\ne y$ y $0<\\theta<1$, así que $x^2$ es estrictamente convexa. Con $\\theta=\\tfrac12$ la separación es $\\tfrac14(x-y)^2$: crece con el cuadrado de la distancia entre los dos puntos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two tests are easier than the definition. **First-order condition:** a differentiable $f$ on an open convex set is convex exactly when $$f(y)\\ge f(x)+\\nabla f(x)\\cdot(y-x)$$ for all $x,y$: the tangent plane lies below the graph everywhere. **Second-order condition:** a twice differentiable $f$ on an open convex set is convex when its Hessian is positive semidefinite everywhere, $H(x)\\succeq 0$, that is, all its eigenvalues are at least $0$. In two variables this means $f_{xx}\\ge0$, $f_{yy}\\ge0$ and $D\\ge0$. If $H(x)$ is positive definite everywhere, $f$ is strictly convex, but not conversely: $x^4$ is strictly convex, yet its second derivative at $0$ is $0$.",
+        "es": "Hay dos criterios más prácticos que la definición. **Condición de primer orden:** una $f$ diferenciable en un abierto convexo es convexa exactamente cuando $$f(y)\\ge f(x)+\\nabla f(x)\\cdot(y-x)$$ para todos $x,y$: el plano tangente queda por debajo de la gráfica en todas partes. **Condición de segundo orden:** una $f$ dos veces diferenciable en un conjunto convexo abierto es convexa cuando su matriz hessiana es semidefinida positiva en todas partes, $H(x)\\succeq 0$, es decir, todos sus autovalores son al menos $0$. En dos variables, esto significa $f_{xx}\\ge0$, $f_{yy}\\ge0$ y $D\\ge0$. Si $H(x)$ es definida positiva en todas partes, $f$ es estrictamente convexa, pero no al revés: $x^4$ es estrictamente convexa y, sin embargo, su segunda derivada en $0$ vale $0$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a Hessian with a negative eigenvalue",
+        "es": "Ejemplo resuelto — un hessiano con un autovalor negativo"
+      },
+      "content": {
+        "en": "Take $f(x,y)=x^2-4xy+y^2$. Its Hessian is $H=\\begin{pmatrix}2&-4\\\\-4&2\\end{pmatrix}$, with eigenvalues $6$ and $-2$. The eigenvector $(1,1)$ belongs to $-2$, since $H\\,(1,1)^{\\top}=(-2,-2)=-2\\,(1,1)^{\\top}$. A negative eigenvalue means $H$ is not positive semidefinite, so $f$ is not convex. A direct check agrees: along the diagonal $y=x$, $$f(t,t)=t^2-4t^2+t^2=-2t^2,$$ which bends downwards. A convex function stays convex when restricted to a line, so this single line already rules convexity out.",
+        "es": "Tomemos $f(x,y)=x^2-4xy+y^2$. Su hessiano es $H=\\begin{pmatrix}2&-4\\\\-4&2\\end{pmatrix}$, con autovalores $6$ y $-2$. El autovector $(1,1)$ corresponde a $-2$, porque $H\\,(1,1)^{\\top}=(-2,-2)=-2\\,(1,1)^{\\top}$. Un autovalor negativo significa que $H$ no es semidefinida positiva, así que $f$ no es convexa. La comprobación directa lo confirma: sobre la diagonal $y=x$, $$f(t,t)=t^2-4t^2+t^2=-2t^2,$$ que se curva hacia abajo. Una función convexa sigue siendo convexa al restringirla a una recta, así que esta sola recta descarta la convexidad."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Many familiar functions are convex: $x^2$, $e^x$, $|x|$, $-\\log x$ for $x>0$, every norm $\\lVert x\\rVert$, and the least-squares objective $\\lVert Ax-b\\rVert^2$. So is the log-sum-exp $\\log(e^{x_1}+e^{x_2})$, a smooth version of $\\max(x_1,x_2)$. Non-examples: $\\sin x$, which bends both ways; $x^3$, whose second derivative $6x$ is negative for $x<0$; and $-x^2$, which is concave. Three rules build new convex functions: sums of convex functions, multiples with a non-negative coefficient, and composition with an affine map, $g(x)=f(Ax+b)$. These rules let you certify the convexity of a complicated objective piece by piece.",
+        "es": "Muchas funciones conocidas son convexas: $x^2$, $e^x$, $|x|$, $-\\log x$ para $x>0$, cualquier norma $\\lVert x\\rVert$ y el objetivo de mínimos cuadrados $\\lVert Ax-b\\rVert^2$. También lo es el log-sum-exp $\\log(e^{x_1}+e^{x_2})$, una versión suave de $\\max(x_1,x_2)$. No lo son $\\sin x$, que se curva en los dos sentidos; $x^3$, cuya segunda derivada $6x$ es negativa si $x<0$; ni $-x^2$, que es cóncava. Tres reglas construyen funciones convexas nuevas: sumas de funciones convexas, múltiplos con coeficiente no negativo y composición con una aplicación afín, $g(x)=f(Ax+b)$. Estas reglas permiten certificar la convexidad de un objetivo complicado pieza a pieza."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "log(1 + exp(x))",
+      "domain": [
+        -4,
+        4
+      ],
+      "caption": {
+        "en": "The softplus $\\ln(1+e^x)$ is convex. Its second derivative $e^x/(1+e^x)^2$ is positive everywhere, so the graph bends upwards at every point and each chord lies above it. It is a smooth version of $\\max(0,x)$.",
+        "es": "El softplus $\\ln(1+e^x)$ es convexo. Su segunda derivada $e^x/(1+e^x)^2$ es positiva en todas partes, así que la gráfica se curva hacia arriba en cada punto y cada cuerda queda por encima. Es una versión suave de $\\max(0,x)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The key fact.** For a convex $f$, every local minimum is a global minimum. Here is why. Suppose $x^*$ is a local minimum but $f(y)<f(x^*)$ for some $y$. Along the chord from $x^*$ to $y$, convexity gives $f(x^*+t(y-x^*))\\le (1-t)f(x^*)+tf(y)<f(x^*)$ for $0<t<1$. Those points lie as close to $x^*$ as you like and have smaller values, contradicting local minimality. The same argument shows that a strictly convex function has at most one minimizer. For a differentiable convex $f$, a critical point $\\nabla f(x^*)=\\mathbf 0$ is therefore already a global minimum, by the first-order condition. In particular, convex functions have no saddle points, which is why descent methods (lesson 13) are reliable on them.",
+        "es": "**El hecho clave.** Para una $f$ convexa, todo mínimo local es un mínimo global. Veamos por qué. Supón que $x^*$ es un mínimo local pero que $f(y)<f(x^*)$ para algún $y$. A lo largo de la cuerda de $x^*$ a $y$, la convexidad da $f(x^*+t(y-x^*))\\le (1-t)f(x^*)+tf(y)<f(x^*)$ para $0<t<1$. Esos puntos están tan cerca de $x^*$ como quieras y tienen valores menores, lo que contradice que $x^*$ sea mínimo local. El mismo argumento prueba que una función estrictamente convexa tiene como mucho un minimizador. Si $f$ es diferenciable y convexa, un punto crítico $\\nabla f(x^*)=\\mathbf 0$ es ya un mínimo global, por la condición de primer orden. En particular, las funciones convexas no tienen puntos de silla, y por eso los métodos de descenso (lección 13) son fiables en ellas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Convex losses in learning.** Least squares, $\\lVert Xw-y\\rVert^2$, is convex in the weights, since its Hessian $2X^{\\top}X$ is positive semidefinite. Logistic regression's loss is convex too: with labels $y \\in \\{-1, +1\\}$ it is a sum of terms $\\log(1+e^{-y\\,w\\cdot x})$, each a convex function of a linear map of $w$. For these models gradient descent cannot get stuck in a wrong valley, and with a small enough step size it reaches a global minimum. A deep neural network is different. Its loss is built from many non-linear layers, and the landscape is not convex, with many local minima and saddle points. Convex theory is then a guide rather than a guarantee.",
+        "es": "**Pérdidas convexas en el aprendizaje.** Los mínimos cuadrados, $\\lVert Xw-y\\rVert^2$, son convexos en los pesos, porque su matriz hessiana $2X^{\\top}X$ es semidefinida positiva. La pérdida de la regresión logística también es convexa: con etiquetas $y \\in \\{-1, +1\\}$, es una suma de términos $\\log(1+e^{-y\\,w\\cdot x})$, cada uno convexo en una aplicación lineal de $w$. Para estos modelos, el descenso de gradiente no puede quedarse en un valle equivocado, y con un tamaño de paso suficientemente pequeño llega a un mínimo global. Una red neuronal profunda es distinta: su pérdida se construye con muchas capas no lineales, y el paisaje no es convexo, con muchos mínimos locales y puntos de silla. La teoría de la convexidad es entonces una guía, no una garantía."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "import math\n\ndef violations(f, grid, thetas=(0.25, 0.5, 0.75), tol=1e-9):\n    # count the triples (x, y, theta) where the graph rises above the chord\n    count = 0\n    for x in grid:\n        for y in grid:\n            for t in thetas:\n                chord = t * f(x) + (1 - t) * f(y)\n                if f(t * x + (1 - t) * y) > chord + tol:\n                    count += 1\n    return count\n\ngrid = [k / 4 for k in range(25)]     # 0, 0.25, ..., 6\ntests = len(grid) ** 2 * 3\nprint(\"x^2:\", violations(lambda x: x * x, grid), \"of\", tests)\nprint(\"sin on [0, 6]:\", violations(math.sin, grid), \"of\", tests)",
+        "es": "import math\n\ndef violations(f, grid, thetas=(0.25, 0.5, 0.75), tol=1e-9):\n    # cuenta las ternas (x, y, theta) en las que la gráfica sube por encima de la cuerda\n    count = 0\n    for x in grid:\n        for y in grid:\n            for t in thetas:\n                chord = t * f(x) + (1 - t) * f(y)\n                if f(t * x + (1 - t) * y) > chord + tol:\n                    count += 1\n    return count\n\ngrid = [k / 4 for k in range(25)]     # 0, 0.25, ..., 6\ntests = len(grid) ** 2 * 3\nprint(\"x^2:\", violations(lambda x: x * x, grid), \"of\", tests)\nprint(\"sin on [0, 6]:\", violations(math.sin, grid), \"of\", tests)"
+      },
+      "expectedOutput": "x^2: 0 of 1875\nsin on [0, 6]: 984 of 1875",
+      "caption": {
+        "en": "A numerical chord test on a grid of points. The inequality never fails for x², but it fails many times for sin on [0, 6], where sin is not convex.",
+        "es": "Una prueba numérica de la cuerda sobre una malla de puntos. La desigualdad nunca falla para x², pero falla muchas veces para sin en [0, 6], donde sin no es convexa."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-12-e1",
+      "answerType": "number",
+      "params": {
+        "a": {
+          "int": [
+            1,
+            6
+          ]
+        },
+        "b": {
+          "int": [
+            1,
+            6
+          ]
+        }
+      },
+      "where": "a < b",
+      "derived": {
+        "g": "(b - a)^2 / 4"
+      },
+      "check": "abs(answer - (0.5*a^2 + 0.5*b^2 - ((a+b)/2)^2)) < 1e-9",
+      "prompt": {
+        "en": "Let $f(x)=x^2$. Compute $\\tfrac12 f([[a]])+\\tfrac12 f([[b]])-f\\!\\left(\\tfrac{[[a]]+[[b]]}{2}\\right)$, the vertical gap between the chord and the graph at the midpoint.",
+        "es": "Sea $f(x)=x^2$. Calcula $\\tfrac12 f([[a]])+\\tfrac12 f([[b]])-f\\!\\left(\\tfrac{[[a]]+[[b]]}{2}\\right)$, la separación vertical entre la cuerda y la gráfica en el punto medio."
+      },
+      "answer": "[[g]]",
+      "hint": {
+        "en": "Use the gap formula from the worked example, $\\theta(1-\\theta)(x-y)^2$, with $\\theta=\\tfrac12$.",
+        "es": "Usa la fórmula de la separación del ejemplo, $\\theta(1-\\theta)(x-y)^2$, con $\\theta=\\tfrac12$."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac12([[a]])^2+\\tfrac12([[b]])^2-\\left(\\tfrac{[[a]]+[[b]]}{2}\\right)^2",
+          "en": "Evaluate $f=x^2$ at the two points and at the midpoint.",
+          "es": "Evalúa $f=x^2$ en los dos puntos y en el punto medio."
+        },
+        {
+          "tex": "= \\tfrac{([[b]]-[[a]])^2}{4} = [[g]]",
+          "en": "Expanding gives $\\tfrac14(x-y)^2$ with $x=[[a]]$ and $y=[[b]]$.",
+          "es": "Al desarrollar sale $\\tfrac14(x-y)^2$, con $x=[[a]]$ e $y=[[b]]$."
+        }
+      ]
+    },
+    {
+      "id": "mvc-12-e2",
+      "answerType": "set",
+      "prompt": {
+        "en": "Which integers $k$ with $-3\\le k\\le 3$ make $f(x,y)=x^2+kxy+y^2$ convex on the whole plane? Give all of them, separated by commas.",
+        "es": "¿Qué enteros $k$ con $-3\\le k\\le 3$ hacen que $f(x,y)=x^2+kxy+y^2$ sea convexa en todo el plano? Escríbelos todos, separados por comas."
+      },
+      "answer": "-2, -1, 0, 1, 2",
+      "commonMistakes": [
+        {
+          "answer": "-1, 0, 1",
+          "feedback": {
+            "en": "Equality is allowed. At $k=\\pm2$ the Hessian has determinant $0$ but no negative eigenvalue, so it is positive semidefinite, and $f=(x\\pm y)^2$ is convex. Convexity needs $H\\succeq0$, not $H\\succ0$.",
+            "es": "Se admite la igualdad. En $k=\\pm2$ la hessiana tiene determinante $0$ pero ningún autovalor negativo, así que es semidefinido positivo, y $f=(x\\pm y)^2$ es convexa. La convexidad exige $H\\succeq0$, no $H\\succ0$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The Hessian is $\\begin{pmatrix}2&k\\\\k&2\\end{pmatrix}$. Its eigenvalues are $2\\pm k$.",
+        "es": "El hessiano es $\\begin{pmatrix}2&k\\\\k&2\\end{pmatrix}$ y sus autovalores son $2\\pm k$."
+      },
+      "solution": [
+        {
+          "tex": "H=\\begin{pmatrix}2&k\\\\k&2\\end{pmatrix}",
+          "en": "Second partials: $f_{xx}=2$, $f_{yy}=2$, $f_{xy}=k$.",
+          "es": "Segundas derivadas: $f_{xx}=2$, $f_{yy}=2$, $f_{xy}=k$."
+        },
+        {
+          "tex": "\\text{eigenvalues } 2+k \\text{ and } 2-k",
+          "en": "Both must be at least $0$, so $|k|\\le2$.",
+          "es": "Ambos deben ser al menos $0$, así que $|k|\\le2$."
+        },
+        {
+          "tex": "k\\in\\{-2,-1,0,1,2\\}",
+          "en": "The integers in $[-3,3]$ that pass.",
+          "es": "Los enteros de $[-3,3]$ que lo cumplen."
+        }
+      ]
+    },
+    {
+      "id": "mvc-12-e3",
+      "answerType": "expression",
+      "prompt": {
+        "en": "Let $f(x)=\\ln(1+e^x)$ (the softplus, a smooth ReLU). Find $f''(x)$ as a function of $x$.",
+        "es": "Sea $f(x)=\\ln(1+e^x)$ (el softplus, una ReLU suave). Halla $f''(x)$ en función de $x$."
+      },
+      "answer": "exp(x)/(1+exp(x))^2",
+      "acceptedAlt": [
+        "e^x/(1+e^x)^2"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "exp(x)/(1+exp(x))",
+          "feedback": {
+            "en": "That is the first derivative, $f'(x)=\\frac{e^x}{1+e^x}$. Differentiate it once more, with the quotient rule, to get $f''=\\frac{e^x}{(1+e^x)^2}$.",
+            "es": "Eso es la primera derivada, $f'(x)=\\frac{e^x}{1+e^x}$. Derívala una vez más, con la regla del cociente, para obtener $f''=\\frac{e^x}{(1+e^x)^2}$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write f′ first, then apply the quotient rule to it.",
+        "es": "Calcula primero f′ y luego aplica la regla del cociente."
+      },
+      "solution": [
+        {
+          "tex": "f'(x)=\\frac{e^x}{1+e^x}",
+          "en": "Chain rule: the derivative of $\\ln u$ is $u'/u$, with $u=1+e^x$.",
+          "es": "Regla de la cadena: la derivada de $\\ln u$ es $u'/u$, con $u=1+e^x$."
+        },
+        {
+          "tex": "f''(x)=\\frac{e^x(1+e^x)-e^x\\cdot e^x}{(1+e^x)^2}=\\frac{e^x}{(1+e^x)^2}",
+          "en": "Quotient rule; the $e^{2x}$ terms cancel.",
+          "es": "Regla del cociente; los términos en $e^{2x}$ se cancelan."
+        }
+      ]
+    },
+    {
+      "id": "mvc-12-e4",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Let $f$ be convex. Which statement is always true?",
+        "es": "Sea $f$ convexa. ¿Qué afirmación es siempre cierta?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Every critical point of $f$ is a local maximum.",
+            "es": "Todo punto crítico de $f$ es un máximo local."
+          },
+          "correct": false,
+          "why": {
+            "en": "$x^2$ has its critical point at $0$, and there it is a minimum, not a maximum.",
+            "es": "$x^2$ tiene su punto crítico en $0$, y allí hay un mínimo, no un máximo."
+          }
+        },
+        {
+          "text": {
+            "en": "Every local minimum of $f$ is a global minimum.",
+            "es": "Todo mínimo local de $f$ es un mínimo global."
+          },
+          "correct": true,
+          "why": {
+            "en": "If $f(y)<f(x^*)$, the chord from $x^*$ to $y$ would dip below $f(x^*)$ right next to $x^*$, contradicting local minimality.",
+            "es": "Si $f(y)<f(x^*)$, la cuerda de $x^*$ a $y$ quedaría por debajo de $f(x^*)$ justo al lado de $x^*$, lo que contradice que sea mínimo local."
+          }
+        },
+        {
+          "text": {
+            "en": "The graph of $f$ lies above every chord.",
+            "es": "La gráfica de $f$ queda por encima de toda cuerda."
+          },
+          "correct": false,
+          "why": {
+            "en": "It is the other way round: for a convex function each chord lies above the graph, so the graph lies below every chord.",
+            "es": "Es al revés: en una función convexa cada cuerda queda por encima de la gráfica, así que la gráfica queda por debajo de cada cuerda."
+          }
+        },
+        {
+          "text": {
+            "en": "The Hessian of $f$ is negative semidefinite everywhere.",
+            "es": "El hessiano de $f$ es semidefinido negativo en todas partes."
+          },
+          "correct": false,
+          "why": {
+            "en": "The Hessian of $x^2$ is $2>0$. A negative semidefinite Hessian describes a concave function.",
+            "es": "El hessiano de $x^2$ es $2>0$. Un hessiano semidefinido negativo describe una función cóncava."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think about what a chord from a local bottom would do close to that bottom.",
+        "es": "Piensa qué haría una cuerda desde un fondo local, cerca de ese fondo."
+      }
+    },
+    {
+      "id": "mvc-12-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "The squared error of a one-parameter model is $L(w)=(3w-6)^2$. Compute $L''(w)$. A positive value confirms that $L$ is convex.",
+        "es": "El error cuadrático de un modelo con un parámetro es $L(w)=(3w-6)^2$. Calcula $L''(w)$. Un valor positivo confirma que $L$ es convexa."
+      },
+      "answer": "18",
+      "commonMistakes": [
+        {
+          "answer": "9",
+          "feedback": {
+            "en": "The second derivative of $u^2$ is $2(u')^2+2uu''$. Here $u=3w-6$, $u'=3$ and $u''=0$, so $L''=2\\cdot3^2=18$, not $3^2=9$.",
+            "es": "La segunda derivada de $u^2$ es $2(u')^2+2uu''$. Aquí $u=3w-6$, $u'=3$ y $u''=0$, así que $L''=2\\cdot3^2=18$, no $3^2=9$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Differentiate twice, or expand first: L = 9w² − 36w + 36.",
+        "es": "Deriva dos veces, o desarrolla primero: L = 9w² − 36w + 36."
+      },
+      "solution": [
+        {
+          "tex": "L'(w)=2\\cdot3\\,(3w-6)=18w-36",
+          "en": "Chain rule on the square.",
+          "es": "Regla de la cadena sobre el cuadrado."
+        },
+        {
+          "tex": "L''(w)=18",
+          "en": "The slope of $L'$ is a constant positive $18$, so $L$ is convex.",
+          "es": "La pendiente de $L'$ es la constante positiva $18$, así que $L$ es convexa."
+        }
+      ]
+    },
+    {
+      "id": "mvc-12-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `is_convex_samples(xs, ys)`. The lists `xs` (strictly increasing) and `ys` hold the values of a function at those points. Return `True` if the piecewise-linear interpolant of the samples is convex, that is, if the slopes between neighbouring samples never decrease, and `False` otherwise.",
+        "es": "Completa `is_convex_samples(xs, ys)`. Las listas `xs` (estrictamente crecientes) y `ys` contienen los valores de una función en esos puntos. Devuelve `True` si la interpolación lineal a trozos de las muestras es convexa, es decir, si las pendientes entre muestras vecinas nunca disminuyen, y `False` en otro caso."
+      },
+      "funcName": "is_convex_samples",
+      "starter": {
+        "en": "def is_convex_samples(xs, ys):\n    # slopes between neighbouring samples must never decrease\n    pass",
+        "es": "def is_convex_samples(xs, ys):\n    # las pendientes entre muestras vecinas nunca deben disminuir\n    pass"
+      },
+      "solution": "def is_convex_samples(xs, ys):\n    slopes = [(ys[i + 1] - ys[i]) / (xs[i + 1] - xs[i]) for i in range(len(xs) - 1)]\n    return all(s1 <= s2 for s1, s2 in zip(slopes, slopes[1:]))",
+      "tests": [
+        {
+          "args": [
+            [
+              0,
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              1,
+              4,
+              9
+            ]
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            [
+              0,
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            [
+              -2,
+              -1,
+              0,
+              1,
+              2
+            ],
+            [
+              2,
+              1,
+              0,
+              1,
+              2
+            ]
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            [
+              0,
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              3,
+              3
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              5,
+              5,
+              5
+            ]
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              0,
+              1,
+              9
+            ]
+          ],
+          "expected": true
+        }
+      ],
+      "hint": {
+        "en": "Compute the slopes with a list comprehension, then check that each slope is at least the one before.",
+        "es": "Calcula las pendientes con una lista por comprensión y comprueba que cada una es mayor o igual que la anterior."
+      }
+    }
+  ],
+  "references": [
+    {
+      "source": "Boyd & Vandenberghe — Convex Optimization",
+      "detail": {
+        "en": "Ch. 2, convex sets; ch. 3, convex functions (§3.1.3 first-order conditions, §3.1.4 second-order conditions)",
+        "es": "Cap. 2, conjuntos convexos; cap. 3, funciones convexas (§3.1.3 condiciones de primer orden, §3.1.4 condiciones de segundo orden)"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§7.3, convex optimization",
+        "es": "§7.3, optimización convexa"
+      }
+    }
+  ]
+}

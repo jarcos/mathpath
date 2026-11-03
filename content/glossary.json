@@ -1678,6 +1678,25 @@
         "es": "'Dado que' en probabilidad condicional P(A | B)."
       },
       "category": "relation"
+    },
+    {
+      "id": "mathcalL",
+      "display": "\\mathcal{L}",
+      "tex": [
+        "\\mathcal{L}"
+      ],
+      "uni": [
+        "ℒ"
+      ],
+      "read": {
+        "en": "script L",
+        "es": "L caligráfica"
+      },
+      "meaning": {
+        "en": "The Lagrangian of a constrained problem, or a loss function.",
+        "es": "El lagrangiano de un problema con restricciones, o una función de pérdida."
+      },
+      "category": "function"
     }
   ]
 }

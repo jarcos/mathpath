@@ -1,0 +1,393 @@
+{
+  "id": "mvc-03-partial-derivatives",
+  "subjectId": "multivariable",
+  "order": 3,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Partial Derivatives",
+    "es": "Derivadas parciales"
+  },
+  "sections": [
+    {
+      "type": "prereq",
+      "lessons": [
+        "calculus-06-derivative-tangent",
+        "calculus-07-rules-chain"
+      ],
+      "note": {
+        "en": "Uses the derivative of one variable and its meaning as a slope.",
+        "es": "Usa la derivada de una variable y su significado como pendiente."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Stand on a hillside and walk due east: the ground rises or falls at some rate, the slope in that direction. A **partial derivative** is exactly that: the derivative of $f$ along one coordinate direction, with every other variable kept still. Freeze $y$ at a value and $f(x,y)$ becomes a function of $x$ alone; its ordinary derivative is the partial derivative $\\dfrac{\\partial f}{\\partial x}$. Freeze $x$ instead and differentiate in $y$ to get $\\dfrac{\\partial f}{\\partial y}$. Each one measures how much $f$ changes when a single input moves and the others stand still.",
+        "es": "Imagina que estás en una ladera y caminas hacia el este: el terreno sube o baja a cierto ritmo, la pendiente en esa dirección. Una **derivada parcial** es exactamente eso: la derivada de $f$ a lo largo de una dirección coordenada, con todas las demás variables quietas. Si fijas $y$ en un valor, $f(x,y)$ se convierte en una función solo de $x$; su derivada ordinaria es la derivada parcial $\\dfrac{\\partial f}{\\partial x}$. Si fijas $x$ y derivas respecto de $y$, obtienes $\\dfrac{\\partial f}{\\partial y}$. Cada una mide cuánto cambia $f$ cuando se mueve una sola entrada y las demás se quedan quietas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Formally, at a point $(a,b)$, $$\\frac{\\partial f}{\\partial x}(a,b)=\\lim_{h\\to 0}\\frac{f(a+h,b)-f(a,b)}{h}, \\qquad \\frac{\\partial f}{\\partial y}(a,b)=\\lim_{h\\to 0}\\frac{f(a,b+h)-f(a,b)}{h}.$$ The notations $f_x$, $\\partial_x f$ and $\\partial f/\\partial x$ all mean the same thing. The definition is the one-variable derivative of $x\\mapsto f(x,b)$, so the rules you know (sum, product, quotient, chain) all apply, with the other variables treated as **constants**. Partial derivatives are functions of $(x,y)$ too, and they can be differentiated again, as the next lesson does.",
+        "es": "Formalmente, en un punto $(a,b)$, $$\\frac{\\partial f}{\\partial x}(a,b)=\\lim_{h\\to 0}\\frac{f(a+h,b)-f(a,b)}{h}, \\qquad \\frac{\\partial f}{\\partial y}(a,b)=\\lim_{h\\to 0}\\frac{f(a,b+h)-f(a,b)}{h}.$$ Las notaciones $f_x$, $\\partial_x f$ y $\\partial f/\\partial x$ significan lo mismo. La definición es la derivada de una variable de $x\\mapsto f(x,b)$, así que valen las reglas que ya conoces (suma, producto, cociente, cadena), tratando las demás variables como **constantes**. Las derivadas parciales también son funciones de $(x,y)$ y pueden volver a derivarse, como hace la lección siguiente."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — ∂f/∂x and ∂f/∂y of x²y + e^(xy)",
+        "es": "Ejemplo resuelto — ∂f/∂x y ∂f/∂y de x²y + e^(xy)"
+      },
+      "content": {
+        "en": "Let $f(x,y)=x^2y+e^{xy}$. **Partial in $x$:** treat $y$ as a constant. In $x^2y$ the factor $y$ stays, and $x^2$ gives $2x$, so the term contributes $2xy$. In $e^{xy}$ the exponent $xy$ has $x$-derivative $y$, so the chain rule gives $y\\,e^{xy}$. Thus $$\\frac{\\partial f}{\\partial x}=2xy+y\\,e^{xy}.$$ **Partial in $y$:** now $x$ is the constant. The term $x^2y$ gives $x^2$, and $e^{xy}$ gives $x\\,e^{xy}$. Thus $$\\frac{\\partial f}{\\partial y}=x^2+x\\,e^{xy}.$$ **At $(1,0)$:** $f_x=0+0=0$ and $f_y=1+1=2$. The surface is flat in the $x$ direction there and rises with slope $2$ in the $y$ direction.",
+        "es": "Sea $f(x,y)=x^2y+e^{xy}$. **Parcial respecto de $x$:** trata $y$ como una constante. En $x^2y$ el factor $y$ se queda, y $x^2$ da $2x$, así que el término aporta $2xy$. En $e^{xy}$ el exponente $xy$ tiene derivada $y$ respecto de $x$, así que la regla de la cadena da $y\\,e^{xy}$. Por tanto $$\\frac{\\partial f}{\\partial x}=2xy+y\\,e^{xy}.$$ **Parcial respecto de $y$:** ahora la constante es $x$. El término $x^2y$ da $x^2$, y $e^{xy}$ da $x\\,e^{xy}$. Por tanto $$\\frac{\\partial f}{\\partial y}=x^2+x\\,e^{xy}.$$ **En $(1,0)$:** $f_x=0+0=0$ y $f_y=1+1=2$. Allí la superficie es plana en la dirección de $x$ y sube con pendiente $2$ en la dirección de $y$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Cut the surface $z=f(x,y)$ with the vertical plane $y=b$. The cut is the curve $z=f(x,b)$ lying in that plane, and $\\dfrac{\\partial f}{\\partial x}(a,b)$ is the slope of that curve at $x=a$. Cut instead with the plane $x=a$, and $\\dfrac{\\partial f}{\\partial y}(a,b)$ is the slope of the cut at $y=b$. These two slopes are taken along two perpendicular directions, and they do not describe the surface in every other direction: that is the job of the directional derivatives in lesson 6. Still, the tangent plane of lesson 7 is built from exactly these two numbers.",
+        "es": "Corta la superficie $z=f(x,y)$ con el plano vertical $y=b$. El corte es la curva $z=f(x,b)$ contenida en ese plano, y $\\dfrac{\\partial f}{\\partial x}(a,b)$ es la pendiente de esa curva en $x=a$. Si cortas con el plano $x=a$, $\\dfrac{\\partial f}{\\partial y}(a,b)$ es la pendiente del corte en $y=b$. Estas dos pendientes se toman en dos direcciones perpendiculares y no describen la superficie en todas las demás direcciones: eso lo hacen las derivadas direccionales de la lección 6. Aun así, el plano tangente de la lección 7 se construye justo con estos dos números."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "2*x^2",
+      "domain": [
+        -2,
+        2
+      ],
+      "caption": {
+        "en": "Cutting $x^2y$ with the plane $y=2$ gives the parabola $z=2x^2$. At $x=1$ its slope is $4=\\dfrac{\\partial f}{\\partial x}(1,2)=2xy$.",
+        "es": "Cortar $x^2y$ con el plano $y=2$ da la parábola $z=2x^2$. En $x=1$ su pendiente es $4=\\dfrac{\\partial f}{\\partial x}(1,2)=2xy$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — three variables: x sin(yz)",
+        "es": "Ejemplo resuelto — tres variables: x sen(yz)"
+      },
+      "content": {
+        "en": "Let $f(x,y,z)=x\\sin(yz)$. Each partial derivative keeps the other two variables fixed. **In $x$:** $x$ is the only factor that contains $x$, so $\\dfrac{\\partial f}{\\partial x}=\\sin(yz)$. **In $y$:** the chain rule on $\\sin(yz)$ gives $z\\cos(yz)$, so $\\dfrac{\\partial f}{\\partial y}=xz\\cos(yz)$. **In $z$:** in the same way, $\\dfrac{\\partial f}{\\partial z}=xy\\cos(yz)$. **At $(1,1,1)$:** the three values are $\\sin 1\\approx 0.841$, $\\cos 1\\approx 0.540$ and $\\cos 1\\approx 0.540$.",
+        "es": "Sea $f(x,y,z)=x\\sin(yz)$. Cada derivada parcial deja fijas las otras dos variables. **Respecto de $x$:** $x$ es el único factor que contiene a $x$, así que $\\dfrac{\\partial f}{\\partial x}=\\sin(yz)$. **Respecto de $y$:** la regla de la cadena sobre $\\sin(yz)$ da $z\\cos(yz)$, así que $\\dfrac{\\partial f}{\\partial y}=xz\\cos(yz)$. **Respecto de $z$:** igual, $\\dfrac{\\partial f}{\\partial z}=xy\\cos(yz)$. **En $(1,1,1)$:** los tres valores son $\\sin 1\\approx 0.841$, $\\cos 1\\approx 0.540$ y $\\cos 1\\approx 0.540$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A partial derivative can be checked numerically. The **central difference** $$\\frac{f(x+h,y)-f(x-h,y)}{2h}$$ approximates $f_x(x,y)$; moving $y$ instead of $x$ gives $f_y$, which is what the code below checks. Its error is of order $h^2$, while the one-sided quotient in the definition has error of order $h$, so the central form is usually much better for the same $h$. The catch is round-off: when $h$ is tiny, the two values nearly cancel in the subtraction and lose their digits. In double precision, $h$ around $10^{-5}$ is a good compromise. Comparing a derivative with a difference quotient is the standard way to debug a gradient in machine learning.",
+        "es": "Una derivada parcial también puede comprobarse numéricamente. La **diferencia centrada** $$\\frac{f(x+h,y)-f(x-h,y)}{2h}$$ aproxima $f_x(x,y)$; moviendo $y$ en lugar de $x$ se obtiene $f_y$, que es lo que comprueba el código de abajo. Su error es del orden de $h^2$, mientras que el cociente de un solo lado de la definición tiene error del orden de $h$, así que la forma centrada suele ser mucho mejor con el mismo $h$. La trampa es el error de redondeo: si $h$ es muy pequeño, los dos valores casi se cancelan en la resta y pierden sus cifras. En doble precisión, $h$ alrededor de $10^{-5}$ es un buen compromiso. Comparar una derivada con un cociente en diferencias es la forma habitual de depurar un gradiente en aprendizaje automático."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [],
+      "code": {
+        "en": "import math\n\ndef f(x, y):\n    return x**2 * y + math.exp(x * y)\n\n# exact f_y(1, 0) = x^2 + x*e^(xy) = 2\nfor h in [0.1, 0.001, 0.00001]:\n    approx = (f(1, h) - f(1, -h)) / (2 * h)\n    print(\"h =\", h, \"approx =\", round(approx, 5))",
+        "es": "import math\n\ndef f(x, y):\n    return x**2 * y + math.exp(x * y)\n\n# f_y(1, 0) exacta = x^2 + x*e^(xy) = 2\nfor h in [0.1, 0.001, 0.00001]:\n    approx = (f(1, h) - f(1, -h)) / (2 * h)\n    print(\"h =\", h, \"approx =\", round(approx, 5))"
+      },
+      "expectedOutput": "h = 0.1 approx = 2.00167\nh = 0.001 approx = 2.0\nh = 1e-05 approx = 2.0",
+      "caption": {
+        "en": "The approximation approaches the exact value $2$ as $h$ shrinks. At $h=0.1$ the error, $0.00167\\ldots$, is about $\\tfrac{h^2}{6}$, the size the theory predicts: the third derivative in $y$ at $(1,0)$ is $x^3e^{xy}=1$.",
+        "es": "La aproximación se acerca al valor exacto $2$ cuando $h$ disminuye. Con $h=0.1$ el error, $0.00167\\ldots$, es aproximadamente $\\tfrac{h^2}{6}$, el tamaño que predice la teoría: la derivada tercera en $y$ en $(1,0)$ vale $x^3e^{xy}=1$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Partial derivatives are how a model learns. Take one training pair $(x,y)$ and the model $\\hat y=wx+b$ with squared error $L(w,b)=(wx+b-y)^2$. Then $$\\frac{\\partial L}{\\partial w}=2(wx+b-y)\\,x, \\qquad \\frac{\\partial L}{\\partial b}=2(wx+b-y).$$ Each one is the sensitivity of the loss to one parameter, with the other held still. Their signs say which way to move $w$ and $b$ to reduce the error, and gradient descent subtracts from each parameter its partial derivative times a learning rate. A network with millions of weights is updated in exactly the same way, one partial derivative per weight.",
+        "es": "Las derivadas parciales son la manera en que aprende un modelo. Toma un par de entrenamiento $(x,y)$ y el modelo $\\hat y=wx+b$ con error cuadrático $L(w,b)=(wx+b-y)^2$. Entonces $$\\frac{\\partial L}{\\partial w}=2(wx+b-y)\\,x, \\qquad \\frac{\\partial L}{\\partial b}=2(wx+b-y).$$ Cada una mide la sensibilidad de la pérdida a un parámetro, con el otro quieto. Sus signos dicen en qué sentido mover $w$ y $b$ para reducir el error, y el descenso de gradiente resta a cada parámetro su derivada parcial multiplicada por la tasa de aprendizaje. Una red con millones de pesos se actualiza exactamente igual, con una derivada parcial por cada peso."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-03-e1",
+      "answerType": "expression",
+      "params": {
+        "a": {
+          "int": [
+            -3,
+            3
+          ],
+          "exclude": [
+            -1,
+            0,
+            1
+          ]
+        },
+        "n": {
+          "int": [
+            3,
+            5
+          ]
+        }
+      },
+      "derived": {
+        "c": "a*n",
+        "m": "n - 1"
+      },
+      "prompt": {
+        "en": "Let $f(x,y)=[[a]]x^{[[n]]}y^2$. Find $\\dfrac{\\partial f}{\\partial x}$.",
+        "es": "Sea $f(x,y)=[[a]]x^{[[n]]}y^2$. Halla $\\dfrac{\\partial f}{\\partial x}$."
+      },
+      "answer": "[[c]]*x^[[m]]*y^2",
+      "equivalentTo": "derivative('[[a]]*x^[[n]]*y^2', 'x')",
+      "hint": {
+        "en": "Treat $y$ as a constant and apply the power rule to $x^{[[n]]}$.",
+        "es": "Trata $y$ como una constante y aplica la regla de la potencia a $x^{[[n]]}$."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{\\partial}{\\partial x}\\bigl(([[a]])\\,x^{[[n]]}y^2\\bigr) = ([[a]])\\cdot [[n]]\\,x^{[[n]]-1}y^2",
+          "en": "Differentiate in x; y² is a constant factor.",
+          "es": "Deriva respecto de x; y² es un factor constante."
+        },
+        {
+          "tex": "= [[c]]\\,x^{[[m]]}y^2",
+          "en": "Multiply the numbers and lower the power by one.",
+          "es": "Multiplica los números y baja la potencia en una unidad."
+        }
+      ]
+    },
+    {
+      "id": "mvc-03-e2",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x,y)=xy^2+e^{xy}$, find $\\dfrac{\\partial f}{\\partial y}(1,1)$.",
+        "es": "Para $f(x,y)=xy^2+e^{xy}$, halla $\\dfrac{\\partial f}{\\partial y}(1,1)$."
+      },
+      "answer": "2 + e",
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "The term $e^{xy}$ depends on $y$: its derivative is $x\\,e^{xy}$, which equals $e$ at $(1,1)$. Leaving it out gives only $2$.",
+            "es": "El término $e^{xy}$ depende de $y$: su derivada es $x\\,e^{xy}$, que vale $e$ en $(1,1)$. Si lo omites, queda solo $2$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Keep x fixed. What is the derivative of e^(xy) with respect to y?",
+        "es": "Mantén x fija. ¿Cuánto vale la derivada de e^(xy) respecto de y?"
+      },
+      "solution": [
+        {
+          "tex": "\\frac{\\partial f}{\\partial y} = 2xy + x\\,e^{xy}",
+          "en": "Differentiate in y with x fixed.",
+          "es": "Deriva respecto de y con x fija."
+        },
+        {
+          "tex": "\\frac{\\partial f}{\\partial y}(1,1) = 2 + e",
+          "en": "Substitute x = y = 1.",
+          "es": "Sustituye x = y = 1."
+        }
+      ]
+    },
+    {
+      "id": "mvc-03-e3",
+      "answerType": "expression",
+      "prompt": {
+        "en": "Find $\\dfrac{\\partial}{\\partial x}\\left(x^2y\\right)$.",
+        "es": "Halla $\\dfrac{\\partial}{\\partial x}\\left(x^2y\\right)$."
+      },
+      "answer": "2*x*y",
+      "commonMistakes": [
+        {
+          "answer": "2*x*y + x^2",
+          "feedback": {
+            "en": "A partial derivative keeps $y$ fixed, so $y$ is a constant factor and only $x^2$ changes: the result is $2xy$. The term $x^2$ would appear only if $y$ changed with $x$.",
+            "es": "Una derivada parcial mantiene $y$ fija, así que $y$ es un factor constante y solo cambia $x^2$: el resultado es $2xy$. El término $x^2$ aparecería solo si $y$ cambiara al cambiar $x$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Keep y as a constant factor and differentiate only the x-part.",
+        "es": "Deja $y$ como factor constante y deriva solo la parte en $x$."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{\\partial}{\\partial x}(x^2 y) = y\\,\\frac{\\partial}{\\partial x}(x^2)",
+          "en": "y is a constant factor.",
+          "es": "y es un factor constante."
+        },
+        {
+          "tex": "= 2xy",
+          "en": "The power rule on x².",
+          "es": "La regla de la potencia en x²."
+        }
+      ]
+    },
+    {
+      "id": "mvc-03-e4",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "What does $\\dfrac{\\partial f}{\\partial x}(a,b)$ measure?",
+        "es": "¿Qué mide $\\dfrac{\\partial f}{\\partial x}(a,b)$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The slope of the surface in every direction at $(a,b)$.",
+            "es": "La pendiente de la superficie en todas las direcciones desde $(a,b)$."
+          },
+          "correct": false,
+          "why": {
+            "en": "One partial derivative gives the slope in one coordinate direction only. All directions are the job of the gradient and the directional derivatives.",
+            "es": "Una derivada parcial da la pendiente en una sola dirección coordenada. Todas las direcciones corresponden al gradiente y a las derivadas direccionales."
+          }
+        },
+        {
+          "text": {
+            "en": "The slope, at $y=b$, of the curve cut out by the plane $x=a$.",
+            "es": "La pendiente, en $y=b$, de la curva que el plano $x=a$ corta en la superficie."
+          },
+          "correct": false,
+          "why": {
+            "en": "That slope is $\\dfrac{\\partial f}{\\partial y}(a,b)$. The plane $x=a$ holds $x$ fixed, so the cut is taken along $y$.",
+            "es": "Esa pendiente es $\\dfrac{\\partial f}{\\partial y}(a,b)$. El plano $x=a$ fija $x$, así que el corte se mide en $y$."
+          }
+        },
+        {
+          "text": {
+            "en": "The change $f(a+h,b+h)-f(a,b)$ divided by $h$, for small $h$.",
+            "es": "El cambio $f(a+h,b+h)-f(a,b)$ dividido entre $h$, para $h$ pequeño."
+          },
+          "correct": false,
+          "why": {
+            "en": "Moving both variables at once measures a derivative along the diagonal direction $(1,1)$, not along $x$.",
+            "es": "Mover las dos variables a la vez mide una derivada en la dirección diagonal $(1,1)$, no en la de $x$."
+          }
+        },
+        {
+          "text": {
+            "en": "The slope, at $x=a$, of the curve cut out of the surface by the plane $y=b$.",
+            "es": "La pendiente, en $x=a$, de la curva que resulta de cortar la superficie con el plano $y=b$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Keeping $y=b$ fixes the cut, and its slope in $x$ is the partial derivative.",
+            "es": "Mantener $y=b$ fija el corte, y su pendiente en $x$ es la derivada parcial."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which variable does the cut keep fixed?",
+        "es": "¿Qué variable mantiene fija el corte?"
+      }
+    },
+    {
+      "id": "mvc-03-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `partial_x(x, y, h=1e-5)`: the central-difference approximation $\\dfrac{f(x+h,y)-f(x-h,y)}{2h}$ of $\\dfrac{\\partial f}{\\partial x}$, for the function `f` in the starter.",
+        "es": "Completa `partial_x(x, y, h=1e-5)`: la aproximación por diferencias centradas $\\dfrac{f(x+h,y)-f(x-h,y)}{2h}$ de $\\dfrac{\\partial f}{\\partial x}$, para la función `f` del punto de partida."
+      },
+      "funcName": "partial_x",
+      "starter": {
+        "en": "import math\n\ndef f(x, y):\n    return x**3 * y + math.sin(x * y)\n\ndef partial_x(x, y, h=1e-5):\n    # central difference in x: (f(x+h, y) - f(x-h, y)) / (2h)\n    pass",
+        "es": "import math\n\ndef f(x, y):\n    return x**3 * y + math.sin(x * y)\n\ndef partial_x(x, y, h=1e-5):\n    # diferencia centrada en x: (f(x+h, y) - f(x-h, y)) / (2h)\n    pass"
+      },
+      "solution": "import math\n\ndef f(x, y):\n    return x**3 * y + math.sin(x * y)\n\ndef partial_x(x, y, h=1e-5):\n    return (f(x + h, y) - f(x - h, y)) / (2 * h)",
+      "tests": [
+        {
+          "args": [
+            1,
+            0
+          ],
+          "expected": 0.0,
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            1,
+            1
+          ],
+          "expected": 3.540302305959919,
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            2,
+            -1
+          ],
+          "expected": -11.583853163621425,
+          "tol": 1e-06
+        },
+        {
+          "args": [
+            -0.5,
+            2
+          ],
+          "expected": 2.5806046118681536,
+          "tol": 1e-06
+        }
+      ],
+      "hint": {
+        "en": "Use the formula in the prompt with the h given in the signature.",
+        "es": "Usa la fórmula del enunciado con la h de la firma."
+      }
+    },
+    {
+      "id": "mvc-03-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $f(x,y)=x^2y^3$, find $\\dfrac{\\partial f}{\\partial x}(1,2)$.",
+        "es": "Para $f(x,y)=x^2y^3$, halla $\\dfrac{\\partial f}{\\partial x}(1,2)$."
+      },
+      "answer": "16",
+      "commonMistakes": [
+        {
+          "answer": "12",
+          "feedback": {
+            "en": "$12$ is $\\dfrac{\\partial f}{\\partial y}(1,2)=3x^2y^2$: you differentiated in $y$. Here we need $\\dfrac{\\partial f}{\\partial x}=2xy^3$, which is $16$ at $(1,2)$.",
+            "es": "$12$ es $\\dfrac{\\partial f}{\\partial y}(1,2)=3x^2y^2$: has derivado respecto de $y$. Aquí hace falta $\\dfrac{\\partial f}{\\partial x}=2xy^3$, que vale $16$ en $(1,2)$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Differentiate in x only: y³ is a constant factor.",
+        "es": "Deriva solo respecto de x: y³ es un factor constante."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{\\partial f}{\\partial x} = 2x\\,y^3",
+          "en": "Differentiate x² and keep y³ as a constant factor.",
+          "es": "Deriva x² y deja y³ como factor constante."
+        },
+        {
+          "tex": "2\\cdot 1\\cdot 2^3 = 16",
+          "en": "Substitute x = 1 and y = 2.",
+          "es": "Sustituye x = 1 e y = 2."
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 14.3, partial derivatives",
+        "es": "Cap. 14.3, derivadas parciales"
+      }
+    },
+    {
+      "source": "Deisenroth, Faisal & Ong — Mathematics for Machine Learning",
+      "detail": {
+        "en": "§5.2, partial differentiation and gradients",
+        "es": "§5.2, derivación parcial y gradientes"
+      }
+    },
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 2.3, differentiation",
+        "es": "Cap. 2.3, diferenciación"
+      }
+    }
+  ]
+}

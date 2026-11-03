@@ -1,0 +1,492 @@
+{
+  "id": "mvc-11-critical-points",
+  "subjectId": "multivariable",
+  "order": 11,
+  "estimatedMinutes": 50,
+  "title": {
+    "en": "Critical Points & the Second-Derivative Test",
+    "es": "Puntos críticos y criterio de la segunda derivada"
+  },
+  "sections": [
+    {
+      "type": "prereq",
+      "lessons": [
+        "calculus-08-monotonicity-extrema",
+        "linmaps-06-eigenvalues"
+      ],
+      "note": {
+        "en": "Builds on one-variable extrema (where the derivative vanishes) and on eigenvalues, which classify the second derivatives in higher dimensions.",
+        "es": "Se apoya en los extremos de una variable (donde la derivada se anula) y en los autovalores, que clasifican las segundas derivadas en dimensiones superiores."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Picture a mountain range. The top of a peak, the bottom of a valley and a mountain pass all share one feature: the ground is level, so the slope is zero in every direction. In one variable, a point where $f'(a)=0$ is the usual candidate for an interior maximum or minimum, and the second derivative says which. In two variables the same idea uses the gradient: a **critical point** is a point where $\\nabla f=\\mathbf 0$, a horizontal tangent plane. It can be a **local minimum** (a bowl), a **local maximum** (a dome) or a **saddle** (a pass that goes up in one direction and down in another, like a horse's saddle). The gradient alone cannot tell these apart. Second derivatives can.",
+        "es": "Imagina una cordillera. La cima de un pico, el fondo de un valle y un puerto de montaña tienen algo en común: el terreno está llano, así que la pendiente es cero en todas las direcciones. En una variable, un punto donde $f'(a)=0$ es el candidato habitual a máximo o mínimo interior, y la segunda derivada dice cuál es. En dos variables, la misma idea usa el gradiente: un **punto crítico** es un punto donde $\\nabla f=\\mathbf 0$, es decir, un plano tangente horizontal. Puede ser un **mínimo local** (un cuenco), un **máximo local** (una cúpula) o un **punto de silla** (un puerto que sube en una dirección y baja en otra, como la silla de un caballo). El gradiente por sí solo no los distingue. Las segundas derivadas sí."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Let $f$ be differentiable near $a=(a_1,a_2)$. The point $a$ is **critical** when $\\nabla f(a)=\\mathbf 0$, that is, $f_x(a)=f_y(a)=0$. **Fermat's theorem** in several variables says that every local extremum at an interior point where $f$ is differentiable is critical. The converse fails: a critical point can be neither a maximum nor a minimum, as the saddle $x^2-y^2$ at the origin shows. To find critical points, solve $f_x=0$ and $f_y=0$ together. These equations are often nonlinear, so you usually get a few candidates and test each one.",
+        "es": "Sea $f$ diferenciable cerca de $a=(a_1,a_2)$. El punto $a$ es **crítico** cuando $\\nabla f(a)=\\mathbf 0$, es decir, $f_x(a)=f_y(a)=0$. El **teorema de Fermat** en varias variables dice que todo extremo local en un punto interior donde $f$ es diferenciable es crítico. El recíproco falla: un punto crítico puede no ser ni máximo ni mínimo, como muestra la silla $x^2-y^2$ en el origen. Para encontrarlos, resuelve $f_x=0$ y $f_y=0$ a la vez. Estas ecuaciones suelen ser no lineales, así que normalmente obtienes unos pocos candidatos y compruebas cada uno."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — classifying x³ − 3x + y²",
+        "es": "Ejemplo resuelto — clasificar x³ − 3x + y²"
+      },
+      "content": {
+        "en": "Let $f(x,y)=x^3-3x+y^2$. The gradient is $\\nabla f=(3x^2-3,\\;2y)$, which vanishes when $x=\\pm1$ and $y=0$: the critical points are $(1,0)$ and $(-1,0)$. The second partials are $f_{xx}=6x$, $f_{xy}=0$ and $f_{yy}=2$, so $D=f_{xx}f_{yy}-f_{xy}^2=12x$. At $(1,0)$: $D=12>0$ and $f_{xx}=6>0$, so it is a local minimum, with $f=-2$. At $(-1,0)$: $D=-12<0$, so it is a saddle, with $f=2$. Along $y=0$ the point looks like a maximum, but the $y^2$ term curves upwards in the $y$ direction.",
+        "es": "Sea $f(x,y)=x^3-3x+y^2$. El gradiente es $\\nabla f=(3x^2-3,\\;2y)$, que se anula cuando $x=\\pm1$ e $y=0$: los puntos críticos son $(1,0)$ y $(-1,0)$. Las segundas derivadas parciales son $f_{xx}=6x$, $f_{xy}=0$ y $f_{yy}=2$, así que $D=f_{xx}f_{yy}-f_{xy}^2=12x$. En $(1,0)$: $D=12>0$ y $f_{xx}=6>0$, así que es un mínimo local, con $f=-2$. En $(-1,0)$: $D=-12<0$, así que es un punto de silla, con $f=2$. A lo largo de $y=0$ el punto parece un máximo, pero el término $y^2$ se curva hacia arriba en la dirección $y$."
+      }
+    },
+    {
+      "type": "graph",
+      "fn": "x^3 - 3*x",
+      "domain": [
+        -2,
+        2
+      ],
+      "caption": {
+        "en": "The slice $f(x,0)=x^3-3x$. Along this curve $x=-1$ is a local maximum, yet on the full surface $(-1,0)$ is a saddle: the $y^2$ term bends upwards in the $y$ direction.",
+        "es": "El corte $f(x,0)=x^3-3x$. Sobre esta curva $x=-1$ es un máximo local, pero en la superficie completa $(-1,0)$ es un punto de silla: el término $y^2$ se curva hacia arriba en la dirección $y$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Collect the second partials in the **Hessian matrix** $H=\\begin{pmatrix}f_{xx}&f_{xy}\\\\f_{xy}&f_{yy}\\end{pmatrix}$ and let $D=\\det H=f_{xx}f_{yy}-f_{xy}^2$. At a critical point, the **second-derivative test** says: if $D>0$ and $f_{xx}>0$, a local minimum; if $D>0$ and $f_{xx}<0$, a local maximum; if $D<0$, a saddle; if $D=0$, the test says nothing. Why? Near a critical point the gradient term of Taylor's formula vanishes, so $f(a+h)\\approx f(a)+\\tfrac12\\,h^{\\top}Hh$. The sign of this quadratic form in each direction $h$ decides the type. When $D>0$ both eigenvalues of $H$ have the same sign, and $f_{xx}$ tells you which sign.",
+        "es": "Reúne las segundas derivadas parciales en la **matriz hessiana** $H=\\begin{pmatrix}f_{xx}&f_{xy}\\\\f_{xy}&f_{yy}\\end{pmatrix}$ y sea $D=\\det H=f_{xx}f_{yy}-f_{xy}^2$. En un punto crítico, el **criterio de la segunda derivada** dice: si $D>0$ y $f_{xx}>0$, mínimo local; si $D>0$ y $f_{xx}<0$, máximo local; si $D<0$, punto de silla; si $D=0$, el criterio no dice nada. ¿Por qué? Cerca de un punto crítico se anula el término del gradiente de la fórmula de Taylor, así que $f(a+h)\\approx f(a)+\\tfrac12\\,h^{\\top}Hh$. El signo de esta forma cuadrática en cada dirección $h$ decide el tipo. Cuando $D>0$, los dos autovalores de $H$ tienen el mismo signo, y $f_{xx}$ te dice cuál."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two cases need care. When $D=0$ the test is silent: $x^4+y^4$ has a minimum at the origin, $x^4-y^4$ has a saddle there, and both have $H=0$ at the origin. Only higher-order terms, or a direct look at the values, can decide. For $n$ variables the same logic uses the eigenvalues of the symmetric $n\\times n$ Hessian: all positive means a local minimum, all negative a local maximum, and both signs present a saddle. A zero eigenvalue with the rest of one sign leaves the test inconclusive.",
+        "es": "Hay dos casos que requieren cuidado. Cuando $D=0$, el criterio calla: $x^4+y^4$ tiene un mínimo en el origen, $x^4-y^4$ tiene allí un punto de silla, y ambas tienen $H=0$ en el origen. Solo los términos de orden superior, o un vistazo directo a los valores, pueden decidir. Para $n$ variables, la misma lógica usa los autovalores de la matriz hessiana simétrica de tamaño $n\\times n$: todos positivos significa mínimo local; todos negativos, máximo local; y si aparecen ambos signos, punto de silla. Un autovalor nulo junto con el resto de un solo signo deja el criterio sin conclusión."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — extremes of x² − y² on a disk",
+        "es": "Ejemplo resuelto — extremos de x² − y² en un disco"
+      },
+      "content": {
+        "en": "Find the largest and smallest values of $f(x,y)=x^2-y^2$ on the closed unit disk $x^2+y^2\\le1$. The disk is closed and bounded, so both values exist, and each is attained inside the disk or on its circle. Inside: $\\nabla f=(2x,-2y)=\\mathbf 0$ only at $(0,0)$, where $f=0$ (and $D=-4$: a saddle). On the circle: write $x=\\cos t$, $y=\\sin t$. Then $f=\\cos^2t-\\sin^2t=\\cos 2t$. This equals $1$ at $t=0$ and $t=\\pi$, the points $(\\pm1,0)$, and $-1$ at $t=\\pi/2$ and $t=3\\pi/2$, the points $(0,\\pm1)$. Comparing $0$, $1$ and $-1$: the maximum is $1$, at $(\\pm1,0)$, and the minimum is $-1$, at $(0,\\pm1)$.",
+        "es": "Halla el mayor y el menor valor de $f(x,y)=x^2-y^2$ en el disco unidad cerrado $x^2+y^2\\le1$. El disco es cerrado y acotado, así que ambos valores existen, y cada uno se alcanza dentro del disco o en su circunferencia. Dentro: $\\nabla f=(2x,-2y)=\\mathbf 0$ solo en $(0,0)$, donde $f=0$ (y $D=-4$: una silla). En la circunferencia: escribe $x=\\cos t$, $y=\\sin t$. Entonces $f=\\cos^2t-\\sin^2t=\\cos 2t$. Vale $1$ en $t=0$ y $t=\\pi$, los puntos $(\\pm1,0)$, y $-1$ en $t=\\pi/2$ y $t=3\\pi/2$, los puntos $(0,\\pm1)$. Comparando $0$, $1$ y $-1$: el máximo es $1$, en $(\\pm1,0)$, y el mínimo es $-1$, en $(0,\\pm1)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The extreme value theorem** says that a continuous function on a closed, bounded region reaches a largest and a smallest value. To find them, follow three steps. First, list the critical points inside the region. Second, find the extremes on the boundary: on a circle, use a parametrisation as above; on a segment, substitute the line into $f$. Lesson 14 gives Lagrange multipliers for general constraints. Third, compare all the candidate values. The largest and smallest of them are the absolute extrema. Local extrema that are neither the largest nor the smallest value do not matter for the absolute question.",
+        "es": "**El teorema del valor extremo** dice que una función continua en una región cerrada y acotada alcanza un mayor y un menor valor. Para hallarlos, sigue tres pasos. Primero, lista los puntos críticos dentro de la región. Segundo, busca los extremos en la frontera: en una circunferencia, usa una parametrización como arriba; en un segmento, sustituye la recta en $f$. La lección 14 presenta los multiplicadores de Lagrange para restricciones generales. Tercero, compara todos los valores candidatos. El mayor y el menor de ellos son los extremos absolutos. Los extremos locales que no son ni el mayor ni el menor valor no importan para la cuestión absoluta."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why this matters for learning.** Training a neural network means finding a low point of a loss surface with millions of parameters. In that many dimensions, a critical point can be a local minimum only if *no* Hessian eigenvalue is negative, and a typical critical point has some negative one. Research on neural-network losses suggests that most critical points that training meets are saddles rather than poor valleys. Near a saddle the gradient is tiny and progress slows, which is one reason training can stall. Methods that use curvature information, or momentum and noise, help escape them. A zero gradient alone never proves that you have arrived.",
+        "es": "**Por qué importa para aprender.** Entrenar una red neuronal es buscar un punto bajo de una superficie de pérdida con millones de parámetros. En tantas dimensiones, un punto crítico solo puede ser un mínimo local si *ningún* autovalor de la matriz hessiana es negativo, y un punto crítico típico tiene alguno negativo. Las investigaciones sobre pérdidas de redes neuronales sugieren que la mayoría de los puntos críticos que encuentra el entrenamiento son puntos de silla, no valles malos. Cerca de una silla el gradiente es minúsculo y el avance se frena, una de las razones por las que el entrenamiento puede estancarse. Los métodos que usan información de curvatura, o el impulso y el ruido, ayudan a salir de ellas. Un gradiente nulo, por sí solo, nunca demuestra que hayas llegado."
+      }
+    },
+    {
+      "type": "code",
+      "runnable": true,
+      "lib": [
+        "sympy"
+      ],
+      "code": {
+        "en": "import sympy as sp\n\nx, y = sp.symbols(\"x y\")\nf = x**4 - 2*x**2 + y**2        # a double-well surface\nH = sp.hessian(f, (x, y))       # matrix of second partial derivatives\n# critical points: f_x = f_y = 0\npoints = sp.solve([sp.diff(f, x), sp.diff(f, y)], [x, y], dict=True)\nfor p in sorted(points, key=lambda s: float(s[x])):\n    Hp = H.subs(p)\n    D = Hp.det()\n    if D < 0:\n        kind = \"saddle\"\n    elif Hp[0, 0] > 0:\n        kind = \"min\"\n    else:\n        kind = \"max\"\n    print(int(p[x]), int(p[y]), D, kind)",
+        "es": "import sympy as sp\n\nx, y = sp.symbols(\"x y\")\nf = x**4 - 2*x**2 + y**2        # una superficie de doble pozo\nH = sp.hessian(f, (x, y))       # matriz de segundas derivadas parciales\n# puntos críticos: f_x = f_y = 0\npoints = sp.solve([sp.diff(f, x), sp.diff(f, y)], [x, y], dict=True)\nfor p in sorted(points, key=lambda s: float(s[x])):\n    Hp = H.subs(p)\n    D = Hp.det()\n    if D < 0:\n        kind = \"saddle\"\n    elif Hp[0, 0] > 0:\n        kind = \"min\"\n    else:\n        kind = \"max\"\n    print(int(p[x]), int(p[y]), D, kind)"
+      },
+      "expectedOutput": "-1 0 16 min\n0 0 -8 saddle\n1 0 16 min",
+      "caption": {
+        "en": "SymPy finds the critical points of a double-well surface and classifies each one with the second-derivative test: two minima and a saddle between them.",
+        "es": "SymPy halla los puntos críticos de una superficie de doble pozo y clasifica cada uno con el criterio de la segunda derivada: dos mínimos y, entre ellos, una silla."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mvc-11-e1",
+      "answerType": "number",
+      "params": {
+        "k": {
+          "int": [
+            2,
+            5
+          ]
+        }
+      },
+      "check": "abs(answer - (0^2 - k*1^2)) < 1e-9 and answer <= cos(0.4)^2 - k*sin(0.4)^2 and answer <= cos(1.2)^2 - k*sin(1.2)^2",
+      "prompt": {
+        "en": "On the closed unit disk $x^2+y^2\\le1$, find the **smallest** value of $f(x,y)=x^2-[[k]]y^2$.",
+        "es": "En el disco unidad cerrado $x^2+y^2\\le1$, halla el **menor** valor de $f(x,y)=x^2-[[k]]y^2$."
+      },
+      "answer": "-[[k]]",
+      "hint": {
+        "en": "Where is y² largest on the disk, and what is the smallest possible x²?",
+        "es": "¿Dónde es y² máximo en el disco, y cuál es el menor valor posible de x²?"
+      },
+      "solution": [
+        {
+          "tex": "x^2-[[k]]y^2 \\ge -[[k]]y^2 \\ge -[[k]]",
+          "en": "Drop $x^2 \\ge 0$, then use $y^2 \\le 1$ on the disk.",
+          "es": "Quita $x^2 \\ge 0$ y usa $y^2 \\le 1$ en el disco."
+        },
+        {
+          "tex": "f(0,\\pm1) = -[[k]]",
+          "en": "The value $-[[k]]$ is reached at $(0,\\pm1)$, on the circle.",
+          "es": "El valor $-[[k]]$ se alcanza en $(0,\\pm1)$, sobre la circunferencia."
+        },
+        {
+          "tex": "\\min f = -[[k]]",
+          "en": "The interior critical point $(0,0)$ gives only $0$, which is larger.",
+          "es": "El punto crítico interior $(0,0)$ da solo $0$, que es mayor."
+        }
+      ]
+    },
+    {
+      "id": "mvc-11-e2",
+      "answerType": "set",
+      "prompt": {
+        "en": "List the $x$-coordinates of all critical points of $f(x,y)=x^3+y^3-3xy$, separated by commas.",
+        "es": "Escribe las coordenadas $x$ de todos los puntos críticos de $f(x,y)=x^3+y^3-3xy$, separadas por comas."
+      },
+      "answer": "0, 1",
+      "commonMistakes": [
+        {
+          "answer": "0, -1",
+          "feedback": {
+            "en": "Check $x=-1$: $f_x=0$ needs $y=x^2=1$, but then $f_y=3y^2-3x=3+3=6\\ne0$. So $x=-1$ is not a critical point.",
+            "es": "Comprueba $x=-1$: $f_x=0$ exige $y=x^2=1$, pero entonces $f_y=3y^2-3x=3+3=6\\ne0$. Así que $x=-1$ no es punto crítico."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write f_x = 0 and f_y = 0 as y = x² and x = y², then substitute.",
+        "es": "Escribe f_x = 0 y f_y = 0 como y = x² y x = y², y sustituye."
+      },
+      "solution": [
+        {
+          "tex": "f_x = 3x^2-3y = 0 \\Rightarrow y = x^2",
+          "en": "Set the first partial to zero.",
+          "es": "Iguala a cero la primera derivada parcial."
+        },
+        {
+          "tex": "f_y = 3y^2-3x = 0 \\Rightarrow x = y^2",
+          "en": "Set the second partial to zero.",
+          "es": "Iguala a cero la segunda derivada parcial."
+        },
+        {
+          "tex": "x = y^2 = x^4 \\Rightarrow x(x^3-1) = 0",
+          "en": "Substitute $y = x^2$ into $x = y^2$.",
+          "es": "Sustituye $y = x^2$ en $x = y^2$."
+        },
+        {
+          "tex": "x = 0 \\text{ or } x = 1",
+          "en": "The real roots give the critical points $(0,0)$ and $(1,1)$.",
+          "es": "Las raíces reales dan los puntos críticos $(0,0)$ y $(1,1)$."
+        }
+      ]
+    },
+    {
+      "id": "mvc-11-e3",
+      "answerType": "expression",
+      "prompt": {
+        "en": "For $f(x,y)=x^3+y^3-3xy$, write the Hessian determinant $D(x,y)=f_{xx}f_{yy}-f_{xy}^2$ as a function of $x$ and $y$.",
+        "es": "Para $f(x,y)=x^3+y^3-3xy$, escribe el determinante hessiano $D(x,y)=f_{xx}f_{yy}-f_{xy}^2$ en función de $x$ e $y$."
+      },
+      "answer": "36*x*y - 9",
+      "commonMistakes": [
+        {
+          "answer": "36*x*y + 9",
+          "feedback": {
+            "en": "The mixed term enters with a minus sign: $-f_{xy}^2=-(-3)^2=-9$, not $+9$.",
+            "es": "El término mixto entra con signo menos: $-f_{xy}^2=-(-3)^2=-9$, no $+9$."
+          }
+        },
+        {
+          "answer": "36*x*y - 3",
+          "feedback": {
+            "en": "$f_{xy}=-3$ must be squared: $(-3)^2=9$, not $3$.",
+            "es": "Hay que elevar al cuadrado $f_{xy}=-3$: $(-3)^2=9$, no $3$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "$f_{xx}=6x$, $f_{yy}=6y$ and $f_{xy}=-3$.",
+        "es": "$f_{xx}=6x$, $f_{yy}=6y$ y $f_{xy}=-3$."
+      },
+      "solution": [
+        {
+          "tex": "f_{xx}=6x,\\quad f_{yy}=6y,\\quad f_{xy}=-3",
+          "en": "Second partials of $x^3+y^3-3xy$.",
+          "es": "Segundas derivadas parciales de $x^3+y^3-3xy$."
+        },
+        {
+          "tex": "D = 6x\\cdot 6y-(-3)^2 = 36xy-9",
+          "en": "Multiply the diagonal entries, then subtract the square of the mixed term.",
+          "es": "Multiplica los términos de la diagonal y resta el cuadrado del término mixto."
+        }
+      ]
+    },
+    {
+      "id": "mvc-11-e4",
+      "answerType": "number",
+      "prompt": {
+        "en": "Let $f(x,y)=x^3+y^3-3xy$. Its critical point with $D>0$ is a local minimum. What is the value of $f$ at that minimum?",
+        "es": "Sea $f(x,y)=x^3+y^3-3xy$. Su punto crítico con $D>0$ es un mínimo local. ¿Cuánto vale $f$ en ese mínimo?"
+      },
+      "answer": "-1",
+      "hint": {
+        "en": "The critical points satisfy $y=x^2$ and $x=y^2$. Test $D=36xy-9$ at each one.",
+        "es": "Los puntos críticos cumplen $y=x^2$ y $x=y^2$. Evalúa $D=36xy-9$ en cada uno."
+      },
+      "solution": [
+        {
+          "tex": "(0,0):\\ D=-9<0 \\text{ (saddle)};\\quad (1,1):\\ D=27>0,\\ f_{xx}=6>0",
+          "en": "Test $D=36xy-9$ at the two critical points.",
+          "es": "Evalúa $D=36xy-9$ en los dos puntos críticos."
+        },
+        {
+          "tex": "f(1,1) = 1+1-3 = -1",
+          "en": "A local minimum with value $-1$.",
+          "es": "Un mínimo local con valor $-1$."
+        }
+      ]
+    },
+    {
+      "id": "mvc-11-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "At a critical point, $f_{xx}f_{yy}-f_{xy}^2=0$. Which statement is correct?",
+        "es": "En un punto crítico, $f_{xx}f_{yy}-f_{xy}^2=0$. ¿Qué afirmación es correcta?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It is a saddle point, because a zero determinant leaves no direction that curves upwards.",
+            "es": "Es un punto de silla, porque un determinante nulo no deja ninguna dirección que se curve hacia arriba."
+          },
+          "correct": false,
+          "why": {
+            "en": "$x^4+y^4$ has $D=0$ at the origin and is still a minimum, so $D=0$ never forces a saddle.",
+            "es": "$x^4+y^4$ tiene $D=0$ en el origen y sigue siendo un mínimo, así que $D=0$ nunca obliga a que haya una silla."
+          }
+        },
+        {
+          "text": {
+            "en": "It is a local minimum, because $D\\ge0$ is what a minimum requires.",
+            "es": "Es un mínimo local, porque un mínimo exige $D\\ge0$."
+          },
+          "correct": false,
+          "why": {
+            "en": "$D\\ge0$ is only a necessary condition. With $D=0$ nothing is guaranteed: $x^4-y^4$ has $D=0$ at the origin and is a saddle.",
+            "es": "$D\\ge0$ es solo una condición necesaria. Con $D=0$ no hay garantía: $x^4-y^4$ tiene $D=0$ en el origen y es una silla."
+          }
+        },
+        {
+          "text": {
+            "en": "It is a local maximum, because the Hessian has a zero eigenvalue.",
+            "es": "Es un máximo local, porque la hessiana tiene un autovalor nulo."
+          },
+          "correct": false,
+          "why": {
+            "en": "A zero eigenvalue carries no sign: $x^4+y^4$ has a zero Hessian at the origin and is a minimum.",
+            "es": "Un autovalor nulo no tiene signo: $x^4+y^4$ tiene el hessiano nulo en el origen y es un mínimo."
+          }
+        },
+        {
+          "text": {
+            "en": "The test is inconclusive: $x^4+y^4$ and $x^4-y^4$ both have $D=0$ at the origin, but one has a minimum there and the other a saddle.",
+            "es": "El criterio no concluye: $x^4+y^4$ y $x^4-y^4$ tienen ambas $D=0$ en el origen, pero una tiene allí un mínimo y la otra una silla."
+          },
+          "correct": true,
+          "why": {
+            "en": "With $H=0$ at the origin the second-order terms vanish, so only higher-order terms decide, and they differ between these two functions.",
+            "es": "Con $H=0$ en el origen se anulan los términos de segundo orden, así que solo deciden los de orden superior, que son distintos en estas dos funciones."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Does $D = 0$ settle the type? Think about what the terms beyond second order can do at the point.",
+        "es": "¿Basta $D = 0$ para saber el tipo? Piensa en lo que pueden hacer en el punto los términos de orden superior a dos."
+      }
+    },
+    {
+      "id": "mvc-11-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `classify(H)`: given the 2 × 2 symmetric Hessian `H = [[a, b], [b, d]]` at a critical point, return `min` if both eigenvalues are positive, `max` if both are negative, `saddle` if they have opposite signs, and `inconclusive` otherwise.",
+        "es": "Completa `classify(H)`: dada la matriz hessiana simétrica 2 × 2 `H = [[a, b], [b, d]]` en un punto crítico, devuelve `min` si los dos autovalores son positivos, `max` si son negativos, `saddle` si tienen signos opuestos, e `inconclusive` en otro caso."
+      },
+      "funcName": "classify",
+      "starter": {
+        "en": "import math\n\ndef classify(H):\n    # H = [[a, b], [b, d]]; the eigenvalues are (a+d)/2 ± sqrt(((a-d)/2)**2 + b**2)\n    pass",
+        "es": "import math\n\ndef classify(H):\n    # H = [[a, b], [b, d]]; los autovalores son (a+d)/2 ± sqrt(((a-d)/2)**2 + b**2)\n    pass"
+      },
+      "solution": "import math\n\ndef classify(H):\n    (a, b), (_, d) = H\n    mean = (a + d) / 2\n    r = math.sqrt(((a - d) / 2) ** 2 + b ** 2)\n    lo, hi = mean - r, mean + r\n    eps = 1e-12\n    if lo > eps:\n        return \"min\"\n    if hi < -eps:\n        return \"max\"\n    if lo < -eps and hi > eps:\n        return \"saddle\"\n    return \"inconclusive\"",
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                6,
+                0
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "expected": "min"
+        },
+        {
+          "args": [
+            [
+              [
+                -6,
+                3
+              ],
+              [
+                3,
+                -6
+              ]
+            ]
+          ],
+          "expected": "max"
+        },
+        {
+          "args": [
+            [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                -2
+              ]
+            ]
+          ],
+          "expected": "saddle"
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "expected": "inconclusive"
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                4
+              ]
+            ]
+          ],
+          "expected": "inconclusive"
+        },
+        {
+          "args": [
+            [
+              [
+                4,
+                1
+              ],
+              [
+                1,
+                4
+              ]
+            ]
+          ],
+          "expected": "min"
+        }
+      ],
+      "hint": {
+        "en": "The eigenvalues are (a+d)/2 ± √(((a−d)/2)² + b²). Compare each one with 0, allowing a tiny tolerance.",
+        "es": "Los autovalores son (a+d)/2 ± √(((a−d)/2)² + b²). Compara cada uno con 0, con una tolerancia pequeña."
+      }
+    },
+    {
+      "id": "mvc-11-e7",
+      "answerType": "number",
+      "prompt": {
+        "en": "At a critical point $(2,-1)$ of a function $f$, the second partials are $f_{xx}=4$, $f_{yy}=1$ and $f_{xy}=1$. Compute $D=f_{xx}f_{yy}-f_{xy}^2$ there.",
+        "es": "En un punto crítico $(2,-1)$ de una función $f$, las segundas derivadas parciales valen $f_{xx}=4$, $f_{yy}=1$ y $f_{xy}=1$. Calcula $D=f_{xx}f_{yy}-f_{xy}^2$ en ese punto."
+      },
+      "answer": "3",
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "The mixed term is subtracted, not added: $D=4\\cdot1-1^2=3$. Since $D>0$ and $f_{xx}>0$, the point is a local minimum.",
+            "es": "El término mixto se resta, no se suma: $D=4\\cdot1-1^2=3$. Como $D>0$ y $f_{xx}>0$, el punto es un mínimo local."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Multiply f_xx by f_yy first, then subtract f_xy squared.",
+        "es": "Multiplica primero f_xx por f_yy y luego resta f_xy al cuadrado."
+      },
+      "solution": [
+        {
+          "tex": "D = f_{xx}f_{yy}-f_{xy}^2 = 4\\cdot1-1^2",
+          "en": "Substitute the three values.",
+          "es": "Sustituye los tres valores."
+        },
+        {
+          "tex": "= 3",
+          "en": "Positive, with $f_{xx}>0$: a local minimum.",
+          "es": "Positivo, con $f_{xx}>0$: un mínimo local."
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "source": "Stewart — Calculus: Early Transcendentals",
+      "detail": {
+        "en": "Ch. 14.7, maximum and minimum values: the second derivatives test and absolute extrema on closed, bounded sets",
+        "es": "Cap. 14.7, valores máximos y mínimos: el criterio de la segunda derivada y los extremos absolutos en conjuntos cerrados y acotados"
+      }
+    },
+    {
+      "source": "Marsden & Tromba — Vector Calculus",
+      "detail": {
+        "en": "Ch. 3.3, extrema of real-valued functions",
+        "es": "Cap. 3.3, extremos de funciones de valor real"
+      }
+    },
+    {
+      "source": "Nocedal & Wright — Numerical Optimization",
+      "detail": {
+        "en": "Ch. 2, fundamentals of unconstrained optimization: first- and second-order necessary and sufficient conditions",
+        "es": "Cap. 2, fundamentos de la optimización sin restricciones: condiciones necesarias y suficientes de primer y segundo orden"
+      }
+    }
+  ]
+}
