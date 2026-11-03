@@ -266,6 +266,17 @@ button.link.back { display: inline-block; margin-bottom: 18px; }
 .resume-title { font-size: 1.15rem; font-weight: 700; }
 .resume-cta { flex: 0 0 auto; font-weight: 700; color: var(--accent); }
 
+/* Spaced review + mastery */
+.review-card { border-color: var(--warn); }
+.review-card .resume-eyebrow, .review-card .resume-cta { color: var(--warn); }
+.review-later { margin: 0 0 18px; }
+.review-header h1 { margin: 0 0 14px; }
+.review-source { margin: 12px 0 18px; }
+.review-actions { display: flex; align-items: center; justify-content: flex-end; gap: 14px; margin-top: 16px; }
+.lesson-sub { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.mastery-badge { align-self: center; }
+.mastery-need { margin: -6px 0 14px; }
+
 /* Track sections on the dashboard */
 .subject-track { margin-top: 30px; }
 .track-title {

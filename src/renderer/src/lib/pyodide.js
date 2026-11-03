@@ -53,7 +53,9 @@ function getWorker() {
     e.preventDefault()
     worker.terminate()
     worker = null
-    if (current) finishCurrent({ ok: false, error: e.message || 'Could not load the local Pyodide runtime.' })
+    if (current) {
+      finishCurrent({ ok: false, reason: 'unavailable', error: e.message || 'Could not load the local Pyodide runtime.' })
+    }
   }
   return worker
 }
@@ -66,7 +68,8 @@ function pump() {
 
 // Queues a job. Aborting `signal` cancels just this job: it is dropped if still
 // waiting, or its worker is terminated if running. Either way the call resolves
-// with `{ ok: false, reason: 'stopped' }`; a run past the limit gets 'timeout'.
+// with `{ ok: false, reason: 'stopped' }`; a run past the limit gets 'timeout',
+// and a runtime that fails to load gets 'unavailable'.
 function post(msg, signal) {
   return new Promise((resolve) => {
     if (signal?.aborted) return resolve({ ok: false, reason: 'stopped' })

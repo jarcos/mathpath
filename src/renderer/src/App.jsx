@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard.jsx'
 import SubjectView from './pages/SubjectView.jsx'
 import LessonView from './pages/LessonView.jsx'
 import GlossaryView from './pages/GlossaryView.jsx'
+import ReviewView from './pages/ReviewView.jsx'
 import { UpdateBanner } from './components/Updates.jsx'
 
 function LanguageToggle() {
@@ -63,6 +64,15 @@ export default function App() {
         {view.name === 'dashboard' && (
           <Dashboard
             onOpenSubject={(subjectId) => setView({ name: 'subject', subjectId })}
+            onOpenLesson={(subjectId, lessonId) =>
+              setView({ name: 'lesson', lessonId, subjectId })
+            }
+            onStartReview={() => setView({ name: 'review' })}
+          />
+        )}
+        {view.name === 'review' && (
+          <ReviewView
+            onBack={() => setView({ name: 'dashboard' })}
             onOpenLesson={(subjectId, lessonId) =>
               setView({ name: 'lesson', lessonId, subjectId })
             }

@@ -37,7 +37,7 @@ un _libro con ejercicios_ en un _tutor_. Para eso no hay que tocar el principio 
 | 0.7 | Endurecer Electron: `sandbox: false`, `shell.openExternal` con cualquier esquema y sin bloquear `will-navigate`. | [index.js:93](src/main/index.js#L93), [index.js:99](src/main/index.js#L99) | Preload en CJS + `sandbox: true`. Abrir fuera solo `https:`. Bloquear la navegación. |
 | 0.8 | Limpieza | varios | Quitar `function-plot` (no se usa). Corregir el comentario obsoleto de `app://` en `electron-builder.yml`. Actualizar los totales de CLAUDE.md (972 → 1055 ejercicios). Traducir el `title` del botón de tema ([App.jsx:31](src/renderer/src/App.jsx#L31)). Hacer que el `starter` de código cambie con el idioma. |
 
-### Estado de la Fase 0: hecha (2 nov 2026, sin commit)
+### Estado de la Fase 0: hecha y publicada en v0.1.5 (hito M27)
 
 Todo lo anterior está implementado y probado. Se ha probado de tres formas:
 - con Node (servidor loopback y Pyodide);
@@ -82,6 +82,47 @@ Todo lo anterior está implementado y probado. Se ha probado de tres formas:
 - La lección se completa sola con ≥ 80 % de ejercicios resueltos **sin ver la solución**. Se mantiene el override manual.
 - Niveles visibles: *nuevo · practicado · dominado · toca repasar* (cuando FSRS dice que la retención cae).
 - Ampliar `attempts` con `used_hint`, `used_solution`, `time_ms`.
+
+### Estado de 1.1 y 1.2: hechos (hito M28, sin publicar)
+
+Implementado como estaba previsto, con estos ajustes:
+
+- **Librería:** [ts-fsrs](https://github.com/open-spaced-repetition/ts-fsrs) **5.4.2**, que implementa FSRS v6. La 6.x exige Node ≥ 24 y el proyecto usa Node 22. Se usan intervalos en días (`enable_short_term: false`), porque los repasos son sesiones diarias.
+- **Notas:**
+  - en la lección, el *primer acierto* crea la tarjeta: a la primera = *Good*; con pista o tras fallar = *Hard*; tras ver la solución = *Again*;
+  - en el repaso puntúa *solo el primer intento*; los reintentos se registran sin puntuar.
+- **Datos:**
+  - `review_cards` guarda la tarjeta FSRS en JSON, más `due` para las consultas;
+  - la migración 2 crea las tarjetas a partir de los aciertos anteriores, así que el historial de 0.1.x cuenta desde el primer día;
+  - las migraciones están versionadas con `PRAGMA user_version`;
+  - una base migrada sigue funcionando si vuelves a 0.1.5.
+- **Interfaz:**
+  - tarjeta "Repaso de hoy" en el Dashboard;
+  - sesión de hasta 20 ejercicios que alterna lecciones, con "Volverá dentro de N días" tras cada respuesta;
+  - "Resuelve N más sin abrir la solución" en cada lección;
+  - insignias *Practicada · Dominada · Toca repasar* en la lección y en la lista de la asignatura.
+- **Tests:** `npm test` (node --test, sin dependencias nuevas), con 18 tests de reglas, FSRS, base de datos y migración desde un esquema 0.1.x. El job `verify` del CI también los ejecuta.
+
+**Arreglado tras una revisión independiente del diff:**
+- **Contenido:** el id `algebra-02-e6` estaba duplicado (un numérico y un MCQ), así que contaba doble en el dominio y uno de los dos nunca se repasaba. El MCQ pasa a `algebra-02-e8`, y `verify:content` exige ahora ids únicos.
+- **Base de datos:**
+  - antes de migrar se guarda una copia (`mathpath.db.before-v2`);
+  - si la base no se puede abrir, la app avisa en vez de quedarse en blanco;
+  - solo puede haber una instancia abierta, así que dos procesos no pueden migrar la misma base a la vez.
+- **Tarjetas:**
+  - se sincronizan en cada arranque (`syncCards`), lo que cubre también volver a 0.1.5 y actualizar otra vez;
+  - las atrasadas se reparten: como mínimo 10 al día, en unas dos semanas, en vez de vencer todas a la vez;
+  - las de ejercicios que ya no existen no se muestran ni se cuentan.
+- **Robustez:**
+  - un reloj atrasado ya no rompe el repaso;
+  - un fallo al programar la tarjeta no impide guardar el intento.
+- **Interfaz:**
+  - abrir la solución *mientras corre Python* ya cuenta;
+  - si Python no llega a arrancar, no cuenta como fallo del alumno;
+  - desmarcar a mano una lección dominada se respeta;
+  - el estado se refresca al volver a la ventana (por si cambia el día con la app abierta);
+  - el resumen de la sesión es coherente si se saltan todos los ejercicios.
+- **Matiz conocido (no se cambia):** ts-fsrs cuenta los días transcurridos por fecha UTC. Un repaso justo después de medianoche local puede contar como "0 días", lo que afecta un poco a las tarjetas de 1 día.
 
 ### 1.3 Grafo de prerrequisitos
 - Pasar los 117 bloques `prereq` a un campo `prerequisites: [lessonId]` en cada lección (hoy 124 lecciones no tienen ninguno) y validarlo en `verify`: que los ids existan y que no haya ciclos.
@@ -171,19 +212,19 @@ Todo lo anterior está implementado y probado. Se ha probado de tres formas:
 
 ## Hoja de ruta propuesta
 
-La numeración sigue los hitos del repo (el último es M25).
+La numeración sigue la de `docs/project.html`, donde el último hito terminado antes de este plan era M26 (navegación y UX). La primera versión de este documento empezaba en M26, por error.
 
-| Hito | Contenido | Esfuerzo | Impacto |
+| Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
-| **M26** | ~~Fase 0 completa~~ (hecha) + tests de `validate`/`plan` + CI en PRs + migraciones de BD | S (2–4 días) | Alto: seguridad y confianza |
-| **M27** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) | M (1 semana) | **Muy alto** |
-| **M28** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) | M | Alto |
-| **M29** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | Alto |
-| **M30** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | Alto (el repaso deja de ser memorístico) |
-| **M31** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | Alto para la pista de ML |
-| **M32** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | Medio–alto |
-| **M33** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | Medio |
-| continuo | Profundidad del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6) | — | — |
+| **M27** | Fase 0 (0.1–0.8) + CI de release con `verify` | S | ✅ Publicado en v0.1.5 |
+| **M28** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) + migraciones de BD (5.3) + primeros tests (5.1) | M | ✅ Hecho, sin publicar |
+| **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | Siguiente |
+| **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | — |
+| **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | — |
+| **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | — |
+| **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
+| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | — |
+| continuo | Profundidad del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 
 ## Ideas que necesitan una decisión tuya
 

@@ -47,7 +47,8 @@ export default function CodeBlock({ section }) {
     const res = await runCode(code, section.lib || [], runRef.current.signal)
     runRef.current = null
     setOk(res.ok)
-    setOutput(res.reason ? t(res.reason === 'timeout' ? 'codeTimeout' : 'codeStopped') : res.output || '')
+    const notice = { timeout: 'codeTimeout', stopped: 'codeStopped', unavailable: 'codeUnavailable' }[res.reason]
+    setOutput(notice ? [t(notice), res.output].filter(Boolean).join('\n') : res.output || '')
     setState('done')
   }
 

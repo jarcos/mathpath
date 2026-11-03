@@ -1,15 +1,32 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { endOfLocalDay } from '@shared/learning.js'
 
 const AppContext = createContext(null)
 export const useApp = () => useContext(AppContext)
+
+// solved: exercise id → { lessonId, clean }; due: ids whose review is due today.
+const EMPTY_LEARNING = { solved: new Map(), due: new Set() }
 
 export function AppProvider({ children }) {
   const { i18n } = useTranslation()
   const [lang, setLangState] = useState('en')
   const [theme, setThemeState] = useState('dark')
   const [completed, setCompleted] = useState(() => new Set())
+  const [learning, setLearning] = useState(EMPTY_LEARNING)
   const [ready, setReady] = useState(false)
+
+  const refreshLearning = useCallback(async () => {
+    try {
+      const s = await window.api.learning.state(endOfLocalDay())
+      setLearning({
+        solved: new Map(s.solved.map((r) => [r.exercise_id, { lessonId: r.lesson_id, clean: r.clean }])),
+        due: new Set(s.due.map((r) => r.exercise_id))
+      })
+    } catch (e) {
+      console.error('learning state failed', e)
+    }
+  }, [])
 
   // Load persisted language + progress from the local database on startup.
   useEffect(() => {
@@ -25,13 +42,20 @@ export function AppProvider({ children }) {
         document.documentElement.setAttribute('data-theme', th)
         const rows = await window.api.progress.getAll()
         setCompleted(new Set(rows.filter((r) => r.completed).map((r) => r.lesson_id)))
+        await refreshLearning()
       } catch (e) {
         console.error('init failed', e)
       } finally {
         setReady(true)
       }
     })()
-  }, [i18n])
+  }, [i18n, refreshLearning])
+
+  // What is due depends on the day: refresh when the learner comes back.
+  useEffect(() => {
+    window.addEventListener('focus', refreshLearning)
+    return () => window.removeEventListener('focus', refreshLearning)
+  }, [refreshLearning])
 
   const setLang = useCallback(
     (l) => {
@@ -61,7 +85,15 @@ export function AppProvider({ children }) {
     })
   }, [])
 
-  const recordAttempt = useCallback((payload) => window.api.attempts.record(payload), [])
+  // Resolves with the exercise's next review date (ISO) or null.
+  const recordAttempt = useCallback(
+    async (payload) => {
+      const due = await window.api.attempts.record(payload)
+      refreshLearning()
+      return due
+    },
+    [refreshLearning]
+  )
 
   // Defensive: tolerate an older/stale preload bridge that predates this API so
   // opening a lesson never hard-crashes the view. Always resolves to an array.
@@ -84,6 +116,8 @@ export function AppProvider({ children }) {
     loc,
     completed,
     setLessonCompleted,
+    learning,
+    refreshLearning,
     recordAttempt,
     getSolvedForLesson,
     ready

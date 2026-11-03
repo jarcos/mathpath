@@ -77,11 +77,17 @@ async function runProgram(py, sources, inputs) {
 }
 
 async function handle(msg) {
-  const py = await ensure(msg.base, msg.setup, msg.packages || [])
-  // Learners import what they like: also load any bundled package the code
-  // imports (from the local copy, like everything else).
-  for (const src of msg.kind === 'snippet' ? [msg.code] : msg.sources) {
-    await py.loadPackagesFromImports(src)
+  let py
+  try {
+    py = await ensure(msg.base, msg.setup, msg.packages || [])
+    // Learners import what they like: also load any bundled package the code
+    // imports (from the local copy, like everything else).
+    for (const src of msg.kind === 'snippet' ? [msg.code] : msg.sources) {
+      await py.loadPackagesFromImports(src)
+    }
+  } catch (e) {
+    // The runtime itself failed to load: not something the learner's code did.
+    return { ok: false, reason: 'unavailable', error: String(e?.message || e) }
   }
   self.postMessage({ id: msg.id, phase: 'running' })
   if (msg.kind === 'snippet') return runSnippet(py, msg.code)

@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getLesson, getSubject, getGlossary } from '@content/index.js'
 import { getLessonSymbols } from '@shared/notation.js'
+import { MASTERY_THRESHOLD, isMastered } from '@shared/learning.js'
 import { useApp } from '@/AppContext.jsx'
+import { lessonStats } from '@/lib/mastery.js'
+import MasteryBadge from '@/components/MasteryBadge.jsx'
 import MathText from '@/components/MathText.jsx'
 import FunctionGraph from '@/components/FunctionGraph.jsx'
 import Exercise from '@/components/Exercise.jsx'
@@ -83,15 +86,17 @@ function ReadingProgress() {
 
 export default function LessonView({ lessonId, onBack, onOpenLesson }) {
   const { t } = useTranslation()
-  const { loc, completed, setLessonCompleted, getSolvedForLesson } = useApp()
+  const { loc, completed, setLessonCompleted, getSolvedForLesson, learning } = useApp()
   const lesson = getLesson(lessonId)
   const [solved, setSolved] = useState(() => new Set())
+  const [autoCompleted, setAutoCompleted] = useState(false)
   const topRef = useRef(null)
 
   // Reset scroll + load persisted solved exercises whenever the lesson changes.
   useEffect(() => {
     const el = document.getElementById('app-scroll')
     if (el) el.scrollTo({ top: 0 })
+    setAutoCompleted(false)
     let active = true
     if (lessonId && getSolvedForLesson) {
       Promise.resolve(getSolvedForLesson(lessonId))
@@ -119,8 +124,21 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
   const total = lesson.exercises.length
   const solvedCount = lesson.exercises.filter((ex) => solved.has(ex.id)).length
   const symbols = getLessonSymbols(lesson, getGlossary())
+  const stats = lessonStats(lesson, learning, completed)
+  const toMaster = Math.max(0, Math.ceil(MASTERY_THRESHOLD * total) - stats.clean)
 
-  const markSolved = (exId) => setSolved((prev) => new Set(prev).add(exId))
+  // Completes the lesson when this solve is the one that masters it. (The
+  // learning state refreshes asynchronously, so this solve is counted here.)
+  // A lesson already mastered and then unmarked by hand stays unmarked.
+  const markSolved = (exId, { clean }) => {
+    setSolved((prev) => new Set(prev).add(exId))
+    const before = lesson.exercises.filter((ex) => learning.solved.get(ex.id)?.clean).length
+    const after = before + (clean && !learning.solved.get(exId)?.clean ? 1 : 0)
+    if (!done && !isMastered(before, total) && isMastered(after, total)) {
+      setLessonCompleted(lesson.id, lesson.subjectId, true)
+      setAutoCompleted(true)
+    }
+  }
 
   return (
     <div className="page lesson-view" ref={topRef}>
@@ -138,7 +156,8 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
         <div className="lesson-meta-row muted small">
           <span>{t('estMinutes', { count: lesson.estimatedMinutes })}</span>
           {total > 0 && <span>{t('exercisesCount', { count: total })}</span>}
-          {done && <span className="badge ok">{t('completed')}</span>}
+          <MasteryBadge level={stats.level} />
+          {done && stats.level !== 'mastered' && <span className="badge ok">{t('completed')}</span>}
         </div>
       </header>
 
@@ -158,6 +177,7 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
               {t('exercisesSolved', { done: solvedCount, total })}
             </span>
           </div>
+          {toMaster > 0 && <p className="muted small mastery-need">{t('masteryNeed', { count: toMaster })}</p>}
           {lesson.exercises.map((ex, i) => (
             <Exercise
               key={ex.id}
@@ -186,6 +206,11 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
       )}
 
       <div className="lesson-complete">
+        {autoCompleted && (
+          <p className="feedback ok" role="status">
+            {t('lessonAutoCompleted')}
+          </p>
+        )}
         <button
           className={done ? 'primary done' : 'primary'}
           onClick={() => setLessonCompleted(lesson.id, lesson.subjectId, !done)}

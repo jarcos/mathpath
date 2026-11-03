@@ -1,8 +1,51 @@
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getSubjects } from '@content/index.js'
+import { getExerciseIds, getSubjects } from '@content/index.js'
+import { endOfLocalDay } from '@shared/learning.js'
 import { useApp } from '@/AppContext.jsx'
+import { relativeDay } from '@/lib/mastery.js'
 import ProgressBar from '@/components/ProgressBar.jsx'
 import { UpdatesPanel } from '@/components/Updates.jsx'
+
+// Today's spaced-repetition reviews. Hidden until the learner has solved
+// something, since there is nothing to review before that.
+function ReviewCard({ onStart }) {
+  const { t } = useTranslation()
+  const { lang, learning } = useApp()
+  const [summary, setSummary] = useState(null)
+
+  useEffect(() => {
+    let active = true
+    window.api.review
+      ?.summary(endOfLocalDay(), getExerciseIds())
+      .then((s) => active && setSummary(s))
+      .catch(() => {})
+    return () => {
+      active = false
+    }
+  }, [learning])
+
+  if (!summary || summary.total === 0) return null
+  if (summary.due === 0) {
+    return (
+      <p className="muted small review-later">
+        {summary.nextDue
+          ? t('reviewNextOn', { when: relativeDay(summary.nextDue, lang) })
+          : t('reviewNothing')}
+      </p>
+    )
+  }
+  return (
+    <button className="resume-card review-card" onClick={onStart}>
+      <div className="resume-text">
+        <span className="resume-eyebrow">{t('reviewTitle')}</span>
+        <span className="resume-title">{t('reviewDue', { count: summary.due })}</span>
+        <span className="muted small">{t('reviewWhy')}</span>
+      </div>
+      <span className="resume-cta">{t('reviewStart')} →</span>
+    </button>
+  )
+}
 
 function SubjectCard({ s, loc, t, completed, onOpenSubject }) {
   const total = s.lessonObjects.length
@@ -30,7 +73,7 @@ function SubjectCard({ s, loc, t, completed, onOpenSubject }) {
   )
 }
 
-export default function Dashboard({ onOpenSubject, onOpenLesson }) {
+export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview }) {
   const { t } = useTranslation()
   const { loc, completed } = useApp()
   const subjects = getSubjects()
@@ -79,6 +122,8 @@ export default function Dashboard({ onOpenSubject, onOpenLesson }) {
           <ProgressBar percent={overall} label={t('overallProgress')} />
         </div>
       </header>
+
+      <ReviewCard onStart={onStartReview} />
 
       {resume && (
         <button

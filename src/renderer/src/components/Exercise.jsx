@@ -11,7 +11,20 @@ import MathText from './MathText.jsx'
 // lesson is reopened; every pick is still recorded in `attempts`.)
 const MCQ_TRIES = 2
 
-export default function Exercise({ exercise, lessonId, index, solved = false, onSolved }) {
+/**
+ * One exercise. In a lesson (`mode` 'lesson') its first solve creates a review
+ * card; in a review session ('review') its first answer rates that card and
+ * is reported through `onResult(ok, { due })`.
+ */
+export default function Exercise({
+  exercise,
+  lessonId,
+  index,
+  solved = false,
+  onSolved,
+  mode = 'lesson',
+  onResult
+}) {
   const { t } = useTranslation()
   const { loc, recordAttempt } = useApp()
   const type = exercise.answerType || 'expression'
@@ -19,6 +32,17 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
   const [result, setResult] = useState(solved ? 'correct' : null) // 'correct' | 'incorrect' | null
   const [showHint, setShowHint] = useState(false)
   const [showSolution, setShowSolution] = useState(false)
+  // How this attempt is going, for the review schedule and mastery. Refs, as
+  // they are read when an answer is recorded, possibly after awaiting Python.
+  const usedHint = useRef(false)
+  const usedSolution = useRef(false)
+  const missesRef = useRef(0)
+  const [misses, setMisses] = useState(0) // the same count, for rendering
+  const startedAt = useRef(null) // first keystroke / pick of this answer
+  const answered = useRef(false)
+  const touch = () => {
+    if (!startedAt.current) startedAt.current = Date.now()
+  }
 
   // The lesson loads solved exercises asynchronously, after this has mounted.
   useEffect(() => {
@@ -29,8 +53,7 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
   const [answer, setAnswer] = useState('')
   // MCQ
   const [picked, setPicked] = useState(null)
-  const [mcqMisses, setMcqMisses] = useState(0)
-  const revealed = result === 'correct' || mcqMisses >= MCQ_TRIES
+  const revealed = result === 'correct' || (type === 'mcq' && misses >= MCQ_TRIES)
   // Code: the starter follows the language until the learner edits it.
   const starter = loc(exercise.starter) || ''
   const [code, setCode] = useState(starter)
@@ -46,10 +69,32 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
   }, [starter, codeEdited])
 
   const finish = (ok, userAnswer) => {
+    const first = !answered.current
+    answered.current = true
     setResult(ok ? 'correct' : 'incorrect')
-    recordAttempt({ exerciseId: exercise.id, lessonId, correct: ok, userAnswer: String(userAnswer) })
-    if (ok && onSolved) onSolved(exercise.id)
-    if (!ok) setShowSolution(false)
+    const scheduling = recordAttempt({
+      exerciseId: exercise.id,
+      lessonId,
+      correct: ok,
+      userAnswer: String(userAnswer),
+      usedHint: usedHint.current,
+      usedSolution: usedSolution.current,
+      timeMs: startedAt.current ? Date.now() - startedAt.current : null,
+      misses: missesRef.current,
+      // Only the first answer of a review counts; retries are just recorded.
+      schedule: mode === 'review' ? (first ? 'review' : undefined) : 'learn'
+    }).catch((e) => {
+      console.error('recording the answer failed', e)
+      return null
+    })
+    startedAt.current = null
+    if (mode === 'review' && first && onResult) scheduling.then((due) => onResult(ok, { due }))
+    if (ok && onSolved) onSolved(exercise.id, { clean: !usedSolution.current })
+    if (!ok) {
+      missesRef.current += 1
+      setMisses(missesRef.current)
+      setShowSolution(false)
+    }
   }
 
   const submitStandard = (e) => {
@@ -59,12 +104,11 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
 
   const submitMcq = () => {
     if (picked == null || revealed) return
-    const ok = !!exercise.choices[picked]?.correct
-    if (!ok) setMcqMisses((n) => n + 1)
-    finish(ok, `choice ${picked}`)
+    finish(!!exercise.choices[picked]?.correct, `choice ${picked}`)
   }
 
   const pickMcq = (i) => {
+    touch()
     setPicked(i)
     // A new pick clears the verdict on the previous one.
     if (result === 'incorrect') setResult(null)
@@ -78,8 +122,13 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
     const res = await runFunctionCases(code, exercise.funcName, argsList, exercise.lib || [], codeRunRef.current.signal)
     codeRunRef.current = null
     setCodeState('idle')
+    // Not the learner's doing: nothing is recorded.
     if (res.reason === 'stopped') {
       setCodeFeedback({ error: t('codeStopped') })
+      return
+    }
+    if (res.reason === 'unavailable') {
+      setCodeFeedback({ error: `${t('codeUnavailable')}\n${res.error || ''}` })
       return
     }
     if (!res.ok) {
@@ -117,7 +166,10 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
           <input
             type="text"
             value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
+            onChange={(e) => {
+              touch()
+              setAnswer(e.target.value)
+            }}
             placeholder={t('yourAnswer')}
             spellCheck={false}
             autoComplete="off"
@@ -172,6 +224,7 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
             value={code}
             spellCheck={false}
             onChange={(e) => {
+              touch()
               setCode(e.target.value)
               setCodeEdited(true)
             }}
@@ -211,12 +264,24 @@ export default function Exercise({ exercise, lessonId, index, solved = false, on
 
       <div className="exercise-actions">
         {exercise.hint && (
-          <button className="link" onClick={() => setShowHint((v) => !v)}>
+          <button
+            className="link"
+            onClick={() => {
+              usedHint.current = true
+              setShowHint((v) => !v)
+            }}
+          >
             {showHint ? t('hideHint') : t('showHint')}
           </button>
         )}
         {(Array.isArray(exercise.solution) || (type === 'code' && exercise.solution)) && (
-          <button className="link" onClick={() => setShowSolution((v) => !v)}>
+          <button
+            className="link"
+            onClick={() => {
+              usedSolution.current = true
+              setShowSolution((v) => !v)
+            }}
+          >
             {showSolution ? t('hideSolution') : t('showSolution')}
           </button>
         )}

@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { getSubject } from '@content/index.js'
 import { useApp } from '@/AppContext.jsx'
 import { computePlan } from '@/lib/plan.js'
+import { lessonStats } from '@/lib/mastery.js'
+import MasteryBadge from '@/components/MasteryBadge.jsx'
 import ProgressBar from '@/components/ProgressBar.jsx'
 
 export default function SubjectView({ subjectId, onOpenLesson, onBack }) {
   const { t } = useTranslation()
-  const { loc, completed } = useApp()
+  const { loc, completed, learning } = useApp()
   const subject = getSubject(subjectId)
   const [planRow, setPlanRow] = useState(null)
   const [loaded, setLoaded] = useState(false)
@@ -113,7 +115,10 @@ export default function SubjectView({ subjectId, onOpenLesson, onBack }) {
               <span className={`check ${done ? 'checked' : ''}`}>{done ? '✓' : i + 1}</span>
               <div className="lesson-meta">
                 <span className="lesson-title">{loc(l.title)}</span>
-                <span className="muted small">{t('estMinutes', { count: l.estimatedMinutes })}</span>
+                <span className="lesson-sub muted small">
+                  {t('estMinutes', { count: l.estimatedMinutes })}
+                  <MasteryBadge level={lessonStats(l, learning, completed).level} />
+                </span>
               </div>
               <button className="primary small" onClick={() => onOpenLesson(l.id)}>
                 {done ? t('open') : t('continue')}

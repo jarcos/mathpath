@@ -32,6 +32,7 @@ the only network access is the opt-in update check.
 npm install            # deps + Electron + Pyodide core (use Node 22, see .nvmrc)
 npm run dev            # launch with hot reload
 npm run verify:content # mathjs-check every answer/acceptedAlt  ← run before finishing
+npm test               # unit tests (node --test): learning rules, DB + migrations
 npm run build          # production build into ./out
 npm run dist           # package an installer for the current OS (see BUILD.md)
 ```
@@ -41,22 +42,30 @@ npm run dist           # package an installer for the current OS (see BUILD.md)
 ```
 src/
   main/        Electron main process + SQLite data layer (db.js) + IPC handlers
+               db.js — versioned migrations (PRAGMA user_version); never edit a
+                 shipped migration, append a new one and cover it in test/db.test.js.
+                 Before migrating it saves mathpath.db.before-vN; review cards are
+                 re-synced from attempts on every start (syncCards)
+               review.js — FSRS scheduling (ts-fsrs 5.x; 6.x needs Node 24)
                rendererServer.js — loopback server for the packaged renderer
   preload/     Secure contextBridge — the only renderer ↔ main channel
                (built as CJS: the window is sandboxed)
   shared/      validate.js — mathjs answer checker, used by BOTH app and verifier
                pygrade.js — code-exercise grader, used by BOTH app and verify:pyodide
+               learning.js — review ratings + mastery rules (main AND renderer)
   renderer/    React UI (Vite)
     src/
-      AppContext.jsx   language + progress state, loc() content selector, theme
+      AppContext.jsx   language + progress + learning state, loc() selector, theme
       lib/plan.js      adaptive 30-day scheduler (pure, testable)
+      lib/mastery.js   per-lesson mastery level from the learning state
       lib/pyodide.js   runs Python in lib/pyodide.worker.js (stop + 30 s timeout)
       components/      MathText (KaTeX), FunctionGraph (custom SVG plotter on mathjs),
-                       Exercise, ProgressBar
-      pages/           Dashboard, SubjectView, LessonView
+                       Exercise (lesson / review modes), MasteryBadge, ProgressBar
+      pages/           Dashboard, SubjectView, LessonView, ReviewView
 content/         per-subject lessons + subjects.json + index.js
 scripts/         verify-content.mjs, verify-glossary.mjs, verify-code.py (CPython),
                  verify-pyodide.mjs (bundled Pyodide + in-app grader)
+test/            node --test unit tests
 sources/         math/ + ai/ source material; see sources/INDEX.md
 docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 ```

@@ -33,9 +33,11 @@ Prefer to run from source? See [Getting started](#-getting-started).
 - **Symbol glossary + notation boxes.** Every symbol (λ, σ, ∇, …) is named; each lesson shows a "Symbols in this lesson" box, and a searchable Glossary page covers the whole curriculum — bilingual.
 - **Textbook-depth lessons** with intuition, worked examples, prerequisite recall boxes, a cited "Sources & further reading" section, and live SVG function graphs.
 - **Rich exercises** — symbolic short-answer (validated with [mathjs](https://mathjs.org)), runnable code exercises (graded by returned value), and conceptual multiple-choice with per-option explanations. Step-by-step solutions and hints on demand; your solved state persists.
+- **Spaced review** — every exercise you solve comes back in a daily **Today's review** session just as you start to forget it, scheduled with [FSRS](https://github.com/open-spaced-repetition/ts-fsrs) and rated automatically (first try, with a hint, or after the solution). Sessions mix lessons.
+- **Mastery, not checkboxes** — a lesson completes itself once you solve 80% of its exercises without opening the solution, and every lesson shows where you stand: practised, mastered or due for review.
 - **Adaptive 30-day plan** per subject, with prev/next lesson navigation and a "resume where you left off" card.
 - **Bilingual** (English / Spanish) UI *and* content, **light & dark** themes — all remembered.
-- **Local-only data** — progress, attempts, settings and plans in SQLite in your OS user-data folder.
+- **Local-only data** — progress, attempts, review schedule, settings and plans in SQLite in your OS user-data folder.
 - **Opt-in updates** — turn on "Check for updates automatically" (or press "Check for updates") on the dashboard and new versions download in the background and install on restart. It only asks GitHub for the latest release; nothing about you is sent. Off by default.
 
 ---
@@ -69,6 +71,7 @@ npm run verify:content   # mathjs-checks every answer / acceptedAlt
 npm run verify:glossary  # glossary integrity + symbol detection
 npm run verify:code      # executes every runnable snippet & code-exercise (needs the Python libs)
 npm run verify:pyodide   # the same, in the bundled Pyodide with the in-app grader (needs the wheels)
+npm test                 # unit tests: learning rules, database + migrations (node --test)
 npm run build            # production build into ./out
 npm run dist:mac         # package macOS  -> dist/*.dmg, *.zip   (builds first)
 npm run dist:win         # package Windows -> dist/*.exe (NSIS)  (builds first; run on Windows)
@@ -123,22 +126,26 @@ Because content is authored with LLM assistance, **everything is verified** befo
 
 ```
 src/
-  main/        Electron main process + SQLite data layer + IPC handlers
+  main/        Electron main process + SQLite data layer (versioned migrations) + IPC handlers
+               + review.js (FSRS scheduling)
                + rendererServer.js (loopback server for the packaged renderer)
   preload/     Secure contextBridge (the only renderer ↔ main channel)
   shared/      validate.js (mathjs checker) · notation.js (symbol detection)
                · pygrade.js (code-exercise grader, shared with the verifier)
+               · learning.js (review ratings, mastery rules)
   renderer/    React UI (Vite)
     src/
-      AppContext.jsx     language, theme & progress state
+      AppContext.jsx     language, theme, progress & learning state
       lib/plan.js        adaptive 30-day scheduling
+      lib/mastery.js     per-lesson mastery from the learning state
       lib/pyodide.js     lazy, offline Pyodide runner (Python runs in lib/pyodide.worker.js)
-      components/        MathText, FunctionGraph, Exercise, CodeBlock, NotationBox
-      pages/             Dashboard, SubjectView, LessonView, GlossaryView
+      components/        MathText, FunctionGraph, Exercise, CodeBlock, NotationBox, MasteryBadge
+      pages/             Dashboard, SubjectView, LessonView, ReviewView, GlossaryView
     public/pyodide/      bundled Pyodide runtime + wheels (git-ignored, generated)
 content/       lesson JSON (the curriculum), subjects.json, glossary.json
 scripts/       verify-content.mjs · verify-glossary.mjs · verify-code.py · verify-pyodide.mjs
                copy-pyodide.mjs · fetch-pyodide-wheels.mjs
+test/          unit tests (node --test): learning rules, database + migrations
 build/         app icons (.icns/.ico/.png) + macOS entitlements
 .github/workflows/release.yml   multi-OS packaged-release CI
 ```
