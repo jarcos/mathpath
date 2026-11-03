@@ -293,7 +293,7 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
 | 2.6 | **Comprobación paso a paso** (diferencial) | El alumno escribe su desarrollo línea a línea y mathjs comprueba que cada línea es equivalente a la anterior (o que conserva las soluciones de la ecuación). Señala **en qué paso** se equivocó, sin conexión. |
 | 2.7 | Editor de código de verdad | CodeMirror 6 (offline, ligero): tabulación, números de línea y, por test, la tabla entrada / esperado / obtenido. |
 
-### Estado de 2.1–2.4 y 5.2: hechos (hito M29, sin publicar)
+### Estado de 2.1–2.4 y 5.2: hechos (hito M29, publicado en v0.3.0)
 
 - **Vista previa (2.1):** bajo la respuesta de los ejercicios numéricos, de expresión y de conjuntos aparece "Se lee:" con la expresión tal como la entiende mathjs, con los productos a la vista. `1/2x` se ve como $\tfrac12\cdot x$. No sale para números sueltos ni para lo que aún no se puede leer. MathLive queda para más adelante.
 - **Un fallo que había:** `2x(x+2)` o `x(x-1)` se daban por malos, porque mathjs los lee como una función llamada `x`. Ahora son productos. Además, `ln`, `sen`, `tg`, `arcsen`… se entienden como las funciones que nombran.
@@ -385,7 +385,7 @@ La numeración sigue la de `docs/project.html`, donde el último hito terminado 
 |---|---|---|---|
 | **M27** | Fase 0 (0.1–0.8) + CI de release con `verify` | S | ✅ Publicado en v0.1.5 |
 | **M28** | FSRS + "Repaso de hoy" + dominio automático (1.1, 1.2) + migraciones de BD (5.3) + primeros tests (5.1) | M | ✅ Publicado en v0.2.0; días locales y aciertos a la primera en v0.2.2 |
-| **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | ✅ Hecho (sin publicar) |
+| **M29** | Ejercicios: vista previa, feedback, `requireForm`, texto tolerante (2.1–2.4) + CI en PRs (5.2) | M | ✅ Publicado en v0.3.0 |
 | **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Publicado en v0.2.0; cierre en v0.2.1; crédito implícito en v0.2.2 |
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | — |
