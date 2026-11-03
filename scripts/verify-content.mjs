@@ -120,9 +120,19 @@ function checkGraph(section, where) {
   }
 }
 
+// Progress, attempts and review cards are keyed by these ids, so each one
+// must be unique across the whole curriculum.
+const seenIds = new Map()
+function checkUniqueId(id, where) {
+  if (seenIds.has(id)) fail(where, `id "${id}" is already used by ${seenIds.get(id)}`)
+  else seenIds.set(id, where)
+}
+
 function checkLesson(lesson, file) {
   lessonCount++
   const where = `${file} (${lesson.id})`
+  checkUniqueId(lesson.id, where)
+  for (const ex of lesson.exercises || []) checkUniqueId(ex.id, `${where} / ${ex.id}`)
   hasBoth(lesson.title, 'title', where)
   if (!lesson.subjectId) fail(where, 'missing subjectId')
   if (typeof lesson.order !== 'number') fail(where, 'missing numeric order')
