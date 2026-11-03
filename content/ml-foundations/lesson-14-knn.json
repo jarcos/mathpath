@@ -70,8 +70,7 @@
       "acceptedAlt": [
         "cercanos",
         "near",
-        "próximos",
-        "proximos"
+        "próximos"
       ],
       "hint": {
         "en": "Closest in distance.",
@@ -93,9 +92,6 @@
         "es": "Con $k=3$ y etiquetas $[A, A, B]$, ¿cuál es la clase predicha?"
       },
       "answer": "A",
-      "acceptedAlt": [
-        "a"
-      ],
       "hint": {
         "en": "Majority vote.",
         "es": "Voto mayoritario."

@@ -106,10 +106,6 @@
         "es": "Un salto rápido y desbocado en capacidad es una ___ de inteligencia. (una palabra)"
       },
       "answer": "explosion",
-      "acceptedAlt": [
-        "explosión",
-        "explosion"
-      ],
       "hint": {
         "en": "Also: singularity.",
         "es": "También: singularidad."
@@ -130,9 +126,6 @@
         "es": "¿Hay consenso científico de que la superinteligencia es inminente? (sí/no)"
       },
       "answer": "no",
-      "acceptedAlt": [
-        "no"
-      ],
       "hint": {
         "en": "The debate is open.",
         "es": "El debate está abierto."

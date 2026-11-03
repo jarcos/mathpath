@@ -100,8 +100,7 @@
       },
       "answer": "evaluation",
       "acceptedAlt": [
-        "evaluación",
-        "evaluacion"
+        "evaluación"
       ],
       "hint": {
         "en": "Evaluate the policy.",
@@ -147,8 +146,7 @@
       },
       "answer": "iteration",
       "acceptedAlt": [
-        "iteración",
-        "iteracion"
+        "iteración"
       ],
       "hint": {
         "en": "Repeat the cycle.",

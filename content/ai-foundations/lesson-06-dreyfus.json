@@ -75,8 +75,7 @@
       },
       "answer": "tacit",
       "acceptedAlt": [
-        "tácito",
-        "tacito"
+        "tácito"
       ],
       "hint": {
         "en": "Implicit, unspoken.",
@@ -100,8 +99,8 @@
       "answer": "symbolic",
       "acceptedAlt": [
         "simbólica",
-        "simbolica",
-        "gofai"
+        "gofai",
+        "simbólico"
       ],
       "hint": {
         "en": "GOFAI.",

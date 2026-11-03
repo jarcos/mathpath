@@ -141,9 +141,6 @@
         "es": "Un solo perceptrón no puede resolver el problema ___. (una palabra)"
       },
       "answer": "XOR",
-      "acceptedAlt": [
-        "xor"
-      ],
       "hint": {
         "en": "Not linearly separable.",
         "es": "No linealmente separable."

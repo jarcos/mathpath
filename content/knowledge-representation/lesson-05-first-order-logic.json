@@ -74,9 +74,6 @@
         "es": "El cuantificador que significa 'para todo' es el cuantificador ___. (una palabra)"
       },
       "answer": "universal",
-      "acceptedAlt": [
-        "universal"
-      ],
       "hint": {
         "en": "Symbol ∀.",
         "es": "Símbolo ∀."

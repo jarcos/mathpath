@@ -77,8 +77,7 @@
       },
       "answer": "yes",
       "acceptedAlt": [
-        "sí",
-        "si"
+        "sí"
       ],
       "hint": {
         "en": "Is either a multiple of the other?",
@@ -100,9 +99,6 @@
         "es": "¿Son $(1,2)$ y $(2,4)$ linealmente independientes? (sí / no)"
       },
       "answer": "no",
-      "acceptedAlt": [
-        "no"
-      ],
       "hint": {
         "en": "(2,4) = 2·(1,2).",
         "es": "(2,4) = 2·(1,2)."

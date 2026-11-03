@@ -145,8 +145,7 @@
       },
       "answer": "yes",
       "acceptedAlt": [
-        "sí",
-        "si"
+        "sí"
       ],
       "hint": {
         "en": "1s on the diagonal, 0s elsewhere?",

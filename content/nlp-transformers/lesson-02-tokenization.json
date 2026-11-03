@@ -109,9 +109,7 @@
       },
       "answer": "subword",
       "acceptedAlt": [
-        "subpalabra",
-        "subpalabras",
-        "subword"
+        "subpalabra"
       ],
       "hint": {
         "en": "Below the word level.",

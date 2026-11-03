@@ -66,9 +66,6 @@
         "es": "Una red de una capa oculta puede aproximar cualquier función continua — el teorema de aproximación ___. (una palabra)"
       },
       "answer": "universal",
-      "acceptedAlt": [
-        "universal"
-      ],
       "hint": {
         "en": "Works for any function.",
         "es": "Vale para cualquier función."

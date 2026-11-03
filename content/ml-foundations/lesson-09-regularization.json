@@ -78,8 +78,7 @@
       },
       "answer": "regularization",
       "acceptedAlt": [
-        "regularización",
-        "regularizacion"
+        "regularización"
       ],
       "hint": {
         "en": "Penalize complexity.",

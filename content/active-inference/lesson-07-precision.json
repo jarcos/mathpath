@@ -120,10 +120,6 @@
         "es": "En la inferencia activa, la atención es la optimización de la ___. (una palabra)"
       },
       "answer": "precision",
-      "acceptedAlt": [
-        "precisión",
-        "precision"
-      ],
       "hint": {
         "en": "Inverse variance.",
         "es": "Inversa de la varianza."

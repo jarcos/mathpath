@@ -86,8 +86,7 @@
       },
       "answer": "semantics",
       "acceptedAlt": [
-        "semántica",
-        "semantica"
+        "semántica"
       ],
       "hint": {
         "en": "Meaning, not form.",
@@ -111,7 +110,7 @@
       "answer": "symbolic",
       "acceptedAlt": [
         "simbólico",
-        "simbolico"
+        "simbólica"
       ],
       "hint": {
         "en": "Symbols, not weights.",

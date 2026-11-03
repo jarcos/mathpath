@@ -65,8 +65,7 @@
       },
       "answer": "efficient",
       "acceptedAlt": [
-        "eficientes",
-        "eficiente"
+        "eficientes"
       ],
       "hint": {
         "en": "Fewer neurons for the same function.",

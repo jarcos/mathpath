@@ -177,6 +177,22 @@
       "acceptedAlt": [
         "3x^2"
       ],
+      "commonMistakes": [
+        {
+          "answer": "3*x^3",
+          "feedback": {
+            "en": "Power rule: bring the exponent down and lower it by one, $3x^{3-1}$.",
+            "es": "Regla de la potencia: el exponente baja multiplicando y se reduce en uno, $3x^{3-1}$."
+          }
+        },
+        {
+          "answer": "x^2",
+          "feedback": {
+            "en": "The exponent 3 also multiplies: $(x^3)' = 3x^2$.",
+            "es": "El exponente 3 también multiplica: $(x^3)' = 3x^2$."
+          }
+        }
+      ],
       "hint": {
         "en": "Power rule with n = 3.",
         "es": "Regla de la potencia con n = 3."

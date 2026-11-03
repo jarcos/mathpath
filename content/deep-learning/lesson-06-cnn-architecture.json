@@ -99,10 +99,6 @@
         "es": "ResNet añade conexiones de salto, también llamadas conexiones ___. (una palabra)"
       },
       "answer": "residual",
-      "acceptedAlt": [
-        "residuales",
-        "residuals"
-      ],
       "hint": {
         "en": "It learns a residual.",
         "es": "Aprende un residuo."

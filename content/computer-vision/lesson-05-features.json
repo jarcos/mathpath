@@ -112,9 +112,7 @@
       },
       "answer": "corners",
       "acceptedAlt": [
-        "esquinas",
-        "corner",
-        "esquina"
+        "esquinas"
       ],
       "hint": {
         "en": "Harris detects them.",

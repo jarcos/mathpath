@@ -134,8 +134,7 @@
       },
       "answer": "diffusion",
       "acceptedAlt": [
-        "difusión",
-        "difusion"
+        "difusión"
       ],
       "hint": {
         "en": "Denoise step by step.",

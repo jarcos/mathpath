@@ -71,8 +71,16 @@
         "es": "Simplifica:  $x^2 \\cdot x^3$"
       },
       "answer": "x^5",
-      "acceptedAlt": [
-        "x*x*x*x*x"
+      "requireForm": "simplified",
+      "given": "x^2 * x^3",
+      "commonMistakes": [
+        {
+          "answer": "x^6",
+          "feedback": {
+            "en": "Multiplying powers of the same base adds the exponents: $2 + 3$.",
+            "es": "Al multiplicar potencias de la misma base se suman los exponentes: $2 + 3$."
+          }
+        }
       ],
       "hint": {
         "en": "Add the exponents.",
@@ -99,8 +107,23 @@
         "es": "Simplifica:  $(x^3)^2$"
       },
       "answer": "x^6",
-      "acceptedAlt": [
-        "x^3*x^3"
+      "requireForm": "simplified",
+      "given": "(x^3)^2",
+      "commonMistakes": [
+        {
+          "answer": "x^9",
+          "feedback": {
+            "en": "A power of a power multiplies the exponents: $3\\cdot 2$, not $3^2$.",
+            "es": "Una potencia de una potencia multiplica los exponentes: $3\\cdot 2$, no $3^2$."
+          }
+        },
+        {
+          "answer": "x^5",
+          "feedback": {
+            "en": "A power of a power multiplies the exponents ($3\\cdot 2$); they are added when multiplying powers.",
+            "es": "Una potencia de una potencia multiplica los exponentes ($3\\cdot 2$); se suman al multiplicar potencias."
+          }
+        }
       ],
       "hint": {
         "en": "Multiply the exponents.",
@@ -127,9 +150,8 @@
         "es": "Simplifica:  $\\dfrac{x^5}{x^2}$"
       },
       "answer": "x^3",
-      "acceptedAlt": [
-        "x^5/x^2"
-      ],
+      "requireForm": "simplified",
+      "given": "x^5 / x^2",
       "hint": {
         "en": "Subtract the exponents.",
         "es": "Resta los exponentes."
@@ -156,8 +178,18 @@
       },
       "answer": "x^2 + 4*x + 4",
       "acceptedAlt": [
-        "(x+2)^2",
         "4 + 4*x + x^2"
+      ],
+      "requireForm": "expanded",
+      "given": "(x + 2)^2",
+      "commonMistakes": [
+        {
+          "answer": "x^2 + 4",
+          "feedback": {
+            "en": "$(a + b)^2 \\ne a^2 + b^2$: the cross term $2\\cdot x\\cdot 2 = 4x$ is missing.",
+            "es": "$(a + b)^2 \\ne a^2 + b^2$: falta el doble producto $2\\cdot x\\cdot 2 = 4x$."
+          }
+        }
       ],
       "hint": {
         "en": "Use $(x+k)^2 = x^2 + 2kx + k^2$ with k = 2.",
@@ -184,9 +216,8 @@
         "es": "Simplifica:  $\\dfrac{(x^2)^3 \\cdot x}{x^4}$"
       },
       "answer": "x^3",
-      "acceptedAlt": [
-        "(x^2)^3*x/x^4"
-      ],
+      "requireForm": "simplified",
+      "given": "(x^2)^3 * x / x^4",
       "hint": {
         "en": "Top: (x²)³·x = x⁷; then divide.",
         "es": "Arriba: (x²)³·x = x⁷; luego divide."

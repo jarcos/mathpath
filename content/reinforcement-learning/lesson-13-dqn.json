@@ -112,8 +112,7 @@
       "answer": "replay",
       "acceptedAlt": [
         "repaso",
-        "repetición",
-        "repeticion"
+        "repetición"
       ],
       "hint": {
         "en": "Replay buffer.",

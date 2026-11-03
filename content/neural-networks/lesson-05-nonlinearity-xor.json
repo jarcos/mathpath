@@ -110,9 +110,6 @@
         "es": "XOR no es linealmente ___. (una palabra)"
       },
       "answer": "separable",
-      "acceptedAlt": [
-        "separable"
-      ],
       "hint": {
         "en": "No single line separates it.",
         "es": "Ninguna recta lo separa."

@@ -73,8 +73,7 @@
       },
       "answer": "yes",
       "acceptedAlt": [
-        "sí",
-        "si"
+        "sí"
       ],
       "hint": {
         "en": "Check both conditions.",
@@ -101,9 +100,6 @@
         "es": "Sistema $x > 1$ y $x < 5$. ¿Es $x = 6$ solución? (sí / no)"
       },
       "answer": "no",
-      "acceptedAlt": [
-        "no"
-      ],
       "hint": {
         "en": "Does 6 < 5 hold?",
         "es": "¿Se cumple 6 < 5?"

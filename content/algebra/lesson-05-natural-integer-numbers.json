@@ -117,6 +117,15 @@
       "acceptedAlt": [
         "(-3)*(-4)+2"
       ],
+      "commonMistakes": [
+        {
+          "answer": "-10",
+          "feedback": {
+            "en": "Minus times minus is plus: $(-3)\\cdot(-4) = 12$, so the result is $12 + 2$.",
+            "es": "Menos por menos es más: $(-3)\\cdot(-4) = 12$, así que queda $12 + 2$."
+          }
+        }
+      ],
       "hint": {
         "en": "Two negatives multiply to a positive.",
         "es": "Dos negativos multiplicados dan positivo."
@@ -172,6 +181,15 @@
       "answer": "8",
       "acceptedAlt": [
         "5+3"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "Subtracting a negative number adds it: $5 - (-3) = 5 + 3$.",
+            "es": "Restar un número negativo es sumarlo: $5 - (-3) = 5 + 3$."
+          }
+        }
       ],
       "hint": {
         "en": "Subtracting a negative adds.",

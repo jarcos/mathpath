@@ -90,9 +90,6 @@
         "es": "Guardar un valor por estado en una tabla es el enfoque ___. (una palabra)"
       },
       "answer": "tabular",
-      "acceptedAlt": [
-        "tabular"
-      ],
       "hint": {
         "en": "Like a lookup table.",
         "es": "Como tabla de búsqueda."
@@ -138,7 +135,8 @@
       },
       "answer": "deep",
       "acceptedAlt": [
-        "profundo"
+        "profundo",
+        "profunda"
       ],
       "hint": {
         "en": "Deep ___.",

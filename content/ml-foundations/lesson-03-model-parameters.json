@@ -88,8 +88,7 @@
       },
       "answer": "parameters",
       "acceptedAlt": [
-        "parámetros",
-        "parametros"
+        "parámetros"
       ],
       "hint": {
         "en": "The knobs the model tunes.",

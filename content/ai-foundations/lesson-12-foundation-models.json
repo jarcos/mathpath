@@ -51,8 +51,7 @@
       },
       "answer": "foundation",
       "acceptedAlt": [
-        "fundacionales",
-        "fundacional"
+        "fundacionales"
       ],
       "hint": {
         "en": "They are a foundation.",
@@ -100,8 +99,7 @@
       },
       "answer": "hallucination",
       "acceptedAlt": [
-        "alucinación",
-        "alucinacion"
+        "alucinación"
       ],
       "hint": {
         "en": "Made-up facts.",
@@ -125,7 +123,6 @@
       "answer": "homogenization",
       "acceptedAlt": [
         "homogeneización",
-        "homogeneizacion",
         "homogenisation"
       ],
       "hint": {

@@ -98,6 +98,15 @@
       "acceptedAlt": [
         "2x+1"
       ],
+      "commonMistakes": [
+        {
+          "answer": "2*x + 2",
+          "feedback": {
+            "en": "That is $g\\circ f$. $f\\circ g$ means $f(g(x))$: apply $g$ first ($2x$), then $f$ adds 1.",
+            "es": "Eso es $g\\circ f$. $f\\circ g$ significa $f(g(x))$: primero $g$ ($2x$) y después $f$ suma 1."
+          }
+        }
+      ],
       "hint": {
         "en": "f(g(x)) = g(x) + 1.",
         "es": "f(g(x)) = g(x) + 1."
@@ -120,6 +129,15 @@
       "answer": "2*x + 2",
       "acceptedAlt": [
         "2*(x+1)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2*x + 1",
+          "feedback": {
+            "en": "That is $f\\circ g$. $g\\circ f$ means $g(f(x))$: apply $f$ first ($x + 1$), then $g$ doubles it.",
+            "es": "Eso es $f\\circ g$. $g\\circ f$ significa $g(f(x))$: primero $f$ ($x + 1$) y después $g$ lo duplica."
+          }
+        }
       ],
       "hint": {
         "en": "g(f(x)) = 2·f(x).",

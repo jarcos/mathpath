@@ -86,9 +86,7 @@
       },
       "answer": "triples",
       "acceptedAlt": [
-        "tripletas",
-        "triple",
-        "tripleta"
+        "tripletas"
       ],
       "hint": {
         "en": "Three-part facts.",
@@ -132,8 +130,7 @@
       },
       "answer": "prediction",
       "acceptedAlt": [
-        "predicción",
-        "prediccion"
+        "predicción"
       ],
       "hint": {
         "en": "Link ___.",

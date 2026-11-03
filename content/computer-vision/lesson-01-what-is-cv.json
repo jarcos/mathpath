@@ -113,8 +113,7 @@
       },
       "answer": "segmentation",
       "acceptedAlt": [
-        "segmentación",
-        "segmentacion"
+        "segmentación"
       ],
       "hint": {
         "en": "Per-pixel labels.",

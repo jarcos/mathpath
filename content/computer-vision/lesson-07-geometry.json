@@ -113,8 +113,7 @@
       },
       "answer": "homogeneous",
       "acceptedAlt": [
-        "homogéneas",
-        "homogeneas"
+        "homogéneas"
       ],
       "hint": {
         "en": "Projective trick.",
@@ -137,8 +136,7 @@
       },
       "answer": "homography",
       "acceptedAlt": [
-        "homografía",
-        "homografia"
+        "homografía"
       ],
       "hint": {
         "en": "3×3 projective matrix.",

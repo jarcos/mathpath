@@ -67,7 +67,8 @@
       },
       "answer": "neuron",
       "acceptedAlt": [
-        "neurona"
+        "neurona",
+        "neuro"
       ],
       "hint": {
         "en": "Brain cell.",
@@ -111,9 +112,7 @@
       },
       "answer": "weights",
       "acceptedAlt": [
-        "pesos",
-        "weight",
-        "peso"
+        "pesos"
       ],
       "hint": {
         "en": "What the neuron learns.",

@@ -89,8 +89,7 @@
       "answer": "inductive",
       "acceptedAlt": [
         "inductivo",
-        "inducción",
-        "induccion"
+        "inducción"
       ],
       "hint": {
         "en": "Assume P(k), prove P(k+1).",

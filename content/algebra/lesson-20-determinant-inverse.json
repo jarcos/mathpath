@@ -75,6 +75,22 @@
         "1*4-2*3",
         "det([[1,2],[3,4]])"
       ],
+      "commonMistakes": [
+        {
+          "answer": "10",
+          "feedback": {
+            "en": "The determinant subtracts the products: $ad - bc = 1\\cdot 4 - 2\\cdot 3$.",
+            "es": "El determinante resta los productos: $ad - bc = 1\\cdot 4 - 2\\cdot 3$."
+          }
+        },
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "It is $ad - bc$ in that order: $1\\cdot 4 - 2\\cdot 3$.",
+            "es": "Es $ad - bc$ en ese orden: $1\\cdot 4 - 2\\cdot 3$."
+          }
+        }
+      ],
       "hint": {
         "en": "ad − bc.",
         "es": "ad − bc."

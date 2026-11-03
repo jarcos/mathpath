@@ -74,6 +74,8 @@
       "acceptedAlt": [
         "x+4x^2"
       ],
+      "requireForm": "simplified",
+      "given": "(x^2 + 2x) + (3x^2 - x)",
       "hint": {
         "en": "Combine x² terms and x terms separately.",
         "es": "Agrupa los términos en x² y en x por separado."
@@ -99,8 +101,16 @@
         "es": "Desarrolla:  $(x + 1)(x + 3)$"
       },
       "answer": "x^2 + 4*x + 3",
-      "acceptedAlt": [
-        "(x+1)*(x+3)"
+      "requireForm": "expanded",
+      "given": "(x + 1)(x + 3)",
+      "commonMistakes": [
+        {
+          "answer": "x^2 + 3",
+          "feedback": {
+            "en": "Multiply every term by every term: $x\\cdot 3$ and $1\\cdot x$ give the middle term $4x$.",
+            "es": "Multiplica cada término por cada término: $x\\cdot 3$ y $1\\cdot x$ dan el término central $4x$."
+          }
+        }
       ],
       "hint": {
         "en": "Distribute each term (FOIL).",
@@ -130,6 +140,8 @@
       "acceptedAlt": [
         "6x^3"
       ],
+      "requireForm": "simplified",
+      "given": "(2x)(3x^2)",
       "hint": {
         "en": "Multiply coefficients and add exponents.",
         "es": "Multiplica coeficientes y suma exponentes."
@@ -158,6 +170,17 @@
       "acceptedAlt": [
         "-1+x"
       ],
+      "requireForm": "simplified",
+      "given": "(x^2 - 1) - (x^2 - x)",
+      "commonMistakes": [
+        {
+          "answer": "-x - 1",
+          "feedback": {
+            "en": "The minus applies to the whole bracket: $-(x^2 - x) = -x^2 + x$.",
+            "es": "El signo menos afecta a todo el paréntesis: $-(x^2 - x) = -x^2 + x$."
+          }
+        }
+      ],
       "hint": {
         "en": "Distribute the minus sign first.",
         "es": "Distribuye primero el signo menos."
@@ -183,8 +206,16 @@
         "es": "Usa la diferencia de cuadrados:  $(x+5)(x-5)$"
       },
       "answer": "x^2 - 25",
-      "acceptedAlt": [
-        "(x+5)*(x-5)"
+      "requireForm": "expanded",
+      "given": "(x + 5)(x - 5)",
+      "commonMistakes": [
+        {
+          "answer": "x^2 + 25",
+          "feedback": {
+            "en": "$(a + b)(a - b) = a^2 - b^2$: the last term is $-25$.",
+            "es": "$(a + b)(a - b) = a^2 - b^2$: el último término es $-25$."
+          }
+        }
       ],
       "hint": {
         "en": "(a+b)(a−b) = a² − b².",

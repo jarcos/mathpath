@@ -117,8 +117,30 @@
       "acceptedAlt": [
         "explotar",
         "exploitation",
-        "explotación",
-        "explotacion"
+        "explotación"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "explorar",
+          "feedback": {
+            "en": "Exploring means trying new actions to learn more. Choosing the best-known action is to **exploit**.",
+            "es": "Explorar es probar acciones nuevas para aprender más. Elegir la mejor acción conocida es **explotar**."
+          }
+        },
+        {
+          "answer": "exploración",
+          "feedback": {
+            "en": "Exploration means trying new actions to learn more. Choosing the best-known action is to **exploit**.",
+            "es": "Explorar es probar acciones nuevas para aprender más. Elegir la mejor acción conocida es **explotar**."
+          }
+        },
+        {
+          "answer": "explore",
+          "feedback": {
+            "en": "Exploring means trying new actions to learn more. Choosing the best-known action is to **exploit**.",
+            "es": "Explorar es probar acciones nuevas para aprender más. Elegir la mejor acción conocida es **explotar**."
+          }
+        }
       ],
       "hint": {
         "en": "Opposite of explore.",

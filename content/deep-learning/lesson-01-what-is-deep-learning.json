@@ -111,8 +111,7 @@
       },
       "answer": "hierarchy",
       "acceptedAlt": [
-        "jerarquía",
-        "jerarquia"
+        "jerarquía"
       ],
       "hint": {
         "en": "Edges → shapes → objects.",
@@ -136,9 +135,7 @@
       "answer": "machine",
       "acceptedAlt": [
         "automático",
-        "automatico",
-        "máquina",
-        "maquina"
+        "máquina"
       ],
       "hint": {
         "en": "ML.",

@@ -82,8 +82,7 @@
       },
       "answer": "action",
       "acceptedAlt": [
-        "acción",
-        "accion"
+        "acción"
       ],
       "hint": {
         "en": "The 'active' part.",
@@ -106,10 +105,7 @@
       },
       "answer": "predictions",
       "acceptedAlt": [
-        "predicciones",
-        "prediction",
-        "predicción",
-        "prediccion"
+        "predicciones"
       ],
       "hint": {
         "en": "Not control signals.",
@@ -133,7 +129,6 @@
       "answer": "free energy",
       "acceptedAlt": [
         "energía libre",
-        "energia libre",
         "free-energy"
       ],
       "hint": {

@@ -84,8 +84,7 @@
       },
       "answer": "semantics",
       "acceptedAlt": [
-        "semántica",
-        "semantica"
+        "semántica"
       ],
       "hint": {
         "en": "Syntax does not yield ___.",
@@ -108,9 +107,7 @@
       },
       "answer": "systems",
       "acceptedAlt": [
-        "sistema",
-        "system",
-        "sistemas"
+        "sistema"
       ],
       "hint": {
         "en": "The whole system.",

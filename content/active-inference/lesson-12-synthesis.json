@@ -62,7 +62,6 @@
       "answer": "minimization",
       "acceptedAlt": [
         "minimización",
-        "minimizacion",
         "minimisation"
       ],
       "hint": {
@@ -109,8 +108,23 @@
       "acceptedAlt": [
         "explotar",
         "exploitation",
-        "explotación",
-        "explotacion"
+        "explotación"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "explorar",
+          "feedback": {
+            "en": "Explore is already the first half of the trade-off. The other half, using the best-known action, is to **exploit**.",
+            "es": "Explorar ya es la primera mitad del dilema. La otra, usar la mejor acción conocida, es **explotar**."
+          }
+        },
+        {
+          "answer": "exploración",
+          "feedback": {
+            "en": "Exploration is already the first half of the trade-off. The other half, using the best-known action, is to **exploit**.",
+            "es": "La exploración ya es la primera mitad del dilema. La otra, usar la mejor acción conocida, es **explotar**."
+          }
+        }
       ],
       "hint": {
         "en": "Explore vs exploit.",
@@ -133,8 +147,7 @@
       },
       "answer": "attention",
       "acceptedAlt": [
-        "atención",
-        "atencion"
+        "atención"
       ],
       "hint": {
         "en": "Q, K, V.",

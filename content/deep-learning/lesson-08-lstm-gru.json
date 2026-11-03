@@ -79,7 +79,8 @@
       "acceptedAlt": [
         "desvanecerse",
         "vanishing",
-        "desvanecer"
+        "desvanecer",
+        "desvanecen"
       ],
       "hint": {
         "en": "Vanishing gradient.",
@@ -102,9 +103,7 @@
       },
       "answer": "gates",
       "acceptedAlt": [
-        "puertas",
-        "gate",
-        "puerta"
+        "puertas"
       ],
       "hint": {
         "en": "Forget / input / output.",

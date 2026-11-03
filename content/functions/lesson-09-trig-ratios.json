@@ -75,6 +75,15 @@
         "sin(pi/6)",
         "0.5"
       ],
+      "commonMistakes": [
+        {
+          "answer": "sqrt(3)/2",
+          "feedback": {
+            "en": "That is $\\cos 30°$. $\\sin 30° = \\tfrac12$.",
+            "es": "Ese es $\\cos 30°$. $\\sin 30° = \\tfrac12$."
+          }
+        }
+      ],
       "hint": {
         "en": "A standard angle.",
         "es": "Un ángulo estándar."
@@ -98,6 +107,15 @@
       "acceptedAlt": [
         "cos(pi/3)",
         "0.5"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "sqrt(3)/2",
+          "feedback": {
+            "en": "That is $\\sin 60°$. $\\cos 60° = \\tfrac12$.",
+            "es": "Ese es $\\sin 60°$. $\\cos 60° = \\tfrac12$."
+          }
+        }
       ],
       "hint": {
         "en": "A standard angle.",

@@ -264,6 +264,15 @@
       "acceptedAlt": [
         "-4, 2"
       ],
+      "commonMistakes": [
+        {
+          "answer": "-2, 4",
+          "feedback": {
+            "en": "Check the signs: $(x - 2)(x + 4) = 0$ gives $x = 2$ and $x = -4$.",
+            "es": "Revisa los signos: $(x - 2)(x + 4) = 0$ da $x = 2$ y $x = -4$."
+          }
+        }
+      ],
       "hint": {
         "en": "Factors of -8 that add to 2.",
         "es": "Factores de -8 que sumen 2."
@@ -292,6 +301,8 @@
       "acceptedAlt": [
         "(x-3)*(x-2)"
       ],
+      "requireForm": "factored",
+      "given": "x^2 - 5x + 6",
       "hint": {
         "en": "Use the root pair 2 and 3.",
         "es": "Usa la pareja de raíces 2 y 3."
@@ -377,6 +388,15 @@
       "acceptedAlt": [
         "5-9"
       ],
+      "commonMistakes": [
+        {
+          "answer": "14",
+          "feedback": {
+            "en": "$(x+3)^2 = x^2 + 6x + 9$ already has a 9, so you subtract it: $c = 5 - 9$.",
+            "es": "$(x+3)^2 = x^2 + 6x + 9$ ya trae un 9, así que hay que restarlo: $c = 5 - 9$."
+          }
+        }
+      ],
       "hint": {
         "en": "(x+3)² = x² + 6x + 9.",
         "es": "(x+3)² = x² + 6x + 9."
@@ -404,6 +424,15 @@
       "answer": "5",
       "acceptedAlt": [
         "-(-5)/1"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "-5",
+          "feedback": {
+            "en": "For $x^2 + bx + c$ the roots add up to $-b$, and here $b = -5$.",
+            "es": "En $x^2 + bx + c$ las raíces suman $-b$, y aquí $b = -5$."
+          }
+        }
       ],
       "hint": {
         "en": "Sum = -b/a.",

@@ -82,6 +82,8 @@
       "acceptedAlt": [
         "(x+3)*(x-3)"
       ],
+      "requireForm": "factored",
+      "given": "x^2 - 9",
       "hint": {
         "en": "Difference of squares.",
         "es": "Diferencia de cuadrados."
@@ -110,6 +112,8 @@
       "acceptedAlt": [
         "(x+3)*(x+2)"
       ],
+      "requireForm": "factored",
+      "given": "x^2 + 5x + 6",
       "hint": {
         "en": "Two numbers multiplying to 6, adding to 5.",
         "es": "Dos números que multiplican 6 y suman 5."
@@ -138,6 +142,15 @@
       "acceptedAlt": [
         "-2, 3"
       ],
+      "commonMistakes": [
+        {
+          "answer": "-3, 2",
+          "feedback": {
+            "en": "$(x - 3)(x + 2) = 0$ gives $x = 3$ and $x = -2$: each root has the opposite sign to the number in its bracket.",
+            "es": "$(x - 3)(x + 2) = 0$ da $x = 3$ y $x = -2$: cada raíz lleva el signo contrario al número de su paréntesis."
+          }
+        }
+      ],
       "hint": {
         "en": "Factor as (x-3)(x+2).",
         "es": "Factoriza como (x-3)(x+2)."
@@ -164,9 +177,10 @@
       },
       "answer": "2*x*(x+2)",
       "acceptedAlt": [
-        "2x^2+4x",
         "2*x*(2+x)"
       ],
+      "requireForm": "factored",
+      "given": "2x^2 + 4x",
       "hint": {
         "en": "Both terms share 2x.",
         "es": "Ambos términos comparten 2x."

@@ -88,6 +88,15 @@
       "acceptedAlt": [
         "1/2+1/3"
       ],
+      "commonMistakes": [
+        {
+          "answer": "2/5",
+          "feedback": {
+            "en": "Fractions are not added numerator with numerator and denominator with denominator. Use a common denominator: $\\tfrac36 + \\tfrac26$.",
+            "es": "Las fracciones no se suman numerador con numerador y denominador con denominador. Usa un denominador común: $\\tfrac36 + \\tfrac26$."
+          }
+        }
+      ],
       "hint": {
         "en": "Common denominator is 6.",
         "es": "El denominador común es 6."
@@ -141,9 +150,8 @@
         "es": "Calcula y simplifica:  $\\dfrac{2}{3}\\cdot\\dfrac{3}{5}$"
       },
       "answer": "2/5",
-      "acceptedAlt": [
-        "6/15"
-      ],
+      "requireForm": "simplified",
+      "given": "2/3 * 3/5",
       "hint": {
         "en": "Multiply across, then cancel.",
         "es": "Multiplica en línea y luego cancela."
@@ -169,10 +177,8 @@
         "es": "Escribe $0.25$ como fracción simplificada."
       },
       "answer": "1/4",
-      "acceptedAlt": [
-        "25/100",
-        "0.25"
-      ],
+      "requireForm": "fraction",
+      "given": "0.25",
       "hint": {
         "en": "0.25 means 25 hundredths.",
         "es": "0.25 significa 25 centésimas."
@@ -201,6 +207,22 @@
       "acceptedAlt": [
         "(2/3)/(4/5)",
         "10/12"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "8/15",
+          "feedback": {
+            "en": "You multiplied the fractions. Dividing by a fraction is multiplying by its reciprocal: $\\tfrac23\\cdot\\tfrac54$.",
+            "es": "Has multiplicado las fracciones. Dividir entre una fracción es multiplicar por su inversa: $\\tfrac23\\cdot\\tfrac54$."
+          }
+        },
+        {
+          "answer": "6/5",
+          "feedback": {
+            "en": "Flip the divisor ($\\tfrac45 \\to \\tfrac54$), not the first fraction.",
+            "es": "Se invierte el divisor ($\\tfrac45 \\to \\tfrac54$), no la primera fracción."
+          }
+        }
       ],
       "hint": {
         "en": "Multiply by the reciprocal of the second.",

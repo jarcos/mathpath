@@ -149,8 +149,7 @@
       },
       "answer": "yes",
       "acceptedAlt": [
-        "sí",
-        "si"
+        "sí"
       ],
       "hint": {
         "en": "Matrix multiplication is non-commutative.",

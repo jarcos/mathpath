@@ -98,9 +98,6 @@
         "es": "Si $\\text{rango}(A)=2$ pero $\\text{rango}(A|b)=3$, ¿es compatible? (sí / no)"
       },
       "answer": "no",
-      "acceptedAlt": [
-        "no"
-      ],
       "hint": {
         "en": "r ≠ r' means no solution.",
         "es": "r ≠ r' significa sin solución."

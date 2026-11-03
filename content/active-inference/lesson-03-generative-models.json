@@ -112,7 +112,8 @@
       },
       "answer": "bayesian",
       "acceptedAlt": [
-        "bayesiano"
+        "bayesiano",
+        "bayesiana"
       ],
       "hint": {
         "en": "Uses Bayes' rule.",

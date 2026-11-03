@@ -87,6 +87,15 @@
         "4/2",
         "-(-4)/(2*1)"
       ],
+      "commonMistakes": [
+        {
+          "answer": "-2",
+          "feedback": {
+            "en": "The vertex is at $x = -\\tfrac{b}{2a} = -\\tfrac{-4}{2} = 2$.",
+            "es": "El vértice está en $x = -\\tfrac{b}{2a} = -\\tfrac{-4}{2} = 2$."
+          }
+        }
+      ],
       "hint": {
         "en": "x = -b / (2a).",
         "es": "x = -b / (2a)."

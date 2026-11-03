@@ -204,8 +204,7 @@
       },
       "answer": "yes",
       "acceptedAlt": [
-        "sí",
-        "si"
+        "sí"
       ],
       "hint": {
         "en": "Check if the dot product is 0.",

@@ -120,8 +120,7 @@
       },
       "answer": "expert",
       "acceptedAlt": [
-        "expertos",
-        "experto"
+        "expertos"
       ],
       "hint": {
         "en": "MYCIN, DENDRAL.",

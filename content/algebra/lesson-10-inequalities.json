@@ -137,6 +137,15 @@
       "acceptedAlt": [
         "8/-2"
       ],
+      "commonMistakes": [
+        {
+          "answer": "4",
+          "feedback": {
+            "en": "$8 \\div (-2) = -4$: the boundary value is negative. Dividing by a negative number also flips the inequality: $x > -4$.",
+            "es": "$8 \\div (-2) = -4$: el valor frontera es negativo. Además, dividir entre un negativo da la vuelta a la desigualdad: $x > -4$."
+          }
+        }
+      ],
       "hint": {
         "en": "Divide by -2 and flip the inequality.",
         "es": "Divide entre -2 e invierte la desigualdad."
@@ -163,8 +172,7 @@
       },
       "answer": "yes",
       "acceptedAlt": [
-        "sí",
-        "si"
+        "sí"
       ],
       "hint": {
         "en": "Substitute 5 and check.",

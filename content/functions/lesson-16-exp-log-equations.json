@@ -145,6 +145,15 @@
       "acceptedAlt": [
         "log(1)"
       ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$e^1 = e$, not 1. Any base to the power 0 is 1, so $x = 0$.",
+            "es": "$e^1 = e$, no 1. Cualquier base elevada a 0 da 1, así que $x = 0$."
+          }
+        }
+      ],
       "hint": {
         "en": "Any base to the 0 is 1.",
         "es": "Cualquier base a la 0 es 1."

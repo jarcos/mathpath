@@ -195,6 +195,15 @@
       "acceptedAlt": [
         "16/2"
       ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "After adding 3 you have $\\tfrac12 x = 4$: multiply both sides by 2, don't halve.",
+            "es": "Tras sumar 3 tienes $\\tfrac12 x = 4$: multiplica los dos lados por 2, no dividas entre 2."
+          }
+        }
+      ],
       "hint": {
         "en": "Add 3 to both sides, then multiply by 2.",
         "es": "Suma 3 a ambos lados y luego multiplica por 2."

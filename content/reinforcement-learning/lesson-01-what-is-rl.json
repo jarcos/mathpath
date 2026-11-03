@@ -111,8 +111,7 @@
       },
       "answer": "policy",
       "acceptedAlt": [
-        "política",
-        "politica"
+        "política"
       ],
       "hint": {
         "en": "Denoted π.",
@@ -135,8 +134,23 @@
       },
       "answer": "exploration",
       "acceptedAlt": [
-        "exploración",
-        "exploracion"
+        "exploración"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "explotación",
+          "feedback": {
+            "en": "That is the other side of the trade-off: exploiting means using what you already know works. Trying new actions is **exploration**.",
+            "es": "Ese es el otro lado del dilema: explotar es aprovechar lo que ya sabes que funciona. Probar acciones nuevas es **exploración**."
+          }
+        },
+        {
+          "answer": "exploitation",
+          "feedback": {
+            "en": "Exploitation is already named in the sentence: using what you know works. Trying new actions is **exploration**.",
+            "es": "La explotación ya aparece en la frase: aprovechar lo que sabes que funciona. Probar acciones nuevas es **exploración**."
+          }
+        }
       ],
       "hint": {
         "en": "Explore vs exploit.",

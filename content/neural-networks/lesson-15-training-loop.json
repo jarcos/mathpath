@@ -75,8 +75,7 @@
       },
       "answer": "epoch",
       "acceptedAlt": [
-        "época",
-        "epoca"
+        "época"
       ],
       "hint": {
         "en": "Many of them per training run.",
@@ -123,7 +122,6 @@
       "answer": "stochastic",
       "acceptedAlt": [
         "estocástico",
-        "estocastico",
         "mini-batch",
         "minibatch"
       ],

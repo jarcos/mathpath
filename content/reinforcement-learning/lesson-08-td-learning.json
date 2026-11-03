@@ -144,9 +144,6 @@
         "es": "$\\delta = r + \\gamma V(s') - V(s)$ es el ___ TD. (una palabra)"
       },
       "answer": "error",
-      "acceptedAlt": [
-        "error"
-      ],
       "hint": {
         "en": "δ.",
         "es": "δ."

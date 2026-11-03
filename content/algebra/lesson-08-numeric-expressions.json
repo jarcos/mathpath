@@ -81,6 +81,15 @@
       "acceptedAlt": [
         "2+3*4-1"
       ],
+      "commonMistakes": [
+        {
+          "answer": "19",
+          "feedback": {
+            "en": "Multiplication goes before addition: work out $3\\cdot 4$ first.",
+            "es": "La multiplicación va antes que la suma: calcula primero $3\\cdot 4$."
+          }
+        }
+      ],
       "hint": {
         "en": "Multiplication before addition.",
         "es": "La multiplicación antes que la suma."
@@ -166,6 +175,15 @@
       "acceptedAlt": [
         "2*(5-3)^2"
       ],
+      "commonMistakes": [
+        {
+          "answer": "16",
+          "feedback": {
+            "en": "The power applies only to the bracket: $(5-3)^2 = 4$, then $2\\cdot 4$.",
+            "es": "La potencia afecta solo al paréntesis: $(5-3)^2 = 4$ y después $2\\cdot 4$."
+          }
+        }
+      ],
       "hint": {
         "en": "Parentheses, then the power, then multiply.",
         "es": "Paréntesis, luego la potencia, luego multiplica."
@@ -194,6 +212,15 @@
       "acceptedAlt": [
         "10^2+2*10*1+1^2",
         "11^2"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "101",
+          "feedback": {
+            "en": "$(a+b)^2 = a^2 + 2ab + b^2$: the cross term $2\\cdot 10\\cdot 1 = 20$ is missing.",
+            "es": "$(a+b)^2 = a^2 + 2ab + b^2$: falta el doble producto $2\\cdot 10\\cdot 1 = 20$."
+          }
+        }
       ],
       "hint": {
         "en": "(a+b)² = a² + 2ab + b².",

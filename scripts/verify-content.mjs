@@ -6,6 +6,9 @@
  *   1. Check structural integrity (EN + ES text everywhere).
  *   2. Parse every answer and graph function with mathjs.
  *   3. Confirm every `acceptedAlt` is mathematically equivalent to `answer`.
+ *   4. Check answer forms (`requireForm` refuses the prompt's own `given`
+ *      expression), common mistakes (never a right answer) and that the
+ *      typo-tolerant text check accepts no other answer of the course.
  *
  * Exit code is non-zero if anything fails, so this can gate a build.
  */
@@ -13,7 +16,7 @@ import { readFileSync, readdirSync } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import * as math from 'mathjs'
-import { assertEquivalent, validateAnswer } from '../src/shared/validate.js'
+import { assertEquivalent, checkAnswer, FORMS, inForm, validateAnswer } from '../src/shared/validate.js'
 import { buildCurriculum, checkCurriculum } from '../src/shared/curriculum.js'
 import { fill, instantiate, leftovers } from '../src/shared/params.js'
 import katex from 'katex'
@@ -90,6 +93,7 @@ function checkTemplate(ex, where) {
   if (!['number', 'expression', 'set'].includes(ex.answerType || 'expression')) {
     return fail(where, 'templates support number, expression and set answers')
   }
+  if (ex.requireForm || ex.commonMistakes) return fail(where, 'templates support no requireForm or commonMistakes yet')
   // The independent check must actually look at the answer.
   const type = ex.answerType || 'expression'
   if (type === 'expression' && !ex.equivalentTo) return fail(where, 'an expression template needs an equivalentTo')
@@ -158,10 +162,76 @@ function checkTemplate(ex, where) {
 
 function checkExercise(ex, where) {
   if (ex.params) return checkTemplate(ex, where)
+  if (['mcq', 'code'].includes(ex.answerType) && (ex.requireForm || ex.commonMistakes)) {
+    return fail(where, `${ex.answerType} exercises take no requireForm or commonMistakes`)
+  }
   if (ex.answerType === 'mcq') return checkMcq(ex, where)
   if (ex.answerType === 'code') return checkCodeExercise(ex, where)
   exerciseCount++
   checkAnswers(ex, where)
+  checkForm(ex, where)
+  checkMistakes(ex, where)
+  if (ex.answerType === 'text') textExercises.push({ ex, where })
+}
+
+// requireForm: the answer and its alternatives are in the form, and `given`
+// (the prompt's expression, equal to the answer) is refused.
+function checkForm(ex, where) {
+  if (!ex.requireForm) {
+    if (ex.given) fail(where, '`given` is only used with requireForm')
+    return
+  }
+  if (!FORMS.includes(ex.requireForm)) return fail(where, `unknown requireForm "${ex.requireForm}" (${FORMS.join(', ')})`)
+  if (!['number', 'expression'].includes(ex.answerType || 'expression')) {
+    return fail(where, 'requireForm applies to number and expression answers')
+  }
+  for (const a of [ex.answer, ...(ex.acceptedAlt || [])]) {
+    checkCount++
+    if (!inForm(a, ex.requireForm, ex.answer)) fail(where, `"${a}" is not ${ex.requireForm}`)
+  }
+  checkCount++
+  if (!ex.given) return fail(where, 'requireForm needs `given`: the expression in the prompt')
+  if (!assertEquivalent(ex.given, ex.answer)) fail(where, `given "${ex.given}" is not equal to the answer "${ex.answer}"`)
+  else if (checkAnswer(ex.given, ex).reason !== 'form') fail(where, `given "${ex.given}" is not refused as not ${ex.requireForm}`)
+}
+
+// Each common mistake is wrong (not even equal in another form) and explained.
+function checkMistakes(ex, where) {
+  if (ex.commonMistakes === undefined) return
+  if (!Array.isArray(ex.commonMistakes) || !ex.commonMistakes.length) return fail(where, 'commonMistakes must be a non-empty array')
+  const plainEx = { ...ex, commonMistakes: [], requireForm: undefined }
+  ex.commonMistakes.forEach((m, i) => {
+    checkCount++
+    const at = `${where} [mistake ${i + 1}]`
+    hasBoth(m.feedback, 'mistake feedback', at)
+    const res = checkAnswer(m.answer, plainEx)
+    if (!m.answer || res.reason === 'empty') fail(at, 'no answer')
+    else if (res.reason === 'unparsed') fail(at, `"${m.answer}" does not parse`)
+    // One slip from a text answer is fine: the mistake wins over the slip.
+    else if (res.ok && res.spelling === undefined) fail(at, `"${m.answer}" is a right answer`)
+    else if (checkAnswer(m.answer, ex).reason !== 'mistake') fail(at, `"${m.answer}" is not recognised as this mistake`)
+  })
+}
+
+// One slip is forgiven in a text answer: it must not turn another answer of
+// the course (or a common mistake) into a right one.
+const textExercises = []
+function checkTypoTolerance() {
+  const pool = new Map() // text → where it is an answer
+  for (const { ex, where } of textExercises) {
+    for (const a of [ex.answer, ...(ex.acceptedAlt || []), ...(ex.commonMistakes || []).map((m) => m.answer)]) {
+      if (!pool.has(a)) pool.set(a, where)
+    }
+  }
+  for (const { ex, where } of textExercises) {
+    for (const [text, from] of pool) {
+      const res = checkAnswer(text, ex)
+      if (res.ok && res.spelling !== undefined) {
+        checkCount++
+        fail(where, `one-slip tolerance accepts "${text}" (an answer in ${from}) as "${res.spelling}"`)
+      }
+    }
+  }
 }
 
 // The answer checks of a number / expression / set / text exercise.
@@ -264,6 +334,8 @@ for (const subject of subjects) {
   }
   graphSubjects.push({ ...subject, lessons: lessons.sort((a, b) => a.order - b.order) })
 }
+
+checkTypoTolerance()
 
 // Prerequisites must exist and come earlier in the curriculum (no cycles).
 const curriculum = buildCurriculum(graphSubjects)

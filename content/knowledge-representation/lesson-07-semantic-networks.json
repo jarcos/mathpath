@@ -136,9 +136,7 @@
       },
       "answer": "slots",
       "acceptedAlt": [
-        "ranuras",
-        "slot",
-        "ranura"
+        "ranuras"
       ],
       "hint": {
         "en": "Slot and value.",

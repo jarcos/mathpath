@@ -133,6 +133,15 @@
       "acceptedAlt": [
         "log(1,5)"
       ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$5^0 = 1$, so $\\log_5 1 = 0$ ($\\log_5 5$ would be 1).",
+            "es": "$5^0 = 1$, así que $\\log_5 1 = 0$ ($\\log_5 5$ sería 1)."
+          }
+        }
+      ],
       "hint": {
         "en": "Any base to the 0 is 1.",
         "es": "Cualquier base a la 0 es 1."
@@ -155,6 +164,15 @@
       "answer": "-1",
       "acceptedAlt": [
         "log(1/2,2)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$2^{-1} = \\tfrac12$, so the logarithm is negative: $-1$.",
+            "es": "$2^{-1} = \\tfrac12$, así que el logaritmo es negativo: $-1$."
+          }
+        }
       ],
       "hint": {
         "en": "2 to what power is 1/2?",

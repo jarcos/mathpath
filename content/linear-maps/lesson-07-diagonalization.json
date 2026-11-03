@@ -78,7 +78,6 @@
       "answer": "eigenvectors",
       "acceptedAlt": [
         "autovectores",
-        "autovector",
         "vectores propios"
       ],
       "hint": {
@@ -126,7 +125,6 @@
       "answer": "eigenvalues",
       "acceptedAlt": [
         "autovalores",
-        "autovalor",
         "valores propios"
       ],
       "hint": {

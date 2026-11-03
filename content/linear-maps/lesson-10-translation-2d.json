@@ -112,9 +112,6 @@
         "es": "¿Es la traslación una aplicación lineal? (sí / no)"
       },
       "answer": "no",
-      "acceptedAlt": [
-        "no"
-      ],
       "hint": {
         "en": "Does it fix the origin?",
         "es": "¿Deja fijo el origen?"

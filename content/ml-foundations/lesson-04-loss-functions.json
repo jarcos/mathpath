@@ -133,9 +133,6 @@
         "es": "Una función de pérdida mide el ___ entre la predicción y el objetivo. (una palabra)"
       },
       "answer": "error",
-      "acceptedAlt": [
-        "error"
-      ],
       "hint": {
         "en": "How wrong we are.",
         "es": "Cuán equivocados estamos."

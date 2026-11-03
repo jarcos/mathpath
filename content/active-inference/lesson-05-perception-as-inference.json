@@ -110,8 +110,8 @@
       "answer": "priors",
       "acceptedAlt": [
         "previas",
-        "prior",
-        "previa"
+        "priori",
+        "a priori"
       ],
       "hint": {
         "en": "Prior expectations.",
@@ -134,7 +134,8 @@
       },
       "answer": "bayesian",
       "acceptedAlt": [
-        "bayesiana"
+        "bayesiana",
+        "bayesiano"
       ],
       "hint": {
         "en": "Bayes.",

@@ -135,9 +135,7 @@
       },
       "answer": "embedding",
       "acceptedAlt": [
-        "embeddings",
-        "incrustación",
-        "incrustacion"
+        "incrustación"
       ],
       "hint": {
         "en": "Lookup table row.",

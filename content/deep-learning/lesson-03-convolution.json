@@ -67,8 +67,7 @@
       },
       "answer": "convolution",
       "acceptedAlt": [
-        "convolución",
-        "convolucion"
+        "convolución"
       ],
       "hint": {
         "en": "Slide and dot.",
@@ -137,9 +136,7 @@
       },
       "answer": "weights",
       "acceptedAlt": [
-        "pesos",
-        "weight",
-        "peso"
+        "pesos"
       ],
       "hint": {
         "en": "The filter values.",

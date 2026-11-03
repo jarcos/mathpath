@@ -90,7 +90,8 @@
       "answer": "prior",
       "acceptedAlt": [
         "previa",
-        "priori"
+        "priori",
+        "a priori"
       ],
       "hint": {
         "en": "P(H).",
@@ -113,7 +114,8 @@
       },
       "answer": "posterior",
       "acceptedAlt": [
-        "posteriori"
+        "posteriori",
+        "a posteriori"
       ],
       "hint": {
         "en": "After evidence.",

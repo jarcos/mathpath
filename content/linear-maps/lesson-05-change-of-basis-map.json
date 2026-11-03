@@ -115,9 +115,7 @@
       },
       "answer": "similar",
       "acceptedAlt": [
-        "semejantes",
-        "semejante",
-        "similares"
+        "semejantes"
       ],
       "hint": {
         "en": "Same map, different basis.",

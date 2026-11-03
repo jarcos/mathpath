@@ -67,8 +67,7 @@
       },
       "answer": "yes",
       "acceptedAlt": [
-        "sí",
-        "si"
+        "sí"
       ],
       "hint": {
         "en": "Check T(0)=0 and scaling.",
@@ -90,9 +89,6 @@
         "es": "¿Es $T(x) = x + 1$ una aplicación lineal? (sí / no)"
       },
       "answer": "no",
-      "acceptedAlt": [
-        "no"
-      ],
       "hint": {
         "en": "What is T(0)?",
         "es": "¿Cuánto vale T(0)?"

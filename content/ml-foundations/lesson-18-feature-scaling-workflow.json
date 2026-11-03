@@ -68,8 +68,7 @@
       },
       "answer": "scaling",
       "acceptedAlt": [
-        "escalado",
-        "scaling"
+        "escalado"
       ],
       "hint": {
         "en": "Min-max or standardization.",
@@ -141,8 +140,7 @@
       "acceptedAlt": [
         "evaluar",
         "evaluation",
-        "evaluación",
-        "evaluacion"
+        "evaluación"
       ],
       "hint": {
         "en": "Measure performance.",

@@ -67,8 +67,7 @@
       },
       "answer": "kernel",
       "acceptedAlt": [
-        "núcleo",
-        "nucleo"
+        "núcleo"
       ],
       "hint": {
         "en": "Grid of weights.",

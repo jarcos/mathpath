@@ -87,9 +87,6 @@
         "es": "Una colección de texto usada como datos de entrenamiento es un ___. (una palabra)"
       },
       "answer": "corpus",
-      "acceptedAlt": [
-        "corpus"
-      ],
       "hint": {
         "en": "Plural: corpora.",
         "es": "Plural: corpus/corpora."

@@ -113,6 +113,15 @@
       "acceptedAlt": [
         "2+2"
       ],
+      "commonMistakes": [
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "Substituting gives $\\tfrac00$, which is not a value. Factor $x^2 - 4 = (x-2)(x+2)$, cancel, and evaluate $x + 2$ at 2.",
+            "es": "Sustituir da $\\tfrac00$, que no es un valor. Factoriza $x^2 - 4 = (x-2)(x+2)$, simplifica y evalúa $x + 2$ en 2."
+          }
+        }
+      ],
       "hint": {
         "en": "Factor the numerator.",
         "es": "Factoriza el numerador."

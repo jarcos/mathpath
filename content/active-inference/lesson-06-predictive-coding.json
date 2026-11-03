@@ -118,9 +118,6 @@
         "es": "La señal enviada hacia ARRIBA en la jerarquía es el ___ de predicción. (una palabra)"
       },
       "answer": "error",
-      "acceptedAlt": [
-        "error"
-      ],
       "hint": {
         "en": "The unexplained residual.",
         "es": "El residuo no explicado."
@@ -142,10 +139,7 @@
       },
       "answer": "predictions",
       "acceptedAlt": [
-        "predicciones",
-        "prediction",
-        "predicción",
-        "prediccion"
+        "predicciones"
       ],
       "hint": {
         "en": "Top-down predictions.",

@@ -88,8 +88,7 @@
       },
       "answer": "yes",
       "acceptedAlt": [
-        "sí",
-        "si"
+        "sí"
       ],
       "hint": {
         "en": "Is there a c with c(1,0) = (3,0)?",

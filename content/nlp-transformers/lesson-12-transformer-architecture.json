@@ -123,7 +123,7 @@
       "answer": "masked",
       "acceptedAlt": [
         "enmascarada",
-        "masked"
+        "enmascarado"
       ],
       "hint": {
         "en": "A causal mask.",
@@ -145,10 +145,6 @@
         "es": "La conexión añadida alrededor de cada subcapa para el flujo de gradiente es ___. (una palabra)"
       },
       "answer": "residual",
-      "acceptedAlt": [
-        "residual",
-        "residuales"
-      ],
       "hint": {
         "en": "Skip connection.",
         "es": "Conexión de salto."

@@ -118,8 +118,7 @@
       "answer": "sound",
       "acceptedAlt": [
         "correcta",
-        "válida",
-        "valida"
+        "válida"
       ],
       "hint": {
         "en": "Sound vs complete.",
@@ -142,8 +141,7 @@
       },
       "answer": "resolution",
       "acceptedAlt": [
-        "resolución",
-        "resolucion"
+        "resolución"
       ],
       "hint": {
         "en": "Derives the empty clause.",

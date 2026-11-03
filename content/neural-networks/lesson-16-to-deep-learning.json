@@ -66,7 +66,7 @@
       "answer": "deep",
       "acceptedAlt": [
         "profundas",
-        "profunda"
+        "profundo"
       ],
       "hint": {
         "en": "Depth.",
@@ -111,7 +111,6 @@
       "answer": "features",
       "acceptedAlt": [
         "características",
-        "caracteristicas",
         "representations",
         "representaciones"
       ],
@@ -136,10 +135,7 @@
       },
       "answer": "representation",
       "acceptedAlt": [
-        "representación",
-        "representacion",
-        "representations",
-        "representaciones"
+        "representación"
       ],
       "hint": {
         "en": "Representation learning.",

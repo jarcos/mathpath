@@ -62,7 +62,6 @@
       "answer": "understanding",
       "acceptedAlt": [
         "comprensión",
-        "comprension",
         "entendimiento"
       ],
       "hint": {
@@ -88,7 +87,8 @@
       "acceptedAlt": [
         "neuro-symbolic",
         "neurosimbólica",
-        "neurosimbolica"
+        "neuron",
+        "neurona"
       ],
       "hint": {
         "en": "Neuro-___.",
@@ -111,8 +111,7 @@
       },
       "answer": "chinese",
       "acceptedAlt": [
-        "chinas",
-        "china"
+        "chinas"
       ],
       "hint": {
         "en": "Searle's argument.",

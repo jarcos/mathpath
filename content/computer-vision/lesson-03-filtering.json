@@ -137,8 +137,7 @@
       },
       "answer": "convolution",
       "acceptedAlt": [
-        "convolución",
-        "convolucion"
+        "convolución"
       ],
       "hint": {
         "en": "Same as in CNNs.",

@@ -139,6 +139,15 @@
         "2*(x^2+1)*(2*x)",
         "4*x*(x^2+1)"
       ],
+      "commonMistakes": [
+        {
+          "answer": "2*(x^2 + 1)",
+          "feedback": {
+            "en": "Chain rule: also multiply by the derivative of the inside, $2x$: $2(x^2+1)\\cdot 2x$.",
+            "es": "Regla de la cadena: multiplica también por la derivada de lo de dentro, $2x$: $2(x^2+1)\\cdot 2x$."
+          }
+        }
+      ],
       "hint": {
         "en": "Outer 2(x²+1) times inner 2x.",
         "es": "Externa 2(x²+1) por interna 2x."
@@ -165,6 +174,15 @@
       },
       "answer": "cos(x)",
       "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "-cos(x)",
+          "feedback": {
+            "en": "The derivative of $\\sin x$ is $+\\cos x$. $-\\cos x$ is an antiderivative of $\\sin x$.",
+            "es": "La derivada de $\\sin x$ es $+\\cos x$. $-\\cos x$ es una primitiva de $\\sin x$."
+          }
+        }
+      ],
       "hint": {
         "en": "A standard derivative.",
         "es": "Una derivada estándar."
