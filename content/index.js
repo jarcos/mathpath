@@ -1,6 +1,7 @@
 // Loads all shipped lesson content at build time so the app runs fully offline.
 import subjectsData from './subjects.json'
 import glossaryData from './glossary.json'
+import { buildCurriculum, dependentsOf, lessonsNeeded } from '../src/shared/curriculum.js'
 
 // Eagerly import every lesson JSON in this folder tree.
 const lessonModules = import.meta.glob('./**/lesson-*.json', { eager: true })
@@ -50,6 +51,24 @@ export function getExercise(exerciseId) {
 const exerciseIds = Object.keys(exerciseIndex)
 export function getExerciseIds() {
   return exerciseIds
+}
+
+// Lesson prerequisites (see src/shared/curriculum.js).
+const curriculum = buildCurriculum(subjects.map((s) => ({ ...s, lessons: s.lessonObjects })))
+
+/** Direct prerequisites of a lesson (lesson ids). */
+export function getPrereqs(lessonId) {
+  return curriculum.prereqs.get(lessonId) || []
+}
+
+/** Lessons that build directly on this one. */
+export function getDependents(lessonId) {
+  return dependentsOf(curriculum, lessonId)
+}
+
+/** Every lesson needed to reach a lesson (itself included), in study order. */
+export function getLessonsNeeded(lessonId) {
+  return lessonsNeeded(curriculum, lessonId)
 }
 
 export function getGlossary() {

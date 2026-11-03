@@ -41,6 +41,7 @@
     },
     {
       "id": "functions",
+      "requires": ["algebra"],
       "icon": "ƒ",
       "targetDays": 30,
       "status": "available",
@@ -76,6 +77,7 @@
     },
     {
       "id": "calculus",
+      "requires": ["functions"],
       "icon": "∫",
       "targetDays": 30,
       "status": "available",
@@ -107,6 +109,7 @@
     },
     {
       "id": "linear-algebra",
+      "requires": ["algebra"],
       "icon": "⎡⎤",
       "targetDays": 30,
       "status": "available",
@@ -149,6 +152,7 @@
     },
     {
       "id": "linear-maps",
+      "requires": ["linear-algebra"],
       "icon": "↦",
       "targetDays": 30,
       "status": "available",
@@ -184,6 +188,7 @@
     },
     {
       "id": "statistics",
+      "requires": ["functions"],
       "icon": "σ",
       "targetDays": 30,
       "status": "available",
@@ -219,6 +224,7 @@
     },
     {
       "id": "ml-foundations",
+      "requires": ["calculus", "linear-algebra", "statistics"],
       "icon": "⚙",
       "targetDays": 30,
       "status": "available",
@@ -256,6 +262,7 @@
     },
     {
       "id": "neural-networks",
+      "requires": ["ml-foundations"],
       "icon": "🧠",
       "targetDays": 30,
       "status": "available",
@@ -291,6 +298,7 @@
     },
     {
       "id": "deep-learning",
+      "requires": ["neural-networks"],
       "icon": "◈",
       "targetDays": 30,
       "status": "available",
@@ -328,6 +336,7 @@
     },
     {
       "id": "nlp-transformers",
+      "requires": ["deep-learning"],
       "icon": "💬",
       "targetDays": 30,
       "status": "available",
@@ -363,6 +372,7 @@
     },
     {
       "id": "reinforcement-learning",
+      "requires": ["deep-learning"],
       "icon": "🎯",
       "targetDays": 30,
       "status": "available",
@@ -398,6 +408,7 @@
     },
     {
       "id": "knowledge-representation",
+      "requires": ["statistics"],
       "icon": "🕸",
       "targetDays": 30,
       "status": "available",
@@ -431,6 +442,7 @@
     },
     {
       "id": "computer-vision",
+      "requires": ["deep-learning"],
       "icon": "👁",
       "targetDays": 30,
       "status": "available",
@@ -497,6 +509,7 @@
     },
     {
       "id": "active-inference",
+      "requires": ["statistics", "neural-networks"],
       "icon": "🌀",
       "targetDays": 30,
       "status": "available",

@@ -14,6 +14,7 @@ import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import * as math from 'mathjs'
 import { assertEquivalent, validateAnswer } from '../src/shared/validate.js'
+import { buildCurriculum, checkCurriculum } from '../src/shared/curriculum.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -152,8 +153,10 @@ function checkLesson(lesson, file) {
 
 // Walk subjects.json and load each referenced lesson.
 const subjects = JSON.parse(readFileSync(join(CONTENT, 'subjects.json'), 'utf8')).subjects
+const graphSubjects = []
 for (const subject of subjects) {
   if (!subject.name?.en || !subject.name?.es) fail(subject.id, 'subject missing EN/ES name')
+  const lessons = []
   for (const rel of subject.lessons || []) {
     let lesson
     try {
@@ -163,13 +166,22 @@ for (const subject of subjects) {
       continue
     }
     checkLesson(lesson, rel)
+    lessons.push(lesson)
   }
+  graphSubjects.push({ ...subject, lessons: lessons.sort((a, b) => a.order - b.order) })
 }
+
+// Prerequisites must exist and come earlier in the curriculum (no cycles).
+const curriculum = buildCurriculum(graphSubjects)
+checkCurriculum(graphSubjects, curriculum).forEach((p) => fail('prerequisites', p))
+let edgeCount = 0
+for (const needs of curriculum.prereqs.values()) edgeCount += needs.length
 
 console.log(`\nMathPath content verification`)
 console.log(`  lessons:   ${lessonCount}`)
 console.log(`  exercises: ${exerciseCount}`)
 console.log(`  equivalence/answer checks: ${checkCount}`)
+console.log(`  prerequisite links: ${edgeCount}`)
 
 if (problems.length) {
   console.log(`\n${problems.length} problem(s) found:\n`)
