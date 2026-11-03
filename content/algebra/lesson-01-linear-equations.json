@@ -220,33 +220,59 @@
     {
       "id": "algebra-01-e4",
       "answerType": "number",
-      "prompt": {
-        "en": "Solve for x:  $5 - 2x = 11$",
-        "es": "Resuelve para x:  $5 - 2x = 11$"
+      "params": {
+        "a": {
+          "int": [
+            2,
+            9
+          ]
+        },
+        "x": {
+          "int": [
+            -9,
+            -1
+          ]
+        },
+        "c": {
+          "int": [
+            1,
+            9
+          ]
+        }
       },
-      "answer": "-3",
+      "derived": {
+        "d": "c - a * x",
+        "r": "-a * x",
+        "m": "-a"
+      },
+      "check": "c - a * answer == d",
+      "prompt": {
+        "en": "Solve for x:  $[[c]] - [[a]]x = [[d]]$",
+        "es": "Resuelve para x:  $[[c]] - [[a]]x = [[d]]$"
+      },
+      "answer": "[[x]]",
       "acceptedAlt": [
-        "6/-2"
+        "[[r]]/[[m]]"
       ],
       "hint": {
-        "en": "Move the 5 across first, watch the sign of the x term.",
-        "es": "Primero pasa el 5 al otro lado y cuida el signo del término en x."
+        "en": "Move the [[c]] across first, watch the sign of the x term.",
+        "es": "Primero pasa el [[c]] al otro lado y cuida el signo del término en x."
       },
       "solution": [
         {
-          "tex": "5 - 2x = 11",
+          "tex": "[[c]] - [[a]]x = [[d]]",
           "en": "Start from the equation.",
           "es": "Partimos de la ecuación."
         },
         {
-          "tex": "-2x = 6",
-          "en": "Subtract 5 from both sides.",
-          "es": "Resta 5 a ambos lados."
+          "tex": "-[[a]]x = [[r]]",
+          "en": "Subtract [[c]] from both sides.",
+          "es": "Resta [[c]] a ambos lados."
         },
         {
-          "tex": "x = -3",
-          "en": "Divide both sides by -2.",
-          "es": "Divide ambos lados entre -2."
+          "tex": "x = [[x]]",
+          "en": "Divide both sides by [[m]].",
+          "es": "Divide ambos lados entre [[m]]."
         }
       ]
     },

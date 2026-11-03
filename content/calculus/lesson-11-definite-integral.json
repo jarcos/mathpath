@@ -157,21 +157,42 @@
     {
       "id": "calculus-11-e4",
       "answerType": "number",
-      "prompt": {
-        "en": "Evaluate $\\int_1^2 2x\\,dx$.",
-        "es": "Evalúa $\\int_1^2 2x\\,dx$."
+      "params": {
+        "p": {
+          "int": [
+            -3,
+            3
+          ]
+        },
+        "q": {
+          "int": [
+            1,
+            6
+          ]
+        }
       },
-      "answer": "3",
+      "derived": {
+        "q2": "q^2",
+        "p2": "p^2",
+        "v": "q^2 - p^2"
+      },
+      "where": "q > p",
+      "check": "answer == q^2 - p^2",
+      "prompt": {
+        "en": "Evaluate $\\int_{[[p]]}^{[[q]]} 2x\\,dx$.",
+        "es": "Evalúa $\\int_{[[p]]}^{[[q]]} 2x\\,dx$."
+      },
+      "answer": "[[v]]",
       "acceptedAlt": [
-        "2^2-1^2"
+        "([[q]])^2-([[p]])^2"
       ],
       "hint": {
-        "en": "[x²] from 1 to 2.",
-        "es": "[x²] de 1 a 2."
+        "en": "[x²] from [[p]] to [[q]].",
+        "es": "[x²] de [[p]] a [[q]]."
       },
       "solution": [
         {
-          "tex": "[x^2]_1^2 = 4 - 1 = 3",
+          "tex": "[x^2]_{[[p]]}^{[[q]]} = [[q2]] - [[p2]] = [[v]]",
           "en": "Apply the FTC.",
           "es": "Aplica el TFC."
         }

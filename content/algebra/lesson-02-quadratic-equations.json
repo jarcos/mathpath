@@ -215,13 +215,26 @@
     {
       "id": "algebra-02-e2",
       "answerType": "set",
-      "prompt": {
-        "en": "Solve by the square-root method:  $x^2 - 9 = 0$",
-        "es": "Resuelve por el método de la raíz:  $x^2 - 9 = 0$"
+      "params": {
+        "r": {
+          "int": [
+            2,
+            12
+          ]
+        }
       },
-      "answer": "3, -3",
+      "derived": {
+        "s": "r^2",
+        "m": "-r"
+      },
+      "check": "deepEqual(sort(answers), [-r, r]) and r^2 == s",
+      "prompt": {
+        "en": "Solve by the square-root method:  $x^2 - [[s]] = 0$",
+        "es": "Resuelve por el método de la raíz:  $x^2 - [[s]] = 0$"
+      },
+      "answer": "[[r]], [[m]]",
       "acceptedAlt": [
-        "-3, 3"
+        "[[m]], [[r]]"
       ],
       "hint": {
         "en": "Isolate x², then take ±√.",
@@ -229,12 +242,12 @@
       },
       "solution": [
         {
-          "tex": "x^2 = 9",
-          "en": "Add 9 to both sides.",
-          "es": "Suma 9 a ambos lados."
+          "tex": "x^2 = [[s]]",
+          "en": "Add [[s]] to both sides.",
+          "es": "Suma [[s]] a ambos lados."
         },
         {
-          "tex": "x = \\pm 3",
+          "tex": "x = \\pm [[r]]",
           "en": "Take the square root of both signs.",
           "es": "Toma la raíz con ambos signos."
         }
@@ -294,28 +307,62 @@
     {
       "id": "algebra-02-e5",
       "answerType": "number",
-      "prompt": {
-        "en": "Compute the discriminant $b^2 - 4ac$ of $x^2 - 4x + 4 = 0$.",
-        "es": "Calcula el discriminante $b^2 - 4ac$ de $x^2 - 4x + 4 = 0$."
+      "params": {
+        "a": {
+          "int": [
+            2,
+            5
+          ]
+        },
+        "b": {
+          "int": [
+            -9,
+            9
+          ],
+          "exclude": [
+            -1,
+            0,
+            1
+          ]
+        },
+        "c": {
+          "int": [
+            -9,
+            9
+          ],
+          "exclude": [
+            0
+          ]
+        }
       },
-      "answer": "0",
+      "derived": {
+        "bb": "b^2",
+        "n": "-4 * a * c",
+        "d": "b^2 - 4 * a * c"
+      },
+      "check": "answer == b^2 - 4 * a * c",
+      "prompt": {
+        "en": "Compute the discriminant $b^2 - 4ac$ of $[[a]]x^2 [[b|+]]x [[c|+]] = 0$.",
+        "es": "Calcula el discriminante $b^2 - 4ac$ de $[[a]]x^2 [[b|+]]x [[c|+]] = 0$."
+      },
+      "answer": "[[d]]",
       "acceptedAlt": [
-        "(-4)^2-4*1*4"
+        "([[b]])^2-4*[[a]]*([[c]])"
       ],
       "hint": {
-        "en": "a = 1, b = -4, c = 4.",
-        "es": "a = 1, b = -4, c = 4."
+        "en": "a = [[a]], b = [[b]], c = [[c]].",
+        "es": "a = [[a]], b = [[b]], c = [[c]]."
       },
       "solution": [
         {
-          "tex": "(-4)^2 - 4(1)(4) = 16 - 16",
+          "tex": "([[b]])^2 - 4([[a]])([[c]]) = [[bb]] [[n|+]]",
           "en": "Substitute the coefficients.",
           "es": "Sustituye los coeficientes."
         },
         {
-          "tex": "= 0",
-          "en": "Δ = 0 → one repeated root.",
-          "es": "Δ = 0 → una raíz doble."
+          "tex": "= [[d]]",
+          "en": "The sign of Δ gives the number of real roots: two if Δ > 0, one repeated root if Δ = 0, none if Δ < 0.",
+          "es": "El signo de Δ da el número de raíces reales: dos si Δ > 0, una doble si Δ = 0, ninguna si Δ < 0."
         }
       ]
     },

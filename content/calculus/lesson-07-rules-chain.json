@@ -84,23 +84,46 @@
     {
       "id": "calculus-07-e2",
       "answerType": "expression",
-      "prompt": {
-        "en": "Differentiate $f(x) = 5x^2$.",
-        "es": "Deriva $f(x) = 5x^2$."
+      "params": {
+        "a": {
+          "int": [
+            2,
+            9
+          ]
+        },
+        "b": {
+          "int": [
+            -9,
+            9
+          ],
+          "exclude": [
+            -1,
+            0,
+            1
+          ]
+        }
       },
-      "answer": "10*x",
+      "derived": {
+        "k": "2 * a"
+      },
+      "equivalentTo": "derivative('[[a]] * x^2 + ([[b]]) * x', 'x')",
+      "prompt": {
+        "en": "Differentiate $f(x) = [[a]]x^2 [[b|+]]x$.",
+        "es": "Deriva $f(x) = [[a]]x^2 [[b|+]]x$."
+      },
+      "answer": "[[k]]*x [[b|+]]",
       "acceptedAlt": [
-        "10x"
+        "[[k]]x [[b|+]]"
       ],
       "hint": {
-        "en": "Constant times the derivative.",
-        "es": "Constante por la derivada."
+        "en": "Term by term: each constant times the derivative.",
+        "es": "Término a término: cada constante por la derivada."
       },
       "solution": [
         {
-          "tex": "5\\cdot 2x = 10x",
-          "en": "Apply the constant multiple rule.",
-          "es": "Aplica la regla del múltiplo constante."
+          "tex": "[[a]]\\cdot 2x [[b|+]]\\cdot 1 = [[k]]x [[b|+]]",
+          "en": "Apply the constant multiple and sum rules.",
+          "es": "Aplica las reglas del múltiplo constante y de la suma."
         }
       ]
     },

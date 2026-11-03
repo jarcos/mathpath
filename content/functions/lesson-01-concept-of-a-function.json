@@ -118,26 +118,48 @@
     {
       "id": "functions-01-e2",
       "answerType": "number",
-      "prompt": {
-        "en": "Given $f(x) = x^2$, find $f(-3)$.",
-        "es": "Dada $f(x) = x^2$, halla $f(-3)$."
+      "params": {
+        "c": {
+          "int": [
+            -9,
+            -2
+          ]
+        },
+        "k": {
+          "int": [
+            -9,
+            9
+          ],
+          "exclude": [
+            0
+          ]
+        }
       },
-      "answer": "9",
+      "derived": {
+        "sq": "c^2",
+        "v": "c^2 + k"
+      },
+      "check": "answer == c^2 + k",
+      "prompt": {
+        "en": "Given $f(x) = x^2 [[k|+]]$, find $f([[c]])$.",
+        "es": "Dada $f(x) = x^2 [[k|+]]$, halla $f([[c]])$."
+      },
+      "answer": "[[v]]",
       "acceptedAlt": [
-        "(-3)^2"
+        "([[c]])^2 + ([[k]])"
       ],
       "hint": {
-        "en": "Square the negative number.",
-        "es": "Eleva al cuadrado el número negativo."
+        "en": "Square the negative number first: the result is positive.",
+        "es": "Primero eleva al cuadrado el número negativo: el resultado es positivo."
       },
       "solution": [
         {
-          "tex": "f(-3) = (-3)^2",
+          "tex": "f([[c]]) = ([[c]])^2 [[k|+]]",
           "en": "Substitute.",
           "es": "Sustituye."
         },
         {
-          "tex": "= 9",
+          "tex": "= [[sq]] [[k|+]] = [[v]]",
           "en": "A negative squared is positive.",
           "es": "Un negativo al cuadrado es positivo."
         }
@@ -146,28 +168,56 @@
     {
       "id": "functions-01-e3",
       "answerType": "number",
-      "prompt": {
-        "en": "Given $f(x) = 3x - 5$, for which $x$ is $f(x) = 1$?",
-        "es": "Dada $f(x) = 3x - 5$, ¿para qué $x$ se cumple $f(x) = 1$?"
+      "params": {
+        "a": {
+          "int": [
+            2,
+            9
+          ]
+        },
+        "b": {
+          "int": [
+            -9,
+            9
+          ],
+          "exclude": [
+            0
+          ]
+        },
+        "x": {
+          "int": [
+            -6,
+            6
+          ]
+        }
       },
-      "answer": "2",
+      "derived": {
+        "y": "a * x + b",
+        "r": "a * x"
+      },
+      "check": "a * answer + b == y",
+      "prompt": {
+        "en": "Given $f(x) = [[a]]x [[b|+]]$, for which $x$ is $f(x) = [[y]]$?",
+        "es": "Dada $f(x) = [[a]]x [[b|+]]$, ¿para qué $x$ se cumple $f(x) = [[y]]$?"
+      },
+      "answer": "[[x]]",
       "acceptedAlt": [
-        "6/3"
+        "[[r]]/[[a]]"
       ],
       "hint": {
-        "en": "Solve 3x - 5 = 1.",
-        "es": "Resuelve 3x - 5 = 1."
+        "en": "Solve [[a]]x [[b|+]] = [[y]].",
+        "es": "Resuelve [[a]]x [[b|+]] = [[y]]."
       },
       "solution": [
         {
-          "tex": "3x - 5 = 1 \\Rightarrow 3x = 6",
-          "en": "Add 5.",
-          "es": "Suma 5."
+          "tex": "[[a]]x [[b|+]] = [[y]] \\Rightarrow [[a]]x = [[r]]",
+          "en": "Move the constant to the right-hand side, changing its sign.",
+          "es": "Pasa la constante al lado derecho cambiándole el signo."
         },
         {
-          "tex": "x = 2",
-          "en": "Divide by 3.",
-          "es": "Divide entre 3."
+          "tex": "x = [[x]]",
+          "en": "Divide by [[a]].",
+          "es": "Divide entre [[a]]."
         }
       ]
     },
