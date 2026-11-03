@@ -224,6 +224,8 @@ button.link.back { display: inline-block; margin-bottom: 18px; }
   padding: 0 20px; border-radius: 10px; font-weight: 600; cursor: pointer;
 }
 .feedback { font-weight: 600; font-size: 0.9rem; margin: 6px 0; }
+.answer-preview { display: flex; align-items: center; gap: 8px; margin: 0 0 6px 2px; min-height: 2em; }
+.answer-preview .katex { font-size: 1.1em; color: var(--text); }
 .feedback.ok { color: var(--ok); }
 .feedback.bad { color: var(--bad); }
 .exercise-actions { display: flex; gap: 18px; margin-top: 8px; }

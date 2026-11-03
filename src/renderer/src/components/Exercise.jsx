@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { validateAnswer } from '@shared/validate.js'
+import { checkAnswer, previewTex } from '@shared/validate.js'
 import { gradeCases } from '@shared/pygrade.js'
 import { useApp } from '@/AppContext.jsx'
 import { isGuessable } from '@/lib/mastery.js'
@@ -39,6 +39,9 @@ export default function Exercise({
   const type = exercise.answerType || 'expression'
 
   const [result, setResult] = useState(solved ? 'correct' : null) // 'correct' | 'incorrect' | null
+  // Why the last checked answer is (not) right: checkAnswer's result.
+  const [verdict, setVerdict] = useState(null)
+  const [unreadable, setUnreadable] = useState(false)
   const [showHint, setShowHint] = useState(false)
   const [showSolution, setShowSolution] = useState(false)
   // How this attempt is going, for the review schedule and mastery. Refs, as
@@ -65,8 +68,9 @@ export default function Exercise({
     }
   }, [priorMisses])
 
-  // Standard text/number/expression/set
+  // Standard text/number/expression/set, and how the answer reads as maths.
   const [answer, setAnswer] = useState('')
+  const preview = useMemo(() => previewTex(answer, exercise), [answer, exercise])
   // MCQ
   const [picked, setPicked] = useState(null)
   const revealed = result === 'correct' || (type === 'mcq' && misses >= MCQ_TRIES)
@@ -121,7 +125,29 @@ export default function Exercise({
 
   const submitStandard = (e) => {
     e.preventDefault()
-    finish(validateAnswer(answer, exercise), answer)
+    const res = checkAnswer(answer, exercise)
+    if (res.reason === 'empty') return
+    // What can't be read as maths isn't an answer: nothing is recorded.
+    setUnreadable(res.reason === 'unparsed')
+    if (res.reason === 'unparsed') return
+    setVerdict(res)
+    finish(res.ok, answer)
+  }
+
+  // Why an answer isn't right, from checkAnswer's reason.
+  const why = () => {
+    switch (verdict?.reason) {
+      case 'form':
+        return t(`form_${verdict.form}`)
+      case 'mistake':
+        return <MathText>{loc(verdict.feedback)}</MathText>
+      case 'partial':
+        return t('setPartial', { right: verdict.right, total: verdict.total })
+      case 'count':
+        return t('setCount', { expected: verdict.expected, got: verdict.got })
+      default:
+        return t('incorrect')
+    }
   }
 
   const submitMcq = () => {
@@ -193,6 +219,7 @@ export default function Exercise({
             onChange={(e) => {
               touch()
               setAnswer(e.target.value)
+              setUnreadable(false)
             }}
             placeholder={t('yourAnswer')}
             spellCheck={false}
@@ -200,6 +227,11 @@ export default function Exercise({
           />
           <button type="submit">{t('check')}</button>
         </form>
+      )}
+      {preview && (
+        <div className="answer-preview">
+          <span className="muted small">{t('previewReads')}</span> <MathText tex={`\\displaystyle ${preview}`} />
+        </div>
       )}
 
       {/* ---- multiple choice ---- */}
@@ -281,9 +313,19 @@ export default function Exercise({
         </div>
       )}
 
-      {result === 'correct' && <div className="feedback ok">{t('correct')}</div>}
-      {result === 'incorrect' && (
-        <div className="feedback bad">{type === 'mcq' && revealed ? t('mcqRevealed') : t('incorrect')}</div>
+      {unreadable ? (
+        <div className="feedback bad">{t('answerUnreadable')}</div>
+      ) : (
+        <>
+          {result === 'correct' && (
+            <div className="feedback ok">
+              {verdict?.spelling ? t('correctSpelling', { word: verdict.spelling }) : t('correct')}
+            </div>
+          )}
+          {result === 'incorrect' && (
+            <div className="feedback bad">{type === 'mcq' && revealed ? t('mcqRevealed') : why()}</div>
+          )}
+        </>
       )}
       {result === null && type === 'mcq' && revealed && <div className="feedback bad">{t('mcqLocked')}</div>}
 
