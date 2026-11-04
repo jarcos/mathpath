@@ -407,6 +407,35 @@ Se hace con el mismo proceso que M32: borradores por asignatura, todas las puert
 - **Exportar a PDF** una lección o una chuleta por asignatura (`printToPDF`, offline).
 - La tarjeta "Continuar" debería llevar a la **última actividad** y no a la primera asignatura empezada en orden.
 
+M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seguridad; (2) historial, "Continuar", atajos y accesibilidad; (3) búsqueda, notas, estadísticas y PDF.
+
+### Estado de la parte 1: ajustes y copia de seguridad (hito M34, sin publicar)
+
+- **Página de ajustes**, con su enlace en la barra superior:
+  - idioma, tema y **tamaño del texto** (90–140 %): es el zoom de la ventana, se guarda en el ajuste `zoom` y se aplica al abrir la app;
+  - el objetivo de estudio, con un enlace al plan;
+  - el panel de actualizaciones, que deja el Dashboard.
+- **Copia del progreso** (`src/main/backup.js` y `importProgress` en `db.js`):
+  - **Exportar** guarda todas las tablas en un JSON, por defecto `Documentos/MathPath-progress-AAAA-MM-DD.json`.
+  - **Importar** enseña qué trae la copia (fecha, versión, lecciones, respuestas y tarjetas) junto a lo que hay ahora, y pide confirmación. Sustituye todo en una sola transacción: si una fila falla, no cambia nada. Lee solo las columnas que conoce, así que también vale una copia de un esquema anterior; una de una versión más nueva se rechaza.
+  - **Reiniciar** borra respuestas, lecciones, repasos, planes y objetivo, y conserva idioma, tema, tamaño del texto y actualizaciones.
+  - Antes de importar o reiniciar, se guarda una **copia automática** en `backups/`, junto a la base de datos, y se conservan las 10 últimas. Se pueden volver a importar.
+  - Las rutas de fichero nunca vienen del renderer: el proceso principal abre sus propios diálogos y guarda la copia elegida hasta que el alumno confirma.
+- **Barra superior:** en una ventana pequeña con texto grande se oculta el nombre "MathPath" (queda el logo), para que los enlaces quepan en una línea.
+- **Tests:** cubren la ida y vuelta exacta, una copia de un esquema anterior, copias dañadas o más nuevas que no cambian nada (también cuando fallan a mitad de la restauración) y el reinicio.
+- **Prueba en la app empaquetada**, con una copia de la base de datos real y los diálogos sustituidos desde el depurador del proceso principal. Se probó exportar, reiniciar, importar, ficheros rotos o más nuevos, cancelar, 12 copias seguidas, el zoom tras reiniciar, el tema claro, el inglés y una ventana de 900 px al 140 %. Encontró dos fallos, ya arreglados:
+  - un aviso de la acción anterior seguía visible mientras se confirmaba la siguiente;
+  - dos copias automáticas del mismo segundo se pisaban o se borraban nada más hacerse. Ahora el nombre lleva milisegundos.
+
+**Tras la revisión independiente** (sin riesgo de perder datos con copias hechas por la propia app):
+
+- Una copia editada a mano con una tarjeta de repaso vacía (`"card": "{}"`) se importaba y habría roto la cola de repasos. Ahora se comprueba que el programador de repasos pueda leer cada tarjeta: fechas, estabilidad, dificultad, repeticiones y estado.
+- Se aceptaba texto en columnas numéricas (`target_days: "abc"`). Ahora cada valor tiene que encajar con el tipo de su columna.
+- Importar copiaba también "buscar actualizaciones automáticamente", que es el permiso para conectarse desde este ordenador. Ahora ese ajuste se queda como estaba.
+- Un tamaño de texto fuera de rango en una copia dejaba el selector sin ninguna opción marcada.
+- Exportar encima de una copia anterior y quedarse sin disco podía dejarla a medias. Ahora se escribe en un fichero temporal y se renombra al terminar.
+- Hay 5 tests de copia de seguridad, 67 en total.
+
 ---
 
 ## Fase 5: ingeniería (hacer antes o a la vez que la Fase 1)
@@ -439,7 +468,7 @@ Orden propuesto para lo que queda: M34 (por la copia de seguridad del progreso),
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
-| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | — |
+| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | 🟡 Parte 1 (ajustes y copia de seguridad) hecha, sin publicar |
 | **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | — |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 

@@ -42,9 +42,10 @@ Prefer to run from source? See [Getting started](#-getting-started).
 - **Fresh numbers every time** — template exercises draw new values on each visit, in reviews and exams (with "Another like this"), so practice isn't remembering answers. Every template is verified on dozens of instances.
 - **Curriculum map** — every lesson of every subject at a glance, coloured by your level; pick one to see what it builds on and what builds on it. Prerequisites also show your level inside each lesson.
 - **Adaptive 30-day plan** per subject, with prev/next lesson navigation and a "resume where you left off" card.
-- **Bilingual** (English / Spanish) UI *and* content, **light & dark** themes — all remembered.
+- **Bilingual** (English / Spanish) UI *and* content, **light & dark** themes and a **text size** from 90% to 140% — all remembered, all on the Settings page.
 - **Local-only data** — progress, attempts, review schedule, settings and plans in SQLite in your OS user-data folder.
-- **Opt-in updates** — turn on "Check for updates automatically" (or press "Check for updates") on the dashboard and new versions download in the background and install on restart. It only asks GitHub for the latest release; nothing about you is sent. Off by default.
+- **Backups** — Settings exports all your progress to a JSON file and imports it back (on this computer or another), or resets it. Before an import or a reset, MathPath saves a copy of what you had in a `backups` folder next to the database, keeping the last 10.
+- **Opt-in updates** — turn on "Check for updates automatically" (or press "Check for updates") in Settings and new versions download in the background and install on restart. It only asks GitHub for the latest release; nothing about you is sent. Off by default.
 
 ---
 
@@ -142,6 +143,7 @@ src/
   main/        Electron main process + SQLite data layer (versioned migrations) + IPC handlers
                + review.js (FSRS scheduling)
                + rendererServer.js (loopback server for the packaged renderer)
+               + backup.js (export / import / reset of the progress, with automatic copies)
   preload/     Secure contextBridge (the only renderer ↔ main channel)
   shared/      validate.js (mathjs checker) · notation.js (symbol detection)
                · pygrade.js (code-exercise grader, shared with the verifier)
@@ -156,7 +158,7 @@ src/
       lib/pyodide.js     lazy, offline Pyodide runner (Python runs in lib/pyodide.worker.js)
       components/        MathText, FunctionGraph, Exercise, CodeBlock, NotationBox, MasteryBadge
       pages/             Dashboard, SubjectView, LessonView, ReviewView, PlanView,
-                         PlacementView, ExamView, MapView, GlossaryView
+                         PlacementView, ExamView, MapView, GlossaryView, SettingsView
     public/pyodide/      bundled Pyodide runtime + wheels (git-ignored, generated)
 content/       lesson JSON (the curriculum), subjects.json, glossary.json
 scripts/       verify-content.mjs · verify-glossary.mjs · verify-code.py · verify-pyodide.mjs

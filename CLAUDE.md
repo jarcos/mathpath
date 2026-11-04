@@ -54,6 +54,17 @@ src/
                  local days; implicitReview gives FIRe-style partial credit to
                  the prerequisites of a clean review (creditPrereqs in db.js)
                rendererServer.js — loopback server for the packaged renderer
+               backup.js — export / import / reset of the progress (Settings).
+                 A backup is JSON: {app, format, schema, appVersion, exportedAt,
+                 tables}; importProgress (db.js) replaces every table in one
+                 transaction, reading only the columns this schema knows and
+                 refusing values of the wrong type or cards review.js can't
+                 read; `autoUpdate` stays as it is on this computer. Main
+                 picks every file with its own dialogs (never a path from the
+                 renderer) and saves userData/backups/mathpath-<time>-before-
+                 <import|reset>.json first, keeping the newest 10. A new table
+                 that holds progress must be added to BACKUP_TABLES
+               index.js — also the text size: `zoom` setting → webContents zoom
   preload/     Secure contextBridge — the only renderer ↔ main channel
                (built as CJS: the window is sandboxed)
   shared/      validate.js — mathjs answer checker, used by BOTH app and verifier.
@@ -82,7 +93,10 @@ src/
       components/      MathText (KaTeX), FunctionGraph (custom SVG plotter on mathjs),
                        Exercise (lesson / review modes), MasteryBadge, ProgressBar
       pages/           Dashboard, SubjectView, LessonView, ReviewView, PlanView,
-                       PlacementView, ExamView, MapView
+                       PlacementView, ExamView, MapView, SettingsView (appearance,
+                       goal, backups, updates). After an import or a reset,
+                       AppContext.reloadData re-reads everything and remounts
+                       the pages (key on <main>)
 content/         per-subject lessons + subjects.json + index.js. Prerequisites: the
                  previous lesson, the lesson's `prereq` box, and subjects.json
                  `requires` for a subject's first lesson; all must come earlier in
