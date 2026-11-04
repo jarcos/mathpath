@@ -65,6 +65,7 @@ const resources = {
       example: 'Example',
       sources: 'Sources & further reading',
       navGlossary: 'Glossary',
+      navSettings: 'Settings',
       symbolsInLesson: 'Symbols in this lesson',
       glossaryTitle: 'Symbol glossary',
       glossarySubtitle: 'How to read every symbol used across MathPath.',
@@ -190,7 +191,44 @@ const resources = {
       updatesReady: 'Version {{version}} is ready. Restart MathPath to install it.',
       updatesRestart: 'Restart now',
       updatesError: 'Could not check for updates. Try again later.',
-      updatesUnsupported: 'Updates only work in the installed app.'
+      updatesUnsupported: 'Updates only work in the installed app.',
+
+      // Settings
+      settingsTitle: 'Settings',
+      settingsSubtitle: 'How MathPath looks, your study goal, your progress and updates.',
+      settingsLook: 'Appearance',
+      settingsLanguage: 'Language',
+      settingsTheme: 'Theme',
+      settingsThemeDark: 'Dark',
+      settingsThemeLight: 'Light',
+      settingsZoom: 'Text size',
+      settingsGoal: 'Study goal',
+      settingsGoalNone: 'You have no study goal yet.',
+      dataTitle: 'Your progress',
+      dataIntro:
+        'Your progress is kept only on this computer, in a single file. Export it to keep a copy somewhere safe or to move it to another computer.',
+      dataCounts: 'Lessons completed: {{lessons}} · Answers: {{answers}} · Review cards: {{reviews}}',
+      dataReveal: 'Show in folder',
+      dataExport: 'Export progress…',
+      dataImport: 'Import progress…',
+      dataResetButton: 'Reset progress…',
+      dataExported: 'Saved as {{file}}.',
+      dataBackupFrom: 'saved on {{date}}',
+      dataInBackup: 'In this backup',
+      dataNow: 'Now',
+      dataImportWarning:
+        'Importing replaces everything you have now, settings included (automatic updates stay as they are on this computer). A copy of it is saved first, so you can import it back.',
+      dataImportConfirm: 'Replace my progress',
+      dataResetWarning:
+        'This deletes your answers, completed lessons, reviews and study goal. Your settings (language, theme, text size, updates) stay. A copy is saved first, so you can import it back.',
+      dataResetConfirm: 'Delete my progress',
+      dataImported: 'Progress imported. What you had before was saved as {{file}}.',
+      dataResetDone: 'Progress reset. What you had before was saved as {{file}}.',
+      dataErrorInvalid: 'This file is not a MathPath backup, or it is damaged. Nothing was changed.',
+      dataErrorNewer:
+        'This backup was made by a newer version of MathPath. Update MathPath and try again. Nothing was changed.',
+      dataErrorFailed: 'Something went wrong. Nothing was changed.',
+      dataErrorSave: 'The file could not be saved.'
     }
   },
   es: {
@@ -254,6 +292,7 @@ const resources = {
       example: 'Ejemplo',
       sources: 'Fuentes y lecturas recomendadas',
       navGlossary: 'Glosario',
+      navSettings: 'Ajustes',
       symbolsInLesson: 'Símbolos de esta lección',
       glossaryTitle: 'Glosario de símbolos',
       glossarySubtitle: 'Cómo leer cada símbolo que aparece en MathPath.',
@@ -379,7 +418,44 @@ const resources = {
       updatesReady: 'La versión {{version}} está lista. Reinicia MathPath para instalarla.',
       updatesRestart: 'Reiniciar ahora',
       updatesError: 'No se pudieron buscar actualizaciones. Inténtalo más tarde.',
-      updatesUnsupported: 'Las actualizaciones solo funcionan en la app instalada.'
+      updatesUnsupported: 'Las actualizaciones solo funcionan en la app instalada.',
+
+      // Ajustes
+      settingsTitle: 'Ajustes',
+      settingsSubtitle: 'Cómo se ve MathPath, tu objetivo de estudio, tu progreso y las actualizaciones.',
+      settingsLook: 'Apariencia',
+      settingsLanguage: 'Idioma',
+      settingsTheme: 'Tema',
+      settingsThemeDark: 'Oscuro',
+      settingsThemeLight: 'Claro',
+      settingsZoom: 'Tamaño del texto',
+      settingsGoal: 'Objetivo de estudio',
+      settingsGoalNone: 'Aún no tienes un objetivo de estudio.',
+      dataTitle: 'Tu progreso',
+      dataIntro:
+        'Tu progreso solo se guarda en este ordenador, en un único fichero. Expórtalo para tener una copia a salvo o para llevártelo a otro ordenador.',
+      dataCounts: 'Lecciones completadas: {{lessons}} · Respuestas: {{answers}} · Tarjetas de repaso: {{reviews}}',
+      dataReveal: 'Mostrar en la carpeta',
+      dataExport: 'Exportar progreso…',
+      dataImport: 'Importar progreso…',
+      dataResetButton: 'Reiniciar progreso…',
+      dataExported: 'Guardado como {{file}}.',
+      dataBackupFrom: 'guardada el {{date}}',
+      dataInBackup: 'En esta copia',
+      dataNow: 'Ahora',
+      dataImportWarning:
+        'Importar sustituye todo lo que tienes ahora, ajustes incluidos (las actualizaciones automáticas se quedan como estén en este ordenador). Antes se guarda una copia, para que puedas volver a importarla.',
+      dataImportConfirm: 'Sustituir mi progreso',
+      dataResetWarning:
+        'Se borran tus respuestas, las lecciones completadas, los repasos y el objetivo de estudio. Tus ajustes (idioma, tema, tamaño del texto y actualizaciones) se mantienen. Antes se guarda una copia, para que puedas volver a importarla.',
+      dataResetConfirm: 'Borrar mi progreso',
+      dataImported: 'Progreso importado. Lo que tenías antes se ha guardado como {{file}}.',
+      dataResetDone: 'Progreso reiniciado. Lo que tenías antes se ha guardado como {{file}}.',
+      dataErrorInvalid: 'Este fichero no es una copia de MathPath o está dañado. No se ha cambiado nada.',
+      dataErrorNewer:
+        'Esta copia es de una versión más nueva de MathPath. Actualiza MathPath y vuelve a intentarlo. No se ha cambiado nada.',
+      dataErrorFailed: 'Algo ha fallado. No se ha cambiado nada.',
+      dataErrorSave: 'No se ha podido guardar el fichero.'
     }
   }
 }

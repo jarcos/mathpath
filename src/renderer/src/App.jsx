@@ -10,6 +10,7 @@ import MapView from './pages/MapView.jsx'
 import PlacementView from './pages/PlacementView.jsx'
 import PlanView from './pages/PlanView.jsx'
 import ExamView from './pages/ExamView.jsx'
+import SettingsView from './pages/SettingsView.jsx'
 import { getLesson } from '@content/index.js'
 import { UpdateBanner } from './components/Updates.jsx'
 
@@ -46,6 +47,7 @@ function ThemeToggle() {
 
 export default function App() {
   const { t } = useTranslation()
+  const { dataVersion, reloadData } = useApp()
   // Minimal view router — no external routing dependency needed.
   const [view, setView] = useState({ name: 'dashboard' })
   // A lesson always opens within its own subject (prerequisites, the map and
@@ -59,7 +61,7 @@ export default function App() {
     <div className="app">
       <nav className="topbar">
         <button className="brand" onClick={home}>
-          <span className="brand-mark">π</span> {t('appName')}
+          <span className="brand-mark">π</span> <span className="brand-name">{t('appName')}</span>
         </button>
         <div className="topbar-controls">
           <button className="nav-link" onClick={() => setView({ name: 'plan' })}>
@@ -71,13 +73,17 @@ export default function App() {
           <button className="nav-link" onClick={() => setView({ name: 'glossary' })}>
             {t('navGlossary')}
           </button>
+          <button className="nav-link" onClick={() => setView({ name: 'settings' })}>
+            {t('navSettings')}
+          </button>
           <ThemeToggle />
           <LanguageToggle />
         </div>
       </nav>
       <UpdateBanner />
 
-      <main className="content" id="app-scroll">
+      {/* Remounted when an import or a reset replaces the data. */}
+      <main className="content" id="app-scroll" key={dataVersion}>
         {view.name === 'dashboard' && (
           <Dashboard
             onOpenSubject={(subjectId) => setView({ name: 'subject', subjectId })}
@@ -125,6 +131,17 @@ export default function App() {
           <PlanView onBack={home} onOpenLesson={openLesson} onStartReview={startReview} />
         )}
         {view.name === 'glossary' && <GlossaryView onBack={home} />}
+        {view.name === 'settings' && (
+          <SettingsView
+            onBack={home}
+            onOpenPlan={() => setView({ name: 'plan' })}
+            notice={view.notice}
+            onReplaced={(notice) => {
+              setView({ name: 'settings', notice })
+              reloadData()
+            }}
+          />
+        )}
       </main>
     </div>
   )

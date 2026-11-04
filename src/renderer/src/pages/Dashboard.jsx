@@ -6,7 +6,6 @@ import { useApp } from '@/AppContext.jsx'
 import { relativeDay } from '@/lib/mastery.js'
 import { remainingLessons, useStudyGoal, useTodayMinutes } from '@/lib/studyPlan.js'
 import ProgressBar from '@/components/ProgressBar.jsx'
-import { UpdatesPanel } from '@/components/Updates.jsx'
 
 // Today's spaced-repetition reviews. Hidden until the learner has solved
 // something, since there is nothing to review before that.
@@ -200,8 +199,6 @@ export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview, 
           </section>
         )
       })}
-
-      <UpdatesPanel />
     </div>
   )
 }

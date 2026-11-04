@@ -9,13 +9,22 @@ export const useApp = () => useContext(AppContext)
 // solved: exercise id → { lessonId, clean, firstTry }; due: ids whose review is due today.
 const EMPTY_LEARNING = { solved: new Map(), due: new Set() }
 
+// The saved text size, within the range the main process accepts.
+const zoomOf = (value) => {
+  const z = Number(value)
+  return z >= 0.75 && z <= 1.5 ? z : 1
+}
+
 export function AppProvider({ children }) {
   const { i18n } = useTranslation()
   const [lang, setLangState] = useState('en')
   const [theme, setThemeState] = useState('dark')
+  const [zoom, setZoomState] = useState(1)
   const [completed, setCompleted] = useState(() => new Set())
   const [learning, setLearning] = useState(EMPTY_LEARNING)
   const [ready, setReady] = useState(false)
+  // Bumped when all the data is replaced (import, reset), to remount the pages.
+  const [dataVersion, setDataVersion] = useState(0)
 
   const refreshLearning = useCallback(async () => {
     try {
@@ -31,28 +40,39 @@ export function AppProvider({ children }) {
     }
   }, [])
 
-  // Load persisted language + progress from the local database on startup.
-  useEffect(() => {
-    ;(async () => {
-      try {
-        const saved = await window.api.settings.get('language')
-        const l = saved === 'es' ? 'es' : 'en'
-        setLangState(l)
-        i18n.changeLanguage(l)
-        const savedTheme = await window.api.settings.get('theme')
-        const th = savedTheme === 'light' ? 'light' : 'dark'
-        setThemeState(th)
-        document.documentElement.setAttribute('data-theme', th)
-        const rows = await window.api.progress.getAll()
-        setCompleted(new Set(rows.filter((r) => r.completed).map((r) => r.lesson_id)))
-        await refreshLearning()
-      } catch (e) {
-        console.error('init failed', e)
-      } finally {
-        setReady(true)
-      }
-    })()
+  // Reads the settings and progress from the local database (the main process
+  // applies the saved zoom itself when it opens the window).
+  const load = useCallback(async () => {
+    const saved = await window.api.settings.get('language')
+    const l = saved === 'es' ? 'es' : 'en'
+    setLangState(l)
+    i18n.changeLanguage(l)
+    const savedTheme = await window.api.settings.get('theme')
+    const th = savedTheme === 'light' ? 'light' : 'dark'
+    setThemeState(th)
+    document.documentElement.setAttribute('data-theme', th)
+    setZoomState(zoomOf(await window.api.settings.get('zoom')))
+    const rows = await window.api.progress.getAll()
+    setCompleted(new Set(rows.filter((r) => r.completed).map((r) => r.lesson_id)))
+    await refreshLearning()
   }, [i18n, refreshLearning])
+
+  useEffect(() => {
+    load()
+      .catch((e) => console.error('init failed', e))
+      .finally(() => setReady(true))
+  }, [load])
+
+  // After an import or a reset: read everything again and remount the pages.
+  const reloadData = useCallback(async () => {
+    try {
+      await load()
+      await window.api.view?.setZoom(zoomOf(await window.api.settings.get('zoom')))
+    } catch (e) {
+      console.error('reload failed', e)
+    }
+    setDataVersion((v) => v + 1)
+  }, [load])
 
   // What is due depends on the day: refresh when the learner comes back.
   useEffect(() => {
@@ -73,6 +93,11 @@ export function AppProvider({ children }) {
     setThemeState(t)
     document.documentElement.setAttribute('data-theme', t)
     window.api.settings.set('theme', t)
+  }, [])
+
+  const setZoom = useCallback((z) => {
+    setZoomState(z)
+    window.api.view?.setZoom(z)
   }, [])
 
   // Picks the field matching the current language from a {en, es} object.
@@ -119,6 +144,10 @@ export function AppProvider({ children }) {
     setLang,
     theme,
     setTheme,
+    zoom,
+    setZoom,
+    dataVersion,
+    reloadData,
     loc,
     completed,
     setLessonCompleted,
