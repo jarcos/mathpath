@@ -330,7 +330,7 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
 ## Fase 3: contenido
 
 1. **Huecos del currículo para llegar a ML** (hecho en M32, ver abajo). Cálculo solo tiene 12 lecciones y le faltan **Taylor, derivadas parciales, gradiente, jacobiano, hessiano, regla de la cadena multivariable y Lagrange**, que es justo la base de *backprop*. Propuesta: una asignatura nueva, "Cálculo multivariable y optimización" (≈ 14 lecciones), entre `linear-maps` y `ml-foundations`.
-2. **Más profundidad donde más rinde.** Empezar por la escalera matemática (álgebra → cálculo → lineal), que alimenta todo lo demás. Cada lección suma un segundo ejemplo resuelto, un recuadro de **"errores comunes"** y un **"lo esencial"** final.
+2. **Más profundidad donde más rinde** (la escalera matemática es el hito M35, ver abajo). Empezar por la escalera matemática (álgebra → cálculo → lineal), que alimenta todo lo demás. Cada lección suma un segundo ejemplo resuelto, un recuadro de **"errores comunes"** y un **"lo esencial"** final.
 3. **Visualizaciones** (hoy hay 14 gráficas):
    - Ampliar `FunctionGraph`: varias curvas, puntos, recta tangente y **deslizadores de parámetros**.
    - Tipos de sección nuevos, todos con mathjs y verificables en build:
@@ -366,6 +366,28 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
   - El resto eran imprecisiones (el límite del paso es $2/\lambda_{\max}$, no $\lambda_{\max}$), ambigüedades (decir que la dirección se normaliza, pedir valores exactos), plantillas que mostraban $1x^2$ o $x^{1}$, comprobaciones de plantilla que repetían la fórmula y términos en español (la matriz jacobiana frente a el jacobiano). Todo está corregido.
   - En 9 de los 14 tests la respuesta buena era la primera opción y la app no las baraja, así que se han repartido.
 - **Puertas:** 255 lecciones, 1146 ejercicios, 6074 comprobaciones y 36 plantillas. Las 3802 fórmulas TeX de la asignatura renderizan en KaTeX. El código pasa en CPython y en Pyodide.
+
+### Alcance de 3.2 en la escalera matemática: hito M35 (por hacer)
+
+M25, anterior a este plan, prometía profundizar "álgebra, funciones y el resto de la escalera matemática", pero solo cubrió álgebra y funciones. Al escribir este plan, lo que faltaba quedó dentro de 3.2 como trabajo continuo, sin hito, y no volvió a salir al elegir el siguiente paso. En `docs/project.html` seguía además una M25 "Planned" junto a la M25 hecha. Estado del contenido hoy:
+
+| Asignatura | Lecciones | Con 2 ejemplos resueltos | Con test conceptual | Con errores típicos |
+|---|---|---|---|---|
+| Álgebra | 20 | 20 | 20 | 12 |
+| Funciones | 16 | 16 | 16 | 5 |
+| Cálculo | 12 | 0 | 1 | 5 |
+| Álgebra lineal | 23 | 0 | 1 | 0 |
+| Aplicaciones lineales | 16 | 0 | 1 | 0 |
+| Cálculo multivariable | 14 | 14 | 14 | 14 |
+
+M24 dio a cálculo, álgebra lineal y aplicaciones lineales código ejecutable, pero se quedaron con un solo ejemplo resuelto por lección. M35 les aplica, en sus 51 lecciones, lo mismo que M25 y M32:
+
+- un segundo ejemplo resuelto, que aporte algo distinto del primero (otro caso, o el error que hay que evitar);
+- un test conceptual con la explicación de cada opción, y la respuesta buena en posiciones variadas, porque la app no baraja las opciones;
+- `commonMistakes` en los ejercicios con un error típico claro: signo, regla de la cadena, orden del producto de matrices, filas frente a columnas…;
+- un recuadro de prerrequisitos donde la lección se apoye en otra asignatura.
+
+Se hace con el mismo proceso que M32: borradores por asignatura, todas las puertas (`verify:content`, glosario, CPython y Pyodide) y dos revisiones independientes que recalculan cada número. Los recuadros de "errores comunes" y "lo esencial" de 3.2 necesitan tipos de sección nuevos y valen para todas las lecciones, así que siguen en 3.2.
 
 ---
 
@@ -404,7 +426,9 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
 
 ## Hoja de ruta propuesta
 
-La numeración sigue la de `docs/project.html`, donde el último hito terminado antes de este plan era M26 (navegación y UX). La primera versión de este documento empezaba en M26, por error.
+La numeración sigue la de `docs/project.html`, donde el último hito terminado antes de este plan era M26 (navegación y UX). La primera versión de este documento empezaba en M26, por error. M25 solo cubrió álgebra y funciones; el resto de la escalera matemática es M35.
+
+Orden propuesto para lo que queda: M34 (por la copia de seguridad del progreso), M35 y M33.
 
 | Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
@@ -416,7 +440,8 @@ La numeración sigue la de `docs/project.html`, donde el último hito terminado 
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | — |
-| continuo | Profundidad del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
+| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | — |
+| continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 
 ## Ideas que necesitan una decisión tuya
 
