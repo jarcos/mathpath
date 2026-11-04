@@ -1,7 +1,7 @@
 import { rmSync } from 'node:fs'
 import Database from 'better-sqlite3'
 import { RATING, ratingFor } from '../shared/learning.js'
-import { IMPLICIT_WINDOW_DAYS, implicitReview, learnCard, reviewCard, serializeCard } from './review.js'
+import { IMPLICIT_WINDOW_DAYS, implicitReview, isStoredCard, learnCard, reviewCard, serializeCard } from './review.js'
 
 let db
 
@@ -411,6 +411,154 @@ export function getReviewSummary(until, known = null) {
   const total = db.prepare(`SELECT COUNT(*) AS n FROM review_cards WHERE ${SHIPPED}`).get(p).n
   const next = db.prepare(`SELECT MIN(due) AS d FROM review_cards WHERE due > @until AND ${SHIPPED}`).get(p).d
   return { due, total, nextDue: next || null }
+}
+
+/* ---------- backup ---------- */
+
+// What a backup holds, in the order it is restored. Format 1 files come from
+// schema 4 and later.
+const BACKUP_TABLES = ['settings', 'subject_plan', 'lesson_progress', 'attempts', 'review_cards']
+export const BACKUP_FORMAT = 1
+// Settings that are preferences, not progress: a reset keeps them.
+const PREFERENCES = ['language', 'theme', 'autoUpdate', 'zoom']
+// Settings that belong to this computer: an import leaves them as they are.
+// (Automatic updates are the learner's consent to go online from here.)
+const LOCAL_SETTINGS = ['autoUpdate']
+
+export class BackupError extends Error {
+  // code: 'invalid' (not a MathPath backup, or damaged) or 'newer' (made by a
+  // newer MathPath, whose data this version may not understand)
+  constructor(code) {
+    super(`backup ${code}`)
+    this.code = code
+  }
+}
+
+const isRow = (r) => r !== null && typeof r === 'object' && !Array.isArray(r)
+// A value fits a column of this declared type: a number, not text, in an
+// INTEGER column, and so on (NOT NULL is left to SQLite).
+const fits = (type, v) =>
+  v === null ||
+  (type === 'INTEGER'
+    ? Number.isFinite(v)
+    : type === 'TEXT'
+      ? typeof v === 'string'
+      : typeof v === 'string' || Number.isFinite(v))
+const isCardRow = (r) => typeof r.card === 'string' && isStoredCard(r.card) && !Number.isNaN(Date.parse(r.due))
+const columnsOf = (table) => db.pragma(`table_info(${table})`)
+// The names of the table `columns` a backup row has; null if one doesn't fit.
+function knownCells(columns, row) {
+  const cols = columns.filter((c) => row[c.name] !== undefined)
+  return cols.length && cols.every((c) => fits(c.type, row[c.name])) ? cols.map((c) => c.name) : null
+}
+
+const countsOf = (tables) => ({
+  lessons: tables.lesson_progress.filter((r) => Number(r.completed) === 1).length,
+  answers: tables.attempts.length,
+  reviews: tables.review_cards.length
+})
+
+/** Lessons completed, answers given and review cards, as a backup would count them. */
+export function progressCounts() {
+  const n = (sql) => db.prepare(sql).get().n
+  return {
+    lessons: n('SELECT COUNT(*) AS n FROM lesson_progress WHERE completed = 1'),
+    answers: n('SELECT COUNT(*) AS n FROM attempts'),
+    reviews: n('SELECT COUNT(*) AS n FROM review_cards')
+  }
+}
+
+/** All progress and settings as plain rows, to save as a JSON file. */
+export function exportProgress(appVersion = null) {
+  return {
+    app: 'MathPath',
+    format: BACKUP_FORMAT,
+    schema: db.pragma('user_version', { simple: true }),
+    appVersion,
+    exportedAt: new Date().toISOString(),
+    tables: Object.fromEntries(BACKUP_TABLES.map((t) => [t, db.prepare(`SELECT * FROM ${t} ORDER BY rowid`).all()]))
+  }
+}
+
+/**
+ * Checks a parsed backup file and says what it holds: when and with which
+ * version it was made, and its counts. Throws a BackupError.
+ */
+export function checkBackup(data) {
+  if (!isRow(data) || data.app !== 'MathPath') throw new BackupError('invalid')
+  if (data.format > BACKUP_FORMAT || data.schema > MIGRATIONS.length) throw new BackupError('newer')
+  if (data.format !== BACKUP_FORMAT || !Number.isInteger(data.schema) || !isRow(data.tables)) {
+    throw new BackupError('invalid')
+  }
+  for (const t of BACKUP_TABLES) {
+    const rows = data.tables[t]
+    const columns = columnsOf(t)
+    if (!Array.isArray(rows) || !rows.every((r) => isRow(r) && knownCells(columns, r))) {
+      throw new BackupError('invalid')
+    }
+  }
+  // A card the scheduler can't read would break the reviews later.
+  if (!data.tables.review_cards.every(isCardRow)) throw new BackupError('invalid')
+  return {
+    exportedAt: typeof data.exportedAt === 'string' ? data.exportedAt : null,
+    appVersion: typeof data.appVersion === 'string' ? data.appVersion : null,
+    ...countsOf(data.tables)
+  }
+}
+
+/**
+ * Replaces all progress and settings with a backup's (except LOCAL_SETTINGS),
+ * in one transaction: if any row is refused, nothing changes. Only the
+ * columns this version knows are read, so a backup from an older schema gets
+ * the defaults of newer columns. Throws a BackupError.
+ */
+export function importProgress(data) {
+  checkBackup(data)
+  const inserts = new Map()
+  const insert = (table, cols) => {
+    const key = `${table}(${cols})`
+    if (!inserts.has(key)) {
+      inserts.set(key, db.prepare(`INSERT INTO ${table} (${cols.join(', ')}) VALUES (${cols.map(() => '?').join(', ')})`))
+    }
+    return inserts.get(key)
+  }
+  const local = JSON.stringify(LOCAL_SETTINGS)
+  try {
+    db.transaction(() => {
+      for (const t of BACKUP_TABLES) {
+        if (t === 'settings') db.prepare('DELETE FROM settings WHERE key NOT IN (SELECT value FROM json_each(?))').run(local)
+        else db.prepare(`DELETE FROM ${t}`).run()
+      }
+      for (const t of BACKUP_TABLES) {
+        const columns = columnsOf(t)
+        for (const row of data.tables[t]) {
+          if (t === 'settings' && LOCAL_SETTINGS.includes(row.key)) continue
+          const cols = knownCells(columns, row)
+          insert(t, cols).run(cols.map((c) => row[c]))
+        }
+      }
+    })()
+  } catch (e) {
+    // A missing required field, a duplicate id…: the backup is damaged.
+    if (e instanceof BackupError) throw e
+    throw new BackupError('invalid')
+  }
+  try {
+    syncCards(db)
+  } catch (e) {
+    console.error('review card sync failed', e)
+  }
+}
+
+/**
+ * Deletes all progress — answers, completed lessons, review cards, study
+ * plans and the study goal — and keeps the preferences.
+ */
+export function resetProgress() {
+  db.transaction(() => {
+    for (const t of ['attempts', 'lesson_progress', 'review_cards', 'subject_plan']) db.prepare(`DELETE FROM ${t}`).run()
+    db.prepare('DELETE FROM settings WHERE key NOT IN (SELECT value FROM json_each(?))').run(JSON.stringify(PREFERENCES))
+  })()
 }
 
 /* ---------- study plan ---------- */

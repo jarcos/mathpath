@@ -5,6 +5,9 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import Database from 'better-sqlite3'
 import {
+  BackupError,
+  checkBackup,
+  exportProgress,
   getActivity,
   getDueReviews,
   getLearningState,
@@ -12,9 +15,14 @@ import {
   getReviewSummary,
   getSetting,
   getTodayStudy,
+  importProgress,
   initDb,
+  progressCounts,
   recordAttempt,
-  setLessonCompleted
+  resetProgress,
+  setLessonCompleted,
+  setSetting,
+  startPlan
 } from '../src/main/db.js'
 
 const DAY = 86400000
@@ -306,4 +314,128 @@ test('a clean review also credits the lessons it builds on: partly, and only whe
   assert.deepEqual(cardOf(db, 'base-overdue'), overdue)
   assert.deepEqual(cardOf(db, 'base-later'), later)
   assert.deepEqual(cardOf(db, 'other-soon'), other)
+})
+
+// Some progress of every kind: settings, a plan, lessons, answers and cards.
+function someProgress() {
+  const db = initDb(':memory:')
+  setSetting('theme', 'light')
+  setSetting('zoom', 1.25)
+  setSetting('studyGoal', JSON.stringify({ subjectId: 'calculus', minutes: 30 }))
+  startPlan('calculus', 30)
+  setLessonCompleted('l1', 'calculus', true)
+  setLessonCompleted('l2', 'calculus', true, 'placement')
+  recordAttempt({ exerciseId: 'a', lessonId: 'l1', correct: false, userAnswer: '3', mode: 'lesson', schedule: 'learn' })
+  recordAttempt({ exerciseId: 'a', lessonId: 'l1', correct: true, userAnswer: '2', misses: 1, mode: 'lesson', schedule: 'learn' })
+  recordAttempt({ exerciseId: 'b', lessonId: 'l1', correct: true, userAnswer: 'x^2', mode: 'lesson', schedule: 'learn' })
+  recordAttempt({ exerciseId: 'b', lessonId: 'l1', correct: true, userAnswer: 'x^2', mode: 'review', schedule: 'review' })
+  return db
+}
+const rowsOf = (backup) => JSON.parse(JSON.stringify(backup.tables))
+const throwsCode = (fn, code) => assert.throws(fn, (e) => e instanceof BackupError && e.code === code)
+
+test('a backup holds every table and restores it exactly, replacing what was there', () => {
+  someProgress()
+  const backup = exportProgress('0.5.0')
+  assert.equal(backup.app, 'MathPath')
+  assert.equal(backup.schema, 4)
+  assert.equal(backup.appVersion, '0.5.0')
+  assert.deepEqual(progressCounts(), { lessons: 2, answers: 4, reviews: 2 })
+  assert.deepEqual(checkBackup(backup), {
+    exportedAt: backup.exportedAt,
+    appVersion: '0.5.0',
+    lessons: 2,
+    answers: 4,
+    reviews: 2
+  })
+
+  // Into a database with other progress: the backup replaces it all.
+  initDb(':memory:')
+  setSetting('language', 'es')
+  recordAttempt({ exerciseId: 'other', lessonId: 'l9', correct: true, schedule: 'learn' })
+  importProgress(JSON.parse(JSON.stringify(backup)))
+  assert.deepEqual(rowsOf(exportProgress('0.5.0')), rowsOf(backup))
+  assert.equal(getSetting('language'), 'en')
+  assert.equal(getSetting('zoom'), '1.25')
+  // New answers carry on after the restored ones.
+  recordAttempt({ exerciseId: 'c', lessonId: 'l1', correct: true, schedule: 'learn' })
+  assert.equal(progressCounts().answers, 5)
+})
+
+test('a backup from an older schema loads with the defaults of the newer columns', () => {
+  someProgress()
+  const backup = exportProgress()
+  backup.schema = 3
+  for (const r of backup.tables.attempts) {
+    delete r.misses
+    delete r.mode
+  }
+  initDb(':memory:')
+  importProgress(backup)
+  const rows = exportProgress().tables.attempts
+  assert.equal(rows.length, 4)
+  assert.ok(rows.every((r) => r.misses === null && r.mode === null))
+})
+
+test('a damaged or newer backup is refused and changes nothing', () => {
+  someProgress()
+  const good = exportProgress()
+  const before = rowsOf(good)
+  const broken = (change) => {
+    const b = JSON.parse(JSON.stringify(good))
+    change(b)
+    return b
+  }
+  throwsCode(() => importProgress(null), 'invalid')
+  throwsCode(() => importProgress([]), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.app = 'Other'))), 'invalid')
+  throwsCode(() => importProgress(broken((b) => delete b.tables.attempts)), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.tables.attempts[0] = 'x'))), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.tables.review_cards[0].card = '{'))), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.tables.attempts[0].correct = true))), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.tables.attempts[0].correct = '1'))), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.tables.subject_plan[0].target_days = 'abc'))), 'invalid')
+  // Cards the scheduler couldn't read would break the reviews later.
+  throwsCode(() => importProgress(broken((b) => (b.tables.review_cards[0].card = '{}'))), 'invalid')
+  const badDue = (b) => {
+    const card = JSON.parse(b.tables.review_cards[0].card)
+    b.tables.review_cards[0].card = JSON.stringify({ ...card, due: 'soon' })
+  }
+  throwsCode(() => importProgress(broken(badDue)), 'invalid')
+  // These fail half-way through the restore, after the old rows are deleted.
+  throwsCode(() => importProgress(broken((b) => delete b.tables.attempts[3].created_at)), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.tables.attempts[3].id = b.tables.attempts[0].id))), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.tables.attempts[3] = { unknown: 1 }))), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.schema = 5))), 'newer')
+  throwsCode(() => importProgress(broken((b) => (b.format = 2))), 'newer')
+  assert.deepEqual(rowsOf(exportProgress()), before)
+})
+
+test('a reset deletes the progress and keeps the preferences', () => {
+  const db = someProgress()
+  setSetting('autoUpdate', '1')
+  resetProgress()
+  assert.deepEqual(progressCounts(), { lessons: 0, answers: 0, reviews: 0 })
+  for (const t of ['subject_plan', 'lesson_progress']) {
+    assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM ${t}`).get().n, 0)
+  }
+  assert.equal(getSetting('studyGoal'), null)
+  assert.deepEqual(
+    [getSetting('language'), getSetting('theme'), getSetting('zoom'), getSetting('autoUpdate')],
+    ['en', 'light', '1.25', '1']
+  )
+})
+
+test('an import keeps automatic updates as they are on this computer', () => {
+  someProgress()
+  setSetting('autoUpdate', '0')
+  const backup = exportProgress()
+  initDb(':memory:')
+  setSetting('autoUpdate', '1')
+  importProgress(backup)
+  assert.equal(getSetting('autoUpdate'), '1')
+  assert.equal(getSetting('theme'), 'light')
+  initDb(':memory:')
+  importProgress(backup)
+  assert.equal(getSetting('autoUpdate'), null)
 })

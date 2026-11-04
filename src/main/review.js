@@ -76,3 +76,22 @@ export function implicitReview(stored, now = new Date(), weight = IMPLICIT_WEIGH
 export function serializeCard(card) {
   return JSON.stringify(card)
 }
+
+const isDate = (v) => typeof v === 'string' && !Number.isNaN(Date.parse(v))
+
+/** Whether stored JSON is a card this module can schedule (e.g. one read from a backup). */
+export function isStoredCard(json) {
+  let c
+  try {
+    c = JSON.parse(json)
+  } catch {
+    return false
+  }
+  return (
+    c !== null &&
+    typeof c === 'object' &&
+    isDate(c.due) &&
+    (c.last_review == null || isDate(c.last_review)) &&
+    ['stability', 'difficulty', 'reps', 'lapses', 'state'].every((k) => Number.isFinite(c[k]))
+  )
+}

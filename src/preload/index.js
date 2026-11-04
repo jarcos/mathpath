@@ -30,6 +30,19 @@ const api = {
     due: (until, limit, known) => ipcRenderer.invoke('review:due', until, limit, known),
     summary: (until, known) => ipcRenderer.invoke('review:summary', until, known)
   },
+  view: {
+    setZoom: (factor) => ipcRenderer.invoke('view:setZoom', factor)
+  },
+  // Backups: the main process picks every file with its own dialogs.
+  data: {
+    summary: () => ipcRenderer.invoke('data:summary'),
+    reveal: (what) => ipcRenderer.invoke('data:reveal', what),
+    export: () => ipcRenderer.invoke('data:export'),
+    pickImport: () => ipcRenderer.invoke('data:pickImport'),
+    cancelImport: () => ipcRenderer.invoke('data:cancelImport'),
+    applyImport: () => ipcRenderer.invoke('data:applyImport'),
+    reset: () => ipcRenderer.invoke('data:reset')
+  },
   plan: {
     get: (subjectId) => ipcRenderer.invoke('plan:get', subjectId),
     start: (subjectId, targetDays) => ipcRenderer.invoke('plan:start', subjectId, targetDays),

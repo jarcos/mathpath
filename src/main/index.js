@@ -19,6 +19,7 @@ import {
   resetPlan
 } from './db.js'
 import { initUpdater } from './updater.js'
+import { registerBackupIpc } from './backup.js'
 import { startRendererServer } from './rendererServer.js'
 
 const isDev = !app.isPackaged
@@ -28,6 +29,13 @@ app.setName('MathPath')
 // Packaged builds serve the renderer from a loopback HTTP server (see
 // rendererServer.js); dev keeps using the electron-vite dev server.
 let rendererBaseUrl = null
+
+// Text size: the page zoom, kept in the `zoom` setting.
+const isZoom = (z) => typeof z === 'number' && z >= 0.75 && z <= 1.5
+const savedZoom = () => {
+  const z = Number(getSetting('zoom'))
+  return isZoom(z) ? z : 1
+}
 
 function createWindow() {
   const devIcon = join(import.meta.dirname, '../../build/icon.png')
@@ -45,7 +53,8 @@ function createWindow() {
       preload: join(import.meta.dirname, '../preload/index.cjs'),
       contextIsolation: true,
       nodeIntegration: false,
-      sandbox: true
+      sandbox: true,
+      zoomFactor: savedZoom()
     }
   })
 
@@ -77,6 +86,12 @@ function registerIpc() {
 
   ipcMain.handle('settings:get', (_e, key) => getSetting(key))
   ipcMain.handle('settings:set', (_e, key, value) => setSetting(key, value))
+  ipcMain.handle('view:setZoom', (e, z) => {
+    if (!isZoom(z)) return false
+    setSetting('zoom', z)
+    e.sender.setZoomFactor(z)
+    return true
+  })
 
   ipcMain.handle('progress:get', () => getProgress())
   ipcMain.handle('progress:setLesson', (_e, lessonId, subjectId, completed, source) =>
@@ -96,6 +111,8 @@ function registerIpc() {
   ipcMain.handle('plan:get', (_e, subjectId) => getPlan(subjectId))
   ipcMain.handle('plan:start', (_e, subjectId, targetDays) => startPlan(subjectId, targetDays))
   ipcMain.handle('plan:reset', (_e, subjectId, targetDays) => resetPlan(subjectId, targetDays))
+
+  registerBackupIpc()
 }
 
 // One instance at a time: a second one would share (and could migrate) the
