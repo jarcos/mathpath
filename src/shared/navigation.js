@@ -53,7 +53,7 @@ export function goBy(h, delta) {
 }
 
 const DASHBOARD = { name: 'dashboard' }
-const SIMPLE = ['dashboard', 'plan', 'map', 'glossary', 'settings', 'review']
+const SIMPLE = ['dashboard', 'plan', 'map', 'glossary', 'settings', 'review', 'notes', 'stats']
 
 /**
  * The view to open at start from the saved one, or the dashboard. Lessons and
@@ -68,6 +68,11 @@ export function restoreView(saved, { lessonSubject, isSubject }) {
   if (v.name === 'lesson') {
     const subjectId = typeof v.lessonId === 'string' ? lessonSubject(v.lessonId) : null
     return subjectId ? { name: 'lesson', lessonId: v.lessonId, subjectId } : DASHBOARD
+  }
+  if (v.name === 'sheet') {
+    return typeof v.subjectId === 'string' && isSubject(v.subjectId)
+      ? { name: 'sheet', subjectId: v.subjectId }
+      : DASHBOARD
   }
   if (['subject', 'exam', 'placement'].includes(v.name)) {
     return typeof v.subjectId === 'string' && isSubject(v.subjectId)

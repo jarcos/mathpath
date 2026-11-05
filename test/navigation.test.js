@@ -76,6 +76,10 @@ test('restoring the last view: only what can still be opened', () => {
   assert.deepEqual(restore({ name: 'placement', subjectId: 'nope' }), dash)
   assert.deepEqual(restore({ name: 'settings', notice: { kind: 'imported' } }), { name: 'settings' })
   assert.deepEqual(restore({ name: 'map' }), map)
+  assert.deepEqual(restore({ name: 'notes', filter: 'x' }), { name: 'notes' })
+  assert.deepEqual(restore({ name: 'stats' }), { name: 'stats' })
+  assert.deepEqual(restore({ name: 'sheet', subjectId: 'algebra' }), { name: 'sheet', subjectId: 'algebra' })
+  assert.deepEqual(restore({ name: 'sheet', subjectId: 'gone' }), dash)
   for (const bad of [null, undefined, 'lesson', 3, {}, { name: 'unknown' }, { name: 'lesson', lessonId: 7 }]) {
     assert.deepEqual(restore(bad), dash)
   }
