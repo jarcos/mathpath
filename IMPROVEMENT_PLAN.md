@@ -473,7 +473,7 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 - Hay 7 tests nuevos, 74 en total.
 - Queda igual que antes que salir de un examen a medias (ahora también con "atrás") no pide confirmación. Las respuestas ya dadas se guardan igualmente.
 
-### Estado de la parte 3: búsqueda, notas, estadísticas y PDF (hito M34, sin publicar)
+### Estado de la parte 3: búsqueda, notas, estadísticas y PDF (hito M34, publicado en v0.7.0)
 
 - **Búsqueda (⌘K, o la lupa de la barra superior):**
   - encuentra lecciones por título, títulos de sección y texto, en los dos idiomas (se muestran en el del alumno);
@@ -534,7 +534,7 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 
 La numeración sigue la de `docs/project.html`, donde el último hito terminado antes de este plan era M26 (navegación y UX). La primera versión de este documento empezaba en M26, por error. M25 solo cubrió álgebra y funciones; el resto de la escalera matemática es M35.
 
-Orden propuesto para lo que queda: M34 (por la copia de seguridad del progreso), M35 y M33.
+Orden propuesto para lo que queda: M35 y M33. M34 está terminado.
 
 | Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
@@ -545,7 +545,7 @@ Orden propuesto para lo que queda: M34 (por la copia de seguridad del progreso),
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
-| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | 🟡 Parte 1 (ajustes y copia de seguridad) publicada en v0.5.0; parte 2 (historial, "Continuar", atajos y accesibilidad) publicada en v0.6.0; parte 3 (búsqueda, notas, estadísticas y PDF) hecha, sin publicar |
+| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 |
 | **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | — |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 
