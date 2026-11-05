@@ -1,10 +1,20 @@
-import { createContext, useContext, useEffect, useState, useCallback } from 'react'
+import { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getPrereqs } from '@content/index.js'
 import { endOfLocalDay } from '@shared/learning.js'
 
 const AppContext = createContext(null)
 export const useApp = () => useContext(AppContext)
+
+// Resolves once the page has been drawn again (two frames). A window hidden
+// behind others draws no frames, so it waits for them at most a moment: by
+// then React has put the light theme in the DOM, and printing lays the page
+// out on its own.
+const redrawn = () =>
+  Promise.race([
+    new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))),
+    new Promise((r) => setTimeout(r, 300))
+  ])
 
 // solved: exercise id → { lessonId, clean, firstTry }; due: ids whose review is due today.
 const EMPTY_LEARNING = { solved: new Map(), due: new Set() }
@@ -118,25 +128,29 @@ export function AppProvider({ children }) {
 
   // Saves the page shown as a PDF. The learner picks where first; then the
   // page is drawn in the light theme for the moment printing takes, and back.
+  // One at a time: a second press while one is saving does nothing.
   // Resolves with { ok, file } | { canceled } | { error }.
+  const pdfBusy = useRef(false)
   const savePdf = useCallback(
     async (name) => {
+      if (pdfBusy.current) return { canceled: true }
+      pdfBusy.current = true
       try {
         const picked = await window.api.pdf.pick(name)
         if (!picked?.ok) return picked
-      } catch {
-        return { error: 'save' }
-      }
-      setPrinting(true)
-      document.documentElement.setAttribute('data-theme', 'light')
-      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
-      try {
-        return await window.api.pdf.print()
+        setPrinting(true)
+        document.documentElement.setAttribute('data-theme', 'light')
+        try {
+          await redrawn()
+          return await window.api.pdf.print()
+        } finally {
+          setPrinting(false)
+          document.documentElement.setAttribute('data-theme', theme)
+        }
       } catch {
         return { error: 'save' }
       } finally {
-        setPrinting(false)
-        document.documentElement.setAttribute('data-theme', theme)
+        pdfBusy.current = false
       }
     },
     [theme]
