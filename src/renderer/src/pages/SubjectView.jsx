@@ -33,7 +33,7 @@ function useLastExam(subjectId) {
   return last
 }
 
-export default function SubjectView({ subjectId, onOpenLesson, onBack, onOpenSubject, onPlacement, onExam }) {
+export default function SubjectView({ subjectId, onOpenLesson, onBack, onOpenSubject, onPlacement, onExam, onSheet }) {
   const { t } = useTranslation()
   const { loc, lang, completed, learning } = useApp()
   const subject = getSubject(subjectId)
@@ -132,6 +132,12 @@ export default function SubjectView({ subjectId, onOpenLesson, onBack, onOpenSub
             })}
           </span>
         )}
+      </p>
+      <p className="placement-offer small">
+        {t('sheetOffer')}{' '}
+        <button className="link" onClick={onSheet}>
+          {t('sheetLink')}
+        </button>
       </p>
 
       <section className="plan-panel">

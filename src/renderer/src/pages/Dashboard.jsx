@@ -91,7 +91,7 @@ function SubjectCard({ s, loc, t, completed, onOpenSubject }) {
   )
 }
 
-export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview, onOpenPlan }) {
+export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview, onOpenPlan, onOpenPage }) {
   const { t } = useTranslation()
   const { loc, completed } = useApp()
   const [goal] = useStudyGoal()
@@ -176,6 +176,15 @@ export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview, 
           <span className="resume-cta">{t('continue')} →</span>
         </button>
       )}
+
+      <nav className="dash-links small" aria-label={t('dashboard')}>
+        <button className="link" onClick={() => onOpenPage('notes')}>
+          {t('notesLink')}
+        </button>
+        <button className="link" onClick={() => onOpenPage('stats')}>
+          {t('statsLink')}
+        </button>
+      </nav>
 
       {tracks.map((track) => {
         const items = subjects.filter((s) => (s.track || 'math') === track.id)

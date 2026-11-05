@@ -32,7 +32,7 @@ function Choice({ label, value, options, onChange }) {
 
 function Appearance() {
   const { t } = useTranslation()
-  const { lang, setLang, theme, setTheme, zoom, setZoom } = useApp()
+  const { lang, setLang, savedTheme: theme, setTheme, zoom, setZoom } = useApp()
   return (
     <section className="plan-panel">
       <h2 className="plan-section-title">{t('settingsLook')}</h2>
@@ -90,6 +90,7 @@ function StudyGoal({ onOpenPlan }) {
 function Shortcuts() {
   const { t } = useTranslation()
   const rows = [
+    [KEYS.search, t('shortcutSearch')],
     [KEYS.back, t('shortcutBack')],
     [KEYS.forward, t('shortcutForward')],
     [t('keyEnter'), t('shortcutCheck')],
@@ -138,7 +139,7 @@ function YourProgress({ notice, onReplaced }) {
   if (!api || !summary) return null
 
   const n = (x) => x.toLocaleString(lang)
-  const counts = (c) => t('dataCounts', { lessons: n(c.lessons), answers: n(c.answers), reviews: n(c.reviews) })
+  const counts = (c) => t('dataCounts', { lessons: n(c.lessons), answers: n(c.answers), reviews: n(c.reviews), notes: n(c.notes ?? 0) })
   const failed = (code, fallback = 'dataErrorFailed') =>
     setMessage({ ok: false, text: t({ invalid: 'dataErrorInvalid', newer: 'dataErrorNewer' }[code] || fallback) })
   const run = async (fn) => {

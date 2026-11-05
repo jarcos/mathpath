@@ -11,6 +11,10 @@ import PlacementView from './pages/PlacementView.jsx'
 import PlanView from './pages/PlanView.jsx'
 import ExamView from './pages/ExamView.jsx'
 import SettingsView from './pages/SettingsView.jsx'
+import NotesView from './pages/NotesView.jsx'
+import StatsView from './pages/StatsView.jsx'
+import SheetView from './pages/SheetView.jsx'
+import SearchPalette from './components/SearchPalette.jsx'
 import { getLesson, getSubject } from '@content/index.js'
 import {
   canGo,
@@ -22,7 +26,7 @@ import {
   startHistory,
   withScroll
 } from '@shared/navigation.js'
-import { KEYS, historyKey } from './lib/keys.js'
+import { KEYS, historyKey, isMac, isSearchKey } from './lib/keys.js'
 import { UpdateBanner } from './components/Updates.jsx'
 
 function LanguageToggle() {
@@ -41,7 +45,7 @@ function LanguageToggle() {
 
 function ThemeToggle() {
   const { t } = useTranslation()
-  const { theme, setTheme } = useApp()
+  const { savedTheme: theme, setTheme } = useApp()
   const next = theme === 'dark' ? 'light' : 'dark'
   const label = theme === 'dark' ? t('themeToLight') : t('themeToDark')
   return (
@@ -131,6 +135,9 @@ export default function App() {
   const [history, setHistory] = useState(() => firstHistory(savedView))
   const view = currentView(history)
   const entry = history.entries[history.index]
+  const [searching, setSearching] = useState(false)
+  const searchingRef = useRef(false)
+  searchingRef.current = searching
   const moved = useRef(false) // the view changed: focus the new page
   const settling = useRef(false) // its scroll is still being set
 
@@ -152,7 +159,8 @@ export default function App() {
   // A view opens at its scroll: the top for a new one, where it was left when
   // going back or forward, or when MathPath is reopened.
   useEffect(() => {
-    const stop = scrollPage(entry.scroll, settling)
+    // The glossary opened on a symbol scrolls to it itself.
+    const stop = entry.view.focusId ? () => {} : scrollPage(entry.scroll, settling)
     if (moved.current) {
       moved.current = false
       focusPage()
@@ -193,13 +201,20 @@ export default function App() {
   useEffect(() => {
     const onKey = (e) => {
       if (e.defaultPrevented) return
+      if (isSearchKey(e)) {
+        e.preventDefault()
+        setSearching((open) => !open)
+        return
+      }
+      // While searching, the keys belong to the search.
+      if (searchingRef.current) return
       const delta = historyKey(e)
       if (!delta) return
       e.preventDefault()
       go(delta)
     }
     const onMouse = (e) => {
-      if (e.button !== 3 && e.button !== 4) return
+      if ((e.button !== 3 && e.button !== 4) || searchingRef.current) return
       e.preventDefault()
       go(e.button === 3 ? -1 : 1)
     }
@@ -217,10 +232,22 @@ export default function App() {
     navigate({ name: 'lesson', lessonId, subjectId: getLesson(lessonId)?.subjectId })
   const home = () => navigate({ name: 'dashboard' })
   const startReview = () => navigate({ name: 'review' })
+  // While searching, the page behind can't be reached (screen readers included).
+  const behind = searching ? { inert: '' } : {}
+  const pages = [
+    { id: 'dashboard', label: t('dashboard') },
+    { id: 'review', label: t('reviewTitle') },
+    { id: 'plan', label: t('navPlan') },
+    { id: 'map', label: t('navMap') },
+    { id: 'glossary', label: t('navGlossary') },
+    { id: 'notes', label: t('notesTitle') },
+    { id: 'stats', label: t('statsTitle') },
+    { id: 'settings', label: t('navSettings') }
+  ]
 
   return (
     <div className="app">
-      <nav className="topbar">
+      <nav className="topbar" {...behind}>
         <div className="topbar-start">
           <button className="brand" onClick={home}>
             <span className="brand-mark">π</span> <span className="brand-name">{t('appName')}</span>
@@ -257,20 +284,42 @@ export default function App() {
           <button className="nav-link" onClick={() => navigate({ name: 'settings' })}>
             {t('navSettings')}
           </button>
+          <button
+            className="theme-toggle search-btn"
+            onClick={() => setSearching(true)}
+            title={`${t('searchButton')} (${KEYS.search})`}
+            aria-label={t('searchButton')}
+            aria-keyshortcuts={isMac ? 'Meta+K' : 'Control+K'}
+          >
+            <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
+              <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" strokeWidth="2" />
+              <path d="M13 13l4.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
           <ThemeToggle />
           <LanguageToggle />
         </div>
       </nav>
       <UpdateBanner />
+      {searching && (
+        <SearchPalette
+          pages={pages}
+          onClose={() => setSearching(false)}
+          onOpenPage={(name) => navigate({ name })}
+          onOpenLesson={openLesson}
+          onOpenSymbol={(focusId) => navigate({ name: 'glossary', focusId })}
+        />
+      )}
 
       {/* Remounted when an import or a reset replaces the data. */}
-      <main className="content" id="app-scroll" key={dataVersion}>
+      <main className="content" id="app-scroll" key={dataVersion} {...behind}>
         {view.name === 'dashboard' && (
           <Dashboard
             onOpenSubject={(subjectId) => navigate({ name: 'subject', subjectId })}
             onOpenLesson={(_subjectId, lessonId) => openLesson(lessonId)}
             onStartReview={startReview}
             onOpenPlan={() => navigate({ name: 'plan' })}
+            onOpenPage={(name) => navigate({ name })}
           />
         )}
         {view.name === 'review' && (
@@ -284,6 +333,7 @@ export default function App() {
             onOpenSubject={(subjectId) => navigate({ name: 'subject', subjectId })}
             onPlacement={() => navigate({ name: 'placement', subjectId: view.subjectId })}
             onExam={() => navigate({ name: 'exam', subjectId: view.subjectId })}
+            onSheet={() => navigate({ name: 'sheet', subjectId: view.subjectId })}
           />
         )}
         {view.name === 'exam' && (
@@ -309,9 +359,19 @@ export default function App() {
         )}
         {view.name === 'map' && <MapView onBack={home} onOpenLesson={openLesson} />}
         {view.name === 'plan' && (
-          <PlanView onBack={home} onOpenLesson={openLesson} onStartReview={startReview} />
+          <PlanView
+            onBack={home}
+            onOpenLesson={openLesson}
+            onStartReview={startReview}
+            onOpenStats={() => navigate({ name: 'stats' })}
+          />
         )}
-        {view.name === 'glossary' && <GlossaryView onBack={home} />}
+        {view.name === 'glossary' && <GlossaryView onBack={home} focusId={view.focusId} />}
+        {view.name === 'notes' && <NotesView onBack={home} onOpenLesson={openLesson} />}
+        {view.name === 'stats' && <StatsView onBack={home} onOpenLesson={openLesson} />}
+        {view.name === 'sheet' && (
+          <SheetView subjectId={view.subjectId} onBack={() => navigate({ name: 'subject', subjectId: view.subjectId })} />
+        )}
         {view.name === 'settings' && (
           <SettingsView
             onBack={home}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getLesson, getSubject, getGlossary } from '@content/index.js'
 import { getLessonSymbols } from '@shared/notation.js'
@@ -6,6 +6,7 @@ import { MASTERY_THRESHOLD, isMastered } from '@shared/learning.js'
 import { hashString, instantiate, randomSeed } from '@shared/params.js'
 import { useApp } from '@/AppContext.jsx'
 import { isPlainKey } from '@/lib/keys.js'
+import { useLessonNote } from '@/lib/notes.js'
 import { countsClean, isGuessable, lessonStats } from '@/lib/mastery.js'
 import MasteryBadge from '@/components/MasteryBadge.jsx'
 import MathText from '@/components/MathText.jsx'
@@ -78,6 +79,40 @@ function Section({ section, loc, t, openLesson }) {
   )
 }
 
+// The learner's note on the lesson: saved as they type. On paper (PDF), the
+// text itself instead of the box.
+function NotePanel({ note, t }) {
+  const id = `note-${useId()}`
+  const statusText = { saving: t('noteSaving'), saved: t('noteSaved'), error: t('noteError') }[note.status] || ''
+  return (
+    <section className={`note-panel ${note.body.trim() ? '' : 'empty'}`}>
+      <div className="plan-head">
+        <h2>
+          <label htmlFor={id}>{t('noteTitle')}</label>
+        </h2>
+        <span className={`muted small note-status ${note.status === 'error' ? 'bad' : ''}`} aria-live="polite">
+          {statusText}
+        </span>
+      </div>
+      <textarea
+        id={id}
+        className="note-input"
+        value={note.body}
+        disabled={!note.loaded}
+        onChange={(e) => note.setBody(e.target.value)}
+        placeholder={t('notePlaceholder')}
+        rows={Math.min(14, Math.max(4, note.body.split('\n').length + 1))}
+      />
+      <p className="muted small no-print">{t('noteHelp')}</p>
+      {note.body.trim() && (
+        <div className="note-print print-only">
+          <MathText>{note.body}</MathText>
+        </div>
+      )}
+    </section>
+  )
+}
+
 // Thin top bar that tracks how far the learner has scrolled through the lesson.
 function ReadingProgress() {
   const [pct, setPct] = useState(0)
@@ -101,8 +136,11 @@ function ReadingProgress() {
 
 export default function LessonView({ lessonId, onBack, onOpenLesson }) {
   const { t } = useTranslation()
-  const { loc, completed, setLessonCompleted, getSolvedForLesson, learning } = useApp()
+  const { loc, completed, setLessonCompleted, getSolvedForLesson, learning, savePdf } = useApp()
   const lesson = getLesson(lessonId)
+  const note = useLessonNote(lessonId)
+  const [pdfMessage, setPdfMessage] = useState(null) // { ok, text }
+  useEffect(() => setPdfMessage(null), [lessonId])
   const [solved, setSolved] = useState(() => new Set())
   const [missesToday, setMissesToday] = useState({}) // exercise id → wrong tries today, never solved
   const [autoCompleted, setAutoCompleted] = useState(false)
@@ -199,6 +237,25 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
           <MasteryBadge level={stats.level} />
           {done && stats.level !== 'mastered' && <span className="badge ok">{t('completed')}</span>}
         </div>
+        <div className="lesson-tools no-print">
+          <button className="link" aria-pressed={note.bookmarked} onClick={note.toggleBookmark} disabled={!note.loaded}>
+            {note.bookmarked ? `★ ${t('bookmarkOn')}` : `☆ ${t('bookmarkAdd')}`}
+          </button>
+          <button
+            className="link"
+            onClick={async () => {
+              setPdfMessage(null)
+              const r = await savePdf(`${subject ? loc(subject.name) : 'MathPath'} - ${lesson.order}. ${loc(lesson.title)}`)
+              if (r?.ok) setPdfMessage({ ok: true, text: t('pdfSaved', { file: r.file }) })
+              else if (!r?.canceled) setPdfMessage({ ok: false, text: t('pdfError') })
+            }}
+          >
+            {t('pdfSave')}
+          </button>
+          <span className={`small ${pdfMessage?.ok ? 'muted' : 'bad'}`} aria-live="polite">
+            {pdfMessage?.text}
+          </span>
+        </div>
       </header>
 
       <NotationBox symbols={symbols} />
@@ -249,6 +306,8 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
           })}
         </section>
       )}
+
+      <NotePanel note={note} t={t} />
 
       {Array.isArray(lesson.references) && lesson.references.length > 0 && (
         <section className="references">

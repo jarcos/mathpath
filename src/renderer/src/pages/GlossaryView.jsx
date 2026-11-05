@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getGlossary } from '@content/index.js'
 import { useApp } from '@/AppContext.jsx'
@@ -6,7 +6,7 @@ import MathText from '@/components/MathText.jsx'
 
 const CATEGORY_ORDER = ['greek', 'operator', 'relation', 'set', 'logic', 'accent', 'function']
 
-export default function GlossaryView({ onBack }) {
+export default function GlossaryView({ onBack, focusId }) {
   const { t } = useTranslation()
   const { loc, lang } = useApp()
   const [query, setQuery] = useState('')
@@ -24,6 +24,13 @@ export default function GlossaryView({ onBack }) {
       return hay.includes(q)
     })
   }, [glossary, query])
+
+  // Opened on a symbol (from the search): scrolled to it and marked.
+  useEffect(() => {
+    if (!focusId) return
+    const el = document.getElementById(`sym-${focusId}`)
+    el?.scrollIntoView({ block: 'center' })
+  }, [focusId])
 
   const groups = useMemo(() => {
     const byCat = {}
@@ -59,7 +66,7 @@ export default function GlossaryView({ onBack }) {
             <h2 className="track-title">{t('cat_' + cat)}</h2>
             <ul className="notation-list glossary-list">
               {items.map((s) => (
-                <li key={s.id} className="notation-item">
+                <li key={s.id} id={`sym-${s.id}`} className={`notation-item ${s.id === focusId ? 'focused' : ''}`}>
                   <span className="notation-sym">
                     <MathText tex={s.display} />
                   </span>

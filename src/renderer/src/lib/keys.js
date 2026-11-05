@@ -41,7 +41,17 @@ export function historyKey(e) {
 export const isPlainKey = (e) =>
   !e.metaKey && !e.ctrlKey && !e.altKey && !e.isComposing && !e.repeat && !isTyping(e.target)
 
+/** Cmd+K (Ctrl+K elsewhere): open or close the search, also while typing. */
+export const isSearchKey = (e) =>
+  !e.isComposing &&
+  !e.repeat &&
+  !e.shiftKey &&
+  !e.altKey &&
+  (isMac ? e.metaKey && !e.ctrlKey : e.ctrlKey && !e.metaKey) &&
+  typeof e.key === 'string' &&
+  (e.key.toLowerCase() === 'k' || (e.key.length !== 1 && e.code === 'KeyK'))
+
 /** How the shortcuts read on this computer. */
 export const KEYS = isMac
-  ? { back: '⌘ [', forward: '⌘ ]', run: '⌘ ↩' }
-  : { back: 'Alt + ←', forward: 'Alt + →', run: 'Ctrl + Enter' }
+  ? { back: '⌘ [', forward: '⌘ ]', run: '⌘ ↩', search: '⌘ K' }
+  : { back: 'Alt + ←', forward: 'Alt + →', run: 'Ctrl + Enter', search: 'Ctrl + K' }

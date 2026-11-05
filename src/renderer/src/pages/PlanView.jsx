@@ -7,9 +7,9 @@ import { useApp } from '@/AppContext.jsx'
 import { relativeDay } from '@/lib/mastery.js'
 import { remainingLessons, useStudyGoal, useTodayMinutes } from '@/lib/studyPlan.js'
 import ProgressBar from '@/components/ProgressBar.jsx'
+import ActivityHeatmap from '@/components/ActivityHeatmap.jsx'
 
 const MINUTE_CHOICES = [15, 30, 45, 60, 90, 120]
-const HEATMAP_WEEKS = 18
 // Activity fetched for the streak (the heatmap shows only the last weeks).
 const ACTIVITY_DAYS = 400
 
@@ -59,32 +59,9 @@ function GoalForm({ goal, onSave, onCancel }) {
   )
 }
 
-// GitHub-style grid of the last weeks: one cell per day, shaded by answers.
-function ActivityHeatmap({ counts, lang }) {
-  const { t } = useTranslation()
-  // Noon, so stepping a day at a time never lands in a DST gap.
-  const today = new Date()
-  today.setHours(12, 0, 0, 0)
-  const start = new Date(today)
-  start.setDate(start.getDate() - (HEATMAP_WEEKS * 7 - 1) - ((today.getDay() + 6) % 7))
-  const cells = []
-  for (let d = new Date(start); d <= today; d.setDate(d.getDate() + 1)) {
-    const key = dayKey(d)
-    const n = counts.get(key) || 0
-    const level = n === 0 ? 0 : n < 5 ? 1 : n < 15 ? 2 : 3
-    const label = new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'short' }).format(d)
-    cells.push(<span key={key} className={`heat heat-${level}`} title={t('planActivityDay', { date: label, count: n })} />)
-  }
-  return (
-    <div className="heatmap" role="img" aria-label={t('planActivity')}>
-      {cells}
-    </div>
-  )
-}
-
 // The cross-subject study plan: what's left for the goal, today's lessons and
 // reviews, the coming days, and the learner's streak.
-export default function PlanView({ onBack, onOpenLesson, onStartReview }) {
+export default function PlanView({ onBack, onOpenLesson, onStartReview, onOpenStats }) {
   const { t } = useTranslation()
   const { loc, lang, completed, learning } = useApp()
   const [goal, saveGoal] = useStudyGoal()
@@ -238,6 +215,11 @@ export default function PlanView({ onBack, onOpenLesson, onStartReview }) {
       <section className="plan-panel">
         <h2 className="plan-section-title">{t('planActivity')}</h2>
         <ActivityHeatmap counts={activity} lang={lang} />
+        <p className="small">
+          <button className="link" onClick={onOpenStats}>
+            {t('statsLink')}
+          </button>
+        </p>
       </section>
     </div>
   )

@@ -37,6 +37,8 @@ export function AppProvider({ children }) {
   const [dataVersion, setDataVersion] = useState(0)
   // The view open when MathPath was last closed, and how far it was scrolled.
   const [savedView, setSavedView] = useState(null)
+  // While a PDF is made the page is drawn in the light theme, for paper.
+  const [printing, setPrinting] = useState(false)
 
   const refreshLearning = useCallback(async () => {
     try {
@@ -108,6 +110,32 @@ export function AppProvider({ children }) {
     window.api.settings.set('theme', t)
   }, [])
 
+  // Saves the page shown as a PDF. The learner picks where first; then the
+  // page is drawn in the light theme for the moment printing takes, and back.
+  // Resolves with { ok, file } | { canceled } | { error }.
+  const savePdf = useCallback(
+    async (name) => {
+      try {
+        const picked = await window.api.pdf.pick(name)
+        if (!picked?.ok) return picked
+      } catch {
+        return { error: 'save' }
+      }
+      setPrinting(true)
+      document.documentElement.setAttribute('data-theme', 'light')
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
+      try {
+        return await window.api.pdf.print()
+      } catch {
+        return { error: 'save' }
+      } finally {
+        setPrinting(false)
+        document.documentElement.setAttribute('data-theme', theme)
+      }
+    },
+    [theme]
+  )
+
   const setZoom = useCallback((z) => {
     setZoomState(z)
     window.api.view?.setZoom(z)
@@ -155,7 +183,11 @@ export function AppProvider({ children }) {
   const value = {
     lang,
     setLang,
-    theme,
+    // What to draw in (graphs): light while a PDF is being made.
+    theme: printing ? 'light' : theme,
+    savedTheme: theme,
+    printing,
+    savePdf,
     setTheme,
     zoom,
     setZoom,
