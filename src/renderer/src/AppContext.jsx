@@ -89,6 +89,12 @@ export function AppProvider({ children }) {
     setDataVersion((v) => v + 1)
   }, [load])
 
+  // The page's language follows the app's, so a screen reader reads it with
+  // the right voice (and a saved PDF says which language it is in).
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
+
   // What is due depends on the day: refresh when the learner comes back.
   useEffect(() => {
     window.addEventListener('focus', refreshLearning)
