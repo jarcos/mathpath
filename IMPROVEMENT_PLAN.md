@@ -436,7 +436,7 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 - Exportar encima de una copia anterior y quedarse sin disco podía dejarla a medias. Ahora se escribe en un fichero temporal y se renombra al terminar.
 - Hay 5 tests de copia de seguridad, 67 en total.
 
-### Estado de la parte 2: historial, "Continuar", atajos y accesibilidad (hito M34, sin publicar)
+### Estado de la parte 2: historial, "Continuar", atajos y accesibilidad (hito M34, publicado en v0.6.0)
 
 - **Historial real**, como en un navegador:
   - atrás y adelante con las flechas de la barra superior, ⌘[ / ⌘] (o ⌘← / ⌘→ fuera de un campo de texto) en Mac, Alt+← / Alt+→ en Windows y Linux, y los botones laterales del ratón;
@@ -505,7 +505,7 @@ Orden propuesto para lo que queda: M34 (por la copia de seguridad del progreso),
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
-| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | 🟡 Parte 1 (ajustes y copia de seguridad) publicada en v0.5.0; parte 2 (historial, "Continuar", atajos y accesibilidad) hecha, sin publicar; falta la parte 3 |
+| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | 🟡 Parte 1 (ajustes y copia de seguridad) publicada en v0.5.0; parte 2 (historial, "Continuar", atajos y accesibilidad) publicada en v0.6.0; falta la parte 3 |
 | **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | — |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 
