@@ -11,6 +11,12 @@ import {
   getLearningState,
   getActivity,
   getRecentLessons,
+  getLessonTotals,
+  getReviewForecast,
+  getNote,
+  getNotes,
+  saveNote,
+  setBookmark,
   getTodayStudy,
   getMissesToday,
   getDueReviews,
@@ -21,6 +27,7 @@ import {
 } from './db.js'
 import { initUpdater } from './updater.js'
 import { registerBackupIpc } from './backup.js'
+import { registerExportIpc } from './exports.js'
 import { startRendererServer } from './rendererServer.js'
 
 const isDev = !app.isPackaged
@@ -106,15 +113,23 @@ function registerIpc() {
   ipcMain.handle('learning:state', (_e, until) => getLearningState(until))
   ipcMain.handle('learning:activity', (_e, since) => getActivity(since))
   ipcMain.handle('learning:recent', () => getRecentLessons(10))
+  ipcMain.handle('learning:totals', () => getLessonTotals())
   ipcMain.handle('learning:today', (_e, known) => getTodayStudy(known))
   ipcMain.handle('review:due', (_e, until, limit, known) => getDueReviews(until, limit, known))
   ipcMain.handle('review:summary', (_e, until, known) => getReviewSummary(until, known))
+  ipcMain.handle('review:forecast', (_e, days, known) => getReviewForecast(days, known))
+
+  ipcMain.handle('notes:get', (_e, lessonId) => getNote(lessonId))
+  ipcMain.handle('notes:list', () => getNotes())
+  ipcMain.handle('notes:save', (_e, lessonId, body) => saveNote(lessonId, body))
+  ipcMain.handle('notes:bookmark', (_e, lessonId, on) => setBookmark(lessonId, on))
 
   ipcMain.handle('plan:get', (_e, subjectId) => getPlan(subjectId))
   ipcMain.handle('plan:start', (_e, subjectId, targetDays) => startPlan(subjectId, targetDays))
   ipcMain.handle('plan:reset', (_e, subjectId, targetDays) => resetPlan(subjectId, targetDays))
 
   registerBackupIpc()
+  registerExportIpc()
 }
 
 // One instance at a time: a second one would share (and could migrate) the

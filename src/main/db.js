@@ -78,6 +78,18 @@ const MIGRATIONS = [
     d.exec(`
       ALTER TABLE attempts ADD COLUMN misses INTEGER;
       ALTER TABLE attempts ADD COLUMN mode   TEXT;
+    `),
+
+  // 5 — the learner's note and bookmark for a lesson (a row only while there
+  // is one or the other).
+  (d) =>
+    d.exec(`
+      CREATE TABLE notes (
+        lesson_id  TEXT PRIMARY KEY,
+        body       TEXT NOT NULL DEFAULT '',
+        bookmarked INTEGER NOT NULL DEFAULT 0,
+        updated_at TEXT NOT NULL
+      );
     `)
 ]
 
@@ -432,11 +444,97 @@ export function getReviewSummary(until, known = null) {
   return { due, total, nextDue: next || null }
 }
 
+/**
+ * Reviews falling due on each of the next `days` local days, from today
+ * (which also counts the overdue ones): [{ day: 'YYYY-MM-DD', reviews }].
+ */
+export function getReviewForecast(days = 14, known = null) {
+  const n = Math.max(1, Math.min(60, Number(days) || 14))
+  return db
+    .prepare(
+      `SELECT MAX(date(due, 'localtime'), date('now', 'localtime')) AS day, COUNT(*) AS reviews
+         FROM review_cards
+        WHERE date(due, 'localtime') < date('now', 'localtime', '+' || @n || ' days') AND ${SHIPPED}
+        GROUP BY day ORDER BY day`
+    )
+    .all({ n, known: knownParam(known) })
+}
+
+/* ---------- statistics ---------- */
+
+// A single answer counts for at most this long (an answer left open overnight
+// is not ten hours of study).
+const MAX_ANSWER_MS = 10 * 60000
+
+/**
+ * Per lesson: answers given, how many were right, and the time spent
+ * answering (each answer capped at MAX_ANSWER_MS).
+ */
+export function getLessonTotals() {
+  return db
+    .prepare(
+      `SELECT lesson_id, COUNT(*) AS answers, SUM(correct) AS correct,
+              SUM(MIN(MAX(COALESCE(time_ms, 0), 0), ${MAX_ANSWER_MS})) AS time_ms
+         FROM attempts GROUP BY lesson_id ORDER BY lesson_id`
+    )
+    .all()
+}
+
+/* ---------- notes & bookmarks ---------- */
+
+const MAX_NOTE = 100000
+const isLessonId = (id) => typeof id === 'string' && id.length > 0 && id.length <= 200
+
+/** The note and bookmark of a lesson: { body, bookmarked, updatedAt }. */
+export function getNote(lessonId) {
+  const r = isLessonId(lessonId)
+    ? db.prepare('SELECT body, bookmarked, updated_at FROM notes WHERE lesson_id = ?').get(lessonId)
+    : null
+  return { body: r?.body ?? '', bookmarked: !!r?.bookmarked, updatedAt: r?.updated_at ?? null }
+}
+
+// Keeps a lesson's row only while it has a note or a bookmark.
+function putNote(lessonId, body, bookmarked) {
+  if (!body.trim() && !bookmarked) {
+    db.prepare('DELETE FROM notes WHERE lesson_id = ?').run(lessonId)
+    return
+  }
+  db.prepare(
+    `INSERT INTO notes (lesson_id, body, bookmarked, updated_at) VALUES (@lessonId, @body, @bookmarked, @now)
+     ON CONFLICT(lesson_id) DO UPDATE SET body = @body, bookmarked = @bookmarked, updated_at = @now`
+  ).run({ lessonId, body, bookmarked: bookmarked ? 1 : 0, now: new Date().toISOString() })
+}
+
+/** Saves a lesson's note (an empty one is removed). False if refused. */
+export function saveNote(lessonId, body) {
+  if (!isLessonId(lessonId) || typeof body !== 'string' || body.length > MAX_NOTE) return false
+  putNote(lessonId, body, getNote(lessonId).bookmarked)
+  return true
+}
+
+/** Bookmarks a lesson, or removes its bookmark. False if refused. */
+export function setBookmark(lessonId, on) {
+  if (!isLessonId(lessonId)) return false
+  putNote(lessonId, getNote(lessonId).body, !!on)
+  return true
+}
+
+/** Every note and bookmark, the latest first. */
+export function getNotes() {
+  return db
+    .prepare('SELECT lesson_id, body, bookmarked, updated_at FROM notes ORDER BY updated_at DESC, lesson_id')
+    .all()
+    .map((r) => ({ lessonId: r.lesson_id, body: r.body, bookmarked: !!r.bookmarked, updatedAt: r.updated_at }))
+}
+
 /* ---------- backup ---------- */
 
 // What a backup holds, in the order it is restored. Format 1 files come from
-// schema 4 and later.
-const BACKUP_TABLES = ['settings', 'subject_plan', 'lesson_progress', 'attempts', 'review_cards']
+// schema 4 and later; a table added since (TABLE_SINCE: the schema that added
+// it) is empty in a backup from before it.
+const BACKUP_TABLES = ['settings', 'subject_plan', 'lesson_progress', 'attempts', 'review_cards', 'notes']
+const TABLE_SINCE = { notes: 5 }
+const rowsOf = (data, t) => data.tables[t] ?? (data.schema < (TABLE_SINCE[t] ?? 0) ? [] : undefined)
 export const BACKUP_FORMAT = 1
 // Settings that are preferences, not progress: a reset keeps them.
 const PREFERENCES = ['language', 'theme', 'autoUpdate', 'zoom']
@@ -471,19 +569,21 @@ function knownCells(columns, row) {
   return cols.length && cols.every((c) => fits(c.type, row[c.name])) ? cols.map((c) => c.name) : null
 }
 
-const countsOf = (tables) => ({
-  lessons: tables.lesson_progress.filter((r) => Number(r.completed) === 1).length,
-  answers: tables.attempts.length,
-  reviews: tables.review_cards.length
+const countsOf = (data) => ({
+  lessons: rowsOf(data, 'lesson_progress').filter((r) => Number(r.completed) === 1).length,
+  answers: rowsOf(data, 'attempts').length,
+  reviews: rowsOf(data, 'review_cards').length,
+  notes: rowsOf(data, 'notes').length
 })
 
-/** Lessons completed, answers given and review cards, as a backup would count them. */
+/** Lessons completed, answers, review cards and notes, as a backup would count them. */
 export function progressCounts() {
   const n = (sql) => db.prepare(sql).get().n
   return {
     lessons: n('SELECT COUNT(*) AS n FROM lesson_progress WHERE completed = 1'),
     answers: n('SELECT COUNT(*) AS n FROM attempts'),
-    reviews: n('SELECT COUNT(*) AS n FROM review_cards')
+    reviews: n('SELECT COUNT(*) AS n FROM review_cards'),
+    notes: n('SELECT COUNT(*) AS n FROM notes')
   }
 }
 
@@ -510,7 +610,7 @@ export function checkBackup(data) {
     throw new BackupError('invalid')
   }
   for (const t of BACKUP_TABLES) {
-    const rows = data.tables[t]
+    const rows = rowsOf(data, t)
     const columns = columnsOf(t)
     if (!Array.isArray(rows) || !rows.every((r) => isRow(r) && knownCells(columns, r))) {
       throw new BackupError('invalid')
@@ -521,7 +621,7 @@ export function checkBackup(data) {
   return {
     exportedAt: typeof data.exportedAt === 'string' ? data.exportedAt : null,
     appVersion: typeof data.appVersion === 'string' ? data.appVersion : null,
-    ...countsOf(data.tables)
+    ...countsOf(data)
   }
 }
 
@@ -550,7 +650,7 @@ export function importProgress(data) {
       }
       for (const t of BACKUP_TABLES) {
         const columns = columnsOf(t)
-        for (const row of data.tables[t]) {
+        for (const row of rowsOf(data, t)) {
           if (t === 'settings' && LOCAL_SETTINGS.includes(row.key)) continue
           const cols = knownCells(columns, row)
           insert(t, cols).run(cols.map((c) => row[c]))
@@ -571,7 +671,8 @@ export function importProgress(data) {
 
 /**
  * Deletes all progress — answers, completed lessons, review cards, study
- * plans and the study goal — and keeps the preferences.
+ * plans and the study goal — and keeps the preferences and the learner's own
+ * notes and bookmarks.
  */
 export function resetProgress() {
   db.transaction(() => {

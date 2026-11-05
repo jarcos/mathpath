@@ -12,6 +12,12 @@ import {
   getDueReviews,
   getLearningState,
   getMissesToday,
+  getNote,
+  getNotes,
+  getLessonTotals,
+  getReviewForecast,
+  saveNote,
+  setBookmark,
   getRecentLessons,
   getReviewSummary,
   getSetting,
@@ -56,11 +62,11 @@ function legacyDb({ solves = 0 } = {}) {
 test('migrates a 0.1.x database, keeping data and backfilling review cards', () => {
   const path = legacyDb()
   const db = initDb(path)
-  assert.equal(db.pragma('user_version', { simple: true }), 4)
+  assert.equal(db.pragma('user_version', { simple: true }), 5)
   assert.equal(getSetting('language'), 'es')
 
   // The pre-migration database is kept, untouched, next to it.
-  const backup = new Database(`${path}.before-v4`, { readonly: true })
+  const backup = new Database(`${path}.before-v5`, { readonly: true })
   assert.equal(backup.pragma('user_version', { simple: true }), 0)
   assert.equal(backup.prepare('SELECT COUNT(*) AS n FROM attempts').get().n, 4)
   backup.close()
@@ -127,7 +133,7 @@ test('a corrupt attempt date does not stop the app from opening', () => {
   d.prepare('UPDATE attempts SET created_at = ? WHERE exercise_id = ?').run('not a date', 'ex-first-try')
   d.close()
   const db = initDb(path)
-  assert.equal(db.pragma('user_version', { simple: true }), 4)
+  assert.equal(db.pragma('user_version', { simple: true }), 5)
   assert.equal(db.prepare('SELECT COUNT(*) AS n FROM review_cards').get().n, 2)
 })
 
@@ -147,7 +153,7 @@ test('reviews of exercises no longer in the content are not shown or counted', (
 
 test('a first solve in a lesson creates a card; retries and re-solves do not change it', () => {
   const db = initDb(':memory:')
-  assert.equal(db.pragma('user_version', { simple: true }), 4)
+  assert.equal(db.pragma('user_version', { simple: true }), 5)
 
   recordAttempt({ exerciseId: 'e1', lessonId: 'l1', correct: false, userAnswer: '1', schedule: 'learn' })
   assert.equal(db.prepare('SELECT COUNT(*) AS n FROM review_cards').get().n, 0)
@@ -330,6 +336,8 @@ function someProgress() {
   recordAttempt({ exerciseId: 'a', lessonId: 'l1', correct: true, userAnswer: '2', misses: 1, mode: 'lesson', schedule: 'learn' })
   recordAttempt({ exerciseId: 'b', lessonId: 'l1', correct: true, userAnswer: 'x^2', mode: 'lesson', schedule: 'learn' })
   recordAttempt({ exerciseId: 'b', lessonId: 'l1', correct: true, userAnswer: 'x^2', mode: 'review', schedule: 'review' })
+  saveNote('l1', 'Remember: $a^2 - b^2 = (a-b)(a+b)$')
+  setBookmark('l2', true)
   return db
 }
 const rowsOf = (backup) => JSON.parse(JSON.stringify(backup.tables))
@@ -339,15 +347,16 @@ test('a backup holds every table and restores it exactly, replacing what was the
   someProgress()
   const backup = exportProgress('0.5.0')
   assert.equal(backup.app, 'MathPath')
-  assert.equal(backup.schema, 4)
+  assert.equal(backup.schema, 5)
   assert.equal(backup.appVersion, '0.5.0')
-  assert.deepEqual(progressCounts(), { lessons: 2, answers: 4, reviews: 2 })
+  assert.deepEqual(progressCounts(), { lessons: 2, answers: 4, reviews: 2, notes: 2 })
   assert.deepEqual(checkBackup(backup), {
     exportedAt: backup.exportedAt,
     appVersion: '0.5.0',
     lessons: 2,
     answers: 4,
-    reviews: 2
+    reviews: 2,
+    notes: 2
   })
 
   // Into a database with other progress: the backup replaces it all.
@@ -407,7 +416,11 @@ test('a damaged or newer backup is refused and changes nothing', () => {
   throwsCode(() => importProgress(broken((b) => delete b.tables.attempts[3].created_at)), 'invalid')
   throwsCode(() => importProgress(broken((b) => (b.tables.attempts[3].id = b.tables.attempts[0].id))), 'invalid')
   throwsCode(() => importProgress(broken((b) => (b.tables.attempts[3] = { unknown: 1 }))), 'invalid')
-  throwsCode(() => importProgress(broken((b) => (b.schema = 5))), 'newer')
+  // A table this schema has must be there; notes are text with a lesson.
+  throwsCode(() => importProgress(broken((b) => delete b.tables.notes)), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.tables.notes[0].body = 7))), 'invalid')
+  throwsCode(() => importProgress(broken((b) => delete b.tables.notes[0].updated_at)), 'invalid')
+  throwsCode(() => importProgress(broken((b) => (b.schema = 6))), 'newer')
   throwsCode(() => importProgress(broken((b) => (b.format = 2))), 'newer')
   assert.deepEqual(rowsOf(exportProgress()), before)
 })
@@ -416,7 +429,8 @@ test('a reset deletes the progress and keeps the preferences', () => {
   const db = someProgress()
   setSetting('autoUpdate', '1')
   resetProgress()
-  assert.deepEqual(progressCounts(), { lessons: 0, answers: 0, reviews: 0 })
+  // The learner's own notes and bookmarks stay.
+  assert.deepEqual(progressCounts(), { lessons: 0, answers: 0, reviews: 0, notes: 2 })
   for (const t of ['subject_plan', 'lesson_progress']) {
     assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM ${t}`).get().n, 0)
   }
@@ -458,4 +472,66 @@ test('recent lessons: answers given in a lesson and lessons completed by hand, l
   done.run('l-unmarked', 0, null, null)
   assert.deepEqual(getRecentLessons(), ['l-by-hand', 'l3', 'l1', 'l2'])
   assert.deepEqual(getRecentLessons(2), ['l-by-hand', 'l3'])
+})
+
+test('a backup from before notes existed loads with no notes', () => {
+  someProgress()
+  const backup = exportProgress()
+  backup.schema = 4
+  delete backup.tables.notes
+  assert.equal(checkBackup(backup).notes, 0)
+  initDb(':memory:')
+  saveNote('l9', 'replaced')
+  importProgress(backup)
+  assert.deepEqual(getNotes(), [])
+  assert.equal(progressCounts().answers, 4)
+})
+
+test('notes and bookmarks: a row only while there is one or the other', () => {
+  const db = initDb(':memory:')
+  assert.deepEqual(getNote('l1'), { body: '', bookmarked: false, updatedAt: null })
+  assert.equal(saveNote('l1', 'first idea'), true)
+  assert.equal(setBookmark('l1', true), true)
+  assert.equal(getNote('l1').body, 'first idea')
+  assert.equal(getNote('l1').bookmarked, true)
+  // Clearing the note keeps the bookmark, and the other way round.
+  saveNote('l1', '  ')
+  assert.deepEqual([getNote('l1').body, getNote('l1').bookmarked], ['  ', true])
+  setBookmark('l1', false)
+  assert.equal(db.prepare('SELECT COUNT(*) AS n FROM notes').get().n, 0)
+  saveNote('l2', 'b')
+  setBookmark('l3', true)
+  assert.deepEqual(
+    getNotes().map((n) => [n.lessonId, n.body, n.bookmarked]).sort(),
+    [
+      ['l2', 'b', false],
+      ['l3', '', true]
+    ]
+  )
+  // Refused: not a lesson id, not text, too long.
+  assert.equal(saveNote('', 'x'), false)
+  assert.equal(saveNote('l4', 42), false)
+  assert.equal(saveNote('l4', 'x'.repeat(100001)), false)
+  assert.equal(setBookmark(null, true), false)
+  assert.equal(getNotes().length, 2)
+})
+
+test('statistics: answers, right ones and time per lesson; reviews due per day', () => {
+  const db = initDb(':memory:')
+  recordAttempt({ exerciseId: 'a', lessonId: 'l1', correct: false, timeMs: 30000, mode: 'lesson' })
+  recordAttempt({ exerciseId: 'a', lessonId: 'l1', correct: true, timeMs: 3 * 3600000, mode: 'lesson', schedule: 'learn' })
+  recordAttempt({ exerciseId: 'b', lessonId: 'l2', correct: true, timeMs: null, mode: 'lesson', schedule: 'learn' })
+  assert.deepEqual(getLessonTotals(), [
+    { lesson_id: 'l1', answers: 2, correct: 1, time_ms: 30000 + 600000 },
+    { lesson_id: 'l2', answers: 1, correct: 1, time_ms: 0 }
+  ])
+  const set = db.prepare('UPDATE review_cards SET due = ? WHERE exercise_id = ?')
+  set.run(inDays(-3), 'a') // overdue: counts today
+  set.run(inDays(2), 'b')
+  const forecast = getReviewForecast(14)
+  assert.equal(forecast.length, 2)
+  assert.equal(forecast[0].reviews, 1)
+  assert.equal(forecast[0].day, new Date().toLocaleDateString('sv'))
+  assert.equal(getReviewForecast(1).length, 1)
+  assert.deepEqual(getReviewForecast(14, ['b']).map((r) => r.reviews), [1])
 })

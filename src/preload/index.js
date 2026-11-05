@@ -26,11 +26,29 @@ const api = {
     activity: (since) => ipcRenderer.invoke('learning:activity', since),
     // The lessons worked on last, latest first (for "Continue").
     recent: () => ipcRenderer.invoke('learning:recent'),
+    // Per lesson: answers, right ones and time spent answering.
+    totals: () => ipcRenderer.invoke('learning:totals'),
     today: (known) => ipcRenderer.invoke('learning:today', known)
   },
   review: {
     due: (until, limit, known) => ipcRenderer.invoke('review:due', until, limit, known),
-    summary: (until, known) => ipcRenderer.invoke('review:summary', until, known)
+    summary: (until, known) => ipcRenderer.invoke('review:summary', until, known),
+    forecast: (days, known) => ipcRenderer.invoke('review:forecast', days, known)
+  },
+  // The learner's note and bookmark per lesson.
+  notes: {
+    get: (lessonId) => ipcRenderer.invoke('notes:get', lessonId),
+    list: () => ipcRenderer.invoke('notes:list'),
+    save: (lessonId, body) => ipcRenderer.invoke('notes:save', lessonId, body),
+    bookmark: (lessonId, on) => ipcRenderer.invoke('notes:bookmark', lessonId, on),
+    // Saves the given Markdown where the learner picks (main's own dialog).
+    export: (markdown) => ipcRenderer.invoke('notes:export', markdown)
+  },
+  // Saves the page shown as a PDF: first the learner picks where (main's own
+  // dialog), then the page is printed into that file.
+  pdf: {
+    pick: (name) => ipcRenderer.invoke('pdf:pick', name),
+    print: () => ipcRenderer.invoke('pdf:print')
   },
   view: {
     setZoom: (factor) => ipcRenderer.invoke('view:setZoom', factor)
