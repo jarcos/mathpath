@@ -473,6 +473,46 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 - Hay 7 tests nuevos, 74 en total.
 - Queda igual que antes que salir de un examen a medias (ahora también con "atrás") no pide confirmación. Las respuestas ya dadas se guardan igualmente.
 
+### Estado de la parte 3: búsqueda, notas, estadísticas y PDF (hito M34, sin publicar)
+
+- **Búsqueda (⌘K, o la lupa de la barra superior):**
+  - encuentra lecciones por título, títulos de sección y texto, en los dos idiomas (se muestran en el del alumno);
+  - encuentra símbolos del glosario por nombre, significado o forma (λ, `\nabla`, "sumatorio"), y las páginas de la app;
+  - da igual escribir con o sin acentos y mayúsculas, y una palabra entera en el título cuenta más que el principio de otra;
+  - se maneja con flechas, Intro y Esc, como combobox/listbox accesible, con el resto de la ventana `inert` mientras está abierta.
+  - El índice (`src/shared/search.js`) se construye al abrirla la primera vez, a partir del contenido que ya va empaquetado: es igual de offline que generarlo en el build y no añade un paso.
+- **Notas y marcadores** (migración 5, tabla `notes`):
+  - cada lección tiene su nota, que se guarda sola mientras se escribe y al cambiar de lección o cerrar la ventana, y un marcador ☆;
+  - la página **Mis notas** las agrupa por asignatura, filtra las marcadas y las exporta a Markdown (el proceso principal abre su propio diálogo);
+  - van en las copias de seguridad (una copia de un esquema anterior las trae vacías) y reiniciar el progreso las conserva.
+- **Estadísticas:**
+  - lecciones y ejercicios hechos, respuestas y porcentaje de aciertos, tiempo respondiendo (cada respuesta cuenta como mucho 10 minutos), racha actual y mejor racha;
+  - una tabla por asignatura y las lecciones para repasar (practicadas, con menos del 60 % de aciertos);
+  - la previsión de repasos de los próximos 14 días, en barras con su tabla para lectores de pantalla, y la actividad.
+- **PDF** (`printToPDF`, sin fondos, con estilos `@media print` que quitan los controles):
+  - de una lección: texto, ejemplos, gráficas, código, enunciados de los ejercicios y la nota;
+  - de la **chuleta** de una asignatura: por lección, sus fórmulas destacadas, la notación que usa (del glosario) y la nota del alumno. Las lecciones no tienen un resumen propio y solo las de cálculo multivariable tienen fórmulas destacadas; un resumen escrito por lección sería trabajo de contenido (M35).
+  - Primero se elige dónde guardar y después, solo mientras se imprime, la página se dibuja con el tema claro.
+- **Prueba en la app empaquetada** con una copia de la base de datos real (la migración a v5 hizo su copia `before-v5`) y teclas reales:
+  - búsqueda de lecciones y símbolos;
+  - nota y marcador, también al salir de la lección justo después de escribir;
+  - Mis notas y su Markdown;
+  - estadísticas;
+  - la chuleta y una lección en PDF;
+  - la barra a 140 % en 900 px.
+  - Arregló varias cosas:
+    - una lección cuyo título contiene la palabra buscada aparecía detrás de otras cuyo título solo empieza por ella;
+    - el PDF salía con márgenes oscuros (los fondos) y cortaba fórmulas y líneas de código largas;
+    - las tarjetas de estadísticas dejaban una sola en la última fila.
+
+**Tras la revisión independiente** (sin fallos de corrección ni de seguridad):
+
+- Mientras el diálogo de guardar el PDF estaba abierto, la ventana se veía con el tema claro. Ahora la ruta se elige antes de cambiar el tema.
+- Hacer clic en la ayuda de la búsqueda le quitaba el foco y dejaban de funcionar las teclas. Ahora el foco no sale de la casilla.
+- El marcador se podía pulsar antes de cargar la nota.
+- Una nota que no se pudo guardar se reintenta con el siguiente cambio.
+- Hay 14 tests nuevos (notas, copias sin notas, estadísticas, búsqueda, chuleta y Markdown), 88 en total.
+
 ---
 
 ## Fase 5: ingeniería (hacer antes o a la vez que la Fase 1)
@@ -505,7 +545,7 @@ Orden propuesto para lo que queda: M34 (por la copia de seguridad del progreso),
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
-| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | 🟡 Parte 1 (ajustes y copia de seguridad) publicada en v0.5.0; parte 2 (historial, "Continuar", atajos y accesibilidad) publicada en v0.6.0; falta la parte 3 |
+| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | 🟡 Parte 1 (ajustes y copia de seguridad) publicada en v0.5.0; parte 2 (historial, "Continuar", atajos y accesibilidad) publicada en v0.6.0; parte 3 (búsqueda, notas, estadísticas y PDF) hecha, sin publicar |
 | **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | — |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 

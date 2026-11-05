@@ -45,9 +45,13 @@ Prefer to run from source? See [Getting started](#-getting-started).
 - **Pick up where you left off** — MathPath reopens on the page you were on, at the same scroll, and "Continue" takes you back to the lesson you worked on last (or the next one).
 - **Back and forward** like a browser: the arrows in the top bar, ⌘[ / ⌘] (Alt+← / Alt+→ on Windows and Linux) or the mouse's side buttons, each page back where you left it.
 - **Keyboard and screen readers** — Enter checks an answer (also on a chosen option), ⌘/Ctrl+Enter runs a code exercise, N opens the next lesson, and every verdict is announced. Settings lists the shortcuts.
+- **Search (⌘K)** — lessons by title, section and text, symbols by name or form (λ, `\nabla`, "sumatorio"), and the app's pages, as you type. Accents and capitals don't matter.
+- **Notes and bookmarks** — write your own note at the end of any lesson (formulas between `$`), bookmark it with ☆, and find them all in *My notes*, which exports them to Markdown.
+- **Statistics** — lessons and exercises done, answers and how many were right, time answering, streaks, each subject, the lessons to go over, the reviews of the next 14 days and your activity.
+- **PDF** — save any lesson, or a subject's *cheat sheet* (the notation and formulas of every lesson, with your notes), as a PDF to print.
 - **Bilingual** (English / Spanish) UI *and* content, **light & dark** themes and a **text size** from 90% to 140% — all remembered, all on the Settings page.
 - **Local-only data** — progress, attempts, review schedule, settings and plans in SQLite in your OS user-data folder.
-- **Backups** — Settings exports all your progress to a JSON file and imports it back (on this computer or another), or resets it. Before an import or a reset, MathPath saves a copy of what you had in a `backups` folder next to the database, keeping the last 10.
+- **Backups** — Settings exports all your progress and notes to a JSON file and imports it back (on this computer or another), or resets it. Before an import or a reset, MathPath saves a copy of what you had in a `backups` folder next to the database, keeping the last 10.
 - **Opt-in updates** — turn on "Check for updates automatically" (or press "Check for updates") in Settings and new versions download in the background and install on restart. It only asks GitHub for the latest release; nothing about you is sent. Off by default.
 
 ---
@@ -147,12 +151,14 @@ src/
                + review.js (FSRS scheduling)
                + rendererServer.js (loopback server for the packaged renderer)
                + backup.js (export / import / reset of the progress, with automatic copies)
+               + exports.js (notes as Markdown, a page as PDF)
   preload/     Secure contextBridge (the only renderer ↔ main channel)
   shared/      validate.js (mathjs checker) · notation.js (symbol detection)
                · pygrade.js (code-exercise grader, shared with the verifier)
                · learning.js (review ratings, mastery rules)
                · curriculum.js (prerequisite graph) · planner.js (study planner, streaks)
                · navigation.js (back / forward history, last view, "Continue")
+               · search.js (Cmd+K index) · stats.js (Statistics) · sheet.js (cheat sheet, notes as Markdown)
                · params.js (template exercises)
   renderer/    React UI (Vite)
     src/
@@ -163,7 +169,8 @@ src/
       lib/keys.js        keyboard shortcuts (back / forward keys, what counts as typing)
       components/        MathText, FunctionGraph, Exercise, CodeBlock, NotationBox, MasteryBadge
       pages/             Dashboard, SubjectView, LessonView, ReviewView, PlanView,
-                         PlacementView, ExamView, MapView, GlossaryView, SettingsView
+                         PlacementView, ExamView, MapView, GlossaryView, NotesView,
+                         StatsView, SheetView, SettingsView
     public/pyodide/      bundled Pyodide runtime + wheels (git-ignored, generated)
 content/       lesson JSON (the curriculum), subjects.json, glossary.json
 scripts/       verify-content.mjs · verify-glossary.mjs · verify-code.py · verify-pyodide.mjs

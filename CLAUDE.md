@@ -49,7 +49,9 @@ src/
                  lesson_progress.source ('manual' | 'mastery' | 'placement', v3)
                  keeps placement-test lessons out of today's study (getTodayStudy);
                  attempts.misses + mode (v4) mark answers right first time
-                 (firstTry) and keep lesson-only misses (getMissesToday)
+                 (firstTry) and keep lesson-only misses (getMissesToday);
+                 notes (v5): a lesson's note + bookmark, a row only while it
+                 has one or the other; a reset keeps them, backups carry them
                review.js — FSRS scheduling (ts-fsrs 5.x; 6.x needs Node 24), in
                  local days; implicitReview gives FIRe-style partial credit to
                  the prerequisites of a clean review (creditPrereqs in db.js)
@@ -63,7 +65,11 @@ src/
                  picks every file with its own dialogs (never a path from the
                  renderer) and saves userData/backups/mathpath-<time>-before-
                  <import|reset>.json first, keeping the newest 10. A new table
-                 that holds progress must be added to BACKUP_TABLES
+                 that holds progress must be added to BACKUP_TABLES (and to
+                 TABLE_SINCE, so older backups load with it empty)
+               exports.js — notes as Markdown and the page as PDF
+                 (printToPDF, no backgrounds; renderer @media print styles),
+                 each saved through main's own dialog
                index.js — also the text size: `zoom` setting → webContents zoom
   preload/     Secure contextBridge — the only renderer ↔ main channel
                (built as CJS: the window is sandboxed)
@@ -84,24 +90,32 @@ src/
                  start; an exam or placement test reopens as its subject) and
                  pickResume ("Continue": the lesson worked on last, from
                  getRecentLessons in db.js, or the next one not completed)
+               search.js — the Cmd+K index (lessons by title, section titles
+                 and text in EN + ES, glossary symbols), accent-insensitive
+               stats.js / sheet.js — Statistics page numbers; the subject
+                 cheat sheet's display formulas and the notes as Markdown
                params.js — template exercises: `params`/`derived`/`where`,
                  `[[name]]` and `[[name|+]]` placeholders. Every template needs
                  an independent `check` or `equivalentTo`; verify:content tests
                  40 instances (answers, check, TeX rendering)
   renderer/    React UI (Vite)
     src/
-      AppContext.jsx   language + progress + learning state, loc() selector, theme
+      AppContext.jsx   language + progress + learning state, loc() selector, theme;
+                       savePdf draws the page in the light theme while it prints
       lib/plan.js      adaptive 30-day scheduler (pure, testable)
       lib/mastery.js   per-lesson mastery level from the learning state
       lib/studyPlan.js the study goal (settings key `studyGoal`) + its lessons
       lib/pyodide.js   runs Python in lib/pyodide.worker.js (stop + 30 s timeout)
-      lib/keys.js      shortcuts: ⌘[ ⌘] / Alt+←→ and the mouse's side buttons
-                       (App.jsx), N for the next lesson, Enter on an MCQ option,
-                       ⌘/Ctrl+Enter in a code exercise; never while typing
+      lib/keys.js      shortcuts: ⌘K search, ⌘[ ⌘] / Alt+←→ and the mouse's side
+                       buttons (App.jsx), N for the next lesson, Enter on an MCQ
+                       option, ⌘/Ctrl+Enter in a code exercise; never while typing
+      lib/notes.js     a lesson's note (autosaved) + bookmark; all the notes
       components/      MathText (KaTeX), FunctionGraph (custom SVG plotter on mathjs),
-                       Exercise (lesson / review modes), MasteryBadge, ProgressBar
+                       Exercise (lesson / review modes), MasteryBadge, ProgressBar,
+                       SearchPalette (Cmd+K), ActivityHeatmap
       pages/           Dashboard, SubjectView, LessonView, ReviewView, PlanView,
-                       PlacementView, ExamView, MapView, SettingsView (appearance,
+                       PlacementView, ExamView, MapView, NotesView, StatsView,
+                       SheetView (cheat sheet → PDF), SettingsView (appearance,
                        goal, backups, shortcuts, updates). After an import or a reset,
                        AppContext.reloadData re-reads everything and remounts
                        the pages (key on <main>)
