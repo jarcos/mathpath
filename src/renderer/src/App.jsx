@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from './AppContext.jsx'
 import Dashboard from './pages/Dashboard.jsx'
@@ -11,7 +11,18 @@ import PlacementView from './pages/PlacementView.jsx'
 import PlanView from './pages/PlanView.jsx'
 import ExamView from './pages/ExamView.jsx'
 import SettingsView from './pages/SettingsView.jsx'
-import { getLesson } from '@content/index.js'
+import { getLesson, getSubject } from '@content/index.js'
+import {
+  canGo,
+  currentView,
+  goBy,
+  pushView,
+  replaceView,
+  restoreView,
+  startHistory,
+  withScroll
+} from '@shared/navigation.js'
+import { KEYS, historyKey } from './lib/keys.js'
 import { UpdateBanner } from './components/Updates.jsx'
 
 function LanguageToggle() {
@@ -45,35 +56,205 @@ function ThemeToggle() {
   )
 }
 
+const scroller = () => document.getElementById('app-scroll')
+
+// Scrolls the page to `top`, trying again for a moment while it is still too
+// short (some pages load their content after they mount), and once more when
+// the fonts are in (they change the layout). Anything the learner does to
+// scroll stops it. `settling.current` is true until it stops; the function
+// returned stops it too.
+function scrollPage(top, settling) {
+  const el = scroller()
+  if (!el) return () => {}
+  settling.current = true
+  let frames = 0
+  let raf = 0
+  let done = false
+  let timer = 0
+  const events = ['wheel', 'touchstart', 'keydown', 'mousedown']
+  const stop = () => {
+    done = true
+    settling.current = false
+    cancelAnimationFrame(raf)
+    clearTimeout(timer)
+    for (const ev of events) el.removeEventListener(ev, stop)
+  }
+  let fontsIn = !document.fonts || document.fonts.status === 'loaded'
+  // Done once there with the fonts in; given up after about a second.
+  const step = () => {
+    if (done) return
+    el.scrollTop = top
+    const there = Math.abs(el.scrollTop - top) <= 1
+    if (there ? fontsIn : ++frames > 60) stop()
+    else if (!there) raf = requestAnimationFrame(step)
+  }
+  for (const ev of events) el.addEventListener(ev, stop, { passive: true })
+  timer = setTimeout(stop, 2000)
+  step()
+  document.fonts?.ready.then(() => {
+    fontsIn = true
+    requestAnimationFrame(step)
+  })
+  return stop
+}
+
+// After a navigation, focus goes to the new page's title, so a screen reader
+// reads it and the keyboard scrolls the page (not the button just pressed).
+function focusPage() {
+  const el = scroller()
+  const target = el?.querySelector('h1') || el
+  if (!target) return
+  if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1')
+  target.focus({ preventScroll: true })
+}
+
+const canOpenSubject = (id) => {
+  const s = getSubject(id)
+  return !!s && s.status === 'available' && s.lessonObjects.length > 0
+}
+
+// The history at start: the view open when MathPath was closed, if it can
+// still be opened, at the same scroll.
+function firstHistory(saved) {
+  const view = restoreView(saved?.view, {
+    lessonSubject: (id) => getLesson(id)?.subjectId ?? null,
+    isSubject: canOpenSubject
+  })
+  const h = startHistory(view)
+  return view.name === saved?.view?.name ? withScroll(h, Number(saved.scroll)) : h
+}
+
 export default function App() {
   const { t } = useTranslation()
-  const { dataVersion, reloadData } = useApp()
-  // Minimal view router — no external routing dependency needed.
-  const [view, setView] = useState({ name: 'dashboard' })
+  const { dataVersion, reloadData, savedView } = useApp()
+  // Minimal view router with back / forward — no routing dependency needed.
+  const [history, setHistory] = useState(() => firstHistory(savedView))
+  const view = currentView(history)
+  const entry = history.entries[history.index]
+  const moved = useRef(false) // the view changed: focus the new page
+  const settling = useRef(false) // its scroll is still being set
+
+  // Every way of changing the view remembers how far the one left was scrolled.
+  // Opening the view already shown, or going past either end, changes nothing.
+  const move = useCallback((step) => {
+    const top = scroller()?.scrollTop ?? 0
+    setHistory((h) => {
+      if (step(h) === h) return h
+      moved.current = true
+      return step(withScroll(h, top))
+    })
+  }, [])
+  const navigate = useCallback((next) => move((h) => pushView(h, next)), [move])
+  const go = useCallback((delta) => move((h) => goBy(h, delta)), [move])
+  // After an import or a reset: the same page, with new data, from the top.
+  const replace = useCallback((next) => setHistory((h) => withScroll(replaceView(h, next), 0)), [])
+
+  // A view opens at its scroll: the top for a new one, where it was left when
+  // going back or forward, or when MathPath is reopened.
+  useEffect(() => {
+    const stop = scrollPage(entry.scroll, settling)
+    if (moved.current) {
+      moved.current = false
+      focusPage()
+    }
+    return stop
+  }, [entry])
+
+  // Saved for the next start: the view and its scroll, shortly after a change
+  // and when the window closes. While the scroll is still being set, the one
+  // it is going to (the page may not be tall enough yet).
+  const entryRef = useRef(entry)
+  entryRef.current = entry
+  useEffect(() => {
+    const el = scroller()
+    if (!el) return undefined
+    let timer = 0
+    const write = () => {
+      clearTimeout(timer)
+      const { view: v, scroll } = entryRef.current
+      const top = settling.current ? scroll : Math.round(el.scrollTop)
+      window.api.settings.set('lastView', JSON.stringify({ view: v, scroll: top })).catch(() => {})
+    }
+    const save = () => {
+      clearTimeout(timer)
+      timer = setTimeout(write, 400)
+    }
+    save()
+    el.addEventListener('scroll', save, { passive: true })
+    window.addEventListener('beforeunload', write)
+    return () => {
+      clearTimeout(timer)
+      el.removeEventListener('scroll', save)
+      window.removeEventListener('beforeunload', write)
+    }
+  }, [entry, dataVersion])
+
+  // Back and forward: the keys of a browser and the mouse's side buttons.
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.defaultPrevented) return
+      const delta = historyKey(e)
+      if (!delta) return
+      e.preventDefault()
+      go(delta)
+    }
+    const onMouse = (e) => {
+      if (e.button !== 3 && e.button !== 4) return
+      e.preventDefault()
+      go(e.button === 3 ? -1 : 1)
+    }
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('mouseup', onMouse)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('mouseup', onMouse)
+    }
+  }, [go])
+
   // A lesson always opens within its own subject (prerequisites, the map and
   // the plan can link across subjects).
   const openLesson = (lessonId) =>
-    setView({ name: 'lesson', lessonId, subjectId: getLesson(lessonId)?.subjectId })
-  const home = () => setView({ name: 'dashboard' })
-  const startReview = () => setView({ name: 'review' })
+    navigate({ name: 'lesson', lessonId, subjectId: getLesson(lessonId)?.subjectId })
+  const home = () => navigate({ name: 'dashboard' })
+  const startReview = () => navigate({ name: 'review' })
 
   return (
     <div className="app">
       <nav className="topbar">
-        <button className="brand" onClick={home}>
-          <span className="brand-mark">π</span> <span className="brand-name">{t('appName')}</span>
-        </button>
+        <div className="topbar-start">
+          <button className="brand" onClick={home}>
+            <span className="brand-mark">π</span> <span className="brand-name">{t('appName')}</span>
+          </button>
+          <button
+            className="theme-toggle history-btn"
+            onClick={() => go(-1)}
+            disabled={!canGo(history, -1)}
+            title={`${t('navBack')} (${KEYS.back})`}
+            aria-label={t('navBack')}
+          >
+            ←
+          </button>
+          <button
+            className="theme-toggle history-btn"
+            onClick={() => go(1)}
+            disabled={!canGo(history, 1)}
+            title={`${t('navForward')} (${KEYS.forward})`}
+            aria-label={t('navForward')}
+          >
+            →
+          </button>
+        </div>
         <div className="topbar-controls">
-          <button className="nav-link" onClick={() => setView({ name: 'plan' })}>
+          <button className="nav-link" onClick={() => navigate({ name: 'plan' })}>
             {t('navPlan')}
           </button>
-          <button className="nav-link" onClick={() => setView({ name: 'map' })}>
+          <button className="nav-link" onClick={() => navigate({ name: 'map' })}>
             {t('navMap')}
           </button>
-          <button className="nav-link" onClick={() => setView({ name: 'glossary' })}>
+          <button className="nav-link" onClick={() => navigate({ name: 'glossary' })}>
             {t('navGlossary')}
           </button>
-          <button className="nav-link" onClick={() => setView({ name: 'settings' })}>
+          <button className="nav-link" onClick={() => navigate({ name: 'settings' })}>
             {t('navSettings')}
           </button>
           <ThemeToggle />
@@ -86,10 +267,10 @@ export default function App() {
       <main className="content" id="app-scroll" key={dataVersion}>
         {view.name === 'dashboard' && (
           <Dashboard
-            onOpenSubject={(subjectId) => setView({ name: 'subject', subjectId })}
+            onOpenSubject={(subjectId) => navigate({ name: 'subject', subjectId })}
             onOpenLesson={(_subjectId, lessonId) => openLesson(lessonId)}
             onStartReview={startReview}
-            onOpenPlan={() => setView({ name: 'plan' })}
+            onOpenPlan={() => navigate({ name: 'plan' })}
           />
         )}
         {view.name === 'review' && (
@@ -100,29 +281,29 @@ export default function App() {
             subjectId={view.subjectId}
             onBack={home}
             onOpenLesson={openLesson}
-            onOpenSubject={(subjectId) => setView({ name: 'subject', subjectId })}
-            onPlacement={() => setView({ name: 'placement', subjectId: view.subjectId })}
-            onExam={() => setView({ name: 'exam', subjectId: view.subjectId })}
+            onOpenSubject={(subjectId) => navigate({ name: 'subject', subjectId })}
+            onPlacement={() => navigate({ name: 'placement', subjectId: view.subjectId })}
+            onExam={() => navigate({ name: 'exam', subjectId: view.subjectId })}
           />
         )}
         {view.name === 'exam' && (
           <ExamView
             subjectId={view.subjectId}
-            onBack={() => setView({ name: 'subject', subjectId: view.subjectId })}
+            onBack={() => navigate({ name: 'subject', subjectId: view.subjectId })}
             onOpenLesson={openLesson}
           />
         )}
         {view.name === 'placement' && (
           <PlacementView
             subjectId={view.subjectId}
-            onBack={() => setView({ name: 'subject', subjectId: view.subjectId })}
+            onBack={() => navigate({ name: 'subject', subjectId: view.subjectId })}
             onOpenLesson={openLesson}
           />
         )}
         {view.name === 'lesson' && (
           <LessonView
             lessonId={view.lessonId}
-            onBack={() => setView({ name: 'subject', subjectId: view.subjectId })}
+            onBack={() => navigate({ name: 'subject', subjectId: view.subjectId })}
             onOpenLesson={openLesson}
           />
         )}
@@ -134,10 +315,10 @@ export default function App() {
         {view.name === 'settings' && (
           <SettingsView
             onBack={home}
-            onOpenPlan={() => setView({ name: 'plan' })}
+            onOpenPlan={() => navigate({ name: 'plan' })}
             notice={view.notice}
             onReplaced={(notice) => {
-              setView({ name: 'settings', notice })
+              replace({ name: 'settings', notice })
               reloadData()
             }}
           />

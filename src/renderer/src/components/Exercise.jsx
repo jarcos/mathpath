@@ -5,6 +5,7 @@ import { gradeCases } from '@shared/pygrade.js'
 import { useApp } from '@/AppContext.jsx'
 import { isGuessable } from '@/lib/mastery.js'
 import { runFunctionCases } from '@/lib/pyodide.js'
+import { KEYS, isMac } from '@/lib/keys.js'
 import MathText from './MathText.jsx'
 
 // After this many wrong picks a multiple-choice exercise shows the answer and
@@ -51,6 +52,9 @@ export default function Exercise({
   const missesRef = useRef(0)
   const [misses, setMisses] = useState(0) // the same count, for rendering
   const startedAt = useRef(null) // first keystroke / pick of this answer
+  // Answers checked so far: a new verdict is a new node, so a screen reader
+  // announces it even when its text is the same as the last one.
+  const [checks, setChecks] = useState(0)
   const answered = useRef(false)
   const touch = () => {
     if (!startedAt.current) startedAt.current = Date.now()
@@ -92,6 +96,7 @@ export default function Exercise({
     const first = !answered.current
     answered.current = true
     setResult(ok ? 'correct' : 'incorrect')
+    setChecks((n) => n + 1)
     const scheduling = recordAttempt({
       exerciseId: exercise.id,
       lessonId,
@@ -236,7 +241,15 @@ export default function Exercise({
 
       {/* ---- multiple choice ---- */}
       {type === 'mcq' && (
-        <div className="mcq">
+        // Enter on the chosen option checks it.
+        <div
+          className="mcq"
+          onKeyDown={(e) => {
+            if (e.key !== 'Enter' || e.target.type !== 'radio' || e.isComposing || e.repeat) return
+            e.preventDefault()
+            submitMcq()
+          }}
+        >
           <ul className="mcq-list">
             {exercise.choices.map((c, i) => {
               // Until the answer is revealed, only the checked pick is explained.
@@ -284,6 +297,18 @@ export default function Exercise({
               setCode(e.target.value)
               setCodeEdited(true)
             }}
+            // Cmd+Enter (Ctrl+Enter) runs and checks; Enter alone is a new line.
+            onKeyDown={(e) => {
+              if (e.key !== 'Enter' || !(e.metaKey || e.ctrlKey) || e.isComposing) return
+              // Held down, it would run (and record an answer) again and again.
+              if (e.repeat) {
+                e.preventDefault()
+                return
+              }
+              e.preventDefault()
+              if (codeState !== 'running') submitCode()
+            }}
+            aria-keyshortcuts={isMac ? 'Meta+Enter' : 'Control+Enter'}
             rows={Math.max(4, code.split('\n').length + 1)}
           />
           <div className="code-exercise-actions">
@@ -295,39 +320,46 @@ export default function Exercise({
                 <span className="muted small">{t('codeRunning')}</span>
               </>
             ) : (
-              <button className="primary small" onClick={submitCode}>
+              <button className="primary small" onClick={submitCode} title={KEYS.run}>
                 {t('codeRunCheck')}
               </button>
             )}
           </div>
-          {codeFeedback?.error && <div className="feedback bad">{codeFeedback.error}</div>}
-          {codeFeedback?.passes && (
-            <ul className="code-tests">
-              {codeFeedback.passes.map((p, i) => (
-                <li key={i} className={p ? 'pass' : 'fail'}>
-                  {p ? '✓' : '✗'} {t('codeTest', { n: i + 1 })}
-                </li>
-              ))}
-            </ul>
-          )}
+          <div aria-live="polite">
+            {codeFeedback?.error && <div className="feedback bad">{codeFeedback.error}</div>}
+            {codeFeedback?.passes && (
+              <ul className="code-tests">
+                {codeFeedback.passes.map((p, i) => (
+                  <li key={i} className={p ? 'pass' : 'fail'}>
+                    {p ? '✓' : '✗'} {t('codeTest', { n: i + 1 })}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       )}
 
-      {unreadable ? (
-        <div className="feedback bad">{t('answerUnreadable')}</div>
-      ) : (
-        <>
-          {result === 'correct' && (
-            <div className="feedback ok">
-              {verdict?.spelling ? t('correctSpelling', { word: verdict.spelling }) : t('correct')}
-            </div>
-          )}
-          {result === 'incorrect' && (
-            <div className="feedback bad">{type === 'mcq' && revealed ? t('mcqRevealed') : why()}</div>
-          )}
-        </>
-      )}
-      {result === null && type === 'mcq' && revealed && <div className="feedback bad">{t('mcqLocked')}</div>}
+      {/* The verdict is announced to screen readers as it appears. */}
+      <div className="exercise-verdict" aria-live="polite">
+        {unreadable ? (
+          <div className="feedback bad">{t('answerUnreadable')}</div>
+        ) : (
+          <>
+            {result === 'correct' && (
+              <div className="feedback ok" key={`ok-${checks}`}>
+                {verdict?.spelling ? t('correctSpelling', { word: verdict.spelling }) : t('correct')}
+              </div>
+            )}
+            {result === 'incorrect' && (
+              <div className="feedback bad" key={`bad-${checks}`}>
+                {type === 'mcq' && revealed ? t('mcqRevealed') : why()}
+              </div>
+            )}
+          </>
+        )}
+        {result === null && type === 'mcq' && revealed && <div className="feedback bad">{t('mcqLocked')}</div>}
+      </div>
 
       <div className="exercise-actions">
         {assist && exercise.hint && (

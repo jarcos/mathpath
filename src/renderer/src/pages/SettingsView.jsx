@@ -4,6 +4,7 @@ import { getSubject } from '@content/index.js'
 import { useApp } from '@/AppContext.jsx'
 import { useStudyGoal } from '@/lib/studyPlan.js'
 import { UpdatesPanel } from '@/components/Updates.jsx'
+import { KEYS } from '@/lib/keys.js'
 
 const ZOOMS = [0.9, 1, 1.1, 1.25, 1.4]
 
@@ -81,6 +82,36 @@ function StudyGoal({ onOpenPlan }) {
           ? `${t('planGoalSummary', { subject: loc(getSubject(goal.subjectId).name) })} · ${t('planMinutesPerDay', { count: goal.minutes })}`
           : t('settingsGoalNone')}
       </p>
+    </section>
+  )
+}
+
+// The keyboard shortcuts, as they read on this computer.
+function Shortcuts() {
+  const { t } = useTranslation()
+  const rows = [
+    [KEYS.back, t('shortcutBack')],
+    [KEYS.forward, t('shortcutForward')],
+    [t('keyEnter'), t('shortcutCheck')],
+    [KEYS.run, t('shortcutRun')],
+    ['N', t('shortcutNext')]
+  ]
+  return (
+    <section className="plan-panel">
+      <div className="plan-head">
+        <h2>{t('shortcutsTitle')}</h2>
+      </div>
+      <dl className="shortcuts">
+        {rows.map(([keys, what]) => (
+          <div className="setting-row" key={what}>
+            <dt>
+              <kbd>{keys}</kbd>
+            </dt>
+            <dd>{what}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="muted small">{t('shortcutMouse')}</p>
     </section>
   )
 }
@@ -246,6 +277,7 @@ export default function SettingsView({ onBack, onOpenPlan, notice, onReplaced })
       <Appearance />
       <StudyGoal onOpenPlan={onOpenPlan} />
       <YourProgress notice={notice} onReplaced={onReplaced} />
+      <Shortcuts />
       <UpdatesPanel />
     </div>
   )

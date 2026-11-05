@@ -9,6 +9,16 @@ export const useApp = () => useContext(AppContext)
 // solved: exercise id → { lessonId, clean, firstTry }; due: ids whose review is due today.
 const EMPTY_LEARNING = { solved: new Map(), due: new Set() }
 
+// The saved `lastView` setting: { view, scroll }, or null.
+const parseSavedView = (json) => {
+  try {
+    const v = JSON.parse(json)
+    return v && typeof v === 'object' ? v : null
+  } catch {
+    return null
+  }
+}
+
 // The saved text size, within the range the main process accepts.
 const zoomOf = (value) => {
   const z = Number(value)
@@ -25,6 +35,8 @@ export function AppProvider({ children }) {
   const [ready, setReady] = useState(false)
   // Bumped when all the data is replaced (import, reset), to remount the pages.
   const [dataVersion, setDataVersion] = useState(0)
+  // The view open when MathPath was last closed, and how far it was scrolled.
+  const [savedView, setSavedView] = useState(null)
 
   const refreshLearning = useCallback(async () => {
     try {
@@ -59,6 +71,7 @@ export function AppProvider({ children }) {
 
   useEffect(() => {
     load()
+      .then(async () => setSavedView(parseSavedView(await window.api.settings.get('lastView'))))
       .catch((e) => console.error('init failed', e))
       .finally(() => setReady(true))
   }, [load])
@@ -148,6 +161,7 @@ export function AppProvider({ children }) {
     setZoom,
     dataVersion,
     reloadData,
+    savedView,
     loc,
     completed,
     setLessonCompleted,

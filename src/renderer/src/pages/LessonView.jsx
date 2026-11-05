@@ -5,6 +5,7 @@ import { getLessonSymbols } from '@shared/notation.js'
 import { MASTERY_THRESHOLD, isMastered } from '@shared/learning.js'
 import { hashString, instantiate, randomSeed } from '@shared/params.js'
 import { useApp } from '@/AppContext.jsx'
+import { isPlainKey } from '@/lib/keys.js'
 import { countsClean, isGuessable, lessonStats } from '@/lib/mastery.js'
 import MasteryBadge from '@/components/MasteryBadge.jsx'
 import MathText from '@/components/MathText.jsx'
@@ -110,10 +111,9 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
   const [variants, setVariants] = useState({})
   const topRef = useRef(null)
 
-  // Reset scroll + load persisted solved exercises whenever the lesson changes.
+  // Load persisted solved exercises whenever the lesson changes (App sets the
+  // scroll: the top, or where the lesson was left when going back to it).
   useEffect(() => {
-    const el = document.getElementById('app-scroll')
-    if (el) el.scrollTo({ top: 0 })
     setAutoCompleted(false)
     setVariants({})
     setMissesToday({})
@@ -136,13 +136,28 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
     }
   }, [lessonId, getSolvedForLesson])
 
-  if (!lesson) return null
-
-  const subject = getSubject(lesson.subjectId)
-  const siblings = subject ? subject.lessonObjects : [lesson]
-  const idx = siblings.findIndex((l) => l.id === lesson.id)
+  const subject = lesson ? getSubject(lesson.subjectId) : null
+  const siblings = subject ? subject.lessonObjects : lesson ? [lesson] : []
+  const idx = lesson ? siblings.findIndex((l) => l.id === lesson.id) : -1
   const prev = idx > 0 ? siblings[idx - 1] : null
   const next = idx >= 0 && idx < siblings.length - 1 ? siblings[idx + 1] : null
+  // What the "next" button does: the next lesson, or back to the subject.
+  const goNext = next ? () => onOpenLesson(next.id) : onBack
+
+  // N, outside a text field: the next lesson.
+  const goNextRef = useRef(goNext)
+  goNextRef.current = goNext
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.defaultPrevented || !isPlainKey(e) || e.key.toLowerCase() !== 'n') return
+      e.preventDefault()
+      goNextRef.current()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
+  if (!lesson) return null
 
   const done = completed.has(lesson.id)
   const total = lesson.exercises.length
@@ -250,11 +265,9 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
       )}
 
       <div className="lesson-complete">
-        {autoCompleted && (
-          <p className="feedback ok" role="status">
-            {t('lessonAutoCompleted')}
-          </p>
-        )}
+        <div aria-live="polite">
+          {autoCompleted && <p className="feedback ok">{t('lessonAutoCompleted')}</p>}
+        </div>
         <button
           className={done ? 'primary done' : 'primary'}
           onClick={() => setLessonCompleted(lesson.id, lesson.subjectId, !done, 'manual')}
@@ -272,20 +285,10 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
         ) : (
           <span />
         )}
-        {next ? (
-          <button
-            className="lesson-nav-btn next"
-            onClick={() => onOpenLesson(next.id)}
-          >
-            <span className="muted small">{t('nextLesson')}</span>
-            <span className="lesson-nav-title">{loc(next.title)}</span>
-          </button>
-        ) : (
-          <button className="lesson-nav-btn next" onClick={onBack}>
-            <span className="muted small">{t('subjectDone')}</span>
-            <span className="lesson-nav-title">{t('backToSubject')}</span>
-          </button>
-        )}
+        <button className="lesson-nav-btn next" onClick={goNext} title={t('nextKeyHint')} aria-keyshortcuts="N">
+          <span className="muted small">{next ? t('nextLesson') : t('subjectDone')}</span>
+          <span className="lesson-nav-title">{next ? loc(next.title) : t('backToSubject')}</span>
+        </button>
       </nav>
     </div>
   )

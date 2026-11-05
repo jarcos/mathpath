@@ -2,10 +2,28 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getExerciseIds, getLesson, getSubject, getSubjects } from '@content/index.js'
 import { endOfLocalDay } from '@shared/learning.js'
+import { pickResume } from '@shared/navigation.js'
 import { useApp } from '@/AppContext.jsx'
 import { relativeDay } from '@/lib/mastery.js'
 import { remainingLessons, useStudyGoal, useTodayMinutes } from '@/lib/studyPlan.js'
 import ProgressBar from '@/components/ProgressBar.jsx'
+
+// The lessons worked on last (ids, latest first), refreshed after each answer;
+// null until read.
+function useRecentLessons() {
+  const { completed, learning } = useApp()
+  const [recent, setRecent] = useState(null)
+  useEffect(() => {
+    let active = true
+    Promise.resolve(window.api.learning.recent?.())
+      .then((ids) => active && setRecent(Array.isArray(ids) ? ids : []))
+      .catch(() => active && setRecent([]))
+    return () => {
+      active = false
+    }
+  }, [completed, learning])
+  return recent
+}
 
 // Today's spaced-repetition reviews. Hidden until the learner has solved
 // something, since there is nothing to review before that.
@@ -85,30 +103,11 @@ export default function Dashboard({ onOpenSubject, onOpenLesson, onStartReview, 
   const doneAll = allLessons.filter((l) => completed.has(l.id)).length
   const overall = allLessons.length ? Math.round((doneAll / allLessons.length) * 100) : 0
 
-  // Work out where to send the learner with one click. Prefer a subject already
-  // in progress; otherwise start at the very first lesson.
-  const available = subjects.filter((s) => s.status === 'available' && s.lessonObjects.length)
-  let resume = null
-  for (const s of available) {
-    const firstUndone = s.lessonObjects.find((l) => !completed.has(l.id))
-    const someDone = s.lessonObjects.some((l) => completed.has(l.id))
-    if (firstUndone && someDone) {
-      resume = { subject: s, lesson: firstUndone, fresh: false }
-      break
-    }
-  }
-  if (!resume) {
-    const firstUnfinished = available.find((s) =>
-      s.lessonObjects.some((l) => !completed.has(l.id))
-    )
-    if (firstUnfinished) {
-      resume = {
-        subject: firstUnfinished,
-        lesson: firstUnfinished.lessonObjects.find((l) => !completed.has(l.id)),
-        fresh: true
-      }
-    }
-  }
+  // Where one click takes the learner: back to the lesson worked on last (or
+  // the next one), else on through the course. Shown once the recent lessons
+  // are known, so the card doesn't change under the pointer.
+  const recent = useRecentLessons()
+  const resume = recent ? pickResume(subjects, completed, recent) : null
 
   // With a study goal, "continue" follows the plan instead.
   const planLeft = goal ? remainingLessons(goal, completed) : null
