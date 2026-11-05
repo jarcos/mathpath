@@ -513,6 +513,11 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 - Una nota que no se pudo guardar se reintenta con el siguiente cambio.
 - Hay 14 tests nuevos (notas, copias sin notas, estadísticas, búsqueda, chuleta y Markdown), 88 en total.
 
+**Arreglos publicados en v0.7.1**, encontrados al probar la v0.7.0:
+
+- `<html lang>` era siempre `en`, así que con la app en español un lector de pantalla leía el texto con voz inglesa, y un PDF guardado decía estar en inglés. Ahora sigue al idioma de la app.
+- Con la ventana tapada por otras, "Guardar como PDF" esperaba a que volviera a verse (esperaba dos fotogramas, que una ventana oculta no dibuja) y, mientras tanto, la página se quedaba con el tema claro. Ahora espera como mucho 300 ms. Pulsar otra vez mientras se guarda ya no hace nada.
+
 ---
 
 ## Fase 5: ingeniería (hacer antes o a la vez que la Fase 1)
@@ -545,7 +550,7 @@ Orden propuesto para lo que queda: M35 y M33. M34 está terminado.
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
-| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 |
+| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 (con dos arreglos en v0.7.1) |
 | **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | — |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 
