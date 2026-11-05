@@ -436,6 +436,43 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 - Exportar encima de una copia anterior y quedarse sin disco podía dejarla a medias. Ahora se escribe en un fichero temporal y se renombra al terminar.
 - Hay 5 tests de copia de seguridad, 67 en total.
 
+### Estado de la parte 2: historial, "Continuar", atajos y accesibilidad (hito M34, sin publicar)
+
+- **Historial real**, como en un navegador:
+  - atrás y adelante con las flechas de la barra superior, ⌘[ / ⌘] (o ⌘← / ⌘→ fuera de un campo de texto) en Mac, Alt+← / Alt+→ en Windows y Linux, y los botones laterales del ratón;
+  - cada página vuelve con el scroll en el que se dejó;
+  - el foco pasa al título de la página nueva, así que un lector de pantalla la lee y el teclado desplaza la página.
+  - La lógica es pura y está probada: `src/shared/navigation.js`.
+- **Al reabrir MathPath**, vuelve a la última página con su scroll (ajuste `lastView`, que se guarda poco después de cada cambio y al cerrar la ventana).
+  - Una lección o asignatura que ya no exista abre el panel.
+  - Un examen o un test de nivel no se reinicia: abre su asignatura.
+- **"Continuar"** (sin objetivo de estudio) lleva a la última lección trabajada, o a la siguiente sin completar de su asignatura.
+  - "Trabajada" quiere decir respuestas dadas en una lección o lecciones marcadas a mano, con `getRecentLessons` en `db.js`. No cuentan los repasos, exámenes ni tests de nivel.
+  - Antes llevaba a la primera asignatura empezada, en el orden del curso.
+- **Atajos**:
+  - N abre la siguiente lección (fuera de una casilla de respuesta);
+  - Intro sobre una opción de test la comprueba (en las casillas ya lo hacía);
+  - ⌘/Ctrl+Intro ejecuta y comprueba un ejercicio de código.
+  - Ajustes tiene un panel "Atajos de teclado" que los enseña como se escriben en este ordenador.
+- **Accesibilidad:** el veredicto de cada ejercicio, el resultado del código y "lección completada" están en regiones `aria-live`, así que un lector de pantalla los anuncia, también cuando se repite el mismo texto.
+- **Prueba en la app empaquetada** con una copia de la base de datos real y teclas y clics reales enviados por el depurador:
+  - atrás y adelante con ⌘[, ⌘], ⌘← y los botones del ratón;
+  - N, y escribir una "n" en una respuesta sin cambiar de lección;
+  - Intro en una opción y ⌘Intro en el código;
+  - "Continuar" sin objetivo;
+  - reabrir en la misma lección y scroll, también cerrando justo después de desplazarse;
+  - la barra a 140 % en 900 px, el inglés y el tema claro.
+  - Encontró que al reabrir el scroll se quedaba corto (llegaban las fuentes después) y lo arregla.
+
+**Tras la revisión independiente:**
+
+- Mantener pulsado ⌘Intro en un ejercicio de código lo ejecutaba una y otra vez, y cada vez registraba una respuesta. Ahora la repetición de tecla se ignora en todos los atajos.
+- En un teclado español, las teclas donde el estadounidense tiene [ y ] dan \` y +, así que ⌘+ (ampliar) habría ido adelante. Ahora la posición de la tecla solo cuenta cuando no da ningún carácter.
+- Pulsar el enlace de la página en la que ya estás, o ir atrás en la primera, movía el foco sin cambiar nada. Ahora no hace nada.
+- Mientras se recolocaba el scroll al abrir, se podía guardar una posición recortada. Ahora se guarda la de destino hasta que se asienta, y al cerrar la ventana se guarda al momento.
+- Hay 7 tests nuevos, 74 en total.
+- Queda igual que antes que salir de un examen a medias (ahora también con "atrás") no pide confirmación. Las respuestas ya dadas se guardan igualmente.
+
 ---
 
 ## Fase 5: ingeniería (hacer antes o a la vez que la Fase 1)
@@ -468,7 +505,7 @@ Orden propuesto para lo que queda: M34 (por la copia de seguridad del progreso),
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
-| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | 🟡 Parte 1 (ajustes y copia de seguridad) publicada en v0.5.0; faltan las partes 2 y 3 |
+| **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | 🟡 Parte 1 (ajustes y copia de seguridad) publicada en v0.5.0; parte 2 (historial, "Continuar", atajos y accesibilidad) hecha, sin publicar; falta la parte 3 |
 | **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | — |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 

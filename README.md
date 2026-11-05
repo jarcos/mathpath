@@ -41,7 +41,10 @@ Prefer to run from source? See [Getting started](#-getting-started).
 - **Subject exams** — mixed questions from across a subject, no hints, pass at 80%; every answer also counts as a review, and you get the lessons to go over.
 - **Fresh numbers every time** — template exercises draw new values on each visit, in reviews and exams (with "Another like this"), so practice isn't remembering answers. Every template is verified on dozens of instances.
 - **Curriculum map** — every lesson of every subject at a glance, coloured by your level; pick one to see what it builds on and what builds on it. Prerequisites also show your level inside each lesson.
-- **Adaptive 30-day plan** per subject, with prev/next lesson navigation and a "resume where you left off" card.
+- **Adaptive 30-day plan** per subject, with prev/next lesson navigation.
+- **Pick up where you left off** — MathPath reopens on the page you were on, at the same scroll, and "Continue" takes you back to the lesson you worked on last (or the next one).
+- **Back and forward** like a browser: the arrows in the top bar, ⌘[ / ⌘] (Alt+← / Alt+→ on Windows and Linux) or the mouse's side buttons, each page back where you left it.
+- **Keyboard and screen readers** — Enter checks an answer (also on a chosen option), ⌘/Ctrl+Enter runs a code exercise, N opens the next lesson, and every verdict is announced. Settings lists the shortcuts.
 - **Bilingual** (English / Spanish) UI *and* content, **light & dark** themes and a **text size** from 90% to 140% — all remembered, all on the Settings page.
 - **Local-only data** — progress, attempts, review schedule, settings and plans in SQLite in your OS user-data folder.
 - **Backups** — Settings exports all your progress to a JSON file and imports it back (on this computer or another), or resets it. Before an import or a reset, MathPath saves a copy of what you had in a `backups` folder next to the database, keeping the last 10.
@@ -149,6 +152,7 @@ src/
                · pygrade.js (code-exercise grader, shared with the verifier)
                · learning.js (review ratings, mastery rules)
                · curriculum.js (prerequisite graph) · planner.js (study planner, streaks)
+               · navigation.js (back / forward history, last view, "Continue")
                · params.js (template exercises)
   renderer/    React UI (Vite)
     src/
@@ -156,6 +160,7 @@ src/
       lib/plan.js        adaptive 30-day scheduling
       lib/mastery.js     per-lesson mastery from the learning state
       lib/pyodide.js     lazy, offline Pyodide runner (Python runs in lib/pyodide.worker.js)
+      lib/keys.js        keyboard shortcuts (back / forward keys, what counts as typing)
       components/        MathText, FunctionGraph, Exercise, CodeBlock, NotationBox, MasteryBadge
       pages/             Dashboard, SubjectView, LessonView, ReviewView, PlanView,
                          PlacementView, ExamView, MapView, GlossaryView, SettingsView

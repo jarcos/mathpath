@@ -79,6 +79,11 @@ src/
                  guessable answers (MCQ, yes/no) count only when right first time
                curriculum.js — prerequisite graph (renderer AND verify:content)
                planner.js — cross-subject study planner + streaks (pure)
+               navigation.js — back / forward history (each view with its
+                 scroll), restoreView (the `lastView` setting, reopened at
+                 start; an exam or placement test reopens as its subject) and
+                 pickResume ("Continue": the lesson worked on last, from
+                 getRecentLessons in db.js, or the next one not completed)
                params.js — template exercises: `params`/`derived`/`where`,
                  `[[name]]` and `[[name|+]]` placeholders. Every template needs
                  an independent `check` or `equivalentTo`; verify:content tests
@@ -90,11 +95,14 @@ src/
       lib/mastery.js   per-lesson mastery level from the learning state
       lib/studyPlan.js the study goal (settings key `studyGoal`) + its lessons
       lib/pyodide.js   runs Python in lib/pyodide.worker.js (stop + 30 s timeout)
+      lib/keys.js      shortcuts: ⌘[ ⌘] / Alt+←→ and the mouse's side buttons
+                       (App.jsx), N for the next lesson, Enter on an MCQ option,
+                       ⌘/Ctrl+Enter in a code exercise; never while typing
       components/      MathText (KaTeX), FunctionGraph (custom SVG plotter on mathjs),
                        Exercise (lesson / review modes), MasteryBadge, ProgressBar
       pages/           Dashboard, SubjectView, LessonView, ReviewView, PlanView,
                        PlacementView, ExamView, MapView, SettingsView (appearance,
-                       goal, backups, updates). After an import or a reset,
+                       goal, backups, shortcuts, updates). After an import or a reset,
                        AppContext.reloadData re-reads everything and remounts
                        the pages (key on <main>)
 content/         per-subject lessons + subjects.json + index.js. Prerequisites: the
