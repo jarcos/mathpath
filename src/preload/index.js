@@ -24,6 +24,8 @@ const api = {
   learning: {
     state: (until) => ipcRenderer.invoke('learning:state', until),
     activity: (since) => ipcRenderer.invoke('learning:activity', since),
+    // The lessons worked on last, latest first (for "Continue").
+    recent: () => ipcRenderer.invoke('learning:recent'),
     today: (known) => ipcRenderer.invoke('learning:today', known)
   },
   review: {

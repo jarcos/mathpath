@@ -389,6 +389,25 @@ export function getActivity(since) {
     .all(since)
 }
 
+/**
+ * The lessons the learner worked on last, latest first: answers given in a
+ * lesson (reviews, exams and placement tests don't count) and lessons marked
+ * completed by hand. Answers from before migration 4 have no mode and count.
+ */
+export function getRecentLessons(limit = 10) {
+  return db
+    .prepare(
+      `SELECT lesson_id, MAX(at) AS at FROM (
+         SELECT lesson_id, created_at AS at FROM attempts WHERE mode IS NULL OR mode = 'lesson'
+         UNION ALL
+         SELECT lesson_id, completed_at AS at FROM lesson_progress
+          WHERE completed = 1 AND source = 'manual' AND completed_at IS NOT NULL
+       ) GROUP BY lesson_id ORDER BY at DESC, lesson_id LIMIT ?`
+    )
+    .all(Math.max(1, Math.min(50, Number(limit) || 10)))
+    .map((r) => r.lesson_id)
+}
+
 /* ---------- reviews ---------- */
 
 // Review queries take the exercise ids the app ships (`known`), so cards of

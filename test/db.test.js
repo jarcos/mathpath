@@ -12,6 +12,7 @@ import {
   getDueReviews,
   getLearningState,
   getMissesToday,
+  getRecentLessons,
   getReviewSummary,
   getSetting,
   getTodayStudy,
@@ -438,4 +439,23 @@ test('an import keeps automatic updates as they are on this computer', () => {
   initDb(':memory:')
   importProgress(backup)
   assert.equal(getSetting('autoUpdate'), null)
+})
+
+test('recent lessons: answers given in a lesson and lessons completed by hand, latest first', () => {
+  const db = initDb(legacyDb()) // answers with no mode, 30 days ago: l1, then l2
+  assert.deepEqual(getRecentLessons(), ['l2', 'l1'])
+  const add = db.prepare('INSERT INTO attempts (exercise_id, lesson_id, correct, created_at, mode) VALUES (?, ?, 1, ?, ?)')
+  add.run('r', 'l-review', inDays(-0.001), 'review')
+  add.run('p', 'l-placement', inDays(-0.001), 'placement')
+  add.run('a', 'l3', inDays(-0.002), 'lesson')
+  add.run('b', 'l1', inDays(-0.003), 'lesson')
+  const done = db.prepare(
+    "INSERT INTO lesson_progress (lesson_id, subject_id, completed, completed_at, source) VALUES (?, 's', ?, ?, ?)"
+  )
+  done.run('l-by-hand', 1, inDays(-0.0005), 'manual')
+  done.run('l-tested-out', 1, inDays(-0.0001), 'placement')
+  done.run('l-mastered', 1, inDays(-0.0001), 'mastery')
+  done.run('l-unmarked', 0, null, null)
+  assert.deepEqual(getRecentLessons(), ['l-by-hand', 'l3', 'l1', 'l2'])
+  assert.deepEqual(getRecentLessons(2), ['l-by-hand', 'l3'])
 })

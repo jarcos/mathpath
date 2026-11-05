@@ -10,6 +10,7 @@ import {
   getSolvedExercises,
   getLearningState,
   getActivity,
+  getRecentLessons,
   getTodayStudy,
   getMissesToday,
   getDueReviews,
@@ -104,6 +105,7 @@ function registerIpc() {
 
   ipcMain.handle('learning:state', (_e, until) => getLearningState(until))
   ipcMain.handle('learning:activity', (_e, since) => getActivity(since))
+  ipcMain.handle('learning:recent', () => getRecentLessons(10))
   ipcMain.handle('learning:today', (_e, known) => getTodayStudy(known))
   ipcMain.handle('review:due', (_e, until, limit, known) => getDueReviews(until, limit, known))
   ipcMain.handle('review:summary', (_e, until, known) => getReviewSummary(until, known))
