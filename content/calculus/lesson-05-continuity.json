@@ -2,7 +2,7 @@
   "id": "calculus-05-continuity",
   "subjectId": "calculus",
   "order": 5,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Continuity",
     "es": "Continuidad"
@@ -16,6 +16,17 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "functions-05-piecewise",
+        "functions-04-properties"
+      ],
+      "note": {
+        "en": "Checking continuity of a piecewise function means comparing its formulas at the joining point, and the rules for sums and compositions come from the properties of functions.",
+        "es": "Comprobar la continuidad de una función a trozos es comparar sus fórmulas en el punto de unión, y las reglas para sumas y composiciones salen de las propiedades de las funciones."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "Most familiar functions are continuous on their domains: polynomials everywhere; rational functions except where the denominator is zero ($\\tfrac1x$ is discontinuous at $x=0$); roots, exponentials, sines and cosines wherever defined. Discontinuities come in flavors — **removable** (a single hole you could plug), **jump** (the two sides disagree), and **infinite** (an asymptote).",
@@ -25,8 +36,22 @@
     {
       "type": "prose",
       "content": {
-        "en": "Continuity matters because it guarantees good behavior. The **Intermediate Value Theorem** says a continuous function on $[a,b]$ takes every value between $f(a)$ and $f(b)$ — which is why a continuous function that is negative somewhere and positive elsewhere must have a root in between. This is the foundation of root-finding methods.",
-        "es": "La continuidad importa porque garantiza buen comportamiento. El **Teorema del Valor Intermedio** dice que una función continua en $[a,b]$ toma todo valor entre $f(a)$ y $f(b)$ — por eso una función continua que es negativa en un punto y positiva en otro debe tener una raíz entre medias. Es la base de los métodos de búsqueda de raíces."
+        "en": "Each kind, with one example. A **removable** discontinuity: $\\tfrac{x^2-1}{x-1}$ is undefined at $x=1$, but its limit there is $2$. Defining $f(1)=2$ fills the hole and makes the function continuous. A **jump** discontinuity: $f(x)=x$ for $x<1$ and $f(x)=x+1$ for $x\\ge1$ has left limit $1$ and right limit $2$ at $1$. No value of $f(1)$ can fix it, because the two sides never meet. An **infinite** discontinuity: $\\tfrac1x$ at $0$, where the function diverges. Only the first kind is repaired by redefining one value; the other two are genuine breaks in the graph.",
+        "es": "Cada tipo, con un ejemplo. Una discontinuidad **evitable**: $\\tfrac{x^2-1}{x-1}$ no está definida en $x=1$, pero su límite allí es $2$. Definir $f(1)=2$ tapa el hueco y hace la función continua. Una discontinuidad **de salto**: $f(x)=x$ para $x<1$ y $f(x)=x+1$ para $x\\ge1$ tiene límite por la izquierda $1$ y por la derecha $2$ en $1$. Ningún valor de $f(1)$ lo arregla, porque los dos lados nunca se encuentran. Una discontinuidad **infinita**: $\\tfrac1x$ en $0$, donde la función diverge. Solo el primer tipo se repara redefiniendo un valor; los otros dos son roturas reales de la gráfica."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Continuity matters because it guarantees good behavior. The **Intermediate Value Theorem** says a continuous function on $[a,b]$ takes every value between $f(a)$ and $f(b)$ — which is why a function that is continuous on an interval, negative at one point of it and positive at another, must have a root between them. This is the foundation of root-finding methods.",
+        "es": "La continuidad importa porque garantiza buen comportamiento. El **teorema del valor intermedio** dice que una función continua en $[a,b]$ toma todo valor entre $f(a)$ y $f(b)$ — por eso una función continua en un intervalo, negativa en un punto y positiva en otro, tiene una raíz entre ambos. Es la base de los métodos de búsqueda de raíces."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The usual operations preserve continuity. If $f$ and $g$ are continuous at $a$, so are $f+g$, $fg$, and $\\tfrac fg$ when $g(a)\\neq0$. Compositions work too: if $g$ is continuous at $a$ and $f$ is continuous at $g(a)$, then $f\\circ g$ is continuous at $a$. So $\\sqrt{x^2+1}$ and $e^{\\sin x}$ are continuous wherever they are defined, with no need to check each point. The **Intermediate Value Theorem** states it precisely: if $f$ is continuous on $[a,b]$ and $k$ lies between $f(a)$ and $f(b)$, then $f(c)=k$ for some $c$ in $[a,b]$. This gives the **bisection method**. For $f(x)=x^3-x-1$, $f(1)=-1$ and $f(2)=5$, so a root lies in $[1,2]$. At the midpoint, $f(1.5)=\\tfrac78>0$, so the root lies in $[1,1.5]$. Halving again and again traps it in an interval of length $\\tfrac{1}{2^k}$ after $k$ steps.",
+        "es": "Las operaciones habituales conservan la continuidad. Si $f$ y $g$ son continuas en $a$, también lo son $f+g$, $fg$ y $\\tfrac fg$ cuando $g(a)\\neq0$. Las composiciones también: si $g$ es continua en $a$ y $f$ es continua en $g(a)$, entonces $f\\circ g$ es continua en $a$. Así, $\\sqrt{x^2+1}$ y $e^{\\sin x}$ son continuas donde están definidas, sin comprobar punto por punto. El **teorema del valor intermedio** lo precisa: si $f$ es continua en $[a,b]$ y $k$ está entre $f(a)$ y $f(b)$, existe $c$ en $[a,b]$ con $f(c)=k$. De ahí sale el **método de bisección**. Para $f(x)=x^3-x-1$, $f(1)=-1$ y $f(2)=5$, luego hay una raíz en $[1,2]$. En el punto medio, $f(1.5)=\\tfrac78>0$, así que la raíz está en $[1,1.5]$. Si divides a la mitad una y otra vez, tras $k$ pasos la raíz queda atrapada en un intervalo de longitud $\\tfrac{1}{2^k}$."
       }
     },
     {
@@ -41,6 +66,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — choosing a constant to join two pieces",
+        "es": "Ejemplo resuelto — elegir una constante para unir dos trozos"
+      },
+      "content": {
+        "en": "Find $k$ that makes $f(x)=x^2$ for $x<2$ and $f(x)=kx$ for $x\\ge2$ continuous. Each piece is continuous on its own side of $2$, so only the point $x=2$ needs checking. From the left, $\\lim_{x\\to2^-}x^2 = 4$. At the joint, $f(2)=2k$, and the right-hand limit is also $2k$. Continuity needs $2k = 4$, so $k=2$. Check the three conditions: $f(2)=4$ exists, and both one-sided limits equal $4$.",
+        "es": "Halla $k$ para que $f(x)=x^2$ si $x<2$ y $f(x)=kx$ si $x\\ge2$ sea continua. Cada trozo es continuo en su lado de $2$, así que solo hay que comprobar el punto $x=2$. Por la izquierda, $\\lim_{x\\to2^-}x^2 = 4$. En la unión, $f(2)=2k$, y el límite por la derecha también es $2k$. La continuidad exige $2k = 4$, así que $k=2$. Comprueba las tres condiciones: $f(2)=4$ existe y los dos límites laterales valen $4$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +84,12 @@
       ],
       "code": {
         "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# left and right limits agree -> the limit exists\nprint(sp.limit((x**2 - 1)/(x - 1), x, 1, \"+\"), sp.limit((x**2 - 1)/(x - 1), x, 1, \"-\"))",
-        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# los limites por la izquierda y la derecha coinciden -> el limite existe\nprint(sp.limit((x**2 - 1)/(x - 1), x, 1, \"+\"), sp.limit((x**2 - 1)/(x - 1), x, 1, \"-\"))"
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# los límites por la izquierda y la derecha coinciden -> el límite existe\nprint(sp.limit((x**2 - 1)/(x - 1), x, 1, \"+\"), sp.limit((x**2 - 1)/(x - 1), x, 1, \"-\"))"
       },
       "expectedOutput": "2 2",
       "caption": {
-        "en": "Matching one-sided limits is the test for continuity of the limit.",
-        "es": "Que coincidan los limites laterales es la prueba de continuidad del limite."
+        "en": "Matching one-sided limits is the test for whether the two-sided limit exists.",
+        "es": "Que coincidan los límites laterales es la prueba de que el límite bilateral existe."
       }
     }
   ],
@@ -78,6 +114,15 @@
           "tex": "\\lim_{x\\to0} x^2 = 0 = f(0)",
           "en": "All three conditions hold.",
           "es": "Se cumplen las tres condiciones."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "no",
+          "feedback": {
+            "en": "No: $x^2$ has no hole, jump or asymptote. Polynomials are continuous everywhere, so the answer is yes.",
+            "es": "No: $x^2$ no tiene hueco, salto ni asíntota. Los polinomios son continuos en todas partes, así que la respuesta es sí."
+          }
         }
       ]
     },
@@ -147,6 +192,104 @@
           "es": "Continua = sin saltos."
         }
       ]
+    },
+    {
+      "id": "calculus-05-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $x<1$ let $f(x)=x+1$, and for $x\\ge1$ let $f(x)=kx^2$. For which $k$ is $f$ continuous?",
+        "es": "Para $x<1$ sea $f(x)=x+1$, y para $x\\ge1$, $f(x)=kx^2$. ¿Para qué $k$ es $f$ continua?"
+      },
+      "answer": "2",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$k=1$ comes from forgetting the $+1$: the left side at $x=1$ is $1+1=2$, not $1$.",
+            "es": "$k=1$ sale de olvidar el $+1$: el lado izquierdo en $x=1$ vale $1+1=2$, no $1$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compare the two formulas at $x = 1$.",
+        "es": "Compara las dos fórmulas en $x = 1$."
+      },
+      "solution": [
+        {
+          "tex": "\\lim_{x\\to1^-} f(x) = 1+1 = 2",
+          "en": "Left side: x+1 at x = 1.",
+          "es": "Lado izquierdo: x+1 en x = 1."
+        },
+        {
+          "tex": "\\lim_{x\\to1^+} f(x) = k\\cdot 1^2 = k",
+          "en": "Right side: kx² at x = 1.",
+          "es": "Lado derecho: kx² en x = 1."
+        },
+        {
+          "tex": "2 = k",
+          "en": "Both sides must equal f(1), so k = 2.",
+          "es": "Los dos lados deben valer f(1), así que k = 2."
+        }
+      ]
+    },
+    {
+      "id": "calculus-05-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$f$ is continuous on $[0,1]$, with $f(0)=-2$ and $f(1)=3$. What is guaranteed?",
+        "es": "$f$ es continua en $[0,1]$, con $f(0)=-2$ y $f(1)=3$. ¿Qué está garantizado?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$f$ is increasing on $[0,1]$, since it rises steadily from $-2$ to $3$.",
+            "es": "$f$ es creciente en $[0,1]$, porque sube sin parar de $-2$ a $3$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Rising overall is not rising everywhere. A continuous function can dip and rise again, and the theorem says nothing about its shape between the endpoints.",
+            "es": "Subir en conjunto no es subir en todas partes. Una función continua puede bajar y volver a subir, y el teorema no dice nada de su forma entre los extremos."
+          }
+        },
+        {
+          "text": {
+            "en": "$f\\left(\\tfrac12\\right)=\\tfrac12$, because a continuous function rises in a straight line between its endpoints.",
+            "es": "$f\\left(\\tfrac12\\right)=\\tfrac12$, porque una función continua sube en línea recta entre sus extremos."
+          },
+          "correct": false,
+          "why": {
+            "en": "Continuity does not make the graph straight. The theorem promises that $0$ is reached somewhere, not that $f$ is linear: $f\\left(\\tfrac12\\right)$ can take many values.",
+            "es": "La continuidad no hace la gráfica recta. El teorema asegura que $0$ se alcanza en algún punto, no que $f$ sea lineal: $f\\left(\\tfrac12\\right)$ puede valer muchas cosas."
+          }
+        },
+        {
+          "text": {
+            "en": "There is some $c$ with $0<c<1$ and $f(c)=0$, since $f$ changes sign.",
+            "es": "Existe algún $c$ con $0<c<1$ y $f(c)=0$, porque $f$ cambia de signo."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $f$ goes from negative to positive, and the Intermediate Value Theorem says a continuous function takes every value in between, including $0$. It does not say where $c$ is.",
+            "es": "Exacto. $f$ pasa de negativa a positiva, y el teorema del valor intermedio dice que una función continua toma todos los valores intermedios, entre ellos el $0$. No dice dónde está $c$."
+          }
+        },
+        {
+          "text": {
+            "en": "The maximum of $f$ on $[0,1]$ is at $x=1$, because $f(1)=3$ is the largest value.",
+            "es": "El máximo de $f$ en $[0,1]$ está en $x=1$, porque $f(1)=3$ es el mayor valor."
+          },
+          "correct": false,
+          "why": {
+            "en": "The maximum exists, but it need not be at $x=1$: $f$ could rise above $3$ inside the interval and come back down. The sure thing is the zero.",
+            "es": "El máximo existe, pero no tiene por qué estar en $x=1$: $f$ podría subir por encima de $3$ dentro del intervalo y luego bajar. Lo seguro es el cero."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which values must a continuous function pass through?",
+        "es": "¿Qué valores tiene que tomar obligatoriamente una función continua?"
+      }
     }
   ],
   "references": [

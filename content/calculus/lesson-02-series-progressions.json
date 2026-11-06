@@ -2,7 +2,7 @@
   "id": "calculus-02-series-progressions",
   "subjectId": "calculus",
   "order": 2,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Series & Progressions",
     "es": "Series y progresiones"
@@ -22,7 +22,7 @@
       ],
       "note": {
         "en": "Series are sums of the sequences from the previous lesson.",
-        "es": "Las series son sumas de las sucesiones de la leccion anterior."
+        "es": "Las series son sumas de las sucesiones de la lección anterior."
       }
     },
     {
@@ -35,8 +35,29 @@
     {
       "type": "prose",
       "content": {
-        "en": "A **geometric progression** multiplies by a constant **ratio** $r$ each step ($2, 6, 18, \\dots$ with $r=3$). When $|r| < 1$ the infinite series **converges** to $\\dfrac{a_1}{1 - r}$. So $1 + \\tfrac12 + \\tfrac14 + \\dots = \\dfrac{1}{1 - 1/2} = 2$ — an endless sum with a finite total, the resolution of Zeno's paradox.",
-        "es": "Una **progresión geométrica** multiplica por una **razón** constante $r$ en cada paso ($2, 6, 18, \\dots$ con $r=3$). Cuando $|r| < 1$ la serie infinita **converge** a $\\dfrac{a_1}{1 - r}$. Así $1 + \\tfrac12 + \\tfrac14 + \\dots = \\dfrac{1}{1 - 1/2} = 2$ — una suma interminable con total finito, la resolución de la paradoja de Zenón."
+        "en": "A **geometric progression** multiplies by a constant **ratio** $r$ each step ($2, 6, 18, \\dots$ with $r=3$). When $|r| < 1$ the infinite series **converges** to $\\dfrac{a_1}{1 - r}$. So $1 + \\tfrac12 + \\tfrac14 + \\dots = \\dfrac{1}{1 - 1/2} = 2$ — an endless sum with a finite total, a classic answer to Zeno's paradox.",
+        "es": "Una **progresión geométrica** multiplica por una **razón** constante $r$ en cada paso ($2, 6, 18, \\dots$ con $r=3$). Cuando $|r| < 1$ la serie infinita **converge** a $\\dfrac{a_1}{1 - r}$. Así $1 + \\tfrac12 + \\tfrac14 + \\dots = \\dfrac{1}{1 - 1/2} = 2$ — una suma interminable con total finito, una respuesta clásica a la paradoja de Zenón."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Every series is defined through its **partial sums** $S_n = a_1 + a_2 + \\dots + a_n$, the total of the first $n$ terms. The series **converges** to $S$ when these totals settle: $\\lim_{n\\to\\infty} S_n = S$. For a finite geometric sum there is an exact formula, $S_n = a_1\\dfrac{1-r^n}{1-r}$ for $r\\neq 1$. It comes from a neat trick: write $S_n = a_1 + a_1 r + \\dots + a_1 r^{n-1}$, multiply by $r$ to get $rS_n = a_1 r + \\dots + a_1 r^{n}$, and subtract. Almost everything cancels, leaving $(1-r)S_n = a_1(1-r^n)$. When $|r|<1$, the term $r^n$ tends to $0$, and the infinite formula $\\dfrac{a_1}{1-r}$ appears as the limit of $S_n$.",
+        "es": "Toda serie se define a través de sus **sumas parciales** $S_n = a_1 + a_2 + \\dots + a_n$, el total de los primeros $n$ términos. La serie **converge** a $S$ cuando esos totales se estabilizan: $\\lim_{n\\to\\infty} S_n = S$. Para una suma geométrica finita hay una fórmula exacta, $S_n = a_1\\dfrac{1-r^n}{1-r}$ para $r\\neq 1$. Sale de un truco sencillo: escribe $S_n = a_1 + a_1 r + \\dots + a_1 r^{n-1}$, multiplica por $r$ para obtener $rS_n = a_1 r + \\dots + a_1 r^{n}$, y resta. Casi todo se cancela y queda $(1-r)S_n = a_1(1-r^n)$. Cuando $|r|<1$, el término $r^n$ tiende a $0$, y la fórmula infinita $\\dfrac{a_1}{1-r}$ aparece como el límite de $S_n$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A necessary condition is easy to state. If a series converges, its terms must tend to $0$, because $a_n = S_n - S_{n-1} \\to S - S = 0$. The converse is false, and this is the great trap. The **harmonic series** $1 + \\tfrac12 + \\tfrac13 + \\tfrac14 + \\dots$ has terms $\\tfrac1n \\to 0$, yet it diverges. Group the terms: $\\tfrac12$; then $\\tfrac13 + \\tfrac14 > \\tfrac12$; then $\\tfrac15 + \\dots + \\tfrac18 > \\tfrac12$, and so on. Each block has twice as many terms as the one before and adds at least $\\tfrac12$, so the partial sums grow without bound. A criterion: $\\sum \\tfrac{1}{n^p}$ converges exactly when $p>1$, so $\\tfrac{1}{n^2}$ works and $\\tfrac1n$ does not.",
+        "es": "Una condición necesaria es fácil de enunciar. Si una serie converge, sus términos tienen que tender a $0$, porque $a_n = S_n - S_{n-1} \\to S - S = 0$. El recíproco es falso, y esta es la gran trampa. La **serie armónica** $1 + \\tfrac12 + \\tfrac13 + \\tfrac14 + \\dots$ tiene términos $\\tfrac1n \\to 0$, y sin embargo diverge. Agrupa los términos: $\\tfrac12$; luego $\\tfrac13 + \\tfrac14 > \\tfrac12$; luego $\\tfrac15 + \\dots + \\tfrac18 > \\tfrac12$, y así sucesivamente. Cada grupo tiene el doble de términos que el anterior y suma al menos $\\tfrac12$, así que las sumas parciales crecen sin límite. Un criterio: $\\sum \\tfrac{1}{n^p}$ converge exactamente cuando $p>1$; así $\\tfrac{1}{n^2}$ sirve y $\\tfrac1n$ no."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A loan repaid in equal installments is a finite geometric sum of discounted payments. In reinforcement learning, the return $G = r_0 + \\gamma r_1 + \\gamma^2 r_2 + \\dots$ weighs future rewards by a discount factor $\\gamma$ with $0 \\le \\gamma < 1$. If every reward has size at most $R$, the series converges and $|G| \\le \\dfrac{R}{1-\\gamma}$, so an agent can value an endless future. A binary search, which halves an interval at each step, follows a geometric sequence of lengths $L, \\tfrac L2, \\tfrac L4, \\dots$.",
+        "es": "Un préstamo que se devuelve en cuotas iguales es una suma geométrica finita de pagos descontados. En el aprendizaje por refuerzo, la recompensa acumulada $G = r_0 + \\gamma r_1 + \\gamma^2 r_2 + \\dots$ pesa las recompensas futuras con un factor de descuento $\\gamma$, con $0 \\le \\gamma < 1$. Si cada recompensa tiene tamaño como mucho $R$, la serie converge y $|G| \\le \\dfrac{R}{1-\\gamma}$, así que el agente puede valorar un futuro sin fin. Una búsqueda binaria, que reduce a la mitad el intervalo en cada paso, sigue una sucesión geométrica de longitudes $L, \\tfrac L2, \\tfrac L4, \\dots$."
       }
     },
     {
@@ -51,17 +72,28 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a repeating decimal as a series",
+        "es": "Ejemplo resuelto — un decimal periódico como serie"
+      },
+      "content": {
+        "en": "Write $0.\\overline{3} = 0.333\\dots$ as a series: $\\tfrac{3}{10} + \\tfrac{3}{100} + \\tfrac{3}{1000} + \\dots$. It is geometric with $a_1 = \\tfrac{3}{10}$ and $r = \\tfrac{1}{10}$, so $0.\\overline{3} = \\dfrac{3/10}{1 - 1/10} = \\dfrac{3/10}{9/10} = \\dfrac13$. The same method gives $0.\\overline{27} = \\dfrac{27}{99} = \\dfrac{3}{11}$. A surprising check: $0.\\overline{9} = \\dfrac{9/10}{9/10} = 1$, so the two decimals name the same number.",
+        "es": "Escribe $0.\\overline{3} = 0.333\\dots$ como serie: $\\tfrac{3}{10} + \\tfrac{3}{100} + \\tfrac{3}{1000} + \\dots$. Es geométrica con $a_1 = \\tfrac{3}{10}$ y $r = \\tfrac{1}{10}$, así que $0.\\overline{3} = \\dfrac{3/10}{1 - 1/10} = \\dfrac{3/10}{9/10} = \\dfrac13$. El mismo método da $0.\\overline{27} = \\dfrac{27}{99} = \\dfrac{3}{11}$. Una comprobación sorprendente: $0.\\overline{9} = \\dfrac{9/10}{9/10} = 1$, así que los dos decimales nombran el mismo número."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [],
       "code": {
         "en": "# geometric series: partial sum approaches a/(1-r) for |r|<1\na, r = 1, 0.5\nprint(round(sum(a * r**k for k in range(20)), 4), round(a / (1 - r), 4))",
-        "es": "# serie geometrica: la suma parcial tiende a a/(1-r) si |r|<1\na, r = 1, 0.5\nprint(round(sum(a * r**k for k in range(20)), 4), round(a / (1 - r), 4))"
+        "es": "# serie geométrica: la suma parcial tiende a a/(1-r) si |r|<1\na, r = 1, 0.5\nprint(round(sum(a * r**k for k in range(20)), 4), round(a / (1 - r), 4))"
       },
       "expectedOutput": "2.0 2.0",
       "caption": {
         "en": "Twenty terms already match the closed-form sum a/(1-r).",
-        "es": "Veinte terminos ya coinciden con la formula cerrada a/(1-r)."
+        "es": "Veinte términos ya coinciden con la fórmula cerrada a/(1-r)."
       }
     }
   ],
@@ -87,6 +119,15 @@
           "en": "Apply the formula.",
           "es": "Aplica la fórmula."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "110",
+          "feedback": {
+            "en": "$110 = 10 \\cdot 11$ is the sum without the halving. The pairing trick gives $\\tfrac{n}{2}(a_1 + a_n) = \\tfrac{10}{2}(1+10) = 55$.",
+            "es": "$110 = 10 \\cdot 11$ es la suma sin dividir entre $2$. El emparejamiento da $\\tfrac{n}{2}(a_1 + a_n) = \\tfrac{10}{2}(1+10) = 55$."
+          }
+        }
       ]
     },
     {
@@ -110,6 +151,15 @@
           "en": "Use a₁/(1−r).",
           "es": "Usa a₁/(1−r)."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ is $\\tfrac{r}{1-r}$ with $r = \\tfrac12$. That formula leaves out the first term. The series is $\\tfrac{a_1}{1-r} = \\dfrac{1}{1/2} = 2$.",
+            "es": "$1$ es $\\tfrac{r}{1-r}$ con $r = \\tfrac12$. Esa fórmula deja fuera el primer término. La serie vale $\\tfrac{a_1}{1-r} = \\dfrac{1}{1/2} = 2$."
+          }
+        }
       ]
     },
     {
@@ -132,6 +182,15 @@
           "tex": "r = \\tfrac{6}{2} = 3",
           "en": "Constant ratio.",
           "es": "Razón constante."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "4",
+          "feedback": {
+            "en": "$4 = 6 - 2$ is the difference of the first two terms. This is a geometric progression, so the constant is the ratio: $\\tfrac{6}{2} = 3$.",
+            "es": "$4 = 6 - 2$ es la diferencia de los dos primeros términos. Es una progresión geométrica, así que lo constante es la razón: $\\tfrac{6}{2} = 3$."
+          }
         }
       ]
     },
@@ -202,6 +261,101 @@
       "hint": {
         "en": "A generator inside sum() over range(n).",
         "es": "Un generador dentro de sum() sobre range(n)."
+      }
+    },
+    {
+      "id": "calculus-02-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "Sum the infinite series $3 + 1 + \\tfrac13 + \\tfrac19 + \\dots$",
+        "es": "Suma la serie infinita $3 + 1 + \\tfrac13 + \\tfrac19 + \\dots$"
+      },
+      "answer": "9/2",
+      "acceptedAlt": [
+        "4.5"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3/2",
+          "feedback": {
+            "en": "$\\tfrac32$ is the sum the series would have if its first term were $1$: $\\dfrac{1}{1-\\tfrac13}$. The first term is $3$, so the sum is $\\dfrac{3}{2/3} = \\tfrac92$.",
+            "es": "$\\tfrac32$ es la suma que tendría la serie si su primer término fuera $1$: $\\dfrac{1}{1-\\tfrac13}$. El primer término es $3$, así que la suma es $\\dfrac{3}{2/3} = \\tfrac92$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Geometric with $a_1 = 3$ and $r = \\tfrac13$.",
+        "es": "Geométrica con $a_1 = 3$ y $r = \\tfrac13$."
+      },
+      "solution": [
+        {
+          "tex": "r = \\tfrac13, \\quad a_1 = 3",
+          "en": "Read off the first term and the ratio.",
+          "es": "Lee el primer término y la razón."
+        },
+        {
+          "tex": "\\dfrac{a_1}{1-r} = \\dfrac{3}{1-\\tfrac13} = \\dfrac{3}{\\tfrac23} = \\dfrac92",
+          "en": "Apply the formula for the sum.",
+          "es": "Aplica la fórmula de la suma."
+        }
+      ]
+    },
+    {
+      "id": "calculus-02-e7",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The terms of a series tend to $0$. Does the series have to converge?",
+        "es": "Los términos de una serie tienden a $0$. ¿Tiene que converger la serie?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Yes: if the terms shrink to zero, their running total must settle at a finite value.",
+            "es": "Sí: si los términos tienden a cero, la suma acumulada tiene que estabilizarse en un valor finito."
+          },
+          "correct": false,
+          "why": {
+            "en": "Shrinking terms are not enough. The running total can still grow without bound, as the harmonic series shows.",
+            "es": "Que los términos menguen no basta. La suma acumulada puede crecer sin límite, como muestra la serie armónica."
+          }
+        },
+        {
+          "text": {
+            "en": "Not necessarily: the harmonic series has terms tending to $0$ and still diverges.",
+            "es": "No necesariamente: la serie armónica tiene términos que tienden a $0$ y, aun así, diverge."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Tending to zero is necessary for convergence but not sufficient. The terms must shrink fast enough: $\\tfrac{1}{n}$ does not, while $\\tfrac{1}{n^2}$ does.",
+            "es": "Exacto. Tender a cero es necesario para converger, pero no suficiente. Los términos deben menguar lo bastante deprisa: $\\tfrac{1}{n}$ no lo hace, y $\\tfrac{1}{n^2}$ sí."
+          }
+        },
+        {
+          "text": {
+            "en": "No: a series whose terms tend to $0$ always diverges, whatever their pattern.",
+            "es": "No: una serie cuyos términos tienden a $0$ siempre diverge, sea cual sea su patrón."
+          },
+          "correct": false,
+          "why": {
+            "en": "Too strong. The geometric series $1 + \\tfrac12 + \\tfrac14 + \\dots$ has terms tending to $0$ and converges to $2$.",
+            "es": "Demasiado fuerte. La serie geométrica $1 + \\tfrac12 + \\tfrac14 + \\dots$ tiene términos que tienden a $0$ y converge a $2$."
+          }
+        },
+        {
+          "text": {
+            "en": "Yes, provided the terms are also decreasing, which makes their sum settle.",
+            "es": "Sí, siempre que los términos además sean decrecientes, lo que hace que la suma se estabilice."
+          },
+          "correct": false,
+          "why": {
+            "en": "Decreasing helps, but it is not enough: $\\tfrac1n$ decreases to $0$, and the harmonic series still diverges.",
+            "es": "Ser decrecientes ayuda, pero no basta: $\\tfrac1n$ decrece hacia $0$, y la serie armónica sigue divergiendo."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Can each term shrink and the running total still grow?",
+        "es": "¿Puede menguar cada término y, aun así, crecer el total?"
       }
     }
   ],

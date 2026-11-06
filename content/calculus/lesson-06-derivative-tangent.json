@@ -2,7 +2,7 @@
   "id": "calculus-06-derivative-tangent",
   "subjectId": "calculus",
   "order": 6,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "The Derivative & the Tangent",
     "es": "La derivada y la tangente"
@@ -11,25 +11,26 @@
     {
       "type": "prose",
       "content": {
-        "en": "The **derivative** answers a deceptively simple question: how fast is a function changing *right now*, at a single instant? It is the **instantaneous rate of change**, and geometrically the **slope of the tangent line** to the graph at a point. Velocity is the derivative of position; marginal cost is the derivative of cost; the gradient that trains a neural network is a derivative.",
-        "es": "La **derivada** responde una pregunta engañosamente simple: ¿con qué rapidez cambia una función *ahora mismo*, en un único instante? Es la **tasa de cambio instantánea**, y geométricamente la **pendiente de la recta tangente** a la gráfica en un punto. La velocidad es la derivada de la posición; el coste marginal es la derivada del coste; el gradiente que entrena una red neuronal es una derivada."
+        "en": "The **derivative** answers a deceptively simple question: how fast is a function changing *right now*, at a single instant? It is the **instantaneous rate of change**, and geometrically the **slope of the tangent line** to the graph at a point. Velocity is the derivative of position; marginal cost is the derivative of cost; the gradient that trains a neural network is built from partial derivatives.",
+        "es": "La **derivada** responde una pregunta engañosamente simple: ¿con qué rapidez cambia una función *ahora mismo*, en un único instante? Es la **tasa de cambio instantánea**, y geométricamente la **pendiente de la recta tangente** a la gráfica en un punto. La velocidad es la derivada de la posición; el coste marginal es la derivada del coste; el gradiente que entrena una red neuronal se construye con derivadas parciales."
       }
     },
     {
       "type": "prereq",
       "lessons": [
-        "calculus-03-limits"
+        "calculus-03-limits",
+        "functions-06-linear-affine"
       ],
       "note": {
-        "en": "The derivative is defined as a limit.",
-        "es": "La derivada se define como un limite."
+        "en": "The derivative is defined as a limit, and the tangent is a line through a point with a given slope.",
+        "es": "La derivada se define como un límite, y la tangente es una recta por un punto con una pendiente dada."
       }
     },
     {
       "type": "prose",
       "content": {
         "en": "It is defined as a limit of **average rates of change** (slopes of secant lines) as the interval shrinks to zero: $f'(x) = \\lim_{h\\to 0}\\dfrac{f(x+h) - f(x)}{h}$. As $h\\to 0$, the secant through two nearby points rotates into the tangent at one point. This limit is why we spent so long on limits first.",
-        "es": "Se define como un límite de **tasas medias de cambio** (pendientes de rectas secantes) cuando el intervalo se reduce a cero: $f'(x) = \\lim_{h\\to 0}\\dfrac{f(x+h) - f(x)}{h}$. Cuando $h\\to 0$, la secante por dos puntos cercanos gira hasta la tangente en un punto. Este límite es la razón de habernos detenido tanto en los límites primero."
+        "es": "Se define como un límite de **tasas medias de cambio** (pendientes de rectas secantes) cuando el intervalo se reduce a cero: $f'(x) = \\lim_{h\\to 0}\\dfrac{f(x+h) - f(x)}{h}$. Cuando $h\\to 0$, la secante por dos puntos cercanos gira hasta la tangente en un punto. Por eso dedicamos antes tanto espacio a los límites."
       }
     },
     {
@@ -37,6 +38,13 @@
       "content": {
         "en": "Computing that limit by hand for $x^2$ gives $\\lim_{h\\to0}\\tfrac{(x+h)^2 - x^2}{h} = \\lim_{h\\to0}(2x + h) = 2x$. This reveals the **power rule**: $\\tfrac{d}{dx}x^n = n\\,x^{n-1}$. So the derivative of $x^2$ is $2x$, of $x^3$ is $3x^2$, and the derivative of any constant is $0$ (a flat line has zero slope).",
         "es": "Calcular ese límite a mano para $x^2$ da $\\lim_{h\\to0}\\tfrac{(x+h)^2 - x^2}{h} = \\lim_{h\\to0}(2x + h) = 2x$. Esto revela la **regla de la potencia**: $\\tfrac{d}{dx}x^n = n\\,x^{n-1}$. Así la derivada de $x^2$ es $2x$, la de $x^3$ es $3x^2$, y la de cualquier constante es $0$ (una recta horizontal tiene pendiente cero)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, $f$ is **differentiable** at $a$ when the limit defining $f'(a)$ exists as one finite number, and it gives the same value from the left and from the right. A smooth curve has a tangent everywhere; a corner does not. Take $f(x)=|x|$: its slope is $-1$ just left of $0$ and $+1$ just right of it, so no single tangent exists and $f'(0)$ is undefined. Every differentiable function is continuous, because a tangent needs an unbroken graph. The converse fails: $|x|$ is continuous at $0$ and still not differentiable there. Notation varies: $f'(x)$, or $\\tfrac{dy}{dx}$, the “change in $y$ per unit change in $x$”. Units follow the quotient: if $s$ is in meters and $t$ in seconds, $s'(t)$ is in meters per second.",
+        "es": "**Con precisión**, $f$ es **derivable** en $a$ cuando el límite que define $f'(a)$ existe como número finito, y da el mismo valor por la izquierda que por la derecha. Una curva suave tiene tangente en todas partes; una esquina no. Toma $f(x)=|x|$: su pendiente es $-1$ justo a la izquierda de $0$ y $+1$ justo a la derecha, así que no hay una única tangente y $f'(0)$ no está definida. Toda función derivable es continua, porque una tangente necesita una gráfica sin cortes. El recíproco falla: $|x|$ es continua en $0$ y aun así no es derivable allí. La notación varía: $f'(x)$, o $\\tfrac{dy}{dx}$, el «cambio de $y$ por unidad de cambio de $x$». Las unidades siguen al cociente: si $s$ está en metros y $t$ en segundos, $s'(t)$ está en metros por segundo."
       }
     },
     {
@@ -63,17 +71,35 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — the derivative of 1/x and its tangent",
+        "es": "Ejemplo resuelto — la derivada de 1/x y su tangente"
+      },
+      "content": {
+        "en": "Let $f(x)=\\tfrac1x$ for $x\\neq0$. Start from the definition: $\\dfrac{f(x+h)-f(x)}{h} = \\dfrac{1}{h}\\left(\\dfrac{1}{x+h}-\\dfrac1x\\right) = \\dfrac{1}{h}\\cdot\\dfrac{-h}{x(x+h)} = -\\dfrac{1}{x(x+h)}$. Only now let $h\\to0$: $f'(x) = -\\tfrac{1}{x^2}$. At $x=1$, $f(1)=1$ and $f'(1)=-1$, so the tangent is $y = 1 - (x-1) = 2 - x$. The slope is negative everywhere, since the curve falls on both branches. The trap is letting $h\\to0$ too early: the numerator $\\tfrac{1}{x+h}-\\tfrac1x$ tends to $0$ by itself, and the $0/0$ hides the answer until you simplify.",
+        "es": "Sea $f(x)=\\tfrac1x$ para $x\\neq0$. Parte de la definición: $\\dfrac{f(x+h)-f(x)}{h} = \\dfrac{1}{h}\\left(\\dfrac{1}{x+h}-\\dfrac1x\\right) = \\dfrac{1}{h}\\cdot\\dfrac{-h}{x(x+h)} = -\\dfrac{1}{x(x+h)}$. Solo ahora hacemos $h\\to0$: $f'(x) = -\\tfrac{1}{x^2}$. En $x=1$, $f(1)=1$ y $f'(1)=-1$, así que la tangente es $y = 1 - (x-1) = 2 - x$. La pendiente es negativa en todas partes, porque la curva baja en sus dos ramas. La trampa es hacer $h\\to0$ demasiado pronto: el numerador $\\tfrac{1}{x+h}-\\tfrac1x$ tiende a $0$ por sí solo, y el $0/0$ oculta la respuesta hasta que simplificas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The tangent line at $a$ is $y = f(a) + f'(a)(x-a)$. It is the best straight-line approximation of $f$ near $a$: for $x$ close to $a$, $f(x) \\approx f(a) + f'(a)(x-a)$. For $f(x)=\\sqrt x$ at $a=4$ the tangent is $y = 2 + \\tfrac14(x-4)$; at $x=4.1$ it gives $2.025$, while $\\sqrt{4.1}\\approx2.02485$. Two uses matter later. Newton's method follows the tangent down to the $x$-axis to find a root, and gradient descent is the same first-order idea in many variables: a small step against the gradient. A tangent is only a local picture, and the error grows as you move away from $a$.",
+        "es": "La recta tangente en $a$ es $y = f(a) + f'(a)(x-a)$. Es la mejor aproximación por una recta de $f$ cerca de $a$: para $x$ próximo a $a$, $f(x) \\approx f(a) + f'(a)(x-a)$. Para $f(x)=\\sqrt x$ en $a=4$ la tangente es $y = 2 + \\tfrac14(x-4)$; en $x=4.1$ da $2.025$, mientras que $\\sqrt{4.1}\\approx2.02485$. Dos usos importan más adelante. El método de Newton sigue la tangente hasta el eje $x$ para hallar una raíz, y el descenso de gradiente es la misma idea de primer orden en muchas variables: un paso pequeño en contra del gradiente. La tangente es solo una imagen local, y el error crece a medida que te alejas de $a$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [],
       "code": {
         "en": "# the derivative is the limit of the difference quotient\nf = lambda x: x**2\nh = 1e-6\nx0 = 3\nprint(round((f(x0 + h) - f(x0)) / h, 4))",
-        "es": "# la derivada es el limite del cociente incremental\nf = lambda x: x**2\nh = 1e-6\nx0 = 3\nprint(round((f(x0 + h) - f(x0)) / h, 4))"
+        "es": "# la derivada es el límite del cociente incremental\nf = lambda x: x**2\nh = 1e-6\nx0 = 3\nprint(round((f(x0 + h) - f(x0)) / h, 4))"
       },
       "expectedOutput": "6.0",
       "caption": {
         "en": "The slope of x^2 at x=3 is 2*3 = 6, recovered numerically.",
-        "es": "La pendiente de x^2 en x=3 es 2*3 = 6, recuperada numericamente."
+        "es": "La pendiente de x^2 en x=3 es 2*3 = 6, recuperada numéricamente."
       }
     }
   ],
@@ -224,7 +250,109 @@
           "en": "Derivative of a constant.",
           "es": "Derivada de una constante."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "The derivative of a constant is $0$: the constant $5$ never changes, so its slope is zero. $5$ is the height of the graph, not its rate of change.",
+            "es": "La derivada de una constante es $0$: la constante $5$ nunca cambia, así que su pendiente es cero. El $5$ es la altura de la gráfica, no su tasa de cambio."
+          }
+        }
       ]
+    },
+    {
+      "id": "calculus-06-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "The tangent line to $y=x^3$ at $x=1$ has the form $y = mx + b$. Find $b$.",
+        "es": "La recta tangente a $y=x^3$ en $x=1$ tiene la forma $y = mx + b$. Halla $b$."
+      },
+      "answer": "-2",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$b$ is where the tangent crosses the $y$-axis, not the height of the curve at $x=1$. That height is $f(1)=1$, but the tangent is $y = 1 + 3(x-1) = 3x - 2$, so $b = -2$.",
+            "es": "$b$ es donde la tangente corta al eje $y$, no la altura de la curva en $x=1$. Esa altura es $f(1)=1$, pero la tangente es $y = 1 + 3(x-1) = 3x - 2$, así que $b = -2$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Find m = f'(1) first, then use the point (1, f(1)).",
+        "es": "Calcula primero m = f'(1) y luego usa el punto (1, f(1))."
+      },
+      "solution": [
+        {
+          "tex": "f'(x)=3x^2,\\; m = f'(1) = 3",
+          "en": "Power rule.",
+          "es": "Regla de la potencia."
+        },
+        {
+          "tex": "y = 1 + 3(x-1) = 3x - 2 \\Rightarrow b = -2",
+          "en": "Point–slope form, then expand.",
+          "es": "Forma punto–pendiente y desarrollo."
+        }
+      ]
+    },
+    {
+      "id": "calculus-06-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The function $f(x)=|x|$ has a corner at $x=0$. Which statement about $f$ at $0$ is true?",
+        "es": "La función $f(x)=|x|$ tiene una esquina en $x=0$. ¿Cuál de estas afirmaciones sobre $f$ en $0$ es cierta?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The derivative is $0$, because $0$ is the minimum of $f$.",
+            "es": "La derivada es $0$, porque $0$ es el mínimo de $f$."
+          },
+          "correct": false,
+          "why": {
+            "en": "A minimum often has a flat tangent, but this corner has none: the left slope is $-1$ and the right slope is $+1$. A zero slope would need one flat tangent, and there is none.",
+            "es": "En un mínimo suele haber tangente horizontal, pero esta esquina no tiene ninguna: la pendiente por la izquierda es $-1$ y por la derecha $+1$. Una pendiente cero exigiría una tangente horizontal única, y no existe."
+          }
+        },
+        {
+          "text": {
+            "en": "It is continuous at $0$, but not differentiable there.",
+            "es": "Es continua en $0$, pero no derivable allí."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. The graph has no break at $0$, so it is continuous, but the two one-sided slopes disagree, so no single derivative exists.",
+            "es": "Exacto. La gráfica no tiene corte en $0$, así que es continua, pero las dos pendientes laterales no coinciden y no existe una única derivada."
+          }
+        },
+        {
+          "text": {
+            "en": "It is not continuous at $0$, because the graph has a corner there.",
+            "es": "No es continua en $0$, porque la gráfica tiene una esquina allí."
+          },
+          "correct": false,
+          "why": {
+            "en": "A corner is a sharp turn, not a break. The graph is connected at $0$, and $f(0) = \\lim_{x\\to0} f(x) = 0$, so $f$ is continuous there.",
+            "es": "Una esquina es un giro brusco, no un corte. La gráfica está unida en $0$, y $f(0) = \\lim_{x\\to0} f(x) = 0$, así que $f$ es continua allí."
+          }
+        },
+        {
+          "text": {
+            "en": "It is differentiable with $f'(0)=1$, because $|x| = x$ near $0$.",
+            "es": "Es derivable con $f'(0)=1$, porque $|x| = x$ cerca de $0$."
+          },
+          "correct": false,
+          "why": {
+            "en": "$|x| = x$ only for $x \\ge 0$. For $x<0$ it equals $-x$, so the left side has slope $-1$. Near $0$ the graph is not one straight line.",
+            "es": "$|x| = x$ solo para $x \\ge 0$. Para $x<0$ vale $-x$, así que el lado izquierdo tiene pendiente $-1$. Cerca de $0$ la gráfica no es una única recta."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Does the graph have a single tangent line at the corner?",
+        "es": "¿Tiene la gráfica una única recta tangente en la esquina?"
+      }
     }
   ],
   "references": [

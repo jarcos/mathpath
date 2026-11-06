@@ -2,7 +2,7 @@
   "id": "calculus-09-lhopital",
   "subjectId": "calculus",
   "order": 9,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "L'Hôpital's Rule",
     "es": "Regla de L'Hôpital"
@@ -12,18 +12,20 @@
       "type": "prose",
       "content": {
         "en": "Earlier we resolved indeterminate forms by factoring. But factoring fails for limits like $\\lim_{x\\to0}\\tfrac{\\sin x}{x}$ or $\\lim_{x\\to0}\\tfrac{e^x-1}{x}$, which mix different kinds of functions. **L'Hôpital's rule** is the powerful general tool, and it is a beautiful payoff of the derivative.",
-        "es": "Antes resolvimos indeterminaciones factorizando. Pero factorizar falla con límites como $\\lim_{x\\to0}\\tfrac{\\sin x}{x}$ o $\\lim_{x\\to0}\\tfrac{e^x-1}{x}$, que mezclan tipos distintos de funciones. La **regla de L'Hôpital** es la herramienta general potente, y es un hermoso fruto de la derivada."
+        "es": "Antes resolvimos indeterminaciones factorizando. Pero factorizar falla con límites como $\\lim_{x\\to0}\\tfrac{\\sin x}{x}$ o $\\lim_{x\\to0}\\tfrac{e^x-1}{x}$, que mezclan tipos distintos de funciones. La **regla de L'Hôpital** es la herramienta general más potente, y es un hermoso fruto de la derivada."
       }
     },
     {
       "type": "prereq",
       "lessons": [
         "calculus-04-indeterminate-forms",
-        "calculus-07-rules-chain"
+        "calculus-07-rules-chain",
+        "functions-13-exponential",
+        "functions-15-logarithmic"
       ],
       "note": {
-        "en": "L'Hopital's rule handles the indeterminate forms using derivatives.",
-        "es": "La regla de L'Hopital trata las formas indeterminadas usando derivadas."
+        "en": "L'Hôpital's rule handles the indeterminate forms with derivatives, and it uses the facts about eˣ and ln x.",
+        "es": "La regla de L'Hôpital trata las indeterminaciones con derivadas, y usa lo que sabemos de eˣ y de ln x."
       }
     },
     {
@@ -36,8 +38,22 @@
     {
       "type": "prose",
       "content": {
+        "en": "**Precisely**: if $f$ and $g$ are differentiable near $a$, $g'(x)\\neq0$ near $a$ (except possibly at $a$), $f$ and $g$ both tend to $0$ or both tend to $\\pm\\infty$, and $\\lim \\tfrac{f'}{g'}$ exists, then $\\lim \\tfrac{f}{g}$ exists and equals it. The last condition is the one people forget. If $\\tfrac{f'}{g'}$ has no limit, the rule says nothing. For $\\lim_{x\\to\\infty}\\tfrac{x+\\sin x}{x}$ the limit is $1$, because $\\tfrac{\\sin x}{x}\\to0$, but the ratio of derivatives $\\tfrac{1+\\cos x}{1}$ oscillates forever. The rule cannot be used there, although the limit exists.",
+        "es": "**Con precisión**: si $f$ y $g$ son derivables cerca de $a$, $g'(x)\\neq0$ cerca de $a$ (salvo quizá en $a$), $f$ y $g$ tienden a $0$ o a $\\pm\\infty$, y existe $\\lim \\tfrac{f'}{g'}$, entonces existe $\\lim \\tfrac{f}{g}$ y es igual a ese valor. La última condición es la que se olvida. Si $\\tfrac{f'}{g'}$ no tiene límite, la regla no dice nada. Para $\\lim_{x\\to\\infty}\\tfrac{x+\\sin x}{x}$ el límite es $1$, porque $\\tfrac{\\sin x}{x}\\to0$, pero el cociente de derivadas $\\tfrac{1+\\cos x}{1}$ oscila para siempre. La regla no sirve ahí, aunque el límite exista."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
         "en": "Two cautions. First, **check** the form is really $\\tfrac00$ or $\\tfrac{\\infty}{\\infty}$ before applying it — using it on a determinate limit gives wrong answers. Second, differentiate top and bottom **independently**; do not use the quotient rule. Other indeterminate forms ($0\\cdot\\infty$, $\\infty-\\infty$, $1^\\infty$) can often be rearranged into a fraction so the rule applies.",
         "es": "Dos advertencias. Primero, **comprueba** que la forma es realmente $\\tfrac00$ o $\\tfrac{\\infty}{\\infty}$ antes de aplicarla — usarla en un límite determinado da respuestas erróneas. Segundo, deriva arriba y abajo **por separado**; no uses la regla del cociente. Otras indeterminaciones ($0\\cdot\\infty$, $\\infty-\\infty$, $1^\\infty$) suelen reescribirse como fracción para poder aplicarla."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Two more uses. A product in the form $0\\cdot\\infty$ becomes a fraction first: $\\lim_{x\\to0^+} x\\ln x$ is $0\\cdot(-\\infty)$, so write it as $\\tfrac{\\ln x}{1/x}$, an $\\tfrac{\\infty}{\\infty}$ form. Differentiating gives $\\tfrac{1/x}{-1/x^2} = -x\\to0$. The rule also compares how fast functions grow. Logarithms grow slower than any power, and any power slower than an exponential: $\\lim_{x\\to\\infty}\\tfrac{\\ln x}{x} = 0$ and $\\lim_{x\\to\\infty}\\tfrac{x^2}{e^x} = 0$. This ordering is why an algorithm taking $n\\log n$ steps beats one taking $n^2$, and why exponential running time quickly becomes unusable. The same idea handles $1^\\infty$ (take a logarithm first) and $\\infty-\\infty$ (combine the terms into one fraction). Even $\\tfrac{\\ln x}{\\sqrt x}$ tends to $0$, however small the power you take.",
+        "es": "Dos usos más. Un producto con forma $0\\cdot\\infty$ primero se convierte en fracción: $\\lim_{x\\to0^+} x\\ln x$ es $0\\cdot(-\\infty)$, así que se escribe como $\\tfrac{\\ln x}{1/x}$, una forma $\\tfrac{\\infty}{\\infty}$. Derivando sale $\\tfrac{1/x}{-1/x^2} = -x\\to0$. La regla de L'Hôpital también compara lo deprisa que crecen las funciones. Los logaritmos crecen más despacio que cualquier potencia, y cualquier potencia más despacio que una exponencial: $\\lim_{x\\to\\infty}\\tfrac{\\ln x}{x} = 0$ y $\\lim_{x\\to\\infty}\\tfrac{x^2}{e^x} = 0$. Este orden explica por qué un algoritmo que hace $n\\log n$ pasos vence a uno que hace $n^2$, y por qué un tiempo de ejecución exponencial se vuelve inviable enseguida. La misma idea sirve para $1^\\infty$ (primero se toma logaritmo) y para $\\infty-\\infty$ (se combinan los términos en una sola fracción). Incluso $\\tfrac{\\ln x}{\\sqrt x}$ tiende a $0$, por pequeña que sea la potencia."
       }
     },
     {
@@ -52,19 +68,30 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — applying the rule twice",
+        "es": "Ejemplo resuelto — aplicando la regla dos veces"
+      },
+      "content": {
+        "en": "$\\lim_{x\\to0}\\tfrac{1-\\cos x}{x^2}$ is $\\tfrac00$. Differentiate top and bottom: $\\tfrac{\\sin x}{2x}$, still $\\tfrac00$. Apply the rule again: $\\tfrac{\\cos x}{2}$, which tends to $\\tfrac{\\cos 0}{2} = \\tfrac12$. Check the form at each step: a fraction can be differentiated again only while it is still indeterminate, and here it is. The rule is applied twice, not three times, because after two steps the limit can be read off directly. A second route, $1-\\cos x = 2\\sin^2\\tfrac x2$, gives the same $\\tfrac12$.",
+        "es": "$\\lim_{x\\to0}\\tfrac{1-\\cos x}{x^2}$ es $\\tfrac00$. Deriva arriba y abajo: $\\tfrac{\\sin x}{2x}$, que sigue siendo $\\tfrac00$. Vuelve a aplicar la regla: $\\tfrac{\\cos x}{2}$, que tiende a $\\tfrac{\\cos 0}{2} = \\tfrac12$. Comprueba la forma en cada paso: una fracción solo puede volver a derivarse mientras siga siendo indeterminada, y aquí lo es. Se aplica dos veces, no tres, porque tras dos pasos el límite se lee directamente. Otra vía, $1-\\cos x = 2\\sin^2\\tfrac x2$, da el mismo $\\tfrac12$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
         "sympy"
       ],
       "code": {
-        "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# L\\u2019Hopital territory: a 0/0 limit\nprint(sp.limit(sp.sin(x) / x, x, 0))",
-        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# terreno de L\\u2019Hopital: un limite 0/0\nprint(sp.limit(sp.sin(x) / x, x, 0))"
+        "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# L'Hôpital territory: a 0/0 limit\nprint(sp.limit(sp.sin(x) / x, x, 0))",
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# terreno de L'Hôpital: un límite 0/0\nprint(sp.limit(sp.sin(x) / x, x, 0))"
       },
       "expectedOutput": "1",
       "caption": {
-        "en": "SymPy confirms the classic L'Hopital result sin(x)/x -> 1.",
-        "es": "SymPy confirma el resultado clasico de L'Hopital sin(x)/x -> 1."
+        "en": "SymPy confirms the classic L'Hôpital result sin(x)/x -> 1.",
+        "es": "SymPy confirma el resultado clásico de L'Hôpital sin(x)/x -> 1."
       }
     }
   ],
@@ -113,6 +140,15 @@
           "en": "Differentiate.",
           "es": "Deriva."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "A quotient of two zeros is not $0$: $\\tfrac00$ is the indeterminate form, and the rule is what finds its value. Differentiate top and bottom: $\\tfrac{e^x}{1}\\to1$.",
+            "es": "Un cociente de dos ceros no vale $0$: $\\tfrac00$ es la forma indeterminada, y la regla es lo que halla su valor. Deriva arriba y abajo: $\\tfrac{e^x}{1}\\to1$."
+          }
+        }
       ]
     },
     {
@@ -158,6 +194,99 @@
           "es": "Arriba y abajo."
         }
       ]
+    },
+    {
+      "id": "calculus-09-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Evaluate $\\displaystyle\\lim_{x\\to0}\\frac{e^{2x}-1}{x}$.",
+        "es": "Evalúa $\\displaystyle\\lim_{x\\to0}\\frac{e^{2x}-1}{x}$."
+      },
+      "answer": "2",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "Differentiating $e^{2x}$ needs the chain rule: the derivative is $2e^{2x}$, not $e^{2x}$. The top then gives $\\tfrac{2e^{2x}}{1}\\to2$.",
+            "es": "Derivar $e^{2x}$ exige la regla de la cadena: la derivada es $2e^{2x}$, no $e^{2x}$. El numerador da entonces $\\tfrac{2e^{2x}}{1}\\to2$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Differentiate the top with the chain rule.",
+        "es": "Deriva el numerador con la regla de la cadena."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{2e^{2x}}{1}",
+          "en": "Differentiate top and bottom; the chain rule gives the factor 2.",
+          "es": "Deriva arriba y abajo; la regla de la cadena da el factor 2."
+        },
+        {
+          "tex": "\\to 2e^{0} = 2",
+          "en": "Substitute x = 0.",
+          "es": "Sustituye x = 0."
+        }
+      ]
+    },
+    {
+      "id": "calculus-09-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A student “applies L'Hôpital” to $\\lim_{x\\to0}\\tfrac{x+1}{x+2}$, differentiates top and bottom, and gets $1$. What went wrong?",
+        "es": "Un estudiante «aplica L'Hôpital» a $\\lim_{x\\to0}\\tfrac{x+1}{x+2}$, deriva arriba y abajo y obtiene $1$. ¿Qué ha fallado?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Nothing: the rule applies to every quotient, so $1$ is correct.",
+            "es": "Nada: la regla sirve para cualquier cociente, así que $1$ es correcto."
+          },
+          "correct": false,
+          "why": {
+            "en": "The rule is only for $\\tfrac00$ and $\\tfrac{\\infty}{\\infty}$. Here the quotient is not indeterminate, and the new quotient $\\tfrac11$ has a different limit from the original one.",
+            "es": "La regla solo sirve para $\\tfrac00$ y $\\tfrac{\\infty}{\\infty}$. Aquí el cociente no es indeterminado, y el nuevo cociente $\\tfrac11$ tiene un límite distinto del original."
+          }
+        },
+        {
+          "text": {
+            "en": "The student should have used the quotient rule on the whole fraction instead.",
+            "es": "Debería haber usado la regla del cociente sobre toda la fracción."
+          },
+          "correct": false,
+          "why": {
+            "en": "The quotient rule gives a derivative, not a limit. The question asks for the value at $x=0$, and the derivative of the fraction does not answer it.",
+            "es": "La regla del cociente da una derivada, no un límite. La pregunta pide el valor en $x=0$, y la derivada de la fracción no lo responde."
+          }
+        },
+        {
+          "text": {
+            "en": "The rule does not apply: the form is not $\\tfrac00$, and substitution gives $\\tfrac12$.",
+            "es": "La regla no se aplica: la forma no es $\\tfrac00$, y la sustitución da $\\tfrac12$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Check the form before you differentiate. The rule is a theorem with hypotheses, and outside them its output can be wrong, as it is here.",
+            "es": "Exacto. Comprueba la forma antes de derivar. La regla es un teorema con hipótesis, y fuera de ellas su resultado puede ser erróneo, como aquí."
+          }
+        },
+        {
+          "text": {
+            "en": "The rule works only at infinity, so at $x=0$ the limit does not exist.",
+            "es": "La regla solo funciona en el infinito, así que en $x=0$ el límite no existe."
+          },
+          "correct": false,
+          "why": {
+            "en": "The rule works at finite points as well as at infinity. Here the limit exists: the function is continuous at $x=0$ and equals $\\tfrac12$ there.",
+            "es": "La regla funciona en puntos finitos y en el infinito. Aquí el límite existe: la función es continua en $x=0$ y vale $\\tfrac12$ allí."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Substitute x = 0 first. Is the result 0/0 or ∞/∞?",
+        "es": "Sustituye primero x = 0. ¿El resultado es 0/0 o ∞/∞?"
+      }
     }
   ],
   "references": [

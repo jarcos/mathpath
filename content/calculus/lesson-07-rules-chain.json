@@ -2,7 +2,7 @@
   "id": "calculus-07-rules-chain",
   "subjectId": "calculus",
   "order": 7,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Differentiation Rules & Chain Rule",
     "es": "Reglas de derivación y regla de la cadena"
@@ -16,6 +16,18 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "functions-03-operations-composition",
+        "functions-13-exponential",
+        "functions-15-logarithmic"
+      ],
+      "note": {
+        "en": "The chain rule differentiates a composition, and it uses the derivatives of $e^x$ and $\\ln x$.",
+        "es": "La regla de la cadena deriva una composición, y usa las derivadas de $e^x$ y de $\\ln x$."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "Memorize the standard derivatives: $\\tfrac{d}{dx}\\sin x = \\cos x$, $\\tfrac{d}{dx}\\cos x = -\\sin x$, $\\tfrac{d}{dx}e^x = e^x$, $\\tfrac{d}{dx}\\ln x = \\tfrac1x$. Products and quotients have their own rules: $(fg)' = f'g + fg'$ and $\\left(\\tfrac{f}{g}\\right)' = \\tfrac{f'g - fg'}{g^2}$.",
@@ -25,8 +37,22 @@
     {
       "type": "prose",
       "content": {
-        "en": "The **chain rule** is the most important rule of all, because it differentiates **compositions**: $\\tfrac{d}{dx} f(g(x)) = f'(g(x))\\cdot g'(x)$ — the outer derivative times the inner derivative. Since deep learning is a giant composition of functions, the chain rule *is* backpropagation. Master it: differentiate the outside, keep the inside, then multiply by the inside's derivative.",
-        "es": "La **regla de la cadena** es la más importante de todas, porque deriva **composiciones**: $\\tfrac{d}{dx} f(g(x)) = f'(g(x))\\cdot g'(x)$ — la derivada externa por la interna. Como el aprendizaje profundo es una composición gigante de funciones, la regla de la cadena *es* la retropropagación. Domínala: deriva lo de fuera, mantén lo de dentro y multiplica por la derivada de lo de dentro."
+        "en": "**The product rule** has a picture behind it: $fg$ is the area of a rectangle whose sides $f$ and $g$ both change. In a small step $h$ the width grows by $f'h$ and the height by $g'h$. The area gains a strip of width $f'h$ and height $g$, another of height $g'h$ and width $f$, and a tiny corner $f'g'h^2$ that vanishes faster than $h$. Dividing by $h$ leaves $(fg)' = f'g + fg'$. The trap is multiplying the derivatives: $(fg)' \\neq f'g'$. Test it on $f = g = x$: $(x\\cdot x)' = 2x$, but $f'g' = 1$.",
+        "es": "**La regla del producto** tiene una imagen detrás: $fg$ es el área de un rectángulo cuyos lados $f$ y $g$ cambian a la vez. En un paso pequeño $h$, el ancho crece $f'h$ y la altura crece $g'h$. El área gana una franja de ancho $f'h$ y alto $g$, otra de alto $g'h$ y ancho $f$, y una esquina diminuta $f'g'h^2$ que desaparece más deprisa que $h$. Al dividir entre $h$ queda $(fg)' = f'g + fg'$. La trampa es multiplicar las derivadas: $(fg)' \\neq f'g'$. Compruébalo con $f = g = x$: $(x\\cdot x)' = 2x$, pero $f'g' = 1$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **chain rule** is the most important rule of all, because it differentiates **compositions**: $\\tfrac{d}{dx} f(g(x)) = f'(g(x))\\cdot g'(x)$ — the outer derivative times the inner derivative. Since deep learning is a giant composition of functions, the chain rule, applied layer by layer, is what backpropagation does. Master it: differentiate the outside, keep the inside, then multiply by the inside's derivative.",
+        "es": "La **regla de la cadena** es la más importante de todas, porque deriva **composiciones**: $\\tfrac{d}{dx} f(g(x)) = f'(g(x))\\cdot g'(x)$ — la derivada externa por la interna. Como el aprendizaje profundo es una composición gigante de funciones, la regla de la cadena, aplicada capa a capa, es lo que hace la retropropagación. Domínala: deriva lo de fuera, mantén lo de dentro y multiplica por la derivada de lo de dentro."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "In Leibniz form the chain rule reads $\\tfrac{dy}{dx} = \\tfrac{dy}{du}\\,\\tfrac{du}{dx}$, with $u = g(x)$ and $y = f(u)$. The $du$ cancel like fractions, which is a memory aid rather than a proof. With several layers you multiply one factor per layer. For $\\sin(e^{2x})$ the layers are $\\sin$, then $\\exp$, then $2x$, so the derivative is $\\cos(e^{2x})\\cdot e^{2x}\\cdot 2 = 2e^{2x}\\cos(e^{2x})$. Two consequences are worth memorizing: $\\tfrac{d}{dx}e^{kx} = k\\,e^{kx}$, and $\\tfrac{d}{dx}\\ln g(x) = \\tfrac{g'(x)}{g(x)}$ (for $g(x)>0$). Backpropagation in a neural network is this same rule applied layer by layer, from the output back to the input.",
+        "es": "En notación de Leibniz la regla de la cadena se escribe $\\tfrac{dy}{dx} = \\tfrac{dy}{du}\\,\\tfrac{du}{dx}$, con $u = g(x)$ e $y = f(u)$. Los $du$ se cancelan como fracciones, una ayuda para recordarla más que una demostración. Con varias capas se multiplica un factor por cada capa. Para $\\sin(e^{2x})$ las capas son $\\sin$, luego $\\exp$, luego $2x$, así que la derivada es $\\cos(e^{2x})\\cdot e^{2x}\\cdot 2 = 2e^{2x}\\cos(e^{2x})$. Dos consecuencias conviene memorizarlas: $\\tfrac{d}{dx}e^{kx} = k\\,e^{kx}$, y $\\tfrac{d}{dx}\\ln g(x) = \\tfrac{g'(x)}{g(x)}$ (para $g(x)>0$). La retropropagación en una red neuronal es esta misma regla aplicada capa a capa, desde la salida hacia la entrada."
       }
     },
     {
@@ -38,6 +64,17 @@
       "content": {
         "en": "Differentiate $(x^2+1)^2$. Outer function $u^2$ has derivative $2u$, so $2(x^2+1)$; inner function $x^2+1$ has derivative $2x$. Multiply: $2(x^2+1)\\cdot 2x = 4x^3 + 4x$. (You can check by expanding first: $(x^2+1)^2 = x^4 + 2x^2 + 1$, whose derivative is $4x^3 + 4x$ ✓.)",
         "es": "Deriva $(x^2+1)^2$. La función externa $u^2$ tiene derivada $2u$, así $2(x^2+1)$; la interna $x^2+1$ tiene derivada $2x$. Multiplica: $2(x^2+1)\\cdot 2x = 4x^3 + 4x$. (Puedes comprobarlo desarrollando primero: $(x^2+1)^2 = x^4 + 2x^2 + 1$, cuya derivada es $4x^3 + 4x$ ✓.)"
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — product rule with a trig factor",
+        "es": "Ejemplo resuelto — regla del producto con una función trigonométrica"
+      },
+      "content": {
+        "en": "Differentiate $x^2\\sin x$. Let $u = x^2$ and $v = \\sin x$, so $u' = 2x$ and $v' = \\cos x$. The product rule gives $u'v + uv' = 2x\\sin x + x^2\\cos x$. The first term is the derivative of the left factor times the right one; the second is the left factor times the derivative of the right one. A common slip is $2x\\cos x$, which multiplies the two derivatives instead of applying the rule; it drops both correct terms.",
+        "es": "Deriva $x^2\\sin x$. Sea $u = x^2$ y $v = \\sin x$, así que $u' = 2x$ y $v' = \\cos x$. La regla del producto da $u'v + uv' = 2x\\sin x + x^2\\cos x$. El primer término es la derivada del factor de la izquierda por el de la derecha; el segundo es el factor de la izquierda por la derivada del de la derecha. Un error frecuente es $2x\\cos x$, que multiplica las dos derivadas en lugar de aplicar la regla; pierde los dos términos correctos."
       }
     },
     {
@@ -78,6 +115,15 @@
           "tex": "3x^2 + 2",
           "en": "Power rule on each term.",
           "es": "Regla de la potencia en cada término."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3*x^2",
+          "feedback": {
+            "en": "The term $2x$ is missing. Its derivative is $2$, not $0$: differentiate both terms.",
+            "es": "Falta el término $2x$. Su derivada es $2$, no $0$: deriva los dos términos."
+          }
         }
       ]
     },
@@ -194,6 +240,96 @@
           "es": "Regla estándar."
         }
       ]
+    },
+    {
+      "id": "calculus-07-e5",
+      "answerType": "expression",
+      "prompt": {
+        "en": "Differentiate $f(x) = x\\,e^x$.",
+        "es": "Deriva $f(x) = x\\,e^x$."
+      },
+      "answer": "(x+1)*exp(x)",
+      "acceptedAlt": [
+        "exp(x)+x*exp(x)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "exp(x)",
+          "feedback": {
+            "en": "That multiplies the derivatives: $1\\cdot e^x = e^x$. The product rule adds two terms: $f'g + fg' = 1\\cdot e^x + x\\,e^x$.",
+            "es": "Eso multiplica las derivadas: $1\\cdot e^x = e^x$. La regla del producto suma dos términos: $f'g + fg' = 1\\cdot e^x + x\\,e^x$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Product rule with f = x and g = eˣ.",
+        "es": "Regla del producto con f = x y g = eˣ."
+      },
+      "solution": [
+        {
+          "tex": "(x)'\\,e^x + x\\,(e^x)' = e^x + x\\,e^x = (x+1)e^x",
+          "en": "Product rule.",
+          "es": "Regla del producto."
+        }
+      ]
+    },
+    {
+      "id": "calculus-07-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Why does the chain rule multiply by the inside derivative $g'(x)$?",
+        "es": "¿Por qué la regla de la cadena multiplica por la derivada de lo de dentro, $g'(x)$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Because the derivative of a composition is the composition of the derivatives: $(f\\circ g)' = f'\\circ g'$.",
+            "es": "Porque la derivada de una composición es la composición de las derivadas: $(f\\circ g)' = f'\\circ g'$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Composing the derivatives gives another function. For $f = g = x^2$, $f'(g'(x)) = 2(2x) = 4x$, but $(f\\circ g)(x) = x^4$ has derivative $4x^3$.",
+            "es": "Componer las derivadas da otra función. Para $f = g = x^2$, $f'(g'(x)) = 2(2x) = 4x$, pero $(f\\circ g)(x) = x^4$ tiene derivada $4x^3$."
+          }
+        },
+        {
+          "text": {
+            "en": "Because the two derivatives are multiplied at the same point: $f'(x)\\,g'(x)$.",
+            "es": "Porque las dos derivadas se multiplican en el mismo punto: $f'(x)\\,g'(x)$."
+          },
+          "correct": false,
+          "why": {
+            "en": "The outer function must be evaluated at $g(x)$, not at $x$. With $f = g = x^2$ this gives $4x^2$, but the true derivative of $x^4$ is $4x^3$.",
+            "es": "La función externa hay que evaluarla en $g(x)$, no en $x$. Con $f = g = x^2$ daría $4x^2$, pero la derivada real de $x^4$ es $4x^3$."
+          }
+        },
+        {
+          "text": {
+            "en": "Because the derivatives add: the outer and inner rates are summed, $f'(g(x)) + g'(x)$.",
+            "es": "Porque las derivadas se suman: las tasas externa e interna se suman, $f'(g(x)) + g'(x)$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Derivatives add only for a sum of functions, $(f+g)' = f' + g'$. A composition is not a sum, so its rates combine by multiplying.",
+            "es": "Las derivadas se suman solo en una suma de funciones, $(f+g)' = f' + g'$. Una composición no es una suma, así que sus tasas se combinan multiplicando."
+          }
+        },
+        {
+          "text": {
+            "en": "Because the rates multiply along the chain, one factor per link.",
+            "es": "Porque las tasas se multiplican a lo largo de la cadena, un factor por eslabón."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Each link scales the change passed to it, like gears: if one gear turns 2 times for each turn of the first, and the next turns 3 times for each of its turns, the last turns 6 times for each turn of the first.",
+            "es": "Exacto. Cada eslabón escala el cambio que le llega, como engranajes: si una rueda da 2 vueltas por cada vuelta de la primera y la siguiente da 3 por cada una suya, la última da 6 por cada vuelta de la primera."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Think of a chain of gears: g changes, and f reacts to that change.",
+        "es": "Piensa en una cadena de engranajes: g cambia y f reacciona a ese cambio."
+      }
     }
   ],
   "references": [

@@ -2,7 +2,7 @@
   "id": "calculus-08-monotonicity-extrema",
   "subjectId": "calculus",
   "order": 8,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Monotonicity & Extrema",
     "es": "Monotonía y extremos"
@@ -11,15 +11,33 @@
     {
       "type": "prose",
       "content": {
-        "en": "The derivative is a lens for understanding shape. Its **sign** tells you direction: where $f' > 0$ the function is **increasing**, where $f' < 0$ it is **decreasing**. The places where the behavior turns around — peaks and valleys — are the **extrema**, and they are where the search for \"the best\" outcome (maximum profit, minimum cost, shortest path) always begins.",
-        "es": "La derivada es una lente para entender la forma. Su **signo** indica el sentido: donde $f' > 0$ la función es **creciente**, donde $f' < 0$ es **decreciente**. Los puntos donde el comportamiento se invierte — cimas y valles — son los **extremos**, y son donde empieza siempre la búsqueda de \"lo mejor\" (máximo beneficio, mínimo coste, camino más corto)."
+        "en": "The derivative is a lens for understanding shape. Its **sign** tells you direction: where $f' > 0$ the function is **increasing**, where $f' < 0$ it is **decreasing**. The places where the behavior turns around — peaks and valleys — are the **extrema**, and they are where the search for \"the best\" outcome (maximum profit, minimum cost, shortest path) always begins. Peaks and valleys are local extrema, and the endpoints of an interval can be extrema too.",
+        "es": "La derivada es una lente para entender la forma. Su **signo** indica el sentido: donde $f' > 0$ la función es **creciente**, donde $f' < 0$ es **decreciente**. Los puntos donde el comportamiento se invierte — cimas y valles — son los **extremos**, y son donde empieza siempre la búsqueda de \"lo mejor\" (máximo beneficio, mínimo coste, camino más corto). Las cimas y los valles son extremos locales, y los extremos de un intervalo también pueden serlo."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-04-properties",
+        "functions-07-quadratic"
+      ],
+      "note": {
+        "en": "Monotonicity is the sign of the derivative, and a parabola's vertex is its only extremum.",
+        "es": "La monotonía es el signo de la derivada, y el vértice de una parábola es su único extremo."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "At a smooth peak or valley the tangent is horizontal, so $f'(x) = 0$. Such points are **critical points** — candidates for extrema. To classify a candidate, use the **second derivative**: if $f'' > 0$ the curve is concave up, giving a **minimum**; if $f'' < 0$ it is concave down, a **maximum**. (You can also check the sign of $f'$ on either side.)",
-        "es": "En una cima o valle suave la tangente es horizontal, así $f'(x) = 0$. Esos puntos son **puntos críticos** — candidatos a extremo. Para clasificar un candidato, usa la **segunda derivada**: si $f'' > 0$ la curva es cóncava hacia arriba, dando un **mínimo**; si $f'' < 0$ es cóncava hacia abajo, un **máximo**. (También puedes mirar el signo de $f'$ a cada lado.)"
+        "en": "Points where $f'(x)=0$ or $f'(x)$ does not exist (a corner) are the **critical points**; at a smooth peak or valley the tangent is horizontal, so $f'(x)=0$. To classify a critical point where $f''(c)\\neq0$, use the **second derivative**: if $f''(c) > 0$ the curve is concave up, giving a **minimum**; if $f''(c) < 0$ it is concave down, a **maximum**. (You can also check the sign of $f'$ on either side.)",
+        "es": "Los puntos donde $f'(x)=0$ o $f'(x)$ no existe (una esquina) son los **puntos críticos**; en una cima o un valle suave la tangente es horizontal, así que $f'(x)=0$. Para clasificar un punto crítico con $f''(c)\\neq0$, usa la **segunda derivada**: si $f''(c) > 0$ la curva es cóncava hacia arriba, dando un **mínimo**; si $f''(c) < 0$ es cóncava hacia abajo, un **máximo**. (También puedes mirar el signo de $f'$ a cada lado.)"
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A critical point is not automatically an extremum; the sign of $f'$ decides. If $f'$ changes from positive to negative at $c$, the function goes from rising to falling and $c$ is a local maximum. If it changes from negative to positive, $c$ is a local minimum. If the sign does not change, there is no extremum. This **first-derivative test** also covers points where $f'$ does not exist: $f(x)=|x|$ has a valley at $0$ with no tangent there, and $f'$ jumps from $-1$ to $+1$. The second-derivative test can say nothing at all. For $f(x)=x^3$, $f'(0)=f''(0)=0$, yet $f'(x)=3x^2\\geq0$ never changes sign, so $0$ is not an extremum: the curve flattens and keeps rising.",
+        "es": "Un punto crítico no es automáticamente un extremo; el signo de $f'$ decide. Si $f'$ pasa de positiva a negativa en $c$, la función pasa de subir a bajar y $c$ es un máximo local. Si pasa de negativa a positiva, $c$ es un mínimo local. Si el signo no cambia, no hay extremo. Este **criterio de la primera derivada** cubre también los puntos donde $f'$ no existe: $f(x)=|x|$ tiene un valle en $0$ sin tangente allí, y $f'$ salta de $-1$ a $+1$. El criterio de la segunda derivada puede no decir nada. Para $f(x)=x^3$, $f'(0)=f''(0)=0$, pero $f'(x)=3x^2\\geq0$ nunca cambia de signo, así que $0$ no es un extremo: la curva se aplana y sigue subiendo."
       }
     },
     {
@@ -27,6 +45,13 @@
       "content": {
         "en": "This is the engine of **optimization**, the most applied part of calculus and the heart of how machine-learning models are trained: gradient descent walks downhill by following $-f'$ toward a minimum of a loss function. The same logic that finds the lowest point of a parabola finds the best parameters of a model.",
         "es": "Este es el motor de la **optimización**, la parte más aplicada del cálculo y el corazón de cómo se entrenan los modelos de aprendizaje automático: el descenso de gradiente baja siguiendo $-f'$ hacia un mínimo de una función de pérdida. La misma lógica que halla el punto más bajo de una parábola halla los mejores parámetros de un modelo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **local** extremum is highest or lowest only among nearby points; a **global** (absolute) one is highest or lowest over the whole interval. On a closed interval $[a,b]$ the **Extreme Value Theorem** guarantees that a continuous $f$ reaches a maximum and a minimum, and each occurs either at an endpoint or at a critical point inside. So the **closed-interval method** lists the critical points in $[a,b]$ (where $f'=0$ or $f'$ does not exist), adds $a$ and $b$, evaluates $f$ at every candidate, and keeps the largest and smallest values. Endpoints are the step most often forgotten: a function that keeps rising on $[0,2]$ peaks at $x=2$, where the derivative is not zero.",
+        "es": "Un extremo **local** es el más alto o más bajo solo entre puntos cercanos; uno **global** (absoluto) lo es en todo el intervalo. En un intervalo cerrado $[a,b]$, el **teorema del valor extremo** garantiza que una $f$ continua alcanza un máximo y un mínimo, y cada uno ocurre en un extremo del intervalo o en un punto crítico interior. Así, el **método del intervalo cerrado** lista los puntos críticos en $[a,b]$ (donde $f'=0$ o $f'$ no existe), añade $a$ y $b$, evalúa $f$ en cada candidato y se queda con el mayor y el menor valor. Los extremos del intervalo son el paso que más se olvida: una función que sigue subiendo en $[0,2]$ alcanza su máximo en $x=2$, donde la derivada no vale cero."
       }
     },
     {
@@ -41,6 +66,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a cubic with two turning points",
+        "es": "Ejemplo resuelto — una cúbica con dos giros"
+      },
+      "content": {
+        "en": "Let $f(x)=x^3-3x$. Then $f'(x)=3x^2-3=3(x-1)(x+1)$, so the critical points are $x=-1$ and $x=1$. The second derivative is $f''(x)=6x$. At $x=-1$, $f''=-6<0$: a **local maximum** with value $f(-1)=-1+3=2$. At $x=1$, $f''=6>0$: a **local minimum** with value $f(1)=1-3=-2$. The sign of $f'$ agrees: it is positive for $x<-1$, negative on $(-1,1)$ and positive for $x>1$, so the curve rises, falls, then rises again. As $x\\to\\pm\\infty$ the function is unbounded, so these extrema are local only.",
+        "es": "Sea $f(x)=x^3-3x$. Entonces $f'(x)=3x^2-3=3(x-1)(x+1)$, así que los puntos críticos son $x=-1$ y $x=1$. La segunda derivada es $f''(x)=6x$. En $x=-1$, $f''=-6<0$: un **máximo local** con valor $f(-1)=-1+3=2$. En $x=1$, $f''=6>0$: un **mínimo local** con valor $f(1)=1-3=-2$. El signo de $f'$ lo confirma: es positiva para $x<-1$, negativa en $(-1,1)$ y positiva para $x>1$, así que la curva sube, baja y vuelve a subir. Cuando $x\\to\\pm\\infty$ la función no está acotada, así que estos extremos son solo locales."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +84,12 @@
       ],
       "code": {
         "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# critical points: where the derivative is zero\nprint(sp.solve(sp.diff(x**3 - 3*x, x), x))",
-        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# puntos criticos: donde la derivada es cero\nprint(sp.solve(sp.diff(x**3 - 3*x, x), x))"
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# puntos críticos: donde la derivada es cero\nprint(sp.solve(sp.diff(x**3 - 3*x, x), x))"
       },
       "expectedOutput": "[-1, 1]",
       "caption": {
         "en": "Setting f'(x)=0 finds the candidate maxima and minima.",
-        "es": "Igualar f'(x)=0 halla los candidatos a maximo y minimo."
+        "es": "Igualar f'(x)=0 halla los candidatos a máximo y mínimo."
       }
     }
   ],
@@ -79,14 +115,23 @@
           "en": "Set the derivative to zero.",
           "es": "Iguala la derivada a cero."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "-1",
+          "feedback": {
+            "en": "$-1$ is the value $f(2)$, not the critical point. The question asks for the point $x$, which is $2$.",
+            "es": "$-1$ es el valor $f(2)$, no el punto crítico. La pregunta pide el punto $x$, que es $2$."
+          }
+        }
       ]
     },
     {
       "id": "calculus-08-e2",
       "answerType": "number",
       "prompt": {
-        "en": "At a local extremum, what is the value of $f'(x)$?",
-        "es": "En un extremo local, ¿cuánto vale $f'(x)$?"
+        "en": "At a local extremum where $f$ is differentiable, what is $f'(x)$?",
+        "es": "En un extremo local donde $f$ es derivable, ¿cuánto vale $f'(x)$?"
       },
       "answer": "0",
       "acceptedAlt": [],
@@ -147,6 +192,15 @@
           "en": "Set the derivative to zero.",
           "es": "Iguala la derivada a cero."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "-8",
+          "feedback": {
+            "en": "$-8$ is the value $f(3)$, not the point. Solve $2x-6=0$ for $x$; the function's value there is a different question.",
+            "es": "$-8$ es el valor $f(3)$, no el punto. Resuelve $2x-6=0$ para $x$; el valor de la función allí es otra pregunta."
+          }
+        }
       ]
     },
     {
@@ -160,41 +214,92 @@
         {
           "text": {
             "en": "Local minimum",
-            "es": "Minimo local"
+            "es": "Mínimo local"
           },
           "correct": true,
           "why": {
             "en": "f''>0 means the curve is concave up — a valley, so a local minimum.",
-            "es": "f''>0 significa que la curva es concava hacia arriba — un valle, un minimo local."
+            "es": "f''>0 significa que la curva es cóncava hacia arriba — un valle, un mínimo local."
           }
         },
         {
           "text": {
             "en": "Local maximum",
-            "es": "Maximo local"
+            "es": "Máximo local"
           },
           "correct": false,
           "why": {
             "en": "A local maximum needs f''(c) < 0 (concave down).",
-            "es": "Un maximo local necesita f''(c) < 0 (concava hacia abajo)."
+            "es": "Un máximo local necesita f''(c) < 0 (cóncava hacia abajo)."
           }
         },
         {
           "text": {
             "en": "Inflection point",
-            "es": "Punto de inflexion"
+            "es": "Punto de inflexión"
           },
           "correct": false,
           "why": {
             "en": "Inflection needs f''=0 with a change of concavity.",
-            "es": "La inflexion requiere f''=0 con cambio de concavidad."
+            "es": "La inflexión requiere f''=0 con cambio de concavidad."
+          }
+        },
+        {
+          "text": {
+            "en": "No extremum, because $f'(c)=0$ only says the tangent is flat.",
+            "es": "Ningún extremo, porque $f'(c)=0$ solo dice que la tangente es horizontal."
+          },
+          "correct": false,
+          "why": {
+            "en": "A zero derivative is necessary at a smooth extremum, but not enough: $x^3$ at $0$ has $f'(0)=0$ and no extremum.",
+            "es": "La derivada nula es necesaria en un extremo suave, pero no basta: $x^3$ en $0$ tiene $f'(0)=0$ y no es extremo."
           }
         }
       ],
       "hint": {
         "en": "Concave up or concave down?",
-        "es": "Concava hacia arriba o hacia abajo?"
+        "es": "¿Cóncava hacia arriba o hacia abajo?"
       }
+    },
+    {
+      "id": "calculus-08-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "Find the maximum value of $f(x)=x^3-3x$ on the interval $[0,2]$.",
+        "es": "Halla el valor máximo de $f(x)=x^3-3x$ en el intervalo $[0,2]$."
+      },
+      "answer": "2",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "-2",
+          "feedback": {
+            "en": "$-2$ is the value at the critical point $x=1$, which is a local minimum. On $[0,2]$ the largest value is at the endpoint $x=2$: $f(2)=8-6=2$.",
+            "es": "$-2$ es el valor en el punto crítico $x=1$, que es un mínimo local. En $[0,2]$ el valor mayor está en el extremo $x=2$: $f(2)=8-6=2$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compare f at the critical points inside [0,2] and at both endpoints.",
+        "es": "Compara f en los puntos críticos dentro de [0,2] y en los dos extremos del intervalo."
+      },
+      "solution": [
+        {
+          "tex": "f'(x)=3(x-1)(x+1)=0 \\Rightarrow x=1 \\in [0,2]",
+          "en": "The only critical point in the interval.",
+          "es": "El único punto crítico en el intervalo."
+        },
+        {
+          "tex": "f(0)=0,\\quad f(1)=-2,\\quad f(2)=2",
+          "en": "Evaluate at the critical point and both endpoints.",
+          "es": "Evalúa en el punto crítico y en los dos extremos."
+        },
+        {
+          "tex": "\\max_{[0,2]} f = 2",
+          "en": "The largest value is at the endpoint x = 2.",
+          "es": "El mayor valor está en el extremo x = 2."
+        }
+      ]
     }
   ],
   "references": [

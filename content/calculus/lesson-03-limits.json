@@ -2,7 +2,7 @@
   "id": "calculus-03-limits",
   "subjectId": "calculus",
   "order": 3,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Limits of Functions",
     "es": "Límites de funciones"
@@ -16,10 +16,21 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "algebra-17-factoring-polynomials",
+        "functions-10-sine-cosine"
+      ],
+      "note": {
+        "en": "Simplifying a $\\tfrac00$ limit is factoring, and the fundamental trigonometric limit needs the sine function.",
+        "es": "Simplificar un límite $\\tfrac00$ es factorizar, y el límite trigonométrico fundamental necesita la función seno."
+      }
+    },
+    {
       "type": "prose",
       "content": {
-        "en": "For functions built from polynomials, roots and the like — functions that are **continuous** — the limit is found by simple substitution: $\\lim_{x\\to 2} x^2 = 4$. The interesting cases are where substitution fails, giving the indeterminate form $\\tfrac00$. There the function may still have a perfectly good limit, hidden by a removable factor.",
-        "es": "Para funciones formadas por polinomios, raíces y similares — funciones **continuas** — el límite se halla por simple sustitución: $\\lim_{x\\to 2} x^2 = 4$. Los casos interesantes son donde la sustitución falla, dando la indeterminación $\\tfrac00$. Allí la función puede tener un límite perfectamente válido, oculto tras un factor que se cancela."
+        "en": "At a point of the domain where a function is continuous (polynomials everywhere, roots wherever defined), the limit is found by simple substitution: $\\lim_{x\\to 2} x^2 = 4$. The interesting cases are where substitution fails, giving the indeterminate form $\\tfrac00$. There the function may still have a perfectly good limit, hidden by a removable factor.",
+        "es": "En un punto del dominio donde la función es continua (los polinomios en todas partes, las raíces donde están definidas), el límite se halla por sustitución directa: $\\lim_{x\\to 2} x^2 = 4$. Los casos interesantes son donde la sustitución falla, dando la indeterminación $\\tfrac00$. Allí la función puede tener un límite perfectamente válido, oculto tras un factor que se cancela."
       }
     },
     {
@@ -27,6 +38,20 @@
       "content": {
         "en": "The technique is to **simplify first, then substitute**. For $\\lim_{x\\to 2}\\tfrac{x^2-4}{x-2}$, factoring gives $\\tfrac{(x-2)(x+2)}{x-2} = x+2$ (valid for $x\\neq 2$), which tends to $4$. Some limits are not algebraic at all: the **fundamental trigonometric limit** $\\lim_{x\\to 0}\\tfrac{\\sin x}{x} = 1$ underpins the derivative of sine.",
         "es": "La técnica es **simplificar primero y luego sustituir**. Para $\\lim_{x\\to 2}\\tfrac{x^2-4}{x-2}$, factorizar da $\\tfrac{(x-2)(x+2)}{x-2} = x+2$ (válido para $x\\neq 2$), que tiende a $4$. Algunos límites no son algebraicos: el **límite trigonométrico fundamental** $\\lim_{x\\to 0}\\tfrac{\\sin x}{x} = 1$ sustenta la derivada del seno."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The limit at $a$ needs the **same** value from both sides. The **one-sided limits** are $\\lim_{x\\to a^-} f(x)$, from the left, and $\\lim_{x\\to a^+} f(x)$, from the right. The two-sided limit exists exactly when both one-sided limits exist and are equal. The function $\\tfrac{|x|}{x}$ equals $-1$ for every $x<0$ and $+1$ for every $x>0$, so its left limit at $0$ is $-1$ and its right limit is $+1$. The limit at $0$ does not exist, even though the function is defined everywhere except at $0$. A second way to fail is blowing up: as $x\\to0^+$, $\\tfrac1x$ grows without bound, and we write $\\lim_{x\\to0^+}\\tfrac1x = +\\infty$. That is a divergence, not a number. The limit does not exist as a real number, although we describe its behavior with $+\\infty$.",
+        "es": "El límite en $a$ exige el **mismo** valor desde los dos lados. Los **límites laterales** son $\\lim_{x\\to a^-} f(x)$, por la izquierda, y $\\lim_{x\\to a^+} f(x)$, por la derecha. El límite bilateral existe exactamente cuando existen ambos laterales y son iguales. La función $\\tfrac{|x|}{x}$ vale $-1$ para todo $x<0$ y $+1$ para todo $x>0$, así que su límite por la izquierda en $0$ es $-1$ y por la derecha es $+1$. El límite en $0$ no existe, aunque la función esté definida en todos los puntos salvo $0$. Otra forma de fallar es que la función crezca sin límite. Cuando $x\\to0^+$, $\\tfrac1x$ toma valores cada vez mayores, y escribimos $\\lim_{x\\to0^+}\\tfrac1x = +\\infty$. Eso es una divergencia, no un número. El límite no existe como número real, aunque describamos su comportamiento con $+\\infty$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "If $\\lim_{x\\to a} f(x) = L$ and $\\lim_{x\\to a} g(x) = M$ both exist, the sum, product and quotient behave as expected: $\\lim (f+g) = L+M$, $\\lim fg = LM$, and $\\lim \\tfrac fg = \\tfrac LM$ provided $M\\neq0$. The quotient law says nothing when $M=0$: $\\tfrac1x$ diverges at $0$, while $\\tfrac{x}{x}$ has limit $1$ although numerator and denominator both tend to $0$. The precise definition mirrors the $\\varepsilon$–$N$ definition for sequences. $\\lim_{x\\to a} f(x) = L$ means: for every $\\varepsilon>0$ there is a $\\delta>0$ with $|f(x)-L|<\\varepsilon$ whenever $0<|x-a|<\\delta$. The tolerance $\\varepsilon$ on the output comes first, and we must find an input window $\\delta$ around $a$ that meets it. The condition $0<|x-a|$ excludes $x=a$ itself, which is why $f(a)$ may be undefined or different from $L$. Derivatives and continuity are both limits built on this definition.",
+        "es": "Si $\\lim_{x\\to a} f(x) = L$ y $\\lim_{x\\to a} g(x) = M$ existen, la suma, el producto y el cociente se comportan como cabe esperar: $\\lim (f+g) = L+M$, $\\lim fg = LM$ y $\\lim \\tfrac fg = \\tfrac LM$ siempre que $M\\neq0$. La ley del cociente no dice nada cuando $M=0$: $\\tfrac1x$ diverge en $0$, mientras que $\\tfrac{x}{x}$ tiene límite $1$ aunque numerador y denominador tiendan a $0$. La definición precisa replica la de $\\varepsilon$–$N$ de las sucesiones. $\\lim_{x\\to a} f(x) = L$ significa: para todo $\\varepsilon>0$ existe $\\delta>0$ tal que $|f(x)-L|<\\varepsilon$ siempre que $0<|x-a|<\\delta$. Primero se fija la tolerancia $\\varepsilon$ en la salida, y después hay que hallar una ventana $\\delta$ alrededor de $a$ que la cumpla. La condición $0<|x-a|$ excluye el propio $x=a$, por eso $f(a)$ puede no estar definida o ser distinta de $L$. Las derivadas y la continuidad son límites construidos sobre esta definición."
       }
     },
     {
@@ -41,17 +66,28 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — rationalizing the numerator",
+        "es": "Ejemplo resuelto — racionalizar el numerador"
+      },
+      "content": {
+        "en": "Find $\\lim_{x\\to0}\\tfrac{\\sqrt{x+4}-2}{x}$. Direct substitution gives $\\tfrac00$, and no factor cancels, because a square root is not a polynomial. Multiply top and bottom by the conjugate $\\sqrt{x+4}+2$. The numerator becomes a difference of squares: $(\\sqrt{x+4})^2 - 2^2 = x$. So the fraction equals $\\tfrac{x}{x(\\sqrt{x+4}+2)} = \\tfrac{1}{\\sqrt{x+4}+2}$ for $x\\neq0$. Now substitute: the limit is $\\tfrac{1}{\\sqrt4+2} = \\tfrac14$.",
+        "es": "Halla $\\lim_{x\\to0}\\tfrac{\\sqrt{x+4}-2}{x}$. Al sustituir directamente sale $\\tfrac00$, y ningún factor se cancela, porque una raíz cuadrada no es un polinomio. Multiplica numerador y denominador por el conjugado $\\sqrt{x+4}+2$. El numerador se convierte en una diferencia de cuadrados: $(\\sqrt{x+4})^2 - 2^2 = x$. Así la fracción vale $\\tfrac{x}{x(\\sqrt{x+4}+2)} = \\tfrac{1}{\\sqrt{x+4}+2}$ para $x\\neq0$. Ahora sí sustituimos: el límite es $\\tfrac{1}{\\sqrt4+2} = \\tfrac14$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [],
       "code": {
         "en": "import math\n# numerically, sin(x)/x -> 1 as x -> 0\nx = 1e-6\nprint(round(math.sin(x) / x, 6))",
-        "es": "import math\n# numericamente, sin(x)/x -> 1 cuando x -> 0\nx = 1e-6\nprint(round(math.sin(x) / x, 6))"
+        "es": "import math\n# numéricamente, sin(x)/x -> 1 cuando x -> 0\nx = 1e-6\nprint(round(math.sin(x) / x, 6))"
       },
       "expectedOutput": "1.0",
       "caption": {
         "en": "Plugging in a tiny x shows the famous limit sin(x)/x -> 1.",
-        "es": "Sustituir un x diminuto muestra el famoso limite sin(x)/x -> 1."
+        "es": "Sustituir un x diminuto muestra el famoso límite sin(x)/x -> 1."
       }
     }
   ],
@@ -158,7 +194,109 @@
           "en": "Fundamental trig limit.",
           "es": "Límite trigonométrico fundamental."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "$\\sin 0 = 0$ gives $\\tfrac00$ on substitution. That is an indeterminate form, not the answer $0$. The fundamental limit is a standard special value: $\\tfrac{\\sin x}{x} \\to 1$ as $x\\to0$.",
+            "es": "$\\sin 0 = 0$ da $\\tfrac00$ al sustituir. Es una indeterminación, no la respuesta $0$. El límite fundamental es un valor especial conocido: $\\tfrac{\\sin x}{x} \\to 1$ cuando $x\\to0$."
+          }
+        }
       ]
+    },
+    {
+      "id": "calculus-03-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Find $\\displaystyle\\lim_{x\\to 9}\\frac{\\sqrt x-3}{x-9}$.",
+        "es": "Halla $\\displaystyle\\lim_{x\\to 9}\\frac{\\sqrt x-3}{x-9}$."
+      },
+      "answer": "1/6",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "1/3",
+          "feedback": {
+            "en": "$\\tfrac13$ comes from crossing out the $3$ and the $9$ as if they were factors: $\\tfrac{\\sqrt x}{x} = \\tfrac{1}{\\sqrt x}$, and $\\tfrac{1}{\\sqrt 9} = \\tfrac13$. They are terms, not factors, so they can't be canceled. Factor $x - 9 = (\\sqrt x-3)(\\sqrt x+3)$ first: the limit is $\\tfrac{1}{3+3} = \\tfrac16$.",
+            "es": "$\\tfrac13$ sale de tachar el $3$ y el $9$ como si fueran factores: $\\tfrac{\\sqrt x}{x} = \\tfrac{1}{\\sqrt x}$, y $\\tfrac{1}{\\sqrt 9} = \\tfrac13$. Son términos, no factores, así que no se pueden cancelar. Factoriza primero $x - 9 = (\\sqrt x-3)(\\sqrt x+3)$: el límite es $\\tfrac{1}{3+3} = \\tfrac16$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write $x - 9 = (\\sqrt x-3)(\\sqrt x+3)$.",
+        "es": "Escribe $x - 9 = (\\sqrt x-3)(\\sqrt x+3)$."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{\\sqrt x-3}{x-9} = \\frac{\\sqrt x-3}{(\\sqrt x-3)(\\sqrt x+3)} = \\frac{1}{\\sqrt x+3}",
+          "en": "Factor the denominator as a difference of squares and cancel.",
+          "es": "Factoriza el denominador como diferencia de cuadrados y simplifica."
+        },
+        {
+          "tex": "\\to \\frac{1}{3+3} = \\frac16",
+          "en": "Now substitute x = 9.",
+          "es": "Ahora sustituye x = 9."
+        }
+      ]
+    },
+    {
+      "id": "calculus-03-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$f(2)$ is undefined. What can you say about $\\lim_{x\\to2}f(x)$?",
+        "es": "$f(2)$ no está definida. ¿Qué puedes decir de $\\lim_{x\\to2}f(x)$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It cannot exist, because a limit at a point needs the function to be defined there.",
+            "es": "No puede existir, porque un límite en un punto exige que la función esté definida allí."
+          },
+          "correct": false,
+          "why": {
+            "en": "That is a misconception. The limit describes the values of $f$ *near* $2$, and it can exist even when $f(2)$ does not.",
+            "es": "Es un error habitual. El límite describe los valores de $f$ *cerca* de $2$, y puede existir aunque $f(2)$ no exista."
+          }
+        },
+        {
+          "text": {
+            "en": "It is the value of $f$ just to the left of $2$, since $f(2)$ is missing.",
+            "es": "Es el valor de $f$ justo a la izquierda de $2$, porque falta $f(2)$."
+          },
+          "correct": false,
+          "why": {
+            "en": "One side is not enough. The limit needs the values from both sides to approach the same number.",
+            "es": "Un solo lado no basta. El límite exige que los valores de ambos lados se acerquen al mismo número."
+          }
+        },
+        {
+          "text": {
+            "en": "It must be $+\\infty$, because the function has a gap at $2$ and grows without bound near it.",
+            "es": "Tiene que ser $+\\infty$, porque la función tiene un hueco en $2$ y crece sin límite cerca de él."
+          },
+          "correct": false,
+          "why": {
+            "en": "A missing value is not a blow-up. A removable gap has a finite limit: $\\tfrac{x^2-4}{x-2}$ is undefined at $2$, yet its limit there is $4$.",
+            "es": "Un valor que falta no es una explosión. Un hueco evitable tiene límite finito: $\\tfrac{x^2-4}{x-2}$ no está definida en $2$, pero su límite allí es $4$."
+          }
+        },
+        {
+          "text": {
+            "en": "It may still exist: the limit depends only on the values of $f$ near $2$, not on $f(2)$.",
+            "es": "Puede existir: el límite depende solo de los valores de $f$ cerca de $2$, no de $f(2)$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. The limit depends on the values around $2$. Whether $f(2)$ is defined, and what it equals, does not affect the limit.",
+            "es": "Exacto. El límite depende de los valores alrededor de $2$. Que $f(2)$ esté definida, y cuánto valga, no afecta al límite."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Does the limit look at the point itself?",
+        "es": "¿Mira el límite al propio punto?"
+      }
     }
   ],
   "references": [

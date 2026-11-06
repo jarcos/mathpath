@@ -2,7 +2,7 @@
   "id": "calculus-12-applications-integration",
   "subjectId": "calculus",
   "order": 12,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Applications of Integration",
     "es": "Aplicaciones de la integración"
@@ -11,25 +11,34 @@
     {
       "type": "prose",
       "content": {
-        "en": "Integration is far more than area. Its true power is **accumulation**: whenever a quantity is built up from a varying rate, an integral assembles the total. Distance is the integral of velocity; total charge is the integral of current; the work done by a varying force is an integral; in probability, the area under a density curve is a probability.",
-        "es": "La integración es mucho más que área. Su verdadero poder es la **acumulación**: siempre que una magnitud se construye a partir de una tasa variable, una integral reúne el total. La distancia es la integral de la velocidad; la carga total es la integral de la corriente; el trabajo de una fuerza variable es una integral; en probabilidad, el área bajo una densidad es una probabilidad."
+        "en": "Integration is far more than area. Its true power is **accumulation**: whenever a quantity is built up from a varying rate, an integral assembles the total. Displacement is the integral of velocity; distance is the integral of speed; total charge is the integral of current; the work done by a varying force is an integral; in probability, the area under a density curve is a probability.",
+        "es": "La integración es mucho más que área. Su verdadero poder es la **acumulación**: siempre que una magnitud se construye a partir de una tasa variable, una integral reúne el total. El desplazamiento es la integral de la velocidad; la distancia recorrida, la integral de la rapidez; la carga total es la integral de la corriente; el trabajo de una fuerza variable es una integral; en probabilidad, el área bajo una densidad es una probabilidad."
       }
     },
     {
       "type": "prereq",
       "lessons": [
-        "calculus-11-definite-integral"
+        "calculus-11-definite-integral",
+        "algebra-02-quadratic-equations",
+        "functions-07-quadratic"
       ],
       "note": {
-        "en": "Applications build on the definite integral.",
-        "es": "Las aplicaciones se apoyan en la integral definida."
+        "en": "Applications build on the definite integral. The points where the curves meet are roots of quadratic equations in these examples.",
+        "es": "Las aplicaciones se apoyan en la integral definida. Los puntos donde se cortan las curvas son raíces de ecuaciones cuadráticas en estos ejemplos."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "The most direct application is the **area under a curve**. For a positive function on $[a,b]$, $\\int_a^b f(x)\\,dx$ is exactly that area. The **area between two curves** $f$ and $g$ is $\\int_a^b (f - g)\\,dx$ — integrate the gap between them. These ideas extend to volumes, arc lengths, and surface areas of solids of revolution.",
-        "es": "La aplicación más directa es el **área bajo una curva**. Para una función positiva en $[a,b]$, $\\int_a^b f(x)\\,dx$ es exactamente esa área. El **área entre dos curvas** $f$ y $g$ es $\\int_a^b (f - g)\\,dx$ — integra el hueco entre ambas. Estas ideas se extienden a volúmenes, longitudes de arco y superficies de sólidos de revolución."
+        "en": "The most direct application is the **area under a curve**. For a positive function on $[a,b]$, $\\int_a^b f(x)\\,dx$ is exactly that area. The **area between two curves** $f$ and $g$ is $\\int_a^b (f - g)\\,dx$ when $f \\ge g$ on $[a,b]$ — integrate the gap between them. These ideas extend to volumes, arc lengths, and surface areas of solids of revolution.",
+        "es": "La aplicación más directa es el **área bajo una curva**. Para una función positiva en $[a,b]$, $\\int_a^b f(x)\\,dx$ es exactamente esa área. El **área entre dos curvas** $f$ y $g$ es $\\int_a^b (f - g)\\,dx$ cuando $f \\ge g$ en $[a,b]$ — integra el hueco entre ambas. Estas ideas se extienden a volúmenes, longitudes de arco y superficies de sólidos de revolución."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The recipe for the area between curves.** Find where the curves meet, $f(x)=g(x)$; the outermost meeting points are the limits $a$ and $b$. Then decide which curve is on top by testing one point between them. If the curves cross inside the interval at a point $c$, split the integral there, because the top curve changes: with $f$ on top before $c$ and $g$ after, the area is $\\int_a^c (f-g)\\,dx + \\int_c^b (g-f)\\,dx$. The most common error is the sign: subtracting the top curve from the bottom one gives a negative area.",
+        "es": "**La receta para el área entre curvas.** Halla dónde se cortan las curvas, $f(x)=g(x)$; los puntos de corte más externos son los límites $a$ y $b$. Después decide cuál va arriba evaluando un punto intermedio. Si las curvas se cruzan dentro del intervalo en un punto $c$, parte la integral ahí, porque cambia cuál está arriba: si $f$ va arriba antes de $c$ y $g$ después, el área es $\\int_a^c (f-g)\\,dx + \\int_c^b (g-f)\\,dx$. El error más frecuente es el signo: restar la curva de arriba a la de abajo da un área negativa."
       }
     },
     {
@@ -51,8 +60,33 @@
         "es": "Ejemplo resuelto — área bajo una parábola"
       },
       "content": {
-        "en": "Find the area under $f(x) = x^2$ from $0$ to $1$. Antiderivative $\\tfrac{x^3}{3}$; evaluate: $\\left[\\tfrac{x^3}{3}\\right]_0^1 = \\tfrac13 - 0 = \\tfrac13$. Unlike the triangle, this curved region has no elementary geometric formula — integration is the only way.",
-        "es": "Halla el área bajo $f(x) = x^2$ de $0$ a $1$. Primitiva $\\tfrac{x^3}{3}$; evalúa: $\\left[\\tfrac{x^3}{3}\\right]_0^1 = \\tfrac13 - 0 = \\tfrac13$. A diferencia del triángulo, esta región curva no tiene fórmula geométrica elemental — la integración es la única vía."
+        "en": "Find the area under $f(x) = x^2$ from $0$ to $1$. Antiderivative $\\tfrac{x^3}{3}$; evaluate: $\\left[\\tfrac{x^3}{3}\\right]_0^1 = \\tfrac13 - 0 = \\tfrac13$. Unlike the triangle, this curved region has no formula from school geometry; integration gives it in one line (Archimedes found it by exhaustion, long before calculus).",
+        "es": "Halla el área bajo $f(x) = x^2$ de $0$ a $1$. Primitiva $\\tfrac{x^3}{3}$; evalúa: $\\left[\\tfrac{x^3}{3}\\right]_0^1 = \\tfrac13 - 0 = \\tfrac13$. A diferencia del triángulo, esta región curva no tiene una fórmula de geometría escolar; la integración la da en una línea (Arquímedes la halló por exhaución, mucho antes del cálculo)."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — between a line and a parabola",
+        "es": "Ejemplo resuelto — entre una recta y una parábola"
+      },
+      "content": {
+        "en": "Find the area between $y = x$ and $y = x^2$ on $[0,1]$. They meet where $x = x^2$, at $x = 0$ and $x = 1$, and on $(0,1)$ the line is above the parabola, since $x^2 < x$ there. So the area is $\\int_0^1 (x - x^2)\\,dx = \\left[\\tfrac{x^2}{2} - \\tfrac{x^3}{3}\\right]_0^1 = \\tfrac12 - \\tfrac13 = \\tfrac16$. Test one point to be sure: at $x = \\tfrac12$ the line is at $\\tfrac12$ and the parabola at $\\tfrac14$, so the line is on top.",
+        "es": "Halla el área entre $y = x$ e $y = x^2$ en $[0,1]$. Se cortan donde $x = x^2$, en $x = 0$ y $x = 1$, y en $(0,1)$ la recta está por encima de la parábola, porque $x^2 < x$ allí. Así que el área es $\\int_0^1 (x - x^2)\\,dx = \\left[\\tfrac{x^2}{2} - \\tfrac{x^3}{3}\\right]_0^1 = \\tfrac12 - \\tfrac13 = \\tfrac16$. Compruébalo con un punto: en $x = \\tfrac12$ la recta está en $\\tfrac12$ y la parábola en $\\tfrac14$, así que la recta va arriba."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Displacement or distance?** The integral $\\int_a^b v(t)\\,dt$ gives the **net change** in position, which can be negative or zero. To count the total ground covered, integrate the speed: $\\int_a^b |v(t)|\\,dt$. The two differ whenever the velocity changes sign, as they do for a ball thrown up that falls back into your hand. Before you choose an integral, check which quantity the question asks for.",
+        "es": "**¿Desplazamiento o distancia?** La integral $\\int_a^b v(t)\\,dt$ da el **cambio neto** de posición, que puede ser negativo o cero. Para contar el camino total recorrido, integra la rapidez: $\\int_a^b |v(t)|\\,dt$. Las dos cosas difieren siempre que la velocidad cambie de signo, como le ocurre a una pelota lanzada hacia arriba que vuelve a caer en la mano. Antes de elegir la integral, mira qué magnitud pide el problema."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Volumes and probabilities.** Rotate the region under $y = f(x)$ on $[a,b]$ about the x-axis and you sweep out a solid whose thin slices are disks of area $\\pi f(x)^2$. So the **volume of revolution** is $V = \\pi\\int_a^b f(x)^2\\,dx$. Check it on a cone: the line $f(x) = \\tfrac{x}{2}$ on $[0,4]$ gives $V = \\pi\\int_0^4 \\tfrac{x^2}{4}\\,dx = \\tfrac{16\\pi}{3}$, which is the familiar $\\tfrac13\\pi r^2 h$ with $r = 2$ and $h = 4$. In probability, a **density** $f \\geq 0$ with total area $1$ gives probabilities as areas: $P(a \\le X \\le b) = \\int_a^b f(x)\\,dx$. For $f(x) = 2x$ on $[0,1]$ the total area is $1$, and $P(X \\le \\tfrac12) = \\tfrac14$. Statistics is built on exactly this idea.",
+        "es": "**Volúmenes y probabilidades.** Gira la región bajo $y = f(x)$ en $[a,b]$ alrededor del eje x y obtendrás un sólido cuyas rebanadas finas son discos de área $\\pi f(x)^2$. Así, el **volumen de revolución** es $V = \\pi\\int_a^b f(x)^2\\,dx$. Compruébalo con un cono: la recta $f(x) = \\tfrac{x}{2}$ en $[0,4]$ da $V = \\pi\\int_0^4 \\tfrac{x^2}{4}\\,dx = \\tfrac{16\\pi}{3}$, la fórmula conocida $\\tfrac13\\pi r^2 h$ con $r = 2$ y $h = 4$. En probabilidad, una **densidad** $f \\geq 0$ de área total $1$ da probabilidades como áreas: $P(a \\le X \\le b) = \\int_a^b f(x)\\,dx$. Para $f(x) = 2x$ en $[0,1]$ el área total es $1$, y $P(X \\le \\tfrac12) = \\tfrac14$. La estadística se construye justo sobre esta idea."
       }
     },
     {
@@ -63,12 +97,12 @@
       ],
       "code": {
         "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# area under y = x^2 from 0 to 2 (a fraction!)\nprint(sp.integrate(x**2, (x, 0, 2)))",
-        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# area bajo y = x^2 de 0 a 2 (una fraccion!)\nprint(sp.integrate(x**2, (x, 0, 2)))"
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# área bajo y = x^2 de 0 a 2 (una fracción!)\nprint(sp.integrate(x**2, (x, 0, 2)))"
       },
       "expectedOutput": "8/3",
       "caption": {
         "en": "Integration yields exact fractions, here 8/3.",
-        "es": "La integracion da fracciones exactas, aqui 8/3."
+        "es": "La integración da fracciones exactas, aquí 8/3."
       }
     }
   ],
@@ -94,6 +128,15 @@
           "tex": "\\int_0^4 x\\,dx = [\\tfrac{x^2}{2}]_0^4 = 8",
           "en": "Evaluate the integral.",
           "es": "Evalúa la integral."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "16",
+          "feedback": {
+            "en": "$16$ forgets the $\\tfrac12$: $\\int_0^4 x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_0^4 = 8$, not $\\left[x^2\\right]_0^4 = 16$.",
+            "es": "$16$ olvida el $\\tfrac12$: $\\int_0^4 x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_0^4 = 8$, no $\\left[x^2\\right]_0^4 = 16$."
+          }
         }
       ]
     },
@@ -156,8 +199,8 @@
       "id": "calculus-12-e4",
       "answerType": "text",
       "prompt": {
-        "en": "The definite integral gives the ___ under the curve. (one word)",
-        "es": "La integral definida da el ___ bajo la curva. (una palabra)"
+        "en": "The definite integral gives the signed ___ under the curve. (one word)",
+        "es": "La integral definida da el ___ con signo bajo la curva. (una palabra)"
       },
       "answer": "area",
       "hint": {
@@ -169,6 +212,99 @@
           "tex": "\\int_a^b f = \\text{area}",
           "en": "Signed area.",
           "es": "Área con signo."
+        }
+      ]
+    },
+    {
+      "id": "calculus-12-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$v(t) = t - 2$ on $[0,4]$, so $\\int_0^4 v\\,dt = 0$. What does this tell you about the motion?",
+        "es": "$v(t) = t - 2$ en $[0,4]$, así que $\\int_0^4 v\\,dt = 0$. ¿Qué te dice esto sobre el movimiento?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The object never moved, because its velocity averages to zero.",
+            "es": "El objeto nunca se movió, porque su velocidad promedia cero."
+          },
+          "correct": false,
+          "why": {
+            "en": "The velocity is negative on $[0,2)$ and positive on $(2,4]$, so the object does move. The integral balances the two directions; it does not remove the motion.",
+            "es": "La velocidad es negativa en $[0,2)$ y positiva en $(2,4]$, así que el objeto sí se mueve. La integral compensa las dos direcciones; no elimina el movimiento."
+          }
+        },
+        {
+          "text": {
+            "en": "The object ends where it started, but it traveled a total distance of $4$.",
+            "es": "El objeto acaba donde empezó, pero recorrió una distancia total de $4$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. The displacement is $0$, so it is back at its start. The distance adds the out-and-back legs: $\\int_0^4 |t - 2|\\,dt = 2 + 2 = 4$.",
+            "es": "Exacto. El desplazamiento es $0$, así que vuelve al punto de partida. La distancia suma la ida y la vuelta: $\\int_0^4 |t - 2|\\,dt = 2 + 2 = 4$."
+          }
+        },
+        {
+          "text": {
+            "en": "The total distance is $0$, because the integral of the velocity is the distance.",
+            "es": "La distancia total es $0$, porque la integral de la velocidad es la distancia."
+          },
+          "correct": false,
+          "why": {
+            "en": "The integral of the velocity is the displacement, which carries a sign. Distance needs the absolute value $|v|$, and here it adds up to $4$.",
+            "es": "La integral de la velocidad es el desplazamiento, que tiene signo. La distancia necesita el valor absoluto $|v|$, y aquí suma $4$."
+          }
+        },
+        {
+          "text": {
+            "en": "The object ends 4 units away from its start, since the distance traveled is 4.",
+            "es": "El objeto acaba a 4 unidades de su punto de partida, ya que la distancia recorrida es 4."
+          },
+          "correct": false,
+          "why": {
+            "en": "Displacement is the net change in position, here $s(4) - s(0) = 0$. Four is the distance traveled, which is not the same as where the object ends.",
+            "es": "El desplazamiento es el cambio neto de posición, aquí $s(4) - s(0) = 0$. Cuatro es la distancia recorrida, que no es lo mismo que dónde acaba el objeto."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compare displacement (signed) with distance (no signs).",
+        "es": "Compara el desplazamiento (con signo) con la distancia (sin signos)."
+      }
+    },
+    {
+      "id": "calculus-12-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "Find the area of the region enclosed between $y = 2x$ and $y = x^2$.",
+        "es": "Halla el área de la región encerrada entre $y = 2x$ e $y = x^2$."
+      },
+      "answer": "4/3",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "-4/3",
+          "feedback": {
+            "en": "$-\\tfrac43$ subtracts the top curve from the bottom one. On $(0,2)$ the line $y = 2x$ is above the parabola, so the integrand is $2x - x^2$, which is positive.",
+            "es": "$-\\tfrac43$ resta la curva de arriba a la de abajo. En $(0,2)$ la recta $y = 2x$ está por encima de la parábola, así que el integrando es $2x - x^2$, que es positivo."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Where do the curves meet? Between them, the line is on top.",
+        "es": "¿Dónde se cortan las curvas? Entre ellas, la recta va arriba."
+      },
+      "solution": [
+        {
+          "tex": "2x = x^2 \\Rightarrow x = 0 \\text{ or } x = 2",
+          "en": "Find the intersection points.",
+          "es": "Halla los puntos de corte."
+        },
+        {
+          "tex": "\\int_0^2 (2x - x^2)\\,dx = \\left[x^2 - \\tfrac{x^3}{3}\\right]_0^2 = 4 - \\tfrac83 = \\tfrac43",
+          "en": "On (0, 2) the line is on top: integrate top minus bottom.",
+          "es": "En (0, 2) la recta va arriba: integra arriba menos abajo."
         }
       ]
     }

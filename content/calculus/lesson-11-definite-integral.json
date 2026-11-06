@@ -2,7 +2,7 @@
   "id": "calculus-11-definite-integral",
   "subjectId": "calculus",
   "order": 11,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "The Definite Integral & Area",
     "es": "La integral definida y el área"
@@ -18,18 +18,26 @@
     {
       "type": "prereq",
       "lessons": [
-        "calculus-10-indefinite-integral"
+        "calculus-10-indefinite-integral",
+        "functions-10-sine-cosine"
       ],
       "note": {
-        "en": "The definite integral evaluates the antiderivative from the previous lesson.",
-        "es": "La integral definida evalua la primitiva de la leccion anterior."
+        "en": "The definite integral evaluates the antiderivative from the previous lesson; the examples use sine and cosine.",
+        "es": "La integral definida evalúa la primitiva de la lección anterior; los ejemplos usan seno y coseno."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "Computing that limit directly would be brutal. The **Fundamental Theorem of Calculus** — arguably the crowning result of the subject — connects the two halves of calculus: $\\int_a^b f(x)\\,dx = F(b) - F(a)$, where $F$ is any antiderivative of $f$. Integration (area) and differentiation (slope) are inverse operations. We compute areas by *anti*-differentiating.",
-        "es": "Calcular ese límite directamente sería brutal. El **Teorema Fundamental del Cálculo** — posiblemente el resultado culminante de la asignatura — conecta las dos mitades del cálculo: $\\int_a^b f(x)\\,dx = F(b) - F(a)$, donde $F$ es cualquier primitiva de $f$. Integración (área) y derivación (pendiente) son operaciones inversas. Calculamos áreas *anti*-derivando."
+        "en": "**Precisely**, split $[a,b]$ into $n$ pieces of width $\\Delta x = \\tfrac{b-a}{n}$, pick a sample point $x_i^*$ in each piece, and add up $\\sum_{i=1}^{n} f(x_i^*)\\,\\Delta x$. The integral is the limit of these sums as the widest piece, $\\max\\Delta x$, tends to $0$, whatever the sample points. For $f(x)=x^2$ on $[0,1]$ with $n=4$, the left-endpoint sum is $\\tfrac{7}{32} = 0.21875$ and the right-endpoint sum is $\\tfrac{15}{32} = 0.46875$. The exact value $\\tfrac13$ lies between them. For a monotone $f$ the left and right sums squeeze the exact value between them; for any continuous $f$ on $[a,b]$ the sums still converge, because a continuous function on a closed interval is uniformly continuous.",
+        "es": "**Con precisión**, divide $[a,b]$ en $n$ trozos de anchura $\\Delta x = \\tfrac{b-a}{n}$, elige un punto de muestra $x_i^*$ en cada uno y suma $\\sum_{i=1}^{n} f(x_i^*)\\,\\Delta x$. La integral es el límite de estas sumas cuando la pieza más ancha, $\\max\\Delta x$, tiende a $0$, sean cuales sean los puntos de muestra. Para $f(x)=x^2$ en $[0,1]$ con $n=4$, la suma con extremo izquierdo es $\\tfrac{7}{32} = 0.21875$ y la de extremo derecho $\\tfrac{15}{32} = 0.46875$. El valor exacto $\\tfrac13$ queda entre ambas. Para una $f$ monótona, las sumas por la izquierda y por la derecha encierran el valor exacto; para cualquier $f$ continua en $[a,b]$ las sumas también convergen, porque una función continua en un intervalo cerrado es uniformemente continua."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Computing that limit directly would be brutal. The **Fundamental Theorem of Calculus** — arguably the crowning result of the subject — connects the two halves of calculus: $\\int_a^b f(x)\\,dx = F(b) - F(a)$, where $F$ is any antiderivative of $f$, and $f$ is continuous on $[a,b]$. Integration (area) and differentiation (slope) are inverse operations. We compute areas by *anti*-differentiating.",
+        "es": "Calcular ese límite directamente sería brutal. El **Teorema Fundamental del Cálculo** — posiblemente el resultado culminante de la asignatura — conecta las dos mitades del cálculo: $\\int_a^b f(x)\\,dx = F(b) - F(a)$, donde $F$ es cualquier primitiva de $f$, y $f$ es continua en $[a,b]$. Integración (área) y derivación (pendiente) son operaciones inversas. Calculamos áreas *anti*-derivando."
       }
     },
     {
@@ -37,6 +45,13 @@
       "content": {
         "en": "The recipe: find an antiderivative $F$, then evaluate $F(b) - F(a)$ (the constant $C$ cancels, so we omit it). Unlike the indefinite integral, a definite integral has **no $+C$** — it is a definite number. The notation $[F(x)]_a^b$ means \"evaluate $F$ at $b$, subtract its value at $a$\".",
         "es": "La receta: halla una primitiva $F$ y luego evalúa $F(b) - F(a)$ (la constante $C$ se cancela, así que la omitimos). A diferencia de la indefinida, una integral definida **no lleva $+C$** — es un número concreto. La notación $[F(x)]_a^b$ significa \"evalúa $F$ en $b$ y resta su valor en $a$\"."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Rules that follow from the definition.** Swapping the limits changes the sign: $\\int_b^a f\\,dx = -\\int_a^b f\\,dx$, and $\\int_a^a f\\,dx = 0$. Integrals add over neighboring intervals: $\\int_a^b f\\,dx = \\int_a^c f\\,dx + \\int_c^b f\\,dx$ for any $c$ between $a$ and $b$, which lets you cut a region at a point. Beware the difference between the *signed* area $\\int_a^b f\\,dx$ and the *total* area $\\int_a^b |f|\\,dx$: where $f$ dips below the axis, the two disagree. To measure a region below the axis, integrate $-f$ over that piece.",
+        "es": "**Reglas que se deducen de la definición.** Intercambiar los límites cambia el signo: $\\int_b^a f\\,dx = -\\int_a^b f\\,dx$, y $\\int_a^a f\\,dx = 0$. Las integrales se suman sobre intervalos contiguos: $\\int_a^b f\\,dx = \\int_a^c f\\,dx + \\int_c^b f\\,dx$ para cualquier $c$ entre $a$ y $b$, lo que permite partir una región por un punto. Ojo con la diferencia entre el área *con signo* $\\int_a^b f\\,dx$ y el área *total* $\\int_a^b |f|\\,dx$: donde $f$ queda por debajo del eje, las dos no coinciden. Para medir una región bajo el eje, integra $-f$ en ese tramo."
       }
     },
     {
@@ -51,6 +66,24 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a sine wave and its cancellation",
+        "es": "Ejemplo resuelto — una onda sinusoidal y su cancelación"
+      },
+      "content": {
+        "en": "Find $\\int_0^\\pi \\sin x\\,dx$. An antiderivative is $-\\cos x$, so $\\left[-\\cos x\\right]_0^\\pi = -\\cos\\pi + \\cos 0 = 1 + 1 = 2$: the hump above the axis has area $2$. Now $\\int_0^{2\\pi} \\sin x\\,dx = \\left[-\\cos x\\right]_0^{2\\pi} = -1 + 1 = 0$. The second half of the wave lies below the axis, and its negative area cancels the first. The signed integral is $0$, yet the true area of one full wave is $4$, which is $\\int_0^{2\\pi} |\\sin x|\\,dx$.",
+        "es": "Halla $\\int_0^\\pi \\sin x\\,dx$. Una primitiva es $-\\cos x$, así que $\\left[-\\cos x\\right]_0^\\pi = -\\cos\\pi + \\cos 0 = 1 + 1 = 2$: la joroba sobre el eje tiene área $2$. Ahora $\\int_0^{2\\pi} \\sin x\\,dx = \\left[-\\cos x\\right]_0^{2\\pi} = -1 + 1 = 0$. La segunda mitad de la onda queda bajo el eje, y su área negativa cancela la primera. La integral con signo vale $0$, pero el área real de una onda completa es $4$, que es $\\int_0^{2\\pi} |\\sin x|\\,dx$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The average value.** The average of $f$ on $[a,b]$ is $\\tfrac{1}{b-a}\\int_a^b f(x)\\,dx$, the height of the rectangle with the same base and the same area. For $f(x)=x$ on $[0,4]$ the area is $8$, so the average height is $\\tfrac{8}{4} = 2$. The Fundamental Theorem has a second half: if $f$ is continuous and $G(x) = \\int_a^x f(t)\\,dt$, then $G'(x) = f(x)$. Probabilities and expected values are integrals too.",
+        "es": "**El valor medio.** El valor medio de $f$ en $[a,b]$ es $\\tfrac{1}{b-a}\\int_a^b f(x)\\,dx$, la altura del rectángulo con la misma base y la misma área. Para $f(x)=x$ en $[0,4]$ el área es $8$, así que la altura media es $\\tfrac{8}{4} = 2$. El Teorema Fundamental tiene una segunda parte: si $f$ es continua y $G(x) = \\int_a^x f(t)\\,dt$, entonces $G'(x) = f(x)$. Las probabilidades y los valores esperados también son integrales."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -58,12 +91,12 @@
       ],
       "code": {
         "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# a definite integral = signed area under the curve\nprint(sp.integrate(x**2, (x, 0, 3)))",
-        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# una integral definida = area con signo bajo la curva\nprint(sp.integrate(x**2, (x, 0, 3)))"
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# una integral definida = área con signo bajo la curva\nprint(sp.integrate(x**2, (x, 0, 3)))"
       },
       "expectedOutput": "9",
       "caption": {
         "en": "The area under x^2 from 0 to 3 is exactly 9.",
-        "es": "El area bajo x^2 de 0 a 3 es exactamente 9."
+        "es": "El área bajo x² de 0 a 3 es exactamente 9."
       }
     }
   ],
@@ -88,6 +121,15 @@
           "tex": "[x^2]_0^1 = 1 - 0 = 1",
           "en": "Apply the FTC.",
           "es": "Aplica el TFC."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ is the integrand at $x = 1$, not the area. The antiderivative of $2x$ is $x^2$, and $\\left[x^2\\right]_0^1 = 1$.",
+            "es": "$2$ es el integrando en $x = 1$, no el área. La primitiva de $2x$ es $x^2$, y $\\left[x^2\\right]_0^1 = 1$."
+          }
         }
       ]
     },
@@ -195,6 +237,99 @@
           "tex": "[x^2]_{[[p]]}^{[[q]]} = [[q2]] - [[p2]] = [[v]]",
           "en": "Apply the FTC. With symmetric limits (from −a to a) the result is 0: 2x is odd, so the signed areas on each side of 0 cancel.",
           "es": "Aplica el TFC. Con límites simétricos (de −a a a) el resultado es 0: 2x es impar, así que las áreas con signo a cada lado del 0 se anulan."
+        }
+      ]
+    },
+    {
+      "id": "calculus-11-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$\\int_{-1}^{1} x^3\\,dx = 0$. What does this result tell you?",
+        "es": "$\\int_{-1}^{1} x^3\\,dx = 0$. ¿Qué te dice este resultado?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The integral is wrong, because the area under a curve can never be zero.",
+            "es": "La integral está mal, porque el área bajo una curva nunca puede ser cero."
+          },
+          "correct": false,
+          "why": {
+            "en": "A signed integral can be zero: the positive and negative parts cancel. That does not make the calculation wrong, and the region itself still has positive area.",
+            "es": "Una integral con signo puede valer cero: las partes positiva y negativa se cancelan. Eso no hace que el cálculo esté mal, y la región sigue teniendo área positiva."
+          }
+        },
+        {
+          "text": {
+            "en": "The region has no area, because the curve is symmetric about the origin and so encloses nothing.",
+            "es": "La región no tiene área, porque la curva es simétrica respecto al origen y no encierra nada."
+          },
+          "correct": false,
+          "why": {
+            "en": "Symmetry does not remove area. The curve encloses a region on each side of $0$; the two pieces have the same size but opposite signs in the integral.",
+            "es": "La simetría no quita área. La curva encierra una región a cada lado de $0$; las dos piezas tienen el mismo tamaño pero signos opuestos en la integral."
+          }
+        },
+        {
+          "text": {
+            "en": "$x^3$ is never positive on $[-1,1]$, so the integral has to be negative.",
+            "es": "$x^3$ nunca es positiva en $[-1,1]$, así que la integral tiene que ser negativa."
+          },
+          "correct": false,
+          "why": {
+            "en": "$x^3$ is positive for $x > 0$. It changes sign at $0$, so on $[-1,1]$ it is neither always positive nor always negative.",
+            "es": "$x^3$ es positiva para $x > 0$. Cambia de signo en $0$, así que en $[-1,1]$ no es ni siempre positiva ni siempre negativa."
+          }
+        },
+        {
+          "text": {
+            "en": "The positive and negative parts cancel; the region still has area.",
+            "es": "Las partes positiva y negativa se cancelan; la región sigue teniendo área."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Each half cancels the other in the signed sum, but the area of the region is not zero. For the area itself, integrate $|x^3|$ instead.",
+            "es": "Exacto. Cada mitad anula a la otra en la suma con signo, pero el área de la región no es cero. Para el área en sí, integra $|x^3|$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Split the integral at 0. What does x³ do on each side?",
+        "es": "Parte la integral en 0. ¿Qué hace x³ a cada lado?"
+      }
+    },
+    {
+      "id": "calculus-11-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "Evaluate $\\int_0^{\\pi/2} \\cos x\\,dx$.",
+        "es": "Evalúa $\\int_0^{\\pi/2} \\cos x\\,dx$."
+      },
+      "answer": "1",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "-1",
+          "feedback": {
+            "en": "$-1$ comes from the antiderivative $-\\sin x$, which is the derivative of $\\cos x$. The antiderivative of $\\cos x$ is $\\sin x$, and $\\left[\\sin x\\right]_0^{\\pi/2} = 1 - 0 = 1$.",
+            "es": "$-1$ sale de la primitiva $-\\sin x$, que es la derivada de $\\cos x$. La primitiva de $\\cos x$ es $\\sin x$, y $\\left[\\sin x\\right]_0^{\\pi/2} = 1 - 0 = 1$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "What differentiates to cos x? Then evaluate from 0 to π/2.",
+        "es": "¿Qué deriva a cos x? Luego evalúa de 0 a π/2."
+      },
+      "solution": [
+        {
+          "tex": "\\int_0^{\\pi/2}\\cos x\\,dx = \\left[\\sin x\\right]_0^{\\pi/2}",
+          "en": "The antiderivative of cos x is sin x.",
+          "es": "La primitiva de cos x es sin x."
+        },
+        {
+          "tex": "= \\sin\\tfrac{\\pi}{2} - \\sin 0 = 1 - 0 = 1",
+          "en": "Evaluate at the two ends.",
+          "es": "Evalúa en los dos extremos."
         }
       ]
     }

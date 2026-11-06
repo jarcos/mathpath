@@ -2,7 +2,7 @@
   "id": "calculus-04-indeterminate-forms",
   "subjectId": "calculus",
   "order": 4,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Indeterminate Forms",
     "es": "Indeterminaciones"
@@ -18,11 +18,13 @@
     {
       "type": "prereq",
       "lessons": [
-        "calculus-03-limits"
+        "calculus-03-limits",
+        "algebra-17-factoring-polynomials",
+        "functions-08-polynomial"
       ],
       "note": {
-        "en": "Indeterminate forms arise when evaluating the limits just introduced.",
-        "es": "Las formas indeterminadas surgen al evaluar los limites recien vistos."
+        "en": "Indeterminate forms arise when evaluating the limits just introduced, and resolving them means factoring and comparing the leading terms of polynomials.",
+        "es": "Las formas indeterminadas surgen al evaluar los límites recién vistos, y resolverlas exige factorizar y comparar los términos principales de los polinomios."
       }
     },
     {
@@ -35,8 +37,29 @@
     {
       "type": "prose",
       "content": {
-        "en": "Be careful: $\\tfrac{5}{0}$ (a nonzero over zero) is **not** indeterminate — it signals a vertical asymptote, with the function diverging to $\\pm\\infty$. Only the special forms above are genuinely undecided until simplified.",
-        "es": "Cuidado: $\\tfrac{5}{0}$ (un no nulo entre cero) **no** es indeterminado — indica una asíntota vertical, con la función divergiendo a $\\pm\\infty$. Solo las formas especiales de arriba están realmente sin decidir hasta simplificar."
+        "en": "Be careful: $\\tfrac{5}{0}$ (a nonzero over zero) is **not** indeterminate — it signals an infinite limit (for $\\tfrac1x$, a vertical asymptote with opposite signs on each side). Only the special forms above are genuinely undecided until simplified.",
+        "es": "Cuidado: $\\tfrac{5}{0}$ (un no nulo entre cero) **no** es indeterminado — indica un límite infinito (para $\\tfrac1x$, una asíntota vertical con signos opuestos a cada lado). Solo las formas especiales de arriba están realmente sin decidir hasta simplificar."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "There are seven indeterminate forms: $\\tfrac00$, $\\tfrac{\\infty}{\\infty}$, $\\infty-\\infty$, $0\\cdot\\infty$, $1^\\infty$, $0^0$ and $\\infty^0$. The power forms need care, because the base and the exponent approach their limits at different rates. Take $1^\\infty$: the base $1+\\tfrac1n$ tends to $1$ and the exponent $n$ tends to $\\infty$, yet $\\left(1+\\tfrac1n\\right)^n \\to e \\approx 2.718$, not $1$. The base is a little above $1$ and the exponent is large, so the small excess compounds: $1.01^{100} \\approx 2.70$. Changing the rate changes the answer: $\\left(1+\\tfrac{1}{n^2}\\right)^n \\to 1$. The form alone never decides; the rates do.",
+        "es": "Hay siete indeterminaciones: $\\tfrac00$, $\\tfrac{\\infty}{\\infty}$, $\\infty-\\infty$, $0\\cdot\\infty$, $1^\\infty$, $0^0$ y $\\infty^0$. Las formas con exponente piden cuidado, porque la base y el exponente se acercan a sus límites a ritmos distintos. Toma $1^\\infty$: la base $1+\\tfrac1n$ tiende a $1$ y el exponente $n$ tiende a $\\infty$, y sin embargo $\\left(1+\\tfrac1n\\right)^n \\to e \\approx 2.718$, no $1$. La base está un poco por encima de $1$ y el exponente es grande, así que ese pequeño exceso se acumula: $1.01^{100} \\approx 2.70$. Cambiar el ritmo cambia la respuesta: $\\left(1+\\tfrac{1}{n^2}\\right)^n \\to 1$. La forma por sí sola nunca decide; deciden los ritmos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "For a rational function $\\tfrac{p(x)}{q(x)}$ at infinity, compare the degrees. If $\\deg p < \\deg q$, the limit is $0$. If the degrees are equal, the limit is the ratio of the leading coefficients. If $\\deg p > \\deg q$, the function grows without bound and the limit is $\\pm\\infty$, with the sign given by the leading terms. The form $\\infty-\\infty$ has no division to exploit, so first combine the two parts into one fraction. The usual trick is the conjugate, which turns a difference of square roots into a fraction whose top and bottom can be compared, as in the second example below.",
+        "es": "Para una función racional $\\tfrac{p(x)}{q(x)}$ en el infinito, compara los grados. Si $\\deg p < \\deg q$, el límite es $0$. Si los grados son iguales, el límite es el cociente de los coeficientes principales. Si $\\deg p > \\deg q$, la función crece sin límite y el límite es $\\pm\\infty$, con el signo que dan los términos principales. La forma $\\infty-\\infty$ no tiene división que aprovechar, así que primero combina las dos partes en una sola fracción. El truco habitual es el conjugado, que convierte una diferencia de raíces en una fracción cuyo numerador y denominador sí se pueden comparar, como en el segundo ejemplo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "These forms are not only exam questions. A computer evaluates expressions in floating-point arithmetic, and a $\\tfrac00$ form hides there as cancellation. Take $\\tfrac{1-\\cos x}{x^2}$, which tends to $\\tfrac12$ as $x\\to0$. For $x = 10^{-8}$, $\\cos x$ is so close to $1$ that the double-precision value of $1-\\cos x$ is exactly $0$, and the program prints $0$ instead of $\\tfrac12$. The fix is algebraic: $1-\\cos x = 2\\sin^2\\tfrac x2$, the kind of rewriting this lesson teaches. Numerical libraries are full of such rewrites, which avoid a cancellation or an overflow before the computer meets it.",
+        "es": "Estas formas no son solo preguntas de examen. Un ordenador evalúa las expresiones en aritmética de coma flotante, y una forma $\\tfrac00$ se esconde allí como cancelación. Toma $\\tfrac{1-\\cos x}{x^2}$, que tiende a $\\tfrac12$ cuando $x\\to0$. Para $x = 10^{-8}$, $\\cos x$ está tan cerca de $1$ que el valor en doble precisión de $1-\\cos x$ es exactamente $0$, y el programa escribe $0$ en lugar de $\\tfrac12$. La solución es algebraica: $1-\\cos x = 2\\sin^2\\tfrac x2$, el tipo de reescritura que enseña esta lección. Las bibliotecas numéricas están llenas de reescrituras así, que evitan una cancelación o un desbordamiento antes de que el ordenador los encuentre."
       }
     },
     {
@@ -51,6 +74,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a difference of two infinities",
+        "es": "Ejemplo resuelto — una diferencia de dos infinitos"
+      },
+      "content": {
+        "en": "Find $\\lim_{x\\to\\infty}\\left(\\sqrt{x^2+x}-x\\right)$. Both terms grow without bound, so the form is $\\infty-\\infty$ and tells us nothing. Multiply and divide by the conjugate $\\sqrt{x^2+x}+x$: the numerator becomes $(x^2+x)-x^2 = x$, so the expression equals $\\dfrac{x}{\\sqrt{x^2+x}+x}$. Divide top and bottom by $x$ (positive for large $x$) to get $\\dfrac{1}{\\sqrt{1+\\tfrac1x}+1}$. As $x\\to\\infty$ the square root tends to $1$, so the limit is $\\dfrac{1}{1+1} = \\dfrac12$.",
+        "es": "Halla $\\lim_{x\\to\\infty}\\left(\\sqrt{x^2+x}-x\\right)$. Los dos términos crecen sin límite, así que la forma es $\\infty-\\infty$ y no dice nada. Multiplica y divide por el conjugado $\\sqrt{x^2+x}+x$: el numerador se convierte en $(x^2+x)-x^2 = x$, y la expresión vale $\\dfrac{x}{\\sqrt{x^2+x}+x}$. Divide numerador y denominador entre $x$ (positivo para $x$ grande) para obtener $\\dfrac{1}{\\sqrt{1+\\tfrac1x}+1}$. Cuando $x\\to\\infty$ la raíz tiende a $1$, así que el límite es $\\dfrac{1}{1+1} = \\dfrac12$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -58,7 +92,7 @@
       ],
       "code": {
         "en": "import sympy as sp\nx = sp.symbols(\"x\")\n# a 0/0 form, resolved symbolically\nprint(sp.limit((x**2 - 1) / (x - 1), x, 1))",
-        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# una forma 0/0, resuelta simbolicamente\nprint(sp.limit((x**2 - 1) / (x - 1), x, 1))"
+        "es": "import sympy as sp\nx = sp.symbols(\"x\")\n# una forma 0/0, resuelta simbólicamente\nprint(sp.limit((x**2 - 1) / (x - 1), x, 1))"
       },
       "expectedOutput": "2",
       "caption": {
@@ -88,6 +122,15 @@
           "tex": "\\tfrac{(x-1)(x+1)}{x-1} = x+1 \\to 2",
           "en": "Cancel and substitute.",
           "es": "Cancela y sustituye."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "Substituting $x=1$ into the numerator gives $0$, but the denominator is $0$ too. A $\\tfrac00$ form is not $0$: factor and cancel to get $x+1 \\to 2$.",
+            "es": "Sustituir $x=1$ en el numerador da $0$, pero el denominador también vale $0$. Una forma $\\tfrac00$ no es $0$: factoriza y simplifica para obtener $x+1 \\to 2$."
+          }
         }
       ]
     },
@@ -138,7 +181,7 @@
       "answerType": "text",
       "prompt": {
         "en": "$\\tfrac00$ is an example of what kind of form? (one word)",
-        "es": "$\\tfrac00$ es un ejemplo de qué tipo de forma? (una palabra)"
+        "es": "¿De qué tipo de forma es $\\tfrac00$? (una palabra)"
       },
       "answer": "indeterminate",
       "acceptedAlt": [
@@ -156,6 +199,108 @@
           "es": "Una indeterminación."
         }
       ]
+    },
+    {
+      "id": "calculus-04-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Find $\\displaystyle\\lim_{x\\to\\infty}\\frac{2x^3-x}{5x^3+4}$.",
+        "es": "Halla $\\displaystyle\\lim_{x\\to\\infty}\\frac{2x^3-x}{5x^3+4}$."
+      },
+      "answer": "2/5",
+      "acceptedAlt": [
+        "0.4"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ keeps only the numerator's leading coefficient. The denominator grows at the same rate, with coefficient $5$, so the ratio is $\\tfrac25$.",
+            "es": "$2$ solo tiene en cuenta el coeficiente principal del numerador. El denominador crece al mismo ritmo, con coeficiente $5$, así que el cociente es $\\tfrac25$."
+          }
+        },
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "$0$ is the rule for a numerator of smaller degree. Here both are cubic, so the ratio of the leading coefficients decides.",
+            "es": "$0$ es la regla para un numerador de grado menor. Aquí los dos son cúbicos, así que decide el cociente de los coeficientes principales."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Divide top and bottom by $x^3$.",
+        "es": "Divide arriba y abajo entre $x^3$."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{2x^3-x}{5x^3+4} = \\frac{2-\\frac{1}{x^2}}{5+\\frac{4}{x^3}}",
+          "en": "Divide top and bottom by x³.",
+          "es": "Divide arriba y abajo entre x³."
+        },
+        {
+          "tex": "\\to \\frac{2-0}{5+0} = \\frac25",
+          "en": "1/x² and 4/x³ tend to 0.",
+          "es": "1/x² y 4/x³ tienden a 0."
+        }
+      ]
+    },
+    {
+      "id": "calculus-04-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which of these is **not** an indeterminate form?",
+        "es": "¿Cuál de estas **no** es una indeterminación?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$\\tfrac{5}{0}$",
+            "es": "$\\tfrac{5}{0}$"
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. The numerator stays at $5$ while the denominator shrinks to $0$, so the quotient grows without bound, and the sign may depend on the side. That is a definite behavior (a vertical asymptote), not an open question like $\\tfrac00$.",
+            "es": "Exacto. El numerador se queda en $5$ mientras el denominador se acerca a $0$, así que el cociente crece sin límite hacia $+\\infty$ o hacia $-\\infty$, y el signo puede depender del lado. Es un comportamiento definido, no una duda como $\\tfrac00$."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\tfrac00$",
+            "es": "$\\tfrac00$"
+          },
+          "correct": false,
+          "why": {
+            "en": "This one is indeterminate: $\\tfrac{x}{x}$, $\\tfrac{x^2}{x}$ and $\\tfrac{2x}{x}$ all have this form at $0$, and they tend to $1$, $0$ and $2$.",
+            "es": "Sí es una indeterminación: $\\tfrac{x}{x}$, $\\tfrac{x^2}{x}$ y $\\tfrac{2x}{x}$ tienen esta forma en $0$, y tienden a $1$, $0$ y $2$."
+          }
+        },
+        {
+          "text": {
+            "en": "$1^\\infty$",
+            "es": "$1^\\infty$"
+          },
+          "correct": false,
+          "why": {
+            "en": "This one is indeterminate: $\\left(1+\\tfrac1n\\right)^n \\to e$, while $\\left(1+\\tfrac{1}{n^2}\\right)^n \\to 1$.",
+            "es": "Sí es una indeterminación: $\\left(1+\\tfrac1n\\right)^n \\to e$, mientras que $\\left(1+\\tfrac{1}{n^2}\\right)^n \\to 1$."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\infty-\\infty$",
+            "es": "$\\infty-\\infty$"
+          },
+          "correct": false,
+          "why": {
+            "en": "This one is indeterminate: $(x^2+x)-x^2 = x \\to \\infty$, but $x^2-(x^2-1) = 1$, so the form alone does not decide the answer.",
+            "es": "Sí es una indeterminación: $(x^2+x)-x^2 = x \\to \\infty$, pero $x^2-(x^2-1) = 1$, así que la forma por sí sola no decide la respuesta."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which form has a definite answer from its shape alone?",
+        "es": "¿Qué forma tiene una respuesta definida solo por su aspecto?"
+      }
     }
   ],
   "references": [

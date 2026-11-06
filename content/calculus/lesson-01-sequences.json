@@ -2,7 +2,7 @@
   "id": "calculus-01-sequences",
   "subjectId": "calculus",
   "order": 1,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Sequences & Their Limits",
     "es": "Sucesiones y sus límites"
@@ -16,10 +16,28 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "functions-01-concept",
+        "functions-13-exponential"
+      ],
+      "note": {
+        "en": "A sequence is a function of the whole number n, and the geometric sequences $r^n$ are exponential functions.",
+        "es": "Una sucesión es una función del número natural n, y las sucesiones geométricas $r^n$ son funciones exponenciales."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "A sequence **converges** to a limit $L$ if its terms get and stay arbitrarily close to $L$ — written $\\lim_{n\\to\\infty} a_n = L$. So $\\tfrac1n \\to 0$: the terms shrink toward zero without ever quite reaching it. A sequence that does not approach any single value **diverges**, either by growing without bound (like $a_n = n$) or by oscillating (like $a_n = (-1)^n$).",
         "es": "Una sucesión **converge** a un límite $L$ si sus términos se acercan y permanecen arbitrariamente cerca de $L$ — se escribe $\\lim_{n\\to\\infty} a_n = L$. Así $\\tfrac1n \\to 0$: los términos menguan hacia cero sin llegar a alcanzarlo. Una sucesión que no se aproxima a ningún valor único **diverge**, ya sea creciendo sin límite (como $a_n = n$) u oscilando (como $a_n = (-1)^n$)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, $\\lim_{n\\to\\infty} a_n = L$ means: for every tolerance $\\varepsilon > 0$, however small, there is a point $N$ after which every term stays within $\\varepsilon$ of $L$, that is $|a_n - L| < \\varepsilon$ for all $n > N$. For $a_n = \\tfrac1n$ and $\\varepsilon = 0.01$, $N = 100$ works. Two consequences: a sequence has at most one limit, and the first terms don't matter. Changing a thousand of them leaves the limit as it was, because only the tail counts.",
+        "es": "**Con precisión**, $\\lim_{n\\to\\infty} a_n = L$ significa: para cualquier tolerancia $\\varepsilon > 0$, por pequeña que sea, hay un punto $N$ a partir del cual todos los términos quedan a menos de $\\varepsilon$ de $L$, es decir, $|a_n - L| < \\varepsilon$ para todo $n > N$. Para $a_n = \\tfrac1n$ y $\\varepsilon = 0.01$ sirve $N = 100$. Dos consecuencias: una sucesión tiene como mucho un límite, y los primeros términos no importan. Cambiar mil de ellos deja el límite como estaba, porque solo cuenta la cola."
       }
     },
     {
@@ -30,14 +48,39 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "A sequence that only goes up (**increasing**) and never passes some ceiling (**bounded above**) must converge: it has nowhere else to go. This *monotone convergence theorem* is what guarantees that the limit defining the number $e$ exists. The terms $\\left(1 + \\tfrac1n\\right)^n$ increase, $2,\\ 2.25,\\ 2.37,\\ \\dots$, and stay below $3$, so they converge, to $e \\approx 2.71828$, as the code below shows. Being bounded alone is not enough: a sequence can stay between two walls forever and keep bouncing.",
+        "es": "Una sucesión que solo sube (**creciente**) y nunca pasa de cierto techo (**acotada superiormente**) tiene que converger: no tiene otro sitio adonde ir. Este *teorema de la convergencia monótona* es lo que garantiza que existe el límite que define el número $e$. Los términos $\\left(1 + \\tfrac1n\\right)^n$ crecen, $2,\\ 2.25,\\ 2.37,\\ \\dots$, y se quedan por debajo de $3$, así que convergen, a $e \\approx 2.71828$, como muestra el código de abajo. Estar acotada no basta: una sucesión puede quedarse para siempre entre dos paredes y seguir rebotando."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Sequences are how computers approximate. An iterative method produces $x_0, x_1, x_2, \\dots$, and it works exactly when that sequence converges to the answer. Newton's method for $\\sqrt2$, $x_{n+1} = \\tfrac12\\left(x_n + \\tfrac{2}{x_n}\\right)$, goes $1,\\ 1.5,\\ 1.4167,\\ 1.41422,\\ \\dots$ and roughly doubles its correct digits at each step. Training a model by gradient descent also produces a sequence, of parameters, and “the training converged” usually means that the losses have stopped improving: a practical rule for stopping, not a proof that a limit exists.",
+        "es": "Las sucesiones son la forma en que los ordenadores aproximan. Un método iterativo produce $x_0, x_1, x_2, \\dots$, y funciona justo cuando esa sucesión converge a la respuesta. El método de Newton para $\\sqrt2$, $x_{n+1} = \\tfrac12\\left(x_n + \\tfrac{2}{x_n}\\right)$, da $1,\\ 1.5,\\ 1.4167,\\ 1.41422,\\ \\dots$ y en cada paso duplica, más o menos, las cifras correctas. Entrenar un modelo con descenso de gradiente también produce una sucesión, de parámetros, y «el entrenamiento ha convergido» suele significar que las pérdidas han dejado de mejorar: un criterio práctico para parar, no una prueba de que exista el límite."
+      }
+    },
+    {
       "type": "example",
       "title": {
-        "en": "Worked example",
-        "es": "Ejemplo resuelto"
+        "en": "Worked example — a ratio of polynomials in n",
+        "es": "Ejemplo resuelto — un cociente de polinomios en n"
       },
       "content": {
         "en": "Find $\\lim_{n\\to\\infty}\\tfrac{2n+1}{n}$. Split: $\\tfrac{2n+1}{n} = 2 + \\tfrac{1}{n}$. As $n\\to\\infty$ the $\\tfrac1n$ vanishes, leaving the limit $2$. Equivalently, divide top and bottom by $n$ — the standard trick for such ratios.",
         "es": "Halla $\\lim_{n\\to\\infty}\\tfrac{2n+1}{n}$. Separa: $\\tfrac{2n+1}{n} = 2 + \\tfrac{1}{n}$. Cuando $n\\to\\infty$ el $\\tfrac1n$ se anula, dejando el límite $2$. Equivalentemente, divide numerador y denominador por $n$ — el truco estándar para estos cocientes."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — how far out is far enough?",
+        "es": "Ejemplo resuelto — ¿a partir de dónde?"
+      },
+      "content": {
+        "en": "Take $a_n = \\tfrac{2n+1}{n}$ from the first example, whose limit is $2$. How large must $n$ be for $a_n$ to lie within $0.001$ of $2$? The distance is $|a_n - 2| = \\left|2 + \\tfrac1n - 2\\right| = \\tfrac1n$, so we need $\\tfrac1n < 0.001$, that is $n > 1000$. For any tolerance $\\varepsilon$ the same reasoning gives $N = \\tfrac1\\varepsilon$: the precise definition at work. A sequence that converges more slowly, like $\\tfrac{1}{\\sqrt n}$, needs $n > 10^6$ for the same tolerance.",
+        "es": "Toma $a_n = \\tfrac{2n+1}{n}$, la del primer ejemplo, cuyo límite es $2$. ¿Cómo de grande tiene que ser $n$ para que $a_n$ quede a menos de $0.001$ de $2$? La distancia es $|a_n - 2| = \\left|2 + \\tfrac1n - 2\\right| = \\tfrac1n$, así que necesitamos $\\tfrac1n < 0.001$, es decir, $n > 1000$. Para cualquier tolerancia $\\varepsilon$, el mismo razonamiento da $N = \\tfrac1\\varepsilon$: es la definición precisa en acción. Una sucesión que converge más despacio, como $\\tfrac{1}{\\sqrt n}$, necesita $n > 10^6$ para la misma tolerancia."
       }
     },
     {
@@ -46,7 +89,7 @@
       "lib": [],
       "code": {
         "en": "# a sequence that approaches Euler number e\nn = 10000\nprint(round((1 + 1/n)**n, 4))",
-        "es": "# una sucesion que se aproxima al numero e de Euler\nn = 10000\nprint(round((1 + 1/n)**n, 4))"
+        "es": "# una sucesión que se aproxima al número e de Euler\nn = 10000\nprint(round((1 + 1/n)**n, 4))"
       },
       "expectedOutput": "2.7181",
       "caption": {
@@ -101,6 +144,15 @@
           "en": "The 1/n term vanishes.",
           "es": "El término 1/n se anula."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3$ is the first term, $a_1$. The limit is about the long run: $a_n = 2 + \\tfrac1n$ gets closer and closer to $2$.",
+            "es": "$3$ es el primer término, $a_1$. El límite habla de lo que pasa a la larga: $a_n = 2 + \\tfrac1n$ se acerca cada vez más a $2$."
+          }
+        }
       ]
     },
     {
@@ -146,6 +198,108 @@
           "es": "Una razón menor que 1 decae a 0."
         }
       ]
+    },
+    {
+      "id": "calculus-01-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Find $\\displaystyle\\lim_{n\\to\\infty} \\frac{3n^2 - n}{2n^2 + 5}$.",
+        "es": "Halla $\\displaystyle\\lim_{n\\to\\infty} \\frac{3n^2 - n}{2n^2 + 5}$."
+      },
+      "answer": "3/2",
+      "acceptedAlt": [
+        "1.5"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "That divides the leading term $3n^2$ by $n^2$ and forgets the $2$ of the denominator, which grows like $2n^2$. Dividing both by $n^2$ leaves $\\tfrac32$.",
+            "es": "Eso divide el término principal $3n^2$ entre $n^2$ y olvida el $2$ del denominador, que crece como $2n^2$. Al dividir los dos entre $n^2$ queda $\\tfrac32$."
+          }
+        },
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$\\tfrac{\\infty}{\\infty}$ is not $1$: what matters is how fast each part grows. Both grow like $n^2$, with coefficients $3$ and $2$, so the ratio tends to $\\tfrac32$.",
+            "es": "$\\tfrac{\\infty}{\\infty}$ no es $1$: lo que importa es lo rápido que crece cada parte. Las dos crecen como $n^2$, con coeficientes $3$ y $2$, así que el cociente tiende a $\\tfrac32$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Divide the numerator and the denominator by n², the highest power.",
+        "es": "Divide el numerador y el denominador entre n², la potencia más alta."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{3n^2-n}{2n^2+5} = \\frac{3 - \\frac1n}{2 + \\frac{5}{n^2}}",
+          "en": "Divide top and bottom by n².",
+          "es": "Divide arriba y abajo entre n²."
+        },
+        {
+          "tex": "\\to \\frac{3-0}{2+0} = \\frac32",
+          "en": "1/n and 5/n² tend to 0.",
+          "es": "1/n y 5/n² tienden a 0."
+        }
+      ]
+    },
+    {
+      "id": "calculus-01-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The sequence $a_n = (-1)^n$ only takes the values $-1$ and $1$, so it is bounded. What can you say about its limit?",
+        "es": "La sucesión $a_n = (-1)^n$ solo toma los valores $-1$ y $1$, así que está acotada. ¿Qué puedes decir de su límite?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It converges to $0$, the average of its two values.",
+            "es": "Converge a $0$, la media de sus dos valores."
+          },
+          "correct": false,
+          "why": {
+            "en": "Its terms never come near $0$: every one of them is at distance $1$ from it. The terms themselves have to approach the limit, not their average.",
+            "es": "Sus términos nunca se acercan a $0$: todos están a distancia $1$. Son los propios términos los que tienen que acercarse al límite, no su media."
+          }
+        },
+        {
+          "text": {
+            "en": "It converges to $1$, because infinitely many terms equal $1$.",
+            "es": "Converge a $1$, porque infinitos términos valen $1$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Converging needs *every* term from some point on to stay close to the limit, and every other term is $-1$, at distance $2$ from $1$.",
+            "es": "Converger exige que *todos* los términos a partir de cierto punto se queden cerca del límite, y uno de cada dos vale $-1$, a distancia $2$ de $1$."
+          }
+        },
+        {
+          "text": {
+            "en": "It diverges: it never settles near one value.",
+            "es": "Diverge: nunca se estabiliza cerca de un valor."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Bounded and convergent are different things: the terms must settle near one number, and these never settle.",
+            "es": "Exacto. Estar acotada y converger son cosas distintas: los términos tienen que estabilizarse cerca de un número, y estos nunca lo hacen."
+          }
+        },
+        {
+          "text": {
+            "en": "It converges, because every bounded sequence converges.",
+            "es": "Converge, porque toda sucesión acotada converge."
+          },
+          "correct": false,
+          "why": {
+            "en": "Bounded is not enough. Bounded *and* monotone (always increasing, or always decreasing) is; $(-1)^n$ goes up and down.",
+            "es": "Estar acotada no basta. Acotada *y* monótona (siempre creciente o siempre decreciente) sí; $(-1)^n$ sube y baja."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Do the terms ever settle near one number?",
+        "es": "¿Llegan los términos a estabilizarse cerca de un número?"
+      }
     }
   ],
   "references": [

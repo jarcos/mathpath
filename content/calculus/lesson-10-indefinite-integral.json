@@ -2,7 +2,7 @@
   "id": "calculus-10-indefinite-integral",
   "subjectId": "calculus",
   "order": 10,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "The Indefinite Integral",
     "es": "La integral indefinida"
@@ -16,6 +16,17 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "calculus-07-rules-chain",
+        "functions-15-logarithmic"
+      ],
+      "note": {
+        "en": "Each rule here is a derivative rule read backwards: the chain rule from lesson 7, and the logarithm, whose derivative is 1/x.",
+        "es": "Cada regla de aquí es una regla de derivar leída al revés: la regla de la cadena de la lección 7 y el logaritmo, cuya derivada es 1/x."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "Antiderivatives are not unique: since the derivative of a constant is zero, $F(x)$ and $F(x) + C$ have the same derivative. So we write the **indefinite integral** with an arbitrary **constant of integration**: $\\int f(x)\\,dx = F(x) + C$. The family $F(x) + C$ is a stack of parallel curves, all with the same slope at each $x$.",
@@ -25,8 +36,15 @@
     {
       "type": "prose",
       "content": {
-        "en": "Every derivative rule, read backwards, becomes an integration rule. The **power rule for integration** raises the exponent and divides: $\\int x^n\\,dx = \\dfrac{x^{n+1}}{n+1} + C$ (for $n \\neq -1$). And the standard derivatives reverse: $\\int\\cos x\\,dx = \\sin x + C$, $\\int e^x\\,dx = e^x + C$, $\\int \\tfrac1x\\,dx = \\ln|x| + C$.",
-        "es": "Toda regla de derivación, leída al revés, se convierte en regla de integración. La **regla de la potencia para integrar** sube el exponente y divide: $\\int x^n\\,dx = \\dfrac{x^{n+1}}{n+1} + C$ (para $n \\neq -1$). Y las derivadas estándar se invierten: $\\int\\cos x\\,dx = \\sin x + C$, $\\int e^x\\,dx = e^x + C$, $\\int \\tfrac1x\\,dx = \\ln|x| + C$."
+        "en": "The power rule, the standard derivatives and the chain rule, read backwards, become integration rules (the chain rule as substitution); the product rule gives integration by parts, and the quotient rule gives no simple rule. The **power rule for integration** raises the exponent and divides: $\\int x^n\\,dx = \\dfrac{x^{n+1}}{n+1} + C$ (for $n \\neq -1$). And the standard derivatives reverse: $\\int\\cos x\\,dx = \\sin x + C$, $\\int e^x\\,dx = e^x + C$, $\\int \\tfrac1x\\,dx = \\ln|x| + C$.",
+        "es": "La regla de la potencia, las derivadas estándar y la regla de la cadena (como sustitución), leídas al revés, dan reglas de integración; la del producto da la integración por partes, y la del cociente no da una regla sencilla. La **regla de la potencia para integrar** sube el exponente y divide: $\\int x^n\\,dx = \\dfrac{x^{n+1}}{n+1} + C$ (para $n \\neq -1$). Y las derivadas estándar se invierten: $\\int\\cos x\\,dx = \\sin x + C$, $\\int e^x\\,dx = e^x + C$, $\\int \\tfrac1x\\,dx = \\ln|x| + C$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Linearity.** Integration respects sums and constant multiples: $\\int \\big(af(x) + bg(x)\\big)\\,dx = a\\int f\\,dx + b\\int g\\,dx$. So you integrate term by term and pull constants out. The trap is the product: $\\int fg\\,dx \\neq \\left(\\int f\\,dx\\right)\\left(\\int g\\,dx\\right)$. For $f = g = x$, the left side is $\\int x^2\\,dx = \\tfrac{x^3}{3} + C$, while the right side gives $\\left(\\tfrac{x^2}{2}\\right)^2 = \\tfrac{x^4}{4}$, a different function: its derivative is $x^3$, not $x^2$. Also, $\\int \\tfrac1x\\,dx = \\ln|x| + C$ needs the absolute value: $\\tfrac{d}{dx}\\ln(-x) = \\tfrac1x$ for $x<0$ too, so the formula must cover both sides of zero.",
+        "es": "**Linealidad.** La integración respeta las sumas y los múltiplos constantes: $\\int \\big(af(x) + bg(x)\\big)\\,dx = a\\int f\\,dx + b\\int g\\,dx$. Así que se integra término a término y las constantes salen fuera. La trampa es el producto: $\\int fg\\,dx \\neq \\left(\\int f\\,dx\\right)\\left(\\int g\\,dx\\right)$. Para $f = g = x$, el lado izquierdo es $\\int x^2\\,dx = \\tfrac{x^3}{3} + C$, mientras que el derecho da $\\left(\\tfrac{x^2}{2}\\right)^2 = \\tfrac{x^4}{4}$, que es otra función: su derivada es $x^3$, no $x^2$. Y $\\int \\tfrac1x\\,dx = \\ln|x| + C$ necesita el valor absoluto: $\\tfrac{d}{dx}\\ln(-x) = \\tfrac1x$ también para $x<0$, así que la fórmula tiene que cubrir los dos lados del cero."
       }
     },
     {
@@ -38,6 +56,31 @@
       "content": {
         "en": "Find $\\int x^2\\,dx$. Raise the exponent to $3$ and divide by $3$: $\\tfrac{x^3}{3} + C$. **Check by differentiating:** $\\tfrac{d}{dx}\\tfrac{x^3}{3} = \\tfrac{3x^2}{3} = x^2$ ✓. Differentiation is always the way to verify an integral. (In the exercises below, omit the $+C$.)",
         "es": "Halla $\\int x^2\\,dx$. Sube el exponente a $3$ y divide entre $3$: $\\tfrac{x^3}{3} + C$. **Comprueba derivando:** $\\tfrac{d}{dx}\\tfrac{x^3}{3} = \\tfrac{3x^2}{3} = x^2$ ✓. Derivar es siempre la forma de verificar una integral. (En los ejercicios siguientes, omite el $+C$.)"
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — position from velocity",
+        "es": "Ejemplo resuelto — posición a partir de la velocidad"
+      },
+      "content": {
+        "en": "A particle has velocity $v(t) = 3t^2 + 2$ and starts at $s(0) = 5$. Integrate: $s(t) = \\int (3t^2 + 2)\\,dt = t^3 + 2t + C$. The starting condition fixes the constant: $s(0) = 0 + 0 + C = 5$, so $C = 5$ and $s(t) = t^3 + 2t + 5$. **Check:** $s'(t) = 3t^2 + 2 = v(t)$ ✓ and $s(0) = 5$ ✓.",
+        "es": "Una partícula tiene velocidad $v(t) = 3t^2 + 2$ y empieza en $s(0) = 5$. Integra: $s(t) = \\int (3t^2 + 2)\\,dt = t^3 + 2t + C$. La condición inicial fija la constante: $s(0) = 0 + 0 + C = 5$, así que $C = 5$ y $s(t) = t^3 + 2t + 5$. **Comprueba:** $s'(t) = 3t^2 + 2 = v(t)$ ✓ y $s(0) = 5$ ✓."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The constant is information.** In a real problem $C$ is not arbitrary: it is the starting value. An **initial-value problem** gives a rate and one value of the function, $F' = f$ and $F(a) = k$, and, when $f$ is continuous on an interval containing $a$, it has exactly one solution there. Position from velocity, the water in a tank from the rate it fills: each is an antiderivative plus a starting condition.",
+        "es": "**La constante es información.** En un problema real $C$ no es arbitraria: es el valor de partida. Un **problema de valor inicial** da una tasa y un valor de la función, $F' = f$ y $F(a) = k$, y, si $f$ es continua en un intervalo que contiene a $a$, tiene exactamente una solución allí. La posición a partir de la velocidad, el agua de un depósito a partir del caudal que entra: cada uno es una primitiva más una condición de partida."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Substitution is the chain rule backwards.** To integrate $2x\\cos(x^2)$, notice that the derivative of the inside, $x^2$, is $2x$, which is already in front. Put $u = x^2$, so $du = 2x\\,dx$, and the integral becomes $\\int \\cos u\\,du = \\sin u + C = \\sin(x^2) + C$. Check: $\\tfrac{d}{dx}\\sin(x^2) = \\cos(x^2)\\cdot 2x$ ✓. Simple substitution works when the rest of the integrand matches $du$ up to a constant. Not every integral does: $\\int \\cos(x^2)\\,dx$ has no elementary antiderivative.",
+        "es": "**La sustitución es la regla de la cadena al revés.** Para integrar $2x\\cos(x^2)$, observa que la derivada de lo de dentro, $x^2$, es $2x$, que ya está delante. Haz $u = x^2$, así que $du = 2x\\,dx$, y la integral se convierte en $\\int \\cos u\\,du = \\sin u + C = \\sin(x^2) + C$. Comprueba: $\\tfrac{d}{dx}\\sin(x^2) = \\cos(x^2)\\cdot 2x$ ✓. La sustitución sencilla funciona cuando el resto del integrando coincide con $du$ salvo una constante. No todas las integrales lo hacen: $\\int \\cos(x^2)\\,dx$ no tiene primitiva elemental."
       }
     },
     {
@@ -146,6 +189,15 @@
           "en": "Since (x)' = 1.",
           "es": "Ya que (x)' = 1."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ is the integrand, not its antiderivative. Differentiating $x$ gives $1$, so $\\int 1\\,dx = x + C$.",
+            "es": "$1$ es el integrando, no su primitiva. Derivar $x$ da $1$, así que $\\int 1\\,dx = x + C$."
+          }
+        }
       ]
     },
     {
@@ -175,6 +227,104 @@
           "tex": "\\int \\cos x\\,dx = \\sin x + C",
           "en": "Since (sin x)' = cos x.",
           "es": "Ya que (sen x)' = cos x."
+        }
+      ]
+    },
+    {
+      "id": "calculus-10-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$F$ and $G$ are both antiderivatives of the same function $f$ on an interval $I$. What must be true?",
+        "es": "$F$ y $G$ son primitivas de la misma función $f$ en un intervalo $I$. ¿Qué tiene que ser cierto?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$F - G$ is constant on the interval, since its derivative is $0$ there.",
+            "es": "$F - G$ es constante en el intervalo, ya que su derivada es $0$ allí."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Both derivatives equal $f$, so $(F-G)' = 0$, and on an interval that forces $F - G$ to be one constant $C$. The words *on an interval* matter.",
+            "es": "Exacto. Las dos derivadas valen $f$, así que $(F-G)' = 0$, y en un intervalo eso obliga a que $F - G$ sea una única constante $C$. Las palabras *en un intervalo* importan."
+          }
+        },
+        {
+          "text": {
+            "en": "$F = G$ everywhere, because they have the same derivative.",
+            "es": "$F = G$ en todas partes, porque tienen la misma derivada."
+          },
+          "correct": false,
+          "why": {
+            "en": "Same derivative does not mean same function. Adding any constant to $F$ leaves its derivative unchanged, so $F$ and $G$ can differ by any constant.",
+            "es": "Tener la misma derivada no significa ser la misma función. Sumar cualquier constante a $F$ no cambia su derivada, así que $F$ y $G$ pueden diferir en cualquier constante."
+          }
+        },
+        {
+          "text": {
+            "en": "$F - G = f$, since $F' = G' = f$ implies $F - G = f$.",
+            "es": "$F - G = f$, ya que $F' = G' = f$ implica $F - G = f$."
+          },
+          "correct": false,
+          "why": {
+            "en": "The derivative of $F - G$ is $f - f = 0$, not $f$. Subtracting two antiderivatives does not give back $f$.",
+            "es": "La derivada de $F - G$ es $f - f = 0$, no $f$. Restar dos primitivas no devuelve $f$."
+          }
+        },
+        {
+          "text": {
+            "en": "$F$ and $G$ agree only at $x = 0$, because the constant of integration is always $0$ by convention.",
+            "es": "$F$ y $G$ coinciden solo en $x = 0$, porque por convenio la constante de integración vale siempre $0$."
+          },
+          "correct": false,
+          "why": {
+            "en": "No convention fixes $C$. The constant is free, so $F$ and $G$ can differ everywhere by the same amount. Only the fact that the difference is constant is guaranteed.",
+            "es": "Ningún convenio fija $C$. La constante es libre, así que $F$ y $G$ pueden diferir en todas partes en la misma cantidad. Lo único garantizado es que la diferencia es constante."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Subtract them: what is the derivative of F − G?",
+        "es": "Resta: ¿cuál es la derivada de F − G?"
+      }
+    },
+    {
+      "id": "calculus-10-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "A function $F$ satisfies $F'(x) = 6x$ and $F(1) = 5$. Find $F(2)$.",
+        "es": "Una función $F$ cumple $F'(x) = 6x$ y $F(1) = 5$. Halla $F(2)$."
+      },
+      "answer": "14",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "12",
+          "feedback": {
+            "en": "$12 = 3 \\cdot 2^2$ is $3x^2$ at $x = 2$, with no constant. The condition $F(1) = 5$ fixes it: $F(x) = 3x^2 + 2$, so $F(2) = 14$.",
+            "es": "$12 = 3 \\cdot 2^2$ es $3x^2$ en $x = 2$, sin constante. La condición $F(1) = 5$ la fija: $F(x) = 3x^2 + 2$, así que $F(2) = 14$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Integrate 6x, then use F(1) = 5 to find the constant.",
+        "es": "Integra 6x y usa F(1) = 5 para hallar la constante."
+      },
+      "solution": [
+        {
+          "tex": "F(x) = 3x^2 + C",
+          "en": "Integrate 6x.",
+          "es": "Integra 6x."
+        },
+        {
+          "tex": "F(1) = 3 + C = 5 \\Rightarrow C = 2",
+          "en": "Use the starting value to find C.",
+          "es": "Usa el valor inicial para hallar C."
+        },
+        {
+          "tex": "F(2) = 3\\cdot 2^2 + 2 = 14",
+          "en": "Evaluate at x = 2.",
+          "es": "Evalúa en x = 2."
         }
       ]
     }
