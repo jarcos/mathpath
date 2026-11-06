@@ -446,6 +446,34 @@ Se hace con el mismo proceso que M32: borradores por asignatura, todas las puert
 - **Para quien ya estudia:** como en cálculo, las lecciones completadas siguen completadas, y una lección dominada puede volver a "practicada" hasta resolver sus ejercicios nuevos.
 - **Publicada en v0.9.0** (6 de noviembre de 2026), firmada y notarizada. Antes de publicar, la app del ensayo se probó con una copia de una base de datos real: la lección de Gram-Schmidt tiene su recuadro de prerrequisitos, dos ejemplos y su test; la explicación de una opción errónea, el aviso de un error típico y "¡Correcto!" se ven, la app reabre en la asignatura, la base de datos sigue en la versión 5 y el original no se tocó. La base de datos no cambia en esta versión.
 
+### Estado de la parte 3: aplicaciones lineales (hito M35, sin publicar)
+
+- **Las 16 lecciones de aplicaciones lineales**, las más escuetas del curso, pasan de unas 182 a unas 516 palabras de explicación por idioma (de 485 a 569). Cada una suma tres secciones nuevas:
+  - la definición o el teorema precisos: $T(a\,u + b\,v) = a\,T(u) + b\,T(v)$, $[T(\mathbf v)]_C = A\,[\mathbf v]_B$, rango–nulidad con la dimensión del dominio, $B = P^{-1}AP$ y por qué conserva determinante, traza y polinomio característico, $\lambda^2 - (\operatorname{tr}A)\,\lambda + \det A = 0$, diagonalizable sobre los reales, $A^n = PD^nP^{-1}$, $\mathbf x_k = c_1\lambda_1^k\mathbf v_1 + c_2\lambda_2^k\mathbf v_2$, $R(\theta)^{-1} = R(\theta)^T$, el punto $(x/w, y/w)$…;
+  - una trampa: $T(\mathbf 0) = \mathbf 0$ no basta ($x^2$ lo cumple), las imágenes van en columnas, el determinante solo sirve para matrices cuadradas, invariantes iguales no implican semejanza, la rotación de $90°$ no tiene valores propios reales, la cizalla no es diagonalizable, $A^n$ no es elevar las entradas, un valor propio $-1$ oscila, grados frente a radianes, el área escala por $k^2$, el orden de la composición, las rotaciones 3D no conmutan…;
+  - para qué sirve: la derivada, la integral y la esperanza son lineales (superposición), las capas densas, la regresión con núcleo no trivial, PCA, PageRank, Fibonacci y la fórmula de Binet, un modelo de migración, los modelos de Leslie, las redes convolucionales, RoPE en los *transformers*, la perspectiva en la GPU, los brazos robóticos, dos capas lineales sin activación que colapsan en una…
+- **Un segundo ejemplo resuelto** en cada lección, distinto del primero.
+- **32 ejercicios nuevos** (de 66 a 98):
+  - 15 tests conceptuales con la explicación de cada opción y la buena repartida entre las posiciones 1 a 4. La lección 06 ya tenía uno: ahora tiene cuatro opciones;
+  - 17 de respuesta numérica (dos en la lección 06).
+- **Errores típicos** en 34 ejercicios (antes ninguno), con 44 respuestas erróneas explicadas.
+- **Prerrequisitos:** las 16 lecciones tienen recuadro (antes 7), con 37 enlaces (antes 8), a álgebra lineal, funciones, álgebra y lecciones anteriores de la asignatura.
+- **Correcciones del texto antiguo:**
+  - "si $|\lambda| = 1$ se acerca a un estado estacionario" falla con $\lambda = -1$; crecer o decaer pide que el inicio tenga componente en el vector propio dominante; una cadena de Markov siempre tiene el valor propio $1$ y ninguno mayor, pero solo una cadena *regular* converge desde toda distribución inicial (lección 09);
+  - dos factores de escala negativos dan una rotación de $180°$, no una reflexión (12);
+  - la perspectiva necesita además dividir entre $w$ (13 y 16);
+  - una capa densa multiplica por una matriz y suma un sesgo (1); toda aplicación lineal es una matriz "una vez fijadas las bases" (2); el determinante como producto de los valores propios no se deducía de la invariancia (7); el valor propio mayor domina solo si es estrictamente mayor y el inicio tiene componente en su vector propio (8);
+  - *autovalor* pasa a *valor propio* (unas 50 veces; la lección 06 dice una vez "también llamado autovalor", porque las asignaturas siguientes lo usan), *mapa lineal* a *aplicación lineal*, y faltaban tildes y "¿" en enunciados, pies y comentarios de código.
+  - Tres enunciados ambiguos se aclararon sin cambiar su respuesta (01-e4, 02-e4, 03-e3).
+- **Cómo se hizo:** como en las partes 1 y 2. Escribí la lección 1 como modelo y el temario de las otras 15. Tres agentes las mejoraron en paralelo, con scripts que parten siempre del original, y cada lección pasó por dos revisiones independientes que recalcularon cada número: todos eran correctos. Encontraron:
+  - cuatro errores: "las imágenes de una base deben ser independientes" (recuadro de la 02; la aplicación nula lo desmiente); una explicación de error típico que decía que $-1$ resolvía $A\mathbf v = \mathbf 0$ (06); "diagonalizable si y solo si cada subespacio propio tiene la dimensión de la multiplicidad" olvidaba los valores propios no reales (07); y dos fallos de género al cambiar *mapa* por *aplicación* ("los aplicaciones afines", 15; "un aplicación a escala", 12);
+  - unas 35 imprecisiones: rango–nulidad sin dominio de dimensión finita; Markov sin entradas no negativas; "cada capa" de una red; el aumento de datos con rotaciones, que no sirve cuando un 6 girado parece un 9; $w = z$ es la convención de DirectX y OpenGL usa $w = -z$; la escala alrededor de un punto también es lineal si $k = 1$…;
+  - en 14 de los 16 tests la opción buena destacaba por su longitud, por ser la única con otra forma o porque las erróneas se descartaban solas; ahora no.
+  - Todo está corregido.
+- **Puertas:** 255 lecciones, 1247 ejercicios, 6294 comprobaciones y 423 enlaces de prerrequisito. Las 2638 fórmulas de aplicaciones lineales renderizan en KaTeX, el código pasa en CPython y en Pyodide, y los 88 tests pasan. Cada lección se reconstruye idéntica desde su script.
+- **Para quien ya estudia:** como en las partes 1 y 2, las lecciones completadas siguen completadas, y una lección dominada puede volver a "practicada" hasta resolver sus ejercicios nuevos.
+- **Prueba en la app** firmada en local, con una copia de una base de datos real: las 16 lecciones abren desde la búsqueda en español con su recuadro de prerrequisitos, dos ejemplos y su test de cuatro opciones, sin fórmulas rotas. En la 16, el error típico (girar en sentido horario) tiene su aviso, la respuesta buena da "¡Correcto!" y una opción errónea muestra su explicación; en la 11, el test de las cuatro matrices; el inglés también. La base de datos sigue en la versión 5 y el original no se tocó.
+
 ---
 
 ## Fase 4: navegación y experiencia
@@ -608,7 +636,7 @@ Orden propuesto para lo que queda: M35 (en curso) y M33. M34 está terminado.
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 (con dos arreglos en v0.7.1) |
-| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | 🟡 Parte 1 (cálculo, 12 lecciones) publicada en v0.8.0; parte 2 (álgebra lineal, 23 lecciones) publicada en v0.9.0; parte 3 (aplicaciones lineales) por hacer |
+| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | 🟡 Parte 1 (cálculo, 12 lecciones) publicada en v0.8.0; parte 2 (álgebra lineal, 23 lecciones) publicada en v0.9.0; parte 3 (aplicaciones lineales, 16 lecciones) hecha, sin publicar |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 
 ## Ideas que necesitan una decisión tuya
