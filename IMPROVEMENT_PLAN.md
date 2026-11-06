@@ -367,7 +367,7 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
   - En 9 de los 14 tests la respuesta buena era la primera opción y la app no las baraja, así que se han repartido.
 - **Puertas:** 255 lecciones, 1146 ejercicios, 6074 comprobaciones y 36 plantillas. Las 3802 fórmulas TeX de la asignatura renderizan en KaTeX. El código pasa en CPython y en Pyodide.
 
-### Alcance de 3.2 en la escalera matemática: hito M35 (en curso)
+### Alcance de 3.2 en la escalera matemática: hito M35 (hecho, publicado en v0.8.0, v0.9.0 y v0.10.0)
 
 M25, anterior a este plan, prometía profundizar "álgebra, funciones y el resto de la escalera matemática", pero solo cubrió álgebra y funciones. Al escribir este plan, lo que faltaba quedó dentro de 3.2 como trabajo continuo, sin hito, y no volvió a salir al elegir el siguiente paso. En `docs/project.html` seguía además una M25 "Planned" junto a la M25 hecha. Estado del contenido hoy:
 
@@ -446,7 +446,7 @@ Se hace con el mismo proceso que M32: borradores por asignatura, todas las puert
 - **Para quien ya estudia:** como en cálculo, las lecciones completadas siguen completadas, y una lección dominada puede volver a "practicada" hasta resolver sus ejercicios nuevos.
 - **Publicada en v0.9.0** (6 de noviembre de 2026), firmada y notarizada. Antes de publicar, la app del ensayo se probó con una copia de una base de datos real: la lección de Gram-Schmidt tiene su recuadro de prerrequisitos, dos ejemplos y su test; la explicación de una opción errónea, el aviso de un error típico y "¡Correcto!" se ven, la app reabre en la asignatura, la base de datos sigue en la versión 5 y el original no se tocó. La base de datos no cambia en esta versión.
 
-### Estado de la parte 3: aplicaciones lineales (hito M35, sin publicar)
+### Estado de la parte 3: aplicaciones lineales (hito M35, publicada en v0.10.0)
 
 - **Las 16 lecciones de aplicaciones lineales**, las más escuetas del curso, pasan de unas 182 a unas 516 palabras de explicación por idioma (de 485 a 569). Cada una suma tres secciones nuevas:
   - la definición o el teorema precisos: $T(a\,u + b\,v) = a\,T(u) + b\,T(v)$, $[T(\mathbf v)]_C = A\,[\mathbf v]_B$, rango–nulidad con la dimensión del dominio, $B = P^{-1}AP$ y por qué conserva determinante, traza y polinomio característico, $\lambda^2 - (\operatorname{tr}A)\,\lambda + \det A = 0$, diagonalizable sobre los reales, $A^n = PD^nP^{-1}$, $\mathbf x_k = c_1\lambda_1^k\mathbf v_1 + c_2\lambda_2^k\mathbf v_2$, $R(\theta)^{-1} = R(\theta)^T$, el punto $(x/w, y/w)$…;
@@ -473,6 +473,7 @@ Se hace con el mismo proceso que M32: borradores por asignatura, todas las puert
 - **Puertas:** 255 lecciones, 1247 ejercicios, 6294 comprobaciones y 423 enlaces de prerrequisito. Las 2638 fórmulas de aplicaciones lineales renderizan en KaTeX, el código pasa en CPython y en Pyodide, y los 88 tests pasan. Cada lección se reconstruye idéntica desde su script.
 - **Para quien ya estudia:** como en las partes 1 y 2, las lecciones completadas siguen completadas, y una lección dominada puede volver a "practicada" hasta resolver sus ejercicios nuevos.
 - **Prueba en la app** firmada en local, con una copia de una base de datos real: las 16 lecciones abren desde la búsqueda en español con su recuadro de prerrequisitos, dos ejemplos y su test de cuatro opciones, sin fórmulas rotas. En la 16, el error típico (girar en sentido horario) tiene su aviso, la respuesta buena da "¡Correcto!" y una opción errónea muestra su explicación; en la 11, el test de las cuatro matrices; el inglés también. La base de datos sigue en la versión 5 y el original no se tocó.
+- **Publicada en v0.10.0** (6 de noviembre de 2026), firmada y notarizada, y con ella **M35 queda completo**: cálculo, álgebra lineal y aplicaciones lineales, 51 lecciones, a profundidad de libro de texto. Antes de publicar, la app del ensayo se probó con una copia de una base de datos real: la lección de diagonalización tiene su recuadro de prerrequisitos, dos ejemplos y su test; la explicación de una opción errónea, el aviso de un error típico y "¡Correcto!" se ven, la base de datos sigue en la versión 5 y el original no se tocó. La base de datos no cambia en esta versión.
 
 ---
 
@@ -624,7 +625,7 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 
 La numeración sigue la de `docs/project.html`, donde el último hito terminado antes de este plan era M26 (navegación y UX). La primera versión de este documento empezaba en M26, por error. M25 solo cubrió álgebra y funciones; el resto de la escalera matemática es M35.
 
-Orden propuesto para lo que queda: M35 (en curso) y M33. M34 está terminado.
+Lo que queda es M33. M34 y M35 están terminados.
 
 | Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
@@ -636,7 +637,7 @@ Orden propuesto para lo que queda: M35 (en curso) y M33. M34 está terminado.
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 (con dos arreglos en v0.7.1) |
-| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | 🟡 Parte 1 (cálculo, 12 lecciones) publicada en v0.8.0; parte 2 (álgebra lineal, 23 lecciones) publicada en v0.9.0; parte 3 (aplicaciones lineales, 16 lecciones) hecha, sin publicar |
+| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | ✅ Publicado en tres partes: cálculo (12 lecciones) en v0.8.0, álgebra lineal (23) en v0.9.0 y aplicaciones lineales (16) en v0.10.0 |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 
 ## Ideas que necesitan una decisión tuya
