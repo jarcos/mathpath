@@ -145,8 +145,11 @@ docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 
 ## Curriculum status
 
-**Both tracks complete** (textbook depth, all verified). 255 lessons / 1146
-exercises (36 of them templates) / 6074 checks passing (`npm run verify:content`).
+**Both tracks complete** (textbook depth, all verified). 255 lessons / 1169
+exercises (36 of them templates) / 6119 checks passing (`npm run verify:content`).
+M35 (in progress) deepens calculus, linear-algebra and linear-maps in place, one
+subject per release; calculus is done. Existing exercises never change (progress
+and review cards point at their ids).
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
 linear-maps (16), multivariable (14, M32: Taylor, partial derivatives, gradient,

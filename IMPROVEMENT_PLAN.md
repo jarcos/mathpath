@@ -367,7 +367,7 @@ Lo que quedaba abierto de la Fase 1 y de la Fase 0, para darla por terminada:
   - En 9 de los 14 tests la respuesta buena era la primera opción y la app no las baraja, así que se han repartido.
 - **Puertas:** 255 lecciones, 1146 ejercicios, 6074 comprobaciones y 36 plantillas. Las 3802 fórmulas TeX de la asignatura renderizan en KaTeX. El código pasa en CPython y en Pyodide.
 
-### Alcance de 3.2 en la escalera matemática: hito M35 (por hacer)
+### Alcance de 3.2 en la escalera matemática: hito M35 (en curso)
 
 M25, anterior a este plan, prometía profundizar "álgebra, funciones y el resto de la escalera matemática", pero solo cubrió álgebra y funciones. Al escribir este plan, lo que faltaba quedó dentro de 3.2 como trabajo continuo, sin hito, y no volvió a salir al elegir el siguiente paso. En `docs/project.html` seguía además una M25 "Planned" junto a la M25 hecha. Estado del contenido hoy:
 
@@ -388,6 +388,32 @@ M24 dio a cálculo, álgebra lineal y aplicaciones lineales código ejecutable, 
 - un recuadro de prerrequisitos donde la lección se apoye en otra asignatura.
 
 Se hace con el mismo proceso que M32: borradores por asignatura, todas las puertas (`verify:content`, glosario, CPython y Pyodide) y dos revisiones independientes que recalculan cada número. Los recuadros de "errores comunes" y "lo esencial" de 3.2 necesitan tipos de sección nuevos y valen para todas las lecciones, así que siguen en 3.2.
+
+**Alcance ampliado al empezar (6 de noviembre de 2026).** Estas 51 lecciones tenían unas 200 palabras de explicación cada una, frente a unas 800 en cálculo multivariable. Además de lo anterior, cada lección suma 2–3 secciones de prosa (la definición o el teorema precisos, una sutileza o una trampa, y para qué sirve) hasta unas 450–550 palabras, y un ejercicio nuevo de respuesta numérica o simbólica. Los ejercicios que ya existían no cambian: el progreso y las tarjetas de repaso apuntan a ellos. Se publica por partes, una versión por asignatura: cálculo, álgebra lineal y aplicaciones lineales.
+
+### Estado de la parte 1: cálculo (hito M35, sin publicar)
+
+- **Las 12 lecciones de cálculo** pasan de unas 200 a unas 525 palabras de explicación por idioma (de 450 a 570). Cada una suma 2–3 secciones nuevas:
+  - la definición o el teorema precisos: ε–N, ε–δ, sumas de Riemann, las hipótesis de L'Hôpital y del teorema fundamental;
+  - una sutileza: $1^\infty$ no es 1, $|x|$ en 0, $x^3$ en 0, $\int fg \neq \int f\int g$, desplazamiento frente a distancia;
+  - para qué sirve: métodos iterativos y Newton, bisección, el factor de descuento $\gamma$, la cancelación en coma flotante, el crecimiento de los algoritmos, las densidades de probabilidad.
+- **Un segundo ejemplo resuelto** en cada lección, distinto del primero: ε–N en acción, $0.\overline{3} = \tfrac13$, el conjugado, $\sqrt{x^2+x}-x$, un parámetro que hace continua una función a trozos, $\tfrac1x$ por la definición, la regla del producto, $x^3-3x$, L'Hôpital dos veces, un problema de valor inicial, $\int_0^\pi \sin x\,dx$ y el área entre $y=x$ e $y=x^2$.
+- **23 ejercicios nuevos** (de 50 a 73):
+  - 11 tests conceptuales con la explicación de cada opción y la buena repartida entre las posiciones 1 a 4. La lección 8 ya tenía uno; ahora tiene cuatro opciones;
+  - 12 de respuesta numérica o simbólica.
+- **Errores típicos** en 35 ejercicios (antes 8), con 39 respuestas erróneas explicadas.
+- **Prerrequisitos:** las 12 lecciones tienen recuadro (antes 6), con 28 enlaces (antes 7). Enlazan las lecciones de funciones en las que se apoyan (concepto, composición, propiedades, a trozos, lineales, cuadráticas, polinómicas, seno y coseno, exponencial y logarítmica) y las de álgebra (ecuaciones de segundo grado y factorización).
+- **Tildes:** corregidas en notas de prerrequisito, comentarios de código y pies.
+- **Cómo se hizo:** como en M32. Escribí la lección 1 como modelo, con una guía y el temario de cada lección. Tres agentes mejoraron las otras 11 en paralelo, con scripts que parten siempre del original. Una comprobación de estructura asegura que ningún ejercicio existente cambia.
+  - Dos revisiones independientes recalcularon cada número, y todos eran correctos. Encontraron:
+    - dos errores en el texto antiguo: la distancia como integral de la velocidad (es el desplazamiento) y que la integración sería "la única vía" para el área bajo una parábola (Arquímedes la halló sin cálculo);
+    - una analogía falsa en el texto nuevo: el saldo de un préstamo como primitiva;
+    - un ejercicio antiguo que pedía $f'$ en un extremo local sin exigir que $f$ sea derivable;
+    - un error típico cuya explicación nombraba mal la causa;
+    - unas 20 imprecisiones: las hipótesis del teorema fundamental, del valor intermedio y de L'Hôpital; el criterio de las series $\sum 1/n^p$; "la regla de la cadena *es* la retropropagación"…
+  - En 8 de los 11 tests la opción buena era la más larga; ahora no lo es en ninguno. Todo está corregido.
+- **Puertas:** 255 lecciones, 1169 ejercicios, 6119 comprobaciones y 362 enlaces de prerrequisito. Las 2367 fórmulas de cálculo renderizan en KaTeX, el código pasa en CPython y en Pyodide, y los 88 tests pasan.
+- **Para quien ya estudia:** las lecciones completadas siguen completadas. Una lección de cálculo dominada puede volver a "practicada" hasta resolver sus ejercicios nuevos, porque el dominio pide el 80 % de los ejercicios de la lección.
 
 ---
 
@@ -539,7 +565,7 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 
 La numeración sigue la de `docs/project.html`, donde el último hito terminado antes de este plan era M26 (navegación y UX). La primera versión de este documento empezaba en M26, por error. M25 solo cubrió álgebra y funciones; el resto de la escalera matemática es M35.
 
-Orden propuesto para lo que queda: M35 y M33. M34 está terminado.
+Orden propuesto para lo que queda: M35 (en curso) y M33. M34 está terminado.
 
 | Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
@@ -551,7 +577,7 @@ Orden propuesto para lo que queda: M35 y M33. M34 está terminado.
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 (con dos arreglos en v0.7.1) |
-| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | — |
+| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | 🟡 Parte 1 (cálculo, 12 lecciones) hecha, sin publicar; partes 2 (álgebra lineal) y 3 (aplicaciones lineales) por hacer |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 
 ## Ideas que necesitan una decisión tuya
