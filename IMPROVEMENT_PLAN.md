@@ -391,7 +391,7 @@ Se hace con el mismo proceso que M32: borradores por asignatura, todas las puert
 
 **Alcance ampliado al empezar (6 de noviembre de 2026).** Estas 51 lecciones tenían unas 200 palabras de explicación cada una, frente a unas 800 en cálculo multivariable. Además de lo anterior, cada lección suma 2–3 secciones de prosa (la definición o el teorema precisos, una sutileza o una trampa, y para qué sirve) hasta unas 450–550 palabras, y un ejercicio nuevo de respuesta numérica o simbólica. Los ejercicios que ya existían no cambian: el progreso y las tarjetas de repaso apuntan a ellos. Se publica por partes, una versión por asignatura: cálculo, álgebra lineal y aplicaciones lineales.
 
-### Estado de la parte 1: cálculo (hito M35, sin publicar)
+### Estado de la parte 1: cálculo (hito M35, publicada en v0.8.0)
 
 - **Las 12 lecciones de cálculo** pasan de unas 200 a unas 525 palabras de explicación por idioma (de 450 a 570). Cada una suma 2–3 secciones nuevas:
   - la definición o el teorema precisos: ε–N, ε–δ, sumas de Riemann, las hipótesis de L'Hôpital y del teorema fundamental;
@@ -414,6 +414,7 @@ Se hace con el mismo proceso que M32: borradores por asignatura, todas las puert
   - En 8 de los 11 tests la opción buena era la más larga; ahora no lo es en ninguno. Todo está corregido.
 - **Puertas:** 255 lecciones, 1169 ejercicios, 6119 comprobaciones y 362 enlaces de prerrequisito. Las 2367 fórmulas de cálculo renderizan en KaTeX, el código pasa en CPython y en Pyodide, y los 88 tests pasan.
 - **Para quien ya estudia:** las lecciones completadas siguen completadas. Una lección de cálculo dominada puede volver a "practicada" hasta resolver sus ejercicios nuevos, porque el dominio pide el 80 % de los ejercicios de la lección.
+- **Publicada en v0.8.0** (6 de noviembre de 2026), firmada y notarizada. Antes de publicar, la app del ensayo se probó con una copia de una base de datos real: la lección de L'Hôpital tiene su recuadro de prerrequisitos, dos ejemplos y su test; la explicación de una opción errónea y el aviso de un error típico se ven, la base de datos sigue en la versión 5 y el original no se tocó. La base de datos no cambia en esta versión.
 
 ---
 
@@ -577,7 +578,7 @@ Orden propuesto para lo que queda: M35 (en curso) y M33. M34 está terminado.
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 (con dos arreglos en v0.7.1) |
-| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | 🟡 Parte 1 (cálculo, 12 lecciones) hecha, sin publicar; partes 2 (álgebra lineal) y 3 (aplicaciones lineales) por hacer |
+| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | 🟡 Parte 1 (cálculo, 12 lecciones) publicada en v0.8.0; partes 2 (álgebra lineal) y 3 (aplicaciones lineales) por hacer |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 
 ## Ideas que necesitan una decisión tuya
