@@ -2,7 +2,7 @@
   "id": "linalg-17-orthogonal-projections",
   "subjectId": "linear-algebra",
   "order": 17,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Orthogonal Bases & Projections",
     "es": "Bases ortogonales y proyecciones"
@@ -12,14 +12,25 @@
       "type": "prose",
       "content": {
         "en": "A basis is **orthogonal** if its vectors are mutually perpendicular (every pairwise dot product is $0$), and **orthonormal** if they are additionally unit length. Such bases are the gold standard: coordinates become trivial to compute (just take dot products), and the messy interference between directions disappears.",
-        "es": "Una base es **ortogonal** si sus vectores son mutuamente perpendiculares (todo producto escalar por pares es $0$), y **ortonormal** si además tienen longitud unidad. Estas bases son el patrón oro: las coordenadas se calculan trivialmente (basta tomar productos escalares) y desaparece la interferencia entre direcciones."
+        "es": "Una base es **ortogonal** si sus vectores son mutuamente perpendiculares (todo producto escalar por pares es $0$), y **ortonormal** si además tienen longitud unidad. Estas bases son la referencia por excelencia: las coordenadas se calculan trivialmente (basta tomar productos escalares) y desaparece la interferencia entre direcciones."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-08-independence-basis",
+        "linalg-13-change-of-basis"
+      ],
+      "note": {
+        "en": "Orthogonal bases are bases, and the coordinates in them are a change of basis.",
+        "es": "Las bases ortogonales son bases, y sus coordenadas son un cambio de base."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "The **projection** of a vector $v$ onto a unit vector $u$ is the 'shadow' $v$ casts along $u$, with signed length $v\\cdot u$. Projection answers \"how much of $v$ points in the direction of $u$?\" — the basis of least-squares fitting, where we project data onto the space of models to find the best approximation.",
-        "es": "La **proyección** de un vector $v$ sobre un vector unitario $u$ es la 'sombra' que $v$ proyecta sobre $u$, con longitud con signo $v\\cdot u$. La proyección responde \"¿cuánto de $v$ apunta en la dirección de $u$?\" — la base del ajuste por mínimos cuadrados, donde proyectamos los datos sobre el espacio de modelos para hallar la mejor aproximación."
+        "en": "The **projection** of a vector $v$ onto a unit vector $u$ is the 'shadow' $v$ casts along $u$, with signed length $v\\cdot u$. Projection answers \"how much of $v$ points in the direction of $u$?\" — the idea behind least-squares fitting, where we project data onto the space of models to find the best approximation.",
+        "es": "La **proyección** de un vector $v$ sobre un vector unitario $u$ es la 'sombra' que $v$ proyecta sobre $u$, con longitud con signo $v\\cdot u$. La proyección responde \"¿cuánto de $v$ apunta en la dirección de $u$?\" — la idea detrás del ajuste por mínimos cuadrados, donde proyectamos los datos sobre el espacio de modelos para hallar la mejor aproximación."
       }
     },
     {
@@ -27,6 +38,27 @@
       "content": {
         "en": "Examples make it concrete: projecting $(3,0)$ onto the x-axis $(1,0)$ gives length $3$ — all of it lies along $x$. Projecting $(0,5)$ onto $(1,0)$ gives $0$ — it has no $x$-component. And the vectors $(1,1)$ and $(1,-1)$ are orthogonal, since $(1,1)\\cdot(1,-1) = 0$.",
         "es": "Los ejemplos lo hacen concreto: proyectar $(3,0)$ sobre el eje x $(1,0)$ da longitud $3$ — todo él está sobre $x$. Proyectar $(0,5)$ sobre $(1,0)$ da $0$ — no tiene componente $x$. Y los vectores $(1,1)$ y $(1,-1)$ son ortogonales, pues $(1,1)\\cdot(1,-1) = 0$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, the projection of $v$ onto a nonzero vector $u$, which need not be a unit vector, is $\\operatorname{proj}_u v = \\frac{v\\cdot u}{u\\cdot u}\\,u$. The scalar $\\frac{v\\cdot u}{\\|u\\|}$ is its signed length. Dividing by $u\\cdot u = \\|u\\|^2$ divides by the length of $u$ twice: once for that signed length, once to make $u$ a unit vector. The trap is dropping that denominator: with $u = (2,0)$, the vector $(v\\cdot u)\\,u$ comes out four times too long. The remainder $r = v - \\operatorname{proj}_u v$ is orthogonal to $u$: $r\\cdot u = v\\cdot u - \\frac{v\\cdot u}{u\\cdot u}(u\\cdot u) = 0$. So every $v$ splits into a part along $u$ and a part perpendicular to it.",
+        "es": "**Con precisión**, la proyección de $v$ sobre un vector no nulo $u$, que no tiene por qué ser unitario, es $\\operatorname{proj}_u v = \\frac{v\\cdot u}{u\\cdot u}\\,u$. El escalar $\\frac{v\\cdot u}{\\|u\\|}$ es su longitud con signo. Dividir entre $u\\cdot u = \\|u\\|^2$ divide dos veces por la longitud de $u$: una para esa longitud con signo y otra para convertir $u$ en un vector unitario. La trampa es olvidar ese denominador: con $u = (2,0)$, el vector $(v\\cdot u)\\,u$ sale cuatro veces más largo. El resto $r = v - \\operatorname{proj}_u v$ es ortogonal a $u$: $r\\cdot u = v\\cdot u - \\frac{v\\cdot u}{u\\cdot u}(u\\cdot u) = 0$. Así, todo $v$ se parte en una parte a lo largo de $u$ y otra perpendicular a $u$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "If $u_1, \\dots, u_k$ are nonzero and **orthogonal**, their projections add up: $v = \\sum_i \\frac{v\\cdot u_i}{u_i\\cdot u_i}\\,u_i + r$, with $r$ orthogonal to every $u_i$, and $r = 0$ when they span the whole space. In an **orthonormal** basis the coefficients need no system at all: $c_i = v\\cdot u_i$. Orthogonal nonzero vectors are also independent. If $\\sum_i c_i u_i = 0$, dot with $u_j$: every term but one vanishes, leaving $c_j\\,\\|u_j\\|^2 = 0$, so each $c_j = 0$.",
+        "es": "Si $u_1, \\dots, u_k$ son no nulos y **ortogonales**, sus proyecciones se suman: $v = \\sum_i \\frac{v\\cdot u_i}{u_i\\cdot u_i}\\,u_i + r$, con $r$ ortogonal a cada $u_i$, y $r = 0$ cuando generan todo el espacio. En una base **ortonormal** los coeficientes no necesitan ningún sistema: $c_i = v\\cdot u_i$. Los vectores ortogonales no nulos son además independientes. Si $\\sum_i c_i u_i = 0$, multiplica escalarmente por $u_j$: todos los términos menos uno se anulan, y queda $c_j\\,\\|u_j\\|^2 = 0$, así que cada $c_j = 0$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Least squares is projection in disguise. Fitting a line to data means choosing the vector of model values closest to the data, and that closest point is the projection of the data onto the space of models. The leftover, the residual, is orthogonal to every model direction, so no other model is closer. Fourier analysis uses the same idea: up to normalizing constants, the coefficients of a signal are its projections onto sines and cosines, which are orthogonal for the integral inner product over one period.",
+        "es": "Los mínimos cuadrados son una proyección disfrazada. Ajustar una recta a unos datos significa elegir el vector de valores del modelo más cercano a los datos, y ese punto más cercano es la proyección de los datos sobre el espacio de modelos. El sobrante, el residuo, es ortogonal a cada dirección del modelo, así que ningún otro modelo está más cerca. El análisis de Fourier usa la misma idea: salvo constantes de normalización, los coeficientes de una señal son sus proyecciones sobre senos y cosenos, que son ortogonales para el producto escalar integral sobre un periodo."
       }
     },
     {
@@ -41,6 +73,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — projecting onto a non-unit vector",
+        "es": "Ejemplo resuelto — proyección sobre un vector no unitario"
+      },
+      "content": {
+        "en": "Project $v = (3,4)$ onto $u = (1,1)$. The dot products are $v\\cdot u = 7$ and $u\\cdot u = 2$, so $\\operatorname{proj}_u v = \\frac72(1,1) = \\left(\\frac72,\\frac72\\right)$. The remainder is $r = (3,4) - \\left(\\frac72,\\frac72\\right) = \\left(-\\frac12,\\frac12\\right)$, and $r\\cdot u = -\\frac12 + \\frac12 = 0$ ✓. Its length, $\\|r\\| = \\frac{\\sqrt2}{2}$, is the distance from $(3,4)$ to the line through the origin and $u$.",
+        "es": "Proyecta $v = (3,4)$ sobre $u = (1,1)$. Los productos escalares son $v\\cdot u = 7$ y $u\\cdot u = 2$, así que $\\operatorname{proj}_u v = \\frac72(1,1) = \\left(\\frac72,\\frac72\\right)$. El resto es $r = (3,4) - \\left(\\frac72,\\frac72\\right) = \\left(-\\frac12,\\frac12\\right)$, y $r\\cdot u = -\\frac12 + \\frac12 = 0$ ✓. Su longitud, $\\|r\\| = \\frac{\\sqrt2}{2}$, es la distancia de $(3,4)$ a la recta que pasa por el origen y $u$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +91,12 @@
       ],
       "code": {
         "en": "import numpy as np\na = np.array([2, 3])\nb = np.array([1, 0])\n# orthogonal projection of a onto b\nprint(((a @ b / (b @ b)) * b).tolist())",
-        "es": "import numpy as np\na = np.array([2, 3])\nb = np.array([1, 0])\n# proyeccion ortogonal de a sobre b\nprint(((a @ b / (b @ b)) * b).tolist())"
+        "es": "import numpy as np\na = np.array([2, 3])\nb = np.array([1, 0])\n# proyección ortogonal de a sobre b\nprint(((a @ b / (b @ b)) * b).tolist())"
       },
       "expectedOutput": "[2.0, 0.0]",
       "caption": {
         "en": "Projection drops a onto the direction of b.",
-        "es": "La proyeccion lleva a sobre la direccion de b."
+        "es": "La proyección lleva a sobre la dirección de b."
       }
     }
   ],
@@ -125,6 +168,15 @@
           "en": "Zero → orthogonal.",
           "es": "Cero → ortogonales."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$1\\cdot1 + 1\\cdot(-1) = 1 - 1 = 0$. Adding the products gives $2$, but the second product is negative.",
+            "es": "$1\\cdot1 + 1\\cdot(-1) = 1 - 1 = 0$. Sumar los productos daría $2$, pero el segundo es negativo."
+          }
+        }
       ]
     },
     {
@@ -147,6 +199,120 @@
           "tex": "(0,5)\\cdot(1,0) = 0",
           "en": "No projection.",
           "es": "Sin proyección."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5$ is the length of $(0,5)$, not its projection. The projection onto $(1,0)$ has no $y$ part, so it is $0$.",
+            "es": "$5$ es la longitud de $(0,5)$, no su proyección. La proyección sobre $(1,0)$ no tiene parte $y$, así que vale $0$."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linalg-17-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A student says the scalar projection of $(3,4)$ onto $u = (2,0)$ is $6$, because $v\\cdot u = 6$. What is wrong?",
+        "es": "Un estudiante dice que la proyección escalar de $(3,4)$ sobre $u = (2,0)$ es $6$, porque $v\\cdot u = 6$. ¿Qué falla?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Nothing: the dot product is always the projection length.",
+            "es": "Nada: el producto escalar es siempre la longitud de la proyección."
+          },
+          "correct": false,
+          "why": {
+            "en": "The dot product gives the projection length only for a unit vector. Here $u$ has length $2$, so the answer is twice too big.",
+            "es": "El producto escalar da la longitud de la proyección solo con un vector unitario. Aquí $u$ mide $2$, y la respuesta sale el doble de grande."
+          }
+        },
+        {
+          "text": {
+            "en": "$u$ is not unit: divide by $\\|u\\|$ to get $\\frac{6}{2} = 3$.",
+            "es": "$u$ no es unitario: divide entre $\\|u\\|$ y queda $\\frac{6}{2} = 3$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $\\|u\\| = 2$, and dividing by it gives the length of the projection: $3$, not $6$.",
+            "es": "Exacto. $\\|u\\| = 2$, y dividir entre ella da la longitud de la proyección: $3$, no $6$."
+          }
+        },
+        {
+          "text": {
+            "en": "It should be $5$, the length of $v$, since projections keep full length.",
+            "es": "Debería ser $5$, la longitud de $v$, porque la proyección conserva toda la longitud."
+          },
+          "correct": false,
+          "why": {
+            "en": "The projection onto $(2,0)$ keeps only the part of $v$ along the x-axis. $\\|v\\| = 5$ is an upper bound, reached only when $v$ is parallel to $u$.",
+            "es": "La proyección sobre $(2,0)$ conserva solo la parte de $v$ a lo largo del eje x. $\\|v\\| = 5$ es una cota superior, que se alcanza solo si $v$ es paralelo a $u$."
+          }
+        },
+        {
+          "text": {
+            "en": "It should be $\\frac{6}{4} = \\frac32$, dividing by $\\|u\\|^2$.",
+            "es": "Debería ser $\\frac{6}{4} = \\frac32$, dividiendo entre $\\|u\\|^2$."
+          },
+          "correct": false,
+          "why": {
+            "en": "$\\|u\\|^2$ belongs to the vector projection $\\frac{v\\cdot u}{u\\cdot u}\\,u$, not to the scalar one. The scalar projection divides by $\\|u\\|$ once: $\\frac{6}{2} = 3$.",
+            "es": "$\\|u\\|^2$ pertenece a la proyección vectorial $\\frac{v\\cdot u}{u\\cdot u}\\,u$, no a la escalar. La proyección escalar divide una sola vez entre $\\|u\\|$: $\\frac{6}{2} = 3$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Is $u$ a unit vector? What is its length?",
+        "es": "¿Es $u$ unitario? ¿Cuánto mide?"
+      }
+    },
+    {
+      "id": "linalg-17-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "First component of the vector projection of $(2,3)$ onto $(1,2)$?",
+        "es": "¿Primera componente de la proyección vectorial de $(2,3)$ sobre $(1,2)$?"
+      },
+      "answer": "8/5",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "Use $\\frac{v\\cdot u}{u\\cdot u}\\,u$ and read its first component.",
+        "es": "Usa $\\frac{v\\cdot u}{u\\cdot u}\\,u$ y lee su primera componente."
+      },
+      "solution": [
+        {
+          "tex": "v\\cdot u = 2 + 6 = 8,\\qquad u\\cdot u = 5",
+          "en": "The dot product of v and u, and u with itself.",
+          "es": "El producto escalar de $v$ y $u$, y de $u$ consigo mismo."
+        },
+        {
+          "tex": "\\operatorname{proj}_u v = \\frac{8}{5}(1,2) = \\left(\\frac85,\\frac{16}{5}\\right)",
+          "en": "Scale u by 8/5.",
+          "es": "Multiplica $u$ por $\\frac85$."
+        },
+        {
+          "tex": "\\text{first component} = \\frac85",
+          "en": "Answer.",
+          "es": "Respuesta."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "8",
+          "feedback": {
+            "en": "$8$ is the dot product $v\\cdot u$. The projection divides it by $u\\cdot u = 5$ before scaling $u$.",
+            "es": "$8$ es el producto escalar $v\\cdot u$. La proyección lo divide entre $u\\cdot u = 5$ antes de escalar $u$."
+          }
+        },
+        {
+          "answer": "8/sqrt(5)",
+          "feedback": {
+            "en": "$\\frac{8}{\\sqrt5}$ is the scalar projection, the length along $u$. The first component also needs the first component of the unit vector $u/\\|u\\|$: $\\frac{8}{\\sqrt5}\\cdot\\frac{1}{\\sqrt5} = \\frac85$.",
+            "es": "$\\frac{8}{\\sqrt5}$ es la proyección escalar, la longitud a lo largo de $u$. La primera componente necesita además la del vector unitario $u/\\|u\\|$: $\\frac{8}{\\sqrt5}\\cdot\\frac{1}{\\sqrt5} = \\frac85$."
+          }
         }
       ]
     }

@@ -2,7 +2,7 @@
   "id": "linalg-03-complex-polar",
   "subjectId": "linear-algebra",
   "order": 3,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Polar Form & Modulus",
     "es": "Forma polar y módulo"
@@ -18,11 +18,13 @@
     {
       "type": "prereq",
       "lessons": [
-        "linalg-01-complex-binomic"
+        "linalg-01-complex-binomic",
+        "functions-09-trig-ratios",
+        "functions-12-secant-cosecant-inverse"
       ],
       "note": {
-        "en": "Polar form re-expresses the binomic number.",
-        "es": "La forma polar reexpresa el numero binomico."
+        "en": "Polar form re-expresses the binomic number $a+bi$ with cosine and sine. The argument uses the inverse tangent, with a check on the quadrant.",
+        "es": "La forma polar reexpresa el número binómico $a+bi$ con coseno y seno. El argumento usa la arcotangente, con una comprobación del cuadrante."
       }
     },
     {
@@ -40,6 +42,27 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "**The argument, precisely.** The argument is an angle, so it is defined only up to a full turn: $45°$, $405°$ and $-315°$ are all arguments of $1+i$. Choosing the one in $[0°, 360°)$ gives an argument in that range; many texts call the one in $(-180°, 180°]$ the **principal argument**. The formula $\\theta = \\arctan\\frac{b}{a}$ gives the argument only when $a > 0$, because the arctangent returns values between $-90°$ and $90°$; for $a < 0$ the result is off by $180°$. For $-1-i$ it returns $\\arctan 1 = 45°$, but the point lies in the third quadrant. Always look at the signs of $a$ and $b$ to pick the quadrant before you adjust the angle.",
+        "es": "**El argumento, con precisión.** El argumento es un ángulo, así que está definido salvo una vuelta completa: $45°$, $405°$ y $-315°$ son argumentos de $1+i$. Escoger el que está en $[0°, 360°)$ da un argumento en ese rango; muchos textos llaman **argumento principal** al que está en $(-180°, 180°]$. La fórmula $\\theta = \\arctan\\frac{b}{a}$ da el argumento solo cuando $a > 0$, porque la arcotangente devuelve valores entre $-90°$ y $90°$; para $a < 0$ el resultado queda desviado $180°$. Para $-1-i$ devuelve $\\arctan 1 = 45°$, pero el punto está en el tercer cuadrante. Mira siempre los signos de $a$ y $b$ para elegir el cuadrante antes de ajustar el ángulo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Back and forth, and powers.** Going back from polar form is immediate: $a = r\\cos\\theta$ and $b = r\\sin\\theta$. The polar form also makes powers easy. **De Moivre's formula** says $z^n = r^n(\\cos n\\theta + i\\sin n\\theta)$: the modulus is raised to the power $n$ and the argument is multiplied by $n$. For $1+i = \\sqrt2\\,(\\cos 45° + i\\sin 45°)$, the eighth power has modulus $(\\sqrt2)^8 = 16$ and argument $8\\cdot 45° = 360°$, so $(1+i)^8 = 16$. Without the polar form that takes seven multiplications in a row.",
+        "es": "**Ida y vuelta, y potencias.** Volver desde la forma polar es inmediato: $a = r\\cos\\theta$ y $b = r\\sin\\theta$. La forma polar también hace fáciles las potencias. La **fórmula de De Moivre** dice que $z^n = r^n(\\cos n\\theta + i\\sin n\\theta)$: el módulo se eleva a la potencia $n$ y el argumento se multiplica por $n$. Para $1+i = \\sqrt2\\,(\\cos 45° + i\\sin 45°)$, la octava potencia tiene módulo $(\\sqrt2)^8 = 16$ y argumento $8\\cdot 45° = 360°$, así que $(1+i)^8 = 16$. Sin la forma polar, eso serían siete multiplicaciones seguidas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why it matters.** Multiplying by a complex number $w$ with $|w| = 1$ is a rotation by $\\arg w$, and a general $w$ rotates and scales at once. This is the two-dimensional rotation used in graphics and games. It is also why an alternating-current signal $\\operatorname{Re}(Ae^{i\\omega t})$ is a rotating arrow, or phasor, whose length is the amplitude and whose angle is the phase. The exponential $e^{i\\omega t}$ is the basic building block of the Fourier transform.",
+        "es": "**Para qué sirve.** Multiplicar por un complejo $w$ con $|w| = 1$ es un giro de $\\arg w$, y un $w$ cualquiera gira y escala a la vez. Es el giro en dos dimensiones que usan los gráficos y los videojuegos. Por eso también una señal de corriente alterna $\\operatorname{Re}(Ae^{i\\omega t})$ es una flecha que gira, o fasor, cuya longitud es la amplitud y cuyo ángulo es la fase. La exponencial $e^{i\\omega t}$ es el bloque básico de la transformada de Fourier."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example — modulus",
@@ -51,17 +74,28 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — the quadrant trap",
+        "es": "Ejemplo resuelto — la trampa del cuadrante"
+      },
+      "content": {
+        "en": "Write $-1 - i$ in polar form. The modulus is $\\sqrt{(-1)^2 + (-1)^2} = \\sqrt2$. The tempting argument is $\\arctan\\frac{-1}{-1} = \\arctan 1 = 45°$, but the point is in the third quadrant, so the argument is $45° + 180° = 225°$ (or $-135°$). Check: $\\sqrt2(\\cos 225° + i\\sin 225°) = \\sqrt2\\left(-\\tfrac{\\sqrt2}{2} - i\\tfrac{\\sqrt2}{2}\\right) = -1 - i$ ✓.",
+        "es": "Escribe $-1 - i$ en forma polar. El módulo es $\\sqrt{(-1)^2 + (-1)^2} = \\sqrt2$. El argumento tentador es $\\arctan\\frac{-1}{-1} = \\arctan 1 = 45°$, pero el punto está en el tercer cuadrante, así que el argumento es $45° + 180° = 225°$ (o bien $-135°$). Comprobación: $\\sqrt2(\\cos 225° + i\\sin 225°) = \\sqrt2\\left(-\\tfrac{\\sqrt2}{2} - i\\tfrac{\\sqrt2}{2}\\right) = -1 - i$ ✓."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [],
       "code": {
         "en": "import cmath\nz = 1 + 1j\n# modulus (length) and argument (angle in radians)\nprint(round(abs(z), 4), round(cmath.phase(z), 4))",
-        "es": "import cmath\nz = 1 + 1j\n# modulo (longitud) y argumento (angulo en radianes)\nprint(round(abs(z), 4), round(cmath.phase(z), 4))"
+        "es": "import cmath\nz = 1 + 1j\n# módulo (longitud) y argumento (ángulo en radianes)\nprint(round(abs(z), 4), round(cmath.phase(z), 4))"
       },
       "expectedOutput": "1.4142 0.7854",
       "caption": {
         "en": "cmath.phase returns the argument; abs the modulus.",
-        "es": "cmath.phase devuelve el argumento; abs el modulo."
+        "es": "cmath.phase devuelve el argumento; abs el módulo."
       }
     }
   ],
@@ -88,6 +122,22 @@
           "en": "Pythagorean modulus.",
           "es": "Módulo pitagórico."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "7",
+          "feedback": {
+            "en": "$7$ adds the parts, $3+4$. The modulus squares each part, adds them, and then takes the root: $\\sqrt{9+16} = 5$.",
+            "es": "$7$ suma las partes, $3+4$. El módulo eleva al cuadrado cada parte, las suma y luego saca la raíz: $\\sqrt{9+16} = 5$."
+          }
+        },
+        {
+          "answer": "25",
+          "feedback": {
+            "en": "$25$ is $3^2+4^2$ before the square root. The modulus is $\\sqrt{25} = 5$.",
+            "es": "$25$ es $3^2+4^2$ antes de la raíz. El módulo es $\\sqrt{25} = 5$."
+          }
+        }
       ]
     },
     {
@@ -110,6 +160,15 @@
           "tex": "\\sqrt{1+1} = \\sqrt2",
           "en": "Modulus.",
           "es": "Módulo."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ is $1^2+1^2$ before the square root. Here $|1+i| = \\sqrt2$, not $2$.",
+            "es": "$2$ es $1^2+1^2$ antes de la raíz. Aquí $|1+i| = \\sqrt2$, no $2$."
+          }
         }
       ]
     },
@@ -156,6 +215,111 @@
           "es": "Distancia unidad."
         }
       ]
+    },
+    {
+      "id": "linalg-03-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "What is the argument of $-\\sqrt3 + i$ in degrees, between $0°$ and $360°$?",
+        "es": "¿Cuál es el argumento de $-\\sqrt3 + i$ en grados, entre $0°$ y $360°$?"
+      },
+      "answer": "150",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "-30",
+          "feedback": {
+            "en": "$-30$ is what $\\arctan\\frac{b}{a} = \\arctan\\frac{1}{-\\sqrt3}$ returns. The point is in the second quadrant ($a < 0$, $b > 0$), so add $180°$: $-30° + 180° = 150°$.",
+            "es": "$-30$ es lo que devuelve $\\arctan\\frac{b}{a} = \\arctan\\frac{1}{-\\sqrt3}$. El punto está en el segundo cuadrante ($a < 0$, $b > 0$), así que suma $180°$: $-30° + 180° = 150°$."
+          }
+        },
+        {
+          "answer": "30",
+          "feedback": {
+            "en": "$30$ is the reference angle, the acute angle with the real axis. Angles in the second quadrant are measured from the positive real axis: $180° - 30° = 150°$.",
+            "es": "$30$ es el ángulo de referencia, el agudo con el eje real. Los ángulos del segundo cuadrante se miden desde el eje real positivo: $180° - 30° = 150°$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The modulus is $2$. Find the angle with cosine $-\\frac{\\sqrt3}{2}$ and sine $\\frac12$.",
+        "es": "El módulo es $2$. Halla el ángulo de coseno $-\\frac{\\sqrt3}{2}$ y seno $\\frac12$."
+      },
+      "solution": [
+        {
+          "tex": "|z| = \\sqrt{3+1} = 2",
+          "en": "The modulus.",
+          "es": "El módulo."
+        },
+        {
+          "tex": "\\cos\\theta = -\\tfrac{\\sqrt3}{2},\\quad \\sin\\theta = \\tfrac12",
+          "en": "The point is in the second quadrant: a < 0 and b > 0.",
+          "es": "El punto está en el segundo cuadrante: a < 0 y b > 0."
+        },
+        {
+          "tex": "\\theta = 150°",
+          "en": "The angle with that cosine and that sine.",
+          "es": "El ángulo con ese coseno y ese seno."
+        }
+      ]
+    },
+    {
+      "id": "linalg-03-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "What does multiplying $z$ by $w = \\cos 30° + i\\sin 30°$ do to $z$?",
+        "es": "¿Qué hace a $z$ multiplicarlo por $w = \\cos 30° + i\\sin 30°$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It turns $z$ by $30°$ counterclockwise about $0$ and keeps $|z|$.",
+            "es": "Gira $z$ $30°$ en sentido antihorario alrededor de $0$ y conserva $|z|$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $|w| = 1$ keeps the length, and the argument of $w$ is added to the argument of $z$.",
+            "es": "Exacto. $|w| = 1$ conserva la longitud, y el argumento de $w$ se suma al de $z$."
+          }
+        },
+        {
+          "text": {
+            "en": "It multiplies $|z|$ by $\\cos 30°$, since that is the real part of $w$.",
+            "es": "Multiplica $|z|$ por $\\cos 30°$, pues esa es la parte real de $w$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: the real part of $w$ is not a scaling factor. Lengths scale by $|w|$, and here $|w| = 1$, so nothing is stretched.",
+            "es": "Error habitual: la parte real de $w$ no es un factor de escala. Las longitudes se escalan por $|w|$, y aquí $|w| = 1$, así que nada se estira."
+          }
+        },
+        {
+          "text": {
+            "en": "It adds $30°$ to the real part of $z$ and leaves the imaginary part alone.",
+            "es": "Suma $30°$ a la parte real de $z$ y deja intacta la parte imaginaria."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: multiplication is not done part by part. Adding to one component is addition, and it does not rotate the point.",
+            "es": "Error habitual: la multiplicación no se hace parte a parte. Sumar a una componente es una suma, y no gira el punto."
+          }
+        },
+        {
+          "text": {
+            "en": "It reflects $z$ across the real axis, because $w$ is not real.",
+            "es": "Refleja $z$ respecto del eje real, porque $w$ no es real."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: reflection is conjugation, $z \\mapsto \\bar z$, not multiplication by $w$. A non-real factor rotates the point; it does not flip the plane.",
+            "es": "Error habitual: la reflexión es la conjugación, $z \\mapsto \\bar z$, no multiplicar por $w$. Un factor no real gira el punto; no voltea el plano."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compare the modulus and the argument of $w$ with those of $z$.",
+        "es": "Compara el módulo y el argumento de $w$ con los de $z$."
+      }
     }
   ],
   "references": [

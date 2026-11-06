@@ -2,7 +2,7 @@
   "id": "linalg-04-induction",
   "subjectId": "linear-algebra",
   "order": 4,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Mathematical Induction",
     "es": "Principio de inducción"
@@ -13,6 +13,16 @@
       "content": {
         "en": "How do you prove a statement is true for **all** natural numbers — infinitely many cases — in finite work? **Mathematical induction** is the answer, and it is the standard tool for proving formulas, analyzing recursive algorithms, and establishing properties that hold at every step.",
         "es": "¿Cómo demuestras que una afirmación es cierta para **todos** los naturales — infinitos casos — con trabajo finito? La **inducción matemática** es la respuesta, y es la herramienta estándar para probar fórmulas, analizar algoritmos recursivos y establecer propiedades que se cumplen en cada paso."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-09-algebraic-expressions"
+      ],
+      "note": {
+        "en": "Expanding $(k+1)^2$ and $n(n+1)$ is the algebra that every inductive step needs.",
+        "es": "Desarrollar $(k+1)^2$ y $n(n+1)$ es el álgebra que necesita cada paso inductivo."
       }
     },
     {
@@ -30,6 +40,27 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, induction proves $P(n)$ for all $n \\ge n_0$, for any starting value $n_0$, not only for $n_0 = 1$. Take $2^n > n^2$. It fails for $n = 2, 3, 4$ (at $n = 4$, $16 = 16$ is not greater), but it holds from $n_0 = 5$ on: $32 > 25$. The base case checks $P(5)$, and the inductive step runs for every $k \\ge 5$. Three things are needed: a true starting case, a step that works for every $k \\ge n_0$, and the conclusion for every $n \\ge n_0$. Nothing is claimed about $n < n_0$.",
+        "es": "**Con precisión**, la inducción prueba $P(n)$ para todo $n \\ge n_0$, con un valor inicial $n_0$ cualquiera, no solo $n_0 = 1$. Toma $2^n > n^2$. Falla para $n = 2, 3, 4$ (en $n = 4$, $16 = 16$ no es mayor), pero vale desde $n_0 = 5$: $32 > 25$. El caso base comprueba $P(5)$ y el paso inductivo funciona para todo $k \\ge 5$. Hacen falta tres cosas: un caso inicial cierto, un paso que valga para todo $k \\ge n_0$ y la conclusión para todo $n \\ge n_0$. No se afirma nada sobre $n < n_0$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The trap**: both steps are needed. Consider $P(n)$: “$n^2 + n$ is odd”. The inductive step works. If $k^2 + k$ is odd, then $(k+1)^2 + (k+1) = (k^2 + k) + (2k + 2)$ is an odd number plus an even one, hence odd. Yet $P(n)$ is false for every $n$, because $n^2 + n = n(n+1)$ is always even. The base case fails: $P(1) = 2$ is even, and without a true start the chain never begins. A valid step proves only the implication $P(k) \\Rightarrow P(k+1)$, never the statement itself.",
+        "es": "**La trampa**: hacen falta los dos pasos. Considera $P(n)$: «$n^2 + n$ es impar». El paso inductivo funciona. Si $k^2 + k$ es impar, entonces $(k+1)^2 + (k+1) = (k^2 + k) + (2k + 2)$ es un impar más un par, luego impar. Y, sin embargo, $P(n)$ es falsa para todo $n$, porque $n^2 + n = n(n+1)$ es siempre par. El caso base falla: $P(1) = 2$ es par, y sin un inicio cierto la cadena nunca empieza. Un paso válido solo prueba la implicación $P(k) \\Rightarrow P(k+1)$, nunca la afirmación misma."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why it matters.** Induction is the standard tool for proving that loops and recursive algorithms are correct. A loop invariant is a statement that is true before each pass; induction on the number of passes shows it stays true until the loop ends. It also proves matrix formulas in this subject. For $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, the claim $A^n = \\begin{pmatrix}1&n\\\\0&1\\end{pmatrix}$ holds at $n = 1$, and multiplying the $k$-th power by $A$ gives $\\begin{pmatrix}1&k+1\\\\0&1\\end{pmatrix}$, which is the inductive step.",
+        "es": "**Para qué sirve.** La inducción es la herramienta estándar para demostrar que un bucle o un algoritmo recursivo es correcto. Un invariante de bucle es una afirmación cierta antes de cada vuelta; la inducción sobre el número de vueltas muestra que sigue cierta hasta que el bucle termina. También prueba fórmulas matriciales de esta asignatura. Para $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, la afirmación $A^n = \\begin{pmatrix}1&n\\\\0&1\\end{pmatrix}$ vale para $n = 1$, y multiplicar la potencia $k$-ésima por $A$ da $\\begin{pmatrix}1&k+1\\\\0&1\\end{pmatrix}$, que es el paso inductivo."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example — base case",
@@ -41,17 +72,28 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — the sum of the first odd numbers",
+        "es": "Ejemplo resuelto — la suma de los primeros impares"
+      },
+      "content": {
+        "en": "Prove $1 + 3 + \\dots + (2n-1) = n^2$. Base case: for $n = 1$ the left side is $1 = 1^2$. Inductive step: assume $1 + 3 + \\dots + (2k-1) = k^2$. The odd number after $2k-1$ is $2k+1$, so the sum for $k+1$ is $k^2 + (2k+1)$. Since $2k+1 = 2(k+1) - 1$, that is $k^2 + 2k + 1 = (k+1)^2$, the formula for $n = k+1$. Both steps hold, so the formula holds for every $n \\ge 1$.",
+        "es": "Demuestra que $1 + 3 + \\dots + (2n-1) = n^2$. Caso base: para $n = 1$ el lado izquierdo es $1 = 1^2$. Paso inductivo: supón que $1 + 3 + \\dots + (2k-1) = k^2$. El impar siguiente a $2k-1$ es $2k+1$, así que la suma para $k+1$ es $k^2 + (2k+1)$. Como $2k+1 = 2(k+1) - 1$, eso es $k^2 + 2k + 1 = (k+1)^2$, la fórmula para $n = k+1$. Se cumplen los dos pasos, así que la fórmula vale para todo $n \\ge 1$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [],
       "code": {
         "en": "# induction proves: 1 + 2 + ... + n = n(n+1)/2\nn = 100\nprint(sum(range(1, n + 1)), n * (n + 1) // 2)",
-        "es": "# la induccion prueba: 1 + 2 + ... + n = n(n+1)/2\nn = 100\nprint(sum(range(1, n + 1)), n * (n + 1) // 2)"
+        "es": "# la inducción prueba: 1 + 2 + ... + n = n(n+1)/2\nn = 100\nprint(sum(range(1, n + 1)), n * (n + 1) // 2)"
       },
       "expectedOutput": "5050 5050",
       "caption": {
         "en": "The direct sum matches the closed formula proven by induction.",
-        "es": "La suma directa coincide con la formula cerrada probada por induccion."
+        "es": "La suma directa coincide con la fórmula cerrada probada por inducción."
       }
     }
   ],
@@ -76,6 +118,15 @@
           "tex": "\\tfrac{5\\cdot6}{2} = 15",
           "en": "Apply the formula.",
           "es": "Aplica la fórmula."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "30",
+          "feedback": {
+            "en": "$30$ is $n(n+1)$ for $n = 5$: the formula also divides by $2$. So $\\tfrac{5\\cdot 6}{2} = 15$.",
+            "es": "$30$ es $n(n+1)$ para $n = 5$: la fórmula divide además entre $2$. Así, $\\tfrac{5\\cdot 6}{2} = 15$."
+          }
         }
       ]
     },
@@ -146,6 +197,115 @@
           "tex": "\\tfrac{1\\cdot2}{2} = 1",
           "en": "Base case holds.",
           "es": "El caso base se cumple."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ is $n(n+1)$ at $n = 1$. The formula divides by $2$ as well: $\\tfrac{1\\cdot 2}{2} = 1$.",
+            "es": "$2$ es $n(n+1)$ en $n = 1$. La fórmula divide además entre $2$: $\\tfrac{1\\cdot 2}{2} = 1$."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linalg-04-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A “proof” shows that $P(k) \\Rightarrow P(k+1)$ for every $k \\ge 1$, but it never checks $P(1)$. What has it proved?",
+        "es": "Una «demostración» prueba que $P(k) \\Rightarrow P(k+1)$ para todo $k \\ge 1$, pero nunca comprueba $P(1)$. ¿Qué ha probado?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "That $P(n)$ holds for every $n$, since every inductive step is valid.",
+            "es": "Que $P(n)$ vale para todo $n$, ya que todo paso inductivo es válido."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: a valid step proves only the implication $P(k) \\Rightarrow P(k+1)$. That implication can be true while $P(k)$ is false for every $k$.",
+            "es": "Error habitual: un paso válido solo prueba la implicación $P(k) \\Rightarrow P(k+1)$. Esa implicación puede ser cierta aunque $P(k)$ sea falsa para todo $k$."
+          }
+        },
+        {
+          "text": {
+            "en": "That $P(n)$ holds for every $n \\ge 2$, since only the first case is missing.",
+            "es": "Que $P(n)$ vale para todo $n \\ge 2$, ya que solo falta el primer caso."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: a missing base case costs only $n = 1$. With no true case to start from, the chain never begins, so no $n$ is covered.",
+            "es": "Error habitual: que falte el caso base solo cuesta $n = 1$. Sin ningún caso cierto del que partir, la cadena nunca empieza, así que ningún $n$ queda cubierto."
+          }
+        },
+        {
+          "text": {
+            "en": "That $P(n)$ holds for every $n$, once any single true case is found.",
+            "es": "Que $P(n)$ vale para todo $n$, en cuanto se encuentra un solo caso cierto."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: any true case works as a base. A true case at $n = 7$ gives $P(n)$ only for $n \\ge 7$; the smaller values stay unproved.",
+            "es": "Error habitual: cualquier caso cierto sirve de base. Un caso cierto en $n = 7$ da $P(n)$ solo para $n \\ge 7$; los valores menores quedan sin probar."
+          }
+        },
+        {
+          "text": {
+            "en": "Only the implications $P(k) \\Rightarrow P(k+1)$: no $P(n)$ is proven.",
+            "es": "Solo implicaciones $P(k) \\Rightarrow P(k+1)$; ningún $P(n)$ queda probado."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Each step passes truth from $k$ to $k+1$, but without a true start no single case is ever established. This is the $n^2+n$ trap.",
+            "es": "Exacto. Cada paso pasa la verdad de $k$ a $k+1$, pero sin un inicio cierto no queda establecido ningún caso. Es la trampa de $n^2+n$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Ask what a base case does for a chain of implications.",
+        "es": "Pregúntate qué hace el caso base en una cadena de implicaciones."
+      }
+    },
+    {
+      "id": "linalg-04-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "Using $1^2 + 2^2 + \\dots + n^2 = \\dfrac{n(n+1)(2n+1)}{6}$, compute $1^2 + 2^2 + \\dots + 10^2$.",
+        "es": "Usando $1^2 + 2^2 + \\dots + n^2 = \\dfrac{n(n+1)(2n+1)}{6}$, calcula $1^2 + 2^2 + \\dots + 10^2$."
+      },
+      "answer": "385",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "55",
+          "feedback": {
+            "en": "$55$ is $1 + 2 + \\dots + 10$, the sum of the numbers. Here the squares are added.",
+            "es": "$55$ es $1 + 2 + \\dots + 10$, la suma de los números. Aquí se suman los cuadrados."
+          }
+        },
+        {
+          "answer": "100",
+          "feedback": {
+            "en": "$100$ is only the last square, $10^2$. The formula adds all ten squares.",
+            "es": "$100$ es solo el último cuadrado, $10^2$. La fórmula suma los diez cuadrados."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Put $n = 10$ into the formula.",
+        "es": "Sustituye $n = 10$ en la fórmula."
+      },
+      "solution": [
+        {
+          "tex": "n = 10:\\quad \\frac{10\\cdot 11\\cdot 21}{6}",
+          "en": "Substitute n = 10.",
+          "es": "Sustituye n = 10."
+        },
+        {
+          "tex": "= \\frac{2310}{6} = 385",
+          "en": "Divide.",
+          "es": "Divide."
         }
       ]
     }

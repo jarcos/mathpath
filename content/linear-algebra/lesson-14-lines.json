@@ -2,7 +2,7 @@
   "id": "linalg-14-lines",
   "subjectId": "linear-algebra",
   "order": 14,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Lines in the Plane & Space",
     "es": "Rectas en el plano y el espacio"
@@ -11,15 +11,26 @@
     {
       "type": "prose",
       "content": {
-        "en": "Linear algebra and geometry meet in the equation of a **line**. In the plane a line can be written three ways: **explicit** $y = mx + b$, **implicit** $Ax + By = C$, and **parametric** $P + t\\,\\vec{d}$ — a fixed point $P$ plus a multiple of a direction vector $\\vec{d}$. The parametric form is the one that generalizes to space and higher dimensions.",
-        "es": "El álgebra lineal y la geometría se encuentran en la ecuación de una **recta**. En el plano una recta se escribe de tres formas: **explícita** $y = mx + b$, **implícita** $Ax + By = C$ y **paramétrica** $P + t\\,\\vec{d}$ — un punto fijo $P$ más un múltiplo de un vector director $\\vec{d}$. La forma paramétrica es la que se generaliza al espacio y a dimensiones superiores."
+        "en": "Linear algebra and geometry meet in the equation of a **line**. In the plane a line can be written three ways: **explicit** $y = mx + b$ (non-vertical lines only), **implicit** $Ax + By = C$, and **parametric** $P + t\\,\\vec{d}$ — a fixed point $P$ plus a multiple of a direction vector $\\vec{d}$. The parametric form is the one that generalizes to space and higher dimensions.",
+        "es": "El álgebra lineal y la geometría se encuentran en la ecuación de una **recta**. En el plano una recta se escribe de tres formas: **explícita** $y = mx + b$ (solo rectas no verticales), **implícita** $Ax + By = C$ y **paramétrica** $P + t\\,\\vec{d}$ — un punto fijo $P$ más un múltiplo de un vector director $\\vec{d}$. La forma paramétrica es la que se generaliza al espacio y a dimensiones superiores."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "functions-06-linear-affine",
+        "linalg-05-vectors-rn"
+      ],
+      "note": {
+        "en": "The line $y = mx + b$ is an affine function; direction vectors are vectors of $\\mathbb{R}^n$.",
+        "es": "La recta $y = mx + b$ es una función afín; los vectores directores son vectores de $\\mathbb{R}^n$."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "The parametric view is pure vector thinking: as the parameter $t$ runs over all reals, $P + t\\,\\vec{d}$ traces every point of the line. The direction vector $\\vec{d}$ encodes the slope; in the plane, $\\vec{d} = (1, m)$ corresponds to slope $m$. In $\\mathbb{R}^3$ explicit form no longer works, but parametric and implicit forms carry over.",
-        "es": "La visión paramétrica es pensamiento vectorial puro: cuando el parámetro $t$ recorre todos los reales, $P + t\\,\\vec{d}$ traza cada punto de la recta. El vector director $\\vec{d}$ codifica la pendiente; en el plano, $\\vec{d} = (1, m)$ corresponde a pendiente $m$. En $\\mathbb{R}^3$ la forma explícita ya no sirve, pero las formas paramétrica e implícita se conservan."
+        "en": "The parametric view is pure vector thinking: as the parameter $t$ runs over all reals, $P + t\\,\\vec{d}$ traces every point of the line. The direction vector $\\vec{d}$ encodes the slope; in the plane, $\\vec{d} = (1, m)$ corresponds to slope $m$. In $\\mathbb{R}^3$ the explicit form no longer works, and the implicit form needs **two** equations, one for each of the two planes whose intersection is the line. The parametric form carries over unchanged.",
+        "es": "La visión paramétrica es pensamiento vectorial puro: cuando el parámetro $t$ recorre todos los reales, $P + t\\,\\vec{d}$ traza cada punto de la recta. El vector director $\\vec{d}$ codifica la pendiente; en el plano, $\\vec{d} = (1, m)$ corresponde a pendiente $m$. En $\\mathbb{R}^3$ la forma explícita ya no sirve, y la implícita necesita **dos** ecuaciones, una por cada uno de los dos planos cuya intersección es la recta. La forma paramétrica se conserva tal cual."
       }
     },
     {
@@ -35,6 +46,27 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, the line through $P$ with direction $\\vec d \\neq \\vec 0$ is the set $\\{P + t\\,\\vec d : t \\in \\mathbb{R}\\}$. Two different points $P \\neq Q$ determine exactly one line, with $\\vec d = Q - P$. In space the same line has the **continuous form** $\\frac{x-x_0}{d_1} = \\frac{y-y_0}{d_2} = \\frac{z-z_0}{d_3}$, valid when no $d_i$ is zero. The trap: a direction is not unique, since $(2,4)$ and $(1,2)$ give the same line, and a zero component is not a denominator. If $d_1 = 0$, the x-coordinate is constant, $x = x_0$, and you write that equation directly.",
+        "es": "**Con precisión**, la recta por $P$ con dirección $\\vec d \\neq \\vec 0$ es el conjunto $\\{P + t\\,\\vec d : t \\in \\mathbb{R}\\}$. Dos puntos distintos $P \\neq Q$ determinan exactamente una recta, con $\\vec d = Q - P$. En el espacio, la misma recta tiene la **forma continua** $\\frac{x-x_0}{d_1} = \\frac{y-y_0}{d_2} = \\frac{z-z_0}{d_3}$, válida cuando ningún $d_i$ es cero. La trampa: la dirección no es única, pues $(2,4)$ y $(1,2)$ dan la misma recta, y una componente nula no es un denominador. Si $d_1 = 0$, la coordenada x es constante, $x = x_0$, y esa ecuación se escribe directamente."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Two distinct lines in space** have three possible positions, not two (coincident lines are a fourth case). They can **meet** at a point, be **parallel** (proportional directions, no common point), or be **skew**: neither meeting nor parallel. Skew lines lie in no common plane. This cannot happen in the plane, where two non-parallel lines always cross. To test a pair, solve $P + t\\,\\vec d = Q + s\\,\\vec e$ for $t$ and $s$: two unknowns and three equations. The system is inconsistent exactly when the lines do not meet. They are skew if moreover $\\vec d$ and $\\vec e$ are not proportional, and parallel if they are.",
+        "es": "**Dos rectas distintas en el espacio** tienen tres posiciones posibles, no dos (dos rectas coincidentes son un cuarto caso). Pueden **cortarse** en un punto, ser **paralelas** (direcciones proporcionales, sin punto común) o ser **alabeadas**: ni se cortan ni son paralelas. Las rectas alabeadas no están en ningún plano común. Esto no puede ocurrir en el plano, donde dos rectas no paralelas siempre se cortan. Para comprobar un par, resuelve $P + t\\,\\vec d = Q + s\\,\\vec e$ en $t$ y $s$: dos incógnitas y tres ecuaciones. El sistema es incompatible exactamente cuando las rectas no se cortan. Son alabeadas si además $\\vec d$ y $\\vec e$ no son proporcionales, y paralelas si lo son."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Lines are everywhere in computing. A ray in ray tracing is $P + t\\,\\vec d$ with $t \\ge 0$: the camera at $P$ looks along $\\vec d$, and finding where the ray hits a plane means solving one linear equation for $t$. Animation blends two positions with $(1-t)P + tQ$, which is the same parametric line with $\\vec d = Q - P$ and $t$ between $0$ and $1$. The formula is one line of code, and the geometry behind it is the one you have just learned.",
+        "es": "Las rectas están en todas partes en computación. Un rayo en el trazado de rayos es $P + t\\,\\vec d$ con $t \\ge 0$: la cámara en $P$ mira en la dirección $\\vec d$, y averiguar dónde choca el rayo con un plano exige resolver una ecuación lineal en $t$. La animación mezcla dos posiciones con $(1-t)P + tQ$, que es la misma recta paramétrica con $\\vec d = Q - P$ y $t$ entre $0$ y $1$. La fórmula cabe en una línea de código, y la geometría que hay detrás es la que acabas de aprender."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example",
@@ -46,6 +78,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a point on a line in space",
+        "es": "Ejemplo resuelto — un punto de una recta en el espacio"
+      },
+      "content": {
+        "en": "Is $(7,-1,9)$ on the line through $(1,2,3)$ and $(3,1,5)$? The direction is $\\vec d = (3,1,5) - (1,2,3) = (2,-1,2)$, so the points of the line are $(1+2t,\\ 2-t,\\ 3+2t)$. Match each coordinate: $1+2t = 7$ gives $t = 3$; $2-t = -1$ gives $t = 3$; $3+2t = 9$ gives $t = 3$. The same $t$ works in all three, so yes, the point is on the line. If the coordinates demanded different values of $t$, it would not be.",
+        "es": "¿Está $(7,-1,9)$ en la recta que pasa por $(1,2,3)$ y $(3,1,5)$? La dirección es $\\vec d = (3,1,5) - (1,2,3) = (2,-1,2)$, así que los puntos de la recta son $(1+2t,\\ 2-t,\\ 3+2t)$. Iguala cada coordenada: $1+2t = 7$ da $t = 3$; $2-t = -1$ da $t = 3$; $3+2t = 9$ da $t = 3$. El mismo $t$ sirve en las tres, así que sí, el punto está en la recta. Si las coordenadas exigieran valores distintos de $t$, no estaría."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -53,12 +96,12 @@
       ],
       "code": {
         "en": "import numpy as np\npoint = np.array([1, 2])\ndirection = np.array([3, 4])\n# a point on the line at parameter t = 2\nprint((point + 2 * direction).tolist())",
-        "es": "import numpy as np\npoint = np.array([1, 2])\ndirection = np.array([3, 4])\n# un punto de la recta en el parametro t = 2\nprint((point + 2 * direction).tolist())"
+        "es": "import numpy as np\npoint = np.array([1, 2])\ndirection = np.array([3, 4])\n# un punto de la recta en el parámetro t = 2\nprint((point + 2 * direction).tolist())"
       },
       "expectedOutput": "[7, 10]",
       "caption": {
         "en": "A line is a point plus t times a direction vector.",
-        "es": "Una recta es un punto mas t por un vector director."
+        "es": "Una recta es un punto más t por un vector director."
       }
     }
   ],
@@ -81,6 +124,15 @@
           "tex": "m = 2",
           "en": "Slope.",
           "es": "Pendiente."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ is the y-intercept of $y = 2x + 1$, not the slope. The slope is the coefficient of $x$.",
+            "es": "$1$ es la ordenada en el origen de $y = 2x + 1$, no la pendiente. La pendiente es el coeficiente de $x$."
+          }
         }
       ]
     },
@@ -128,6 +180,15 @@
           "en": "Direction gives slope 2.",
           "es": "La dirección da pendiente 2."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3/2",
+          "feedback": {
+            "en": "$\\frac32$ comes from reading the direction $(1,2)$ upside down, as slope $\\frac12$: $y = \\frac12 x = \\frac32$. The slope is $\\frac{2}{1} = 2$, so $y = 2\\cdot3 = 6$.",
+            "es": "$\\frac32$ sale de leer la dirección $(1,2)$ al revés, como pendiente $\\frac12$: $y = \\frac12 x = \\frac32$. La pendiente es $\\frac{2}{1} = 2$, así que $y = 2\\cdot3 = 6$."
+          }
+        }
       ]
     },
     {
@@ -135,7 +196,7 @@
       "answerType": "number",
       "prompt": {
         "en": "On the parametric line $(1,0) + t(0,1)$, the x-coordinate equals?",
-        "es": "En la recta paramétrica $(1,0) + t(0,1)$, la coordenada x es?"
+        "es": "¿Cuánto vale la coordenada x en la recta paramétrica $(1,0) + t(0,1)$?"
       },
       "answer": "1",
       "acceptedAlt": [],
@@ -148,6 +209,94 @@
           "tex": "x = 1 \\text{ for all } t",
           "en": "A vertical line x = 1.",
           "es": "Una recta vertical x = 1."
+        }
+      ]
+    },
+    {
+      "id": "linalg-14-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Two lines in space neither meet nor are parallel. What are they?",
+        "es": "Dos rectas en el espacio no se cortan ni son paralelas. ¿Qué son?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Skew: no single plane contains both of them.",
+            "es": "Alabeadas: ningún plano contiene a las dos."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Such lines are **skew**. In the plane this can't happen: non-parallel lines always cross.",
+            "es": "Exacto. Son **alabeadas**. En el plano no puede pasar: dos rectas no paralelas siempre se cortan."
+          }
+        },
+        {
+          "text": {
+            "en": "Impossible: in space, two lines must meet or be parallel.",
+            "es": "Imposible: en el espacio, dos rectas deben cortarse o ser paralelas."
+          },
+          "correct": false,
+          "why": {
+            "en": "Only in the plane: there non-parallel lines always cross. In space they can miss each other.",
+            "es": "Solo en el plano: allí las rectas no paralelas siempre se cortan. En el espacio pueden no cruzarse."
+          }
+        },
+        {
+          "text": {
+            "en": "Coplanar: they lie in one plane and never meet.",
+            "es": "Coplanarias: están en un mismo plano y nunca se cortan."
+          },
+          "correct": false,
+          "why": {
+            "en": "Non-parallel lines in one plane always meet. Skew lines need space precisely because they avoid a plane.",
+            "es": "Dos rectas no paralelas de un mismo plano siempre se cortan. Las alabeadas necesitan espacio justo porque no caben en un plano."
+          }
+        },
+        {
+          "text": {
+            "en": "Perpendicular, because they never meet.",
+            "es": "Perpendiculares, porque nunca se cortan."
+          },
+          "correct": false,
+          "why": {
+            "en": "Perpendicular is about directions, $\\vec d\\cdot\\vec e = 0$, and missing each other does not force it.",
+            "es": "Perpendicular va de direcciones, $\\vec d\\cdot\\vec e = 0$, y no cortarse no lo obliga."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Ask whether both lines can lie in one plane.",
+        "es": "Pregúntate si las dos rectas pueden estar en un mismo plano."
+      }
+    },
+    {
+      "id": "linalg-14-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "Slope of the line in the plane through $(1,2)$ with direction $(3,4)$?",
+        "es": "¿Pendiente de la recta del plano que pasa por $(1,2)$ con dirección $(3,4)$?"
+      },
+      "answer": "4/3",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "Slope is rise over run: the second component of the direction over the first.",
+        "es": "La pendiente es el avance vertical dividido entre el horizontal: la segunda componente de la dirección dividida entre la primera."
+      },
+      "solution": [
+        {
+          "tex": "m = \\frac{d_2}{d_1} = \\frac{4}{3}",
+          "en": "Rise over run.",
+          "es": "Avance vertical entre horizontal."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3/4",
+          "feedback": {
+            "en": "$\\frac34$ is the run over the rise: you divided $d_1$ by $d_2$. The slope is $\\frac{\\Delta y}{\\Delta x} = \\frac{4}{3}$.",
+            "es": "$\\frac34$ es el avance horizontal entre el vertical: has dividido $d_1$ entre $d_2$. La pendiente es $\\frac{\\Delta y}{\\Delta x} = \\frac{4}{3}$."
+          }
         }
       ]
     }

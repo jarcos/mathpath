@@ -2,7 +2,7 @@
   "id": "linalg-23-geometric-interpretation",
   "subjectId": "linear-algebra",
   "order": 23,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Geometric Interpretation of Systems",
     "es": "Interpretación geométrica de sistemas"
@@ -16,10 +16,22 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "linalg-14-lines",
+        "linalg-15-planes",
+        "linalg-20-rouche-frobenius"
+      ],
+      "note": {
+        "en": "Lines and planes are the pictures of these equations, and the rank test of Rouché-Fröbenius decides each case.",
+        "es": "Las rectas y los planos son los dibujos de estas ecuaciones, y el criterio de rangos de Rouché-Fröbenius decide cada caso."
+      }
+    },
+    {
       "type": "prose",
       "content": {
-        "en": "This explains the three outcomes visually. Two lines that **cross once** give a unique solution. Two **parallel, distinct** lines never meet — no solution (inconsistent). Two **identical** lines share every point — infinitely many solutions. There is no way for two straight lines to meet in exactly two points, which is why a linear system never has exactly two solutions.",
-        "es": "Esto explica los tres resultados visualmente. Dos rectas que **se cruzan una vez** dan solución única. Dos rectas **paralelas y distintas** nunca se encuentran — sin solución (incompatible). Dos rectas **idénticas** comparten todos los puntos — infinitas soluciones. No hay forma de que dos rectas se corten en exactamente dos puntos, por eso un sistema lineal nunca tiene exactamente dos soluciones."
+        "en": "This explains the three outcomes visually. Two lines that **cross once** give a unique solution. Two **parallel, distinct** lines never meet — no solution (inconsistent). Two **identical** lines share every point — infinitely many solutions. There is no way for two straight lines to meet in exactly two points, and more generally a linear system never has exactly two solutions: if $\\mathbf x$ and $\\mathbf y$ are solutions, so is every point $(1-t)\\mathbf x + t\\mathbf y$ of the line through them.",
+        "es": "Esto explica los tres resultados visualmente. Dos rectas que **se cruzan una vez** dan solución única. Dos rectas **paralelas y distintas** nunca se encuentran — sin solución (incompatible). Dos rectas **idénticas** comparten todos los puntos — infinitas soluciones. No hay forma de que dos rectas se corten en exactamente dos puntos, y en general un sistema lineal nunca tiene exactamente dos soluciones: si $\\mathbf x$ e $\\mathbf y$ son soluciones, también lo es cada punto $(1-t)\\mathbf x + t\\mathbf y$ de la recta que las une."
       }
     },
     {
@@ -27,6 +39,20 @@
       "content": {
         "en": "In three unknowns the picture lifts to **planes**: three planes meeting at a single point give a unique solution; meeting in a line give infinitely many; with no common point (like a triangular prism) give none. This geometry is exactly what the Rouché-Fröbenius ranks measure algebraically — the same truth seen two ways.",
         "es": "En tres incógnitas la imagen sube a **planos**: tres planos que se cortan en un punto dan solución única; que se cortan en una recta dan infinitas; sin punto común (como un prisma triangular) dan ninguna. Esta geometría es justo lo que miden algebraicamente los rangos de Rouché-Fröbenius — la misma verdad vista de dos formas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, each equation of a system in $n$ unknowns is a hyperplane: a line in the plane, a plane in space. The ranks say which picture you have. If $r = r' = 3$, the three planes meet in one point. If $r = r' = 2$, they share a line, and if $r = r' = 1$, all three are the same plane. If $r < r'$ there is no common point. With $r = 2$, $r' = 3$ the usual pictures are two parallel planes cut by a third, or a triangular prism; with $r = 1$, $r' = 2$ the planes are parallel and not all equal. The trap is in the count: two equations in three unknowns describe planes that share a line, coincide or are parallel, so they never give a single point.",
+        "es": "**Con precisión**, cada ecuación de un sistema con $n$ incógnitas es un hiperplano: una recta en el plano, un plano en el espacio. Los rangos dicen qué figura tienes. Si $r = r' = 3$, los tres planos se cortan en un punto. Si $r = r' = 2$, comparten una recta, y si $r = r' = 1$, los tres son el mismo plano. Si $r < r'$ no hay punto común. Con $r = 2$, $r' = 3$, las figuras habituales son dos planos paralelos cortados por un tercero, o un prisma triangular; con $r = 1$, $r' = 2$, los planos son paralelos y no todos iguales. La trampa está en contar: dos ecuaciones con tres incógnitas describen planos que comparten una recta, coinciden o son paralelos, así que nunca dan un único punto."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **column picture** is the other face of the same fact. $A\\mathbf x = \\mathbf b$ asks whether $\\mathbf b$ is a combination of the columns of $A$, with the entries of $\\mathbf x$ as weights (see the lesson on linear combinations). A solution exists exactly when $\\mathbf b$ lies in the span of those columns. This is why the geometry matters outside the classroom: a graphics engine tests whether a ray hits a triangle by solving a small $3\\times3$ system (a single plane needs only one equation in $t$), and the corners of a linear programming problem, where the best plan is found, are the points where constraint planes meet.",
+        "es": "La **imagen de columnas** es la otra cara del mismo hecho. $A\\mathbf x = \\mathbf b$ pregunta si $\\mathbf b$ es combinación de las columnas de $A$, con las entradas de $\\mathbf x$ como pesos (ver la lección de combinaciones lineales). Hay solución exactamente cuando $\\mathbf b$ está en el subespacio generado por esas columnas. Por eso la geometría importa fuera del aula: un motor gráfico comprueba si un rayo corta un triángulo resolviendo un sistema $3\\times3$ pequeño (contra un solo plano basta una ecuación en $t$), y los vértices de un problema de programación lineal, donde se halla el mejor plan, son los puntos donde se cortan los planos de las restricciones."
       }
     },
     {
@@ -41,6 +67,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — two parallel planes and a third",
+        "es": "Ejemplo resuelto — dos planos paralelos y un tercero"
+      },
+      "content": {
+        "en": "Take $x+y+z=1$, $x+y+z=2$, $x-y=0$. The first two equations have the same left side, so they are parallel planes that cannot both hold. In the coefficient matrix the first two rows are equal, and $(1,1,1)$ and $(1,-1,0)$ are independent, so $r = 2$. Subtracting the first row from the second in the augmented matrix leaves $(0,0,0\\mid 1)$, so $r' = 3$. Since $r < r'$, the three planes have no common point.",
+        "es": "Toma $x+y+z=1$, $x+y+z=2$, $x-y=0$. Las dos primeras ecuaciones tienen el mismo lado izquierdo, así que son planos paralelos que no pueden cumplirse a la vez. En la matriz de coeficientes las dos primeras filas son iguales, y $(1,1,1)$ y $(1,-1,0)$ son independientes, así que $r = 2$. Restar la primera fila a la segunda en la matriz ampliada deja $(0,0,0\\mid 1)$, así que $r' = 3$. Como $r < r'$, los tres planos no tienen ningún punto común."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +85,12 @@
       ],
       "code": {
         "en": "import numpy as np\n# |det| of a 2x2 matrix = area of the parallelogram its columns span\nprint(abs(int(round(np.linalg.det(np.array([[3, 0], [0, 2]]))))))",
-        "es": "import numpy as np\n# |det| de una matriz 2x2 = area del paralelogramo que generan sus columnas\nprint(abs(int(round(np.linalg.det(np.array([[3, 0], [0, 2]]))))))"
+        "es": "import numpy as np\n# |det| de una matriz 2x2 = área del paralelogramo que generan sus columnas\nprint(abs(int(round(np.linalg.det(np.array([[3, 0], [0, 2]]))))))"
       },
       "expectedOutput": "6",
       "caption": {
         "en": "Geometrically, the determinant measures area/volume scaling.",
-        "es": "Geometricamente, el determinante mide el escalado de area/volumen."
+        "es": "Geométricamente, el determinante mide el escalado de área/volumen."
       }
     }
   ],
@@ -98,14 +135,23 @@
           "en": "No intersection.",
           "es": "Sin intersección."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ would be a crossing point. Parallel distinct lines never meet, so there is no solution: $0$.",
+            "es": "$1$ sería un punto de cruce. Las rectas paralelas y distintas nunca se encuentran, así que no hay solución: $0$."
+          }
+        }
       ]
     },
     {
       "id": "linalg-23-e3",
       "answerType": "text",
       "prompt": {
-        "en": "Two identical lines → how many solutions? (a word)",
-        "es": "Dos rectas idénticas → ¿cuántas soluciones? (una palabra)"
+        "en": "Two identical lines → how many solutions? (one or two words)",
+        "es": "Dos rectas idénticas → ¿cuántas soluciones? (una o dos palabras)"
       },
       "answer": "infinite",
       "acceptedAlt": [
@@ -144,7 +190,121 @@
           "en": "Unique intersection.",
           "es": "Intersección única."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3$ is the number of planes, not of solutions. Three planes meeting at one point share exactly one point.",
+            "es": "$3$ es el número de planos, no de soluciones. Tres planos que se cortan en un punto comparten exactamente un punto."
+          }
+        }
       ]
+    },
+    {
+      "id": "linalg-23-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "The planes $x+y+z=3$, $x-y=0$, $z=1$ meet in a single point. Find $x$.",
+        "es": "Los planos $x+y+z=3$, $x-y=0$, $z=1$ se cortan en un único punto. Halla $x$."
+      },
+      "answer": "1",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3$ is the constant on the right of the first plane. It is not a coordinate of the point.",
+            "es": "$3$ es la constante de la derecha del primer plano. No es una coordenada del punto."
+          }
+        },
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ is $2x$: the equation reads $2x = 2$, so divide by $2$ to get $x = 1$.",
+            "es": "$2$ es $2x$: la ecuación dice $2x = 2$, así que divide entre $2$ para obtener $x = 1$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use z = 1 and x = y, and substitute both into the first plane.",
+        "es": "Usa z = 1 y x = y, y sustitúyelos en el primer plano."
+      },
+      "solution": [
+        {
+          "tex": "z = 1, \\qquad x = y",
+          "en": "The third plane gives z = 1; the second gives x = y.",
+          "es": "El tercer plano da z = 1; el segundo, x = y."
+        },
+        {
+          "tex": "x + x + 1 = 3 \\;\\Rightarrow\\; 2x = 2 \\;\\Rightarrow\\; x = 1",
+          "en": "Substitute into the first plane.",
+          "es": "Sustituye en el primer plano."
+        },
+        {
+          "tex": "\\det\\begin{pmatrix}1&1&1\\\\1&-1&0\\\\0&0&1\\end{pmatrix} = -2 \\neq 0",
+          "en": "A nonzero determinant confirms that the point is unique: (1, 1, 1).",
+          "es": "Un determinante no nulo confirma que el punto es único: (1, 1, 1)."
+        }
+      ]
+    },
+    {
+      "id": "linalg-23-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "What is the solution set of two linear equations in three unknowns?",
+        "es": "¿Cuál es el conjunto de soluciones de dos ecuaciones lineales con tres incógnitas?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "A single point, always, because two equations fix all three unknowns.",
+            "es": "Un único punto, siempre, porque dos ecuaciones fijan las tres incógnitas."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. Two equations in three unknowns leave one direction free, so the solutions cannot be pinned to a single point.",
+            "es": "No. Dos ecuaciones con tres incógnitas dejan libre una dirección, así que las soluciones no se fijan a un único punto."
+          }
+        },
+        {
+          "text": {
+            "en": "A single point, whenever the two planes are not parallel.",
+            "es": "Un único punto, siempre que los dos planos no sean paralelos."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. Planes that are not parallel meet along a line, which has infinitely many points, not just one.",
+            "es": "No. Los planos que no son paralelos se cortan a lo largo de una recta, que tiene infinitos puntos, no uno solo."
+          }
+        },
+        {
+          "text": {
+            "en": "A line, a plane or nothing, but never a single point.",
+            "es": "Una recta, un plano o nada, pero nunca un único punto."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Two planes cross in a line, coincide, or are parallel, so the solutions form a line, a plane or nothing.",
+            "es": "Correcto. Dos planos se cortan en una recta, coinciden o son paralelos: las soluciones son una recta, un plano o nada."
+          }
+        },
+        {
+          "text": {
+            "en": "Nothing at all, since two planes in space can never meet.",
+            "es": "Nada, porque dos planos en el espacio nunca pueden cortarse."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. Only parallel, distinct planes never meet. Two planes that are not parallel always meet in a line.",
+            "es": "No. Solo los planos paralelos y distintos no se cortan. Dos planos no paralelos siempre se cortan en una recta."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Picture two planes in space and the ways they can sit relative to each other.",
+        "es": "Imagina dos planos en el espacio y las formas en que pueden colocarse uno respecto al otro."
+      }
     }
   ],
   "references": [

@@ -2,7 +2,7 @@
   "id": "linalg-19-systems-gauss",
   "subjectId": "linear-algebra",
   "order": 19,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Linear Systems & Gauss",
     "es": "Sistemas lineales y Gauss"
@@ -12,14 +12,32 @@
       "type": "prose",
       "content": {
         "en": "A linear system is written compactly as $A\\mathbf{x} = \\mathbf{b}$: the coefficient matrix $A$ times the unknown vector $\\mathbf{x}$ equals the right-hand side $\\mathbf{b}$. This packaging is the whole point of matrices — and **Gaussian elimination** is the universal algorithm to solve it, scaling from two unknowns to millions.",
-        "es": "Un sistema lineal se escribe compacto como $A\\mathbf{x} = \\mathbf{b}$: la matriz de coeficientes $A$ por el vector de incógnitas $\\mathbf{x}$ igual al término de la derecha $\\mathbf{b}$. Este empaquetado es la razón de ser de las matrices — y la **eliminación de Gauss** es el algoritmo universal para resolverlo, escalando de dos incógnitas a millones."
+        "es": "Un sistema lineal se escribe de forma compacta como $A\\mathbf{x} = \\mathbf{b}$: la matriz de coeficientes $A$ por el vector de incógnitas $\\mathbf{x}$ igual al término de la derecha $\\mathbf{b}$. Este empaquetado es la razón de ser de las matrices — y la **eliminación de Gauss** es el algoritmo universal para resolverlo, escalando de dos incógnitas a millones."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-12-systems-3x3-gauss",
+        "linalg-09-matrices-operations"
+      ],
+      "note": {
+        "en": "Elimination solves the 2×2 and 3×3 systems of algebra, written in the matrix form $A\\mathbf{x} = \\mathbf{b}$ of the matrices lesson.",
+        "es": "La eliminación resuelve los sistemas $2\\times2$ y $3\\times3$ de álgebra, escritos en la forma matricial $A\\mathbf{x} = \\mathbf{b}$ del tema de matrices."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "The method uses **row operations** on the augmented matrix $[A\\,|\\,\\mathbf{b}]$ to reach an upper-triangular form, then solves by **back-substitution** from the bottom equation up. Each leading nonzero entry is a **pivot**; the number of pivots is the rank, which decides how many solutions exist.",
-        "es": "El método usa **operaciones de fila** sobre la matriz ampliada $[A\\,|\\,\\mathbf{b}]$ para llegar a forma triangular superior, y luego resuelve por **sustitución hacia atrás** desde la última ecuación. Cada entrada principal no nula es un **pivote**; el número de pivotes es el rango, que decide cuántas soluciones hay."
+        "en": "The method uses **row operations** on the augmented matrix $[A\\,|\\,\\mathbf{b}]$ to reach an upper-triangular form, then solves by **back-substitution** from the bottom equation up. Each leading nonzero entry is a **pivot**; the number of pivots of $A$ is its rank; comparing it with the rank of $[A\\,|\\,\\mathbf{b}]$ decides how many solutions exist.",
+        "es": "El método usa **operaciones de fila** sobre la matriz ampliada $[A\\,|\\,\\mathbf{b}]$ para llegar a forma triangular superior, y luego resuelve por **sustitución hacia atrás** desde la última ecuación. Cada entrada principal no nula es un **pivote**; el número de pivotes de $A$ es su rango; comparándolo con el rango de $[A\\,|\\,\\mathbf{b}]$ se sabe cuántas soluciones hay."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, elimination uses three **row operations**: swap two rows, multiply a row by a nonzero number, and add a multiple of one row to another. Each can be undone by another row operation, so the system keeps exactly the same solutions. The one forbidden move is multiplying a row by $0$, which turns that equation into $0 = 0$ and erases it. Elimination stops at **echelon form**: each pivot lies to the right of the pivot above it, and everything below a pivot is zero. An unknown whose column has no pivot is **free**. It can take any value, and the others are written in terms of it.",
+        "es": "**Con precisión**, la eliminación usa tres **operaciones de fila**: intercambiar dos filas, multiplicar una fila por un número no nulo y sumar a una fila un múltiplo de otra. Cada una se deshace con otra operación de fila, así que el sistema conserva exactamente las mismas soluciones. El único movimiento prohibido es multiplicar una fila por $0$, que convierte esa ecuación en $0 = 0$ y la borra. La eliminación termina en la **forma escalonada**: cada pivote está a la derecha del pivote de arriba, y todo lo que hay debajo de un pivote es cero. Una incógnita cuya columna no tiene pivote es **libre**. Puede tomar cualquier valor, y las demás se escriben en función de ella."
       }
     },
     {
@@ -27,6 +45,13 @@
       "content": {
         "en": "For a unique solution you need as many pivots as unknowns. The two-unknown case is the familiar one: $x + y = 5$, $x - y = 1$ adds to $2x = 6$, giving $x = 3$ then $y = 2$. Elimination is simply this process made systematic and applied to the rows of numbers.",
         "es": "Para una solución única necesitas tantos pivotes como incógnitas. El caso de dos incógnitas es el conocido: $x + y = 5$, $x - y = 1$ se suman a $2x = 6$, dando $x = 3$ y luego $y = 2$. La eliminación es este proceso hecho sistemático y aplicado a las filas de números."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The trap is a **zero pivot**: when the entry you must divide by is $0$, swap in a lower row with a nonzero entry in that column. If no such row exists, that column has no pivot and its unknown is free. Elimination is also the engine of numerical software. It factors $PA = LU$, with $L$ lower triangular, $U$ upper triangular and $P$ a permutation recording the row swaps, at a cost of about $\\tfrac{n^3}{3}$ operations for $n$ unknowns. Doubling the unknowns multiplies the work by eight, which is why large systems need a computer and a careful choice of pivots.",
+        "es": "La trampa es un **pivote nulo**: cuando el número por el que debes dividir es $0$, intercambia con una fila de abajo que tenga un valor no nulo en esa columna. Si no existe, esa columna no tiene pivote y su incógnita es libre. La eliminación es también el motor del software numérico. Factoriza $PA = LU$, con $L$ triangular inferior, $U$ triangular superior y $P$ una permutación que registra los intercambios de filas, con un coste de unas $\\tfrac{n^3}{3}$ operaciones para $n$ incógnitas. Duplicar las incógnitas multiplica el trabajo por ocho, por eso los sistemas grandes necesitan un ordenador y una elección cuidadosa de los pivotes."
       }
     },
     {
@@ -38,6 +63,17 @@
       "content": {
         "en": "Solve $x + y = 5$, $x - y = 1$. Add the equations to eliminate $y$: $2x = 6 \\Rightarrow x = 3$. Back-substitute into the first: $3 + y = 5 \\Rightarrow y = 2$. The solution $(3, 2)$ checks in both equations. With two pivots and two unknowns, it is unique.",
         "es": "Resuelve $x + y = 5$, $x - y = 1$. Suma las ecuaciones para eliminar $y$: $2x = 6 \\Rightarrow x = 3$. Sustituye en la primera: $3 + y = 5 \\Rightarrow y = 2$. La solución $(3, 2)$ cumple ambas ecuaciones. Con dos pivotes y dos incógnitas, es única."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — three unknowns",
+        "es": "Ejemplo resuelto — tres incógnitas"
+      },
+      "content": {
+        "en": "Solve $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$. Subtract $2\\times$ the first equation from the second: $-3y - z = -9$, or $3y + z = 9$. Subtract the first from the third: $y - 2z = -4$. The two new equations have two unknowns. From the second, $y = 2z - 4$; substituting into the first, $3(2z-4) + z = 9$, so $7z = 21$ and $z = 3$. Then $y = 2$ and $x = 6 - 2 - 3 = 1$. The solution $(1, 2, 3)$ checks in all three equations, and the three pivots show that it is unique.",
+        "es": "Resuelve $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$. Resta a la segunda ecuación $2\\times$ la primera: $-3y - z = -9$, o bien $3y + z = 9$. Resta la primera a la tercera: $y - 2z = -4$. Las dos nuevas ecuaciones tienen dos incógnitas. De la segunda, $y = 2z - 4$; al sustituir en la primera, $3(2z-4) + z = 9$, así que $7z = 21$ y $z = 3$. Luego $y = 2$ y $x = 6 - 2 - 3 = 1$. La solución $(1, 2, 3)$ cumple las tres ecuaciones, y los tres pivotes muestran que es única."
       }
     },
     {
@@ -53,7 +89,7 @@
       "expectedOutput": "[1.0, 3.0]",
       "caption": {
         "en": "Gaussian elimination (np.linalg.solve) gives x=1, y=3.",
-        "es": "La eliminacion de Gauss (np.linalg.solve) da x=1, y=3."
+        "es": "La eliminación de Gauss (np.linalg.solve) da x=1, y=3."
       }
     }
   ],
@@ -78,6 +114,15 @@
           "tex": "2x = 6 \\Rightarrow x = 3",
           "en": "Eliminate y.",
           "es": "Elimina y."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "6",
+          "feedback": {
+            "en": "$6$ is $2x$, not $x$. The equation says $2x = 6$, so divide both sides by $2$.",
+            "es": "$6$ es $2x$, no $x$. La ecuación dice $2x = 6$, así que divide ambos lados entre $2$."
+          }
         }
       ]
     },
@@ -143,6 +188,111 @@
           "es": "Tres ecuaciones."
         }
       ]
+    },
+    {
+      "id": "linalg-19-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Solve $2x+y-z=0$, $x-y+2z=9$, $3x+2y+z=7$. Find $z$.",
+        "es": "Resuelve $2x+y-z=0$, $x-y+2z=9$, $3x+2y+z=7$. Halla $z$."
+      },
+      "answer": "3",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ is $x$, the first unknown. Once $x$ is eliminated, the system in $y$ and $z$ gives $z = 3$, then $y = -1$ and $x = 2$.",
+            "es": "$2$ es $x$, la primera incógnita. Una vez eliminada $x$, el sistema en $y$ y $z$ da $z = 3$, luego $y = -1$ y $x = 2$."
+          }
+        },
+        {
+          "answer": "-1",
+          "feedback": {
+            "en": "$-1$ is $y$, the middle unknown. The question asks for $z$: finish the reduced system, which gives $z = 3$.",
+            "es": "$-1$ es $y$, la incógnita del medio. Se pide $z$: termina el sistema reducido, que da $z = 3$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Eliminate x twice: first combine the first two equations, then the last two.",
+        "es": "Elimina x dos veces: primero combina las dos primeras ecuaciones y luego las dos últimas."
+      },
+      "solution": [
+        {
+          "tex": "2(x-y+2z) - (2x+y-z) = 2\\cdot 9 \\;\\Rightarrow\\; -3y + 5z = 18",
+          "en": "Eliminate x: twice the second equation minus the first.",
+          "es": "Elimina x: el doble de la segunda ecuación menos la primera."
+        },
+        {
+          "tex": "(3x+2y+z) - 3(x-y+2z) = 7 - 27 \\;\\Rightarrow\\; y - z = -4",
+          "en": "Eliminate x again: the third equation minus three times the second, then divide by 5.",
+          "es": "Elimina x otra vez: la tercera ecuación menos tres veces la segunda, y divide entre 5."
+        },
+        {
+          "tex": "y = z - 4 \\;\\Rightarrow\\; -3(z-4) + 5z = 18 \\;\\Rightarrow\\; z = 3",
+          "en": "Substitute y = z − 4 into the first reduced equation.",
+          "es": "Sustituye y = z − 4 en la primera ecuación reducida."
+        }
+      ]
+    },
+    {
+      "id": "linalg-19-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which row operation can you **not** use on the augmented matrix $[A\\,|\\,\\mathbf{b}]$ without changing the solutions?",
+        "es": "¿Qué operación de fila **no** puedes usar sobre la matriz ampliada $[A\\,|\\,\\mathbf{b}]$ sin cambiar las soluciones?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Swapping two rows, because the unknowns then get a different order.",
+            "es": "Intercambiar dos filas, porque las incógnitas quedan en otro orden."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. Swapping rows only reorders the equations. The order of the rows is not part of the solution.",
+            "es": "No. Intercambiar filas solo reordena las ecuaciones. El orden de las filas no forma parte de la solución."
+          }
+        },
+        {
+          "text": {
+            "en": "Adding $2\\times$ row 1 to row 3, because two equations get mixed.",
+            "es": "Sumar $2\\times$ la fila 1 a la fila 3, porque se mezclan dos ecuaciones."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. Replacing an equation by itself plus a multiple of another keeps the solutions, and the move can be undone.",
+            "es": "No. Sustituir una ecuación por ella misma más un múltiplo de otra no cambia las soluciones, y la operación se puede deshacer."
+          }
+        },
+        {
+          "text": {
+            "en": "Multiplying a row by $0$, because that equation is lost.",
+            "es": "Multiplicar una fila por $0$, porque esa ecuación se pierde."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. The row becomes $0 = 0$, so the system loses a constraint and its solutions can grow.",
+            "es": "Correcto. La fila queda $0 = 0$, así que el sistema pierde una restricción y sus soluciones pueden aumentar."
+          }
+        },
+        {
+          "text": {
+            "en": "Multiplying a row by $-\\tfrac12$, because the sign of the equation changes.",
+            "es": "Multiplicar una fila por $-\\tfrac12$, porque cambia el signo de la ecuación."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. Multiplying by any nonzero number, negative included, keeps the same solutions, since $-2$ undoes it.",
+            "es": "No. Multiplicar por cualquier número distinto de cero, negativo incluido, conserva las soluciones, porque $-2$ lo deshace."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Ask what happens to the equation a row describes, and whether the move can be undone.",
+        "es": "Pregúntate qué pasa con la ecuación que describe una fila, y si el movimiento se puede deshacer."
+      }
     }
   ],
   "references": [

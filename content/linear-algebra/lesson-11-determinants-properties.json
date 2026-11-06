@@ -2,7 +2,7 @@
   "id": "linalg-11-determinants-properties",
   "subjectId": "linear-algebra",
   "order": 11,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Determinants: Higher Order & Properties",
     "es": "Determinantes: orden superior y propiedades"
@@ -16,6 +16,16 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "algebra-12-systems-3x3-gauss"
+      ],
+      "note": {
+        "en": "Elimination on 3×3 systems is the row work this lesson uses to compute determinants.",
+        "es": "La eliminación en sistemas 3×3 es el trabajo por filas que esta lección usa para calcular determinantes."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "The essential properties: (1) $\\det I = 1$; (2) **swapping two rows** multiplies the determinant by $-1$; (3) a matrix with **two equal rows** (or any linearly dependent rows) has determinant $0$; (4) adding a multiple of one row to another **does not change** the determinant; (5) $\\det(AB) = \\det A \\cdot \\det B$.",
@@ -25,8 +35,22 @@
     {
       "type": "prose",
       "content": {
-        "en": "Property (4) is the key to efficient computation: use row operations (like Gaussian elimination) to reach triangular form **without changing the determinant**, then multiply the diagonal. Property (3) gives the central test — a **zero determinant means the rows are dependent**, the matrix is singular, and it is not invertible.",
-        "es": "La propiedad (4) es la clave del cálculo eficiente: usa operaciones de fila (como la eliminación de Gauss) para llegar a forma triangular **sin cambiar el determinante**, y luego multiplica la diagonal. La propiedad (3) da la prueba central — un **determinante cero significa que las filas son dependientes**, la matriz es singular y no es invertible."
+        "en": "Property (4) is the key to efficient computation: use row operations (like Gaussian elimination) to reach triangular form, then multiply the diagonal. Adding a multiple of one row to another changes nothing. A swap or a scaling must be tracked: a swap multiplies the determinant by $-1$, and scaling a row by $k$ multiplies it by $k$. Property (3) gives the central test — a **zero determinant means the rows are dependent**, the matrix is singular, and it is not invertible.",
+        "es": "La propiedad (4) es la clave del cálculo eficiente: usa operaciones de fila (como la eliminación de Gauss) para llegar a forma triangular, y luego multiplica la diagonal. Sumar a una fila un múltiplo de otra no cambia nada. Un intercambio o un escalado sí, y hay que llevar la cuenta: un intercambio multiplica por $-1$, y escalar una fila por $k$ multiplica por $k$. La propiedad (3) da la prueba central — un **determinante cero significa que las filas son dependientes**, la matriz es singular y no es invertible."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, properties (2) to (4) also hold for columns, because $\\det A^T = \\det A$. Scaling is the one that surprises. Multiplying one row by $k$ multiplies the determinant by $k$, so multiplying the whole $n\\times n$ matrix by $k$ multiplies it by $k^n$: $\\det(kA) = k^n\\det A$, not $k\\det A$. Two more rules are traps. $\\det(A+B) \\neq \\det A + \\det B$ in general. And $\\det A^{-1} = 1/\\det A$ when $A$ is invertible, because $\\det(A)\\det(A^{-1}) = \\det I = 1$. The zero test also answers 'are these rows independent?' with one number, without solving a system.",
+        "es": "**Con precisión**, las propiedades (2) a (4) valen también para columnas, porque $\\det A^T = \\det A$. La del escalado es la que sorprende. Multiplicar una fila por $k$ multiplica el determinante por $k$, así que multiplicar toda la matriz $n\\times n$ por $k$ lo multiplica por $k^n$: $\\det(kA) = k^n\\det A$, y no $k\\det A$. Otras dos reglas son trampas. $\\det(A+B) \\neq \\det A + \\det B$ en general. Y $\\det A^{-1} = 1/\\det A$ cuando $A$ es invertible, porque $\\det(A)\\det(A^{-1}) = \\det I = 1$. En la práctica, la prueba del cero responde a «¿son independientes estas filas?» con un solo número, sin resolver un sistema."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The properties are also a question of cost. Cofactor expansion of an $n\\times n$ matrix needs about $n!$ products: $20! \\approx 2.4\\times10^{18}$, which would take about 77 years at a billion operations a second. Gaussian elimination needs on the order of $n^3$ operations. For $n = 20$ that is about $8000$, not $2.4\\times10^{18}$. That is why numerical software does not expand cofactors on large matrices, and why it computes the determinant by elimination, using properties (2) to (4) to keep track of the sign. Most of the time a determinant is a test, not a quantity to compute: solving a system by elimination does not need it (Cramer's rule does, and is slower for that reason).",
+        "es": "Las propiedades son también una cuestión de coste. El desarrollo por cofactores de una matriz $n\\times n$ necesita del orden de $n!$ productos: $20! \\approx 2.4\\times10^{18}$, lo que a un ordenador que hiciera mil millones de operaciones por segundo le llevaría unos 77 años. La eliminación de Gauss necesita del orden de $n^3$ operaciones. Para $n = 20$ son unas $8000$, no $2.4\\times10^{18}$. Por eso el software numérico no desarrolla cofactores en matrices grandes, y calcula el determinante por eliminación, usando las propiedades (2) a (4) para llevar la cuenta del signo. La mayoría de las veces el determinante es una prueba, no una cantidad que calcular: resolver un sistema por eliminación no lo necesita (la regla de Cramer sí, y por eso es más lenta)."
       }
     },
     {
@@ -38,6 +62,17 @@
       "content": {
         "en": "$\\det I_4 = 1$ by property (1). The matrix $\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$ is diagonal, so its determinant is the diagonal product $2\\cdot1\\cdot1\\cdot1 = 2$. And any matrix with two identical rows has determinant $0$ — no computation needed.",
         "es": "$\\det I_4 = 1$ por la propiedad (1). La matriz $\\begin{pmatrix}2&0&0&0\\\\0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}$ es diagonal, así que su determinante es el producto diagonal $2\\cdot1\\cdot1\\cdot1 = 2$. Y cualquier matriz con dos filas idénticas tiene determinante $0$ — sin cálculo."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — row reduction to triangular form",
+        "es": "Ejemplo resuelto — reducción por filas a forma triangular"
+      },
+      "content": {
+        "en": "Let $A = \\begin{pmatrix}1&2&3\\\\2&5&7\\\\1&3&5\\end{pmatrix}$. Subtract $2\\times$ row 1 from row 2, and row 1 from row 3. Neither step changes the determinant: $\\begin{pmatrix}1&2&3\\\\0&1&1\\\\0&1&2\\end{pmatrix}$. Subtract row 2 from row 3: $\\begin{pmatrix}1&2&3\\\\0&1&1\\\\0&0&1\\end{pmatrix}$. This is triangular with diagonal $1,1,1$, so $\\det A = 1$. No swap or scaling was used, so nothing had to be tracked. Sarrus's rule from lesson 10 gives $1$ as well, and each operation was chosen to create a zero. Every step is of the kind property (4) allows, so it is safe.",
+        "es": "Sea $A = \\begin{pmatrix}1&2&3\\\\2&5&7\\\\1&3&5\\end{pmatrix}$. Resta a la fila 2 el doble de la fila 1, y a la fila 3 la fila 1. Ninguno de los dos pasos cambia el determinante: $\\begin{pmatrix}1&2&3\\\\0&1&1\\\\0&1&2\\end{pmatrix}$. Resta a la fila 3 la fila 2: $\\begin{pmatrix}1&2&3\\\\0&1&1\\\\0&0&1\\end{pmatrix}$. Es triangular con diagonal $1,1,1$, así que $\\det A = 1$. No se usó ningún intercambio ni escalado, así que no hubo nada que llevar la cuenta. La regla de Sarrus de la lección 10 también da $1$, y cada operación se eligió para crear un cero. Cada paso es del tipo que permite la propiedad (4), así que es seguro."
       }
     },
     {
@@ -86,7 +121,7 @@
       "answerType": "number",
       "prompt": {
         "en": "A matrix has two identical rows. Its determinant is ___?",
-        "es": "Una matriz tiene dos filas iguales. Su determinante es ___?"
+        "es": "Una matriz tiene dos filas iguales. ¿Cuánto vale su determinante?"
       },
       "answer": "0",
       "acceptedAlt": [],
@@ -123,6 +158,15 @@
           "en": "Diagonal product.",
           "es": "Producto de la diagonal."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5$ adds the diagonal, $2+1+1+1$. The determinant of a diagonal matrix is the product of its diagonal: $2\\cdot1\\cdot1\\cdot1 = 2$.",
+            "es": "$5$ suma la diagonal, $2+1+1+1$. El determinante de una matriz diagonal es el producto de su diagonal: $2\\cdot1\\cdot1\\cdot1 = 2$."
+          }
+        }
       ]
     },
     {
@@ -130,7 +174,7 @@
       "answerType": "number",
       "prompt": {
         "en": "Swapping two rows multiplies the determinant by ___?",
-        "es": "Intercambiar dos filas multiplica el determinante por ___?"
+        "es": "¿Por qué número multiplica el determinante intercambiar dos filas?"
       },
       "answer": "-1",
       "acceptedAlt": [],
@@ -144,7 +188,118 @@
           "en": "Sign flips.",
           "es": "Cambia de signo."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ would mean the sign stays. A swap of two rows flips it, so the factor is $-1$.",
+            "es": "$1$ querría decir que el signo se mantiene. Un intercambio de dos filas lo cambia, así que el factor es $-1$."
+          }
+        }
       ]
+    },
+    {
+      "id": "linalg-11-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "$A$ and $B$ are $3\\times3$ matrices with $\\det A = 3$ and $\\det B = -2$. Find $\\det(2AB)$.",
+        "es": "Las matrices $A$ y $B$ son de tamaño $3\\times3$, con $\\det A = 3$ y $\\det B = -2$. Halla $\\det(2AB)$."
+      },
+      "answer": "-48",
+      "acceptedAlt": [
+        "8*3*(-2)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "-12",
+          "feedback": {
+            "en": "$-12 = 2\\det(AB)$. The factor $2$ multiplies the determinant by $2^3 = 8$, not by $2$, because the matrices are $3\\times3$.",
+            "es": "$-12 = 2\\det(AB)$. El factor $2$ multiplica el determinante por $2^3 = 8$, no por $2$, porque las matrices son $3\\times3$."
+          }
+        },
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1 = 3 + (-2)$. Determinants multiply, they do not add.",
+            "es": "$1 = 3 + (-2)$. Los determinantes se multiplican, no se suman."
+          }
+        }
+      ],
+      "hint": {
+        "en": "For an n×n matrix M, det(kM) = kⁿ det M, and det(AB) = det A · det B.",
+        "es": "Para una matriz M de tamaño n×n, det(kM) = kⁿ det M, y det(AB) = det A · det B."
+      },
+      "solution": [
+        {
+          "tex": "\\det(AB) = \\det A\\cdot\\det B = 3\\cdot(-2) = -6",
+          "en": "Determinants multiply.",
+          "es": "Los determinantes se multiplican."
+        },
+        {
+          "tex": "\\det(2AB) = 2^3\\det(AB) = 8\\cdot(-6) = -48",
+          "en": "Each of the three rows is doubled.",
+          "es": "Cada una de las tres filas se duplica."
+        }
+      ]
+    },
+    {
+      "id": "linalg-11-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which row operation leaves the determinant unchanged?",
+        "es": "¿Qué operación por filas deja el determinante sin cambios?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Adding $3$ times row 1 to row 2, which leaves row 1 unchanged.",
+            "es": "Sumar $3$ veces la fila 1 a la fila 2, lo que deja la fila 1 sin cambios."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Property (4): adding a multiple of one row to another leaves the determinant unchanged.",
+            "es": "Exacto. Es la propiedad (4): sumar a una fila un múltiplo de otra deja el determinante igual."
+          }
+        },
+        {
+          "text": {
+            "en": "Swapping rows 1 and 2, which only reorders the rows and their entries.",
+            "es": "Intercambiar las filas 1 y 2, lo que solo reordena las filas y sus elementos."
+          },
+          "correct": false,
+          "why": {
+            "en": "A swap multiplies the determinant by $-1$. Reordering the rows changes its sign.",
+            "es": "Un intercambio multiplica el determinante por $-1$. Reordenar las filas cambia su signo."
+          }
+        },
+        {
+          "text": {
+            "en": "Multiplying row 2 by $3$, which only rescales the entries of one row.",
+            "es": "Multiplicar la fila 2 por $3$, lo que solo reescala los elementos de una fila."
+          },
+          "correct": false,
+          "why": {
+            "en": "Scaling a row by $3$ multiplies the determinant by $3$. Only adding a multiple of one row to another is free.",
+            "es": "Escalar una fila por $3$ multiplica el determinante por $3$. Solo sumar a una fila un múltiplo de otra deja el determinante igual."
+          }
+        },
+        {
+          "text": {
+            "en": "Replacing row 2 by $3\\cdot$row 2 $-$ row 1, which mixes the two rows.",
+            "es": "Sustituir la fila 2 por $3\\cdot$fila 2 $-$ fila 1, lo que mezcla las dos filas."
+          },
+          "correct": false,
+          "why": {
+            "en": "The subtraction of row 1 is free, but the factor $3$ on row 2 multiplies the determinant by $3$.",
+            "es": "Restar la fila 1 es gratis, pero el factor $3$ sobre la fila 2 multiplica el determinante por $3$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which of the four only adds a multiple of one row to another?",
+        "es": "¿Cuál de las cuatro solo suma a una fila un múltiplo de otra?"
+      }
     }
   ],
   "references": [

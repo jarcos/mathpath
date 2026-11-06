@@ -2,7 +2,7 @@
   "id": "linalg-06-vector-spaces",
   "subjectId": "linear-algebra",
   "order": 6,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Vector Spaces",
     "es": "Espacios vectoriales"
@@ -13,6 +13,17 @@
       "content": {
         "en": "A **vector space** is any set on which addition and scalar multiplication behave the way they do for arrows in $\\mathbb{R}^n$ — closed under both operations and obeying the usual rules (commutativity, associativity, distributivity). The power of the abstraction is that the *same theorems* then apply to many different objects.",
         "es": "Un **espacio vectorial** es cualquier conjunto donde la suma y la multiplicación por escalares se comportan como las flechas en $\\mathbb{R}^n$ — cerrado bajo ambas operaciones y cumpliendo las reglas habituales (conmutatividad, asociatividad, distributividad). El poder de la abstracción es que los *mismos teoremas* se aplican entonces a objetos muy distintos."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-15-polynomials-intro",
+        "algebra-18-matrices-intro"
+      ],
+      "note": {
+        "en": "Polynomials are the first example of a vector space here, and matrices give the other standard one.",
+        "es": "Los polinomios son aquí el primer ejemplo de espacio vectorial, y las matrices, el otro habitual."
       }
     },
     {
@@ -30,6 +41,27 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, a subset $W$ of a vector space $V$ is a **subspace** when three things hold: $\\mathbf 0 \\in W$; $u + v \\in W$ for all $u, v \\in W$; and $cu \\in W$ for every scalar $c$ and every $u \\in W$. The last two can be merged into one test: every combination $au + bv$ stays in $W$. Failing any one condition disqualifies the set. The line $y = 2x + 1$ misses $\\mathbf 0$. The union of the two axes contains $(1,0)$ and $(0,1)$ but not their sum $(1,1)$. The polynomials of degree exactly $2$ are not closed either: $x^2 + (-x^2) = 0$ is the zero polynomial, which does not have degree $2$.",
+        "es": "**Con precisión**, un subconjunto $W$ de un espacio vectorial $V$ es un **subespacio** cuando se cumplen tres cosas: $\\mathbf 0 \\in W$; $u + v \\in W$ para todos $u, v \\in W$; y $cu \\in W$ para todo escalar $c$ y todo $u \\in W$. Las dos últimas se pueden unir en una sola prueba: toda combinación $au + bv$ sigue en $W$. Basta con que falle una condición para descartar el conjunto. La recta $y = 2x + 1$ no contiene a $\\mathbf 0$. La unión de los dos ejes contiene a $(1,0)$ y a $(0,1)$, pero no a su suma $(1,1)$. Los polinomios de grado exactamente $2$ tampoco cumplen: $x^2 + (-x^2) = 0$ es el polinomio cero, que no tiene grado $2$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Dimension counts a basis.** A **basis** is a set of vectors that is independent and spans the space. Every basis of a given space has the same number of vectors, and that number is the dimension. The polynomials of degree at most $2$ have the basis $1, x, x^2$, so their dimension is $3$. The polynomials of all degrees have no finite basis, so they are infinite-dimensional. Count the basis, not the coordinates you happen to write down: a space can be described with different coordinates, but its dimension never changes.",
+        "es": "**La dimensión cuenta una base.** Una **base** es un conjunto de vectores independiente que genera el espacio. Todas las bases de un espacio dado tienen el mismo número de vectores, y ese número es la dimensión. Los polinomios de grado como mucho $2$ tienen la base $1, x, x^2$, así que su dimensión es $3$. Los polinomios de todos los grados no tienen ninguna base finita, así que son de dimensión infinita. Cuenta la base, no las coordenadas que escribas: un espacio puede describirse con coordenadas distintas, pero su dimensión nunca cambia."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why it matters.** Functions are vectors too. The solutions of $y'' + y = 0$ are exactly $y = a\\cos x + b\\sin x$. Adding two solutions, or scaling one, gives another solution, so they form a vector space of dimension $2$. This superposition principle is why linear circuits, vibrating strings and linear filters in signal processing can be analyzed from simple pieces.",
+        "es": "**Para qué sirve.** Las funciones también son vectores. Las soluciones de $y'' + y = 0$ son exactamente $y = a\\cos x + b\\sin x$. Sumar dos soluciones, o escalar una, da otra solución, así que forman un espacio vectorial de dimensión $2$. Este principio de superposición es la razón por la que los circuitos lineales, las cuerdas que vibran y los filtros lineales de señales se analizan a partir de piezas sencillas."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example",
@@ -41,6 +73,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a plane through the origin",
+        "es": "Ejemplo resuelto — un plano por el origen"
+      },
+      "content": {
+        "en": "Is $W = \\{(x,y,z) : x + y + z = 0\\}$ a subspace of $\\mathbb{R}^3$? Zero: $0 + 0 + 0 = 0$, so $\\mathbf 0 \\in W$. Addition: if $u$ and $v$ lie in $W$, the coordinates of $u + v$ add to $(u_1+u_2+u_3) + (v_1+v_2+v_3) = 0 + 0 = 0$. Scaling: the coordinates of $cu$ add to $c\\cdot 0 = 0$. All three conditions hold, so $W$ is a subspace, the plane through the origin. By contrast $\\{x + y + z = 1\\}$ fails at once, because $\\mathbf 0$ gives $0 \\ne 1$.",
+        "es": "¿Es $W = \\{(x,y,z) : x + y + z = 0\\}$ un subespacio de $\\mathbb{R}^3$? Cero: $0 + 0 + 0 = 0$, así que $\\mathbf 0 \\in W$. Suma: si $u$ y $v$ están en $W$, las coordenadas de $u + v$ suman $(u_1+u_2+u_3) + (v_1+v_2+v_3) = 0 + 0 = 0$. Escalar: las coordenadas de $cu$ suman $c\\cdot 0 = 0$. Se cumplen las tres condiciones, así que $W$ es un subespacio, el plano por el origen. En cambio, $\\{x + y + z = 1\\}$ falla de inmediato, porque $\\mathbf 0$ da $0 \\ne 1$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +91,12 @@
       ],
       "code": {
         "en": "import numpy as np\nv1 = np.array([1, 0])\nv2 = np.array([0, 1])\n# a linear combination of basis vectors\nprint((2 * v1 + 3 * v2).tolist())",
-        "es": "import numpy as np\nv1 = np.array([1, 0])\nv2 = np.array([0, 1])\n# una combinacion lineal de vectores base\nprint((2 * v1 + 3 * v2).tolist())"
+        "es": "import numpy as np\nv1 = np.array([1, 0])\nv2 = np.array([0, 1])\n# una combinación lineal de vectores base\nprint((2 * v1 + 3 * v2).tolist())"
       },
       "expectedOutput": "[2, 3]",
       "caption": {
         "en": "Every vector is a linear combination of a basis.",
-        "es": "Todo vector es una combinacion lineal de una base."
+        "es": "Todo vector es una combinación lineal de una base."
       }
     }
   ],
@@ -123,6 +166,15 @@
           "en": "Scalar multiplication.",
           "es": "Multiplicación por escalar."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "addition",
+          "feedback": {
+            "en": "Addition is the first closure rule. The second is closure under scalar multiplication: $c\\cdot v$ stays in the space.",
+            "es": "La suma es la primera regla de cierre. La segunda es el cierre por multiplicación por escalares: $c\\cdot v$ sigue en el espacio."
+          }
+        }
       ]
     },
     {
@@ -143,6 +195,99 @@
           "tex": "\\dim\\mathbb{R}^2 = 2",
           "en": "Two coordinates.",
           "es": "Dos coordenadas."
+        }
+      ]
+    },
+    {
+      "id": "linalg-06-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which of these is a subspace of $\\mathbb{R}^2$?",
+        "es": "¿Cuál de estos conjuntos es un subespacio de $\\mathbb{R}^2$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The line $y = 3x$, with slope $3$ and no constant term.",
+            "es": "La recta $y = 3x$, de pendiente $3$, sin término independiente."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. It contains $\\mathbf 0$, and sums and multiples of points with $y = 3x$ still satisfy $y = 3x$.",
+            "es": "Exacto. Contiene a $\\mathbf 0$, y las sumas y los múltiplos de puntos con $y = 3x$ siguen cumpliendo $y = 3x$."
+          }
+        },
+        {
+          "text": {
+            "en": "The line $y = 3x + 1$, which is parallel to it and shifted up.",
+            "es": "La recta $y = 3x + 1$, paralela a ella y desplazada hacia arriba."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: any line is a subspace. This one misses $\\mathbf 0$, because $0 \\ne 3\\cdot 0 + 1$.",
+            "es": "Error habitual: cualquier recta es un subespacio. Esta no contiene a $\\mathbf 0$, porque $0 \\ne 3\\cdot 0 + 1$."
+          }
+        },
+        {
+          "text": {
+            "en": "The union of the two coordinate axes, where $xy = 0$.",
+            "es": "La unión de los dos ejes de coordenadas, donde $xy = 0$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: closure under scaling is taken as enough. $(1,0) + (0,1) = (1,1)$ lies on neither axis.",
+            "es": "Error habitual: se toma el cierre por escalares como si bastara. $(1,0) + (0,1) = (1,1)$ no está en ninguno de los dos ejes."
+          }
+        },
+        {
+          "text": {
+            "en": "The first quadrant, where both $x \\ge 0$ and $y \\ge 0$ hold.",
+            "es": "El primer cuadrante, donde tanto $x \\ge 0$ como $y \\ge 0$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: closure under addition is not enough. Scaling by $-1$ sends $(1,1)$ to $(-1,-1)$, outside the quadrant.",
+            "es": "Error habitual: el cierre por la suma no basta. Escalar por $-1$ manda $(1,1)$ a $(-1,-1)$, fuera del cuadrante."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Check the zero vector, then both closure conditions.",
+        "es": "Comprueba el vector cero y luego las dos condiciones de cierre."
+      }
+    },
+    {
+      "id": "linalg-06-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "What is the dimension of the space of polynomials of degree at most $3$ with real coefficients?",
+        "es": "¿Cuál es la dimensión del espacio de los polinomios de grado como mucho $3$ con coeficientes reales?"
+      },
+      "answer": "4",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3$ is the highest degree. The basis $1, x, x^2, x^3$ has four elements, one for each power from $x^0$ to $x^3$.",
+            "es": "$3$ es el grado más alto. La base $1, x, x^2, x^3$ tiene cuatro elementos, uno por cada potencia desde $x^0$ hasta $x^3$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write a basis: one polynomial for each power, from the constant up to $x^3$.",
+        "es": "Escribe una base: un polinomio por cada potencia, desde la constante hasta $x^3$."
+      },
+      "solution": [
+        {
+          "tex": "1,\\ x,\\ x^2,\\ x^3",
+          "en": "A basis: one polynomial for each power from $x^0$ to $x^3$.",
+          "es": "Una base: un polinomio por cada potencia desde $x^0$ hasta $x^3$."
+        },
+        {
+          "tex": "\\dim = 4",
+          "en": "Four vectors in the basis.",
+          "es": "Cuatro vectores en la base."
         }
       ]
     }

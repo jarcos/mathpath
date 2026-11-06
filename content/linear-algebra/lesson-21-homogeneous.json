@@ -2,7 +2,7 @@
   "id": "linalg-21-homogeneous",
   "subjectId": "linear-algebra",
   "order": 21,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Homogeneous Systems",
     "es": "Sistemas homogéneos"
@@ -16,17 +16,42 @@
       }
     },
     {
-      "type": "prose",
-      "content": {
-        "en": "Nontrivial solutions exist **exactly when** $\\det A = 0$ (the matrix is singular, rank below the number of unknowns). If $\\det A \\neq 0$, the only solution is the trivial one. The set of all solutions forms a subspace — the **null space** (kernel) of $A$ — a structure that becomes the heart of the Linear Maps subject.",
-        "es": "Existen soluciones no triviales **justo cuando** $\\det A = 0$ (la matriz es singular, con rango menor que el número de incógnitas). Si $\\det A \\neq 0$, la única solución es la trivial. El conjunto de todas las soluciones forma un subespacio — el **núcleo** (kernel) de $A$ — una estructura que será el corazón de la asignatura de Aplicaciones lineales."
+      "type": "prereq",
+      "lessons": [
+        "linalg-06-vector-spaces",
+        "linalg-12-rank-inverse"
+      ],
+      "note": {
+        "en": "The solutions of a homogeneous system form a vector space, and the rank decides its dimension.",
+        "es": "Las soluciones de un sistema homogéneo forman un espacio vectorial, y el rango decide su dimensión."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "Homogeneous systems matter because the **general solution** of *any* system $A\\mathbf{x}=\\mathbf{b}$ is one particular solution plus the entire solution set of the associated homogeneous system. Understand the homogeneous case and you understand them all.",
-        "es": "Los sistemas homogéneos importan porque la **solución general** de *cualquier* sistema $A\\mathbf{x}=\\mathbf{b}$ es una solución particular más todo el conjunto solución del sistema homogéneo asociado. Entiende el caso homogéneo y los entiendes todos."
+        "en": "For a **square** $A$, nontrivial solutions exist **exactly when** $\\det A = 0$, that is, when $A$ is singular. In general, for any $A$, they exist exactly when the rank is below the number of unknowns. If $\\det A \\neq 0$, the only solution is the trivial one. The set of all solutions forms a subspace — the **null space** (kernel) of $A$ — a structure that becomes the heart of the Linear Maps subject.",
+        "es": "Si $A$ es **cuadrada**, existen soluciones no triviales **justo cuando** $\\det A = 0$, es decir, cuando $A$ es singular. En general, para cualquier $A$, existen justo cuando el rango es menor que el número de incógnitas. Si $\\det A \\neq 0$, la única solución es la trivial. El conjunto de todas las soluciones forma un subespacio — el **núcleo** (kernel) de $A$ — una estructura que será el corazón de la asignatura de Aplicaciones lineales."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, the solutions of $A\\mathbf{x} = \\mathbf{0}$ form a subspace of $\\mathbb{R}^n$. The zero vector belongs to it, and if $\\mathbf u$ and $\\mathbf v$ are solutions, so is $\\mathbf u + \\mathbf v$, because $A(\\mathbf u+\\mathbf v) = A\\mathbf u + A\\mathbf v = \\mathbf 0$. The same holds for $c\\mathbf u$. Its **dimension** is $n - r$: the number of unknowns minus the rank, which is the number of free parameters in the general solution. So 5 unknowns and rank 3 give a 2-dimensional subspace, with two free parameters. Only the rank matters: rows that are combinations of other rows add no new constraint.",
+        "es": "**Con precisión**, las soluciones de $A\\mathbf{x} = \\mathbf{0}$ forman un subespacio de $\\mathbb{R}^n$. El vector cero pertenece a él, y si $\\mathbf u$ y $\\mathbf v$ son soluciones, también lo es $\\mathbf u + \\mathbf v$, porque $A(\\mathbf u+\\mathbf v) = A\\mathbf u + A\\mathbf v = \\mathbf 0$. Lo mismo pasa con $c\\mathbf u$. Su **dimensión** es $n - r$: el número de incógnitas menos el rango, que es el número de parámetros libres de la solución general. Así que 5 incógnitas y rango 3 dan un subespacio de dimensión 2, con dos parámetros libres. Solo importa el rango: las filas que son combinación de otras filas no añaden ninguna restricción nueva."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Homogeneous systems matter because the **general solution** of *any consistent* system $A\\mathbf{x}=\\mathbf{b}$ is one particular solution plus the entire solution set of the associated homogeneous system. Understand the homogeneous case and you understand them all.",
+        "es": "Los sistemas homogéneos importan porque la **solución general** de *cualquier sistema compatible* $A\\mathbf{x}=\\mathbf{b}$ es una solución particular más todo el conjunto solución del sistema homogéneo asociado. Entiende el caso homogéneo y los entiendes todos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The trap is the non-homogeneous case. The solutions of $A\\mathbf x = \\mathbf b$ with $\\mathbf b \\neq \\mathbf 0$ do **not** form a subspace: $\\mathbf 0$ is not among them, and the sum of two solutions solves $A\\mathbf x = 2\\mathbf b$, not $A\\mathbf x = \\mathbf b$. Why study the homogeneous case? Many real problems ask that some quantities balance to zero: a chemical equation where no mass is gained or lost, a circuit with no net current, a set of forces that cancel out. The solutions are the ways of balancing, and their dimension counts how many independent ways there are.",
+        "es": "La trampa es el caso no homogéneo. Las soluciones de $A\\mathbf x = \\mathbf b$ con $\\mathbf b \\neq \\mathbf 0$ **no** forman un subespacio: $\\mathbf 0$ no está entre ellas, y la suma de dos soluciones resuelve $A\\mathbf x = 2\\mathbf b$, no $A\\mathbf x = \\mathbf b$. ¿Para qué estudiar el caso homogéneo? Muchos problemas reales piden que unas cantidades se equilibren a cero: una reacción química en la que no se gana ni se pierde masa, un circuito sin corriente neta, un conjunto de fuerzas que se anulan entre sí. Las soluciones son las formas de equilibrar, y su dimensión cuenta cuántas formas independientes hay."
       }
     },
     {
@@ -41,6 +66,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — balancing a reaction",
+        "es": "Ejemplo resuelto — ajustar una reacción"
+      },
+      "content": {
+        "en": "Balance $a\\,\\mathrm{H}_2 + b\\,\\mathrm{O}_2 \\to c\\,\\mathrm{H}_2\\mathrm{O}$. Each element must count the same on both sides: hydrogen gives $2a = 2c$, oxygen gives $2b = c$. In homogeneous form, $a - c = 0$ and $2b - c = 0$, for the unknowns $a, b, c$. The coefficient matrix has rank $2$, so with $n = 3$ unknowns the solutions form a line, with $n - r = 1$ free parameter. Taking $b = 1$ gives $c = 2$ and $a = 2$: the balanced equation is $2\\,\\mathrm{H}_2 + \\mathrm{O}_2 \\to 2\\,\\mathrm{H}_2\\mathrm{O}$, and $(2, 1, 2)$ is the smallest positive solution.",
+        "es": "Ajusta $a\\,\\mathrm{H}_2 + b\\,\\mathrm{O}_2 \\to c\\,\\mathrm{H}_2\\mathrm{O}$. Cada elemento debe contar igual a los dos lados: el hidrógeno da $2a = 2c$, y el oxígeno, $2b = c$. En forma homogénea, $a - c = 0$ y $2b - c = 0$, con incógnitas $a, b, c$. La matriz de coeficientes tiene rango $2$, así que con $n = 3$ incógnitas las soluciones forman una recta, con $n - r = 1$ parámetro libre. Tomando $b = 1$ salen $c = 2$ y $a = 2$: la ecuación ajustada es $2\\,\\mathrm{H}_2 + \\mathrm{O}_2 \\to 2\\,\\mathrm{H}_2\\mathrm{O}$, y $(2, 1, 2)$ es la solución entera positiva más pequeña."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +84,12 @@
       ],
       "code": {
         "en": "import numpy as np\nA = np.array([[1, 2], [2, 4]])\n# free variables = columns - rank (dimension of the solution space)\nprint(2 - np.linalg.matrix_rank(A))",
-        "es": "import numpy as np\nA = np.array([[1, 2], [2, 4]])\n# variables libres = columnas - rango (dimension del espacio solucion)\nprint(2 - np.linalg.matrix_rank(A))"
+        "es": "import numpy as np\nA = np.array([[1, 2], [2, 4]])\n# variables libres = columnas - rango (dimensión del espacio solución)\nprint(2 - np.linalg.matrix_rank(A))"
       },
       "expectedOutput": "1",
       "caption": {
         "en": "A homogeneous system here has a 1-dimensional solution space.",
-        "es": "Un sistema homogeneo aqui tiene un espacio solucion de dimension 1."
+        "es": "Un sistema homogéneo aquí tiene un espacio solución de dimensión 1."
       }
     }
   ],
@@ -121,14 +157,23 @@
           "en": "No nontrivial solutions.",
           "es": "Sin soluciones no triviales."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "The trivial solution is not counted as nontrivial. With $\\det A \\neq 0$ there are none, so the answer is $0$.",
+            "es": "La solución trivial no cuenta como no trivial. Con $\\det A \\neq 0$ no hay ninguna, así que la respuesta es $0$."
+          }
+        }
       ]
     },
     {
       "id": "linalg-21-e4",
       "answerType": "number",
       "prompt": {
-        "en": "Nontrivial solutions require the determinant to equal ___?",
-        "es": "Las soluciones no triviales requieren que el determinante valga ___?"
+        "en": "For a square matrix $A$, nontrivial solutions of $A\\mathbf{x} = \\mathbf{0}$ require $\\det A$ to equal ___?",
+        "es": "Si $A$ es cuadrada, ¿las soluciones no triviales de $A\\mathbf{x} = \\mathbf{0}$ requieren que $\\det A$ valga ___?"
       },
       "answer": "0",
       "acceptedAlt": [],
@@ -143,6 +188,101 @@
           "es": "Singular → soluciones no triviales."
         }
       ]
+    },
+    {
+      "id": "linalg-21-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "A homogeneous system has 3 equations and 4 unknowns, and its coefficient matrix has rank 2. What is the dimension of its solution space?",
+        "es": "Un sistema homogéneo tiene 3 ecuaciones y 4 incógnitas, y su matriz de coeficientes tiene rango 2. ¿Cuál es la dimensión de su espacio de soluciones?"
+      },
+      "answer": "2",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ is the number of equations minus the rank, $3 - 2$. The dimension is unknowns minus rank: $n - r = 4 - 2 = 2$.",
+            "es": "$1$ es el número de ecuaciones menos el rango, $3 - 2$. La dimensión es incógnitas menos rango: $n - r = 4 - 2 = 2$."
+          }
+        },
+        {
+          "answer": "4",
+          "feedback": {
+            "en": "$4$ is the number of unknowns. The rank removes constraints, so $4 - 2 = 2$ free parameters remain.",
+            "es": "$4$ es el número de incógnitas. El rango quita restricciones, así que quedan $4 - 2 = 2$ parámetros libres."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The dimension is the number of free parameters: unknowns minus rank.",
+        "es": "La dimensión es el número de parámetros libres: incógnitas menos rango."
+      },
+      "solution": [
+        {
+          "tex": "\\dim = n - r = 4 - 2 = 2",
+          "en": "Two free parameters: the solution space has dimension 2.",
+          "es": "Dos parámetros libres: el espacio de soluciones tiene dimensión 2."
+        }
+      ]
+    },
+    {
+      "id": "linalg-21-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A homogeneous system has 3 equations and 5 unknowns. How many solutions does it have?",
+        "es": "Un sistema homogéneo tiene 3 ecuaciones y 5 incógnitas. ¿Cuántas soluciones tiene?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Only the trivial one, because a homogeneous system has no other solution than the zero vector.",
+            "es": "Solo la trivial, porque un sistema homogéneo no tiene más solución que el vector cero."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. The zero vector is always a solution, but not the only one. With fewer equations than unknowns, nontrivial solutions exist.",
+            "es": "No. El vector cero siempre es solución, pero no la única. Con menos ecuaciones que incógnitas existen soluciones no triviales."
+          }
+        },
+        {
+          "text": {
+            "en": "Infinitely many, since at most three of the five unknowns can carry pivots.",
+            "es": "Infinitas, porque a lo sumo tres de las cinco incógnitas pueden tener pivote."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. A homogeneous system is always consistent, and only three of the five unknowns can be pinned, so two are free.",
+            "es": "Correcto. Un sistema homogéneo siempre es compatible, y solo tres de las cinco incógnitas pueden fijarse, así que dos son libres."
+          }
+        },
+        {
+          "text": {
+            "en": "None or exactly one, depending on whether the system turns out to be consistent.",
+            "es": "Ninguna o exactamente una, según resulte compatible el sistema."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. A homogeneous system is never inconsistent, because $\\mathbf 0$ always solves it. Here the count is infinite.",
+            "es": "No. Un sistema homogéneo nunca es incompatible, porque $\\mathbf 0$ siempre lo cumple. Aquí el número es infinito."
+          }
+        },
+        {
+          "text": {
+            "en": "It depends on $\\det A$, which cannot be used here because $A$ is $3\\times5$.",
+            "es": "Depende de $\\det A$, que aquí no se puede usar porque $A$ es $3\\times5$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. The determinant exists only for square matrices, and it decides uniqueness there. Rank and unknowns decide this case.",
+            "es": "No. El determinante solo existe para matrices cuadradas, y allí decide la unicidad. Aquí deciden el rango y las incógnitas."
+          }
+        }
+      ],
+      "hint": {
+        "en": "A homogeneous system is always consistent. Count the pivots and compare them with the unknowns.",
+        "es": "Un sistema homogéneo siempre es compatible. Cuenta los pivotes y compáralos con las incógnitas."
+      }
     }
   ],
   "references": [

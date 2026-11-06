@@ -2,7 +2,7 @@
   "id": "linalg-15-planes",
   "subjectId": "linear-algebra",
   "order": 15,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Planes in Space",
     "es": "Planos en el espacio"
@@ -13,6 +13,16 @@
       "content": {
         "en": "In $\\mathbb{R}^3$ the analog of a line is a **plane**, with implicit equation $Ax + By + Cz = D$. The vector of coefficients $(A, B, C)$ is the **normal vector** — it points perpendicular to the plane and completely determines the plane's orientation. So $x + 2y + 3z = 0$ has normal $(1, 2, 3)$.",
         "es": "En $\\mathbb{R}^3$ el análogo de una recta es un **plano**, con ecuación implícita $Ax + By + Cz = D$. El vector de coeficientes $(A, B, C)$ es el **vector normal** — apunta perpendicular al plano y determina por completo su orientación. Así $x + 2y + 3z = 0$ tiene normal $(1, 2, 3)$."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-06-vector-spaces"
+      ],
+      "note": {
+        "en": "A plane through the origin is a subspace of $\\mathbb{R}^3$, and its normal vector is what fixes it.",
+        "es": "Un plano que pasa por el origen es un subespacio de $\\mathbb{R}^3$, y su vector normal es lo que lo fija."
       }
     },
     {
@@ -30,6 +40,27 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, the plane through $P_0$ with normal $\\vec n = (A,B,C) \\neq \\vec 0$ is the set of points $X$ with $(X - P_0)\\cdot\\vec n = 0$. Expanding gives $Ax + By + Cz = D$, with $D = \\vec n\\cdot P_0$. The normal is defined only up to a nonzero factor: $2x + 4y + 6z = 2$ and $x + 2y + 3z = 1$ are the same plane. A plane also has a **parametric form**, $P + s\\,\\vec u + t\\,\\vec v$, with $\\vec u$ and $\\vec v$ not parallel. Three points fix a plane only if they are not on one line: collinear points lie on infinitely many planes.",
+        "es": "**Con precisión**, el plano por $P_0$ con normal $\\vec n = (A,B,C) \\neq \\vec 0$ es el conjunto de puntos $X$ con $(X - P_0)\\cdot\\vec n = 0$. Al desarrollarlo sale $Ax + By + Cz = D$, con $D = \\vec n\\cdot P_0$. La normal está definida salvo un factor no nulo: $2x + 4y + 6z = 2$ y $x + 2y + 3z = 1$ son el mismo plano. Un plano también tiene **forma paramétrica**, $P + s\\,\\vec u + t\\,\\vec v$, con $\\vec u$ y $\\vec v$ no paralelos. Tres puntos fijan un plano solo si no están en una misma recta: si están alineados, hay infinitos planos que los contienen."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Two planes** are parallel when their normals are proportional. Then they are either the same plane or distinct, depending on the constants: $x + 2y + 3z = 1$ and $2x + 4y + 6z = 5$ are distinct, because the second divided by $2$ reads $x + 2y + 3z = \\tfrac52$. If the normals are not proportional, the planes meet in a line whose direction is the cross product of the two normals. The trap is comparing coefficients by eye: $(1,2,3)$ and $(2,4,5)$ look alike, but they are not proportional, so those planes cut in a line.",
+        "es": "**Dos planos** son paralelos cuando sus normales son proporcionales. Entonces son el mismo plano o planos distintos, según las constantes: $x + 2y + 3z = 1$ y $2x + 4y + 6z = 5$ son distintos, porque la segunda dividida entre $2$ queda $x + 2y + 3z = \\tfrac52$. Si las normales no son proporcionales, los planos se cortan en una recta, cuyo vector director es el producto vectorial de las dos normales. La trampa es comparar coeficientes a ojo: $(1,2,3)$ y $(2,4,5)$ se parecen, pero no son proporcionales, así que esos planos se cortan en una recta."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **distance** from a point $X_0$ to the plane is $\\frac{|Ax_0 + By_0 + Cz_0 - D|}{\\sqrt{A^2+B^2+C^2}}$: the numerator measures how far $X_0$ misses the equation, and the denominator rescales it by the length of the normal. A linear classifier in machine learning labels a point by the sign of $w\\cdot x + b$, so its decision boundary is a hyperplane, which is a plane when there are three features. Graphics use normals too: a surface's brightness depends on its angle to the light, a dot product.",
+        "es": "La **distancia** de un punto $X_0$ al plano es $\\frac{|Ax_0 + By_0 + Cz_0 - D|}{\\sqrt{A^2+B^2+C^2}}$: el numerador mide cuánto le falta a $X_0$ para cumplirla, y el denominador lo reescala según la longitud de la normal. Un clasificador lineal en aprendizaje automático asigna a cada punto un lado según el signo de $w\\cdot x + b$, así que su frontera de decisión es un hiperplano, que es un plano cuando hay tres variables. Los gráficos también usan normales: el brillo de una superficie depende de su ángulo con la luz, un producto escalar."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example",
@@ -38,6 +69,17 @@
       "content": {
         "en": "Does $(0,0,0)$ lie on $x + 2y + 3z = 0$? Substitute: $0 + 0 + 0 = 0$ ✓ — yes, the plane passes through the origin. Its normal vector is $(1, 2, 3)$, read straight off the coefficients.",
         "es": "¿Está $(0,0,0)$ en $x + 2y + 3z = 0$? Sustituye: $0 + 0 + 0 = 0$ ✓ — sí, el plano pasa por el origen. Su vector normal es $(1, 2, 3)$, leído directamente de los coeficientes."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a plane from a point and a normal",
+        "es": "Ejemplo resuelto — un plano a partir de un punto y una normal"
+      },
+      "content": {
+        "en": "Find the plane through $(1,0,2)$ with normal $(2,-1,3)$. Substitute into $A(x-x_0)+B(y-y_0)+C(z-z_0)=0$: $2(x-1) - (y-0) + 3(z-2) = 0$, so $2x - y + 3z - 8 = 0$, that is $2x - y + 3z = 8$. Check the point: $2 - 0 + 6 = 8$ ✓. The origin is not on it, since $0 \\neq 8$: this plane does not pass through the origin.",
+        "es": "Halla el plano que pasa por $(1,0,2)$ con normal $(2,-1,3)$. Sustituye en $A(x-x_0)+B(y-y_0)+C(z-z_0)=0$: $2(x-1) - (y-0) + 3(z-2) = 0$, así que $2x - y + 3z - 8 = 0$, es decir, $2x - y + 3z = 8$. Comprueba el punto: $2 - 0 + 6 = 8$ ✓. El origen no está en él, pues $0 \\neq 8$: este plano no pasa por el origen."
       }
     },
     {
@@ -121,6 +163,15 @@
           "en": "Constant plane.",
           "es": "Plano constante."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "$z = 5$ on the whole plane, whatever $x$ and $y$ are. The plane $z = 0$ is the one through the origin.",
+            "es": "$z = 5$ en todo el plano, sean cuales sean $x$ e $y$. El plano $z = 0$ es el que pasa por el origen."
+          }
+        }
       ]
     },
     {
@@ -128,7 +179,7 @@
       "answerType": "text",
       "prompt": {
         "en": "The plane $z = 0$ is which coordinate plane? (two letters, e.g. xy)",
-        "es": "El plano $z = 0$ es qué plano coordenado? (dos letras, p. ej. xy)"
+        "es": "¿Qué plano coordenado es el plano $z = 0$? (dos letras, p. ej. xy)"
       },
       "answer": "xy",
       "acceptedAlt": [
@@ -143,6 +194,101 @@
           "tex": "z = 0 \\to xy\\text{-plane}",
           "en": "The xy-plane.",
           "es": "El plano xy."
+        }
+      ]
+    },
+    {
+      "id": "linalg-15-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "The planes $x + 2y + 3z = 1$ and $2x + 4y + 6z = 5$: what is their relation?",
+        "es": "Los planos $x + 2y + 3z = 1$ y $2x + 4y + 6z = 5$: ¿qué relación tienen?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The same plane: the left sides are proportional.",
+            "es": "El mismo plano: sus lados izquierdos son proporcionales."
+          },
+          "correct": false,
+          "why": {
+            "en": "Proportional left sides make the planes parallel, not equal. For the same plane the right sides must be in the same ratio too, and $5 \\neq 2\\cdot1$.",
+            "es": "Lados izquierdos proporcionales hacen los planos paralelos, no iguales. Para ser el mismo plano, los lados derechos también deben estar en la misma proporción, y $5 \\neq 2\\cdot1$."
+          }
+        },
+        {
+          "text": {
+            "en": "They meet in a line, since their normals differ.",
+            "es": "Se cortan en una recta, porque sus normales son distintas."
+          },
+          "correct": false,
+          "why": {
+            "en": "Normals that are not equal can still be proportional. Here $(2,4,6) = 2(1,2,3)$, so the planes have the same direction and cannot meet in a line.",
+            "es": "Normales distintas pueden ser proporcionales. Aquí $(2,4,6) = 2(1,2,3)$, así que los planos tienen la misma dirección y no pueden cortarse en una recta."
+          }
+        },
+        {
+          "text": {
+            "en": "Parallel, distinct, with proportional normals.",
+            "es": "Paralelos y distintos, con normales proporcionales."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $(2,4,6) = 2(1,2,3)$, so the planes are parallel. Halving the second equation gives $x + 2y + 3z = \\tfrac52$, not $1$, so they are distinct.",
+            "es": "Exacto. $(2,4,6) = 2(1,2,3)$, así que los planos son paralelos. Si divides la segunda ecuación entre $2$, queda $x + 2y + 3z = \\tfrac52$, no $1$, así que son distintos."
+          }
+        },
+        {
+          "text": {
+            "en": "Perpendicular, since their normals differ.",
+            "es": "Perpendiculares, porque sus normales son distintas."
+          },
+          "correct": false,
+          "why": {
+            "en": "Perpendicular planes need normals with dot product $0$. Here $(1,2,3)\\cdot(2,4,6) = 28 \\neq 0$, and the normals point the same way.",
+            "es": "Los planos perpendiculares necesitan normales con producto escalar $0$. Aquí $(1,2,3)\\cdot(2,4,6) = 28 \\neq 0$, y las normales apuntan en el mismo sentido."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compare the normal vectors first, then the constants.",
+        "es": "Compara primero los vectores normales y después las constantes."
+      }
+    },
+    {
+      "id": "linalg-15-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "Distance from the origin to the plane $2x + 3y + 6z = 14$?",
+        "es": "¿Distancia del origen al plano $2x + 3y + 6z = 14$?"
+      },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "Use $\\frac{|Ax_0+By_0+Cz_0-D|}{\\sqrt{A^2+B^2+C^2}}$ with $X_0 = (0,0,0)$.",
+        "es": "Usa $\\frac{|Ax_0+By_0+Cz_0-D|}{\\sqrt{A^2+B^2+C^2}}$ con $X_0 = (0,0,0)$."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{|0 - 14|}{\\sqrt{2^2+3^2+6^2}} = \\frac{14}{\\sqrt{49}} = \\frac{14}{7} = 2",
+          "en": "Numerator |0 − 14|, and the normal has length 7.",
+          "es": "Numerador |0 − 14|, y la normal mide 7."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "14",
+          "feedback": {
+            "en": "$14$ is the constant $D$ itself. The distance divides $|D|$ by the length of the normal, $\\sqrt{2^2+3^2+6^2} = 7$.",
+            "es": "$14$ es la constante $D$ tal cual. La distancia divide $|D|$ entre la longitud de la normal, $\\sqrt{2^2+3^2+6^2} = 7$."
+          }
+        },
+        {
+          "answer": "14/11",
+          "feedback": {
+            "en": "$\\frac{14}{11}$ divides by the sum of the coefficients, $2+3+6 = 11$. The denominator is the length of the normal, not the sum of its entries.",
+            "es": "$\\frac{14}{11}$ divide entre la suma de los coeficientes, $2+3+6 = 11$. El denominador es la longitud de la normal, no la suma de sus componentes."
+          }
         }
       ]
     }

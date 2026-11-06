@@ -2,7 +2,7 @@
   "id": "linalg-05-vectors-rn",
   "subjectId": "linear-algebra",
   "order": 5,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Vectors in ℝⁿ",
     "es": "Vectores en ℝⁿ"
@@ -13,6 +13,23 @@
       "content": {
         "en": "A **vector** is an ordered list of numbers, such as $(1, 2, 3)$ in $\\mathbb{R}^3$. Geometrically it is an arrow from the origin to that point, carrying both **magnitude** and **direction**. Vectors are the atoms of linear algebra and the native data type of machine learning — a data point with $n$ features is just a vector in $\\mathbb{R}^n$.",
         "es": "Un **vector** es una lista ordenada de números, como $(1, 2, 3)$ en $\\mathbb{R}^3$. Geométricamente es una flecha del origen a ese punto, con **magnitud** y **dirección**. Los vectores son los átomos del álgebra lineal y el tipo de dato nativo del aprendizaje automático — un dato con $n$ características es un vector en $\\mathbb{R}^n$."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-07-real-numbers-powers-roots"
+      ],
+      "note": {
+        "en": "Norms are square roots of sums of squares, so powers and roots carry the calculation.",
+        "es": "Las normas son raíces cuadradas de sumas de cuadrados, así que las potencias y las raíces llevan el cálculo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, $\\mathbb{R}^n$ is the set of ordered $n$-tuples, and two vectors are equal only when every component matches: $(1,2) \\ne (2,1)$, although they have the same entries. A **point** and a **vector** are written the same way but play different roles. The arrow from $P$ to $Q$ is the vector $\\overrightarrow{PQ} = Q - P$, which records a displacement rather than a position. So the arrow from $(1,2)$ to $(4,6)$ and the arrow from $(0,0)$ to $(3,4)$ are the same vector.",
+        "es": "**Con precisión**, $\\mathbb{R}^n$ es el conjunto de las $n$-tuplas ordenadas, y dos vectores son iguales solo cuando coinciden todas las componentes: $(1,2) \\ne (2,1)$, aunque tengan los mismos números. Un **punto** y un **vector** se escriben igual, pero cumplen papeles distintos. La flecha de $P$ a $Q$ es el vector $\\overrightarrow{PQ} = Q - P$, que registra un desplazamiento y no una posición. Así, la flecha de $(1,2)$ a $(4,6)$ y la de $(0,0)$ a $(3,4)$ son el mismo vector."
       }
     },
     {
@@ -30,6 +47,20 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "**Norms and the triangle inequality.** Scaling multiplies the length by the absolute value of the scalar: $\\|cv\\| = |c|\\,\\|v\\|$, so $\\|-2v\\| = 2\\|v\\|$. Adding vectors does not add lengths. The **triangle inequality** says $\\|u+v\\| \\le \\|u\\| + \\|v\\|$, with equality only when one of them is a non-negative multiple of the other. The trap is to write $\\|u+v\\| = \\|u\\| + \\|v\\|$. For $u = (3,0)$ and $v = (0,4)$ the sum is $(3,4)$, of length $5$, while $\\|u\\| + \\|v\\| = 7$. The zero vector has length $0$ and cannot be normalized, since dividing by $0$ is undefined.",
+        "es": "**Normas y desigualdad triangular.** Escalar multiplica la longitud por el valor absoluto del escalar: $\\|cv\\| = |c|\\,\\|v\\|$, así que $\\|-2v\\| = 2\\|v\\|$. Sumar vectores no suma longitudes. La **desigualdad triangular** dice que $\\|u+v\\| \\le \\|u\\| + \\|v\\|$, con igualdad solo cuando uno es un múltiplo no negativo del otro. La trampa es escribir $\\|u+v\\| = \\|u\\| + \\|v\\|$. Para $u = (3,0)$ y $v = (0,4)$ la suma es $(3,4)$, de longitud $5$, mientras que $\\|u\\| + \\|v\\| = 7$. El vector cero tiene longitud $0$ y no se puede normalizar, porque dividir entre $0$ no está definido."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why it matters.** In machine learning a data point with $n$ features is a vector in $\\mathbb{R}^n$: a flat might be described by $(\\text{area}, \\text{rooms}, \\text{age})$. The distance $\\|u - v\\|$ between two such points measures how far apart they are: the smaller it is, the more alike the points. The nearest-neighbor method simply finds the stored vector closest to a new one. Physics works the same way: a force, a velocity or a displacement is a vector, and its norm is its magnitude.",
+        "es": "**Para qué sirve.** En aprendizaje automático, un dato con $n$ características es un vector de $\\mathbb{R}^n$: un piso puede describirse con $(\\text{superficie}, \\text{habitaciones}, \\text{antigüedad})$. La distancia $\\|u - v\\|$ entre dos de estos puntos mide lo lejos que están: cuanto menor es, más se parecen. El método del vecino más cercano busca, simplemente, el vector guardado más próximo a uno nuevo. La física funciona igual: una fuerza, una velocidad o un desplazamiento son vectores, y su norma es su magnitud."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example — norm",
@@ -38,6 +69,17 @@
       "content": {
         "en": "Compute $\\|(1,2,2)\\|$. Square each component: $1 + 4 + 4 = 9$. Take the root: $\\sqrt9 = 3$. To make a unit vector in the same direction, divide by the norm: $\\tfrac13(1,2,2)$ has length $1$.",
         "es": "Calcula $\\|(1,2,2)\\|$. Eleva al cuadrado cada componente: $1 + 4 + 4 = 9$. Toma la raíz: $\\sqrt9 = 3$. Para obtener un vector unitario en la misma dirección, divide por la norma: $\\tfrac13(1,2,2)$ tiene longitud $1$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — the distance between two points",
+        "es": "Ejemplo resuelto — la distancia entre dos puntos"
+      },
+      "content": {
+        "en": "Find the distance between $P = (1,2,3)$ and $Q = (3,-1,9)$. The vector from $P$ to $Q$ is $Q - P = (2,-3,6)$, and its norm is $\\sqrt{4 + 9 + 36} = \\sqrt{49} = 7$. The distance is $7$. A common slip is to subtract or add the two norms: $\\|Q\\| = \\sqrt{91}$ and $\\|P\\| = \\sqrt{14}$ measure distances from the origin, not from each other.",
+        "es": "Calcula la distancia entre $P = (1,2,3)$ y $Q = (3,-1,9)$. El vector de $P$ a $Q$ es $Q - P = (2,-3,6)$, y su norma es $\\sqrt{4 + 9 + 36} = \\sqrt{49} = 7$. La distancia es $7$. Un error habitual es restar o sumar las dos normas: $\\|Q\\| = \\sqrt{91}$ y $\\|P\\| = \\sqrt{14}$ miden distancias al origen, no entre ellos."
       }
     },
     {
@@ -126,6 +168,22 @@
           "en": "Length.",
           "es": "Longitud."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "7",
+          "feedback": {
+            "en": "$7$ adds the components, $3+4$. The norm squares them, adds, and then takes the root.",
+            "es": "$7$ suma las componentes, $3+4$. La norma las eleva al cuadrado, las suma y luego saca la raíz."
+          }
+        },
+        {
+          "answer": "25",
+          "feedback": {
+            "en": "$25$ is $3^2+4^2$ before the square root. The norm is $\\sqrt{25} = 5$.",
+            "es": "$25$ es $3^2+4^2$ antes de la raíz. La norma es $\\sqrt{25} = 5$."
+          }
+        }
       ]
     },
     {
@@ -149,6 +207,22 @@
           "tex": "\\sqrt{9} = 3",
           "en": "Length.",
           "es": "Longitud."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5$ is $1+2+2$, the sum of the components. The norm squares them first: $\\sqrt{1+4+4} = 3$.",
+            "es": "$5$ es $1+2+2$, la suma de las componentes. La norma primero las eleva al cuadrado: $\\sqrt{1+4+4} = 3$."
+          }
+        },
+        {
+          "answer": "9",
+          "feedback": {
+            "en": "$9$ is $1+4+4$ before the square root: $\\sqrt9 = 3$.",
+            "es": "$9$ es $1+4+4$ antes de la raíz: $\\sqrt9 = 3$."
+          }
         }
       ]
     },
@@ -213,6 +287,118 @@
         "en": "zip pairs them up; multiply and sum.",
         "es": "zip los empareja; multiplica y suma."
       }
+    },
+    {
+      "id": "linalg-05-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "For vectors $u$ and $v$, how does $\\|u+v\\|$ compare with $\\|u\\| + \\|v\\|$?",
+        "es": "Para los vectores $u$ y $v$, ¿cómo se compara $\\|u+v\\|$ con $\\|u\\| + \\|v\\|$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Always equal, because the lengths of the two arrows simply add up.",
+            "es": "Siempre igual, porque las longitudes de las dos flechas simplemente se suman."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: lengths do not add along a sum. $(3,0)+(0,4) = (3,4)$ has length $5$, not $7$.",
+            "es": "Error habitual: las longitudes no se suman al sumar vectores. $(3,0)+(0,4) = (3,4)$ tiene longitud $5$, no $7$."
+          }
+        },
+        {
+          "text": {
+            "en": "Never larger, and equal only when one is a non-negative multiple of the other.",
+            "es": "Nunca mayor, e igual solo si uno es un múltiplo no negativo del otro."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. This is the triangle inequality. For $u = (1,0)$ and $v = (2,0)$ both sides equal $3$.",
+            "es": "Exacto. Es la desigualdad triangular. Para $u = (1,0)$ y $v = (2,0)$ los dos lados valen $3$."
+          }
+        },
+        {
+          "text": {
+            "en": "Always at least as large, because going along $u$ and then along $v$ is longer.",
+            "es": "Siempre al menos igual de grande, porque ir por $u$ y luego por $v$ es más largo."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: going along $u$ and then along $v$ is a detour. The direct arrow $u+v$ is never longer than that detour.",
+            "es": "Error habitual: ir por $u$ y luego por $v$ es un rodeo. La flecha directa $u+v$ nunca es más larga que ese rodeo."
+          }
+        },
+        {
+          "text": {
+            "en": "Sometimes larger and sometimes smaller, depending on which two vectors are chosen.",
+            "es": "A veces mayor y a veces menor, según cuáles sean los dos vectores elegidos."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: the inequality is a theorem, not a guess. For any $u$ and $v$, $\\|u+v\\|$ can never exceed $\\|u\\| + \\|v\\|$.",
+            "es": "Error habitual: la desigualdad es un teorema, no una suposición. Para cualesquiera $u$ y $v$, $\\|u+v\\|$ nunca supera a $\\|u\\| + \\|v\\|$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Test with two simple vectors, such as $(3,0)$ and $(0,4)$.",
+        "es": "Prueba con dos vectores sencillos, como $(3,0)$ y $(0,4)$."
+      }
+    },
+    {
+      "id": "linalg-05-e7",
+      "answerType": "number",
+      "prompt": {
+        "en": "Find the first component of the unit vector in the direction of $(6,2,-3)$.",
+        "es": "Halla la primera componente del vector unitario en la dirección de $(6,2,-3)$."
+      },
+      "answer": "6/7",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "6",
+          "feedback": {
+            "en": "$6$ is the first component of the original vector. A unit vector has length $1$, so divide every component by the norm $\\|v\\| = 7$.",
+            "es": "$6$ es la primera componente del vector original. Un vector unitario tiene longitud $1$, así que divide cada componente entre la norma $\\|v\\| = 7$."
+          }
+        },
+        {
+          "answer": "6/5",
+          "feedback": {
+            "en": "$\\frac65$ divides by the sum of the components, $6+2-3 = 5$, which has nothing to do with length. Divide by the norm $\\sqrt{36+4+9} = 7$.",
+            "es": "$\\frac65$ divide entre la suma de las componentes, $6+2-3 = 5$, que no tiene que ver con la longitud. Divide entre la norma $\\sqrt{36+4+9} = 7$."
+          }
+        },
+        {
+          "answer": "6/49",
+          "feedback": {
+            "en": "$\\frac{6}{49}$ divides by the squared norm, $\\|v\\|^2 = 49$. The divisor is the norm itself, $7$.",
+            "es": "$\\frac{6}{49}$ divide entre la norma al cuadrado, $\\|v\\|^2 = 49$. El divisor es la propia norma, $7$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Find the norm first, then divide every component by it.",
+        "es": "Halla primero la norma y luego divide cada componente entre ella."
+      },
+      "solution": [
+        {
+          "tex": "\\|v\\| = \\sqrt{36+4+9} = \\sqrt{49} = 7",
+          "en": "The norm of the vector.",
+          "es": "La norma del vector."
+        },
+        {
+          "tex": "\\frac{1}{7}(6,2,-3)",
+          "en": "The unit vector: divide every component by the norm.",
+          "es": "El vector unitario: divide cada componente entre la norma."
+        },
+        {
+          "tex": "\\frac{6}{7}",
+          "en": "The first component.",
+          "es": "La primera componente."
+        }
+      ]
     }
   ],
   "references": [

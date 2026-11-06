@@ -2,7 +2,7 @@
   "id": "linalg-13-change-of-basis",
   "subjectId": "linear-algebra",
   "order": 13,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Change of Basis",
     "es": "Cambio de base"
@@ -16,10 +16,28 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "linalg-08-independence-basis",
+        "linalg-12-rank-inverse"
+      ],
+      "note": {
+        "en": "A basis is an independent spanning set (lesson 08), and P must be invertible, which lesson 12 tests.",
+        "es": "Una base es un conjunto independiente y generador (lección 08), y P debe ser invertible, algo que la lección 12 comprueba."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "A **change-of-basis matrix** $P$ converts coordinates from one basis to another; its columns are the new basis vectors written in the old coordinates. Because a basis is independent, $P$ is always **invertible**, and $P^{-1}$ converts back the other way.",
         "es": "Una **matriz de cambio de base** $P$ convierte coordenadas de una base a otra; sus columnas son los nuevos vectores base escritos en las coordenadas antiguas. Como una base es independiente, $P$ es siempre **invertible**, y $P^{-1}$ convierte de vuelta en el otro sentido."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, let $B = \\{b_1, \\dots, b_n\\}$ be a basis and $P = \\begin{pmatrix} b_1 & \\cdots & b_n \\end{pmatrix}$ the matrix with those columns. Then $\\mathbf v = P\\,[\\mathbf v]_B$, where $[\\mathbf v]_B$ holds the $B$-coordinates, and so $[\\mathbf v]_B = P^{-1}\\mathbf v$. The trap is the direction. $P$ turns $B$-coordinates into standard ones. To go the other way you need $P^{-1}$, and the first guess, $P^{T}$, works only when $P$ is orthogonal. To change from a basis $B$ to another basis $C$, the matrix is $P_C^{-1}P_B$. A quick test for a candidate basis: the columns of $P$ must be independent, so $\\det P \\neq 0$. Two vectors on one line give $\\det P = 0$, and they are no basis of $\\mathbb{R}^2$.",
+        "es": "**Con precisión**, sea $B = \\{b_1, \\dots, b_n\\}$ una base y $P = \\begin{pmatrix} b_1 & \\cdots & b_n \\end{pmatrix}$ la matriz con esas columnas. Entonces $\\mathbf v = P\\,[\\mathbf v]_B$, donde $[\\mathbf v]_B$ recoge las coordenadas en $B$, y por tanto $[\\mathbf v]_B = P^{-1}\\mathbf v$. La trampa está en el sentido. $P$ convierte coordenadas en $B$ en coordenadas canónicas. Para ir al revés hace falta $P^{-1}$, y la primera idea, $P^{T}$, solo sirve cuando $P$ es ortogonal. Para pasar de una base $B$ a otra base $C$, la matriz es $P_C^{-1}P_B$. Una prueba rápida para una base candidata: las columnas de $P$ deben ser independientes, así que $\\det P \\neq 0$. Dos vectores sobre una misma recta dan $\\det P = 0$, y no son base de $\\mathbb{R}^2$."
       }
     },
     {
@@ -38,6 +56,24 @@
       "content": {
         "en": "In the basis $\\{(2,0),(0,1)\\}$, find the coordinates of $(4,0)$. We need $c_1(2,0) + c_2(0,1) = (4,0)$, so $2c_1 = 4 \\Rightarrow c_1 = 2$ and $c_2 = 0$. The first coordinate is $2$. In the standard basis the coordinates of $(7,2)$ are simply $7$ and $2$.",
         "es": "En la base $\\{(2,0),(0,1)\\}$, halla las coordenadas de $(4,0)$. Necesitamos $c_1(2,0) + c_2(0,1) = (4,0)$, así $2c_1 = 4 \\Rightarrow c_1 = 2$ y $c_2 = 0$. La primera coordenada es $2$. En la base canónica las coordenadas de $(7,2)$ son simplemente $7$ y $2$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a basis that is not the standard one",
+        "es": "Ejemplo resuelto — una base que no es la canónica"
+      },
+      "content": {
+        "en": "Take the basis $\\{(1,1), (1,-1)\\}$ and the vector $(5,1)$. Its coordinates $(c_1, c_2)$ solve $c_1(1,1) + c_2(1,-1) = (5,1)$, that is, $c_1 + c_2 = 5$ and $c_1 - c_2 = 1$. Adding gives $2c_1 = 6$, so $c_1 = 3$, and then $c_2 = 2$. Check: $3(1,1) + 2(1,-1) = (5,1)$ ✓. Unlike the example above, the coordinates are not read off the vector. Every change of coordinates is this same calculation with a bigger matrix. You solve $P\\,\\mathbf c = \\mathbf v$, here with $P = \\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$.",
+        "es": "Toma la base $\\{(1,1), (1,-1)\\}$ y el vector $(5,1)$. Sus coordenadas $(c_1, c_2)$ resuelven $c_1(1,1) + c_2(1,-1) = (5,1)$, es decir, $c_1 + c_2 = 5$ y $c_1 - c_2 = 1$. Sumando, $2c_1 = 6$, luego $c_1 = 3$, y entonces $c_2 = 2$. Comprobación: $3(1,1) + 2(1,-1) = (5,1)$ ✓. A diferencia del ejemplo anterior, las coordenadas no se leen directamente del vector. Todo cambio de coordenadas es este mismo cálculo con una matriz más grande. Hay que resolver $P\\,\\mathbf c = \\mathbf v$, aquí con $P = \\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Choosing a basis is choosing what to look at. Principal component analysis rotates a data cloud onto the directions of its largest spread, so a few new coordinates keep most of the variation. JPEG expresses each block of an image in a basis of cosine patterns, where most of the energy falls on a few coordinates that are cheap to store. Diagonalization, the subject after this one, looks for a basis in which a square matrix only stretches, so that its matrix becomes diagonal.",
+        "es": "Elegir una base es elegir qué mirar. El análisis de componentes principales gira una nube de datos hacia las direcciones de mayor dispersión, de modo que unas pocas coordenadas nuevas conservan la mayor parte de la variación. El JPEG expresa cada bloque de una imagen en una base de patrones de cosenos, donde la mayor parte de la energía cae en unas pocas coordenadas que se guardan con poco espacio. La diagonalización, la siguiente asignatura, busca una base en la que una matriz cuadrada solo estire, de modo que su matriz pasa a ser diagonal."
       }
     },
     {
@@ -63,7 +99,7 @@
       "answerType": "number",
       "prompt": {
         "en": "In basis $\\{(2,0),(0,1)\\}$, the first coordinate of $(4,0)$ is?",
-        "es": "En la base $\\{(2,0),(0,1)\\}$, la primera coordenada de $(4,0)$ es?"
+        "es": "En la base $\\{(2,0),(0,1)\\}$, ¿cuál es la primera coordenada de $(4,0)$?"
       },
       "answer": "2",
       "acceptedAlt": [
@@ -78,6 +114,22 @@
           "tex": "2(2,0) = (4,0)",
           "en": "Coordinate is 2.",
           "es": "La coordenada es 2."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "4",
+          "feedback": {
+            "en": "$4$ is the standard first coordinate of $(4,0)$. In this basis the vector is measured in units of $(2,0)$, so it takes half as many.",
+            "es": "$4$ es la primera coordenada canónica de $(4,0)$. En esta base el vector se mide en unidades de $(2,0)$, así que hacen falta la mitad."
+          }
+        },
+        {
+          "answer": "8",
+          "feedback": {
+            "en": "$8$ multiplies by $2$ instead of dividing. How many $(2,0)$ make $(4,0)$? Two, so the coordinate is $2$.",
+            "es": "$8$ multiplica por $2$ en lugar de dividir. ¿Cuántos $(2,0)$ hacen $(4,0)$? Dos, así que la coordenada es $2$."
+          }
         }
       ]
     },
@@ -109,7 +161,7 @@
       "answerType": "number",
       "prompt": {
         "en": "In the standard basis, the first coordinate of $(7,2)$ is?",
-        "es": "En la base canónica, la primera coordenada de $(7,2)$ es?"
+        "es": "En la base canónica, ¿cuál es la primera coordenada de $(7,2)$?"
       },
       "answer": "7",
       "acceptedAlt": [],
@@ -130,7 +182,7 @@
       "answerType": "number",
       "prompt": {
         "en": "In basis $\\{(2,0),(0,1)\\}$, the second coordinate of $(4,5)$ is?",
-        "es": "En la base $\\{(2,0),(0,1)\\}$, la segunda coordenada de $(4,5)$ es?"
+        "es": "En la base $\\{(2,0),(0,1)\\}$, ¿cuál es la segunda coordenada de $(4,5)$?"
       },
       "answer": "5",
       "acceptedAlt": [],
@@ -145,6 +197,99 @@
           "es": "Segunda coordenada 5."
         }
       ]
+    },
+    {
+      "id": "linalg-13-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "In the basis $\\{(1,2),(0,1)\\}$, what is the second coordinate of $(3,5)$?",
+        "es": "En la base $\\{(1,2),(0,1)\\}$, ¿cuál es la segunda coordenada de $(3,5)$?"
+      },
+      "answer": "-1",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5$ is the standard second coordinate of $(3,5)$. In this basis $(3,5) = 3(1,2) - (0,1)$, so the second coordinate is $-1$.",
+            "es": "$5$ es la segunda coordenada canónica de $(3,5)$. En esta base $(3,5) = 3(1,2) - (0,1)$, así que la segunda coordenada es $-1$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The first component of the vector gives the first coordinate: c₁ = 3.",
+        "es": "La primera componente del vector da la primera coordenada: c₁ = 3."
+      },
+      "solution": [
+        {
+          "tex": "c_1(1,2) + c_2(0,1) = (c_1,\\; 2c_1 + c_2) = (3,5)",
+          "en": "The first component gives c₁ = 3.",
+          "es": "La primera componente da c₁ = 3."
+        },
+        {
+          "tex": "2\\cdot3 + c_2 = 5 \\Rightarrow c_2 = -1",
+          "en": "Substitute into the second component.",
+          "es": "Sustituye en la segunda componente."
+        }
+      ]
+    },
+    {
+      "id": "linalg-13-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A vector has coordinates $(c_1, c_2)$ in a basis $B$ whose vectors are the columns of $P$. What are its standard coordinates?",
+        "es": "Un vector tiene coordenadas $(c_1, c_2)$ en una base $B$ cuyos vectores son las columnas de $P$. ¿Cuáles son sus coordenadas canónicas?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$P^{-1}(c_1,c_2)$, which undoes the change of basis.",
+            "es": "$P^{-1}(c_1,c_2)$, que deshace el cambio de base."
+          },
+          "correct": false,
+          "why": {
+            "en": "$P^{-1}$ goes the other way: from standard coordinates to $B$-coordinates.",
+            "es": "$P^{-1}$ va en sentido contrario: de coordenadas canónicas a coordenadas en $B$."
+          }
+        },
+        {
+          "text": {
+            "en": "$P^{T}(c_1,c_2)$, using the transpose of $P$, which flips its rows and columns.",
+            "es": "$P^{T}(c_1,c_2)$, usando la traspuesta de $P$, que intercambia filas y columnas."
+          },
+          "correct": false,
+          "why": {
+            "en": "The transpose is not the inverse in general, and it does not convert between the two bases.",
+            "es": "La traspuesta no es la inversa en general, y no convierte entre las dos bases."
+          }
+        },
+        {
+          "text": {
+            "en": "$(c_1,c_2)$ itself, since coordinates do not depend on the basis.",
+            "es": "$(c_1,c_2)$ tal cual, ya que las coordenadas no dependen de la base."
+          },
+          "correct": false,
+          "why": {
+            "en": "They do. The same vector has other numbers in another basis, which is the point of this lesson.",
+            "es": "Sí dependen. El mismo vector tiene otros números en otra base, que es justo el sentido de esta lección."
+          }
+        },
+        {
+          "text": {
+            "en": "$P(c_1,c_2)$, since the columns of $P$ are the basis vectors.",
+            "es": "$P(c_1,c_2)$, ya que las columnas de $P$ son los vectores de la base."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $\\mathbf v = c_1 b_1 + c_2 b_2$, which is exactly the product $P(c_1,c_2)$.",
+            "es": "Exacto. $\\mathbf v = c_1 b_1 + c_2 b_2$, que es justo el producto $P(c_1,c_2)$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write $\\mathbf v = c_1 b_1 + c_2 b_2$ as a matrix times a column.",
+        "es": "Escribe $\\mathbf v = c_1 b_1 + c_2 b_2$ como una matriz por una columna."
+      }
     }
   ],
   "references": [

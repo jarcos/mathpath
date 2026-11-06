@@ -2,7 +2,7 @@
   "id": "linalg-09-matrices-operations",
   "subjectId": "linear-algebra",
   "order": 9,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Matrices & Operations",
     "es": "Matrices y operaciones"
@@ -16,17 +16,49 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "algebra-18-matrices-intro",
+        "algebra-19-matrix-operations"
+      ],
+      "note": {
+        "en": "Matrix sums and products are built in these two algebra lessons.",
+        "es": "La suma y el producto de matrices se construyen en estas dos lecciones de álgebra."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "**Matrix multiplication** is the crucial operation: entry $(i,j)$ of $AB$ is the **dot product** of row $i$ of $A$ with column $j$ of $B$. It is defined only when $A$'s column count equals $B$'s row count. Multiplication encodes the **composition** of transformations — and it is **not commutative** ($AB \\neq BA$ in general), a fact with real consequences.",
-        "es": "La **multiplicación de matrices** es la operación crucial: el elemento $(i,j)$ de $AB$ es el **producto escalar** de la fila $i$ de $A$ con la columna $j$ de $B$. Solo está definida cuando las columnas de $A$ igualan las filas de $B$. La multiplicación codifica la **composición** de transformaciones — y **no es conmutativa** ($AB \\neq BA$ en general), un hecho con consecuencias reales."
+        "es": "La **multiplicación de matrices** es la operación crucial: el elemento $(i,j)$ de $AB$ es el **producto escalar** de la fila $i$ de $A$ con la columna $j$ de $B$. Solo está definida cuando el número de columnas de $A$ coincide con el de filas de $B$. La multiplicación codifica la **composición** de transformaciones — y **no es conmutativa** ($AB \\neq BA$ en general), un hecho con consecuencias reales."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, the entry $(AB)_{ij} = \\sum_k a_{ik}\\,b_{kj}$: it multiplies row $i$ of $A$ by column $j$ of $B$ term by term and adds. The sizes must fit, and they give the size of the result: $(m\\times n)(n\\times p) = m\\times p$. Two matrices can be added only when they have the same size. The **transpose** $A^T$ swaps rows and columns, and it reverses products: $(AB)^T = B^T A^T$. The order reverses, as the inverse will in lesson 12.",
+        "es": "**Con precisión**, el elemento $(AB)_{ij} = \\sum_k a_{ik}\\,b_{kj}$: multiplica término a término la fila $i$ de $A$ por la columna $j$ de $B$ y suma. Los tamaños tienen que encajar, y ellos dan el tamaño del resultado: $(m\\times n)(n\\times p) = m\\times p$. Dos matrices solo se suman si tienen el mismo tamaño. La **traspuesta** $A^T$ intercambia filas y columnas, y invierte los productos: $(AB)^T = B^T A^T$. El orden se invierte, como lo hará la inversa en la lección 12."
       }
     },
     {
       "type": "prose",
       "content": {
         "en": "The **identity matrix** $I$ (ones on the diagonal, zeros elsewhere) acts like the number $1$: $AI = IA = A$. The **trace** of a square matrix is the sum of its diagonal entries — a quantity that, surprisingly, equals the sum of the eigenvalues you will meet in the next subject.",
-        "es": "La matriz **identidad** $I$ (unos en la diagonal, ceros en el resto) actúa como el número $1$: $AI = IA = A$. La **traza** de una matriz cuadrada es la suma de su diagonal — una cantidad que, sorprendentemente, coincide con la suma de los autovalores que verás en la próxima asignatura."
+        "es": "La matriz **identidad** $I$ (unos en la diagonal, ceros en el resto) actúa como el número $1$: $AI = IA = A$. La **traza** de una matriz cuadrada es la suma de su diagonal — una cantidad que, sorprendentemente, coincide con la suma de los valores propios que verás en la próxima asignatura."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Three traps follow from non-commutativity and zeros. First, $AB \\neq BA$ in general, so the order is part of the definition. Second, $AB = \\mathbf 0$ does not force $A$ or $B$ to be zero: $A = \\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ has $A^2 = \\mathbf 0$. Third, you cannot cancel a factor: $AB = AC$ does not give $B = C$. For $A = \\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$, $B = I$ and $C = \\begin{pmatrix}1&0\\\\5&1\\end{pmatrix}$, both products equal $A$, yet $B \\neq C$.",
+        "es": "Tres trampas se siguen de la no conmutatividad y de los ceros. Primera: $AB \\neq BA$ en general, así que el orden forma parte de la definición. Segunda: $AB = \\mathbf 0$ no obliga a que $A$ o $B$ sean nulas: $A = \\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ tiene $A^2 = \\mathbf 0$. Tercera: no se puede simplificar un factor: $AB = AC$ no implica $B = C$. Para $A = \\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$, $B = I$ y $C = \\begin{pmatrix}1&0\\\\5&1\\end{pmatrix}$, ambos productos valen $A$, y sin embargo $B \\neq C$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Matrix products are everywhere in applied work. A layer of a neural network computes $\\mathbf y = W\\mathbf x + \\mathbf b$: one matrix product plus a bias. Without the nonlinear functions between layers, a stack of such layers collapses to a single affine map $\\mathbf y = W\\mathbf x + \\mathbf b$. Composing two linear maps multiplies their matrices, and the order matters: in general, a rotation followed by a stretch is not the same as the stretch followed by the rotation. In computer graphics, one matrix product rotates or scales every vertex of a model at once; a translation needs an extra coordinate, because it isn't linear.",
+        "es": "Los productos de matrices están en todas partes en el trabajo aplicado. Una capa de una red neuronal calcula $\\mathbf y = W\\mathbf x + \\mathbf b$: un producto de matrices más un sesgo. Sin las funciones no lineales que van entre capas, una pila de capas así se reduce a una única aplicación afín $\\mathbf y = W\\mathbf x + \\mathbf b$. Componer dos aplicaciones lineales multiplica sus matrices, y el orden importa: en general, un giro seguido de un estiramiento no es lo mismo que el estiramiento seguido del giro. En gráficos por ordenador, un solo producto de matrices gira o escala a la vez cada vértice de un modelo; una traslación necesita una coordenada extra, porque no es lineal."
       }
     },
     {
@@ -38,6 +70,17 @@
       "content": {
         "en": "The $(1,1)$ entry of $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ is row $1$ of the first matrix dotted with column $1$ of the second: $(1,2)\\cdot(0,1) = 1\\cdot0 + 2\\cdot1 = 2$. (This particular $B$ swaps columns — matrices *do* things.)",
         "es": "El elemento $(1,1)$ de $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ es la fila $1$ de la primera por la columna $1$ de la segunda: $(1,2)\\cdot(0,1) = 1\\cdot0 + 2\\cdot1 = 2$. (Este $B$ intercambia columnas — las matrices *hacen* cosas.)"
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — the order matters",
+        "es": "Ejemplo resuelto — el orden importa"
+      },
+      "content": {
+        "en": "Let $A = \\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ and $B = \\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$. Multiplying on the right by $B$ swaps the columns of $A$; multiplying on the left swaps its rows. So $AB = \\begin{pmatrix}2&1\\\\4&3\\end{pmatrix}$ and $BA = \\begin{pmatrix}3&4\\\\1&2\\end{pmatrix}$. The two products differ, so $AB \\neq BA$. Check one entry: row $2$ of $BA$ is row $1$ of $A$, so $(BA)_{21} = 1$.",
+        "es": "Sean $A = \\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ y $B = \\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$. Multiplicar por $B$ a la derecha intercambia las columnas de $A$; multiplicar a la izquierda intercambia sus filas. Así, $AB = \\begin{pmatrix}2&1\\\\4&3\\end{pmatrix}$ y $BA = \\begin{pmatrix}3&4\\\\1&2\\end{pmatrix}$. Los dos productos son distintos, luego $AB \\neq BA$. Compruébalo con un elemento: la fila $2$ de $BA$ es la fila $1$ de $A$, así que $(BA)_{21} = 1$."
       }
     },
     {
@@ -79,6 +122,15 @@
           "tex": "1 + 4 = 5",
           "en": "Trace.",
           "es": "Traza."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "-2",
+          "feedback": {
+            "en": "$-2$ is the determinant, $1\\cdot4 - 2\\cdot3$. The trace adds the diagonal: $1 + 4 = 5$.",
+            "es": "$-2$ es el determinante, $1\\cdot4 - 2\\cdot3$. La traza suma la diagonal: $1 + 4 = 5$."
+          }
         }
       ]
     },
@@ -148,7 +200,118 @@
           "en": "Dot product.",
           "es": "Producto escalar."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "10",
+          "feedback": {
+            "en": "$10$ adds all four numbers. The dot product multiplies matching pairs first: $1\\cdot3 + 2\\cdot4 = 11$.",
+            "es": "$10$ suma los cuatro números. El producto escalar multiplica primero las parejas que coinciden: $1\\cdot3 + 2\\cdot4 = 11$."
+          }
+        }
       ]
+    },
+    {
+      "id": "linalg-09-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "What is the $(2,1)$ entry of $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}\\begin{pmatrix}5&6\\\\7&8\\end{pmatrix}$?",
+        "es": "¿Cuál es el elemento $(2,1)$ de $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}\\begin{pmatrix}5&6\\\\7&8\\end{pmatrix}$?"
+      },
+      "answer": "43",
+      "acceptedAlt": [
+        "3*5+4*7"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "21",
+          "feedback": {
+            "en": "$21 = 3\\cdot7$ multiplies matching entries. A matrix product is not entrywise: the $(2,1)$ entry is row $2$ dotted with column $1$, so $3\\cdot5 + 4\\cdot7 = 43$.",
+            "es": "$21 = 3\\cdot7$ multiplica elementos que ocupan el mismo sitio. El producto de matrices no es elemento a elemento: el $(2,1)$ es la fila $2$ por la columna $1$, así que $3\\cdot5 + 4\\cdot7 = 43$."
+          }
+        },
+        {
+          "answer": "31",
+          "feedback": {
+            "en": "$31$ is the $(2,1)$ entry of the product in the other order. Order matters: $BA$ and $AB$ differ.",
+            "es": "$31$ es el elemento $(2,1)$ del producto en el otro orden. El orden importa: $BA$ y $AB$ son distintos."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Row 2 of the first matrix dotted with column 1 of the second.",
+        "es": "La fila 2 de la primera matriz por la columna 1 de la segunda."
+      },
+      "solution": [
+        {
+          "tex": "(3,4)\\cdot(5,7) = 3\\cdot5 + 4\\cdot7",
+          "en": "Row 2 times column 1.",
+          "es": "Fila 2 por columna 1."
+        },
+        {
+          "tex": "= 15 + 28 = 43",
+          "en": "The (2,1) entry.",
+          "es": "El elemento (2,1)."
+        }
+      ]
+    },
+    {
+      "id": "linalg-09-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$A$ is $2\\times3$ and $B$ is $3\\times4$. Which product exists, and what is its size?",
+        "es": "$A$ es de tamaño $2\\times3$ y $B$ de tamaño $3\\times4$. ¿Qué producto existe, y de qué tamaño es?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Neither exists, because a product needs both factors to be square.",
+            "es": "Ninguno existe, porque un producto necesita que los dos factores sean cuadrados."
+          },
+          "correct": false,
+          "why": {
+            "en": "A product needs the inner sizes to match, not square matrices. $AB$ is defined here, so this is false.",
+            "es": "Un producto necesita que coincidan los tamaños interiores, no que las matrices sean cuadradas. Aquí $AB$ sí está definido, así que es falso."
+          }
+        },
+        {
+          "text": {
+            "en": "$AB$ exists, and it is $2\\times4$, since the inner $3$s match.",
+            "es": "$AB$ existe, y es de tamaño $2\\times4$, pues los $3$ interiores coinciden."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. The inner sizes match, $3 = 3$, so the product exists, and the outer sizes $2$ and $4$ give its size, $2\\times4$.",
+            "es": "Exacto. Los tamaños interiores coinciden, $3 = 3$, así que el producto existe, y los exteriores $2$ y $4$ dan su tamaño, $2\\times4$."
+          }
+        },
+        {
+          "text": {
+            "en": "$AB$ exists, and it is $2\\times3$, the size of the first factor.",
+            "es": "$AB$ existe, y es de tamaño $2\\times3$, el tamaño del primer factor."
+          },
+          "correct": false,
+          "why": {
+            "en": "The product does not keep the size of its first factor. Its size comes from the outer sizes, $2$ and $4$.",
+            "es": "El producto no conserva el tamaño de su primer factor. Su tamaño sale de los tamaños exteriores, $2$ y $4$."
+          }
+        },
+        {
+          "text": {
+            "en": "$BA$ exists, and it is $3\\times2$, the outer sizes of the factors.",
+            "es": "$BA$ existe, y es de tamaño $3\\times2$, los tamaños exteriores de los factores."
+          },
+          "correct": false,
+          "why": {
+            "en": "$BA$ needs the $4$ columns of $B$ to match the $2$ rows of $A$. They do not match, so $BA$ is not defined.",
+            "es": "$BA$ necesita que las $4$ columnas de $B$ coincidan con las $2$ filas de $A$. No coinciden, así que $BA$ no está definido."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write the sizes next to each other: the inner pair must match.",
+        "es": "Escribe los tamaños uno junto a otro: el par interior debe coincidir."
+      }
     }
   ],
   "references": [

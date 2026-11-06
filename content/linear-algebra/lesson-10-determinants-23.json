@@ -2,7 +2,7 @@
   "id": "linalg-10-determinants-23",
   "subjectId": "linear-algebra",
   "order": 10,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Determinants (Order 2 & 3)",
     "es": "Determinantes (orden 2 y 3)"
@@ -11,15 +11,32 @@
     {
       "type": "prose",
       "content": {
-        "en": "The **determinant** condenses a square matrix into a single number that answers a deep question: does the matrix preserve or destroy information? Geometrically, $|\\det A|$ is the **factor by which areas (2D) or volumes (3D) are scaled** by the transformation, and its sign records whether orientation is flipped.",
-        "es": "El **determinante** condensa una matriz cuadrada en un único número que responde una pregunta profunda: ¿la matriz conserva o destruye información? Geométricamente, $|\\det A|$ es el **factor por el que se escalan las áreas (2D) o los volúmenes (3D)** bajo la transformación, y su signo indica si se invierte la orientación."
+        "en": "The **determinant** condenses a square matrix into a single number that answers a deep question: is the matrix invertible, that is, does it squash space onto a lower dimension and lose information? Geometrically, $|\\det A|$ is the **factor by which areas (2D) or volumes (3D) are scaled** by the transformation, and its sign records whether orientation is flipped.",
+        "es": "El **determinante** condensa una matriz cuadrada en un único número que responde una pregunta profunda: ¿es la matriz invertible, es decir, aplasta el espacio sobre una dimensión menor y pierde información? Geométricamente, $|\\det A|$ es el **factor por el que se escalan las áreas (2D) o los volúmenes (3D)** bajo la transformación, y su signo indica si se invierte la orientación."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-20-determinant-inverse"
+      ],
+      "note": {
+        "en": "Determinants of order 2 and 3 are what the inverse matrix formula uses.",
+        "es": "Los determinantes de orden 2 y 3 son los que usa la fórmula de la matriz inversa."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "For a $2\\times2$ matrix, $\\det\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix} = ad - bc$ — the area of the parallelogram spanned by its rows. For $3\\times3$, expand along a row using **cofactors** (each entry times the determinant of the $2\\times2$ left after deleting its row and column, with alternating signs).",
-        "es": "Para una matriz $2\\times2$, $\\det\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix} = ad - bc$ — el área del paralelogramo generado por sus filas. Para $3\\times3$, desarrolla por una fila usando **cofactores** (cada elemento por el determinante del $2\\times2$ que queda al borrar su fila y columna, con signos alternos)."
+        "en": "For a $2\\times2$ matrix, $\\det\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix} = ad - bc$ — its **signed** area: the parallelogram spanned by its rows has area $|ad - bc|$, and the sign tells whether the second row lies counterclockwise from the first. For $3\\times3$, expand along a row using **cofactors** (each entry times the determinant of the $2\\times2$ left after deleting its row and column, with alternating signs).",
+        "es": "Para una matriz $2\\times2$, $\\det\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix} = ad - bc$ — su área **con signo**: el paralelogramo generado por sus filas tiene área $|ad - bc|$, y el signo indica si la segunda fila está en sentido antihorario respecto a la primera. Para $3\\times3$, desarrolla por una fila usando **cofactores** (cada elemento por el determinante del $2\\times2$ que queda al borrar su fila y columna, con signos alternos)."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, expanding along row $i$ gives $\\det A = \\sum_j (-1)^{i+j} a_{ij}\\det M_{ij}$, where $M_{ij}$ is the matrix left after deleting row $i$ and column $j$. The signs form a checkerboard, $+,-,+$ along the first row. Choose the row or column with the most zeros, because a zero entry removes its term. For $3\\times3$ there is also Sarrus's rule: copy the first two columns to the right, add the three products along the downward diagonals and subtract the three along the upward ones. It works only for $3\\times3$. A $4\\times4$ matrix has $24$ terms, not the $8$ that a diagonal scheme would give, so the rule does not extend. The same expansion works along a column, because $\\det A^T = \\det A$, so the best line is simply the one with the most zeros, row or column.",
+        "es": "**Con precisión**, el desarrollo por cofactores de la fila $i$ es $\\det A = \\sum_j (-1)^{i+j} a_{ij}\\det M_{ij}$, donde $M_{ij}$ es la matriz que queda al borrar la fila $i$ y la columna $j$. Los signos forman un tablero de ajedrez, $+,-,+$ en la primera fila. Elige la fila o columna con más ceros, porque un cero anula su término. Para $3\\times3$ existe también la regla de Sarrus: copia las dos primeras columnas a la derecha, suma los tres productos de las diagonales descendentes y resta los de las ascendentes. Solo sirve para $3\\times3$. Una matriz $4\\times4$ tiene $24$ términos, no los $8$ que daría un esquema de diagonales, así que la regla no se extiende. El mismo desarrollo vale por columnas, porque $\\det A^T = \\det A$, así que conviene la línea que tenga más ceros, sea fila o columna."
       }
     },
     {
@@ -27,6 +44,13 @@
       "content": {
         "en": "A shortcut: for **triangular** matrices (all zeros above or below the diagonal), the determinant is just the **product of the diagonal entries**. Since the identity is triangular with $1$s, $\\det I = 1$ — a transformation that changes nothing scales volume by $1$.",
         "es": "Un atajo: para matrices **triangulares** (todo ceros encima o debajo de la diagonal), el determinante es simplemente el **producto de la diagonal**. Como la identidad es triangular con unos, $\\det I = 1$ — una transformación que no cambia nada escala el volumen por $1$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The determinant earns its keep in three places. The area of a triangle with corners at $\\mathbf 0$, $(x_1,y_1)$ and $(x_2,y_2)$ is $\\tfrac12\\lvert x_1y_2 - x_2y_1\\rvert$, half the parallelogram. A square matrix is invertible exactly when its determinant is not zero, the test of lesson 12. And in multivariable calculus, the Jacobian determinant gives the area scaling when you change variables, for instance $r$ in polar coordinates, where the area element is $r\\,dr\\,d\\theta$. The invertibility test rests on one fact: for a square matrix, the determinant is zero exactly when its columns are dependent.",
+        "es": "El determinante sirve en tres sitios. El área de un triángulo con vértices en $\\mathbf 0$, $(x_1,y_1)$ y $(x_2,y_2)$ es $\\tfrac12\\lvert x_1y_2 - x_2y_1\\rvert$, la mitad del paralelogramo. Una matriz cuadrada es invertible exactamente cuando su determinante no es cero, la prueba de la lección 12. Y en cálculo en varias variables, el determinante jacobiano da el cambio de área al cambiar de variables, por ejemplo $r$ en coordenadas polares, donde el elemento de área es $r\\,dr\\,d\\theta$. La prueba de invertibilidad descansa en un hecho: en una matriz cuadrada, el determinante es cero exactamente cuando sus columnas son dependientes."
       }
     },
     {
@@ -38,6 +62,17 @@
       "content": {
         "en": "$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix} = 1\\cdot4 - 2\\cdot3 = 4 - 6 = -2$. The negative sign means this map reverses orientation, and $|{-2}| = 2$ means it doubles areas. For the triangular $\\begin{pmatrix}1&2&3\\\\0&1&4\\\\0&0&1\\end{pmatrix}$, just multiply the diagonal: $1\\cdot1\\cdot1 = 1$.",
         "es": "$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix} = 1\\cdot4 - 2\\cdot3 = 4 - 6 = -2$. El signo negativo indica que esta aplicación invierte la orientación, y $|{-2}| = 2$ que duplica áreas. Para la triangular $\\begin{pmatrix}1&2&3\\\\0&1&4\\\\0&0&1\\end{pmatrix}$, multiplica la diagonal: $1\\cdot1\\cdot1 = 1$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — expanding along a row with a zero",
+        "es": "Ejemplo resuelto — desarrollar por una fila con un cero"
+      },
+      "content": {
+        "en": "Take $M = \\begin{pmatrix}1&2&0\\\\3&1&2\\\\0&1&1\\end{pmatrix}$. Expand along row $1$, whose third entry is $0$, so that term costs nothing: $\\det M = 1\\cdot\\det\\begin{pmatrix}1&2\\\\1&1\\end{pmatrix} - 2\\cdot\\det\\begin{pmatrix}3&2\\\\0&1\\end{pmatrix} = 1(1-2) - 2(3-0) = -1 - 6 = -7$. Sarrus gives the same $-7$. The signs alternate $+,-,+$ along the row, and each minor is the $2\\times2$ determinant left after deleting row $1$ and one column. Any row or column gives the same answer, so pick the one with the most zeros.",
+        "es": "Toma $M = \\begin{pmatrix}1&2&0\\\\3&1&2\\\\0&1&1\\end{pmatrix}$. Desarrolla por la fila $1$, cuyo tercer elemento es $0$, de modo que ese término no cuesta nada: $\\det M = 1\\cdot\\det\\begin{pmatrix}1&2\\\\1&1\\end{pmatrix} - 2\\cdot\\det\\begin{pmatrix}3&2\\\\0&1\\end{pmatrix} = 1(1-2) - 2(3-0) = -1 - 6 = -7$. La regla de Sarrus da el mismo $-7$. Los signos alternan $+,-,+$ a lo largo de la fila, y cada menor es el determinante $2\\times2$ que queda al borrar la fila $1$ y una columna. Vale cualquier fila o columna, así que elige la que tenga más ceros."
       }
     },
     {
@@ -147,6 +182,15 @@
           "en": "Determinant.",
           "es": "Determinante."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5$ is the trace, $2+3$. The determinant of a diagonal matrix is the product of the diagonal: $2\\cdot3 = 6$.",
+            "es": "$5$ es la traza, $2+3$. El determinante de una matriz diagonal es el producto de la diagonal: $2\\cdot3 = 6$."
+          }
+        }
       ]
     },
     {
@@ -194,6 +238,108 @@
           "es": "Determinante triangular."
         }
       ]
+    },
+    {
+      "id": "linalg-10-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "What is the area of the parallelogram spanned by $(1,2)$ and $(3,1)$?",
+        "es": "¿Cuál es el área del paralelogramo generado por $(1,2)$ y $(3,1)$?"
+      },
+      "answer": "5",
+      "acceptedAlt": [
+        "abs(1*1-2*3)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "-5",
+          "feedback": {
+            "en": "$-5$ is the signed area, $1\\cdot1 - 2\\cdot3$. An area is the absolute value: $|-5| = 5$.",
+            "es": "$-5$ es el área con signo, $1\\cdot1 - 2\\cdot3$. Un área es el valor absoluto: $|-5| = 5$."
+          }
+        },
+        {
+          "answer": "7",
+          "feedback": {
+            "en": "$7$ is $1\\cdot1 + 2\\cdot3$, with a plus sign. The determinant subtracts the cross products: $ad - bc$.",
+            "es": "$7$ es $1\\cdot1 + 2\\cdot3$, con signo más. El determinante resta los productos cruzados: $ad - bc$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Put the two vectors in the rows of a matrix, then take the absolute value of its determinant.",
+        "es": "Pon los dos vectores en las filas de una matriz y toma el valor absoluto de su determinante."
+      },
+      "solution": [
+        {
+          "tex": "\\det\\begin{pmatrix}1&2\\\\3&1\\end{pmatrix} = 1\\cdot1 - 2\\cdot3 = -5",
+          "en": "The signed area.",
+          "es": "El área con signo."
+        },
+        {
+          "tex": "|-5| = 5",
+          "en": "The area is its absolute value.",
+          "es": "El área es su valor absoluto."
+        }
+      ]
+    },
+    {
+      "id": "linalg-10-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A $2\\times2$ matrix $A$ has $\\det A = -3$. What does $\\mathbf x \\mapsto A\\mathbf x$ do to areas?",
+        "es": "Una matriz $2\\times2$ $A$ tiene $\\det A = -3$. ¿Qué hace la aplicación $\\mathbf x \\mapsto A\\mathbf x$ con las áreas?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It multiplies areas by $-3$, so the areas it produces are negative.",
+            "es": "Multiplica las áreas por $-3$, así que las áreas que produce son negativas."
+          },
+          "correct": false,
+          "why": {
+            "en": "An area is never negative. The scale factor is $|\\det A| = 3$, and the sign only records orientation.",
+            "es": "Un área nunca es negativa. El factor de escala es $|\\det A| = 3$, y el signo solo registra la orientación."
+          }
+        },
+        {
+          "text": {
+            "en": "It multiplies areas by $\\tfrac13$, since the determinant divides them.",
+            "es": "Multiplica las áreas por $\\tfrac13$, porque el determinante las divide."
+          },
+          "correct": false,
+          "why": {
+            "en": "The determinant multiplies areas, it does not divide them. Dividing by $\\det A$ is the rule for the inverse matrix.",
+            "es": "El determinante multiplica las áreas, no las divide. Dividir entre $\\det A$ es la regla de la matriz inversa."
+          }
+        },
+        {
+          "text": {
+            "en": "It cannot happen: an area cannot be negative, so the determinant cannot be.",
+            "es": "No puede pasar: un área no puede ser negativa, así que el determinante tampoco."
+          },
+          "correct": false,
+          "why": {
+            "en": "A determinant is a signed number, not an area. Negative values are how orientation is recorded.",
+            "es": "El determinante es un número con signo, no un área. Los valores negativos registran la orientación."
+          }
+        },
+        {
+          "text": {
+            "en": "It multiplies areas by $3$ and reverses orientation, because $\\det A < 0$.",
+            "es": "Multiplica las áreas por $3$ e invierte la orientación, porque $\\det A < 0$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $|\\det A| = 3$ is the scale factor, and the negative sign means the map flips the orientation.",
+            "es": "Exacto. $|\\det A| = 3$ es el factor de escala, y el signo negativo significa que la aplicación invierte la orientación."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Two things to read off: the size of the determinant and its sign.",
+        "es": "Hay que leer dos cosas: el tamaño del determinante y su signo."
+      }
     }
   ],
   "references": [

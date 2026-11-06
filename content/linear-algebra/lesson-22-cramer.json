@@ -2,7 +2,7 @@
   "id": "linalg-22-cramer",
   "subjectId": "linear-algebra",
   "order": 22,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Cramer's Method",
     "es": "Método de Cramer"
@@ -19,11 +19,19 @@
       "type": "prereq",
       "lessons": [
         "linalg-10-determinants-23",
-        "linalg-19-systems-gauss"
+        "linalg-19-systems-gauss",
+        "linalg-12-rank-inverse"
       ],
       "note": {
-        "en": "Cramer's rule combines determinants with linear systems.",
-        "es": "La regla de Cramer combina determinantes con sistemas lineales."
+        "en": "Cramer's rule combines determinants with linear systems, and $\\det A \\neq 0$ is the invertibility test of the rank and inverse lesson.",
+        "es": "La regla de Cramer combina determinantes con sistemas lineales, y $\\det A \\neq 0$ es el criterio de invertibilidad del tema de rango e inversa."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, Cramer's rule comes from the inverse. If $\\det A \\neq 0$, then $\\mathbf x = A^{-1}\\mathbf b = \\tfrac{1}{\\det A}\\operatorname{adj}(A)\\,\\mathbf b$, and the $i$-th entry of $\\operatorname{adj}(A)\\,\\mathbf b$ is $\\det A_i$, expanded along column $i$. That is the whole proof. The rule needs a square matrix with $\\det A \\neq 0$, which is exactly the condition for $A$ to be invertible. For a $3\\times3$ system you compute four $3\\times3$ determinants, and divide three of them by the fourth.",
+        "es": "**Con precisión**, la regla de Cramer sale de la inversa. Si $\\det A \\neq 0$, entonces $\\mathbf x = A^{-1}\\mathbf b = \\tfrac{1}{\\det A}\\operatorname{adj}(A)\\,\\mathbf b$, y la entrada $i$-ésima de $\\operatorname{adj}(A)\\,\\mathbf b$ es $\\det A_i$, desarrollado por la columna $i$. Esa es toda la demostración. La regla exige una matriz cuadrada con $\\det A \\neq 0$, que es justo la condición para que $A$ tenga inversa. En un sistema $3\\times3$ calculas cuatro determinantes de $3\\times3$ y divides tres de ellos entre el cuarto."
       }
     },
     {
@@ -36,8 +44,22 @@
     {
       "type": "prose",
       "content": {
-        "en": "The rule **fails when** $\\det A = 0$: division by zero is undefined, reflecting that the system then has no unique solution (it is inconsistent or indeterminate). So the determinant again acts as the gatekeeper between the three solution worlds.",
-        "es": "La regla **falla cuando** $\\det A = 0$: la división entre cero no está definida, reflejando que el sistema entonces no tiene solución única (es incompatible o indeterminado). Así el determinante vuelve a actuar de guardián entre los tres mundos de soluciones."
+        "en": "The rule **fails when** $\\det A = 0$: division by zero is undefined, reflecting that the system then has no unique solution (it is inconsistent or indeterminate). So the determinant separates the unique case from the other two, which Rouché-Fröbenius then tells apart.",
+        "es": "La regla **falla cuando** $\\det A = 0$: la división entre cero no está definida, reflejando que el sistema entonces no tiene solución única (es incompatible o indeterminado). Así el determinante separa el caso de solución única de los otros dos, que Rouché-Fröbenius distingue después."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Closed formulas show **how the answer moves** when the data move. Each $x_i$ is a fraction whose numerator and denominator depend on the entries, so you can see at once how a change in one coefficient, or in $\\mathbf b$, affects the solution. Economists use this in comparative statics: how an equilibrium shifts when a tax or a demand parameter changes. For the same reason, Cramer's rule is handy for symbolic work, where you keep letters instead of numbers and want the formula, not one value.",
+        "es": "Las fórmulas cerradas muestran **cómo se mueve la respuesta** cuando cambian los datos. Cada $x_i$ es una fracción cuyo numerador y denominador dependen de las entradas, así que se ve de un vistazo cómo afecta a la solución un cambio en un coeficiente, o en $\\mathbf b$. Los economistas lo usan en estática comparativa: cómo cambia un equilibrio cuando se modifica un impuesto o un parámetro de demanda. Por la misma razón, la regla sirve para el cálculo simbólico, cuando se trabaja con letras en vez de números y se quiere la fórmula, no un valor."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The trap is the replacement. Put $\\mathbf b$ into column $i$ of a copy of $A$ and keep the other columns as they are: replacing a **row** instead gives a determinant that means nothing here. The denominator is the same, $\\det A$, for every unknown, so compute it once. Only the numerators change from one unknown to the next. A quick check at the end: substitute the values into one of the original equations.",
+        "es": "La trampa está en la sustitución. Pon $\\mathbf b$ en la columna $i$ de una copia de $A$ y deja las demás columnas como están: sustituir una **fila** en vez de una columna da un determinante que aquí no significa nada. El denominador es el mismo, $\\det A$, para todas las incógnitas, así que calcúlalo una sola vez. Solo cambian los numeradores de una incógnita a la siguiente. Una comprobación rápida al final: sustituye los valores en una de las ecuaciones originales."
       }
     },
     {
@@ -52,6 +74,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a 3×3 system",
+        "es": "Ejemplo resuelto — un sistema 3×3"
+      },
+      "content": {
+        "en": "Solve $2x+y+z=3$, $x+3y-z=8$, $x-y+2z=-3$. The coefficient determinant is $\\det A = 2(3\\cdot2 - (-1)(-1)) - 1(1\\cdot2 - (-1)\\cdot1) + 1(1\\cdot(-1) - 3\\cdot1) = 3$, so the solution is unique. Replace the first column by $\\mathbf b = (3, 8, -3)$: $\\det A_1 = 3(6-1) - 1(16-3) + 1(-8+9) = 3$, so $x = \\tfrac{3}{3} = 1$. The same method gives $y = 2$ and $z = -1$, and $(1, 2, -1)$ satisfies the first equation: $2 + 2 - 1 = 3$.",
+        "es": "Resuelve $2x+y+z=3$, $x+3y-z=8$, $x-y+2z=-3$. El determinante de los coeficientes es $\\det A = 2(3\\cdot2 - (-1)(-1)) - 1(1\\cdot2 - (-1)\\cdot1) + 1(1\\cdot(-1) - 3\\cdot1) = 3$, así que la solución es única. Sustituye la primera columna por $\\mathbf b = (3, 8, -3)$: $\\det A_1 = 3(6-1) - 1(16-3) + 1(-8+9) = 3$, así que $x = \\tfrac{3}{3} = 1$. El mismo método da $y = 2$ y $z = -1$, y $(1, 2, -1)$ cumple la primera ecuación: $2 + 2 - 1 = 3$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -59,12 +92,12 @@
       ],
       "code": {
         "en": "import numpy as np\nA = np.array([[2, 1], [1, 3]])\nb = np.array([5, 10])\n# Cramer’s rule for the first unknown\nd = np.linalg.det(A)\nprint(round(np.linalg.det(np.column_stack([b, A[:, 1]])) / d, 4))",
-        "es": "import numpy as np\nA = np.array([[2, 1], [1, 3]])\nb = np.array([5, 10])\n# regla de Cramer para la primera incognita\nd = np.linalg.det(A)\nprint(round(np.linalg.det(np.column_stack([b, A[:, 1]])) / d, 4))"
+        "es": "import numpy as np\nA = np.array([[2, 1], [1, 3]])\nb = np.array([5, 10])\n# regla de Cramer para la primera incógnita\nd = np.linalg.det(A)\nprint(round(np.linalg.det(np.column_stack([b, A[:, 1]])) / d, 4))"
       },
       "expectedOutput": "1.0",
       "caption": {
         "en": "Cramer's rule gives each unknown as a ratio of determinants.",
-        "es": "La regla de Cramer da cada incognita como cociente de determinantes."
+        "es": "La regla de Cramer da cada incógnita como cociente de determinantes."
       }
     }
   ],
@@ -91,6 +124,15 @@
           "en": "Determinant.",
           "es": "Determinante."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "A sign slip: $(1)(-1)$ is $-1$, not $1$. So the determinant is $-1 - 1 = -2$, not $0$.",
+            "es": "Un error de signo: $(1)(-1)$ es $-1$, no $1$. Así que el determinante es $-1 - 1 = -2$, no $0$."
+          }
+        }
       ]
     },
     {
@@ -114,6 +156,15 @@
           "tex": "\\tfrac{-6}{-2} = 3",
           "en": "x = 3.",
           "es": "x = 3."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "-3",
+          "feedback": {
+            "en": "$-3$ divides $-6$ by $+2$, the size of the determinant. Keep its sign: $\\tfrac{-6}{-2} = 3$.",
+            "es": "$-3$ divide $-6$ entre $+2$, el tamaño del determinante. Conserva su signo: $\\tfrac{-6}{-2} = 3$."
+          }
         }
       ]
     },
@@ -161,6 +212,111 @@
           "es": "Sin solución única."
         }
       ]
+    },
+    {
+      "id": "linalg-22-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Solve $2x + y = 7$, $x - 3y = 0$ by Cramer's rule. Find $y$.",
+        "es": "Resuelve $2x + y = 7$, $x - 3y = 0$ por la regla de Cramer. Halla $y$."
+      },
+      "answer": "1",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "-7",
+          "feedback": {
+            "en": "$-7$ is the numerator alone. You still divide by $\\det A = -7$: $\\tfrac{-7}{-7} = 1$.",
+            "es": "$-7$ es solo el numerador. Aún debes dividir entre $\\det A = -7$: $\\tfrac{-7}{-7} = 1$."
+          }
+        },
+        {
+          "answer": "-1",
+          "feedback": {
+            "en": "$-1$ comes from dividing by $+7$, the size of $\\det A$, instead of by its sign. The denominator is $\\det A = -7$.",
+            "es": "$-1$ sale de dividir entre $+7$, el tamaño de $\\det A$, en vez de entre su signo. El denominador es $\\det A = -7$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Replace the second column by the right-hand side (7, 0), then divide by det A.",
+        "es": "Sustituye la segunda columna por el término de la derecha (7, 0) y divide entre det A."
+      },
+      "solution": [
+        {
+          "tex": "\\det A = \\det\\begin{pmatrix}2&1\\\\1&-3\\end{pmatrix} = -6 - 1 = -7",
+          "en": "The coefficient determinant.",
+          "es": "El determinante de los coeficientes."
+        },
+        {
+          "tex": "\\det A_2 = \\det\\begin{pmatrix}2&7\\\\1&0\\end{pmatrix} = 0 - 7 = -7",
+          "en": "Replace the second column by (7, 0).",
+          "es": "Sustituye la segunda columna por (7, 0)."
+        },
+        {
+          "tex": "y = \\tfrac{-7}{-7} = 1",
+          "en": "Check: $x = 3$, $y = 1$ give $3 - 3 = 0$ and $6 + 1 = 7$.",
+          "es": "Comprueba: $x = 3$, $y = 1$ dan $3 - 3 = 0$ y $6 + 1 = 7$."
+        }
+      ]
+    },
+    {
+      "id": "linalg-22-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "For a square system $A\\mathbf x = \\mathbf b$ with $\\det A = 0$, what does Cramer's rule tell you?",
+        "es": "En un sistema cuadrado $A\\mathbf x = \\mathbf b$ con $\\det A = 0$, ¿qué te dice la regla de Cramer?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "No solution at all, because the formula would divide by zero.",
+            "es": "Ninguna solución, porque la fórmula dividiría entre cero."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. The formula stops working, but that is not a verdict. A system with $\\det A = 0$ can still have solutions.",
+            "es": "No. La fórmula deja de funcionar, pero eso no es un veredicto. Un sistema con $\\det A = 0$ puede tener soluciones."
+          }
+        },
+        {
+          "text": {
+            "en": "Infinitely many solutions, because a zero determinant means a singular matrix.",
+            "es": "Infinitas soluciones, porque un determinante nulo significa matriz singular."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. A singular matrix can also give an inconsistent system, with no solution at all.",
+            "es": "No. Una matriz singular también puede dar un sistema incompatible, sin ninguna solución."
+          }
+        },
+        {
+          "text": {
+            "en": "Only $\\mathbf x = \\mathbf 0$, because every numerator must then be zero.",
+            "es": "Solo $\\mathbf x = \\mathbf 0$, porque entonces cada numerador debe ser cero."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. The numerators need not vanish, and $\\mathbf 0$ solves the system only when $\\mathbf b = \\mathbf 0$.",
+            "es": "No. Los numeradores no tienen por qué anularse, y $\\mathbf 0$ resuelve el sistema solo cuando $\\mathbf b = \\mathbf 0$."
+          }
+        },
+        {
+          "text": {
+            "en": "Nothing about which case holds: the ranks decide, as in Rouché-Fröbenius.",
+            "es": "Nada sobre qué caso se da: deciden los rangos, como en Rouché-Fröbenius."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. When $\\det A = 0$ the rule is silent. Compare $r$ and $r'$ with the unknowns to decide the case.",
+            "es": "Correcto. Cuando $\\det A = 0$ la regla no dice nada. Compara $r$ y $r'$ con las incógnitas para decidir el caso."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Cramer's rule divides by det A. What happens when that division is impossible?",
+        "es": "La regla de Cramer divide entre det A. ¿Qué pasa cuando esa división no es posible?"
+      }
     }
   ],
   "references": [

@@ -2,7 +2,7 @@
   "id": "linalg-07-linear-combination",
   "subjectId": "linear-algebra",
   "order": 7,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Linear Combination & Span",
     "es": "Combinación lineal y subespacio generado"
@@ -13,6 +13,16 @@
       "content": {
         "en": "A **linear combination** of vectors $v_1, \\dots, v_k$ is any sum $c_1 v_1 + \\dots + c_k v_k$ formed with scalar weights $c_i$. This single idea — scaling vectors and adding them — is the engine of the entire subject. Mixing colors, blending ingredients, and combining features in a model are all linear combinations.",
         "es": "Una **combinación lineal** de vectores $v_1, \\dots, v_k$ es cualquier suma $c_1 v_1 + \\dots + c_k v_k$ formada con pesos escalares $c_i$. Esta única idea — escalar vectores y sumarlos — es el motor de toda la asignatura. Mezclar colores, combinar ingredientes y combinar características en un modelo son todas combinaciones lineales."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-11-systems-2x2"
+      ],
+      "note": {
+        "en": "Finding the weights $c_1, c_2$ means solving a $2\\times 2$ system, as the second example does.",
+        "es": "Hallar los pesos $c_1, c_2$ es resolver un sistema $2\\times 2$, como hace el segundo ejemplo."
       }
     },
     {
@@ -30,6 +40,27 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, the span of $v_1, \\dots, v_k$ is the smallest subspace that contains them: it contains each $v_i$, and every subspace containing the $v_i$ must contain all their combinations. Redundant vectors add nothing. The vectors $(1,2)$ and $(2,4)$ span only the line through $(1,2)$, because $(2,4) = 2(1,2)$ is already in the span of the first. Adding a vector that already lies in the span changes nothing; only a vector outside it enlarges the span, which is why the next lesson asks which vectors are really needed. The span of no vectors is $\\{\\mathbf 0\\}$, the smallest subspace of all.",
+        "es": "**Con precisión**, el generado de $v_1, \\dots, v_k$ es el menor subespacio que los contiene: contiene a cada $v_i$, y todo subespacio que contenga a los $v_i$ debe contener todas sus combinaciones. Los vectores redundantes no añaden nada. Los vectores $(1,2)$ y $(2,4)$ generan solo la recta por $(1,2)$, porque $(2,4) = 2(1,2)$ ya está en el generado del primero. Añadir un vector que ya está en el generado no cambia nada; solo uno que quede fuera lo agranda, por eso la lección siguiente pregunta qué vectores hacen falta de verdad. El generado de ningún vector es $\\{\\mathbf 0\\}$, el menor subespacio de todos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The column picture.** For a matrix $A$ with columns $a_1$ and $a_2$, the product $A\\mathbf x$ is the combination of the columns with the entries of $\\mathbf x$ as weights: $$A\\mathbf x = x_1 a_1 + x_2 a_2.$$ So $A\\mathbf x = \\mathbf b$ asks whether $\\mathbf b$ lies in the span of the columns of $A$, and the entries of a solution are the weights. For $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ and $\\mathbf x = (2,3)$, $A\\mathbf x = 2(1,0) + 3(1,1) = (5,3)$.",
+        "es": "**La lectura por columnas.** Para una matriz $A$ con columnas $a_1$ y $a_2$, el producto $A\\mathbf x$ es la combinación de las columnas con las componentes de $\\mathbf x$ como pesos: $$A\\mathbf x = x_1 a_1 + x_2 a_2.$$ Así, $A\\mathbf x = \\mathbf b$ pregunta si $\\mathbf b$ está en el generado de las columnas de $A$, y las componentes de una solución son los pesos. Para $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ y $\\mathbf x = (2,3)$, $A\\mathbf x = 2(1,0) + 3(1,1) = (5,3)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why it matters.** A linear model predicts $\\hat y = w_1 x_1 + \\dots + w_n x_n$, a combination of its feature vectors weighted by the learned numbers $w_i$. Fitting the model asks which combination best matches the targets, and a feature that is already a combination of the others adds nothing new to the span. In graphics, a color on screen is a combination of red, green and blue, with weights between $0$ and $1$.",
+        "es": "**Para qué sirve.** Un modelo lineal predice $\\hat y = w_1 x_1 + \\dots + w_n x_n$, una combinación de sus vectores de características con los números $w_i$ aprendidos como pesos. Ajustar el modelo consiste en hallar la combinación que mejor se ajusta a los datos, y una característica que ya es combinación de las demás no añade nada nuevo al generado. En gráficos, un color de la pantalla es una combinación de rojo, verde y azul, con pesos entre $0$ y $1$."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example",
@@ -41,6 +72,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a 2×2 system",
+        "es": "Ejemplo resuelto — un sistema 2×2"
+      },
+      "content": {
+        "en": "Write $(4,1) = c_1(1,1) + c_2(1,-1)$. Matching components gives $c_1 + c_2 = 4$ and $c_1 - c_2 = 1$. Adding the equations gives $2c_1 = 5$, so $c_1 = \\tfrac52$, and then $c_2 = 4 - \\tfrac52 = \\tfrac32$. Check: $\\tfrac52(1,1) + \\tfrac32(1,-1) = (4,1)$ ✓. Because $(1,1)$ and $(1,-1)$ are independent, these weights are the only ones.",
+        "es": "Escribe $(4,1) = c_1(1,1) + c_2(1,-1)$. Igualando componentes, $c_1 + c_2 = 4$ y $c_1 - c_2 = 1$. Sumando las ecuaciones sale $2c_1 = 5$, así que $c_1 = \\tfrac52$, y luego $c_2 = 4 - \\tfrac52 = \\tfrac32$. Comprobación: $\\tfrac52(1,1) + \\tfrac32(1,-1) = (4,1)$ ✓. Como $(1,1)$ y $(1,-1)$ son independientes, estos pesos son los únicos."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +90,12 @@
       ],
       "code": {
         "en": "import numpy as np\n# find the coefficients writing [3,1] as a combination of the columns\nprint(np.linalg.solve(np.array([[1, 1], [0, 1]]), np.array([3, 1])).tolist())",
-        "es": "import numpy as np\n# halla los coeficientes que escriben [3,1] como combinacion de las columnas\nprint(np.linalg.solve(np.array([[1, 1], [0, 1]]), np.array([3, 1])).tolist())"
+        "es": "import numpy as np\n# halla los coeficientes que escriben [3,1] como combinación de las columnas\nprint(np.linalg.solve(np.array([[1, 1], [0, 1]]), np.array([3, 1])).tolist())"
       },
       "expectedOutput": "[2.0, 1.0]",
       "caption": {
         "en": "Solving a system recovers the combination coefficients.",
-        "es": "Resolver un sistema recupera los coeficientes de la combinacion."
+        "es": "Resolver un sistema recupera los coeficientes de la combinación."
       }
     }
   ],
@@ -76,6 +118,15 @@
           "tex": "(2,3) \\Rightarrow 2",
           "en": "First component.",
           "es": "Primera componente."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5$ adds the weights, $2 + 3$. The first component is $2\\cdot 1 + 3\\cdot 0 = 2$, not the sum of the weights.",
+            "es": "$5$ suma los pesos, $2 + 3$. La primera componente es $2\\cdot 1 + 3\\cdot 0 = 2$, no la suma de los pesos."
+          }
         }
       ]
     },
@@ -141,6 +192,108 @@
           "tex": "c = 2",
           "en": "2·(1,2) = (2,4).",
           "es": "2·(1,2) = (2,4)."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1/2",
+          "feedback": {
+            "en": "$\\frac12$ has the ratio upside down. Each component of $(2,4)$ is $c$ times the matching component of $(1,2)$, so $c = 2/1 = 2$.",
+            "es": "$\\frac12$ tiene la razón al revés. Cada componente de $(2,4)$ es $c$ veces la componente correspondiente de $(1,2)$, así que $c = 2/1 = 2$."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linalg-07-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "What is the span of $(1,2)$ and $(2,4)$?",
+        "es": "¿Cuál es el generado de $(1,2)$ y $(2,4)$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "All of $\\mathbb{R}^2$, because two vectors always span the whole plane.",
+            "es": "Todo $\\mathbb{R}^2$, porque dos vectores siempre generan el plano entero."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: two vectors span the plane only when they are independent. These two are parallel, so every combination stays on one line.",
+            "es": "Error habitual: dos vectores generan el plano solo si son independientes. Estos dos son paralelos, así que toda combinación queda en una recta."
+          }
+        },
+        {
+          "text": {
+            "en": "Only the two given points, because each vector spans just itself.",
+            "es": "Solo los dos puntos dados, porque cada vector genera solo a sí mismo."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: the span is the set of all combinations, not the list of vectors. It contains infinitely many points, including $\\mathbf 0$.",
+            "es": "Error habitual: el generado es el conjunto de todas las combinaciones, no la lista de vectores. Contiene infinitos puntos, incluido $\\mathbf 0$."
+          }
+        },
+        {
+          "text": {
+            "en": "A plane, since the span of two vectors is always two-dimensional.",
+            "es": "Un plano, ya que el generado de dos vectores es siempre bidimensional."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: the dimension of a span counts its independent vectors, not the vectors given. Here one vector is redundant.",
+            "es": "Error habitual: la dimensión de un generado cuenta sus vectores independientes, no los vectores dados. Aquí uno de ellos sobra."
+          }
+        },
+        {
+          "text": {
+            "en": "A line through the origin, since $(2,4)$ lies on the line of $(1,2)$.",
+            "es": "Una recta por el origen, pues $(2,4)$ está sobre la recta de $(1,2)$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $(2,4) = 2(1,2)$, so the span is $\\{c(1,2) : c \\in \\mathbb{R}\\}$, a line through $\\mathbf 0$.",
+            "es": "Exacto. $(2,4) = 2(1,2)$, así que el generado es $\\{c(1,2) : c \\in \\mathbb{R}\\}$, una recta por $\\mathbf 0$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Is $(2,4)$ a multiple of $(1,2)$?",
+        "es": "¿Es $(2,4)$ múltiplo de $(1,2)$?"
+      }
+    },
+    {
+      "id": "linalg-07-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "For which value of $k$ is $(3,k)$ in the span of $(1,2)$?",
+        "es": "¿Para qué valor de $k$ está $(3,k)$ en el generado de $(1,2)$?"
+      },
+      "answer": "6",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "3/2",
+          "feedback": {
+            "en": "$\\frac32$ divides $3$ by $2$, the wrong way round. The weight is $c = 3$, from the first component, and the second component is $2c$, so $k = 6$.",
+            "es": "$\\frac32$ divide $3$ entre $2$, al revés. El peso es $c = 3$, por la primera componente, y la segunda componente es $2c$, así que $k = 6$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write $(3,k) = c\\,(1,2)$ and read off $c$ from the first component.",
+        "es": "Escribe $(3,k) = c\\,(1,2)$ y lee $c$ en la primera componente."
+      },
+      "solution": [
+        {
+          "tex": "(3,k) = c(1,2) \\Rightarrow c = 3",
+          "en": "The first components give the weight.",
+          "es": "Las primeras componentes dan el peso."
+        },
+        {
+          "tex": "k = 2c = 6",
+          "en": "The second component is 2c.",
+          "es": "La segunda componente es 2c."
         }
       ]
     }

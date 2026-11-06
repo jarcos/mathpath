@@ -2,7 +2,7 @@
   "id": "linalg-16-dot-norm-angle",
   "subjectId": "linear-algebra",
   "order": 16,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Dot Product, Norm & Angle",
     "es": "Producto escalar, módulo y ángulo"
@@ -18,11 +18,13 @@
     {
       "type": "prereq",
       "lessons": [
-        "linalg-05-vectors-rn"
+        "linalg-05-vectors-rn",
+        "functions-09-trig-ratios",
+        "functions-12-secant-cosecant-inverse"
       ],
       "note": {
-        "en": "Angles use the dot product and vector norms.",
-        "es": "Los angulos usan el producto escalar y las normas."
+        "en": "Angles use the dot product, vector norms and the inverse cosine.",
+        "es": "Los ángulos usan el producto escalar, las normas y el arcocoseno."
       }
     },
     {
@@ -40,6 +42,27 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, the Cauchy–Schwarz inequality says $|u\\cdot v| \\le \\|u\\|\\,\\|v\\|$ for all vectors. That is what makes the cosine formula safe: its quotient always lies between $-1$ and $1$, so $\\theta = \\arccos\\frac{u\\cdot v}{\\|u\\|\\,\\|v\\|}$ exists and lies between $0°$ and $180°$. Equality holds exactly when one vector is a multiple of the other. The formula needs two nonzero vectors: the zero vector has norm $0$, so dividing by it is meaningless and it has no angle.",
+        "es": "**Con precisión**, la desigualdad de Cauchy–Schwarz dice $|u\\cdot v| \\le \\|u\\|\\,\\|v\\|$ para todos los vectores. Eso hace segura la fórmula del coseno: el cociente siempre está entre $-1$ y $1$, así que $\\theta = \\arccos\\frac{u\\cdot v}{\\|u\\|\\,\\|v\\|}$ existe y está entre $0°$ y $180°$. La igualdad se da exactamente cuando un vector es múltiplo del otro. La fórmula necesita dos vectores no nulos: el vector cero tiene norma (o módulo) $0$, dividir entre ella no tiene sentido y no tiene ángulo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The **sign** of $u\\cdot v$ reads the angle at a glance: positive means acute ($\\theta < 90°$), zero means right, negative means obtuse ($\\theta > 90°$). Pythagoras follows from the same algebra: $\\|u+v\\|^2 = \\|u\\|^2 + 2\\,u\\cdot v + \\|v\\|^2$, so the right-angle rule holds exactly when $u\\cdot v = 0$. The trap is to read the size of $u\\cdot v$ as the angle. It also depends on the lengths: a large dot product can come from two long vectors at a modest angle. To compare directions alone, divide by the norms first, which is what the cosine does.",
+        "es": "El **signo** de $u\\cdot v$ indica el ángulo de un vistazo: positivo significa agudo ($\\theta < 90°$), cero significa recto y negativo significa obtuso ($\\theta > 90°$). El teorema de Pitágoras sale del mismo álgebra: $\\|u+v\\|^2 = \\|u\\|^2 + 2\\,u\\cdot v + \\|v\\|^2$, así que la regla del ángulo recto se cumple exactamente cuando $u\\cdot v = 0$. La trampa es leer el tamaño de $u\\cdot v$ como si fuera el ángulo. También depende de las longitudes: un producto escalar grande puede venir de dos vectores largos con un ángulo modesto. Para comparar solo direcciones, divide antes entre las normas, que es lo que hace el coseno."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The dot product does real work in computing and physics. Cosine similarity compares two documents or word vectors (*embeddings*) by their angle and ignores their lengths, so a long article and a short one can still look alike. The attention scores in transformers are dot products between a query and a key, divided by the square root of the key dimension. In physics, the work done by a constant force is $W = \\vec F\\cdot\\vec d$: only the part of the force along the displacement does work.",
+        "es": "El producto escalar trabaja mucho en computación y en física. La similitud coseno compara dos documentos o dos vectores de palabras (*embeddings*) por su ángulo, sin mirar sus longitudes, así que un artículo largo y uno corto pueden parecerse. Las puntuaciones de atención de los transformadores son productos escalares entre una consulta y una clave, divididos por la raíz cuadrada de la dimensión de las claves. En física, el trabajo de una fuerza constante es $W = \\vec F\\cdot\\vec d$: solo cuenta la parte de la fuerza en la dirección del desplazamiento."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example",
@@ -48,6 +71,17 @@
       "content": {
         "en": "$(1,2,3)\\cdot(4,5,6) = 1\\cdot4 + 2\\cdot5 + 3\\cdot6 = 4 + 10 + 18 = 32$. And $(1,0)\\cdot(0,1) = 0$, confirming the axes are perpendicular. The norm of $(3,4)$ is $\\sqrt{(3,4)\\cdot(3,4)} = \\sqrt{25} = 5$.",
         "es": "$(1,2,3)\\cdot(4,5,6) = 1\\cdot4 + 2\\cdot5 + 3\\cdot6 = 4 + 10 + 18 = 32$. Y $(1,0)\\cdot(0,1) = 0$, confirmando que los ejes son perpendiculares. La norma de $(3,4)$ es $\\sqrt{(3,4)\\cdot(3,4)} = \\sqrt{25} = 5$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — the angle between two vectors in space",
+        "es": "Ejemplo resuelto — el ángulo entre dos vectores en el espacio"
+      },
+      "content": {
+        "en": "Find the angle between $u = (1,1,0)$ and $v = (1,0,1)$. The dot product is $1 + 0 + 0 = 1$, and each norm is $\\sqrt2$, so $\\cos\\theta = \\frac{1}{\\sqrt2\\cdot\\sqrt2} = \\frac12$. Since $\\cos 60° = \\frac12$ and $\\theta$ lies between $0°$ and $180°$, the angle is $\\theta = 60°$. The dot product alone, $1$, does not give the angle: the norms have to be divided out.",
+        "es": "Halla el ángulo entre $u = (1,1,0)$ y $v = (1,0,1)$. El producto escalar es $1 + 0 + 0 = 1$, y cada norma es $\\sqrt2$, así que $\\cos\\theta = \\frac{1}{\\sqrt2\\cdot\\sqrt2} = \\frac12$. Como $\\cos 60° = \\frac12$ y $\\theta$ está entre $0°$ y $180°$, el ángulo es $\\theta = 60°$. El producto escalar por sí solo, $1$, no da el ángulo: hay que dividir entre las normas."
       }
     },
     {
@@ -63,7 +97,7 @@
       "expectedOutput": "45.0",
       "caption": {
         "en": "The dot product and norms give the angle between vectors.",
-        "es": "El producto escalar y las normas dan el angulo entre vectores."
+        "es": "El producto escalar y las normas dan el ángulo entre vectores."
       }
     }
   ],
@@ -256,8 +290,8 @@
           },
           "correct": true,
           "why": {
-            "en": "cos(90 degrees)=0, so a·b = |a||b|cos = 0 for perpendicular vectors.",
-            "es": "cos(90 grados)=0, asi que a·b = |a||b|cos = 0 para vectores perpendiculares."
+            "en": "Right. $\\cos 90^\\circ = 0$, so $u\\cdot v = \\|u\\|\\,\\|v\\|\\cos 90^\\circ = 0$ for perpendicular vectors.",
+            "es": "Exacto. $\\cos 90^\\circ = 0$, así que $u\\cdot v = \\|u\\|\\,\\|v\\|\\cos 90^\\circ = 0$ para vectores perpendiculares."
           }
         },
         {
@@ -267,26 +301,119 @@
           },
           "correct": false,
           "why": {
-            "en": "A dot product of 1 has no special geometric meaning here.",
-            "es": "Un producto escalar de 1 no tiene un significado geometrico especial aqui."
+            "en": "A dot product of $1$ says nothing about perpendicularity: $(1,0)\\cdot(1,1) = 1$, and those two vectors form a $45^\\circ$ angle.",
+            "es": "Un producto escalar de $1$ no dice nada sobre la perpendicularidad: $(1,0)\\cdot(1,1) = 1$, y esos dos vectores forman un ángulo de $45^\\circ$."
           }
         },
         {
           "text": {
             "en": "Maximal",
-            "es": "Maximo"
+            "es": "Máximo"
           },
           "correct": false,
           "why": {
-            "en": "The dot product is maximal when the vectors are parallel, not perpendicular.",
-            "es": "El producto escalar es maximo cuando los vectores son paralelos, no perpendiculares."
+            "en": "The dot product is largest when the vectors point the same way, with $u\\cdot v = \\|u\\|\\,\\|v\\|$. Opposite vectors give the smallest value, $-\\|u\\|\\,\\|v\\|$.",
+            "es": "El producto escalar es máximo cuando los vectores apuntan en el mismo sentido, con $u\\cdot v = \\|u\\|\\,\\|v\\|$. Los opuestos dan el mínimo, $-\\|u\\|\\,\\|v\\|$."
+          }
+        },
+        {
+          "text": {
+            "en": "Negative, which means an obtuse angle",
+            "es": "Negativo, lo que significa un ángulo obtuso"
+          },
+          "correct": false,
+          "why": {
+            "en": "A negative dot product means an obtuse angle, between $90^\\circ$ and $180^\\circ$, where $\\cos\\theta < 0$. Only $\\cos 90^\\circ = 0$ gives exactly zero.",
+            "es": "Un producto escalar negativo indica un ángulo obtuso, entre $90^\\circ$ y $180^\\circ$, donde $\\cos\\theta < 0$. Solo $\\cos 90^\\circ = 0$ da exactamente cero."
           }
         }
       ],
       "hint": {
-        "en": "Think of cos(90 degrees).",
-        "es": "Piensa en cos(90 grados)."
+        "en": "Think of $\\cos 90^\\circ$.",
+        "es": "Piensa en $\\cos 90^\\circ$."
       }
+    },
+    {
+      "id": "linalg-16-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "What is the angle in degrees between $(2,2)$ and $(3,0)$?",
+        "es": "¿Cuál es el ángulo en grados entre $(2,2)$ y $(3,0)$?"
+      },
+      "answer": "45",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "Find $\\cos\\theta$ from the dot product and the two norms.",
+        "es": "Halla $\\cos\\theta$ con el producto escalar y las dos normas."
+      },
+      "solution": [
+        {
+          "tex": "(2,2)\\cdot(3,0) = 6,\\quad \\|(2,2)\\| = 2\\sqrt2,\\quad \\|(3,0)\\| = 3",
+          "en": "The dot product and the two norms.",
+          "es": "El producto escalar y las dos normas."
+        },
+        {
+          "tex": "\\cos\\theta = \\frac{6}{2\\sqrt2\\cdot3} = \\frac{\\sqrt2}{2}",
+          "en": "Divide the dot product by the product of the norms.",
+          "es": "Divide el producto escalar entre el producto de las normas."
+        },
+        {
+          "tex": "\\theta = 45^\\circ",
+          "en": "Because $\\cos 45^\\circ = \\frac{\\sqrt2}{2}$.",
+          "es": "Porque $\\cos 45^\\circ = \\frac{\\sqrt2}{2}$."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "6",
+          "feedback": {
+            "en": "$6$ is the dot product $u\\cdot v$. The angle needs the cosine, so divide by $\\|u\\|\\,\\|v\\| = 2\\sqrt2\\cdot3$ first.",
+            "es": "$6$ es el producto escalar $u\\cdot v$. El ángulo necesita el coseno, así que primero divide entre $\\|u\\|\\,\\|v\\| = 2\\sqrt2\\cdot3$."
+          }
+        },
+        {
+          "answer": "sqrt(2)/2",
+          "feedback": {
+            "en": "$\\frac{\\sqrt2}{2}$ is $\\cos\\theta$, not the angle. Take the arccosine: $\\theta = \\arccos\\frac{\\sqrt2}{2} = 45^\\circ$.",
+            "es": "$\\frac{\\sqrt2}{2}$ es $\\cos\\theta$, no el ángulo. Toma el arcocoseno: $\\theta = \\arccos\\frac{\\sqrt2}{2} = 45^\\circ$."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linalg-16-e7",
+      "answerType": "number",
+      "prompt": {
+        "en": "For which $k$ are $(1,k)$ and $(4,2)$ orthogonal?",
+        "es": "¿Para qué $k$ son ortogonales $(1,k)$ y $(4,2)$?"
+      },
+      "answer": "-2",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "Orthogonal means the dot product is $0$.",
+        "es": "Ortogonales significa que el producto escalar es $0$."
+      },
+      "solution": [
+        {
+          "tex": "(1,k)\\cdot(4,2) = 4 + 2k = 0",
+          "en": "Set the dot product to zero.",
+          "es": "Iguala el producto escalar a cero."
+        },
+        {
+          "tex": "k = -2",
+          "en": "So k = −2.",
+          "es": "Así, $k = -2$."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "With $k = 2$ you get $4 + 4 = 8$, not $0$. The dot product is $1\\cdot4 + k\\cdot2 = 4 + 2k$, so $2k$ must equal $-4$.",
+            "es": "Con $k = 2$ sale $4 + 4 = 8$, no $0$. El producto escalar es $1\\cdot4 + k\\cdot2 = 4 + 2k$, así que $2k$ debe valer $-4$."
+          }
+        }
+      ]
     }
   ],
   "references": [

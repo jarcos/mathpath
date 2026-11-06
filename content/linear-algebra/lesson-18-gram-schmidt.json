@@ -2,7 +2,7 @@
   "id": "linalg-18-gram-schmidt",
   "subjectId": "linear-algebra",
   "order": 18,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Gram-Schmidt Orthogonalization",
     "es": "Ortogonalización de Gram-Schmidt"
@@ -36,8 +36,29 @@
     {
       "type": "prose",
       "content": {
+        "en": "**Precisely**, for vectors $v_1, v_2, v_3$ the process is: $u_1 = v_1$; $u_2 = v_2 - \\frac{v_2\\cdot u_1}{u_1\\cdot u_1}\\,u_1$; $u_3 = v_3 - \\frac{v_3\\cdot u_1}{u_1\\cdot u_1}\\,u_1 - \\frac{v_3\\cdot u_2}{u_2\\cdot u_2}\\,u_2$. Then divide each $u_i$ by its norm to get an orthonormal basis. Each step keeps the span: $\\operatorname{span}(u_1,\\dots,u_k) = \\operatorname{span}(v_1,\\dots,v_k)$ for every $k$, because $u_k$ is $v_k$ plus a combination of the earlier $u$'s. That is why the output spans the same space as the input.",
+        "es": "**Con precisión**, para los vectores $v_1, v_2, v_3$ el proceso es: $u_1 = v_1$; $u_2 = v_2 - \\frac{v_2\\cdot u_1}{u_1\\cdot u_1}\\,u_1$; $u_3 = v_3 - \\frac{v_3\\cdot u_1}{u_1\\cdot u_1}\\,u_1 - \\frac{v_3\\cdot u_2}{u_2\\cdot u_2}\\,u_2$. Después divide cada $u_i$ entre su norma para obtener una base ortonormal. Cada paso conserva el subespacio: el generado por $u_1,\\dots,u_k$ coincide con el generado por $v_1,\\dots,v_k$, para todo $k$, porque $u_k$ es $v_k$ más una combinación de los $u$ anteriores. Por eso la salida genera el mismo espacio que la entrada."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
         "en": "Gram-Schmidt underlies the **QR factorization**, a workhorse of numerical linear algebra used to solve least-squares problems and compute eigenvalues. If the input vectors are already orthogonal — like $(1,0)$ and $(0,1)$ — the process changes nothing. Orthonormal vectors have norm $1$ and pairwise dot product $0$.",
-        "es": "Gram-Schmidt sustenta la **factorización QR**, un caballo de batalla del álgebra lineal numérica usado para resolver mínimos cuadrados y calcular autovalores. Si los vectores de entrada ya son ortogonales — como $(1,0)$ y $(0,1)$ — el proceso no cambia nada. Los vectores ortonormales tienen norma $1$ y producto escalar por pares $0$."
+        "es": "Gram-Schmidt sustenta la **factorización QR**, un caballo de batalla del álgebra lineal numérica usado para resolver mínimos cuadrados y calcular valores propios. Si los vectores de entrada ya son ortogonales — como $(1,0)$ y $(0,1)$ — el proceso no cambia nada. Los vectores ortonormales tienen norma $1$ y producto escalar por pares $0$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Three traps catch learners. First, project onto the new $u$'s, never onto the original $v$'s: the $v$'s are not orthogonal, so subtracting their projections leaves overlaps behind. Second, if some $u_k$ comes out as the zero vector, the input was dependent: $v_k$ already lies in the span of the earlier vectors. Third, order matters. The first vector is kept, so reordering the input gives a different orthogonal basis, although each result still spans what its own inputs span.",
+        "es": "Tres trampas atrapan a quien aprende. Primera: proyecta siempre sobre los $u$ nuevos, nunca sobre los $v$ originales; los $v$ no son ortogonales, y al restar sus proyecciones quedan solapamientos. Segunda: si algún $u_k$ sale nulo, la entrada era dependiente: $v_k$ ya está en el subespacio generado por los vectores anteriores. Tercera: el orden importa. El primer vector se conserva, así que cambiar el orden da otra base ortogonal, aunque cada resultado genere lo que generan sus propias entradas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Gram-Schmidt is not only for vectors in $\\mathbb{R}^n$. Apply it to the polynomials $1, x, x^2, \\dots$ with the dot product $\\langle f,g\\rangle = \\int_{-1}^{1} f(x)g(x)\\,dx$, and the output is, up to scaling, the Legendre polynomials, an orthogonal family used in numerical integration and in fitting smooth curves. In numerical linear algebra the QR factorization $A = QR$ comes from the same steps: the columns of $Q$ are the orthonormal $u_i$, and $R$ records the coefficients. Solving least squares through $Q$ avoids the loss of accuracy that the normal equations can cause.",
+        "es": "El proceso de Gram-Schmidt no es solo para vectores de $\\mathbb{R}^n$. Aplícalo a los polinomios $1, x, x^2, \\dots$ con el producto escalar $\\langle f,g\\rangle = \\int_{-1}^{1} f(x)g(x)\\,dx$, y la salida son, salvo escalares, los polinomios de Legendre, una familia ortogonal que se usa en integración numérica y en ajustar curvas suaves. En álgebra lineal numérica, la factorización QR $A = QR$ sale de los mismos pasos: las columnas de $Q$ son los $u_i$ ortonormales, y $R$ guarda los coeficientes. Resolver mínimos cuadrados a través de $Q$ evita la pérdida de precisión que pueden causar las ecuaciones normales."
       }
     },
     {
@@ -52,6 +73,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a second run with a non-unit first vector",
+        "es": "Ejemplo resuelto — una segunda ejecución con un primer vector no unitario"
+      },
+      "content": {
+        "en": "Apply the process to $v_1 = (1,1)$ and $v_2 = (1,0)$. First $u_1 = (1,1)$. Then $v_2\\cdot u_1 = 1$ and $u_1\\cdot u_1 = 2$, so $u_2 = (1,0) - \\frac12(1,1) = \\left(\\frac12, -\\frac12\\right)$. Check: $u_2\\cdot u_1 = \\frac12 - \\frac12 = 0$ ✓. Normalizing: $\\|u_1\\| = \\sqrt2$ and $\\|u_2\\| = \\frac{\\sqrt2}{2}$, so the orthonormal basis is $\\left(\\frac{\\sqrt2}{2}, \\frac{\\sqrt2}{2}\\right)$ and $\\left(\\frac{\\sqrt2}{2}, -\\frac{\\sqrt2}{2}\\right)$.",
+        "es": "Aplica el proceso a $v_1 = (1,1)$ y $v_2 = (1,0)$. Primero $u_1 = (1,1)$. Después $v_2\\cdot u_1 = 1$ y $u_1\\cdot u_1 = 2$, así que $u_2 = (1,0) - \\frac12(1,1) = \\left(\\frac12, -\\frac12\\right)$. Comprobación: $u_2\\cdot u_1 = \\frac12 - \\frac12 = 0$ ✓. Normalizando: $\\|u_1\\| = \\sqrt2$ y $\\|u_2\\| = \\frac{\\sqrt2}{2}$, así que la base ortonormal es $\\left(\\frac{\\sqrt2}{2}, \\frac{\\sqrt2}{2}\\right)$ y $\\left(\\frac{\\sqrt2}{2}, -\\frac{\\sqrt2}{2}\\right)$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -59,7 +91,7 @@
       ],
       "code": {
         "en": "import numpy as np\nA = np.array([[1., 1.], [1., 0.]])\nQ, R = np.linalg.qr(A)   # QR factorization = Gram-Schmidt under the hood\n# Q has orthonormal columns: Q^T Q = identity\nprint(np.round(np.abs(Q.T @ Q), 4).tolist())",
-        "es": "import numpy as np\nA = np.array([[1., 1.], [1., 0.]])\nQ, R = np.linalg.qr(A)   # factorizacion QR = Gram-Schmidt por dentro\n# Q tiene columnas ortonormales: Q^T Q = identidad\nprint(np.round(np.abs(Q.T @ Q), 4).tolist())"
+        "es": "import numpy as np\nA = np.array([[1., 1.], [1., 0.]])\nQ, R = np.linalg.qr(A)   # factorización QR = Gram-Schmidt por dentro\n# Q tiene columnas ortonormales: Q^T Q = identidad\nprint(np.round(np.abs(Q.T @ Q), 4).tolist())"
       },
       "expectedOutput": "[[1.0, 0.0], [0.0, 1.0]]",
       "caption": {
@@ -73,8 +105,8 @@
       "id": "linalg-18-e1",
       "answerType": "text",
       "prompt": {
-        "en": "Gram-Schmidt produces an ___ basis. (one word)",
-        "es": "Gram-Schmidt produce una base ___. (una palabra)"
+        "en": "Before normalizing, Gram-Schmidt produces an ___ basis. (one word)",
+        "es": "Antes de normalizar, Gram-Schmidt produce una base ___. (una palabra)"
       },
       "answer": "orthogonal",
       "acceptedAlt": [
@@ -96,20 +128,29 @@
       "id": "linalg-18-e2",
       "answerType": "number",
       "prompt": {
-        "en": "Dot product of two orthonormal vectors?",
-        "es": "¿Producto escalar de dos vectores ortonormales?"
+        "en": "Dot product of two different vectors of an orthonormal basis?",
+        "es": "¿Producto escalar de dos vectores distintos de una base ortonormal?"
       },
       "answer": "0",
       "acceptedAlt": [],
       "hint": {
-        "en": "Orthonormal ⇒ perpendicular.",
-        "es": "Ortonormal ⇒ perpendiculares."
+        "en": "Different orthonormal vectors are perpendicular.",
+        "es": "Dos vectores ortonormales distintos son perpendiculares."
       },
       "solution": [
         {
           "tex": "u_i\\cdot u_j = 0",
           "en": "Perpendicular.",
           "es": "Perpendiculares."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ is the norm of each vector, or the dot product of a vector with itself. Two different orthonormal vectors are perpendicular, so their dot product is $0$.",
+            "es": "$1$ es la norma de cada vector, o el producto escalar de un vector consigo mismo. Dos vectores ortonormales distintos son perpendiculares, así que su producto escalar es $0$."
+          }
         }
       ]
     },
@@ -154,6 +195,111 @@
           "tex": "= 0",
           "en": "Unchanged by Gram-Schmidt.",
           "es": "Gram-Schmidt no los cambia."
+        }
+      ]
+    },
+    {
+      "id": "linalg-18-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Gram-Schmidt gives $u_3 = 0$ for three vectors $v_1, v_2, v_3$. What does that mean?",
+        "es": "El proceso de Gram-Schmidt da $u_3 = 0$ para tres vectores $v_1, v_2, v_3$. ¿Qué significa?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "An arithmetic slip: a basis never gives a zero vector.",
+            "es": "Un error de cálculo: una base nunca da un vector nulo."
+          },
+          "correct": false,
+          "why": {
+            "en": "Recheck the arithmetic, but a correct run giving $u_3 = 0$ is a real result. The input was not a basis: its three vectors were dependent from the start.",
+            "es": "Revisa las cuentas, pero una ejecución correcta con $u_3 = 0$ es un resultado real. La entrada no era una base: sus tres vectores eran dependientes desde el principio."
+          }
+        },
+        {
+          "text": {
+            "en": "$v_3$ is orthogonal to $u_1$ and $u_2$, so it is the third direction.",
+            "es": "$v_3$ es ortogonal a $u_1$ y a $u_2$, así que es la tercera dirección."
+          },
+          "correct": false,
+          "why": {
+            "en": "Zero is not orthogonality. $u_3 = 0$ says $v_3$ equals the sum of its projections, so $v_3$ lies in the span of $u_1$ and $u_2$, the opposite of a new direction.",
+            "es": "El cero no es ortogonalidad. $u_3 = 0$ dice que $v_3$ es igual a la suma de sus proyecciones, así que está en el subespacio generado por $u_1$ y $u_2$, justo lo contrario de una dirección nueva."
+          }
+        },
+        {
+          "text": {
+            "en": "The process must restart with the vectors in another order.",
+            "es": "El proceso debe reiniciarse con los vectores en otro orden."
+          },
+          "correct": false,
+          "why": {
+            "en": "Reordering can move the zero, but a dependent set stays dependent in any order.",
+            "es": "Cambiar el orden puede mover el cero, pero un conjunto dependiente sigue siendo dependiente en cualquier orden."
+          }
+        },
+        {
+          "text": {
+            "en": "Dependent: $v_3$ is a combination of $v_1$ and $v_2$.",
+            "es": "Dependientes: $v_3$ es combinación de $v_1$ y $v_2$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. A zero in the output means $v_3$ had nothing new to add: every part of it is already covered by the earlier directions.",
+            "es": "Exacto. Un cero en la salida significa que $v_3$ no aportaba nada nuevo: toda su parte ya está cubierta por las direcciones anteriores."
+          }
+        }
+      ],
+      "hint": {
+        "en": "What does a zero vector say about what was left after subtracting?",
+        "es": "¿Qué dice un vector nulo sobre lo que sobró al restar?"
+      }
+    },
+    {
+      "id": "linalg-18-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "Gram-Schmidt on $v_1 = (3,4)$, $v_2 = (1,0)$: what is the first component of $u_2$?",
+        "es": "Gram-Schmidt con $v_1 = (3,4)$, $v_2 = (1,0)$: ¿cuánto vale la primera componente de $u_2$?"
+      },
+      "answer": "16/25",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "Subtract the projection of $v_2$ onto $u_1 = v_1$, dividing by $v_1\\cdot v_1$.",
+        "es": "Resta la proyección de $v_2$ sobre $u_1 = v_1$, dividiendo entre $v_1\\cdot v_1$."
+      },
+      "solution": [
+        {
+          "tex": "v_2\\cdot u_1 = 3,\\qquad u_1\\cdot u_1 = 25",
+          "en": "Dot products: $v_2$ with $u_1 = (3,4)$, and $u_1$ with itself.",
+          "es": "Productos escalares: $v_2$ con $u_1 = (3,4)$, y $u_1$ consigo mismo."
+        },
+        {
+          "tex": "u_2 = (1,0) - \\frac{3}{25}(3,4) = \\left(\\frac{16}{25}, -\\frac{12}{25}\\right)",
+          "en": "Subtract the projection.",
+          "es": "Resta la proyección."
+        },
+        {
+          "tex": "\\text{first component} = \\frac{16}{25}",
+          "en": "Answer.",
+          "es": "Respuesta."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ is the first component of $v_2$ untouched: nothing was subtracted. Gram-Schmidt removes the overlap with $u_1$, which here has first component $\\frac{3}{25}\\cdot3 = \\frac{9}{25}$.",
+            "es": "$1$ es la primera componente de $v_2$ sin tocar: no se ha restado nada. Gram-Schmidt quita el solapamiento con $u_1$, que aquí tiene primera componente $\\frac{3}{25}\\cdot3 = \\frac{9}{25}$."
+          }
+        },
+        {
+          "answer": "-8",
+          "feedback": {
+            "en": "$-8$ comes from subtracting $(v_2\\cdot u_1)\\,u_1 = 3\\cdot(3,4)$ without dividing by $u_1\\cdot u_1 = 25$: $1 - 9 = -8$. The projection needs that division.",
+            "es": "$-8$ sale de restar $(v_2\\cdot u_1)\\,u_1 = 3\\cdot(3,4)$ sin dividir entre $u_1\\cdot u_1 = 25$: $1 - 9 = -8$. La proyección necesita esa división."
+          }
         }
       ]
     }

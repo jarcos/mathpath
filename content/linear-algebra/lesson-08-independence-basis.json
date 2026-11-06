@@ -2,7 +2,7 @@
   "id": "linalg-08-independence-basis",
   "subjectId": "linear-algebra",
   "order": 8,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Independence, Basis & Dimension",
     "es": "Independencia, base y dimensión"
@@ -18,11 +18,19 @@
     {
       "type": "prereq",
       "lessons": [
-        "linalg-07-linear-combination"
+        "linalg-07-linear-combination",
+        "algebra-13-systems-mxn"
       ],
       "note": {
-        "en": "Independence is tested via linear combinations / span.",
-        "es": "La independencia se prueba con combinaciones lineales / generador."
+        "en": "Independence is tested via linear combinations, span and systems: the weights solve a homogeneous system.",
+        "es": "La independencia se prueba con combinaciones lineales, generador y sistemas: los pesos son la solución de un sistema homogéneo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, the vectors $v_1, \\dots, v_k$ are independent when $c_1v_1 + \\dots + c_kv_k = \\mathbf 0$ forces every $c_i = 0$. One nontrivial solution of that equation is enough to make them dependent. Two facts follow at once: any set containing the zero vector is dependent (give it weight $1$ and the others $0$), and in $\\mathbb{R}^n$ more than $n$ vectors are always dependent. **Pairwise independence is not enough.** In $\\mathbb{R}^2$ none of $(1,0)$, $(0,1)$ and $(1,1)$ is parallel to another, yet $(1,1) = (1,0) + (0,1)$, so the three are dependent.",
+        "es": "**Con precisión**, los vectores $v_1, \\dots, v_k$ son independientes cuando $c_1v_1 + \\dots + c_kv_k = \\mathbf 0$ obliga a que todos los $c_i$ sean $0$. Basta una solución no trivial de esa ecuación para que sean dependientes. De ahí salen dos hechos inmediatos: todo conjunto que contiene al vector cero es dependiente (le das peso $1$ al cero y $0$ a los demás), y en $\\mathbb{R}^n$ más de $n$ vectores son siempre dependientes. **Que sean independientes dos a dos no basta.** En $\\mathbb{R}^2$, ninguno de $(1,0)$, $(0,1)$ y $(1,1)$ es paralelo a otro, y aun así $(1,1) = (1,0) + (0,1)$, así que los tres son dependientes."
       }
     },
     {
@@ -40,6 +48,13 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "Once a basis is fixed, every vector has **exactly one** expression in it. Uniqueness comes from independence: if $\\mathbf v = \\sum a_i v_i = \\sum b_i v_i$, subtracting gives $\\sum (a_i - b_i)v_i = \\mathbf 0$, so every $a_i = b_i$. These weights are the **coordinates** of $\\mathbf v$ in that basis. The link to data is direct. When one feature is exactly a combination of others, the regression coefficients are not even unique: the model cannot tell which feature deserves the credit. When the dependence is only close, called **multicollinearity** in statistics, the coefficients become unstable and hard to interpret. Without it, each coefficient is well determined and reads as the effect of its own feature, the others held fixed.",
+        "es": "Una vez fijada una base, cada vector tiene **exactamente una** expresión en ella. La unicidad viene de la independencia: si $\\mathbf v = \\sum a_i v_i = \\sum b_i v_i$, al restar sale $\\sum (a_i - b_i)v_i = \\mathbf 0$, y entonces todos los $a_i = b_i$. Esos pesos son las **coordenadas** de $\\mathbf v$ en esa base. El vínculo con los datos es directo. Cuando una característica es exactamente combinación de otras, los coeficientes de la regresión ni siquiera son únicos: el modelo no puede saber a cuál atribuir el efecto. Cuando la dependencia es solo aproximada, lo que en estadística se llama **multicolinealidad**, los coeficientes se vuelven inestables y difíciles de interpretar. Sin ella, cada coeficiente está bien determinado y se lee como el efecto de su propia característica, manteniendo las demás fijas."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example — testing independence",
@@ -51,6 +66,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — three vectors, one plane",
+        "es": "Ejemplo resuelto — tres vectores, un plano"
+      },
+      "content": {
+        "en": "Are $(1,0,1)$, $(0,1,1)$ and $(1,1,2)$ independent? Solve $c_1(1,0,1) + c_2(0,1,1) + c_3(1,1,2) = \\mathbf 0$. The three components give $c_1 + c_3 = 0$, $c_2 + c_3 = 0$ and $c_1 + c_2 + 2c_3 = 0$. The first two give $c_1 = c_2 = -c_3$, and the third then holds for every $c_3$. Take $c_3 = 1$: $-(1,0,1) - (0,1,1) + (1,1,2) = \\mathbf 0$. That is a nontrivial solution, so the three are **dependent**. The third vector is the sum of the first two, and the span they generate is the plane through the origin spanned by the first two, of dimension $2$.",
+        "es": "¿Son independientes $(1,0,1)$, $(0,1,1)$ y $(1,1,2)$? Resuelve $c_1(1,0,1) + c_2(0,1,1) + c_3(1,1,2) = \\mathbf 0$. Las tres componentes dan $c_1 + c_3 = 0$, $c_2 + c_3 = 0$ y $c_1 + c_2 + 2c_3 = 0$. Las dos primeras dan $c_1 = c_2 = -c_3$, y la tercera se cumple entonces para cualquier $c_3$. Con $c_3 = 1$: $-(1,0,1) - (0,1,1) + (1,1,2) = \\mathbf 0$. Es una solución no trivial, así que los tres son **dependientes**. El tercero es la suma de los dos primeros, y el subespacio que generan es el plano que pasa por el origen y contiene a los dos primeros, de dimensión $2$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -58,12 +84,12 @@
       ],
       "code": {
         "en": "import numpy as np\n# rank < number of vectors  ->  they are linearly dependent\nprint(int(np.linalg.matrix_rank(np.array([[1, 2], [2, 4]]))))",
-        "es": "import numpy as np\n# rango < numero de vectores  ->  son linealmente dependientes\nprint(int(np.linalg.matrix_rank(np.array([[1, 2], [2, 4]]))))"
+        "es": "import numpy as np\n# rango < número de vectores  ->  son linealmente dependientes\nprint(int(np.linalg.matrix_rank(np.array([[1, 2], [2, 4]]))))"
       },
       "expectedOutput": "1",
       "caption": {
         "en": "Rank counts independent directions; here only 1.",
-        "es": "El rango cuenta direcciones independientes; aqui solo 1."
+        "es": "El rango cuenta direcciones independientes; aquí solo 1."
       }
     }
   ],
@@ -109,6 +135,15 @@
           "en": "Dependent.",
           "es": "Dependientes."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "yes",
+          "feedback": {
+            "en": "Look again: $(2,4) = 2\\cdot(1,2)$, so one is a multiple of the other and they lie on one line. They are dependent, so the answer is no.",
+            "es": "Mira otra vez: $(2,4) = 2\\cdot(1,2)$, así que uno es múltiplo del otro y están sobre la misma recta. Son dependientes, y la respuesta es no."
+          }
+        }
       ]
     },
     {
@@ -152,6 +187,99 @@
           "es": "Dos vectores."
         }
       ]
+    },
+    {
+      "id": "linalg-08-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "What is the dimension of the span of $(1,0,1)$, $(0,1,1)$ and $(1,1,2)$?",
+        "es": "¿Cuál es la dimensión del subespacio generado por $(1,0,1)$, $(0,1,1)$ y $(1,1,2)$?"
+      },
+      "answer": "2",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3$ counts the vectors, not the directions they span. The third vector is the sum of the first two, so only two are independent.",
+            "es": "$3$ cuenta los vectores, no las direcciones que generan. El tercero es la suma de los dos primeros, así que solo dos son independientes."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Is one of the three a combination of the other two?",
+        "es": "¿Es uno de los tres combinación de los otros dos?"
+      },
+      "solution": [
+        {
+          "tex": "(1,1,2) = (1,0,1) + (0,1,1)",
+          "en": "The third vector is redundant.",
+          "es": "El tercer vector es redundante."
+        },
+        {
+          "tex": "\\dim = 2",
+          "en": "The first two are independent, so the span is a plane.",
+          "es": "Los dos primeros son independientes, así que el generado es un plano."
+        }
+      ]
+    },
+    {
+      "id": "linalg-08-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "No two of $(1,0)$, $(0,1)$ and $(1,1)$ are parallel. Which statement is true?",
+        "es": "Ninguno de los vectores $(1,0)$, $(0,1)$ y $(1,1)$ es paralelo a otro. ¿Cuál afirmación es verdadera?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "They are independent, because every pair of them is independent.",
+            "es": "Son independientes, porque cada pareja de ellos lo es."
+          },
+          "correct": false,
+          "why": {
+            "en": "Pairwise independence does not carry over to a whole set. In the plane, any three vectors are dependent.",
+            "es": "La independencia dos a dos no se traslada al conjunto entero. En el plano, cualesquiera tres vectores son dependientes."
+          }
+        },
+        {
+          "text": {
+            "en": "They are independent, because $(1,1)$ points in a direction the other two cannot reach.",
+            "es": "Son independientes, porque $(1,1)$ apunta en una dirección que los otros dos no alcanzan."
+          },
+          "correct": false,
+          "why": {
+            "en": "The other two already span the whole plane, so $(1,1)$ is reachable: $(1,1) = (1,0) + (0,1)$.",
+            "es": "Los otros dos ya generan todo el plano, así que $(1,1)$ es alcanzable: $(1,1) = (1,0) + (0,1)$."
+          }
+        },
+        {
+          "text": {
+            "en": "They are dependent, because $(1,1) = (1,0) + (0,1)$, so one is redundant.",
+            "es": "Son dependientes, porque $(1,1) = (1,0) + (0,1)$, así que uno es redundante."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. The weights $1$, $1$ and $-1$ give the zero vector without all the weights being zero, so the three are dependent.",
+            "es": "Exacto. Los pesos $1$, $1$ y $-1$ dan el vector cero sin que todos los pesos sean cero, así que los tres son dependientes."
+          }
+        },
+        {
+          "text": {
+            "en": "They are dependent only if one of them is the zero vector, and none is.",
+            "es": "Son dependientes solo si uno de ellos es el vector cero, y ninguno lo es."
+          },
+          "correct": false,
+          "why": {
+            "en": "Zero is one way to be dependent, not the only one: here $(1,0) + (0,1) = (1,1)$, so they are dependent although none is zero.",
+            "es": "El vector cero es una forma de ser dependientes, no la única: aquí $(1,0) + (0,1) = (1,1)$, así que son dependientes aunque ninguno sea cero."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Look for weights, not all zero, that combine the three vectors into zero.",
+        "es": "Busca unos pesos, no todos nulos, que combinen los tres vectores y den cero."
+      }
     }
   ],
   "references": [

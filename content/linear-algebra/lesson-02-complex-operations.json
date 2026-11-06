@@ -2,7 +2,7 @@
   "id": "linalg-02-complex-operations",
   "subjectId": "linear-algebra",
   "order": 2,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Operations with Complex Numbers",
     "es": "Operaciones con números complejos"
@@ -18,18 +18,19 @@
     {
       "type": "prereq",
       "lessons": [
-        "linalg-01-complex-binomic"
+        "linalg-01-complex-binomic",
+        "algebra-09-algebraic-expressions"
       ],
       "note": {
-        "en": "Operations build on the binomic form a+bi.",
-        "es": "Las operaciones se basan en la forma binomica a+bi."
+        "en": "Operations build on the binomic form $a+bi$, and on expanding products of algebraic expressions.",
+        "es": "Las operaciones se basan en la forma binómica $a+bi$ y en desarrollar productos de expresiones algebraicas."
       }
     },
     {
       "type": "prose",
       "content": {
         "en": "**Multiply** with the distributive law (FOIL), then replace $i^2$ with $-1$ and collect terms. For instance $(2+3i)\\cdot i = 2i + 3i^2 = -3 + 2i$. The appearance of $i^2 = -1$ is what mixes real and imaginary parts and gives complex multiplication its rotational character.",
-        "es": "**Multiplica** con la distributiva (FOIL), luego sustituye $i^2$ por $-1$ y agrupa. Por ejemplo $(2+3i)\\cdot i = 2i + 3i^2 = -3 + 2i$. La aparición de $i^2 = -1$ es lo que mezcla partes reales e imaginarias y da a la multiplicación compleja su carácter rotacional."
+        "es": "**Multiplica** con la propiedad distributiva (cada término de uno por cada término del otro), luego sustituye $i^2$ por $-1$ y agrupa. Por ejemplo $(2+3i)\\cdot i = 2i + 3i^2 = -3 + 2i$. La aparición de $i^2 = -1$ es lo que mezcla partes reales e imaginarias y da a la multiplicación compleja su carácter rotacional."
       }
     },
     {
@@ -37,6 +38,27 @@
       "content": {
         "en": "The **conjugate** of $z = a + bi$ is $\\bar z = a - bi$. The product $z\\bar z = (a+bi)(a-bi) = a^2 + b^2$ is always a non-negative **real** number — the squared modulus. This is the trick for **division**: to divide by a complex number, multiply numerator and denominator by the conjugate to make the denominator real.",
         "es": "El **conjugado** de $z = a + bi$ es $\\bar z = a - bi$. El producto $z\\bar z = (a+bi)(a-bi) = a^2 + b^2$ es siempre un número **real** no negativo — el módulo al cuadrado. Este es el truco para **dividir**: para dividir entre un complejo, multiplica numerador y denominador por el conjugado para hacer real el denominador."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Dividing** is multiplying by a well-chosen form of $1$. For $\\frac{a+bi}{c+di}$ with $c+di \\ne 0$, multiply the top and the bottom by the conjugate $c-di$:\n\n$$\\frac{a+bi}{c+di} = \\frac{(a+bi)(c-di)}{c^2+d^2}.$$\n\nThe denominator is $(c+di)(c-di) = c^2+d^2$, a positive real number, because the conjugate cancels the imaginary part. So the division is always possible when $c+di \\ne 0$, and the quotient is $\\frac{ac+bd}{c^2+d^2} + \\frac{bc-ad}{c^2+d^2}\\,i$. This is how electrical engineers divide: in AC circuits impedances are complex, Ohm's law reads $V = ZI$, and the current $I = V/Z$ is exactly this division.",
+        "es": "**Dividir** es multiplicar por un uno bien escogido. Para $\\frac{a+bi}{c+di}$ con $c+di \\ne 0$, multiplica arriba y abajo por el conjugado $c-di$:\n\n$$\\frac{a+bi}{c+di} = \\frac{(a+bi)(c-di)}{c^2+d^2}.$$\n\nEl denominador es $(c+di)(c-di) = c^2+d^2$, un real positivo, porque el conjugado elimina la parte imaginaria. Así la división siempre es posible cuando $c+di \\ne 0$, y el cociente es $\\frac{ac+bd}{c^2+d^2} + \\frac{bc-ad}{c^2+d^2}\\,i$. Así dividen los ingenieros eléctricos: en los circuitos de corriente alterna las impedancias son complejas, la ley de Ohm se escribe $V = ZI$, y la corriente $I = V/Z$ es exactamente esta división."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The trap**: the product of two complex numbers is not computed part by part. It is tempting to write $(a+bi)(c+di) = ac + bd\\,i$, multiplying the real parts and the imaginary parts separately. That ignores the cross terms $adi$ and $bci$, and it forgets $i^2 = -1$. The correct product is $(ac-bd) + (ad+bc)\\,i$. For $(2+3i)(1-i)$ the correct answer is $5+i$, while the part-by-part rule gives $2-3i$. Always expand fully, then collect.",
+        "es": "**La trampa**: el producto de dos complejos no se calcula parte a parte. Es tentador escribir $(a+bi)(c+di) = ac + bd\\,i$, multiplicando por separado las partes reales y las imaginarias. Eso ignora los términos cruzados $adi$ y $bci$, y olvida $i^2 = -1$. El producto correcto es $(ac-bd) + (ad+bc)\\,i$. Para $(2+3i)(1-i)$ la respuesta correcta es $5+i$, mientras que la regla parte a parte da $2-3i$. Desarrolla siempre del todo y luego agrupa."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Conjugation respects the operations**: $\\overline{z+w} = \\bar z + \\bar w$ and $\\overline{zw} = \\bar z\\,\\bar w$, so the conjugate of a sum or a product is the same computation done on the conjugates. Two identities follow at once: $z + \\bar z = 2a$ is real, and $z - \\bar z = 2bi$ is purely imaginary. This explains a fact from the previous lesson. If a polynomial has real coefficients and $p(z) = 0$, then $p(\\bar z) = \\overline{p(z)} = 0$ too, so $\\bar z$ is a root as well. That is why the non-real roots of a real quadratic come in conjugate pairs $a \\pm bi$.",
+        "es": "**La conjugación respeta las operaciones**: $\\overline{z+w} = \\bar z + \\bar w$ y $\\overline{zw} = \\bar z\\,\\bar w$, así que el conjugado de una suma o de un producto es el mismo cálculo hecho con los conjugados. De ahí salen dos identidades inmediatas: $z + \\bar z = 2a$ es real, y $z - \\bar z = 2bi$ es puramente imaginario. Esto explica un hecho de la lección anterior. Si un polinomio tiene coeficientes reales y $p(z) = 0$, entonces $p(\\bar z) = \\overline{p(z)} = 0$ también, así que $\\bar z$ es una raíz igualmente. Por eso las raíces no reales de una cuadrática real vienen en parejas conjugadas $a \\pm bi$."
       }
     },
     {
@@ -51,17 +73,28 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a quotient",
+        "es": "Ejemplo resuelto — un cociente"
+      },
+      "content": {
+        "en": "Compute $\\frac{3+i}{1-i}$. Multiply the top and the bottom by the conjugate $1+i$. The denominator is $(1-i)(1+i) = 1 - i^2 = 2$. The numerator is $(3+i)(1+i) = 3 + 3i + i + i^2 = 2 + 4i$. So $\\frac{2+4i}{2} = 1 + 2i$. Check: $(1-i)(1+2i) = 1 + 2i - i - 2i^2 = 3 + i$ ✓. The slip to avoid is to stop at $2+4i$: the $2$ in the denominator divides both parts.",
+        "es": "Calcula $\\frac{3+i}{1-i}$. Multiplica arriba y abajo por el conjugado $1+i$. El denominador es $(1-i)(1+i) = 1 - i^2 = 2$. El numerador es $(3+i)(1+i) = 3 + 3i + i + i^2 = 2 + 4i$. Así $\\frac{2+4i}{2} = 1 + 2i$. Comprobación: $(1-i)(1+2i) = 1 + 2i - i - 2i^2 = 3 + i$ ✓. El error que hay que evitar es parar en $2+4i$: el $2$ del denominador divide a las dos partes."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [],
       "code": {
         "en": "z1 = 2 + 3j\nz2 = 1 - 1j\n# add and multiply complex numbers directly\nprint(z1 + z2, z1 * z2)",
-        "es": "z1 = 2 + 3j\nz2 = 1 - 1j\n# suma y multiplica numeros complejos directamente\nprint(z1 + z2, z1 * z2)"
+        "es": "z1 = 2 + 3j\nz2 = 1 - 1j\n# suma y multiplica números complejos directamente\nprint(z1 + z2, z1 * z2)"
       },
       "expectedOutput": "(3+2j) (5+1j)",
       "caption": {
         "en": "Arithmetic on complex numbers works like on reals.",
-        "es": "La aritmetica con complejos funciona como con reales."
+        "es": "La aritmética con complejos funciona como con reales."
       }
     }
   ],
@@ -133,6 +166,15 @@
           "en": "Conjugate product.",
           "es": "Producto del conjugado."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "$0$ comes from $1 - i^2$ with $i^2$ taken as $1$: $1 - 1 = 0$. But $i^2 = -1$, so $1 - i^2 = 2$.",
+            "es": "$0$ sale de $1 - i^2$ tomando $i^2$ como $1$: $1 - 1 = 0$. Pero $i^2 = -1$, así que $1 - i^2 = 2$."
+          }
+        }
       ]
     },
     {
@@ -157,6 +199,106 @@
           "es": "Ya que 3i² = −3."
         }
       ]
+    },
+    {
+      "id": "linalg-02-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Write $\\frac{5}{2+i} = a + bi$. What is $b$?",
+        "es": "Escribe $\\frac{5}{2+i} = a + bi$. ¿Cuánto vale $b$?"
+      },
+      "answer": "-1",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ means the conjugate was taken as $2+i$: $\\frac{5(2+i)}{5} = 2+i$. The conjugate of $2+i$ is $2-i$, with the minus sign flipped.",
+            "es": "$1$ significa que se usó como conjugado $2+i$: $\\frac{5(2+i)}{5} = 2+i$. El conjugado de $2+i$ es $2-i$, con el signo menos cambiado."
+          }
+        },
+        {
+          "answer": "-5",
+          "feedback": {
+            "en": "$-5$ is the imaginary part of $5(2-i)$, but the denominator is $|2+i|^2 = 5$, not $1$. Divide by it: $\\frac{5(2-i)}{5} = 2 - i$.",
+            "es": "$-5$ es la parte imaginaria de $5(2-i)$, pero el denominador es $|2+i|^2 = 5$, no $1$. Divide entre él: $\\frac{5(2-i)}{5} = 2 - i$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Multiply the top and the bottom by the conjugate of $2+i$.",
+        "es": "Multiplica arriba y abajo por el conjugado de $2+i$."
+      },
+      "solution": [
+        {
+          "tex": "\\frac{5}{2+i} = \\frac{5(2-i)}{(2+i)(2-i)} = \\frac{5(2-i)}{4 - i^2} = \\frac{5(2-i)}{5}",
+          "en": "Multiply by the conjugate; the denominator becomes the real number 5.",
+          "es": "Multiplica por el conjugado; el denominador queda el real 5."
+        },
+        {
+          "tex": "= 2 - i,\\qquad b = -1",
+          "en": "Read off the imaginary part.",
+          "es": "Lee la parte imaginaria."
+        }
+      ]
+    },
+    {
+      "id": "linalg-02-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "For which complex numbers $z = a + bi$ is $z = \\bar z$?",
+        "es": "¿Para qué números complejos $z = a + bi$ se cumple $z = \\bar z$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Only $z = 0$, because a number equal to its conjugate must vanish.",
+            "es": "Solo $z = 0$, porque un número igual a su conjugado tiene que anularse."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: the conjugate is not the negative. $3 = \\bar 3$ and $1 + 2i \\ne 1 - 2i$ are both facts. Solving $a + bi = a - bi$ gives only $b = 0$, and $a$ can be any real number.",
+            "es": "Error habitual: el conjugado no es el opuesto. $3 = \\bar 3$ es cierto, y $1 + 2i \\ne 1 - 2i$ también. Al resolver $a + bi = a - bi$ sale solo $b = 0$, y $a$ puede ser cualquier real."
+          }
+        },
+        {
+          "text": {
+            "en": "Only the pure imaginary numbers, those with $a = 0$.",
+            "es": "Solo los imaginarios puros, los que tienen $a = 0$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: swapping the two parts. For $a = 0$ the conjugate is $\\bar z = -z$, which equals $z$ only at $0$. The conjugate keeps $a$ and flips $b$, so the imaginary part is what must vanish.",
+            "es": "Error habitual: intercambiar las dos partes. Para $a = 0$ el conjugado es $\\bar z = -z$, que solo es igual a $z$ en $0$. El conjugado conserva $a$ y cambia el signo de $b$, así que es la parte imaginaria la que debe anularse."
+          }
+        },
+        {
+          "text": {
+            "en": "Exactly the real numbers, that is, those with $b = 0$.",
+            "es": "Exactamente los reales, es decir, los que tienen $b = 0$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $a + bi = a - bi$ gives $2bi = 0$, so $b = 0$, and $a$ is free. Every real number equals its own conjugate.",
+            "es": "Exacto. $a + bi = a - bi$ da $2bi = 0$, así que $b = 0$, y $a$ es libre. Todo real es igual a su propio conjugado."
+          }
+        },
+        {
+          "text": {
+            "en": "Every complex number, since $z\\bar z$ is always real.",
+            "es": "Todos los complejos, ya que $z\\bar z$ es siempre real."
+          },
+          "correct": false,
+          "why": {
+            "en": "Misconception: a fact about the product is taken as a fact about $z$. $z\\bar z$ is real for every $z$, but for $z = 1+i$ we have $\\bar z = 1-i \\ne z$.",
+            "es": "Error habitual: se toma un hecho sobre el producto como un hecho sobre $z$. $z\\bar z$ es real para todo $z$, pero para $z = 1+i$ tenemos $\\bar z = 1-i \\ne z$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write $z = a + bi$ and compare $a + bi$ with $a - bi$.",
+        "es": "Escribe $z = a + bi$ y compara $a + bi$ con $a - bi$."
+      }
     }
   ],
   "references": [

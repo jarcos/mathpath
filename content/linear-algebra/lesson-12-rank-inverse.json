@@ -2,7 +2,7 @@
   "id": "linalg-12-rank-inverse",
   "subjectId": "linear-algebra",
   "order": 12,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Rank & Inverse via Determinants",
     "es": "Rango e inversa mediante determinantes"
@@ -19,11 +19,12 @@
       "type": "prereq",
       "lessons": [
         "linalg-10-determinants-23",
-        "linalg-11-determinants-properties"
+        "linalg-11-determinants-properties",
+        "linalg-08-independence-basis"
       ],
       "note": {
-        "en": "The inverse and rank rely on determinants.",
-        "es": "La inversa y el rango se apoyan en los determinantes."
+        "en": "The inverse and rank rely on determinants, and rank counts independent vectors, as in lesson 08.",
+        "es": "La inversa y el rango se apoyan en los determinantes, y el rango cuenta vectores independientes, como en la lección 08."
       }
     },
     {
@@ -36,8 +37,22 @@
     {
       "type": "prose",
       "content": {
+        "en": "**Precisely**, the rank of $A$ is the size of its largest square submatrix with a nonzero determinant. Rows and columns give the same number, which is why 'independent rows' and 'independent columns' mean the same thing. A matrix of size $m\\times n$ has rank at most $\\min(m,n)$: a $3\\times5$ matrix has at most $3$ independent rows, and so at most $3$ independent columns. In practice the rank is found by elimination, counting the pivots, which is much faster than checking every minor.",
+        "es": "**Con precisión**, el rango de $A$ es el tamaño de la mayor submatriz cuadrada con determinante no nulo. Filas y columnas dan el mismo número, por eso «filas independientes» y «columnas independientes» significan lo mismo. Una matriz de tamaño $m\\times n$ tiene rango como mucho $\\min(m,n)$: una $3\\times5$ tiene como mucho $3$ filas independientes, y por tanto como mucho $3$ columnas independientes. En la práctica el rango se halla por eliminación, contando los pivotes, que es mucho más rápido que revisar todos los menores."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
         "en": "For a $2\\times2$ matrix the inverse is $A^{-1} = \\dfrac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$ — which is why $\\det A = 0$ is fatal (you would divide by zero). The inverse is the matrix analog of a reciprocal, and it is how we 'divide' in linear algebra to solve $A\\mathbf{x}=\\mathbf{b}$.",
         "es": "Para una matriz $2\\times2$ la inversa es $A^{-1} = \\dfrac{1}{\\det A}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$ — por eso $\\det A = 0$ es fatal (dividirías entre cero). La inversa es el análogo matricial de un inverso, y es como 'dividimos' en álgebra lineal para resolver $A\\mathbf{x}=\\mathbf{b}$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Several facts about inverses matter in practice. The inverse of a product reverses the order, $(AB)^{-1} = B^{-1}A^{-1}$, just as transposes do. Check it by multiplying: $AB \\cdot B^{-1}A^{-1} = A\\,I\\,A^{-1} = I$. Be careful, though: $(A+B)^{-1} \\neq A^{-1} + B^{-1}$ in general. And to solve $A\\mathbf x = \\mathbf b$, in practice one rarely computes $A^{-1}$ first. Elimination on the system is cheaper and numerically more stable. Undoing an inverse gives back the matrix: $(A^{-1})^{-1} = A$.",
+        "es": "Varios hechos sobre las inversas importan en la práctica. La inversa de un producto invierte el orden, $(AB)^{-1} = B^{-1}A^{-1}$, igual que hacen las traspuestas. Compruébalo multiplicando: $AB \\cdot B^{-1}A^{-1} = A\\,I\\,A^{-1} = I$. Ojo, sin embargo: $(A+B)^{-1} \\neq A^{-1} + B^{-1}$ en general. Y para resolver $A\\mathbf x = \\mathbf b$, casi nadie calcula antes $A^{-1}$. La eliminación sobre el sistema es más barata y numéricamente más estable. Deshacer una inversa devuelve la matriz: $(A^{-1})^{-1} = A$."
       }
     },
     {
@@ -49,6 +64,24 @@
       "content": {
         "en": "$\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$: row $2 = 2\\times$ row $1$, so the rows are dependent — rank $1$, determinant $1\\cdot4 - 2\\cdot2 = 0$, no inverse. By contrast the identity has independent rows, rank $2$, determinant $1$, and is invertible.",
         "es": "$\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$: fila $2 = 2\\times$ fila $1$, así que las filas son dependientes — rango $1$, determinante $1\\cdot4 - 2\\cdot2 = 0$, sin inversa. En cambio la identidad tiene filas independientes, rango $2$, determinante $1$, y es invertible."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a 2×2 inverse, checked",
+        "es": "Ejemplo resuelto — una inversa 2×2, comprobada"
+      },
+      "content": {
+        "en": "Let $A = \\begin{pmatrix}2&1\\\\5&3\\end{pmatrix}$. Its determinant is $2\\cdot3 - 1\\cdot5 = 1$, so $A$ is invertible. The formula gives $A^{-1} = \\dfrac{1}{1}\\begin{pmatrix}3&-1\\\\-5&2\\end{pmatrix}$. Check: $AA^{-1} = \\begin{pmatrix}2\\cdot3+1\\cdot(-5) & 2\\cdot(-1)+1\\cdot2\\\\ 5\\cdot3+3\\cdot(-5) & 5\\cdot(-1)+3\\cdot2\\end{pmatrix} = \\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$. Because $\\det A = 1$, the inverse has whole-number entries. A determinant of $2$ could give fractions.",
+        "es": "Sea $A = \\begin{pmatrix}2&1\\\\5&3\\end{pmatrix}$. Su determinante es $2\\cdot3 - 1\\cdot5 = 1$, así que $A$ es invertible. La fórmula da $A^{-1} = \\dfrac{1}{1}\\begin{pmatrix}3&-1\\\\-5&2\\end{pmatrix}$. Comprobación: $AA^{-1} = \\begin{pmatrix}2\\cdot3+1\\cdot(-5) & 2\\cdot(-1)+1\\cdot2\\\\ 5\\cdot3+3\\cdot(-5) & 5\\cdot(-1)+3\\cdot2\\end{pmatrix} = \\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$. Como $\\det A = 1$, la inversa tiene entradas enteras. Con un determinante $2$ podrían aparecer fracciones."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Low rank means little real information in a large table. A $1000\\times1000$ matrix of rank $10$ can be written as $UV$, with $U$ of size $1000\\times10$ and $V$ of size $10\\times1000$. That stores $20\\,000$ numbers instead of $10^6$. Image compression uses this idea, since the singular value decomposition keeps only the largest directions. Recommender systems use it too: they guess the missing ratings in a table of users by films from a few hidden factors. In both cases the data are close to a matrix of low rank: a few factors capture most of it, and the approximation keeps only those $k$ factors.",
+        "es": "Un rango bajo significa poca información real en una tabla grande. Una matriz $1000\\times1000$ de rango $10$ se puede escribir como $UV$, con $U$ de tamaño $1000\\times10$ y $V$ de tamaño $10\\times1000$. Eso guarda $20\\,000$ números en lugar de $10^6$. La compresión de imágenes usa esta idea, pues la descomposición en valores singulares conserva solo las direcciones más grandes. Los sistemas de recomendación también la usan: adivinan las valoraciones que faltan en una tabla de usuarios por películas a partir de unos pocos factores ocultos. En ambos casos los datos se parecen a una matriz de rango bajo: unos pocos factores capturan casi todo, y la aproximación conserva solo esos $k$ factores."
       }
     },
     {
@@ -88,6 +121,15 @@
           "en": "Only one independent row.",
           "es": "Solo una fila independiente."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ counts the rows. Rank counts the independent ones: the second row is twice the first, so only one is independent.",
+            "es": "$2$ cuenta las filas. El rango cuenta las independientes: la segunda fila es el doble de la primera, así que solo una es independiente."
+          }
+        }
       ]
     },
     {
@@ -116,7 +158,7 @@
       "answerType": "number",
       "prompt": {
         "en": "A $2\\times2$ matrix with $\\det \\neq 0$ has what rank?",
-        "es": "Una matriz $2\\times2$ con $\\det \\neq 0$ tiene qué rango?"
+        "es": "Una matriz $2\\times2$ con $\\det \\neq 0$, ¿qué rango tiene?"
       },
       "answer": "2",
       "acceptedAlt": [],
@@ -137,7 +179,7 @@
       "answerType": "number",
       "prompt": {
         "en": "A matrix is invertible iff its determinant is different from ___?",
-        "es": "Una matriz es invertible si su determinante es distinto de ___?"
+        "es": "¿De qué número debe ser distinto el determinante para que una matriz sea invertible?"
       },
       "answer": "0",
       "acceptedAlt": [],
@@ -152,6 +194,111 @@
           "es": "Determinante no nulo."
         }
       ]
+    },
+    {
+      "id": "linalg-12-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "What is the $(1,2)$ entry of the inverse of $\\begin{pmatrix}4&7\\\\2&6\\end{pmatrix}$?",
+        "es": "¿Cuál es el elemento $(1,2)$ de la inversa de $\\begin{pmatrix}4&7\\\\2&6\\end{pmatrix}$?"
+      },
+      "answer": "-7/10",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "7/10",
+          "feedback": {
+            "en": "The sign is lost. The off-diagonal entries change sign in the inverse, so the $(1,2)$ entry is $-\\tfrac{7}{10}$.",
+            "es": "Se pierde el signo. Los elementos fuera de la diagonal cambian de signo en la inversa, así que el $(1,2)$ es $-\\tfrac{7}{10}$."
+          }
+        },
+        {
+          "answer": "-7",
+          "feedback": {
+            "en": "You forgot to divide by the determinant, $\\det = 4\\cdot6 - 7\\cdot2 = 10$.",
+            "es": "Olvidaste dividir entre el determinante, $\\det = 4\\cdot6 - 7\\cdot2 = 10$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "For a 2×2 matrix, swap the diagonal, change the signs of the other two entries, and divide by the determinant.",
+        "es": "En una matriz 2×2, intercambia la diagonal, cambia el signo de las otras dos entradas y divide entre el determinante."
+      },
+      "solution": [
+        {
+          "tex": "\\det = 4\\cdot6 - 7\\cdot2 = 10",
+          "en": "The determinant is nonzero, so the inverse exists.",
+          "es": "El determinante no es nulo, así que la inversa existe."
+        },
+        {
+          "tex": "A^{-1} = \\frac{1}{10}\\begin{pmatrix}6&-7\\\\-2&4\\end{pmatrix}",
+          "en": "Swap the diagonal, negate the rest, divide by 10.",
+          "es": "Intercambia la diagonal, cambia el signo del resto y divide entre 10."
+        },
+        {
+          "tex": "\\left(A^{-1}\\right)_{12} = -\\frac{7}{10}",
+          "en": "The (1,2) entry.",
+          "es": "El elemento (1,2)."
+        }
+      ]
+    },
+    {
+      "id": "linalg-12-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$A$ and $B$ are invertible $n\\times n$ matrices. What is $(AB)^{-1}$?",
+        "es": "$A$ y $B$ son matrices $n\\times n$ invertibles. ¿Cuál es $(AB)^{-1}$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$A^{-1}B^{-1}$, the two inverses taken in the same order as the factors.",
+            "es": "$A^{-1}B^{-1}$, las dos inversas tomadas en el mismo orden que los factores."
+          },
+          "correct": false,
+          "why": {
+            "en": "The order reverses. $A^{-1}B^{-1}$ times $AB$ is not $I$ in general, because the inner $B^{-1}A$ does not cancel.",
+            "es": "El orden se invierte. $A^{-1}B^{-1}$ por $AB$ no es $I$ en general, porque el $B^{-1}A$ interior no se cancela."
+          }
+        },
+        {
+          "text": {
+            "en": "$B^{-1}A^{-1}$, the inverses in reverse order, since the middle $BB^{-1}$ cancels.",
+            "es": "$B^{-1}A^{-1}$, las inversas en orden inverso, pues en medio $BB^{-1}$ se cancela."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Then $(AB)(B^{-1}A^{-1}) = I$ and $(B^{-1}A^{-1})(AB) = I$, so the inverses come in reverse order.",
+            "es": "Exacto. Entonces $(AB)(B^{-1}A^{-1}) = I$ y $(B^{-1}A^{-1})(AB) = I$, así que las inversas van en orden inverso."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\dfrac{1}{AB}$, the reciprocal of the product of the two matrices.",
+            "es": "$\\dfrac{1}{AB}$, el recíproco del producto de las dos matrices."
+          },
+          "correct": false,
+          "why": {
+            "en": "Matrices have no division by a matrix. The reciprocal rule $1/(ab)$ holds for numbers only.",
+            "es": "Las matrices no se dividen entre matrices. La regla del recíproco $1/(ab)$ vale solo para números."
+          }
+        },
+        {
+          "text": {
+            "en": "It need not exist: a product of invertible matrices can be singular.",
+            "es": "Puede no existir: un producto de matrices invertibles puede ser singular."
+          },
+          "correct": false,
+          "why": {
+            "en": "That is false. If $A$ and $B$ are invertible, $AB$ is invertible too, with the inverse above.",
+            "es": "Eso es falso. Si $A$ y $B$ son invertibles, $AB$ también lo es, con la inversa de arriba."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Multiply $AB$ by each choice and see which one gives $I$.",
+        "es": "Multiplica $AB$ por cada opción y mira cuál da $I$."
+      }
     }
   ],
   "references": [

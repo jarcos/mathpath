@@ -2,7 +2,7 @@
   "id": "linalg-20-rouche-frobenius",
   "subjectId": "linear-algebra",
   "order": 20,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Rouché-Fröbenius & Discussion",
     "es": "Rouché-Fröbenius y discusión"
@@ -29,15 +29,29 @@
     {
       "type": "prose",
       "content": {
-        "en": "The verdict, with $n$ unknowns: if $r \\neq r'$ the system is **inconsistent** — no solution. If $r = r' = n$ it is **consistent and determinate** — a unique solution. If $r = r' < n$ it is **consistent and indeterminate** — infinitely many solutions, with $n - r$ free parameters. Three ranks, three worlds, no exceptions.",
-        "es": "El veredicto, con $n$ incógnitas: si $r \\neq r'$ el sistema es **incompatible** — sin solución. Si $r = r' = n$ es **compatible determinado** — solución única. Si $r = r' < n$ es **compatible indeterminado** — infinitas soluciones, con $n - r$ parámetros libres. Tres rangos, tres mundos, sin excepciones."
+        "en": "The verdict, with $n$ unknowns: if $r \\neq r'$ the system is **inconsistent** — no solution. If $r = r' = n$ it is **consistent and determinate** — a unique solution. If $r = r' < n$ it is **consistent and indeterminate** — infinitely many solutions, with $n - r$ free parameters. Three ranks, three cases, no exceptions.",
+        "es": "El veredicto, con $n$ incógnitas: si $r \\neq r'$ el sistema es **incompatible** — sin solución. Si $r = r' = n$ es **compatible determinado** — solución única. Si $r = r' < n$ es **compatible indeterminado** — infinitas soluciones, con $n - r$ parámetros libres. Tres rangos, tres casos, sin excepciones."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "Intuitively, $r = r'$ means the right-hand side is consistent with the equations (no contradiction like $0 = 5$); and $r = n$ means there are enough independent equations to pin down every unknown. This single theorem unifies everything you saw about $2\\times2$ and $3\\times3$ systems.",
-        "es": "Intuitivamente, $r = r'$ significa que el término de la derecha es coherente con las ecuaciones (sin contradicción como $0 = 5$); y $r = n$ significa que hay suficientes ecuaciones independientes para fijar cada incógnita. Este único teorema unifica todo lo que viste sobre sistemas $2\\times2$ y $3\\times3$."
+        "en": "**Precisely**, $r \\le r'$ always, since the augmented matrix has one more column. Adding that column raises the rank by at most one, so $r' \\in \\{r, r+1\\}$, and the only real question is whether the column $\\mathbf{b}$ adds a new pivot. A consistent system with $n$ unknowns has $n - r$ free parameters: unknowns minus rank. The number of equations does not enter directly, because many equations may be dependent. What matters is how many of them are *independent*, and that is exactly what the rank counts. So compute the ranks; do not guess them from the shape of the system.",
+        "es": "**Con precisión**, $r \\le r'$ siempre, porque la matriz ampliada tiene una columna más. Añadir esa columna sube el rango como mucho en uno, así que $r' \\in \\{r, r+1\\}$, y la única pregunta real es si la columna $\\mathbf{b}$ añade un pivote nuevo. Un sistema compatible con $n$ incógnitas tiene $n - r$ parámetros libres: incógnitas menos rango. El número de ecuaciones no entra directamente, porque muchas ecuaciones pueden ser dependientes. Lo que importa es cuántas son *independientes*, y eso es justo lo que cuenta el rango. Así que calcula los rangos; no los adivines por la forma del sistema."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Intuitively, $r = r'$ means the right-hand side is consistent with the equations (no contradiction like $0 = 5$); and $r = n$ means, if the system is consistent, that there are enough independent equations to pin down every unknown. This single theorem unifies everything you saw about $2\\times2$ and $3\\times3$ systems.",
+        "es": "Intuitivamente, $r = r'$ significa que el término de la derecha es coherente con las ecuaciones (sin contradicción como $0 = 5$); y $r = n$ significa, si el sistema es compatible, que hay suficientes ecuaciones independientes para fijar cada incógnita. Este único teorema unifica todo lo que viste sobre sistemas $2\\times2$ y $3\\times3$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Discussing a system with a parameter is a classic exam question: find the values of a parameter $a$ that make the system compatible, and solve it in each case. The method is always the same. Reduce the coefficient matrix and the augmented matrix, keep the parameter in the entries, and read off $r$ and $r'$ for each value of $a$ that makes a pivot vanish. Outside the exam the question is practical too. Fitting a line through many noisy measurements gives an inconsistent system, since no line passes through every point. Least squares then finds the values that come closest, and it is a basic tool of data fitting in statistics and machine learning.",
+        "es": "Discutir un sistema con un parámetro es una pregunta clásica de examen: halla los valores de un parámetro $a$ que hacen el sistema compatible, y resuélvelo en cada caso. El método es siempre el mismo. Reduce la matriz de coeficientes y la matriz ampliada, deja el parámetro en las entradas y lee $r$ y $r'$ para cada valor de $a$ que anula un pivote. Fuera del examen la pregunta también es práctica. Ajustar una recta a muchas medidas con ruido da un sistema incompatible, porque ninguna recta pasa por todos los puntos. Los mínimos cuadrados buscan entonces los valores más cercanos, y son una herramienta básica del ajuste de datos en estadística y aprendizaje automático."
       }
     },
     {
@@ -52,6 +66,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — discussing a system with a parameter",
+        "es": "Ejemplo resuelto — discutir un sistema con un parámetro"
+      },
+      "content": {
+        "en": "Discuss $x+y+z=1$, $x+2y+3z=2$, $2x+3y+4z=a$. Subtract the first two equations from the third: the left side vanishes and the right side becomes $a - 1 - 2 = a - 3$. So $r = 2$ for every $a$. If $a \\neq 3$, then $r' = 3 \\neq r$: the system is **inconsistent**. If $a = 3$, then $r = r' = 2 < 3$: the system is **consistent and indeterminate**, with one free parameter. Taking $z$ as the free unknown gives $x = z$ and $y = 1 - 2z$, so the solutions are $(z,\\ 1-2z,\\ z)$ for every $z$.",
+        "es": "Discute $x+y+z=1$, $x+2y+3z=2$, $2x+3y+4z=a$. Si a la tercera ecuación le restas las otras dos, el lado izquierdo se anula y el derecho queda $a - 1 - 2 = a - 3$. Así que $r = 2$ para todo $a$. Si $a \\neq 3$, entonces $r' = 3 \\neq r$: el sistema es **incompatible**. Si $a = 3$, entonces $r = r' = 2 < 3$: el sistema es **compatible indeterminado**, con un parámetro libre. Tomando $z$ como incógnita libre, $x = z$ e $y = 1 - 2z$, así que las soluciones son $(z,\\ 1-2z,\\ z)$ para cada $z$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -59,7 +84,7 @@
       ],
       "code": {
         "en": "import numpy as np\nA = np.array([[1, 1], [2, 2]])\nb = np.array([1, 3])\n# Rouche-Frobenius: rank(A) vs rank([A|b]); unequal -> no solution\nprint(np.linalg.matrix_rank(A), np.linalg.matrix_rank(np.column_stack([A, b])))",
-        "es": "import numpy as np\nA = np.array([[1, 1], [2, 2]])\nb = np.array([1, 3])\n# Rouche-Frobenius: rango(A) vs rango([A|b]); distintos -> sin solucion\nprint(np.linalg.matrix_rank(A), np.linalg.matrix_rank(np.column_stack([A, b])))"
+        "es": "import numpy as np\nA = np.array([[1, 1], [2, 2]])\nb = np.array([1, 3])\n# Rouché-Fröbenius: rango(A) vs rango([A|b]); distintos -> sin solución\nprint(np.linalg.matrix_rank(A), np.linalg.matrix_rank(np.column_stack([A, b])))"
       },
       "expectedOutput": "1 2",
       "caption": {
@@ -152,7 +177,121 @@
           "en": "One free parameter.",
           "es": "Un parámetro libre."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ is the rank $r$, not the number of free parameters. It is $n - r = 3 - 2 = 1$.",
+            "es": "$2$ es el rango $r$, no el número de parámetros libres. Es $n - r = 3 - 2 = 1$."
+          }
+        }
       ]
+    },
+    {
+      "id": "linalg-20-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "For which $k$ is the system $x + y = 1$, $2x + ky = 3$ inconsistent?",
+        "es": "¿Para qué $k$ es incompatible el sistema $x + y = 1$, $2x + ky = 3$?"
+      },
+      "answer": "2",
+      "acceptedAlt": [],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "With $k = 1$, $\\det A = 1 - 2 = -1 \\neq 0$, so the system has a unique solution, $x = 2$, $y = -1$.",
+            "es": "Con $k = 1$, $\\det A = 1 - 2 = -1 \\neq 0$, así que el sistema tiene una solución única, $x = 2$, $y = -1$."
+          }
+        },
+        {
+          "answer": "-2",
+          "feedback": {
+            "en": "The determinant is $k - 2$, not $k + 2$. With $k = -2$ it is $-4 \\neq 0$, so again there is a unique solution.",
+            "es": "El determinante es $k - 2$, no $k + 2$. Con $k = -2$ vale $-4 \\neq 0$, así que de nuevo hay una solución única."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Where the determinant of the coefficients is nonzero, the solution is unique. Check the ranks where it is zero.",
+        "es": "Donde el determinante de los coeficientes no es nulo, la solución es única. Mira los rangos donde se anula."
+      },
+      "solution": [
+        {
+          "tex": "\\det\\begin{pmatrix}1&1\\\\2&k\\end{pmatrix} = k - 2",
+          "en": "If k ≠ 2 the determinant is nonzero: a unique solution, so the system is compatible.",
+          "es": "Si k ≠ 2 el determinante no es nulo: solución única, así que el sistema es compatible."
+        },
+        {
+          "tex": "k = 2 \\Rightarrow r = 1,\\qquad \\det\\begin{pmatrix}1&1\\\\2&3\\end{pmatrix} = 1 \\neq 0 \\Rightarrow r' = 2",
+          "en": "For k = 2 the coefficient rank is 1, but columns 1 and 3 of the augmented matrix give a minor of 1, so r' = 2.",
+          "es": "Para k = 2 el rango de los coeficientes es 1, pero las columnas 1 y 3 de la ampliada dan un menor de 1, así que r' = 2."
+        },
+        {
+          "tex": "r \\neq r' \\Rightarrow \\text{inconsistent}",
+          "en": "Different ranks: no solution. So k = 2.",
+          "es": "Rangos distintos: sin solución. Así que k = 2."
+        }
+      ]
+    },
+    {
+      "id": "linalg-20-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A system has 4 equations and 3 unknowns, and $r = r' = 3$. How many solutions does it have?",
+        "es": "Un sistema tiene 4 ecuaciones y 3 incógnitas, y $r = r' = 3$. ¿Cuántas soluciones tiene?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Exactly one, because $r = r' = n = 3$, a determinate system.",
+            "es": "Exactamente una, porque $r = r' = n = 3$, un sistema compatible determinado."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Both ranks equal $n = 3$, so the system is consistent and determinate.",
+            "es": "Correcto. Los dos rangos valen $n = 3$, así que el sistema es compatible determinado."
+          }
+        },
+        {
+          "text": {
+            "en": "None, because a system with more equations than unknowns cannot have a solution.",
+            "es": "Ninguna, porque un sistema con más ecuaciones que incógnitas no puede tener solución."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. Extra equations do not cause a contradiction by themselves. The ranks decide, and here they agree.",
+            "es": "No. Las ecuaciones de más no causan una contradicción por sí solas. Deciden los rangos, y aquí coinciden."
+          }
+        },
+        {
+          "text": {
+            "en": "Infinitely many, because the rank is smaller than the number of equations.",
+            "es": "Infinitas, porque el rango es menor que el número de ecuaciones."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. The rank is compared with the unknowns, not the equations. Here $r = n = 3$, so nothing is left free.",
+            "es": "No. El rango se compara con las incógnitas, no con las ecuaciones. Aquí $r = n = 3$, así que no queda nada libre."
+          }
+        },
+        {
+          "text": {
+            "en": "One free parameter, because $4 - 3 = 1$ equation is extra.",
+            "es": "Un parámetro libre, porque $4 - 3 = 1$ ecuación sobra."
+          },
+          "correct": false,
+          "why": {
+            "en": "Wrong. Free parameters are unknowns minus rank, $n - r = 3 - 3 = 0$, not equations minus unknowns.",
+            "es": "No. Los parámetros libres son incógnitas menos rango, $n - r = 3 - 3 = 0$, no ecuaciones menos incógnitas."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Compare both ranks with the number of unknowns, n = 3.",
+        "es": "Compara los dos rangos con el número de incógnitas, n = 3."
+      }
     }
   ],
   "references": [

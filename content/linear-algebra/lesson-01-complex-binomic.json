@@ -2,7 +2,7 @@
   "id": "linalg-01-complex-binomic",
   "subjectId": "linear-algebra",
   "order": 1,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Complex Numbers: Binomic Form",
     "es": "Números complejos: forma binómica"
@@ -11,15 +11,33 @@
     {
       "type": "prose",
       "content": {
-        "en": "The equation $x^2 = -1$ has no real solution — no real number squares to a negative. Rather than declare it unsolvable, mathematicians **invented** a number that does: the **imaginary unit** $i$, defined by $i^2 = -1$. This single bold move completes the number system and, remarkably, makes *every* polynomial equation solvable (the Fundamental Theorem of Algebra).",
-        "es": "La ecuación $x^2 = -1$ no tiene solución real — ningún número real al cuadrado da un negativo. En lugar de declararla irresoluble, los matemáticos **inventaron** un número que sí la resuelve: la **unidad imaginaria** $i$, definida por $i^2 = -1$. Este audaz paso completa el sistema numérico y, notablemente, hace resoluble *toda* ecuación polinómica (el Teorema Fundamental del Álgebra)."
+        "en": "The equation $x^2 = -1$ has no real solution — no real number squares to a negative. Rather than declare it unsolvable, mathematicians **invented** a number that does: the **imaginary unit** $i$, defined by $i^2 = -1$. This single bold move completes the number system and, remarkably, gives *every* non-constant polynomial equation a root (the Fundamental Theorem of Algebra).",
+        "es": "La ecuación $x^2 = -1$ no tiene solución real — ningún número real al cuadrado da un negativo. En lugar de declararla irresoluble, los matemáticos **inventaron** un número que sí la resuelve: la **unidad imaginaria** $i$, definida por $i^2 = -1$. Este audaz paso completa el sistema numérico y, notablemente, da raíz a *toda* ecuación polinómica no constante (el Teorema Fundamental del Álgebra)."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "algebra-02-quadratic-equations",
+        "algebra-07-real-numbers-powers-roots"
+      ],
+      "note": {
+        "en": "The quadratic formula and square roots are what $i$ extends: a negative discriminant now gives two roots.",
+        "es": "La fórmula de la ecuación de segundo grado y las raíces cuadradas son lo que $i$ amplía: un discriminante negativo ya da dos raíces."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "A **complex number** in **binomic form** is $z = a + bi$, combining a **real part** $a = \\Re(z)$ and an **imaginary part** $b = \\Im(z)$. Real numbers are just the special case $b = 0$, and pure imaginaries the case $a = 0$. Far from being a mathematical curiosity, complex numbers are indispensable in electrical engineering, signal processing, quantum mechanics — and, in this subject, in finding eigenvalues.",
-        "es": "Un **número complejo** en **forma binómica** es $z = a + bi$, que combina una **parte real** $a = \\Re(z)$ y una **parte imaginaria** $b = \\Im(z)$. Los reales son el caso particular $b = 0$, y los imaginarios puros el caso $a = 0$. Lejos de ser una curiosidad, los complejos son indispensables en ingeniería eléctrica, procesamiento de señales, mecánica cuántica — y, en esta asignatura, para hallar autovalores."
+        "en": "A **complex number** in **binomic form** is $z = a + bi$, combining a **real part** $a = \\Re(z)$ and an **imaginary part** $b = \\Im(z)$. Real numbers are just the special case $b = 0$, and pure imaginaries the case $a = 0$. Far from being a mathematical curiosity, complex numbers are indispensable in electrical engineering, signal processing, quantum mechanics — and, in the next subject, in finding eigenvalues.",
+        "es": "Un **número complejo** en **forma binómica** es $z = a + bi$, que combina una **parte real** $a = \\Re(z)$ y una **parte imaginaria** $b = \\Im(z)$. Los reales son el caso particular $b = 0$, y los imaginarios puros el caso $a = 0$. Lejos de ser una curiosidad, los complejos son indispensables en ingeniería eléctrica, procesamiento de señales, mecánica cuántica — y, en la siguiente asignatura, para hallar valores propios."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, a complex number is a pair of real numbers $(a, b)$, written $a + bi$, and two complex numbers are equal only when both parts match: $a + bi = c + di$ means $a = c$ **and** $b = d$. So one complex equation is two real equations. The complex numbers, written $\\mathbb{C}$, also lose something the reals have: an **order**. If $i > 0$, multiplying by $i$ would give $i^2 = -1 > 0$; if $i < 0$, then $-i > 0$ and $(-i)^2 = -1 > 0$ again. So $z < w$ only makes sense between real numbers.",
+        "es": "**Con precisión**, un número complejo es un par de números reales $(a, b)$, que se escribe $a + bi$, y dos complejos son iguales solo si coinciden las dos partes: $a + bi = c + di$ significa $a = c$ **y** $b = d$. Así, una ecuación compleja son dos ecuaciones reales. Los números complejos, que se escriben $\\mathbb{C}$, pierden además algo que tienen los reales: el **orden**. Si $i > 0$, al multiplicar por $i$ saldría $i^2 = -1 > 0$; si $i < 0$, entonces $-i > 0$ y otra vez $(-i)^2 = -1 > 0$. Por eso $z < w$ solo tiene sentido entre números reales."
       }
     },
     {
@@ -30,14 +48,39 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "One rule from the reals breaks here: $\\sqrt{a}\\,\\sqrt{b} = \\sqrt{ab}$ fails when $a$ and $b$ are both negative. Applied blindly, $\\sqrt{-4}\\,\\sqrt{-9} = \\sqrt{36} = 6$, which is wrong: $\\sqrt{-4}\\,\\sqrt{-9} = 2i \\cdot 3i = 6i^2 = -6$. Take the $i$ out of each root first, then multiply. The cycle of four also tames any power of $i$: divide the exponent by $4$ and keep the remainder, so $i^{10} = i^{8}\\, i^{2} = -1$ and $i^{7} = i^{4}\\, i^{3} = -i$.",
+        "es": "Aquí falla una regla de los reales: $\\sqrt{a}\\,\\sqrt{b} = \\sqrt{ab}$ deja de valer cuando $a$ y $b$ son los dos negativos. Si la aplicas sin pensar, $\\sqrt{-4}\\,\\sqrt{-9} = \\sqrt{36} = 6$, y está mal: $\\sqrt{-4}\\,\\sqrt{-9} = 2i \\cdot 3i = 6i^2 = -6$. Saca primero la $i$ de cada raíz y multiplica después. El ciclo de cuatro también doma cualquier potencia de $i$: divide el exponente entre $4$ y quédate con el resto, así que $i^{10} = i^{8}\\, i^{2} = -1$ e $i^{7} = i^{4}\\, i^{3} = -i$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Complex numbers earn their place by what they solve. Every quadratic now has roots: a negative discriminant gives a pair $p \\pm qi$, and a polynomial with real coefficients always has its complex roots in such pairs. In the next subject they guarantee that every square matrix has eigenvalues, once complex ones count: a $90°$ rotation of the plane moves every direction, so it has no real eigenvalue, but it has the pair $\\pm i$. The Fourier transform, which splits a sound or an image into frequencies, is built on them.",
+        "es": "Los números complejos se ganan su sitio por lo que resuelven. Toda ecuación de segundo grado tiene ya raíces: un discriminante negativo da una pareja $p \\pm qi$, y un polinomio de coeficientes reales siempre tiene sus raíces complejas en parejas así. En la siguiente asignatura garantizan que toda matriz cuadrada tenga valores propios, si se admiten los complejos: un giro del plano de $90°$ mueve todas las direcciones, así que no tiene ningún valor propio real, pero sí la pareja $\\pm i$. La transformada de Fourier, que separa un sonido o una imagen en frecuencias, se apoya en ellos."
+      }
+    },
+    {
       "type": "example",
       "title": {
-        "en": "Worked example",
-        "es": "Ejemplo resuelto"
+        "en": "Worked example — reading the parts",
+        "es": "Ejemplo resuelto — leer las partes"
       },
       "content": {
         "en": "Identify parts and roots. For $z = 3 + 2i$: $\\Re(z) = 3$, $\\Im(z) = 2$. For $w = 5 - 4i$: $\\Im(w) = -4$ (keep the sign). And $\\sqrt{-9} = 3i$. Note $\\Im(z)$ is the real number $b$, not $bi$.",
         "es": "Identifica partes y raíces. Para $z = 3 + 2i$: $\\Re(z) = 3$, $\\Im(z) = 2$. Para $w = 5 - 4i$: $\\Im(w) = -4$ (conserva el signo). Y $\\sqrt{-9} = 3i$. Nota que $\\Im(z)$ es el número real $b$, no $bi$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a quadratic with no real roots",
+        "es": "Ejemplo resuelto — una ecuación sin raíces reales"
+      },
+      "content": {
+        "en": "Solve $x^2 - 2x + 5 = 0$. The discriminant is $(-2)^2 - 4\\cdot1\\cdot5 = 4 - 20 = -16$, negative, so there is no real root. With $\\sqrt{-16} = 4i$, the quadratic formula gives $x = \\frac{2 \\pm 4i}{2} = 1 \\pm 2i$. Check $1 + 2i$, expanding as usual and replacing $i^2$ by $-1$: $(1+2i)^2 = 1 + 4i + 4i^2 = -3 + 4i$, and $-3 + 4i - 2(1+2i) + 5 = -3 + 4i - 2 - 4i + 5 = 0$ ✓. Its partner $1 - 2i$ works too.",
+        "es": "Resuelve $x^2 - 2x + 5 = 0$. El discriminante es $(-2)^2 - 4\\cdot1\\cdot5 = 4 - 20 = -16$, negativo, así que no hay raíces reales. Con $\\sqrt{-16} = 4i$, la fórmula da $x = \\frac{2 \\pm 4i}{2} = 1 \\pm 2i$. Comprueba $1 + 2i$, desarrollando como siempre y cambiando $i^2$ por $-1$: $(1+2i)^2 = 1 + 4i + 4i^2 = -3 + 4i$, y $-3 + 4i - 2(1+2i) + 5 = -3 + 4i - 2 - 4i + 5 = 0$ ✓. Su pareja, $1 - 2i$, también la cumple."
       }
     },
     {
@@ -51,7 +94,7 @@
       "expectedOutput": "2.0 3.0 3.6056",
       "caption": {
         "en": "Python has complex numbers built in; abs gives the modulus.",
-        "es": "Python trae numeros complejos integrados; abs da el modulo."
+        "es": "Python trae números complejos integrados; abs da el módulo."
       }
     }
   ],
@@ -74,6 +117,15 @@
           "tex": "i^2 = -1",
           "en": "By definition.",
           "es": "Por definición."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ is $i^4$. By definition $i^2 = -1$; the cycle $i,\\ -1,\\ -i,\\ 1$ only comes back to $1$ at the fourth power.",
+            "es": "$1$ es $i^4$. Por definición, $i^2 = -1$; el ciclo $i,\\ -1,\\ -i,\\ 1$ solo vuelve a $1$ en la cuarta potencia."
+          }
         }
       ]
     },
@@ -117,6 +169,15 @@
           "en": "Imaginary part.",
           "es": "Parte imaginaria."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "4",
+          "feedback": {
+            "en": "The imaginary part keeps its sign: $5 - 4i = 5 + (-4)i$, so it is $-4$.",
+            "es": "La parte imaginaria conserva su signo: $5 - 4i = 5 + (-4)i$, así que es $-4$."
+          }
+        }
       ]
     },
     {
@@ -141,6 +202,113 @@
           "es": "Ya que (3i)² = −9."
         }
       ]
+    },
+    {
+      "id": "linalg-01-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "The equation $x^2 + 4x + 13 = 0$ has the roots $a \\pm bi$, with $b > 0$. Find $b$.",
+        "es": "La ecuación $x^2 + 4x + 13 = 0$ tiene las raíces $a \\pm bi$, con $b > 0$. Halla $b$."
+      },
+      "answer": "3",
+      "acceptedAlt": [
+        "6/2"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "6",
+          "feedback": {
+            "en": "$6i$ is $\\sqrt{-36}$, the root of the discriminant. The formula still divides by $2a = 2$: $x = \\frac{-4 \\pm 6i}{2} = -2 \\pm 3i$.",
+            "es": "$6i$ es $\\sqrt{-36}$, la raíz del discriminante. La fórmula aún divide entre $2a = 2$: $x = \\frac{-4 \\pm 6i}{2} = -2 \\pm 3i$."
+          }
+        },
+        {
+          "answer": "-2",
+          "feedback": {
+            "en": "$-2$ is the real part $a$. The question asks for $b$, the number that multiplies $i$: the roots are $-2 \\pm 3i$.",
+            "es": "$-2$ es la parte real $a$. Se pide $b$, el número que multiplica a $i$: las raíces son $-2 \\pm 3i$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use the quadratic formula. The discriminant is negative, so write its square root as a real number times i.",
+        "es": "Usa la fórmula de la ecuación de segundo grado. El discriminante es negativo: escribe su raíz como un número real por i."
+      },
+      "solution": [
+        {
+          "tex": "\\Delta = 4^2 - 4\\cdot1\\cdot13 = 16 - 52 = -36",
+          "en": "The discriminant is negative: there are no real roots.",
+          "es": "El discriminante es negativo: no hay raíces reales."
+        },
+        {
+          "tex": "\\sqrt{-36} = \\sqrt{36}\\,\\sqrt{-1} = 6i",
+          "en": "Take the i out of the root.",
+          "es": "Saca la i de la raíz."
+        },
+        {
+          "tex": "x = \\frac{-4 \\pm 6i}{2} = -2 \\pm 3i",
+          "en": "Divide both parts by 2a = 2. So a = −2 and b = 3.",
+          "es": "Divide las dos partes entre 2a = 2. Así, a = −2 y b = 3."
+        }
+      ]
+    },
+    {
+      "id": "linalg-01-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "What is $\\sqrt{-2}\\cdot\\sqrt{-8}$?",
+        "es": "¿Cuánto vale $\\sqrt{-2}\\cdot\\sqrt{-8}$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$4$, because $\\sqrt{-2}\\,\\sqrt{-8} = \\sqrt{16}$.",
+            "es": "$4$, porque $\\sqrt{-2}\\,\\sqrt{-8} = \\sqrt{16}$."
+          },
+          "correct": false,
+          "why": {
+            "en": "That joins the roots with $\\sqrt a\\,\\sqrt b = \\sqrt{ab}$, a rule that fails when $a$ and $b$ are both negative. Take the $i$ out first.",
+            "es": "Eso junta las raíces con $\\sqrt a\\,\\sqrt b = \\sqrt{ab}$, una regla que falla cuando $a$ y $b$ son los dos negativos. Saca primero la $i$."
+          }
+        },
+        {
+          "text": {
+            "en": "$-4$, because it is $(\\sqrt2\\, i)(\\sqrt8\\, i)$.",
+            "es": "$-4$, porque es $(\\sqrt2\\, i)(\\sqrt8\\, i)$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $\\sqrt{-2} = \\sqrt2\\,i$ and $\\sqrt{-8} = \\sqrt8\\,i$, so the product is $\\sqrt{16}\\; i^2 = 4\\cdot(-1) = -4$.",
+            "es": "Exacto. $\\sqrt{-2} = \\sqrt2\\,i$ y $\\sqrt{-8} = \\sqrt8\\,i$, así que el producto es $\\sqrt{16}\\; i^2 = 4\\cdot(-1) = -4$."
+          }
+        },
+        {
+          "text": {
+            "en": "It is undefined: negative numbers have no square roots.",
+            "es": "No está definido: los números negativos no tienen raíz cuadrada."
+          },
+          "correct": false,
+          "why": {
+            "en": "They have none among the reals, but $i$ was invented for exactly this: $\\sqrt{-2} = \\sqrt2\\,i$.",
+            "es": "No la tienen entre los reales, pero $i$ se inventó justo para esto: $\\sqrt{-2} = \\sqrt2\\,i$."
+          }
+        },
+        {
+          "text": {
+            "en": "$4i$, because $\\sqrt{-2}\\,\\sqrt{-8} = \\sqrt{-16}$.",
+            "es": "$4i$, porque $\\sqrt{-2}\\,\\sqrt{-8} = \\sqrt{-16}$."
+          },
+          "correct": false,
+          "why": {
+            "en": "Two negatives multiply to a positive, $(-2)(-8) = 16$, and joining the roots is the very step that fails with negatives. Take the $i$ out of each root first.",
+            "es": "Dos negativos multiplicados dan positivo, $(-2)(-8) = 16$, y juntar las raíces es justo el paso que falla con negativos. Saca primero la $i$ de cada raíz."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write each root as a real number times i before multiplying.",
+        "es": "Escribe cada raíz como un número real por i antes de multiplicar."
+      }
     }
   ],
   "references": [
