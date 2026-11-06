@@ -2,7 +2,7 @@
   "id": "linmaps-15-affine",
   "subjectId": "linear-maps",
   "order": 15,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Affine Transformations in 2D",
     "es": "Transformaciones afines en 2D"
@@ -18,11 +18,12 @@
     {
       "type": "prereq",
       "lessons": [
-        "linmaps-13-homogeneous"
+        "linmaps-13-homogeneous",
+        "functions-06-linear-affine"
       ],
       "note": {
-        "en": "Affine maps use homogeneous coordinates.",
-        "es": "Los mapas afines usan coordenadas homogeneas."
+        "en": "Affine maps use homogeneous coordinates, and in one dimension they are the lines $ax + b$.",
+        "es": "Las aplicaciones afines usan coordenadas homogéneas, y en una dimensión son las rectas $ax + b$."
       }
     },
     {
@@ -35,8 +36,29 @@
     {
       "type": "prose",
       "content": {
+        "en": "**Precisely**, affine maps are closed under composition: $A_2(A_1\\mathbf x + \\mathbf b_1) + \\mathbf b_2 = A_2A_1\\mathbf x + (A_2\\mathbf b_1 + \\mathbf b_2)$, which is affine again. $T$ is invertible exactly when $A$ is, and then $T^{-1}(\\mathbf y) = A^{-1}(\\mathbf y - \\mathbf b)$. Affine maps also keep affine combinations: $T(\\lambda\\mathbf p + (1-\\lambda)\\mathbf q) = \\lambda T(\\mathbf p) + (1-\\lambda)T(\\mathbf q)$ whenever the weights add to $1$. That is why midpoints and centroids go to midpoints and centroids.",
+        "es": "**Con precisión**, las aplicaciones afines son cerradas por composición: $A_2(A_1\\mathbf x + \\mathbf b_1) + \\mathbf b_2 = A_2A_1\\mathbf x + (A_2\\mathbf b_1 + \\mathbf b_2)$, que es de nuevo afín. $T$ es invertible exactamente cuando lo es $A$, y entonces $T^{-1}(\\mathbf y) = A^{-1}(\\mathbf y - \\mathbf b)$. Las aplicaciones afines también conservan las combinaciones afines: $T(\\lambda\\mathbf p + (1-\\lambda)\\mathbf q) = \\lambda T(\\mathbf p) + (1-\\lambda)T(\\mathbf q)$ siempre que los pesos sumen $1$. Por eso los puntos medios y los baricentros pasan a ser puntos medios y baricentros."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The trap is to treat the translation as if the whole map were linear. $T$ does not preserve sums: $T(\\mathbf p + \\mathbf q) = A(\\mathbf p + \\mathbf q) + \\mathbf b$, but $T(\\mathbf p) + T(\\mathbf q) = A(\\mathbf p + \\mathbf q) + 2\\mathbf b$, so $\\mathbf b$ is counted twice. What survives is differences: $T(\\mathbf q) - T(\\mathbf p) = A(\\mathbf q - \\mathbf p)$. Only differences are mapped linearly. Also, a shear such as $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ changes angles and lengths, even though it keeps lines and midpoints.",
+        "es": "La trampa es tratar la traslación como si toda la aplicación fuera lineal. $T$ no conserva las sumas: $T(\\mathbf p + \\mathbf q) = A(\\mathbf p + \\mathbf q) + \\mathbf b$, pero $T(\\mathbf p) + T(\\mathbf q) = A(\\mathbf p + \\mathbf q) + 2\\mathbf b$, así que $\\mathbf b$ se cuenta dos veces. Lo que sobrevive son las diferencias: $T(\\mathbf q) - T(\\mathbf p) = A(\\mathbf q - \\mathbf p)$. Solo las diferencias se transforman linealmente. Además, una cizalla como $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ cambia ángulos y longitudes, aunque conserve rectas y puntos medios."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
         "en": "Homogeneous coordinates absorb affine maps neatly: a single $3\\times 3$ matrix holds both the linear part $A$ (top-left) and the translation $\\mathbf{b}$ (last column). This is exactly the representation used to place and orient every object in a 2D scene.",
         "es": "Las coordenadas homogéneas absorben las aplicaciones afines con elegancia: una única matriz $3\\times 3$ contiene tanto la parte lineal $A$ (arriba a la izquierda) como la traslación $\\mathbf{b}$ (última columna). Es exactamente la representación usada para colocar y orientar cada objeto en una escena 2D."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Affine maps are at the core of both neural networks and image processing. A neural-network layer computes $\\sigma(W\\mathbf x + \\mathbf b)$: an affine map, with weight matrix $W$ and bias $\\mathbf b$, followed by a nonlinearity $\\sigma$. Without the nonlinearity, stacked layers would collapse into one affine map, as we saw with composition. In image augmentation and registration, a 2D affine warp has 6 parameters, and 3 pairs of matching points, not all on one line, determine it exactly.",
+        "es": "Las aplicaciones afines están en la base tanto de las redes neuronales como del tratamiento de imágenes. Una capa de una red neuronal calcula $\\sigma(W\\mathbf x + \\mathbf b)$: una aplicación afín, con matriz de pesos $W$ y sesgo $\\mathbf b$, seguida de una no linealidad $\\sigma$. Sin la no linealidad, las capas apiladas colapsarían en una sola aplicación afín, como vimos con la composición. En el aumento de datos y en el registro de imágenes, una transformación afín 2D tiene 6 parámetros, y 3 pares de puntos correspondientes, no todos sobre una misma recta, la determinan por completo."
       }
     },
     {
@@ -51,6 +73,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a sheared square",
+        "es": "Ejemplo resuelto — un cuadrado cizallado"
+      },
+      "content": {
+        "en": "Let $T(\\mathbf x) = A\\mathbf x + \\mathbf b$ with $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ and $\\mathbf b = (1,-2)$: a shear followed by a slide. The corners $(0,0)$, $(1,0)$, $(1,1)$ and $(0,1)$ of the unit square go to $(1,-2)$, $(2,-2)$, $(3,-1)$ and $(2,-1)$: a parallelogram of area $|\\det A| = 1$. The midpoint $(\\tfrac12, \\tfrac12)$ of the diagonal goes to $(2, -\\tfrac32)$, which is also the midpoint of the images $(1,-2)$ and $(3,-1)$.",
+        "es": "Sea $T(\\mathbf x) = A\\mathbf x + \\mathbf b$ con $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ y $\\mathbf b = (1,-2)$: una cizalla seguida de un deslizamiento. Las esquinas $(0,0)$, $(1,0)$, $(1,1)$ y $(0,1)$ del cuadrado unidad van a $(1,-2)$, $(2,-2)$, $(3,-1)$ y $(2,-1)$: un paralelogramo de área $|\\det A| = 1$. El punto medio $(\\tfrac12, \\tfrac12)$ de la diagonal va a $(2, -\\tfrac32)$, que es también el punto medio de las imágenes $(1,-2)$ y $(3,-1)$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -58,12 +91,12 @@
       ],
       "code": {
         "en": "import numpy as np\n# affine = linear part + translation, in one homogeneous matrix\nM = np.array([[2, 0, 1], [0, 2, 1], [0, 0, 1]])\nprint((M @ np.array([1, 1, 1])).tolist())",
-        "es": "import numpy as np\n# afin = parte lineal + traslacion, en una sola matriz homogenea\nM = np.array([[2, 0, 1], [0, 2, 1], [0, 0, 1]])\nprint((M @ np.array([1, 1, 1])).tolist())"
+        "es": "import numpy as np\n# afín = parte lineal + traslación, en una sola matriz homogénea\nM = np.array([[2, 0, 1], [0, 2, 1], [0, 0, 1]])\nprint((M @ np.array([1, 1, 1])).tolist())"
       },
       "expectedOutput": "[3, 3, 1]",
       "caption": {
         "en": "Affine maps combine a linear map with a translation.",
-        "es": "Los mapas afines combinan un mapa lineal con una traslacion."
+        "es": "Las aplicaciones afines combinan una aplicación lineal con una traslación."
       }
     }
   ],
@@ -112,6 +145,15 @@
           "en": "Evaluate.",
           "es": "Evalúa."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "8",
+          "feedback": {
+            "en": "$8 = 2(3+1)$ adds the $1$ before scaling. The map scales $3$ first and adds $1$ afterwards.",
+            "es": "$8 = 2(3+1)$ suma el $1$ antes de escalar. La aplicación escala primero el $3$ y suma el $1$ después."
+          }
+        }
       ]
     },
     {
@@ -155,7 +197,106 @@
           "en": "The translation part.",
           "es": "La parte de traslación."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "$0$ assumes the map fixes the origin. It does not: here $T(0) = \\mathbf b = -2$.",
+            "es": "$0$ supone que la aplicación deja fijo el origen. No es así: aquí $T(0) = \\mathbf b = -2$."
+          }
+        }
       ]
+    },
+    {
+      "id": "linmaps-15-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "$T(\\mathbf x) = A\\mathbf x + \\mathbf b$ with $A = \\begin{pmatrix}2&0\\\\1&1\\end{pmatrix}$ and $\\mathbf b = (-1,3)$. What is the second component of $T(1,2)$?",
+        "es": "$T(\\mathbf x) = A\\mathbf x + \\mathbf b$ con $A = \\begin{pmatrix}2&0\\\\1&1\\end{pmatrix}$ y $\\mathbf b = (-1,3)$. ¿Cuál es la segunda componente de $T(1,2)$?"
+      },
+      "answer": "6",
+      "acceptedAlt": [
+        "1*1+1*2+3"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3 = 1 + 2$ is the second component of $A(1,2)$ alone. The translation $\\mathbf b$ adds $3$ more, so the answer is $6$.",
+            "es": "$3 = 1 + 2$ es la segunda componente de $A(1,2)$ solo. La traslación $\\mathbf b$ suma $3$ más, así que la respuesta es $6$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "First compute A(1, 2), then add b.",
+        "es": "Primero calcula A(1, 2) y luego suma b."
+      },
+      "solution": [
+        {
+          "tex": "\\begin{pmatrix}2&0\\\\1&1\\end{pmatrix}\\begin{pmatrix}1\\\\2\\end{pmatrix} + \\begin{pmatrix}-1\\\\3\\end{pmatrix} = \\begin{pmatrix}2\\\\3\\end{pmatrix} + \\begin{pmatrix}-1\\\\3\\end{pmatrix} = \\begin{pmatrix}1\\\\6\\end{pmatrix}",
+          "en": "The linear part gives (2, 3). Adding b gives (1, 6), so the second component is 6.",
+          "es": "La parte lineal da (2, 3). Sumar b da (1, 6), así que la segunda componente es 6."
+        }
+      ]
+    },
+    {
+      "id": "linmaps-15-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which property does every affine map keep?",
+        "es": "¿Qué propiedad conservan todas las aplicaciones afines?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The origin: it stays where it was, because the map is a matrix times the point.",
+            "es": "El origen: se queda donde estaba, porque la aplicación es una matriz por el punto."
+          },
+          "correct": false,
+          "why": {
+            "en": "The translation $\\mathbf b$ moves the origin unless $\\mathbf b = \\mathbf 0$. Only linear maps fix it.",
+            "es": "La traslación $\\mathbf b$ mueve el origen salvo que $\\mathbf b = \\mathbf 0$. Solo las aplicaciones lineales lo fijan."
+          }
+        },
+        {
+          "text": {
+            "en": "Angles between lines, since a shear only changes the shape a little.",
+            "es": "Los ángulos entre rectas, ya que una cizalla solo cambia un poco la forma."
+          },
+          "correct": false,
+          "why": {
+            "en": "A shear changes angles: $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ turns a right angle at the origin into a $45°$ one.",
+            "es": "Una cizalla cambia los ángulos: $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ convierte un ángulo recto en el origen en uno de $45°$."
+          }
+        },
+        {
+          "text": {
+            "en": "Midpoints: the midpoint of two points goes to the midpoint of their images.",
+            "es": "Puntos medios: el punto medio de dos puntos va al punto medio de sus imágenes."
+          },
+          "correct": true,
+          "why": {
+            "en": "$T(\\tfrac12\\mathbf p + \\tfrac12\\mathbf q) = \\tfrac12 T(\\mathbf p) + \\tfrac12 T(\\mathbf q)$, since the weights add to $1$.",
+            "es": "$T(\\tfrac12\\mathbf p + \\tfrac12\\mathbf q) = \\tfrac12 T(\\mathbf p) + \\tfrac12 T(\\mathbf q)$, porque los pesos suman $1$."
+          }
+        },
+        {
+          "text": {
+            "en": "Lengths of segments, since a translation moves points without stretching them.",
+            "es": "Las longitudes de los segmentos, ya que una traslación mueve los puntos sin estirarlos."
+          },
+          "correct": false,
+          "why": {
+            "en": "Lengths change under $A$: $A = 2I$ doubles every segment. The translation alone keeps lengths, the linear part does not.",
+            "es": "Las longitudes cambian con $A$: $A = 2I$ duplica cada segmento. La traslación sola conserva longitudes; la parte lineal no."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Take two points and their midpoint: where does the map send that midpoint?",
+        "es": "Toma dos puntos y su punto medio: ¿adónde envía la aplicación ese punto medio?"
+      }
     }
   ],
   "references": [

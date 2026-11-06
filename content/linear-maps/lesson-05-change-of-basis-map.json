@@ -2,7 +2,7 @@
   "id": "linmaps-05-change-of-basis",
   "subjectId": "linear-maps",
   "order": 5,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Change of Basis for a Map",
     "es": "Cambio de base en una aplicación lineal"
@@ -16,10 +16,35 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "linalg-13-change-of-basis",
+        "linalg-11-determinants-properties"
+      ],
+      "note": {
+        "en": "Change of basis for vectors gives the matrix $P$, and the determinant rule for products gives the invariance proved below.",
+        "es": "El cambio de base de vectores da la matriz $P$, y la regla del determinante de un producto da la invariancia que se demuestra abajo."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "Because $B$ and $A$ are the same map, they must agree on every property that is intrinsic to the map and not the coordinates. These **invariants** include the **determinant**, the **trace**, the **rank**, and — most importantly for what follows — the **eigenvalues**. So $\\det B = \\det A$ and $\\text{tr}\\,B = \\text{tr}\\,A$ for any similarity.",
-        "es": "Como $B$ y $A$ son la misma aplicación, deben coincidir en toda propiedad intrínseca a la aplicación y no a las coordenadas. Estos **invariantes** incluyen el **determinante**, la **traza**, el **rango** y — lo más importante para lo que sigue — los **autovalores**. Así $\\det B = \\det A$ y $\\text{tr}\\,B = \\text{tr}\\,A$ para cualquier semejanza."
+        "es": "Como $B$ y $A$ son la misma aplicación, deben coincidir en toda propiedad intrínseca a la aplicación y no a las coordenadas. Estos **invariantes** incluyen el **determinante**, la **traza**, el **rango** y — lo más importante para lo que sigue — los **valores propios**. Así $\\det B = \\det A$ y $\\text{tr}\\,B = \\text{tr}\\,A$ para cualquier semejanza."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, the columns of $P$ are the new basis vectors written in the old coordinates, so $[\\mathbf v]_{\\text{old}} = P\\,[\\mathbf v]_{\\text{new}}$. Read $B = P^{-1}AP$ from right to left: convert the input to old coordinates with $P$, apply $A$, then convert back with $P^{-1}$. The invariants follow from this form. $\\det(P^{-1}AP) = \\det P^{-1}\\,\\det A\\,\\det P = \\det A$, and $\\operatorname{tr}(XY) = \\operatorname{tr}(YX)$ gives $\\operatorname{tr}(P^{-1}AP) = \\operatorname{tr} A$. Also $P^{-1}AP - \\lambda I = P^{-1}(A - \\lambda I)P$, so the characteristic polynomial does not change.",
+        "es": "**Con precisión**, las columnas de $P$ son los nuevos vectores de la base escritos en las coordenadas antiguas, así que $[\\mathbf v]_{\\text{antigua}} = P\\,[\\mathbf v]_{\\text{nueva}}$. Lee $B = P^{-1}AP$ de derecha a izquierda: pasa la entrada a las coordenadas antiguas con $P$, aplica $A$ y vuelve con $P^{-1}$. Los invariantes salen de esta forma. $\\det(P^{-1}AP) = \\det P^{-1}\\,\\det A\\,\\det P = \\det A$, y $\\operatorname{tr}(XY) = \\operatorname{tr}(YX)$ da $\\operatorname{tr}(P^{-1}AP) = \\operatorname{tr} A$. Además, $P^{-1}AP - \\lambda I = P^{-1}(A - \\lambda I)P$, así que el polinomio característico no cambia."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The trap: equal invariants are necessary, not sufficient.** Similar matrices share determinant, trace and eigenvalues, but the converse fails. Take $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ and $I$. Both have determinant $1$, trace $2$ and eigenvalue $1$ twice. Yet $P^{-1}IP = I$ for every invertible $P$, so $I$ is similar only to itself, and $A$ is not similar to $I$. Different invariants prove two matrices are not similar; equal ones prove nothing more.",
+        "es": "**La trampa: los invariantes iguales son necesarios, no suficientes.** Las matrices semejantes comparten determinante, traza y valores propios, pero el recíproco falla. Toma $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ e $I$. Ambas tienen determinante $1$, traza $2$ y el valor propio $1$ repetido. Sin embargo, $P^{-1}IP = I$ para toda $P$ invertible, así que $I$ solo es semejante a sí misma, y $A$ no es semejante a $I$. Invariantes distintos demuestran que no son semejantes; invariantes iguales no demuestran nada más."
       }
     },
     {
@@ -27,6 +52,13 @@
       "content": {
         "en": "This is the strategic idea behind **diagonalization** (next lessons): among all the matrices similar to $A$, can we find one that is **diagonal**? If so, the map becomes trivially simple in that basis, and hard computations like matrix powers collapse to raising numbers to a power.",
         "es": "Esta es la idea estratégica tras la **diagonalización** (próximas lecciones): entre todas las matrices semejantes a $A$, ¿podemos hallar una que sea **diagonal**? Si es así, la aplicación se vuelve trivialmente simple en esa base, y cálculos difíciles como las potencias de matrices se reducen a elevar números a una potencia."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why it matters.** Changing basis is one way data science finds structure. Principal component analysis (PCA) writes a dataset's covariance matrix in a basis of its eigenvectors, so the new axes point along the directions of greatest spread, and the matrix becomes diagonal there. The same idea, choosing coordinates that make a problem simple, runs through physics: the inertia tensor of a rigid body is simplest along its principal axes.",
+        "es": "**Por qué importa.** Cambiar de base es una de las formas en que la ciencia de datos encuentra estructura. El análisis de componentes principales (PCA) escribe la matriz de covarianzas de un conjunto de datos en una base de sus vectores propios, así que los nuevos ejes apuntan a las direcciones de mayor dispersión, y la matriz queda diagonal ahí. La misma idea, elegir coordenadas que hagan simple un problema, recorre la física: el tensor de inercia de un sólido rígido es más sencillo en sus ejes principales."
       }
     },
     {
@@ -41,6 +73,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a basis that diagonalizes",
+        "es": "Ejemplo resuelto — una base que diagonaliza"
+      },
+      "content": {
+        "en": "Let $A = \\begin{pmatrix}1&2\\\\0&3\\end{pmatrix}$ and take the new basis $(1,0)$, $(1,1)$, so $P = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$. Since $A(1,0) = (1,0)$ and $A(1,1) = (3,3) = 3\\,(1,1)$, the map keeps both new basis vectors on their own lines. Then $P^{-1} = \\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$ and $P^{-1}AP = \\begin{pmatrix}1&0\\\\0&3\\end{pmatrix}$, a diagonal matrix. The determinant $3$ and the trace $4$ are unchanged, as the invariants predict.",
+        "es": "Sea $A = \\begin{pmatrix}1&2\\\\0&3\\end{pmatrix}$ y toma la nueva base $(1,0)$, $(1,1)$, así que $P = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$. Como $A(1,0) = (1,0)$ y $A(1,1) = (3,3) = 3\\,(1,1)$, la aplicación mantiene los dos vectores de la nueva base sobre sus propias rectas. Entonces $P^{-1} = \\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$ y $P^{-1}AP = \\begin{pmatrix}1&0\\\\0&3\\end{pmatrix}$, una matriz diagonal. El determinante $3$ y la traza $4$ no cambian, como predicen los invariantes."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,7 +91,7 @@
       ],
       "code": {
         "en": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\nP = np.array([[1, 1], [0, 1]])\n# the same map in a new basis: B = P^-1 A P (similar matrix)\nprint((np.linalg.inv(P) @ A @ P).round(2).tolist())",
-        "es": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\nP = np.array([[1, 1], [0, 1]])\n# el mismo mapa en otra base: B = P^-1 A P (matriz semejante)\nprint((np.linalg.inv(P) @ A @ P).round(2).tolist())"
+        "es": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\nP = np.array([[1, 1], [0, 1]])\n# la misma aplicación en otra base: B = P^-1 A P (matriz semejante)\nprint((np.linalg.inv(P) @ A @ P).round(2).tolist())"
       },
       "expectedOutput": "[[2.0, -1.0], [0.0, 3.0]]",
       "caption": {
@@ -80,6 +123,15 @@
           "en": "Determinant.",
           "es": "Determinante."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5$ is the trace, the sum of the diagonal. The determinant multiplies: $2\\cdot 3 = 6$.",
+            "es": "$5$ es la traza, la suma de la diagonal. El determinante multiplica: $2\\cdot 3 = 6$."
+          }
+        }
       ]
     },
     {
@@ -103,6 +155,15 @@
           "tex": "2 + 3 = 5",
           "en": "Trace.",
           "es": "Traza."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "6",
+          "feedback": {
+            "en": "$6$ is the determinant, the product of the diagonal. The trace adds: $2 + 3 = 5$.",
+            "es": "$6$ es el determinante, el producto de la diagonal. La traza suma: $2 + 3 = 5$."
+          }
         }
       ]
     },
@@ -155,6 +216,106 @@
           "es": "Todos son invariantes."
         }
       ]
+    },
+    {
+      "id": "linmaps-05-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Let $A = \\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}$ and $P = \\begin{pmatrix}1&1\\\\1&-2\\end{pmatrix}$. What is the $(2,2)$ entry of $P^{-1}AP$?",
+        "es": "Sean $A = \\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}$ y $P = \\begin{pmatrix}1&1\\\\1&-2\\end{pmatrix}$. ¿Cuál es el elemento $(2,2)$ de $P^{-1}AP$?"
+      },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "Check AP first: $A$ maps each column of $P$ to a multiple of itself.",
+        "es": "Comprueba primero $AP$: $A$ envía cada columna de $P$ a un múltiplo de sí misma."
+      },
+      "solution": [
+        {
+          "tex": "P^{-1}AP = \\begin{pmatrix}5&0\\\\0&2\\end{pmatrix}",
+          "en": "The columns of $P$ are eigenvectors: $A(1,1) = 5\\,(1,1)$ and $A(1,-2) = 2\\,(1,-2)$.",
+          "es": "Las columnas de $P$ son vectores propios: $A(1,1) = 5\\,(1,1)$ y $A(1,-2) = 2\\,(1,-2)$."
+        },
+        {
+          "tex": "(2,2)\\text{ entry} = 2",
+          "en": "So the $(2,2)$ entry is $2$.",
+          "es": "Así, el elemento $(2,2)$ es $2$."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5$ appears when the columns of $P$ are swapped: the eigenvalue of $(1,1)$ then sits in the second place. The order of the columns must match the order of the diagonal.",
+            "es": "$5$ aparece si se intercambian las columnas de $P$: el valor propio de $(1,1)$ queda entonces en segundo lugar. El orden de las columnas debe coincidir con el de la diagonal."
+          }
+        },
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3$ is the $(2,2)$ entry of $A$. Entries do not survive a change of basis; only invariants such as the trace do.",
+            "es": "$3$ es el elemento $(2,2)$ de $A$. Los elementos no se conservan al cambiar de base; solo los invariantes, como la traza."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linmaps-05-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Matrices $A$ and $B$ have the same determinant and the same trace. Are they similar?",
+        "es": "Las matrices $A$ y $B$ tienen el mismo determinante y la misma traza. ¿Son semejantes?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Probably, since equal determinant and trace nearly always mean similar.",
+            "es": "Probablemente, pues determinante y traza iguales casi siempre implican semejanza."
+          },
+          "correct": false,
+          "why": {
+            "en": "Equal determinant and trace don\\'t pin the map down: $I$ and the shear $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ share both and are not similar.",
+            "es": "El determinante y la traza iguales no fijan la aplicación: $I$ y la cizalla $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ comparten ambos y no son semejantes."
+          }
+        },
+        {
+          "text": {
+            "en": "Not necessarily: equal invariants don't suffice.",
+            "es": "No necesariamente: invariantes iguales no bastan."
+          },
+          "correct": true,
+          "why": {
+            "en": "Equal determinant and trace are required, but they do not force similarity. The pair $I$ and its shear from the trap above is the proof.",
+            "es": "El determinante y la traza iguales son necesarios, pero no fuerzan la semejanza. El par $I$ y su cizalla de la trampa de arriba es la prueba."
+          }
+        },
+        {
+          "text": {
+            "en": "Yes, when both are 2 by 2 matrices of the same size.",
+            "es": "Sí, cuando ambas son matrices 2 × 2 del mismo tamaño."
+          },
+          "correct": false,
+          "why": {
+            "en": "Size does not decide it. The same $2\\times2$ pair, $I$ and its shear, has equal determinant and trace, yet the two are not similar.",
+            "es": "El tamaño no lo decide. El mismo par $2\\times2$, $I$ y su cizalla, tiene igual determinante y traza, pero no son semejantes."
+          }
+        },
+        {
+          "text": {
+            "en": "No, similar matrices always have different entries from each other.",
+            "es": "No, las matrices semejantes siempre tienen elementos distintos entre sí."
+          },
+          "correct": false,
+          "why": {
+            "en": "Similar matrices can be identical: $P^{-1}IP = I$ for every $P$. Similarity allows equal entries; it just changes them in general.",
+            "es": "Las matrices semejantes pueden ser idénticas: $P^{-1}IP = I$ para toda $P$. La semejanza admite elementos iguales; solo los cambia en general."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Look for a matrix that is similar only to itself.",
+        "es": "Busca una matriz que sea semejante solo a sí misma."
+      }
     }
   ],
   "references": [

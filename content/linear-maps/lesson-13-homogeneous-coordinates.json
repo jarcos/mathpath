@@ -2,7 +2,7 @@
   "id": "linmaps-13-homogeneous",
   "subjectId": "linear-maps",
   "order": 13,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Homogeneous Coordinates",
     "es": "Coordenadas homogéneas"
@@ -16,6 +16,24 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "linmaps-10-translation",
+        "linalg-09-matrices-operations"
+      ],
+      "note": {
+        "en": "Once points carry a third coordinate, a translation is an ordinary matrix product.",
+        "es": "Una vez que los puntos llevan una tercera coordenada, una traslación es un producto de matrices ordinario."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, a triple $(x, y, w)$ with $w \\neq 0$ stands for the 2D point $(x/w,\\ y/w)$. So $(2,4,2)$ and $(1,2,1)$ are the same point, and every point has infinitely many triples. Points are the triples with $w = 1$; directions, or vectors, have $w = 0$. A general 2D affine map $\\mathbf x \\mapsto A\\mathbf x + \\mathbf t$ is the single matrix $\\begin{pmatrix}a&b&t_1\\\\c&d&t_2\\\\0&0&1\\end{pmatrix}$, which is why one product handles rotation, scaling and translation together.",
+        "es": "**Con precisión**, una terna $(x, y, w)$ con $w \\neq 0$ representa el punto del plano $(x/w,\\ y/w)$. Así, $(2,4,2)$ y $(1,2,1)$ son el mismo punto, y cada punto tiene infinitas ternas. Los puntos son las ternas con $w = 1$; las direcciones, o vectores, tienen $w = 0$. Una aplicación afín general $\\mathbf x \\mapsto A\\mathbf x + \\mathbf t$ es la única matriz $\\begin{pmatrix}a&b&t_1\\\\c&d&t_2\\\\0&0&1\\end{pmatrix}$, por eso un solo producto maneja a la vez rotación, escalado y traslación."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "In this scheme, a 2D translation by $(a,b)$ becomes the $3\\times 3$ matrix $\\begin{pmatrix}1&0&a\\\\0&1&b\\\\0&0&1\\end{pmatrix}$. Rotation and scaling get $3\\times 3$ forms too (with the geometric part in the top-left $2\\times 2$ block). The crucial win: **translation, rotation, and scaling are now all matrix multiplications** — uniform, composable, and hardware-friendly.",
@@ -25,8 +43,22 @@
     {
       "type": "prose",
       "content": {
-        "en": "This is why every GPU and graphics library (OpenGL, game engines) works with $4\\times 4$ homogeneous matrices in 3D: a single matrix multiply can apply an entire chain of moves, rotations, scales, and even perspective projection. Homogeneous coordinates are the unsung hero of modern computer graphics.",
-        "es": "Por eso toda GPU y biblioteca gráfica (OpenGL, motores de juego) trabaja con matrices homogéneas $4\\times 4$ en 3D: una sola multiplicación de matriz puede aplicar toda una cadena de movimientos, rotaciones, escalados e incluso proyección en perspectiva. Las coordenadas homogéneas son el héroe anónimo de los gráficos modernos."
+        "en": "The trap is **where** the translation goes. For column vectors it sits in the last **column**, beside the $w$ entry: $\\begin{pmatrix}1&0&4\\\\0&1&-1\\\\0&0&1\\end{pmatrix}$ moves points by $(4,-1)$. The last row must stay $(0,0,1)$, so that $w$ survives. Libraries that multiply row vectors, such as DirectX, store the transpose of this matrix, with the translation in the last **row**. Mixing the two conventions is a common bug: the object lands far from where you meant, and nothing reports an error.",
+        "es": "La trampa es **dónde** va la traslación. Con vectores columna va en la última **columna**, junto a la componente $w$: $\\begin{pmatrix}1&0&4\\\\0&1&-1\\\\0&0&1\\end{pmatrix}$ mueve los puntos por $(4,-1)$. La última fila debe quedarse en $(0,0,1)$, para que $w$ se conserve. Las bibliotecas que multiplican vectores fila, como DirectX, guardan la traspuesta de esta matriz, con la traslación en la última **fila**. Mezclar las dos convenciones es un error habitual: el objeto acaba lejos de donde querías, y nada informa de un fallo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This is why every GPU and graphics library (OpenGL, game engines) works with $4\\times 4$ homogeneous matrices in 3D: a single matrix multiply can apply an entire chain of moves, rotations, scales, and even perspective projection, followed by one division by $w$. Homogeneous coordinates are the unsung hero of modern computer graphics.",
+        "es": "Por eso toda GPU y biblioteca gráfica (OpenGL, motores de juego) trabaja con matrices homogéneas $4\\times 4$ en 3D: una sola multiplicación de matriz puede aplicar toda una cadena de movimientos, rotaciones, escalados e incluso proyección en perspectiva, seguida de una división entre $w$. Las coordenadas homogéneas son el héroe anónimo de los gráficos modernos."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The fourth coordinate does real work in perspective. A 3D point $(x, y, z)$ becomes $(x, y, z, 1)$, and a projection matrix can put another value in the fourth slot, such as $w = z$ (DirectX's convention, with the camera looking down the positive $z$-axis; OpenGL uses $w = -z$). The last step divides every coordinate by $w$. Doubling $z$ halves the screen position $x/z$, so far things look smaller. The matrix does the multiplication; the division by $w$ is the only step that is not linear, and a GPU performs it for every vertex it draws. Moving the camera is one more matrix in the same chain.",
+        "es": "La cuarta coordenada tiene un papel real en la perspectiva. Un punto 3D $(x, y, z)$ se convierte en $(x, y, z, 1)$, y una matriz de proyección puede poner otro valor en la cuarta posición, como $w = z$ (la convención de DirectX, con la cámara mirando hacia el semieje $z$ positivo; OpenGL usa $w = -z$). El último paso divide cada coordenada entre $w$. Si duplicas $z$, la posición en pantalla $x/z$ se reduce a la mitad, así que lo lejano se ve más pequeño. La matriz hace la multiplicación; la división entre $w$ es el único paso que no es lineal, y una GPU la realiza con cada vértice que dibuja. Mover la cámara es una matriz más en la misma cadena."
       }
     },
     {
@@ -41,6 +73,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a point and a direction",
+        "es": "Ejemplo resuelto — un punto y una dirección"
+      },
+      "content": {
+        "en": "Let $T = \\begin{pmatrix}1&0&4\\\\0&1&-1\\\\0&0&1\\end{pmatrix}$. Applied to the point $(2,3,1)$ it gives $(2+4,\\ 3-1,\\ 1) = (6,2,1)$, the point $(6,2)$. Applied to the direction $(2,3,0)$ it gives $(2,3,0)$: the last coordinate $0$ switches the translation off. A direction has no position, so only the linear part of a map can change it.",
+        "es": "Sea $T = \\begin{pmatrix}1&0&4\\\\0&1&-1\\\\0&0&1\\end{pmatrix}$. Aplicada al punto $(2,3,1)$, da $(2+4,\\ 3-1,\\ 1) = (6,2,1)$, es decir, el punto $(6,2)$. Aplicada a la dirección $(2,3,0)$, da $(2,3,0)$: la última coordenada $0$ desactiva la traslación. Una dirección no tiene posición, así que solo la parte lineal de una aplicación puede cambiarla."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +91,12 @@
       ],
       "code": {
         "en": "import numpy as np\nT = np.array([[1, 0, 5], [0, 1, 3], [0, 0, 1]])\n# w=0 marks a direction (vector); translation leaves it unchanged\nprint((T @ np.array([1, 2, 0])).tolist())",
-        "es": "import numpy as np\nT = np.array([[1, 0, 5], [0, 1, 3], [0, 0, 1]])\n# w=0 marca una direccion (vector); la traslacion no la cambia\nprint((T @ np.array([1, 2, 0])).tolist())"
+        "es": "import numpy as np\nT = np.array([[1, 0, 5], [0, 1, 3], [0, 0, 1]])\n# w=0 marca una dirección (vector); la traslación no la cambia\nprint((T @ np.array([1, 2, 0])).tolist())"
       },
       "expectedOutput": "[1, 2, 0]",
       "caption": {
         "en": "Homogeneous w distinguishes points (w=1) from directions (w=0).",
-        "es": "La w homogenea distingue puntos (w=1) de direcciones (w=0)."
+        "es": "La w homogénea distingue puntos (w=1) de direcciones (w=0)."
       }
     }
   ],
@@ -98,6 +141,15 @@
           "en": "Three rows.",
           "es": "Tres filas."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ counts the coordinates of the point. Homogeneous coordinates add a third one, so the matrix has $3$ rows.",
+            "es": "$2$ cuenta las coordenadas del punto. Las coordenadas homogéneas añaden una tercera, así que la matriz tiene $3$ filas."
+          }
+        }
       ]
     },
     {
@@ -128,7 +180,7 @@
       "answerType": "number",
       "prompt": {
         "en": "3D homogeneous transformations use matrices with how many rows?",
-        "es": "Las transformaciones homogéneas 3D usan matrices con cuántas filas?"
+        "es": "¿Las transformaciones homogéneas 3D usan matrices con cuántas filas?"
       },
       "answer": "4",
       "acceptedAlt": [],
@@ -143,6 +195,103 @@
           "es": "Cuatro filas."
         }
       ]
+    },
+    {
+      "id": "linmaps-13-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Apply $M = \\begin{pmatrix}2&0&3\\\\0&2&-1\\\\0&0&1\\end{pmatrix}$ to the point $(1,2)$. What is the $x$-coordinate of the image?",
+        "es": "Aplica $M = \\begin{pmatrix}2&0&3\\\\0&2&-1\\\\0&0&1\\end{pmatrix}$ al punto $(1,2)$. ¿Cuál es la coordenada $x$ de la imagen?"
+      },
+      "answer": "5",
+      "acceptedAlt": [
+        "2*1+3"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2 = 2\\cdot 1$ leaves out the translation column, so the $3$ is lost. The point must be scaled and then moved.",
+            "es": "$2 = 2\\cdot 1$ deja fuera la columna de traslación, así que se pierde el $3$. El punto debe escalarse y después desplazarse."
+          }
+        },
+        {
+          "answer": "8",
+          "feedback": {
+            "en": "$8 = 2(1+3)$ translates by $3$ first and scales afterwards. The matrix scales first and adds the translation last.",
+            "es": "$8 = 2(1+3)$ traslada primero por $3$ y escala después. La matriz escala primero y suma la traslación al final."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Write the point as (1, 2, 1) and multiply by the matrix.",
+        "es": "Escribe el punto como (1, 2, 1) y multiplica por la matriz."
+      },
+      "solution": [
+        {
+          "tex": "M\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix} = \\begin{pmatrix}2+3\\\\4-1\\\\1\\end{pmatrix} = \\begin{pmatrix}5\\\\3\\\\1\\end{pmatrix}",
+          "en": "The third column is the translation, so the point becomes (5, 3). The x-coordinate is 5.",
+          "es": "La tercera columna es la traslación, así que el punto pasa a (5, 3). La coordenada x es 5."
+        }
+      ]
+    },
+    {
+      "id": "linmaps-13-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "What does the homogeneous triple $(4, 6, 2)$ stand for?",
+        "es": "¿Qué representa la terna homogénea $(4, 6, 2)$?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The point $(2, 3)$: divide the first two coordinates by the last one, $2$.",
+            "es": "El punto $(2, 3)$: divide las dos primeras coordenadas entre la última, $2$."
+          },
+          "correct": true,
+          "why": {
+            "en": "$(4/2,\\ 6/2) = (2,3)$. Dividing by $w$ recovers the point, so $w$ is a scale, not a label.",
+            "es": "$(4/2,\\ 6/2) = (2,3)$. Dividir entre $w$ recupera el punto, así que $w$ es una escala, no una etiqueta."
+          }
+        },
+        {
+          "text": {
+            "en": "The point $(4, 6)$: the last coordinate is only a label, so it is ignored.",
+            "es": "El punto $(4, 6)$: la última coordenada es solo una etiqueta, así que se ignora."
+          },
+          "correct": false,
+          "why": {
+            "en": "$w$ is not a label: dividing by it gives $(2,3)$, not $(4,6)$. Ignoring $w$ loses the point.",
+            "es": "$w$ no es una etiqueta: dividir entre él da $(2,3)$, no $(4,6)$. Ignorar $w$ pierde el punto."
+          }
+        },
+        {
+          "text": {
+            "en": "The direction $(4, 6)$: a last coordinate other than $1$ turns it into a vector.",
+            "es": "La dirección $(4, 6)$: una última coordenada distinta de $1$ la convierte en vector."
+          },
+          "correct": false,
+          "why": {
+            "en": "Only $w = 0$ marks a direction. A nonzero $w$, here $2$, still stands for a point.",
+            "es": "Solo $w = 0$ marca una dirección. Un $w$ no nulo, aquí $2$, sigue representando un punto."
+          }
+        },
+        {
+          "text": {
+            "en": "The point $(2, 4)$: the last coordinate is subtracted from the others.",
+            "es": "El punto $(2, 4)$: la última coordenada se resta de las demás."
+          },
+          "correct": false,
+          "why": {
+            "en": "Subtracting $w$ is not the rule: $(4-2,\\,6-2) = (2,4)$ is another point. The rule divides by $w$.",
+            "es": "Restar $w$ no es la regla: $(4-2,\\,6-2) = (2,4)$ es otro punto. La regla divide entre $w$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Recall what a homogeneous triple with w ≠ 0 stands for.",
+        "es": "Recuerda qué representa una terna homogénea con w ≠ 0."
+      }
     }
   ],
   "references": [

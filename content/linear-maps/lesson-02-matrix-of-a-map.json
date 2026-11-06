@@ -2,7 +2,7 @@
   "id": "linmaps-02-matrix",
   "subjectId": "linear-maps",
   "order": 2,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Matrix of a Linear Map",
     "es": "Matriz asociada a una aplicación lineal"
@@ -11,15 +11,40 @@
     {
       "type": "prose",
       "content": {
-        "en": "The central theorem of the subject: **every linear map between finite-dimensional spaces is a matrix multiplication**. Once you fix bases, a linear map $T$ is completely captured by a matrix $A$, so that $T(\\mathbf{x}) = A\\mathbf{x}$. This is why matrices matter — they *are* linear maps in coordinates.",
-        "es": "El teorema central de la asignatura: **toda aplicación lineal entre espacios de dimensión finita es una multiplicación por matriz**. Una vez fijadas las bases, una aplicación lineal $T$ queda completamente capturada por una matriz $A$, de modo que $T(\\mathbf{x}) = A\\mathbf{x}$. Por eso importan las matrices — *son* aplicaciones lineales en coordenadas."
+        "en": "The central theorem of the subject: **once bases are fixed, every linear map between finite-dimensional spaces is a matrix multiplication**. Once you fix bases, a linear map $T$ is completely captured by a matrix $A$, so that $T(\\mathbf{x}) = A\\mathbf{x}$. This is why matrices matter — they *are* linear maps in coordinates.",
+        "es": "El teorema central de la asignatura: **una vez fijadas las bases, toda aplicación lineal entre espacios de dimensión finita es una multiplicación por matriz**. Una vez fijadas las bases, una aplicación lineal $T$ queda completamente capturada por una matriz $A$, de modo que $T(\\mathbf{x}) = A\\mathbf{x}$. Por eso importan las matrices — *son* aplicaciones lineales en coordenadas."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-09-matrices-operations",
+        "linalg-08-independence-basis"
+      ],
+      "note": {
+        "en": "Matrix products carry the composition rule, and the basis vectors must be independent and span the space, so that every vector has exactly one list of coordinates.",
+        "es": "Los productos de matrices sostienen la regla de composición, y los vectores de la base deben ser independientes y generar el espacio, para que cada vector tenga una única lista de coordenadas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, let $T : V \\to W$ be a linear map, with a basis $B = (\\mathbf v_1, \\dots, \\mathbf v_n)$ of $V$ and a basis $C$ of $W$. The $j$-th column of the matrix is the coordinate vector of $T(\\mathbf v_j)$ in the basis $C$, and for every $\\mathbf v$ the coordinates satisfy $[T(\\mathbf v)]_C = A\\,[\\mathbf v]_B$. The matrix is therefore a record of where the basis goes, written in the output's coordinates. With the standard bases of $\\mathbb{R}^n$ and $\\mathbb{R}^m$, those coordinates are the vectors themselves, which is the case in this lesson. Other bases give other matrices of the same map, and lesson 05 studies how they relate.",
+        "es": "**Con precisión**, sea $T : V \\to W$ una aplicación lineal, con una base $B = (\\mathbf v_1, \\dots, \\mathbf v_n)$ de $V$ y una base $C$ de $W$. La columna $j$-ésima de la matriz es el vector de coordenadas de $T(\\mathbf v_j)$ en la base $C$, y para todo $\\mathbf v$ las coordenadas cumplen $[T(\\mathbf v)]_C = A\\,[\\mathbf v]_B$. La matriz es, por tanto, un registro de adónde va la base, escrito en las coordenadas de la salida. Con las bases estándar de $\\mathbb{R}^n$ y $\\mathbb{R}^m$, esas coordenadas son los propios vectores, que es el caso de esta lección. Otras bases dan otras matrices de la misma aplicación, y la lección 05 estudia cómo se relacionan."
       }
     },
     {
       "type": "prose",
       "content": {
         "en": "Building the matrix is beautifully simple: the **columns of $A$ are the images of the basis vectors**. For $T(x,y) = (2x, 3y)$, we have $T(1,0) = (2,0)$ and $T(0,1) = (0,3)$, so $A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$. Knowing where the basis goes determines where *everything* goes, by linearity.",
-        "es": "Construir la matriz es bellamente simple: las **columnas de $A$ son las imágenes de los vectores base**. Para $T(x,y) = (2x, 3y)$, tenemos $T(1,0) = (2,0)$ y $T(0,1) = (0,3)$, así $A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$. Saber a dónde van los vectores base determina a dónde va *todo*, por linealidad."
+        "es": "Construir la matriz es muy sencillo: las **columnas de $A$ son las imágenes de los vectores base**. Para $T(x,y) = (2x, 3y)$, tenemos $T(1,0) = (2,0)$ y $T(0,1) = (0,3)$, así $A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$. Saber adónde van los vectores base determina adónde va *todo*, por linealidad."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The trap is the orientation of the columns.** The images go in the columns, not in the rows. For $T(x,y) = (x + 2y,\\ 3x)$, the images of the basis are $T(1,0) = (1,3)$ and $T(0,1) = (2,0)$, so $A = \\begin{pmatrix}1&2\\\\3&0\\end{pmatrix}$. Writing the images as rows gives the transpose, $\\begin{pmatrix}1&3\\\\2&0\\end{pmatrix}$, which is a different map: it sends $(0,1)$ to $(3,0)$ instead of $(2,0)$. Check your matrix on one basis vector: its column must be the output you computed.",
+        "es": "**La trampa está en la orientación de las columnas.** Las imágenes van en las columnas, no en las filas. Para $T(x,y) = (x + 2y,\\ 3x)$, las imágenes de la base son $T(1,0) = (1,3)$ y $T(0,1) = (2,0)$, así que $A = \\begin{pmatrix}1&2\\\\3&0\\end{pmatrix}$. Escribir las imágenes como filas da la traspuesta, $\\begin{pmatrix}1&3\\\\2&0\\end{pmatrix}$, que es otra aplicación: envía $(0,1)$ a $(3,0)$ en lugar de a $(2,0)$. Comprueba tu matriz con un vector de la base: su columna debe ser la salida que calculaste."
       }
     },
     {
@@ -27,6 +52,13 @@
       "content": {
         "en": "Sizes encode the spaces: a map $T : \\mathbb{R}^n \\to \\mathbb{R}^m$ has an $m \\times n$ matrix — $m$ rows (output dimension) and $n$ columns (input dimension). Composing maps corresponds to multiplying their matrices, which is exactly why matrix multiplication is defined the way it is.",
         "es": "Los tamaños codifican los espacios: una aplicación $T : \\mathbb{R}^n \\to \\mathbb{R}^m$ tiene una matriz $m \\times n$ — $m$ filas (dimensión de salida) y $n$ columnas (dimensión de entrada). Componer aplicaciones corresponde a multiplicar sus matrices, que es justo por qué la multiplicación de matrices se define como se define."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why it matters.** Composition becomes multiplication: if $S$ has matrix $B$ and $T$ has matrix $A$, then $S \\circ T$ has matrix $BA$, a $p\\times m$ matrix times an $m\\times n$ one. Machine learning uses this at scale. A dense layer of a neural network from 784 inputs to 128 outputs has a weight matrix of size $128 \\times 784$: each row holds the weights of one output, and the layer's linear part is exactly the map $\\mathbb{R}^{784} \\to \\mathbb{R}^{128}$ that this matrix describes.",
+        "es": "**Por qué importa.** La composición se convierte en multiplicación: si $S$ tiene matriz $B$ y $T$ tiene matriz $A$, entonces $S \\circ T$ tiene matriz $BA$, una matriz $p\\times m$ por una $m\\times n$. El aprendizaje automático usa esto a gran escala. Una capa densa de una red neuronal de 784 entradas a 128 salidas tiene una matriz de pesos de tamaño $128 \\times 784$: cada fila guarda los pesos de una salida, y la parte lineal de la capa es exactamente la aplicación $\\mathbb{R}^{784} \\to \\mathbb{R}^{128}$ que describe esa matriz."
       }
     },
     {
@@ -41,6 +73,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — from the plane to space",
+        "es": "Ejemplo resuelto — del plano al espacio"
+      },
+      "content": {
+        "en": "Let $T(x,y) = (x + 2y,\\ 3x,\\ x - y)$, a map $\\mathbb{R}^2 \\to \\mathbb{R}^3$. Its matrix is $3 \\times 2$: one row per output, one column per input. The images of the basis are $T(1,0) = (1,3,1)$ and $T(0,1) = (2,0,-1)$, so $A = \\begin{pmatrix}1&2\\\\3&0\\\\1&-1\\end{pmatrix}$. Check it on $(2,1)$: $A(2,1) = 2\\,(1,3,1) + (2,0,-1) = (4,6,1)$, which agrees with $T(2,1) = (4,6,1)$ computed directly.",
+        "es": "Sea $T(x,y) = (x + 2y,\\ 3x,\\ x - y)$, una aplicación $\\mathbb{R}^2 \\to \\mathbb{R}^3$. Su matriz es $3 \\times 2$: una fila por salida y una columna por entrada. Las imágenes de la base son $T(1,0) = (1,3,1)$ y $T(0,1) = (2,0,-1)$, así que $A = \\begin{pmatrix}1&2\\\\3&0\\\\1&-1\\end{pmatrix}$. Compruébalo con $(2,1)$: $A(2,1) = 2\\,(1,3,1) + (2,0,-1) = (4,6,1)$, que coincide con $T(2,1) = (4,6,1)$ calculado directamente."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +91,12 @@
       ],
       "code": {
         "en": "import numpy as np\n# the matrix of a map has the images of the basis vectors as columns\nA = np.column_stack([np.array([2, 1]), np.array([0, 3])])\nprint(A.tolist())",
-        "es": "import numpy as np\n# la matriz de un mapa tiene como columnas las imagenes de la base\nA = np.column_stack([np.array([2, 1]), np.array([0, 3])])\nprint(A.tolist())"
+        "es": "import numpy as np\n# la matriz de una aplicación tiene como columnas las imágenes de la base\nA = np.column_stack([np.array([2, 1]), np.array([0, 3])])\nprint(A.tolist())"
       },
       "expectedOutput": "[[2, 0], [1, 3]]",
       "caption": {
         "en": "Build a map's matrix from where it sends the basis vectors.",
-        "es": "Construye la matriz de un mapa con las imagenes de los vectores base."
+        "es": "Construye la matriz de una aplicación con las imágenes de los vectores base."
       }
     }
   ],
@@ -107,7 +150,7 @@
       "answerType": "number",
       "prompt": {
         "en": "A linear map $T:\\mathbb{R}^3\\to\\mathbb{R}^2$ has a matrix with how many rows?",
-        "es": "Una aplicación lineal $T:\\mathbb{R}^3\\to\\mathbb{R}^2$ tiene una matriz con cuántas filas?"
+        "es": "¿Una aplicación lineal $T:\\mathbb{R}^3\\to\\mathbb{R}^2$ tiene una matriz con cuántas filas?"
       },
       "answer": "2",
       "acceptedAlt": [],
@@ -121,14 +164,23 @@
           "en": "2 rows.",
           "es": "2 filas."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3$ counts the columns, the inputs. The rows count the outputs: $T:\\mathbb{R}^3\\to\\mathbb{R}^2$ gives $2$ rows.",
+            "es": "$3$ cuenta las columnas, es decir, las entradas. Las filas cuentan las salidas: $T:\\mathbb{R}^3\\to\\mathbb{R}^2$ da $2$ filas."
+          }
+        }
       ]
     },
     {
       "id": "linmaps-02-e4",
       "answerType": "number",
       "prompt": {
-        "en": "For $T(x,y)=(2x,y)$, the first entry of the first column of its matrix is?",
-        "es": "Para $T(x,y)=(2x,y)$, ¿el primer elemento de la primera columna de su matriz es?"
+        "en": "For $T(x,y)=(2x,y)$, what is the first entry of the first column of its matrix?",
+        "es": "Para $T(x,y)=(2x,y)$, ¿cuál es el primer elemento de la primera columna de su matriz?"
       },
       "answer": "2",
       "acceptedAlt": [],
@@ -143,6 +195,94 @@
           "es": "Primer elemento 2."
         }
       ]
+    },
+    {
+      "id": "linmaps-02-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "$T(1,0) = (3,1)$ and $T(0,1) = (-2,4)$. What is the $(1,2)$ entry of the matrix of $T$?",
+        "es": "$T(1,0) = (3,1)$ y $T(0,1) = (-2,4)$. ¿Cuál es el elemento $(1,2)$ de la matriz de $T$?"
+      },
+      "answer": "-2",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "The second column is T(0,1).",
+        "es": "La segunda columna es T(0,1)."
+      },
+      "solution": [
+        {
+          "tex": "A = \\begin{pmatrix}3&-2\\\\1&4\\end{pmatrix}",
+          "en": "The images are the columns. Row 1, column 2 holds the first component of T(0,1).",
+          "es": "Las imágenes son las columnas. La fila 1, columna 2 guarda la primera componente de T(0,1)."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ is the $(2,1)$ entry of the correct matrix. Writing the images as rows transposes it, so the $(1,2)$ entry you read becomes $1$. The first component of $T(0,1)$, which is $-2$, sits in row 1 of column 2.",
+            "es": "$1$ es el elemento $(2,1)$ de la matriz correcta. Escribir las imágenes como filas la traspone, así que el elemento $(1,2)$ que lees pasa a ser $1$. La primera componente de $T(0,1)$, que es $-2$, va en la fila 1 de la columna 2."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linmaps-02-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "You know a linear map of the plane only at $(1,0)$ and $(0,1)$. How much of the map do you know?",
+        "es": "Solo conoces una aplicación lineal del plano en $(1,0)$ y $(0,1)$. ¿Cuánto de la aplicación conoces?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The two points, and the line through them.",
+            "es": "Los dos puntos, y la recta que los une."
+          },
+          "correct": false,
+          "why": {
+            "en": "That treats the map as known only at points. Linearity reaches every vector: the two basis vectors span the whole plane.",
+            "es": "Eso trata la aplicación como conocida solo en puntos. La linealidad alcanza a todos los vectores: los dos vectores de la base generan todo el plano."
+          }
+        },
+        {
+          "text": {
+            "en": "The two images, provided they are independent vectors.",
+            "es": "Las dos imágenes, si son vectores independientes."
+          },
+          "correct": false,
+          "why": {
+            "en": "Independence matters for the matrix to be invertible, not for knowing the map. Even equal images fully determine the map.",
+            "es": "La independencia importa para que la matriz sea invertible, no para conocer la aplicación. Incluso imágenes iguales determinan por completo la aplicación."
+          }
+        },
+        {
+          "text": {
+            "en": "All of it, since every vector combines the two.",
+            "es": "Todo, porque todo vector combina esos dos."
+          },
+          "correct": true,
+          "why": {
+            "en": "Every vector is $a\\,(1,0) + b\\,(0,1)$, and linearity gives $T(a,b) = a\\,T(1,0) + b\\,T(0,1)$. Two images fix the whole map.",
+            "es": "Todo vector es $a\\,(1,0) + b\\,(0,1)$, y la linealidad da $T(a,b) = a\\,T(1,0) + b\\,T(0,1)$. Dos imágenes fijan toda la aplicación."
+          }
+        },
+        {
+          "text": {
+            "en": "What T does off the basis, provided it is continuous.",
+            "es": "Lo que T haga fuera de la base, siempre que sea continua."
+          },
+          "correct": false,
+          "why": {
+            "en": "Continuity is not needed: every linear map between finite-dimensional spaces is automatically continuous. Linearity alone fixes it.",
+            "es": "La continuidad no hace falta: toda aplicación lineal entre espacios de dimensión finita es automáticamente continua. La linealidad sola la fija."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Every vector of the plane is a combination of the two basis vectors.",
+        "es": "Todo vector del plano es una combinación de los dos vectores de la base."
+      }
     }
   ],
   "references": [

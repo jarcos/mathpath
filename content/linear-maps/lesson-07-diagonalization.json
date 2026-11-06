@@ -2,7 +2,7 @@
   "id": "linmaps-07-diagonalization",
   "subjectId": "linear-maps",
   "order": 7,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Diagonalization",
     "es": "Diagonalización"
@@ -12,31 +12,54 @@
       "type": "prose",
       "content": {
         "en": "**Diagonalization** is the payoff of eigenvalues. A matrix $A$ is **diagonalizable** if we can write $A = P D P^{-1}$, where $D$ is **diagonal** and $P$'s columns are the eigenvectors. In the eigenvector basis, the messy matrix becomes a clean diagonal one — the map just stretches along each eigen-direction independently.",
-        "es": "La **diagonalización** es el fruto de los autovalores. Una matriz $A$ es **diagonalizable** si podemos escribir $A = P D P^{-1}$, donde $D$ es **diagonal** y las columnas de $P$ son los autovectores. En la base de autovectores, la matriz enmarañada se vuelve una diagonal limpia — la aplicación solo estira por cada autodirección de forma independiente."
+        "es": "La **diagonalización** es lo más útil que dan los valores propios. Una matriz $A$ es **diagonalizable** si podemos escribir $A = P D P^{-1}$, donde $D$ es **diagonal** y las columnas de $P$ son los vectores propios. En la base de vectores propios, la matriz enmarañada se vuelve una diagonal limpia — la aplicación solo estira por cada dirección propia de forma independiente."
       }
     },
     {
       "type": "prereq",
       "lessons": [
-        "linmaps-06-eigenvalues"
+        "linmaps-06-eigenvalues",
+        "linmaps-05-change-of-basis",
+        "linalg-08-independence-basis"
       ],
       "note": {
-        "en": "Diagonalization is built from eigenvalues and eigenvectors.",
-        "es": "La diagonalizacion se construye con autovalores y autovectores."
+        "en": "Diagonalization is built from eigenvalues and eigenvectors, and it needs the ideas of basis and change of basis.",
+        "es": "La diagonalización se construye con valores propios y vectores propios, y necesita las ideas de base y de cambio de base."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "The diagonal of $D$ contains exactly the **eigenvalues**. A matrix is diagonalizable precisely when it has **enough linearly independent eigenvectors** to fill $P$ (for an $n\\times n$ matrix, $n$ of them). Distinct eigenvalues always guarantee this; repeated eigenvalues sometimes do not.",
-        "es": "La diagonal de $D$ contiene exactamente los **autovalores**. Una matriz es diagonalizable justo cuando tiene **suficientes autovectores linealmente independientes** para llenar $P$ (para una matriz $n\\times n$, $n$ de ellos). Autovalores distintos siempre lo garantizan; autovalores repetidos a veces no."
+        "en": "The diagonal of $D$ contains exactly the **eigenvalues**. A matrix is diagonalizable precisely when it has **enough linearly independent eigenvectors** to fill $P$ (for an $n\\times n$ matrix, $n$ real ones). Distinct eigenvalues always guarantee this; repeated eigenvalues sometimes do not.",
+        "es": "La diagonal de $D$ contiene exactamente los **valores propios**. Una matriz es diagonalizable justo cuando tiene **suficientes vectores propios linealmente independientes** para llenar $P$ (para una matriz $n\\times n$, $n$ reales). Valores propios distintos siempre lo garantizan; valores propios repetidos a veces no."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "Why bother? Because in the diagonal world, hard problems become trivial. Computing $A^{100}$ directly is brutal, but $A^{100} = P D^{100} P^{-1}$, and $D^{100}$ just raises each eigenvalue to the $100$th power. Solving differential equations, analyzing stability, and compressing data all exploit this. Since eigenvalues are similarity-invariant, $\\det A$ equals the **product of the eigenvalues**.",
-        "es": "¿Para qué? Porque en el mundo diagonal, los problemas difíciles se vuelven triviales. Calcular $A^{100}$ directamente es brutal, pero $A^{100} = P D^{100} P^{-1}$, y $D^{100}$ solo eleva cada autovalor a la potencia $100$. Resolver ecuaciones diferenciales, analizar estabilidad y comprimir datos explotan esto. Como los autovalores son invariantes por semejanza, $\\det A$ es el **producto de los autovalores**."
+        "en": "**Precisely**, over the reals, an $n\\times n$ matrix $A$ is diagonalizable if and only if all its eigenvalues are real and, for each one, the dimension of its eigenspace equals its multiplicity as a root of the characteristic polynomial. Equivalently, $A$ has $n$ independent real eigenvectors. Having $n$ *distinct* eigenvalues is enough, but not needed: the identity matrix has the single eigenvalue $1$, and every nonzero vector is an eigenvector of it. The order matters too. If column $j$ of $P$ is an eigenvector, the $(j,j)$ entry of $D$ must be its eigenvalue.",
+        "es": "**Con precisión**, sobre los reales, una matriz $A$ de $n\\times n$ es diagonalizable si y solo si todos sus valores propios son reales y, para cada uno, la dimensión de su subespacio propio es igual a su multiplicidad como raíz del polinomio característico. De forma equivalente, $A$ tiene $n$ vectores propios reales linealmente independientes. Tener $n$ valores propios *distintos* basta, pero no hace falta: la matriz identidad tiene un único valor propio, $1$, y todo vector no nulo es vector propio suyo. El orden también importa. Si la columna $j$ de $P$ es un vector propio, el elemento $(j,j)$ de $D$ debe ser su valor propio."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The trap is that a repeated eigenvalue does not always give enough eigenvectors. Take the shear $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$. Its characteristic polynomial is $(\\lambda - 1)^2$, so $1$ is an eigenvalue twice. But $A - I = \\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ has a one-dimensional null space: only the multiples of $(1,0)$ are eigenvectors. The eigenvalue $1$ counts twice, yet it has one independent eigenvector, so $A$ is not diagonalizable. Real eigenvalues are not enough either.",
+        "es": "La trampa es que un valor propio repetido no siempre da suficientes vectores propios. Toma la cizalla $A = \\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$. Su polinomio característico es $(\\lambda - 1)^2$, así que $1$ es valor propio dos veces. Pero $A - I = \\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$ tiene un núcleo de dimensión uno: solo los múltiplos de $(1,0)$ son vectores propios. El valor propio $1$ cuenta dos veces, pero tiene un único vector propio independiente, así que $A$ no es diagonalizable. Tener valores propios reales tampoco basta."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Why bother? Because in the diagonal world, hard problems become trivial. Computing $A^{100}$ directly is brutal, but $A^{100} = P D^{100} P^{-1}$, and $D^{100}$ just raises each eigenvalue to the $100$th power. Solving differential equations, analyzing stability, and compressing data all exploit this. Since $\\det(PDP^{-1}) = \\det D$, $\\det A$ is the **product of the eigenvalues**, the diagonal entries of $D$.",
+        "es": "¿Para qué? Porque en el mundo diagonal, los problemas difíciles se vuelven triviales. Calcular $A^{100}$ directamente es brutal, pero $A^{100} = P D^{100} P^{-1}$, y $D^{100}$ solo eleva cada valor propio a la potencia $100$. Resolver ecuaciones diferenciales, analizar estabilidad y comprimir datos aprovechan esto. Como $\\det(PDP^{-1}) = \\det D$, $\\det A$ es el **producto de los valores propios**, es decir, las entradas de la diagonal de $D$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Real **symmetric** matrices are the favorable case. The spectral theorem says they are always diagonalizable, with mutually orthogonal eigenvectors, so $P$ can be chosen orthogonal, with $P^{-1} = P^T$. This is why principal component analysis works: the covariance matrix of the data is symmetric, so its eigenvectors give perpendicular directions of spread, ranked by their eigenvalues. When $A$ is diagonalizable, the eigenbasis splits the system into $n$ independent one-dimensional problems, $y_{k+1} = \\lambda y_k$, each solved by one power.",
+        "es": "Las matrices **simétricas** reales son el caso favorable. El teorema espectral dice que siempre son diagonalizables, con vectores propios mutuamente ortogonales, así que $P$ puede elegirse ortogonal, con $P^{-1} = P^T$. Por eso funciona el análisis de componentes principales: la matriz de covarianzas de los datos es simétrica, así que sus vectores propios dan direcciones perpendiculares de dispersión, ordenadas por sus valores propios. Cuando $A$ es diagonalizable, la base propia separa el sistema en $n$ problemas independientes de una dimensión, $y_{k+1} = \\lambda y_k$, cada uno resuelto con una sola potencia."
       }
     },
     {
@@ -47,7 +70,18 @@
       },
       "content": {
         "en": "$A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ is already diagonal, so $D = A$ with eigenvalues $2, 3$ on the diagonal. The product of eigenvalues $2\\cdot 3 = 6$ equals $\\det A$ ✓, and their sum $5$ equals the trace.",
-        "es": "$A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ ya es diagonal, así $D = A$ con autovalores $2, 3$ en la diagonal. El producto de autovalores $2\\cdot 3 = 6$ es $\\det A$ ✓, y su suma $5$ es la traza."
+        "es": "$A = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ ya es diagonal, así $D = A$ con valores propios $2, 3$ en la diagonal. El producto de valores propios $2\\cdot 3 = 6$ es $\\det A$ ✓, y su suma $5$ es la traza."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a symmetric 2×2 matrix",
+        "es": "Ejemplo resuelto — una matriz simétrica 2×2"
+      },
+      "content": {
+        "en": "Take $A = \\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$. Its characteristic polynomial is $\\lambda^2 - 2\\lambda - 3 = (\\lambda - 3)(\\lambda + 1)$, so the eigenvalues are $3$ and $-1$. For $\\lambda = 3$, solving $(A - 3I)\\mathbf v = \\mathbf 0$ gives $(1,1)$; for $\\lambda = -1$ the eigenvector is $(1,-1)$. Place them as columns: $P = \\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ and $D = \\operatorname{diag}(3,-1)$. Since $P^{-1} = \\tfrac12\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$, multiplying out gives $PDP^{-1} = A$. The two eigenvectors are orthogonal, as the spectral theorem predicts.",
+        "es": "Toma $A = \\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$. Su polinomio característico es $\\lambda^2 - 2\\lambda - 3 = (\\lambda - 3)(\\lambda + 1)$, así que los valores propios son $3$ y $-1$. Para $\\lambda = 3$, resolver $(A - 3I)\\mathbf v = \\mathbf 0$ da $(1,1)$; para $\\lambda = -1$, el vector propio es $(1,-1)$. Colócalos como columnas: $P = \\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ y $D = \\operatorname{diag}(3,-1)$. Como $P^{-1} = \\tfrac12\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$, al multiplicar sale $PDP^{-1} = A$. Los dos vectores propios son ortogonales, como predice el teorema espectral."
       }
     },
     {
@@ -58,7 +92,7 @@
       ],
       "code": {
         "en": "import numpy as np\nA = np.array([[2, 1], [0, 3]])\nvalues, V = np.linalg.eig(A)\nD = np.diag(values)\n# diagonalization: A = V D V^-1\nprint(np.round((V @ D @ np.linalg.inv(V)).real, 2).tolist())",
-        "es": "import numpy as np\nA = np.array([[2, 1], [0, 3]])\nvalues, V = np.linalg.eig(A)\nD = np.diag(values)\n# diagonalizacion: A = V D V^-1\nprint(np.round((V @ D @ np.linalg.inv(V)).real, 2).tolist())"
+        "es": "import numpy as np\nA = np.array([[2, 1], [0, 3]])\nvalues, V = np.linalg.eig(A)\nD = np.diag(values)\n# diagonalización: A = V D V^-1\nprint(np.round((V @ D @ np.linalg.inv(V)).real, 2).tolist())"
       },
       "expectedOutput": "[[2.0, 1.0], [0.0, 3.0]]",
       "caption": {
@@ -88,7 +122,7 @@
         {
           "tex": "A = PDP^{-1}",
           "en": "Eigenvectors fill P.",
-          "es": "Los autovectores llenan P."
+          "es": "Los vectores propios llenan P."
         }
       ]
     },
@@ -97,7 +131,7 @@
       "answerType": "set",
       "prompt": {
         "en": "The diagonal $D$ for $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ has which entries?",
-        "es": "La diagonal $D$ de $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$ tiene qué entradas?"
+        "es": "¿Qué entradas tiene la diagonal $D$ de $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?"
       },
       "answer": "2, 3",
       "acceptedAlt": [
@@ -105,13 +139,13 @@
       ],
       "hint": {
         "en": "The eigenvalues.",
-        "es": "Los autovalores."
+        "es": "Los valores propios."
       },
       "solution": [
         {
           "tex": "D = \\text{diag}(2,3)",
           "en": "Eigenvalues on the diagonal.",
-          "es": "Autovalores en la diagonal."
+          "es": "Valores propios en la diagonal."
         }
       ]
     },
@@ -135,7 +169,7 @@
         {
           "tex": "D = \\text{diag}(\\lambda_1,\\dots)",
           "en": "Eigenvalues.",
-          "es": "Autovalores."
+          "es": "Valores propios."
         }
       ]
     },
@@ -144,7 +178,7 @@
       "answerType": "number",
       "prompt": {
         "en": "If the eigenvalues are 2 and 3, what is $\\det A$ (their product)?",
-        "es": "Si los autovalores son 2 y 3, ¿cuánto es $\\det A$ (su producto)?"
+        "es": "Si los valores propios son 2 y 3, ¿cuánto es $\\det A$ (su producto)?"
       },
       "answer": "6",
       "acceptedAlt": [
@@ -152,13 +186,119 @@
       ],
       "hint": {
         "en": "Determinant = product of eigenvalues.",
-        "es": "Determinante = producto de autovalores."
+        "es": "Determinante = producto de valores propios."
       },
       "solution": [
         {
           "tex": "2\\cdot 3 = 6",
           "en": "Product of eigenvalues.",
-          "es": "Producto de autovalores."
+          "es": "Producto de valores propios."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5 = 2 + 3$ is the sum of the eigenvalues, which is the trace. The determinant is their product, $2\\cdot 3 = 6$.",
+            "es": "$5 = 2 + 3$ es la suma de los valores propios, que es la traza. El determinante es su producto, $2\\cdot 3 = 6$."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linmaps-07-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A $3\\times3$ matrix has eigenvalues $2$, $2$ and $5$. Is it diagonalizable?",
+        "es": "Una matriz $3\\times3$ tiene los valores propios $2$, $2$ y $5$. ¿Es diagonalizable?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Yes, usually: real eigenvalues almost always give a full set of eigenvectors.",
+            "es": "Sí, normalmente: los valores propios reales casi siempre dan un conjunto completo de vectores propios."
+          },
+          "correct": false,
+          "why": {
+            "en": "Not so. The shear $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ has real eigenvalues, yet only one independent eigenvector for $1$.",
+            "es": "No. La cizalla $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ tiene valores propios reales, pero solo un vector propio independiente para $1$."
+          }
+        },
+        {
+          "text": {
+            "en": "No: a repeated eigenvalue always makes a matrix non-diagonalizable.",
+            "es": "No: un valor propio repetido hace siempre que una matriz no sea diagonalizable."
+          },
+          "correct": false,
+          "why": {
+            "en": "$\\operatorname{diag}(2,2,5)$ repeats $2$ and is already diagonal. A repeat is harmless when its eigenspace is large enough.",
+            "es": "$\\operatorname{diag}(2,2,5)$ repite el $2$ y ya es diagonal. Una repetición no estorba si su subespacio propio es lo bastante grande."
+          }
+        },
+        {
+          "text": {
+            "en": "Yes, exactly when the eigenvalue 2 has two independent eigenvectors.",
+            "es": "Sí, exactamente cuando el valor propio 2 tiene dos vectores propios independientes."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. Two independent eigenvectors for $2$, plus one for $5$, make a basis. With only one for $2$, there are too few.",
+            "es": "Exacto. Dos vectores propios independientes para $2$, más uno para $5$, forman una base. Con uno solo para $2$, faltan."
+          }
+        },
+        {
+          "text": {
+            "en": "Yes, since 5 differs from 2, so the eigenvalues are all distinct.",
+            "es": "Sí, porque 5 es distinto de 2, así que los valores propios son todos distintos."
+          },
+          "correct": false,
+          "why": {
+            "en": "Only two different values appear, $2$ and $5$, so the eigenvalues are not all distinct. Two distinct values are not enough for three eigenvalues.",
+            "es": "Solo aparecen dos valores distintos, $2$ y $5$, así que los valores propios no son todos distintos. Dos valores distintos no bastan para tres valores propios."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Count the independent eigenvectors that the repeated eigenvalue really gives.",
+        "es": "Cuenta los vectores propios independientes que da de verdad el valor propio repetido."
+      }
+    },
+    {
+      "id": "linmaps-07-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "The matrix $\\begin{pmatrix}3&1\\\\0&3\\end{pmatrix}$ has the single eigenvalue $3$. What is the dimension of its eigenspace for $\\lambda = 3$?",
+        "es": "La matriz $\\begin{pmatrix}3&1\\\\0&3\\end{pmatrix}$ tiene el único valor propio $3$. ¿Cuál es la dimensión de su subespacio propio para $\\lambda = 3$?"
+      },
+      "answer": "1",
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ is the multiplicity of the eigenvalue $3$, not the number of independent eigenvectors. Here the repeated eigenvalue gives only one, so the matrix is not diagonalizable.",
+            "es": "$2$ es la multiplicidad del valor propio $3$, no el número de vectores propios independientes. Aquí el valor propio repetido da solo uno, así que la matriz no es diagonalizable."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Solve $(A - 3I)\\mathbf v = \\mathbf 0$ and count the free directions.",
+        "es": "Resuelve $(A - 3I)\\mathbf v = \\mathbf 0$ y cuenta las direcciones libres."
+      },
+      "solution": [
+        {
+          "tex": "A - 3I = \\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}",
+          "en": "Subtract $3I$ from $A$.",
+          "es": "Resta $3I$ a $A$."
+        },
+        {
+          "tex": "(A - 3I)\\mathbf v = \\mathbf 0 \\iff v_2 = 0",
+          "en": "Only the first coordinate is free, so the eigenspace is the line through $(1,0)$.",
+          "es": "Solo la primera coordenada es libre, así que el subespacio propio es la recta por $(1,0)$."
+        },
+        {
+          "tex": "\\dim = 1",
+          "en": "One independent eigenvector, so the dimension is 1.",
+          "es": "Un vector propio independiente, así que la dimensión es 1."
         }
       ]
     }

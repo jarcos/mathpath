@@ -2,7 +2,7 @@
   "id": "linmaps-10-translation",
   "subjectId": "linear-maps",
   "order": 10,
-  "estimatedMinutes": 35,
+  "estimatedMinutes": 45,
   "title": {
     "en": "Translation in 2D",
     "es": "Traslación en 2D"
@@ -13,6 +13,17 @@
       "content": {
         "en": "We now turn to the **geometric transformations** that drive computer graphics, robotics, and animation. The simplest is **translation**: sliding every point by a fixed displacement vector $(a, b)$, so $(x, y) \\mapsto (x + a, y + b)$. It moves objects without rotating, stretching, or distorting them.",
         "es": "Pasamos ahora a las **transformaciones geométricas** que impulsan los gráficos por computador, la robótica y la animación. La más simple es la **traslación**: deslizar cada punto un desplazamiento fijo $(a, b)$, de modo que $(x, y) \\mapsto (x + a, y + b)$. Mueve objetos sin rotarlos, estirarlos ni distorsionarlos."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-05-vectors-rn",
+        "linmaps-01-concept"
+      ],
+      "note": {
+        "en": "Translations are displacement vectors added to points, and lesson 01 gives the test that shows translation is not linear.",
+        "es": "Las traslaciones son vectores de desplazamiento que se suman a los puntos, y la lección 01 da la prueba que muestra que la traslación no es lineal."
       }
     },
     {
@@ -30,6 +41,20 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, the translation $T_{\\mathbf b}(\\mathbf x) = \\mathbf x + \\mathbf b$ is a bijection of the plane, with inverse $T_{-\\mathbf b}$. Two translations compose by adding their vectors, $T_{\\mathbf b}\\circ T_{\\mathbf c} = T_{\\mathbf b + \\mathbf c}$, and the order does not matter, since vector addition is commutative. Translations keep distances, angles and orientation. They are not linear unless $\\mathbf b = \\mathbf 0$, because $T_{\\mathbf b}(\\mathbf 0) = \\mathbf b$. A linear map followed by a translation is called *affine*, a class we study in lesson 15.",
+        "es": "**Con precisión**, la traslación $T_{\\mathbf b}(\\mathbf x) = \\mathbf x + \\mathbf b$ es una biyección del plano, con inversa $T_{-\\mathbf b}$. Dos traslaciones se componen sumando sus vectores, $T_{\\mathbf b}\\circ T_{\\mathbf c} = T_{\\mathbf b + \\mathbf c}$, y el orden no importa, porque la suma de vectores es conmutativa. Las traslaciones conservan distancias, ángulos y orientación. No son lineales salvo que $\\mathbf b = \\mathbf 0$, porque $T_{\\mathbf b}(\\mathbf 0) = \\mathbf b$. Una aplicación lineal seguida de una traslación se llama *afín*, una clase que estudiamos en la lección 15."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Translations move **positions**, not **directions**. The vector from $P$ to $Q$ is unchanged when both points move by $\\mathbf b$, since $(\\mathbf q + \\mathbf b) - (\\mathbf p + \\mathbf b) = \\mathbf q - \\mathbf p$. But a velocity, a force or a surface normal is a direction, and it must not be translated. Adding $\\mathbf b$ to a normal vector is a classic bug in graphics code. Homogeneous coordinates avoid it: a point gets a last coordinate $1$ and a direction gets $0$, so the translation changes only points (lesson 13).",
+        "es": "Las traslaciones mueven **posiciones**, no **direcciones**. El vector de $P$ a $Q$ no cambia cuando ambos puntos se desplazan $\\mathbf b$, pues $(\\mathbf q + \\mathbf b) - (\\mathbf p + \\mathbf b) = \\mathbf q - \\mathbf p$. Pero una velocidad, una fuerza o un vector normal a una superficie es una dirección, y no debe trasladarse. Sumar $\\mathbf b$ a un vector normal es un error clásico en el código gráfico. Las coordenadas homogéneas lo evitan: un punto recibe una última coordenada $1$ y una dirección recibe $0$, así que la traslación solo cambia los puntos (lección 13)."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example",
@@ -41,6 +66,24 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a triangle moved as a whole",
+        "es": "Ejemplo resuelto — un triángulo trasladado como un todo"
+      },
+      "content": {
+        "en": "Take the triangle with corners $(0,0)$, $(2,0)$ and $(1,3)$, and translate it by $(-1,4)$. The corners become $(-1,4)$, $(1,4)$ and $(0,7)$. The side from the first corner to the second was the vector $(2,0)$, and it is still $(2,0)$: the shape is intact. The centroid $(1,1)$ moves to $(0,5)$, which is the centroid of the moved corners, since averaging commutes with translation. Every point, the centroid included, follows the same displacement.",
+        "es": "Toma el triángulo de vértices $(0,0)$, $(2,0)$ y $(1,3)$, y trasládalo por $(-1,4)$. Los vértices pasan a ser $(-1,4)$, $(1,4)$ y $(0,7)$. El lado del primer vértice al segundo era el vector $(2,0)$, y sigue siendo $(2,0)$: la figura no cambia. El baricentro $(1,1)$ pasa a $(0,5)$, que es el baricentro de los vértices trasladados, porque promediar y trasladar se pueden hacer en cualquier orden. Cada punto, el baricentro incluido, sigue el mismo desplazamiento."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Translation is everywhere once you look for it. Centering a dataset subtracts its mean, which is a translation by $-\\bar{\\mathbf x}$, and principal component analysis needs centered data, because it looks for directions of spread around the mean. Convolutional neural networks are **translation-equivariant**: shifting an image shifts the feature maps by the same amount (exactly, for stride 1 and ignoring the borders), so the network need not learn each position separately. Pooling then makes the output approximately invariant to small shifts.",
+        "es": "La traslación aparece en todas partes en cuanto la buscas. Centrar un conjunto de datos resta su media, que es una traslación por $-\\bar{\\mathbf x}$, y el análisis de componentes principales necesita datos centrados, porque busca direcciones de dispersión alrededor de la media. Las redes neuronales convolucionales son **equivariantes a la traslación**: desplazar una imagen desplaza los mapas de características en la misma cantidad (exactamente, con paso 1 y sin contar los bordes), así que la red no tiene que aprender cada posición por separado. La agrupación (*pooling*) posterior hace la salida aproximadamente invariante a desplazamientos pequeños."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +91,12 @@
       ],
       "code": {
         "en": "import numpy as np\n# translation needs homogeneous coordinates (the extra 1)\nT = np.array([[1, 0, 5], [0, 1, 3], [0, 0, 1]])\nprint((T @ np.array([1, 2, 1])).tolist())",
-        "es": "import numpy as np\n# la traslacion necesita coordenadas homogeneas (el 1 extra)\nT = np.array([[1, 0, 5], [0, 1, 3], [0, 0, 1]])\nprint((T @ np.array([1, 2, 1])).tolist())"
+        "es": "import numpy as np\n# la traslación necesita coordenadas homogéneas (el 1 extra)\nT = np.array([[1, 0, 5], [0, 1, 3], [0, 0, 1]])\nprint((T @ np.array([1, 2, 1])).tolist())"
       },
       "expectedOutput": "[6, 5, 1]",
       "caption": {
         "en": "Translation isn't linear — homogeneous coordinates fix that.",
-        "es": "La traslacion no es lineal — las coordenadas homogeneas lo arreglan."
+        "es": "La traslación no es lineal — las coordenadas homogéneas lo arreglan."
       }
     }
   ],
@@ -144,6 +187,114 @@
           "tex": "(2-2, 2-2) = (0,0)",
           "en": "Back to the origin.",
           "es": "De vuelta al origen."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "4",
+          "feedback": {
+            "en": "$4 = 2 - (-2)$ loses the minus sign. The displacement $-2$ must be added: $2 + (-2) = 0$.",
+            "es": "$4 = 2 - (-2)$ pierde el signo menos. El desplazamiento $-2$ se debe sumar: $2 + (-2) = 0$."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linmaps-10-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "You translate a picture by $(3,-2)$. What happens to the vector from point $P$ to point $Q$ inside it?",
+        "es": "Trasladas un dibujo por $(3,-2)$. ¿Qué le pasa al vector que va de $P$ a $Q$ dentro del dibujo?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It changes by $(3,-2)$, because the picture moves by that amount.",
+            "es": "Cambia en $(3,-2)$, porque el dibujo se mueve esa cantidad."
+          },
+          "correct": false,
+          "why": {
+            "en": "Only one end would move that way. Both $P$ and $Q$ shift by $(3,-2)$, and the vector is their difference.",
+            "es": "Solo un extremo se movería así. $P$ y $Q$ se desplazan ambos $(3,-2)$, y el vector es su diferencia."
+          }
+        },
+        {
+          "text": {
+            "en": "Nothing: both ends move alike, so their difference stays.",
+            "es": "Nada: ambos extremos se mueven igual, así que su vector se mantiene."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. The shared shift cancels when you subtract the two ends.",
+            "es": "Exacto. El desplazamiento común se cancela al restar los dos extremos."
+          }
+        },
+        {
+          "text": {
+            "en": "It becomes $(6,-4)$, since both ends move and the displacements add up.",
+            "es": "Se vuelve $(6,-4)$, ya que ambos extremos se mueven y los desplazamientos se suman."
+          },
+          "correct": false,
+          "why": {
+            "en": "In a difference the two displacements cancel. Adding them counts the move twice.",
+            "es": "En una diferencia los dos desplazamientos se cancelan. Sumarlos cuenta el movimiento dos veces."
+          }
+        },
+        {
+          "text": {
+            "en": "It changes, because vectors are measured from the origin, which moved.",
+            "es": "Cambia, porque los vectores se miden desde el origen, que se ha movido."
+          },
+          "correct": false,
+          "why": {
+            "en": "A vector is the difference of its two ends, not a position measured from the origin.",
+            "es": "Un vector es la diferencia de sus dos extremos, no una posición medida desde el origen."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Both points move by the same displacement. What is their difference?",
+        "es": "Ambos puntos se mueven el mismo desplazamiento. ¿Cuál es su diferencia?"
+      }
+    },
+    {
+      "id": "linmaps-10-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "A translation sends $(2,-1)$ to $(5,3)$. What is the $y$-coordinate of the image of $(-4,0)$?",
+        "es": "Una traslación lleva $(2,-1)$ a $(5,3)$. ¿Cuál es la coordenada $y$ de la imagen de $(-4,0)$?"
+      },
+      "answer": "4",
+      "commonMistakes": [
+        {
+          "answer": "-4",
+          "feedback": {
+            "en": "$-4$ subtracts the displacement instead of adding it: $(-4,0) - (3,4) = (-7,-4)$. A translation adds the same vector to every point.",
+            "es": "$-4$ resta el desplazamiento en vez de sumarlo: $(-4,0) - (3,4) = (-7,-4)$. Una traslación suma el mismo vector a todos los puntos."
+          }
+        },
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3$ is the $y$-coordinate of the image $(5,3)$, copied from the wrong point. The translation of $(-4,0)$ is a different point.",
+            "es": "$3$ es la coordenada $y$ de la imagen $(5,3)$, copiada del punto equivocado. La traslación de $(-4,0)$ es otro punto."
+          }
+        }
+      ],
+      "hint": {
+        "en": "First find the displacement: the image minus the starting point.",
+        "es": "Primero halla el desplazamiento: la imagen menos el punto de partida."
+      },
+      "solution": [
+        {
+          "tex": "\\mathbf b = (5,3) - (2,-1) = (3,4)",
+          "en": "The displacement is $(3,4)$ for every point.",
+          "es": "El desplazamiento es $(3,4)$ para todo punto."
+        },
+        {
+          "tex": "(-4,0) + (3,4) = (-1,4)",
+          "en": "Apply it to $(-4,0)$: the $y$-coordinate is 4.",
+          "es": "Aplícalo a $(-4,0)$: la coordenada $y$ es 4."
         }
       ]
     }

@@ -2,7 +2,7 @@
   "id": "linmaps-08-powers",
   "subjectId": "linear-maps",
   "order": 8,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Powers of a Matrix via Diagonalization",
     "es": "Potencias de una matriz por diagonalización"
@@ -12,31 +12,46 @@
       "type": "prose",
       "content": {
         "en": "Repeatedly applying a linear map means raising its matrix to a power. Doing $A^n$ by brute-force multiplication is expensive and error-prone. Diagonalization turns it into child's play: since $A = P D P^{-1}$, the middle $P^{-1}P$ pairs cancel in $A^n = P D^n P^{-1}$, leaving only $D^n$ to compute.",
-        "es": "Aplicar repetidamente una aplicación lineal equivale a elevar su matriz a una potencia. Hacer $A^n$ por multiplicación a fuerza bruta es costoso y propenso a errores. La diagonalización lo vuelve un juego de niños: como $A = P D P^{-1}$, los pares centrales $P^{-1}P$ se cancelan en $A^n = P D^n P^{-1}$, dejando solo $D^n$ por calcular."
+        "es": "Aplicar repetidamente una aplicación lineal equivale a elevar su matriz a una potencia. Hacer $A^n$ por multiplicación a fuerza bruta es costoso y propenso a errores. La diagonalización lo vuelve coser y cantar: como $A = P D P^{-1}$, los pares centrales $P^{-1}P$ se cancelan en $A^n = P D^n P^{-1}$, dejando solo $D^n$ por calcular."
       }
     },
     {
       "type": "prereq",
       "lessons": [
-        "linmaps-07-diagonalization"
+        "linmaps-07-diagonalization",
+        "linalg-09-matrices-operations"
       ],
       "note": {
-        "en": "Powers are cheap once a matrix is diagonalized.",
-        "es": "Las potencias son baratas una vez diagonalizada la matriz."
+        "en": "Powers are cheap once a matrix is diagonalized, and the product rules they rely on come from matrix operations.",
+        "es": "Las potencias son baratas una vez diagonalizada la matriz, y las reglas del producto en que se apoyan vienen de las operaciones con matrices."
       }
     },
     {
       "type": "prose",
       "content": {
         "en": "And $D^n$ is trivial: raising a **diagonal** matrix to the $n$ just raises each diagonal entry to the $n$. So $\\text{diag}(2,3)^n = \\text{diag}(2^n, 3^n)$. A computation that would take many matrix multiplications collapses to a few scalar powers — this is the practical superpower of eigenvalues.",
-        "es": "Y $D^n$ es trivial: elevar una matriz **diagonal** a la $n$ solo eleva cada elemento de la diagonal a la $n$. Así $\\text{diag}(2,3)^n = \\text{diag}(2^n, 3^n)$. Un cálculo que requeriría muchas multiplicaciones de matrices se reduce a unas pocas potencias escalares — este es el superpoder práctico de los autovalores."
+        "es": "Y $D^n$ es trivial: elevar una matriz **diagonal** a la $n$ solo eleva cada elemento de la diagonal a la $n$. Así $\\text{diag}(2,3)^n = \\text{diag}(2^n, 3^n)$. Un cálculo que requeriría muchas multiplicaciones de matrices se reduce a unas pocas potencias escalares — esta es la gran ventaja práctica de los valores propios."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "This is exactly how we compute long-run behavior: the $n$-step transition of a Markov chain, the population after $n$ generations, the state of a recurrence after many steps. The eigenvalue with the largest magnitude eventually dominates, setting the long-term growth or decay rate.",
-        "es": "Así es exactamente como calculamos el comportamiento a largo plazo: la transición a $n$ pasos de una cadena de Markov, la población tras $n$ generaciones, el estado de una recurrencia tras muchos pasos. El autovalor de mayor magnitud acaba dominando, fijando la tasa de crecimiento o decaimiento a largo plazo."
+        "en": "**Precisely**, $A^2 = PDP^{-1}PDP^{-1} = PD^2P^{-1}$, because $P^{-1}P = I$ in the middle. By induction, $A^n = PD^nP^{-1}$ for every $n \\ge 0$. If no eigenvalue is $0$, the same formula holds for negative powers: $A^{-1} = PD^{-1}P^{-1}$. On a single eigenvector, $A^n\\mathbf v = \\lambda^n\\mathbf v$. So for $\\mathbf x = c_1\\mathbf v_1 + c_2\\mathbf v_2$, we get $A^n\\mathbf x = c_1\\lambda_1^n\\mathbf v_1 + c_2\\lambda_2^n\\mathbf v_2$: each eigen-component is scaled by its own power.",
+        "es": "**Con precisión**, $A^2 = PDP^{-1}PDP^{-1} = PD^2P^{-1}$, porque $P^{-1}P = I$ en el centro. Por inducción, $A^n = PD^nP^{-1}$ para todo $n \\ge 0$. Si ningún valor propio es $0$, la misma fórmula vale para potencias negativas: $A^{-1} = PD^{-1}P^{-1}$. Sobre un solo vector propio, $A^n\\mathbf v = \\lambda^n\\mathbf v$. Así que para $\\mathbf x = c_1\\mathbf v_1 + c_2\\mathbf v_2$, obtenemos $A^n\\mathbf x = c_1\\lambda_1^n\\mathbf v_1 + c_2\\lambda_2^n\\mathbf v_2$: cada componente propia se escala con su propia potencia."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The trap is to raise the **entries** to the power. $A^n$ is not the matrix of entrywise powers unless $A$ is diagonal. Take the shear $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$: its square is $\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix}$, while the entrywise square is $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, the matrix itself. Entries mix when a matrix is not diagonal. Diagonalizing first avoids the mistake, but only for a diagonalizable $A$: the shear has no eigenbasis, so the formula does not reach it.",
+        "es": "La trampa es elevar los **elementos** a la potencia. $A^n$ no es la matriz de potencias elemento a elemento, salvo que $A$ sea diagonal. Toma la cizalla $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$: su cuadrado es $\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix}$, mientras que el cuadrado elemento a elemento es $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, la propia matriz. Los elementos se mezclan cuando la matriz no es diagonal. Diagonalizar antes evita el error, pero solo para una $A$ diagonalizable: la cizalla no tiene base de vectores propios, así que la fórmula no le alcanza."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "This is exactly how we compute long-run behavior: the $n$-step transition of a Markov chain, the population after $n$ generations, the state of a recurrence after many steps. If one eigenvalue is strictly largest in size and the starting vector has a component along its eigenvector, that eigenvalue eventually dominates and sets the long-term growth or decay rate.",
+        "es": "Así es exactamente como calculamos el comportamiento a largo plazo: la transición a $n$ pasos de una cadena de Markov, la población tras $n$ generaciones, el estado de una recurrencia tras muchos pasos. Si un valor propio es estrictamente el de mayor módulo y el vector inicial tiene componente en su vector propio, ese valor propio acaba dominando y fija la tasa de crecimiento o decaimiento a largo plazo."
       }
     },
     {
@@ -48,6 +63,24 @@
       "content": {
         "en": "For $D = \\text{diag}(2,3)$, the $(1,1)$ entry of $D^2$ is $2^2 = 4$, and the $(2,2)$ entry of $D^3$ is $3^3 = 27$. To get $A^n$, sandwich: $A^n = P\\,\\text{diag}(2^n, 3^n)\\,P^{-1}$. No repeated matrix multiplication needed.",
         "es": "Para $D = \\text{diag}(2,3)$, el elemento $(1,1)$ de $D^2$ es $2^2 = 4$, y el $(2,2)$ de $D^3$ es $3^3 = 27$. Para obtener $A^n$, intercala: $A^n = P\\,\\text{diag}(2^n, 3^n)\\,P^{-1}$. Sin multiplicación repetida de matrices."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a closed form for Aⁿ",
+        "es": "Ejemplo resuelto — una fórmula cerrada para Aⁿ"
+      },
+      "content": {
+        "en": "Use $A = \\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ from lesson 07, with $P = \\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ and $D = \\operatorname{diag}(3,-1)$. Then $A^n = P\\,\\operatorname{diag}(3^n, (-1)^n)\\,P^{-1}$, which works out to $A^n = \\tfrac12\\begin{pmatrix}3^n + (-1)^n & 3^n - (-1)^n\\\\ 3^n - (-1)^n & 3^n + (-1)^n\\end{pmatrix}$. For $n = 3$: $\\tfrac12(27 - 1) = 13$ and $\\tfrac12(27 + 1) = 14$, so $A^3 = \\begin{pmatrix}13&14\\\\14&13\\end{pmatrix}$. Multiplying $A$ by itself three times gives the same matrix, a check worth making. The eigenvalue $-1$ makes the signs alternate.",
+        "es": "Usa $A = \\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ de la lección 07, con $P = \\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ y $D = \\operatorname{diag}(3,-1)$. Entonces $A^n = P\\,\\operatorname{diag}(3^n, (-1)^n)\\,P^{-1}$, que da $A^n = \\tfrac12\\begin{pmatrix}3^n + (-1)^n & 3^n - (-1)^n\\\\ 3^n - (-1)^n & 3^n + (-1)^n\\end{pmatrix}$. Para $n = 3$: $\\tfrac12(27 - 1) = 13$ y $\\tfrac12(27 + 1) = 14$, así que $A^3 = \\begin{pmatrix}13&14\\\\14&13\\end{pmatrix}$. Multiplicar $A$ por sí misma tres veces da la misma matriz, una comprobación que conviene hacer. El valor propio $-1$ hace que los signos se alternen."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The Fibonacci numbers are the classic payoff. Written as a matrix step, $\\begin{pmatrix}F_{k+1}\\\\F_k\\end{pmatrix} = \\begin{pmatrix}1&1\\\\1&0\\end{pmatrix}\\begin{pmatrix}F_k\\\\F_{k-1}\\end{pmatrix}$. Its eigenvalues are $\\varphi = \\tfrac{1+\\sqrt5}{2} \\approx 1.618$ and $\\psi = \\tfrac{1-\\sqrt5}{2} \\approx -0.618$, and the diagonal form gives Binet's formula, $F_n = (\\varphi^n - \\psi^n)/\\sqrt5$. Since $|\\psi| < 1$, the term $\\psi^n$ vanishes, and $F_n$ grows like $\\varphi^n/\\sqrt5$. Markov chains work the same way: the $n$-step transition matrix is the $n$-th power of the one-step matrix. The same idea gives the hundredth Fibonacci number without listing all the earlier ones.",
+        "es": "Los números de Fibonacci son el ejemplo clásico. Escritos como un paso matricial, $\\begin{pmatrix}F_{k+1}\\\\F_k\\end{pmatrix} = \\begin{pmatrix}1&1\\\\1&0\\end{pmatrix}\\begin{pmatrix}F_k\\\\F_{k-1}\\end{pmatrix}$. Sus valores propios son $\\varphi = \\tfrac{1+\\sqrt5}{2} \\approx 1.618$ y $\\psi = \\tfrac{1-\\sqrt5}{2} \\approx -0.618$, y la forma diagonal da la fórmula de Binet, $F_n = (\\varphi^n - \\psi^n)/\\sqrt5$. Como $|\\psi| < 1$, el término $\\psi^n$ desaparece y $F_n$ crece como $\\varphi^n/\\sqrt5$. Las cadenas de Markov funcionan igual: la matriz de transición a $n$ pasos es la potencia $n$-ésima de la matriz de un paso. La misma idea da el centésimo número de Fibonacci sin listar todos los anteriores."
       }
     },
     {
@@ -63,7 +96,7 @@
       "expectedOutput": "[[8, 0], [0, 27]]",
       "caption": {
         "en": "Diagonalization turns A^k into D^k — fast powers.",
-        "es": "La diagonalizacion convierte A^k en D^k — potencias rapidas."
+        "es": "La diagonalización convierte A^k en D^k — potencias rápidas."
       }
     }
   ],
@@ -140,7 +173,7 @@
       "answerType": "number",
       "prompt": {
         "en": "Compute $2^{10}$ (a single eigenvalue raised to a power).",
-        "es": "Calcula $2^{10}$ (un autovalor elevado a una potencia)."
+        "es": "Calcula $2^{10}$ (un valor propio elevado a una potencia)."
       },
       "answer": "1024",
       "acceptedAlt": [
@@ -155,6 +188,114 @@
           "tex": "2^{10} = 1024",
           "en": "Scalar power.",
           "es": "Potencia escalar."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "20",
+          "feedback": {
+            "en": "$20 = 2\\cdot 10$ multiplies instead of powering. $2^{10}$ means ten factors of $2$, which is $1024$.",
+            "es": "$20 = 2\\cdot 10$ multiplica en vez de elevar a una potencia. $2^{10}$ son diez factores de $2$, es decir, $1024$."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linmaps-08-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$A = PDP^{-1}$ with $D = \\operatorname{diag}(1, 0.5)$. What does $A^n$ approach as $n$ grows?",
+        "es": "$A = PDP^{-1}$ con $D = \\operatorname{diag}(1, 0.5)$. ¿A qué se aproxima $A^n$ cuando $n$ crece?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$P\\operatorname{diag}(0,0)P^{-1}$, the zero matrix.",
+            "es": "$P\\operatorname{diag}(0,0)P^{-1}$, la matriz nula."
+          },
+          "correct": false,
+          "why": {
+            "en": "Not every power shrinks: $1^n = 1$ for all $n$, so the eigenvalue $1$ stays. Only the $0.5^n$ part goes to zero.",
+            "es": "No todas las potencias se encogen: $1^n = 1$ para todo $n$, así que el valor propio $1$ se mantiene. Solo la parte $0.5^n$ tiende a cero."
+          }
+        },
+        {
+          "text": {
+            "en": "$P\\operatorname{diag}(1,1)P^{-1}$, the identity $I$.",
+            "es": "$P\\operatorname{diag}(1,1)P^{-1}$, la identidad $I$."
+          },
+          "correct": false,
+          "why": {
+            "en": "The identity needs both eigenvalues equal to $1$. Here the $0.5^n$ part vanishes, so the limit is not $I$.",
+            "es": "La identidad exige que ambos valores propios valgan $1$. Aquí la parte $0.5^n$ se anula, así que el límite no es $I$."
+          }
+        },
+        {
+          "text": {
+            "en": "$D$ itself, since $P$ and $P^{-1}$ cancel out.",
+            "es": "$D$ misma, ya que $P$ y $P^{-1}$ se cancelan."
+          },
+          "correct": false,
+          "why": {
+            "en": "$P$ and $P^{-1}$ sit on either side of $D^n$. They do not cancel out, and $D^n$ itself changes with $n$.",
+            "es": "$P$ y $P^{-1}$ están a ambos lados de $D^n$. No se cancelan, y $D^n$ cambia con $n$."
+          }
+        },
+        {
+          "text": {
+            "en": "$P\\operatorname{diag}(1,0)P^{-1}$, a projection.",
+            "es": "$P\\operatorname{diag}(1,0)P^{-1}$, una proyección."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $0.5^n \\to 0$, so only the eigenvalue-$1$ direction survives: $A^n \\to P\\operatorname{diag}(1,0)P^{-1}$, not $I$.",
+            "es": "Exacto. $0.5^n \\to 0$, así que solo sobrevive la dirección del valor propio $1$: $A^n \\to P\\operatorname{diag}(1,0)P^{-1}$, no $I$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which powers of the diagonal entries stay away from zero?",
+        "es": "¿Qué potencias de los elementos diagonales se mantienen lejos de cero?"
+      }
+    },
+    {
+      "id": "linmaps-08-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "For $A = \\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$, what is the $(1,2)$ entry of $A^4$?",
+        "es": "Para $A = \\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$, ¿cuál es el elemento $(1,2)$ de $A^4$?"
+      },
+      "answer": "40",
+      "commonMistakes": [
+        {
+          "answer": "16",
+          "feedback": {
+            "en": "$16 = 2^4$ raises the entry $2$ to the power. Matrix powers do not work that way: the eigenvalues $3$ and $-1$ are what get raised.",
+            "es": "$16 = 2^4$ eleva a la potencia el elemento $2$. Las potencias de matrices no funcionan así: lo que se eleva son los valores propios $3$ y $-1$."
+          }
+        },
+        {
+          "answer": "81",
+          "feedback": {
+            "en": "$81 = 3^4$ keeps only the eigenvalue $3$ and forgets $P$ and the other eigenvalue. The entry is $\\tfrac12(3^4 - (-1)^4) = 40$.",
+            "es": "$81 = 3^4$ conserva solo el valor propio $3$ y olvida $P$ y el otro valor propio. El elemento es $\\tfrac12(3^4 - (-1)^4) = 40$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use the closed form of Aⁿ from the worked example, with n = 4.",
+        "es": "Usa la fórmula de Aⁿ del ejemplo resuelto, con n = 4."
+      },
+      "solution": [
+        {
+          "tex": "\\tfrac12\\bigl(3^4 - (-1)^4\\bigr) = \\tfrac12(81 - 1) = 40",
+          "en": "The off-diagonal entry of Aⁿ is $\\tfrac12(3^n - (-1)^n)$.",
+          "es": "El elemento fuera de la diagonal de Aⁿ es $\\tfrac12(3^n - (-1)^n)$."
+        },
+        {
+          "tex": "A^4 = \\begin{pmatrix}41&40\\\\40&41\\end{pmatrix}",
+          "en": "The $(1,2)$ entry is 40.",
+          "es": "El elemento $(1,2)$ es 40."
         }
       ]
     }

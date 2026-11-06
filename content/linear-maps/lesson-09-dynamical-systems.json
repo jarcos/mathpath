@@ -2,7 +2,7 @@
   "id": "linmaps-09-dynamical-systems",
   "subjectId": "linear-maps",
   "order": 9,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Dynamical Systems (Case Study)",
     "es": "Sistemas dinámicos (caso de estudio)"
@@ -12,31 +12,39 @@
       "type": "prose",
       "content": {
         "en": "A **discrete linear dynamical system** evolves by repeatedly applying a matrix: $\\mathbf{x}_{k+1} = A\\,\\mathbf{x}_k$, so $\\mathbf{x}_k = A^k \\mathbf{x}_0$. This models population growth, the spread of information, economic input-output (Leontief) models, and the iterations of PageRank. Diagonalization is the tool that predicts the long-run outcome.",
-        "es": "Un **sistema dinámico lineal discreto** evoluciona aplicando repetidamente una matriz: $\\mathbf{x}_{k+1} = A\\,\\mathbf{x}_k$, así $\\mathbf{x}_k = A^k \\mathbf{x}_0$. Modela crecimiento de poblaciones, difusión de información, modelos económicos de entrada-salida (Leontief) y las iteraciones del PageRank. La diagonalización es la herramienta que predice el resultado a largo plazo."
+        "es": "Un **sistema dinámico lineal discreto** evoluciona aplicando repetidamente una matriz: $\\mathbf{x}_{k+1} = A\\,\\mathbf{x}_k$, así $\\mathbf{x}_k = A^k \\mathbf{x}_0$. Modela crecimiento de poblaciones, propagación de la información, modelos económicos de entrada-salida (Leontief) y las iteraciones del PageRank. La diagonalización es la herramienta que predice el resultado a largo plazo."
       }
     },
     {
       "type": "prereq",
       "lessons": [
-        "linmaps-08-powers"
+        "linmaps-08-powers",
+        "linmaps-06-eigenvalues"
       ],
       "note": {
-        "en": "Dynamical systems iterate matrix powers.",
-        "es": "Los sistemas dinamicos iteran potencias de matrices."
+        "en": "Dynamical systems iterate matrix powers, and their long-run fate is read from the eigenvalues.",
+        "es": "Los sistemas dinámicos iteran potencias de matrices, y su destino a largo plazo se lee en los valores propios."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "The **eigenvalues control the fate** of the system. The eigenvalue of largest magnitude, the **dominant eigenvalue** $\\lambda$, sets the long-run behavior: if $|\\lambda| > 1$ the system **grows**, if $|\\lambda| < 1$ it **decays to zero**, and if $|\\lambda| = 1$ it approaches a **steady state**. The corresponding eigenvector gives the shape the system settles into.",
-        "es": "Los **autovalores controlan el destino** del sistema. El autovalor de mayor magnitud, el **autovalor dominante** $\\lambda$, fija el comportamiento a largo plazo: si $|\\lambda| > 1$ el sistema **crece**, si $|\\lambda| < 1$ **decae a cero**, y si $|\\lambda| = 1$ se aproxima a un **estado estacionario**. El autovector correspondiente da la forma a la que el sistema se estabiliza."
+        "en": "The **eigenvalues control the fate** of the system. The eigenvalue of largest magnitude, the **dominant eigenvalue** $\\lambda$, sets the long-run behavior: if $|\\lambda| > 1$ the system **grows**, and if $|\\lambda| < 1$ it **decays to zero**, for a start with a component along its eigenvector. A **steady state** needs the dominant eigenvalue to be exactly $1$, with every other eigenvalue smaller in size. The corresponding eigenvector gives the shape the system settles into.",
+        "es": "Los **valores propios controlan el destino** del sistema. El valor propio de mayor magnitud, el **valor propio dominante** $\\lambda$, fija el comportamiento a largo plazo: si $|\\lambda| > 1$ el sistema **crece**, y si $|\\lambda| < 1$ **decae a cero**, siempre que el punto de partida tenga componente en su vector propio. Un **estado estacionario** exige que el valor propio dominante valga exactamente $1$, con todos los demás menores en magnitud. El vector propio correspondiente da la forma a la que el sistema se estabiliza."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "A simple scalar case shows the idea: $x_{k+1} = 2x_k$ doubles each step (dominant 'eigenvalue' $2 > 1$, explosive growth), while $x_{k+1} = 0.5\\,x_k$ halves each step toward $0$ (eigenvalue $0.5 < 1$, decay). Markov chains, where columns sum to $1$, always have a dominant eigenvalue of exactly $1$ — hence a stable steady-state distribution.",
-        "es": "Un caso escalar simple muestra la idea: $x_{k+1} = 2x_k$ se duplica en cada paso ('autovalor' dominante $2 > 1$, crecimiento explosivo), mientras $x_{k+1} = 0.5\\,x_k$ se reduce a la mitad hacia $0$ (autovalor $0.5 < 1$, decaimiento). Las cadenas de Markov, donde las columnas suman $1$, siempre tienen un autovalor dominante de exactamente $1$ — de ahí una distribución estacionaria estable."
+        "en": "**Precisely**, assume $A$ has two independent eigenvectors $\\mathbf v_1, \\mathbf v_2$ with eigenvalues $\\lambda_1, \\lambda_2$, and write $\\mathbf x_0 = c_1\\mathbf v_1 + c_2\\mathbf v_2$. Then $\\mathbf x_k = c_1\\lambda_1^k\\mathbf v_1 + c_2\\lambda_2^k\\mathbf v_2$. If $|\\lambda_1| > |\\lambda_2|$ and $c_1 \\neq 0$, the first term wins, so for large $k$ the state lies along the line of $\\mathbf v_1$, switching sides when $\\lambda_1$ is negative. The assumption matters: the shear has eigenvalue $1$ with one eigenvector only, and $(0,1)$ drifts to $(1,1)$, then $(2,1)$, with no steady state.",
+        "es": "**Con precisión**, supón que $A$ tiene dos vectores propios independientes $\\mathbf v_1, \\mathbf v_2$ con valores propios $\\lambda_1, \\lambda_2$, y escribe $\\mathbf x_0 = c_1\\mathbf v_1 + c_2\\mathbf v_2$. Entonces $\\mathbf x_k = c_1\\lambda_1^k\\mathbf v_1 + c_2\\lambda_2^k\\mathbf v_2$. Si $|\\lambda_1| > |\\lambda_2|$ y $c_1 \\neq 0$, el primer término gana, así que para $k$ grande el estado queda sobre la recta de $\\mathbf v_1$, cambiando de lado en cada paso si $\\lambda_1$ es negativo. La hipótesis importa: la cizalla tiene el valor propio $1$ con un solo vector propio, y $(0,1)$ deriva a $(1,1)$ y luego a $(2,1)$, sin estado estacionario."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A simple scalar case shows the idea: $x_{k+1} = 2x_k$ doubles each step (dominant 'eigenvalue' $2 > 1$, explosive growth), while $x_{k+1} = 0.5\\,x_k$ halves each step toward $0$ (eigenvalue $0.5 < 1$, decay). Markov chains (nonnegative entries, columns summing to $1$) always have the eigenvalue $1$ and no eigenvalue larger in size. For a **regular** chain (some power of the matrix has all entries positive), every starting distribution converges to the same steady-state distribution.",
+        "es": "Un caso escalar simple muestra la idea: $x_{k+1} = 2x_k$ se duplica en cada paso ('valor propio' dominante $2 > 1$, crecimiento explosivo), mientras que $x_{k+1} = 0.5\\,x_k$ se reduce a la mitad hacia $0$ (valor propio $0.5 < 1$, decaimiento). Las cadenas de Markov (entradas no negativas, columnas que suman $1$) siempre tienen el valor propio $1$ y ninguno mayor en magnitud. En una cadena **regular** (alguna potencia de la matriz tiene todas las entradas positivas), cada distribución inicial converge a la misma distribución estacionaria."
       }
     },
     {
@@ -47,7 +55,32 @@
       },
       "content": {
         "en": "The system $x_{k+1} = 2x_k$ with $x_0 = 1$: $x_1 = 2$, $x_2 = 4$, $x_3 = 8$. After three steps the value is $8 = 2^3$. Because the eigenvalue $2 > 1$, the system grows without bound.",
-        "es": "El sistema $x_{k+1} = 2x_k$ con $x_0 = 1$: $x_1 = 2$, $x_2 = 4$, $x_3 = 8$. Tras tres pasos el valor es $8 = 2^3$. Como el autovalor $2 > 1$, el sistema crece sin límite."
+        "es": "El sistema $x_{k+1} = 2x_k$ con $x_0 = 1$: $x_1 = 2$, $x_2 = 4$, $x_3 = 8$. Tras tres pasos el valor es $8 = 2^3$. Como el valor propio $2 > 1$, el sistema crece sin límite."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — city and suburb migration",
+        "es": "Ejemplo resuelto — migración entre la ciudad y las afueras"
+      },
+      "content": {
+        "en": "Each year 10% of city residents move to the suburbs, and 20% of suburban residents move to the city. Let $\\mathbf x_k = (c_k, s_k)$ be the city and suburb populations after $k$ years. The matrix $M = \\begin{pmatrix}0.9&0.2\\\\0.1&0.8\\end{pmatrix}$ has columns summing to $1$, so nobody is lost. Its eigenvalues are $1$ and $0.7$, with eigenvectors $(2,1)$ and $(1,-1)$. Starting from $\\mathbf x_0 = (1000, 0)$, write $\\mathbf x_0 = \\tfrac{1000}{3}(2,1) + \\tfrac{1000}{3}(1,-1)$, so $\\mathbf x_k = \\tfrac{1000}{3}(2,1) + \\tfrac{1000}{3}\\,0.7^k(1,-1)$. One year gives $(900, 100)$, and in the long run the city holds about $667$ people and the suburbs about $333$.",
+        "es": "Cada año, el 10 % de los residentes de la ciudad se muda a las afueras, y el 20 % de los de las afueras se muda a la ciudad. Sea $\\mathbf x_k = (c_k, s_k)$ la población de la ciudad y de las afueras tras $k$ años. La matriz $M = \\begin{pmatrix}0.9&0.2\\\\0.1&0.8\\end{pmatrix}$ tiene columnas que suman $1$, así que no se pierde nadie. Sus valores propios son $1$ y $0.7$, con vectores propios $(2,1)$ y $(1,-1)$. Partiendo de $\\mathbf x_0 = (1000, 0)$, escribe $\\mathbf x_0 = \\tfrac{1000}{3}(2,1) + \\tfrac{1000}{3}(1,-1)$, así que $\\mathbf x_k = \\tfrac{1000}{3}(2,1) + \\tfrac{1000}{3}\\,0.7^k(1,-1)$. Un año después hay $(900, 100)$, y a largo plazo la ciudad tiene unas $667$ personas y las afueras unas $333$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A negative eigenvalue flips the sign at each step. With $\\lambda = -0.5$, the state alternates sign while it shrinks: $(-0.5)^k$ goes to zero, but in a zigzag. With $\\lambda = -1$ it swings between $+1$ and $-1$ forever, so there is no steady state, even though $|\\lambda| = 1$. Complex eigenvalues are stranger still: they rotate the state while scaling it, so the orbit spirals inward when $|\\lambda| < 1$ and outward when $|\\lambda| > 1$. Check the sign and the rotation, not only the size.",
+        "es": "Un valor propio negativo cambia el signo en cada paso. Con $\\lambda = -0.5$, el estado alterna de signo mientras se encoge: $(-0.5)^k$ tiende a cero, pero en zigzag. Con $\\lambda = -1$ oscila entre $+1$ y $-1$ para siempre, así que no hay estado estacionario, aunque $|\\lambda| = 1$. Los valores propios complejos son aún más raros: giran el estado mientras lo escalan, así que la órbita forma una espiral hacia dentro si $|\\lambda| < 1$ y hacia fuera si $|\\lambda| > 1$. Mira siempre el signo y la rotación, no solo el tamaño."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "A **Leslie model** splits a population into age classes; for a primitive Leslie matrix, its dominant eigenvalue is the long-run growth factor per period. **PageRank** ranks web pages by the stationary distribution of a random surfer, which is the eigenvector for the eigenvalue $1$ of a Markov matrix. Damping makes that chain regular, so the iteration converges from any starting distribution.",
+        "es": "Un **modelo de Leslie** divide una población en clases de edad; para una matriz de Leslie primitiva, su valor propio dominante es el factor de crecimiento por periodo a largo plazo. **PageRank** ordena las páginas web según la distribución estacionaria de un navegante aleatorio, que es el vector propio del valor propio $1$ de una matriz de Markov. El amortiguamiento hace regular esa cadena, así que la iteración converge desde cualquier distribución inicial."
       }
     },
     {
@@ -58,12 +91,12 @@
       ],
       "code": {
         "en": "import numpy as np\n# Fibonacci as a dynamical system: state evolves by repeated A\nA = np.array([[1, 1], [1, 0]])\nprint((np.linalg.matrix_power(A, 10) @ np.array([1, 0])).tolist())",
-        "es": "import numpy as np\n# Fibonacci como sistema dinamico: el estado evoluciona aplicando A\nA = np.array([[1, 1], [1, 0]])\nprint((np.linalg.matrix_power(A, 10) @ np.array([1, 0])).tolist())"
+        "es": "import numpy as np\n# Fibonacci como sistema dinámico: el estado evoluciona aplicando A\nA = np.array([[1, 1], [1, 0]])\nprint((np.linalg.matrix_power(A, 10) @ np.array([1, 0])).tolist())"
       },
       "expectedOutput": "[89, 55]",
       "caption": {
         "en": "Iterating a matrix models a discrete dynamical system.",
-        "es": "Iterar una matriz modela un sistema dinamico discreto."
+        "es": "Iterar una matriz modela un sistema dinámico discreto."
       }
     }
   ],
@@ -73,13 +106,13 @@
       "answerType": "number",
       "prompt": {
         "en": "If the dominant eigenvalue is $0.5$ ($<1$), the system decays to which value?",
-        "es": "Si el autovalor dominante es $0.5$ ($<1$), ¿a qué valor decae el sistema?"
+        "es": "Si el valor propio dominante es $0.5$ ($<1$), ¿a qué valor decae el sistema?"
       },
       "answer": "0",
       "acceptedAlt": [],
       "hint": {
-        "en": "|λ| < 1 means decay.",
-        "es": "|λ| < 1 significa decaimiento."
+        "en": "$|\\lambda| < 1$ means decay.",
+        "es": "$|\\lambda| < 1$ significa decaimiento."
       },
       "solution": [
         {
@@ -110,6 +143,15 @@
           "en": "Growth.",
           "es": "Crecimiento."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "6",
+          "feedback": {
+            "en": "$6 = 2+2+2$ adds the factor $2$ at each step instead of multiplying. The rule doubles each step, so $x_3 = 2\\cdot 2\\cdot 2 = 8$.",
+            "es": "$6 = 2+2+2$ suma el factor $2$ en cada paso en vez de multiplicar. La regla duplica en cada paso, así que $x_3 = 2\\cdot 2\\cdot 2 = 8$."
+          }
+        }
       ]
     },
     {
@@ -117,7 +159,7 @@
       "answerType": "number",
       "prompt": {
         "en": "A steady state requires the dominant eigenvalue to equal which value?",
-        "es": "Un estado estacionario requiere que el autovalor dominante valga qué valor?"
+        "es": "¿Qué valor debe tener el valor propio dominante para que haya un estado estacionario?"
       },
       "answer": "1",
       "acceptedAlt": [],
@@ -144,13 +186,112 @@
       "acceptedAlt": [],
       "hint": {
         "en": "The eigenvalue.",
-        "es": "El autovalor."
+        "es": "El valor propio."
       },
       "solution": [
         {
           "tex": "x_{k+1} = 2x_k",
           "en": "Factor 2.",
           "es": "Factor 2."
+        }
+      ]
+    },
+    {
+      "id": "linmaps-09-e5",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$\\mathbf x_{k+1} = A\\mathbf x_k$, with eigenvalues $1.2$ and $0.5$. For a typical start, what happens?",
+        "es": "$\\mathbf x_{k+1} = A\\mathbf x_k$, con valores propios $1.2$ y $0.5$. Para un punto de partida típico, ¿qué ocurre?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It grows like $1.2^k$, because $1.2$ is the larger eigenvalue in size.",
+            "es": "Crece como $1.2^k$, porque $1.2$ es el valor propio mayor en magnitud."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. The $1.2$ term dominates, so the state lines up with its eigenvector and grows by $1.2$ each step.",
+            "es": "Exacto. El término de $1.2$ domina, así que el estado se alinea con su vector propio y crece por $1.2$ en cada paso."
+          }
+        },
+        {
+          "text": {
+            "en": "It shrinks to $\\mathbf 0$, since $\\det A = 0.6 < 1$.",
+            "es": "Se encoge hacia $\\mathbf 0$, ya que $\\det A = 0.6 < 1$."
+          },
+          "correct": false,
+          "why": {
+            "en": "A determinant below $1$ does not force decay. The determinant is the product of the eigenvalues, and here one of them is above $1$.",
+            "es": "Un determinante menor que $1$ no fuerza el decaimiento. El determinante es el producto de los valores propios, y aquí uno de ellos es mayor que $1$."
+          }
+        },
+        {
+          "text": {
+            "en": "It settles to a steady state, since one eigenvalue is above 1 and one below.",
+            "es": "Se estabiliza en un estado estacionario, ya que un valor propio es mayor que 1 y otro menor."
+          },
+          "correct": false,
+          "why": {
+            "en": "A steady state needs the dominant eigenvalue to be exactly $1$. Here the dominant one is $1.2$, so the state keeps growing.",
+            "es": "Un estado estacionario exige que el valor propio dominante valga exactamente $1$. Aquí el dominante es $1.2$, así que el estado sigue creciendo."
+          }
+        },
+        {
+          "text": {
+            "en": "It decays, because the smaller eigenvalue wins in the long run.",
+            "es": "Decae, porque el valor propio menor gana a largo plazo."
+          },
+          "correct": false,
+          "why": {
+            "en": "The eigenvalue of largest magnitude wins, not the smaller one. $0.5^k$ vanishes, while $1.2^k$ grows.",
+            "es": "Gana el valor propio de mayor magnitud, no el menor. $0.5^k$ se anula, mientras que $1.2^k$ crece."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Which eigenvalue has the largest magnitude?",
+        "es": "¿Qué valor propio tiene mayor magnitud?"
+      }
+    },
+    {
+      "id": "linmaps-09-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "Using the matrix $M$ of the migration example, start with all $900$ people in the city. What is the city's long-run population?",
+        "es": "Con la matriz $M$ del ejemplo de migración, empieza con los $900$ habitantes en la ciudad. ¿Cuál es la población a largo plazo de la ciudad?"
+      },
+      "answer": "600",
+      "commonMistakes": [
+        {
+          "answer": "450",
+          "feedback": {
+            "en": "$450 = 900/2$ assumes an even split. The matrix is not symmetric: 10% of the city leaves each year, but 20% of the suburban residents arrive in the city, so the city ends up with more than half.",
+            "es": "$450 = 900/2$ supone un reparto igual. La matriz no es simétrica: cada año sale el 10 % de la ciudad, pero llega a la ciudad el 20 % de los residentes de las afueras, así que la ciudad acaba con más de la mitad."
+          }
+        },
+        {
+          "answer": "810",
+          "feedback": {
+            "en": "$810 = 0.9\\cdot 900$ is only the city's population after one year. The long-run value needs the limit, not one step.",
+            "es": "$810 = 0.9\\cdot 900$ es solo la población de la ciudad tras un año. El valor a largo plazo necesita el límite, no un paso."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Split the start into the two eigenvectors. The part with eigenvalue $0.7$ dies out.",
+        "es": "Descompón el punto de partida en los dos vectores propios. La parte del valor propio $0.7$ se extingue."
+      },
+      "solution": [
+        {
+          "tex": "(900, 0) = 300\\,(2,1) + 300\\,(1,-1)",
+          "en": "Split $(900, 0)$ along the eigenvectors.",
+          "es": "Descompón $(900, 0)$ según los vectores propios."
+        },
+        {
+          "tex": "\\mathbf x_k \\to 300\\,(2,1) = (600, 300)",
+          "en": "The $0.7^k$ part vanishes, so the city settles at 600.",
+          "es": "La parte $0.7^k$ se anula, así que la ciudad se estabiliza en 600."
         }
       ]
     }

@@ -2,7 +2,7 @@
   "id": "linmaps-11-rotation",
   "subjectId": "linear-maps",
   "order": 11,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Rotation in 2D",
     "es": "Rotación en 2D"
@@ -18,11 +18,13 @@
     {
       "type": "prereq",
       "lessons": [
-        "linmaps-02-matrix"
+        "linmaps-02-matrix",
+        "functions-10-sine-cosine",
+        "linalg-03-complex-polar"
       ],
       "note": {
-        "en": "A rotation is a specific map matrix.",
-        "es": "Una rotacion es una matriz de mapa concreta."
+        "en": "A rotation is a specific map matrix, built from the sine and cosine of the angle.",
+        "es": "Una rotación es la matriz de una aplicación lineal concreta, construida con el seno y el coseno del ángulo."
       }
     },
     {
@@ -40,6 +42,20 @@
       }
     },
     {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, $R(\\theta)^T R(\\theta) = I$, so $R(\\theta)^{-1} = R(\\theta)^T = R(-\\theta)$: undoing a rotation is rotating back. Its determinant is $\\cos^2\\theta + \\sin^2\\theta = 1$. Any $2\\times2$ matrix with orthonormal columns and determinant $1$ is a rotation. One with determinant $-1$ is a reflection, such as $\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}$, which flips the second coordinate. Reflections also preserve lengths, but they reverse orientation. Rotations also preserve dot products, so $(R\\mathbf u)\\cdot(R\\mathbf v) = \\mathbf u\\cdot\\mathbf v$, and the angle between two vectors never changes.",
+        "es": "**Con precisión**, $R(\\theta)^T R(\\theta) = I$, así que $R(\\theta)^{-1} = R(\\theta)^T = R(-\\theta)$: deshacer una rotación es girar en sentido contrario. Su determinante es $\\cos^2\\theta + \\sin^2\\theta = 1$. Toda matriz $2\\times2$ con columnas ortonormales y determinante $1$ es una rotación. Una con determinante $-1$ es una reflexión, como $\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}$, que invierte la segunda coordenada. Las reflexiones también conservan longitudes, pero invierten la orientación. Las rotaciones también conservan los productos escalares, así que $(R\\mathbf u)\\cdot(R\\mathbf v) = \\mathbf u\\cdot\\mathbf v$, y el ángulo entre dos vectores nunca cambia."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Three traps catch learners. First, angles are in **radians** in code: `math.cos(90)` treats 90 as radians and returns about $-0.448$, not $0$. Second, a clockwise turn is $R(-\\theta)$, and its minus sign sits in the lower left, not the upper right. Third, rotating about a point other than the origin is not linear, since that map does not fix the origin. It is a rotation followed by a translation, an affine map (lessons 14 and 15). A quick check catches most slips: rotating $(1,0)$ by $\\theta$ must give $(\\cos\\theta, \\sin\\theta)$.",
+        "es": "Hay tres trampas habituales. La primera: en código los ángulos van en **radianes**; `math.cos(90)` trata el $90$ como radianes y devuelve unos $-0.448$, no $0$. La segunda: una rotación en sentido horario es $R(-\\theta)$, y su signo menos queda abajo a la izquierda, no arriba a la derecha. La tercera: girar en torno a un punto distinto del origen no es lineal, porque esa aplicación no deja fijo el origen. Es una rotación seguida de una traslación, es decir, una aplicación afín (lecciones 14 y 15). Una comprobación rápida detecta casi todos los errores: rotar $(1,0)$ un ángulo $\\theta$ debe dar $(\\cos\\theta, \\sin\\theta)$."
+      }
+    },
+    {
       "type": "example",
       "title": {
         "en": "Worked example — 90° rotation",
@@ -48,6 +64,24 @@
       "content": {
         "en": "Rotate $(1,0)$ by $90°$. With $\\cos 90° = 0$ and $\\sin 90° = 1$, $R = \\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, so $(1,0)\\mapsto(0,1)$: new x-coordinate $0$, new y-coordinate $1$. A $180°$ rotation would send $(1,0)$ to $(-1,0)$.",
         "es": "Rota $(1,0)$ por $90°$. Con $\\cos 90° = 0$ y $\\sin 90° = 1$, $R = \\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, así $(1,0)\\mapsto(0,1)$: nueva coordenada x $0$, nueva y $1$. Una rotación de $180°$ enviaría $(1,0)$ a $(-1,0)$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — rotating a general vector",
+        "es": "Ejemplo resuelto — rotar un vector cualquiera"
+      },
+      "content": {
+        "en": "Rotate $(2,1)$ by $30°$. With $\\cos 30° = \\tfrac{\\sqrt3}{2}$ and $\\sin 30° = \\tfrac12$: $R(30°)\\begin{pmatrix}2\\\\1\\end{pmatrix} = \\begin{pmatrix}2\\cdot\\tfrac{\\sqrt3}{2} - \\tfrac12\\\\ 2\\cdot\\tfrac12 + 1\\cdot\\tfrac{\\sqrt3}{2}\\end{pmatrix} = \\begin{pmatrix}\\sqrt3 - \\tfrac12\\\\ 1 + \\tfrac{\\sqrt3}{2}\\end{pmatrix} \\approx (1.232, 1.866)$. The length is still $\\sqrt5 \\approx 2.236$, as it must be. Turning by $30°$ and then by $-30°$ returns $(2,1)$, since $R(-30°)R(30°) = I$.",
+        "es": "Rota $(2,1)$ por $30°$. Con $\\cos 30° = \\tfrac{\\sqrt3}{2}$ y $\\sin 30° = \\tfrac12$: $R(30°)\\begin{pmatrix}2\\\\1\\end{pmatrix} = \\begin{pmatrix}2\\cdot\\tfrac{\\sqrt3}{2} - \\tfrac12\\\\ 2\\cdot\\tfrac12 + 1\\cdot\\tfrac{\\sqrt3}{2}\\end{pmatrix} = \\begin{pmatrix}\\sqrt3 - \\tfrac12\\\\ 1 + \\tfrac{\\sqrt3}{2}\\end{pmatrix} \\approx (1.232, 1.866)$. La longitud sigue siendo $\\sqrt5 \\approx 2.236$, como debe ser. Girar $30°$ y luego $-30°$ devuelve $(2,1)$, porque $R(-30°)R(30°) = I$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Rotations appear wherever direction matters. Multiplying by $\\cos\\theta + i\\sin\\theta$ is the same rotation in the complex plane (see the polar form of complex numbers). Robot arms chain rotations, one per joint, and the product of their matrices orients each link. Data augmentation rotates training images by small angles, so a slight tilt does not change the label; where orientation carries meaning (a 6 turned 180° looks like a 9), rotations must be limited. **Rotary position embeddings** (RoPE) in transformers rotate each pair of coordinates by an angle proportional to the token's position, so the dot product between two tokens depends on how far apart they are. In three dimensions, rotations about different axes do not commute, so the order of the turns matters.",
+        "es": "Las rotaciones aparecen siempre que importa la dirección. Multiplicar por $\\cos\\theta + i\\sin\\theta$ es la misma rotación en el plano complejo (ver la forma polar de los números complejos). Los brazos robóticos encadenan rotaciones, una por articulación, y el producto de sus matrices orienta cada eslabón. El aumento de datos gira las imágenes de entrenamiento un ángulo pequeño, así que una ligera inclinación no cambia la etiqueta; cuando la orientación importa (un 6 girado 180° parece un 9), las rotaciones deben limitarse. Las **codificaciones posicionales rotatorias** (RoPE) de los transformadores giran cada par de coordenadas un ángulo proporcional a la posición del token, de modo que el producto escalar entre dos tokens depende de lo lejos que estén. En tres dimensiones, las rotaciones alrededor de ejes distintos no conmutan, así que el orden de las rotaciones importa."
       }
     },
     {
@@ -63,7 +97,7 @@
       "expectedOutput": "[0.0, 1.0]",
       "caption": {
         "en": "The 2D rotation matrix turns the x-axis into the y-axis.",
-        "es": "La matriz de rotacion 2D convierte el eje x en el eje y."
+        "es": "La matriz de rotación 2D convierte el eje x en el eje y."
       }
     }
   ],
@@ -111,6 +145,15 @@
           "tex": "(1,0)\\mapsto(0,1)",
           "en": "New y is 1.",
           "es": "Nueva y es 1."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "-1",
+          "feedback": {
+            "en": "$-1$ is the $y$-coordinate after a clockwise turn: $R(-90°)(1,0) = (0,-1)$. The question asks for the counterclockwise turn.",
+            "es": "$-1$ es la coordenada $y$ tras un giro en sentido horario: $R(-90°)(1,0) = (0,-1)$. La pregunta pide el giro en sentido antihorario."
+          }
         }
       ]
     },
@@ -210,6 +253,108 @@
         "en": "90 degrees CCW: (x, y) -> (-y, x).",
         "es": "90 grados antihorario: (x, y) -> (-y, x)."
       }
+    },
+    {
+      "id": "linmaps-11-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Which matrix rotates the plane $90°$ clockwise?",
+        "es": "¿Qué matriz gira el plano $90°$ en sentido horario?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "$\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$",
+            "es": "$\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That is the counterclockwise $90°$ turn, $R(90°)$.",
+            "es": "Es la rotación de $90°$ en sentido antihorario, $R(90°)$."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$",
+            "es": "$\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That swaps $x$ and $y$: a reflection across $y = x$, with determinant $-1$.",
+            "es": "Intercambia $x$ e $y$: es una reflexión respecto a $y = x$, con determinante $-1$."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$",
+            "es": "$\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$"
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $R(-90°)$: it sends $(1,0)$ to $(0,-1)$, a clockwise quarter turn.",
+            "es": "Exacto. $R(-90°)$: envía $(1,0)$ a $(0,-1)$, un cuarto de vuelta en sentido horario."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\begin{pmatrix}0&-1\\\\-1&0\\end{pmatrix}$",
+            "es": "$\\begin{pmatrix}0&-1\\\\-1&0\\end{pmatrix}$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That is a reflection across $y = -x$, with determinant $-1$.",
+            "es": "Es una reflexión respecto a $y = -x$, con determinante $-1$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "A clockwise turn uses the angle $-90°$.",
+        "es": "Un giro en sentido horario usa el ángulo $-90°$."
+      }
+    },
+    {
+      "id": "linmaps-11-e7",
+      "answerType": "number",
+      "prompt": {
+        "en": "Rotate $(2,0)$ counterclockwise by $60°$. What is the $y$-coordinate of the result?",
+        "es": "Gira $(2,0)$ en sentido antihorario $60°$. ¿Cuál es la coordenada $y$ del resultado?"
+      },
+      "answer": "sqrt(3)",
+      "acceptedAlt": [
+        "2*sin(pi/3)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1 = 2\\cos 60°$ is the new $x$-coordinate, not $y$. The $y$-coordinate uses $\\sin 60°$: $2\\sin 60° = \\sqrt3$.",
+            "es": "$1 = 2\\cos 60°$ es la nueva coordenada $x$, no la $y$. La coordenada $y$ usa $\\sin 60°$: $2\\sin 60° = \\sqrt3$."
+          }
+        },
+        {
+          "answer": "-sqrt(3)",
+          "feedback": {
+            "en": "$-\\sqrt3$ is what a clockwise turn gives. Counterclockwise keeps the $y$-coordinate positive.",
+            "es": "$-\\sqrt3$ es lo que da un giro en sentido horario. En sentido antihorario la coordenada $y$ es positiva."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The point is $2(\\cos\\theta, \\sin\\theta)$ with $\\theta = 60°$.",
+        "es": "El punto es $2(\\cos\\theta, \\sin\\theta)$ con $\\theta = 60°$."
+      },
+      "solution": [
+        {
+          "tex": "R(60°)\\,(2,0) = (2\\cos 60°,\\ 2\\sin 60°)",
+          "en": "The point $(2,0)$ has length 2, so its image is $2(\\cos 60°, \\sin 60°)$.",
+          "es": "El punto $(2,0)$ tiene longitud 2, así que su imagen es $2(\\cos 60°, \\sin 60°)$."
+        },
+        {
+          "tex": "= (1,\\ \\sqrt3)",
+          "en": "Its $y$-coordinate is $2\\sin 60° = \\sqrt3$.",
+          "es": "Su coordenada $y$ es $2\\sin 60° = \\sqrt3$."
+        }
+      ]
     }
   ],
   "references": [

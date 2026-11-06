@@ -2,7 +2,7 @@
   "id": "linmaps-03-kernel-image",
   "subjectId": "linear-maps",
   "order": 3,
-  "estimatedMinutes": 45,
+  "estimatedMinutes": 55,
   "title": {
     "en": "Kernel & Image",
     "es": "Núcleo e imagen"
@@ -12,7 +12,18 @@
       "type": "prose",
       "content": {
         "en": "Two subspaces describe what a linear map does. The **kernel** (or null space) is the set of inputs sent to zero: $\\ker T = \\{v : T(v) = \\mathbf{0}\\}$ — what the map 'collapses'. The **image** (or range) is the set of all outputs actually produced — what the map 'reaches'. The kernel always contains $\\mathbf{0}$.",
-        "es": "Dos subespacios describen lo que hace una aplicación lineal. El **núcleo** (o espacio nulo) es el conjunto de entradas enviadas a cero: $\\ker T = \\{v : T(v) = \\mathbf{0}\\}$ — lo que la aplicación 'colapsa'. La **imagen** (o recorrido) es el conjunto de todas las salidas que realmente produce — lo que la aplicación 'alcanza'. El núcleo siempre contiene $\\mathbf{0}$."
+        "es": "Dos subespacios describen lo que hace una aplicación lineal. El **núcleo** (o espacio nulo) es el conjunto de entradas enviadas a cero: $\\ker T = \\{v : T(v) = \\mathbf{0}\\}$ — lo que la aplicación 'aplasta'. La **imagen** (o recorrido) es el conjunto de todas las salidas que realmente produce — lo que la aplicación 'alcanza'. El núcleo siempre contiene $\\mathbf{0}$."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-12-rank-inverse",
+        "linalg-21-homogeneous"
+      ],
+      "note": {
+        "en": "The rank of a matrix and the solution set of a homogeneous system are the two tools that compute the kernel and the image.",
+        "es": "El rango de una matriz y el conjunto de soluciones de un sistema homogéneo son las dos herramientas que calculan el núcleo y la imagen."
       }
     },
     {
@@ -25,8 +36,29 @@
     {
       "type": "prose",
       "content": {
+        "en": "**Precisely**, the kernel is a subspace of the domain and the image is a subspace of the codomain: both are closed under addition and scalar multiplication, so each is a vector space in its own right. For a map given by a matrix, $T(\\mathbf x) = A\\mathbf x$, the image is the span of the columns of $A$, so $\\operatorname{rank} T = \\operatorname{rank} A$, and the kernel is the solution set of the homogeneous system $A\\mathbf x = \\mathbf 0$. Rank–nullity then reads $\\dim V = \\operatorname{rank} T + \\dim\\ker T$, where $V$ is the finite-dimensional domain.",
+        "es": "**Con precisión**, el núcleo es un subespacio del dominio y la imagen es un subespacio del codominio: ambos son cerrados para la suma y el producto por escalares, así que cada uno es un espacio vectorial por derecho propio. Si la aplicación viene dada por una matriz, $T(\\mathbf x) = A\\mathbf x$, la imagen es el subespacio generado por las columnas de $A$, así que $\\operatorname{rango}\\,T = \\operatorname{rango}\\,A$, y el núcleo es el conjunto de soluciones del sistema homogéneo $A\\mathbf x = \\mathbf 0$. El teorema queda entonces $\\dim V = \\operatorname{rango}\\,T + \\dim\\ker T$, donde $V$ es el dominio, de dimensión finita."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The trap is which dimension you subtract from.** Nullity equals the dimension of the **domain** minus the rank, not the codomain's. Take $T:\\mathbb{R}^3 \\to \\mathbb{R}^5$ of rank $2$. Its nullity is $3 - 2 = 1$, not $5 - 2 = 3$. The codomain's dimension does not enter the count, because the kernel lives in the inputs. As a sanity check, the rank never exceeds the smaller of the two dimensions, so here it is at most $3$.",
+        "es": "**La trampa está en qué dimensión se resta.** La nulidad es la dimensión del **dominio** menos el rango, no la del codominio. Toma $T:\\mathbb{R}^3 \\to \\mathbb{R}^5$ de rango $2$. Su nulidad es $3 - 2 = 1$, no $5 - 2 = 3$. La dimensión del codominio no entra en la cuenta, porque el núcleo vive en las entradas. Como comprobación, el rango nunca supera la menor de las dos dimensiones, así que aquí es como mucho $3$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
         "en": "Example: the projection $T(x,y) = (x, 0)$ flattens the plane onto the x-axis. Its image is the x-axis (dimension $1$, so rank $1$); its kernel is the y-axis (everything with $x=0$ goes to zero, dimension $1$). Check: $2 = 1 + 1$ ✓.",
         "es": "Ejemplo: la proyección $T(x,y) = (x, 0)$ aplasta el plano sobre el eje x. Su imagen es el eje x (dimensión $1$, así rango $1$); su núcleo es el eje y (todo con $x=0$ va a cero, dimensión $1$). Comprueba: $2 = 1 + 1$ ✓."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why it matters.** The equation $A\\mathbf x = \\mathbf b$ has a solution exactly when $\\mathbf b$ lies in the image, and then its solutions are one particular solution plus any vector of the kernel. In a regression, a nonzero kernel means some combinations of the feature columns cancel to zero, so the fitted coefficients are not unique: adding any kernel vector to them leaves every prediction unchanged. This is why practitioners check the rank of the design matrix before trusting its coefficients.",
+        "es": "**Por qué importa.** La ecuación $A\\mathbf x = \\mathbf b$ tiene solución exactamente cuando $\\mathbf b$ está en la imagen, y entonces sus soluciones son una solución particular más cualquier vector del núcleo. En una regresión, un núcleo no nulo significa que algunas combinaciones de las columnas de variables se anulan, así que los coeficientes ajustados no son únicos: sumarles cualquier vector del núcleo deja cada predicción sin cambios. Por eso conviene revisar el rango de la matriz de diseño antes de fiarse de sus coeficientes."
       }
     },
     {
@@ -41,6 +73,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — a 2 × 3 matrix",
+        "es": "Ejemplo resuelto — una matriz 2 × 3"
+      },
+      "content": {
+        "en": "Let $A = \\begin{pmatrix}1&2&3\\\\2&4&6\\end{pmatrix}$, a map $\\mathbb{R}^3 \\to \\mathbb{R}^2$. Row 2 is twice row 1, so the rank is $1$. The image is the line spanned by the column $(1,2)$. The kernel solves $x + 2y + 3z = 0$: a plane through the origin, of dimension $2$, with basis $(-2,1,0)$ and $(-3,0,1)$. Check: $3 = 1 + 2$ ✓.",
+        "es": "Sea $A = \\begin{pmatrix}1&2&3\\\\2&4&6\\end{pmatrix}$, una aplicación $\\mathbb{R}^3 \\to \\mathbb{R}^2$. La fila 2 es el doble de la fila 1, así que el rango es $1$. La imagen es la recta generada por la columna $(1,2)$. El núcleo resuelve $x + 2y + 3z = 0$: un plano que pasa por el origen, de dimensión $2$, con base $(-2,1,0)$ y $(-3,0,1)$. Comprobación: $3 = 1 + 2$ ✓."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +91,12 @@
       ],
       "code": {
         "en": "import numpy as np\nA = np.array([[1, 2], [2, 4]])\nr = np.linalg.matrix_rank(A)\n# rank-nullity: dim(image) + dim(kernel) = number of columns\nprint(\"rank\", r, \"nullity\", 2 - r)",
-        "es": "import numpy as np\nA = np.array([[1, 2], [2, 4]])\nr = np.linalg.matrix_rank(A)\n# rango-nulidad: dim(imagen) + dim(nucleo) = numero de columnas\nprint(\"rank\", r, \"nullity\", 2 - r)"
+        "es": "import numpy as np\nA = np.array([[1, 2], [2, 4]])\nr = np.linalg.matrix_rank(A)\n# rango-nulidad: dim(imagen) + dim(núcleo) = número de columnas\nprint(\"rank\", r, \"nullity\", 2 - r)"
       },
       "expectedOutput": "rank 1 nullity 1",
       "caption": {
         "en": "Image dimension is the rank; kernel dimension is the nullity.",
-        "es": "La dimension de la imagen es el rango; la del nucleo, la nulidad."
+        "es": "La dimensión de la imagen es el rango; la del núcleo, la nulidad."
       }
     }
   ],
@@ -100,14 +143,23 @@
           "en": "Nullity is 1.",
           "es": "La nulidad es 1."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ is the rank, not the nullity. Rank–nullity says $3 = \\text{rank} + \\text{nullity}$, so the nullity is $3 - 2 = 1$.",
+            "es": "$2$ es el rango, no la nulidad. Rango–nulidad dice $3 = \\text{rango} + \\text{nulidad}$, así que la nulidad es $3 - 2 = 1$."
+          }
+        }
       ]
     },
     {
       "id": "linmaps-03-e3",
       "answerType": "number",
       "prompt": {
-        "en": "The kernel always contains which vector? (its component)",
-        "es": "El núcleo siempre contiene qué vector? (su componente)"
+        "en": "The kernel always contains the zero vector. What is its first component?",
+        "es": "El núcleo siempre contiene el vector cero. ¿Cuál es su primera componente?"
       },
       "answer": "0",
       "acceptedAlt": [],
@@ -143,6 +195,94 @@
           "es": "Una recta, dimensión 1."
         }
       ]
+    },
+    {
+      "id": "linmaps-03-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "What is the dimension of the kernel of $\\begin{pmatrix}1&-1&2&0\\\\2&-2&4&1\\end{pmatrix}$?",
+        "es": "¿Cuál es la dimensión del núcleo de $\\begin{pmatrix}1&-1&2&0\\\\2&-2&4&1\\end{pmatrix}$?"
+      },
+      "answer": "2",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "Row-reduce first: the rank is 2, and there are four unknowns.",
+        "es": "Reduce primero por filas: el rango es 2, y hay cuatro incógnitas."
+      },
+      "solution": [
+        {
+          "tex": "R_2 - 2R_1 = (0,0,0,1)",
+          "en": "The two rows are independent, so the rank is 2. With four unknowns the kernel has dimension $4 - 2 = 2$.",
+          "es": "Las dos filas son independientes, así que el rango es 2. Con cuatro incógnitas, el núcleo tiene dimensión $4 - 2 = 2$."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "0",
+          "feedback": {
+            "en": "$0 = 2 - 2$ subtracts the rank from the number of rows, which is the codomain's dimension. The kernel is measured in the inputs: $4 - 2 = 2$.",
+            "es": "$0 = 2 - 2$ resta el rango del número de filas, es decir, de la dimensión del codominio. El núcleo se mide en las entradas: $4 - 2 = 2$."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linmaps-03-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "$T : \\mathbb{R}^5 \\to \\mathbb{R}^3$ is linear. What can you say about its kernel?",
+        "es": "$T : \\mathbb{R}^5 \\to \\mathbb{R}^3$ es lineal. ¿Qué puedes decir de su núcleo?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "It can be just $\\{\\mathbf 0\\}$, if T happens to be onto.",
+            "es": "Puede ser solo $\\{\\mathbf 0\\}$, si T resulta ser suprayectiva."
+          },
+          "correct": false,
+          "why": {
+            "en": "Onto is about the image, not the kernel. Onto means rank $3$, so the nullity is $5 - 3 = 2$: the kernel is never trivial.",
+            "es": "Suprayectiva habla de la imagen, no del núcleo. Ser suprayectiva da rango $3$, así que la nulidad es $5 - 3 = 2$: el núcleo nunca es trivial."
+          }
+        },
+        {
+          "text": {
+            "en": "It can have any dimension from 0 to 5.",
+            "es": "Puede tener cualquier dimensión de 0 a 5."
+          },
+          "correct": false,
+          "why": {
+            "en": "Only the rank is free here. The rank is at most $3$, so the nullity cannot fall below $5 - 3 = 2$.",
+            "es": "Solo el rango es libre aquí. El rango es como mucho $3$, así que la nulidad no puede bajar de $5 - 3 = 2$."
+          }
+        },
+        {
+          "text": {
+            "en": "At least 3 dimensions, the same as the codomain.",
+            "es": "Al menos 3 dimensiones, lo mismo que el codominio."
+          },
+          "correct": false,
+          "why": {
+            "en": "The codomain's dimension bounds the rank, not the kernel. Mixing up the two spaces is the classic slip: the kernel lives in the domain $\\mathbb{R}^5$.",
+            "es": "La dimensión del codominio acota el rango, no el núcleo. Confundir los dos espacios es el error clásico: el núcleo vive en el dominio $\\mathbb{R}^5$."
+          }
+        },
+        {
+          "text": {
+            "en": "Dimension at least 2, as the rank is at most 3.",
+            "es": "Dimensión al menos 2: el rango es como mucho 3."
+          },
+          "correct": true,
+          "why": {
+            "en": "Rank–nullity gives $\\dim\\ker T = 5 - \\operatorname{rank} T$, and the rank is at most $\\dim\\mathbb{R}^3 = 3$. So the nullity is at least $2$.",
+            "es": "Rango–nulidad da $\\dim\\ker T = 5 - \\operatorname{rango}\\,T$, y el rango es como mucho $\\dim\\mathbb{R}^3 = 3$. Así que la nulidad es al menos $2$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use rank–nullity, and remember the rank cannot exceed the codomain's dimension.",
+        "es": "Usa rango–nulidad, y recuerda que el rango no puede superar la dimensión del codominio."
+      }
     }
   ],
   "references": [

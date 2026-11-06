@@ -2,7 +2,7 @@
   "id": "linmaps-14-composition",
   "subjectId": "linear-maps",
   "order": 14,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Composition of Transformations",
     "es": "Composición de transformaciones"
@@ -12,32 +12,54 @@
       "type": "prose",
       "content": {
         "en": "Real graphics pipelines chain many transformations: scale an object, rotate it, then move it into place. **Composing transformations corresponds to multiplying their matrices**. If $T_1$ has matrix $M_1$ and $T_2$ has matrix $M_2$, then doing $T_1$ first and $T_2$ second is the single matrix $M_2 M_1$ (applied right-to-left, like function composition).",
-        "es": "Los pipelines gráficos reales encadenan muchas transformaciones: escalar un objeto, rotarlo y luego moverlo a su sitio. **Componer transformaciones corresponde a multiplicar sus matrices**. Si $T_1$ tiene matriz $M_1$ y $T_2$ tiene matriz $M_2$, entonces hacer $T_1$ primero y $T_2$ después es la única matriz $M_2 M_1$ (aplicada de derecha a izquierda, como la composición de funciones)."
+        "es": "Las cadenas de procesamiento gráfico reales encadenan muchas transformaciones: escalar un objeto, rotarlo y luego moverlo a su sitio. **Componer transformaciones corresponde a multiplicar sus matrices**. Si $T_1$ tiene matriz $M_1$ y $T_2$ tiene matriz $M_2$, entonces hacer $T_1$ primero y $T_2$ después es la única matriz $M_2 M_1$ (aplicada de derecha a izquierda, como la composición de funciones)."
       }
     },
     {
       "type": "prereq",
       "lessons": [
         "linmaps-11-rotation",
-        "linmaps-12-scaling"
+        "linmaps-12-scaling",
+        "linalg-09-matrices-operations"
       ],
       "note": {
-        "en": "Composition chains rotations and scalings.",
-        "es": "La composicion encadena rotaciones y escalados."
+        "en": "Composition chains rotations and scalings. Each step is a matrix, and composing steps is their product.",
+        "es": "La composición encadena rotaciones y escalados. Cada paso es una matriz, y componer pasos es multiplicarlas."
       }
     },
     {
       "type": "prose",
       "content": {
         "en": "Some compositions combine cleanly: two rotations **add their angles** ($90° + 90° = 180°$), and two scalings **multiply their factors** ($\\times 2$ then $\\times 3$ gives $\\times 6$). Homogeneous coordinates make this uniform — even translations fold into the product — so an entire pipeline collapses into one precomputed matrix.",
-        "es": "Algunas composiciones se combinan limpiamente: dos rotaciones **suman sus ángulos** ($90° + 90° = 180°$), y dos escalados **multiplican sus factores** ($\\times 2$ luego $\\times 3$ da $\\times 6$). Las coordenadas homogéneas lo hacen uniforme — incluso las traslaciones se pliegan en el producto — así que todo un pipeline se reduce a una única matriz precalculada."
+        "es": "Algunas composiciones se combinan limpiamente: dos rotaciones **suman sus ángulos** ($90° + 90° = 180°$), y dos escalados **multiplican sus factores** ($\\times 2$ luego $\\times 3$ da $\\times 6$). Las coordenadas homogéneas lo hacen uniforme — incluso las traslaciones se pliegan en el producto — así que toda una cadena de procesamiento se reduce a una única matriz precalculada."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, composing is composing functions: $M_2(M_1\\mathbf x) = (M_2M_1)\\mathbf x$ by associativity of the matrix product, so the first map is the rightmost factor. Undoing a composition reverses the order: $(M_2M_1)^{-1} = M_1^{-1}M_2^{-1}$, since $M_2$ is undone first. The determinant is multiplicative, $\\det(M_2M_1) = \\det M_2 \\cdot \\det M_1$, so the area factors of two maps multiply. Two square maps of the same size can always be composed in either order, but the two results usually differ. So a long chain of maps is written once as a single product, and applied once to each point.",
+        "es": "**Con precisión**, componer es componer funciones: $M_2(M_1\\mathbf x) = (M_2M_1)\\mathbf x$ por la asociatividad del producto de matrices, así que la primera aplicación es el factor de la derecha. Deshacer una composición invierte el orden: $(M_2M_1)^{-1} = M_1^{-1}M_2^{-1}$, porque primero se deshace $M_2$. El determinante es multiplicativo, $\\det(M_2M_1) = \\det M_2 \\cdot \\det M_1$, así que los factores de área de dos aplicaciones se multiplican. Dos aplicaciones cuadradas del mismo tamaño siempre se pueden componer en cualquier orden, pero los dos resultados suelen ser distintos. Así, una cadena larga de aplicaciones se escribe una vez como un único producto, y se aplica una vez a cada punto."
       }
     },
     {
       "type": "prose",
       "content": {
         "en": "Critically, because matrix multiplication is **not commutative**, the **order matters**: rotating then translating is generally different from translating then rotating. Getting the order right is one of the most common bugs in graphics and robotics code.",
-        "es": "Fundamental: como la multiplicación de matrices **no es conmutativa**, el **orden importa**: rotar y luego trasladar suele ser distinto de trasladar y luego rotar. Acertar con el orden es uno de los errores más frecuentes en código de gráficos y robótica."
+        "es": "Y esto es fundamental: como la multiplicación de matrices **no es conmutativa**, el **orden importa**: rotar y luego trasladar suele ser distinto de trasladar y luego rotar. Acertar con el orden es uno de los errores más frecuentes en código de gráficos y robótica."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The trap is the order, and it is easy to get wrong because both orders look reasonable. Take $(1,0)$, a rotation by $90°$ with $R = \\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, and a translation by $(1,0)$. Rotating first gives $(0,1)$, and translating then gives $(1,1)$. Translating first gives $(2,0)$, and rotating then gives $(0,2)$. Same two moves, different results. To rotate an object about a point $\\mathbf c$, use $T_{\\mathbf c}\\,R\\,T_{-\\mathbf c}$: move $\\mathbf c$ to the origin, rotate, and move back, reading right to left.",
+        "es": "La trampa es el orden, y es fácil equivocarse porque los dos parecen razonables. Toma $(1,0)$, una rotación de $90°$ con $R = \\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, y una traslación por $(1,0)$. Si rotas primero, obtienes $(0,1)$, y al trasladar después, $(1,1)$. Si trasladas primero, obtienes $(2,0)$, y al rotar después, $(0,2)$. Los mismos dos movimientos, resultados distintos. Para girar un objeto alrededor de un punto $\\mathbf c$, usa $T_{\\mathbf c}\\,R\\,T_{-\\mathbf c}$: lleva $\\mathbf c$ al origen, rota y vuelve, leyendo de derecha a izquierda."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The same bookkeeping runs through real systems. A scene graph stores each part of a model relative to its parent, so the final matrix of a hand is the product of the world, body, arm and hand matrices. A robot arm has one matrix per joint, and the position of the gripper is their product. In a neural network, two linear layers with no activation between them, $\\mathbf y = W_2(W_1\\mathbf x)$, collapse into one matrix $W_2W_1$. That is why networks need nonlinearities between their layers.",
+        "es": "La misma contabilidad recorre los sistemas reales. Un grafo de escena guarda cada parte de un modelo respecto a su padre, así que la matriz final de una mano es el producto de las matrices del mundo, el cuerpo, el brazo y la mano. Un brazo robótico tiene una matriz por articulación, y la posición de la pinza es su producto. En una red neuronal, dos capas lineales sin activación entre ellas, $\\mathbf y = W_2(W_1\\mathbf x)$, colapsan en una sola matriz $W_2W_1$. Por eso las redes necesitan no linealidades entre sus capas."
       }
     },
     {
@@ -52,6 +74,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — rotate about a point",
+        "es": "Ejemplo resuelto — rotar alrededor de un punto"
+      },
+      "content": {
+        "en": "Rotate $(2,1)$ by $90°$ about $\\mathbf c = (1,1)$ using $T_{\\mathbf c}\\,R\\,T_{-\\mathbf c}$. Subtract $\\mathbf c$: $(2,1) - (1,1) = (1,0)$. Rotate: $R(1,0) = (0,1)$. Add $\\mathbf c$ back: $(0,1) + (1,1) = (1,2)$. The point $(2,1)$ ends at $(1,2)$, and its distance to $\\mathbf c$ stays $1$, as a turn about $\\mathbf c$ must keep it.",
+        "es": "Gira $(2,1)$ por $90°$ alrededor de $\\mathbf c = (1,1)$ con $T_{\\mathbf c}\\,R\\,T_{-\\mathbf c}$. Resta $\\mathbf c$: $(2,1) - (1,1) = (1,0)$. Rota: $R(1,0) = (0,1)$. Vuelve a sumar $\\mathbf c$: $(0,1) + (1,1) = (1,2)$. El punto $(2,1)$ acaba en $(1,2)$, y su distancia a $\\mathbf c$ sigue siendo $1$, como debe ocurrir en un giro alrededor de $\\mathbf c$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -59,7 +92,7 @@
       ],
       "code": {
         "en": "import numpy as np\nR = np.array([[0, -1], [1, 0]])   # rotate 90 degrees\nS = np.diag([2, 2])                # scale by 2\n# composition is matrix multiplication (apply S, then R)\nprint((R @ S).tolist())",
-        "es": "import numpy as np\nR = np.array([[0, -1], [1, 0]])   # rotar 90 grados\nS = np.diag([2, 2])                # escalar por 2\n# la composicion es multiplicacion de matrices (aplica S, luego R)\nprint((R @ S).tolist())"
+        "es": "import numpy as np\nR = np.array([[0, -1], [1, 0]])   # rotar 90 grados\nS = np.diag([2, 2])                # escalar por 2\n# la composición es multiplicación de matrices (aplica S, luego R)\nprint((R @ S).tolist())"
       },
       "expectedOutput": "[[0, -2], [2, 0]]",
       "caption": {
@@ -138,6 +171,15 @@
           "en": "Combined factor.",
           "es": "Factor combinado."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5 = 2 + 3$ adds the factors. Scalings multiply: the combined factor is $2\\cdot 3 = 6$.",
+            "es": "$5 = 2 + 3$ suma los factores. Los escalados se multiplican: el factor combinado es $2\\cdot 3 = 6$."
+          }
+        }
       ]
     },
     {
@@ -162,6 +204,93 @@
           "es": "El orden importa."
         }
       ]
+    },
+    {
+      "id": "linmaps-14-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "First rotate by $90°$, $M_1 = \\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, then scale by $M_2 = \\operatorname{diag}(2,3)$. What is the $(2,1)$ entry of the composite matrix $M_2M_1$?",
+        "es": "Primero rota $90°$, $M_1 = \\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, y después escala con $M_2 = \\operatorname{diag}(2,3)$. ¿Cuál es la entrada $(2,1)$ de la matriz compuesta $M_2M_1$?"
+      },
+      "answer": "3",
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ is the $(2,1)$ entry of $M_1M_2$, which scales first and rotates second. The map applied first goes on the right, so $M_2M_1$ is the right product.",
+            "es": "$2$ es la entrada $(2,1)$ de $M_1M_2$, que escala primero y rota después. La aplicación que va primero se escribe a la derecha, así que el producto correcto es $M_2M_1$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Multiply M2 by M1, with M2 on the left. Row 2 of M2 is (0, 3).",
+        "es": "Multiplica M2 por M1, con M2 a la izquierda. La fila 2 de M2 es (0, 3)."
+      },
+      "solution": [
+        {
+          "tex": "M_2M_1 = \\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix} = \\begin{pmatrix}0&-2\\\\3&0\\end{pmatrix}",
+          "en": "Row 2 of M2 is (0, 3), so row 2 of the product is 3 times row 2 of M1, which is (1, 0). The (2,1) entry is 3 · 1 = 3.",
+          "es": "La fila 2 de M2 es (0, 3), así que la fila 2 del producto es 3 veces la fila 2 de M1, que es (1, 0). La entrada (2,1) es 3 · 1 = 3."
+        }
+      ]
+    },
+    {
+      "id": "linmaps-14-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A network computes $\\mathbf y = W_2(W_1\\mathbf x)$ with no activation function. What can it represent?",
+        "es": "Una red calcula $\\mathbf y = W_2(W_1\\mathbf x)$ sin función de activación. ¿Qué puede representar?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Any function that a deeper network can compute, since each layer adds new power.",
+            "es": "Cualquier función que pueda calcular una red más profunda, porque cada capa añade potencia nueva."
+          },
+          "correct": false,
+          "why": {
+            "en": "Depth alone adds no power here: two linear layers are one linear layer, so they compute nothing new.",
+            "es": "La profundidad por sí sola no añade potencia aquí: dos capas lineales son una capa lineal, así que no calculan nada nuevo."
+          }
+        },
+        {
+          "text": {
+            "en": "Only what one linear layer can, because $W = W_2W_1$ is a single matrix.",
+            "es": "Solo lo que puede una capa lineal, porque $W = W_2W_1$ es una única matriz."
+          },
+          "correct": true,
+          "why": {
+            "en": "$W_2(W_1\\mathbf x) = (W_2W_1)\\mathbf x$: the product is one matrix, so one layer is enough.",
+            "es": "$W_2(W_1\\mathbf x) = (W_2W_1)\\mathbf x$: el producto es una sola matriz, así que basta una capa."
+          }
+        },
+        {
+          "text": {
+            "en": "Any continuous function, given enough units in the hidden layer.",
+            "es": "Cualquier función continua, con suficientes unidades en la capa oculta."
+          },
+          "correct": false,
+          "why": {
+            "en": "That needs a nonlinearity between the layers. Without one, the whole network is still a single matrix.",
+            "es": "Eso necesita una no linealidad entre las capas. Sin ella, toda la red sigue siendo una sola matriz."
+          }
+        },
+        {
+          "text": {
+            "en": "Only the maps whose matrices $W_1$ and $W_2$ commute with each other.",
+            "es": "Solo las aplicaciones cuyas matrices $W_1$ y $W_2$ conmutan entre sí."
+          },
+          "correct": false,
+          "why": {
+            "en": "Commuting is not needed: $W_2W_1$ is one matrix for any matching $W_1$, $W_2$. The order only changes which matrix it is.",
+            "es": "No hace falta conmutar: $W_2W_1$ es una matriz para cualquier $W_1$, $W_2$ de tamaños compatibles. El orden solo cambia cuál es esa matriz."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Multiply the two matrices first. What kind of object do you get?",
+        "es": "Multiplica primero las dos matrices. ¿Qué tipo de objeto obtienes?"
+      }
     }
   ],
   "references": [

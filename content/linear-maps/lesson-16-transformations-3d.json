@@ -2,7 +2,7 @@
   "id": "linmaps-16-3d",
   "subjectId": "linear-maps",
   "order": 16,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Geometric Transformations in 3D",
     "es": "Transformaciones geométricas en 3D"
@@ -18,25 +18,48 @@
     {
       "type": "prereq",
       "lessons": [
-        "linmaps-11-rotation"
+        "linmaps-11-rotation",
+        "linmaps-13-homogeneous",
+        "linmaps-14-composition"
       ],
       "note": {
-        "en": "3D rotation generalizes the 2D rotation matrix.",
-        "es": "La rotacion 3D generaliza la matriz de rotacion 2D."
+        "en": "3D rotation generalizes the 2D rotation matrix, and 3D transformations chain as homogeneous matrix products.",
+        "es": "La rotación 3D generaliza la matriz de rotación 2D, y las transformaciones 3D se encadenan como productos de matrices homogéneas."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "As in 2D, **homogeneous coordinates** unify everything: a 3D point becomes $(x, y, z, 1)$, and all transformations — including translation and perspective — become $4\\times 4$ matrix multiplications. This single representation is the literal foundation of every 3D game engine and CAD system.",
-        "es": "Como en 2D, las **coordenadas homogéneas** lo unifican todo: un punto 3D se convierte en $(x, y, z, 1)$, y todas las transformaciones — incluidas traslación y perspectiva — se vuelven multiplicaciones por matriz $4\\times 4$. Esta única representación es la base literal de todo motor de juego 3D y sistema CAD."
+        "en": "As in 2D, **homogeneous coordinates** unify everything: a 3D point becomes $(x, y, z, 1)$, and translation, rotation and scaling all become $4\\times 4$ matrix multiplications. Perspective needs one more step: a division of every coordinate by the fourth one, $w$. This single representation is the foundation of most 3D game engines and CAD systems.",
+        "es": "Como en 2D, las **coordenadas homogéneas** lo unifican todo: un punto 3D se convierte en $(x, y, z, 1)$, y la traslación, la rotación y el escalado se vuelven multiplicaciones por matriz $4\\times 4$. La perspectiva necesita un paso más: dividir cada coordenada entre la cuarta, $w$. Esta única representación es la base de la mayoría de los motores de juego 3D y de los sistemas CAD."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "The determinant still measures the **volume** scaling factor (now $k^3$ for uniform scaling by $k$), and rotations still have determinant $1$. You have now travelled from the abstract definition of a linear map all the way to the matrices that render every 3D scene you have ever seen on a screen — the bridge from pure algebra to applied AI and graphics.",
-        "es": "El determinante sigue midiendo el factor de escala de **volumen** (ahora $k^3$ para escalado uniforme por $k$), y las rotaciones siguen teniendo determinante $1$. Has viajado desde la definición abstracta de aplicación lineal hasta las matrices que renderizan toda escena 3D que has visto en una pantalla — el puente del álgebra pura a la IA y los gráficos aplicados."
+        "en": "**Precisely**, a rotation about the $z$-axis by $\\theta$ is $R_z(\\theta) = \\begin{pmatrix}\\cos\\theta&-\\sin\\theta&0\\\\ \\sin\\theta&\\cos\\theta&0\\\\0&0&1\\end{pmatrix}$. It fixes the $z$-axis and acts as the 2D rotation on $(x, y)$. Rotations about the $x$- and $y$-axes follow the same pattern, but the $\\sin\\theta$ entries move: $R_y(\\theta) = \\begin{pmatrix}\\cos\\theta&0&\\sin\\theta\\\\0&1&0\\\\-\\sin\\theta&0&\\cos\\theta\\end{pmatrix}$. Every 3D rotation is orthogonal with determinant $1$, and it fixes some axis, an eigenvector with eigenvalue $1$. That is Euler's rotation theorem.",
+        "es": "**Con precisión**, una rotación alrededor del eje $z$ por $\\theta$ es $R_z(\\theta) = \\begin{pmatrix}\\cos\\theta&-\\sin\\theta&0\\\\ \\sin\\theta&\\cos\\theta&0\\\\0&0&1\\end{pmatrix}$. Deja fijo el eje $z$ y actúa como la rotación 2D sobre $(x, y)$. Las rotaciones alrededor de los ejes $x$ e $y$ siguen el mismo patrón, pero los términos con $\\sin\\theta$ cambian de sitio: $R_y(\\theta) = \\begin{pmatrix}\\cos\\theta&0&\\sin\\theta\\\\0&1&0\\\\-\\sin\\theta&0&\\cos\\theta\\end{pmatrix}$. Toda rotación 3D es ortogonal, con determinante $1$, y deja fijo algún eje, un vector propio con valor propio $1$. Ese es el teorema de rotación de Euler."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The trap is that 3D rotations do not commute. Using the right-hand rule, take a book and turn it $90°$ about the $x$-axis, then $90°$ about the $z$-axis: the vector $(1,0,0)$ ends at $(0,1,0)$. Turn it in the other order, and the same $(1,0,0)$ ends at $(0,0,1)$. In 2D, rotations about one point always commute and the angles simply add. In 3D that fails, so a rotation must be written as a product of matrices in the order the turns were made. Reading the order wrong gives a plausible pose that is simply wrong.",
+        "es": "La trampa es que las rotaciones 3D no conmutan. Con la regla de la mano derecha, coge un libro y gíralo $90°$ alrededor del eje $x$, y después $90°$ alrededor del eje $z$: el vector $(1,0,0)$ acaba en $(0,1,0)$. Si lo giras en el otro orden, el mismo $(1,0,0)$ acaba en $(0,0,1)$. En 2D, las rotaciones alrededor de un mismo punto siempre conmutan, y los ángulos simplemente se suman. En 3D eso falla, así que una rotación se escribe como producto de matrices en el orden en que se hicieron los giros. Leer mal el orden da una postura plausible que, sencillamente, es errónea."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The absolute value of the determinant still measures the **volume** scaling factor (now $k^3$ for uniform scaling by $k$), and rotations still have determinant $1$. You have now traveled from the abstract definition of a linear map all the way to the matrices that render every 3D scene you have ever seen on a screen — the bridge from pure algebra to applied AI and graphics.",
+        "es": "El valor absoluto del determinante sigue midiendo el factor de escala de **volumen** (ahora $k^3$ para escalado uniforme por $k$), y las rotaciones siguen teniendo determinante $1$. Has viajado desde la definición abstracta de aplicación lineal hasta las matrices que renderizan toda escena 3D que has visto en una pantalla — el puente del álgebra pura a la IA y los gráficos aplicados."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The same algebra moves games, aircraft and cameras. A drone or an aircraft describes its attitude by yaw, pitch and roll: three rotations about three axes, composed in a fixed order. Engines often store orientations as quaternions instead, because three angles can lock up at certain attitudes. That is gimbal lock. In 3D vision, the pose of a camera is one rotation plus one translation, and that pair, as one $4\\times 4$ matrix, places every object in the camera's view.",
+        "es": "La misma álgebra mueve los videojuegos, los aviones y las cámaras. Un dron o un avión describe su actitud con guiñada, cabeceo y alabeo: tres rotaciones alrededor de tres ejes, compuestas en un orden fijo. Los motores suelen guardar las orientaciones como cuaterniones, porque tres ángulos pueden bloquearse en ciertas posturas. Eso es el bloqueo de cardán. En visión 3D, la pose de una cámara es una rotación más una traslación, y ese par, como una sola matriz $4\\times 4$, sitúa cada objeto en la vista de la cámara."
       }
     },
     {
@@ -51,6 +74,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — turn a point about the z-axis",
+        "es": "Ejemplo resuelto — girar un punto alrededor del eje z"
+      },
+      "content": {
+        "en": "Rotate $(1,2,3)$ by $90°$ about the $z$-axis: $R_z(90°) = \\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$, so $(1,2,3) \\mapsto (0\\cdot1 - 1\\cdot2,\\ 1\\cdot1 + 0\\cdot2,\\ 3) = (-2,\\ 1,\\ 3)$. The $z$-coordinate stays $3$, as a turn about the $z$-axis must leave it. Lengths are kept too: $\\sqrt{1+4+9} = \\sqrt{4+1+9} = \\sqrt{14}$.",
+        "es": "Gira $(1,2,3)$ por $90°$ alrededor del eje $z$: $R_z(90°) = \\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$, así que $(1,2,3) \\mapsto (0\\cdot1 - 1\\cdot2,\\ 1\\cdot1 + 0\\cdot2,\\ 3) = (-2,\\ 1,\\ 3)$. La coordenada $z$ se queda en $3$, como debe dejarla un giro alrededor del eje $z$. Las longitudes también se conservan: $\\sqrt{1+4+9} = \\sqrt{4+1+9} = \\sqrt{14}$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -58,7 +92,7 @@
       ],
       "code": {
         "en": "import numpy as np\ntheta = np.pi / 2\n# rotation about the z-axis in 3D\nRz = np.array([[np.cos(theta), -np.sin(theta), 0],\n               [np.sin(theta),  np.cos(theta), 0],\n               [0, 0, 1]])\nprint(np.round(Rz @ np.array([1, 0, 0]), 2).tolist())",
-        "es": "import numpy as np\ntheta = np.pi / 2\n# rotacion alrededor del eje z en 3D\nRz = np.array([[np.cos(theta), -np.sin(theta), 0],\n               [np.sin(theta),  np.cos(theta), 0],\n               [0, 0, 1]])\nprint(np.round(Rz @ np.array([1, 0, 0]), 2).tolist())"
+        "es": "import numpy as np\ntheta = np.pi / 2\n# rotación alrededor del eje z en 3D\nRz = np.array([[np.cos(theta), -np.sin(theta), 0],\n               [np.sin(theta),  np.cos(theta), 0],\n               [0, 0, 1]])\nprint(np.round(Rz @ np.array([1, 0, 0]), 2).tolist())"
       },
       "expectedOutput": "[0.0, 1.0, 0.0]",
       "caption": {
@@ -131,6 +165,15 @@
           "en": "Four rows.",
           "es": "Cuatro filas."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3$ counts the coordinates of a 3D point. The homogeneous form adds one more, so the matrices have $4$ rows.",
+            "es": "$3$ cuenta las coordenadas de un punto 3D. La forma homogénea añade una más, así que las matrices tienen $4$ filas."
+          }
+        }
       ]
     },
     {
@@ -155,6 +198,103 @@
           "es": "Coordenada z 3."
         }
       ]
+    },
+    {
+      "id": "linmaps-16-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Rotate $(2,1,5)$ by $90°$ about the $z$-axis, counterclockwise seen from the positive $z$-axis. What is the $x$-coordinate of the result?",
+        "es": "Gira $(2,1,5)$ por $90°$ alrededor del eje $z$, en sentido antihorario visto desde el semieje $z$ positivo. ¿Cuál es la coordenada $x$ del resultado?"
+      },
+      "answer": "-1",
+      "acceptedAlt": [
+        "-1*1"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ is the $x$-coordinate of a turn of $-90°$, clockwise. Counterclockwise, the new $x$ is $-y = -1$.",
+            "es": "$1$ es la coordenada $x$ de un giro de $-90°$, en sentido horario. En sentido antihorario, la nueva $x$ es $-y = -1$."
+          }
+        },
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ keeps the $x$-coordinate. A rotation about the $z$-axis mixes $x$ and $y$ and leaves $z$ unchanged.",
+            "es": "$2$ mantiene la coordenada $x$. Una rotación alrededor del eje $z$ mezcla $x$ e $y$ y deja $z$ sin cambios."
+          }
+        }
+      ],
+      "hint": {
+        "en": "The first row of R_z(90°) is (0, −1, 0).",
+        "es": "La primera fila de R_z(90°) es (0, −1, 0)."
+      },
+      "solution": [
+        {
+          "tex": "R_z(90^\\circ)\\begin{pmatrix}2\\\\1\\\\5\\end{pmatrix} = \\begin{pmatrix}0\\cdot2-1\\cdot1\\\\1\\cdot2+0\\cdot1\\\\5\\end{pmatrix} = \\begin{pmatrix}-1\\\\2\\\\5\\end{pmatrix}",
+          "en": "The first row of the rotation is (0, −1, 0), so x' = −y = −1.",
+          "es": "La primera fila de la rotación es (0, −1, 0), así que x' = −y = −1."
+        }
+      ]
+    },
+    {
+      "id": "linmaps-16-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "You rotate an object $90°$ about the $x$-axis, then $90°$ about the $z$-axis. What changes if you swap the two turns?",
+        "es": "Giras un objeto $90°$ alrededor del eje $x$, y después $90°$ alrededor del eje $z$. ¿Qué cambia si intercambias los dos giros?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "Both turns are $90°$, so swapping them changes nothing.",
+            "es": "Ambos giros son de $90°$, así que cambiar el orden no altera nada."
+          },
+          "correct": false,
+          "why": {
+            "en": "Equal angles do not make the rotations equal. The axes differ, and the order decides the result.",
+            "es": "Ángulos iguales no hacen iguales a las rotaciones. Los ejes son distintos, y el orden decide el resultado."
+          }
+        },
+        {
+          "text": {
+            "en": "The angles just add, in 3D as in 2D, so the final position is the same.",
+            "es": "Los ángulos simplemente se suman, en 3D como en 2D, así que la posición final es la misma."
+          },
+          "correct": false,
+          "why": {
+            "en": "In 2D, rotations about one point commute. In 3D the axes differ, so the composite changes with the order.",
+            "es": "En 2D, las rotaciones alrededor de un punto conmutan. En 3D los ejes son distintos, así que el compuesto cambia con el orden."
+          }
+        },
+        {
+          "text": {
+            "en": "The total turn becomes $180°$, since the two $90°$ turns add up.",
+            "es": "El giro total pasa a ser de $180°$, ya que los dos giros de $90°$ se suman."
+          },
+          "correct": false,
+          "why": {
+            "en": "Angles about different axes do not add. The result is a new rotation, not a $180°$ turn.",
+            "es": "Los ángulos sobre ejes distintos no se suman. El resultado es una rotación nueva, no un giro de $180°$."
+          }
+        },
+        {
+          "text": {
+            "en": "The final position: 3D rotations don't commute, so the order matters.",
+            "es": "La posición final: las rotaciones 3D no conmutan, así que el orden importa."
+          },
+          "correct": true,
+          "why": {
+            "en": "Turning $x$ then $z$ sends $(1,0,0)$ to $(0,1,0)$. Swapped, the same point goes to $(0,0,1)$.",
+            "es": "Girar primero $x$ y luego $z$ lleva $(1,0,0)$ a $(0,1,0)$. Intercambiados, el mismo punto va a $(0,0,1)$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Track where the point (1, 0, 0) ends up after each turn.",
+        "es": "Sigue dónde acaba el punto (1, 0, 0) después de cada giro."
+      }
     }
   ],
   "references": [

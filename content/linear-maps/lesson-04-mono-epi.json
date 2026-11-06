@@ -2,7 +2,7 @@
   "id": "linmaps-04-mono-epi",
   "subjectId": "linear-maps",
   "order": 4,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Monomorphisms & Epimorphisms",
     "es": "Monomorfismos y epimorfismos"
@@ -16,6 +16,17 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "linalg-12-rank-inverse",
+        "linalg-08-independence-basis"
+      ],
+      "note": {
+        "en": "Rank and independent columns carry the whole lesson, and a square matrix is invertible exactly when its determinant is nonzero.",
+        "es": "El rango y las columnas independientes sostienen toda la lección, y una matriz cuadrada es invertible exactamente cuando su determinante no es nulo."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "An **epimorphism** is a **surjective** (onto) map — its image fills the entire codomain, so every possible output is achieved. Equivalently, the rank equals the dimension of the codomain. A map that is both injective and surjective is an **isomorphism**: a perfect, reversible correspondence.",
@@ -25,8 +36,29 @@
     {
       "type": "prose",
       "content": {
+        "en": "**Precisely**, dimensions decide much of this before any computation. For finite-dimensional $V$ and $W$, an injective $T : V \\to W$ forces $\\dim V \\le \\dim W$, because distinct inputs need distinct outputs. A surjective one forces $\\dim V \\ge \\dim W$, because its image must fill $W$. So an isomorphism needs equal dimensions, and then injective and surjective stand or fall together, by rank–nullity. Two spaces of the same dimension $n$ are isomorphic. Every $n$-dimensional space is isomorphic to $\\mathbb{R}^n$ through coordinates: the polynomials $a + bx + cx^2$ of degree at most $2$ correspond to $(a, b, c)$.",
+        "es": "**Con precisión**, las dimensiones deciden buena parte de esto antes de cualquier cálculo. Para $V$ y $W$ de dimensión finita, una aplicación $T : V \\to W$ inyectiva obliga a $\\dim V \\le \\dim W$, porque entradas distintas necesitan salidas distintas. Una suprayectiva obliga a $\\dim V \\ge \\dim W$, porque su imagen debe llenar $W$. Así, un isomorfismo necesita dimensiones iguales, y entonces la inyectividad y la suprayectividad van juntas, por rango–nulidad. Dos espacios de la misma dimensión $n$ son isomorfos. Todo espacio de dimensión $n$ es isomorfo a $\\mathbb{R}^n$ mediante coordenadas: los polinomios $a + bx + cx^2$ de grado como máximo $2$ corresponden a $(a, b, c)$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
         "en": "For a **square** matrix, all these notions coincide and reduce to one number: $T$ is an isomorphism **iff $\\det A \\neq 0$** iff it is injective iff it is surjective iff it is invertible. This is the same 'invertibility' theme that runs through determinants, rank, and systems — here seen through the lens of maps.",
         "es": "Para una matriz **cuadrada**, todas estas nociones coinciden y se reducen a un número: $T$ es un isomorfismo **si y solo si $\\det A \\neq 0$**, si y solo si es inyectiva, si y solo si es suprayectiva, si y solo si es invertible. Es el mismo tema de 'invertibilidad' que recorre determinantes, rango y sistemas — visto aquí con la lente de las aplicaciones."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The trap is the square-matrix test.** The determinant decides invertibility only for square matrices. For an $m \\times n$ matrix, $T$ is injective exactly when its rank equals $n$, the number of columns, which means the columns are independent. It is surjective exactly when its rank equals $m$, the number of rows. A $3 \\times 2$ matrix of rank $2$ is injective, yet it has no determinant, and it is not surjective onto $\\mathbb{R}^3$. Use the rank, not the determinant, unless the matrix is square.",
+        "es": "**La trampa es la prueba del determinante.** El determinante decide la invertibilidad solo para matrices cuadradas. Para una matriz $m \\times n$, $T$ es inyectiva exactamente cuando su rango es $n$, el número de columnas, lo que significa que las columnas son independientes. Es suprayectiva exactamente cuando su rango es $m$, el número de filas. Una matriz $3 \\times 2$ de rango $2$ es inyectiva, pero no tiene determinante, y tampoco es suprayectiva sobre $\\mathbb{R}^3$. Usa el rango, no el determinante, salvo que la matriz sea cuadrada."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why it matters.** An injective map loses no information: it can be inverted on its image, which is what makes encoding and decoding possible. A map from $\\mathbb{R}^{1000}$ to $\\mathbb{R}^{50}$ can never be injective, since its kernel has dimension at least $950$, so information is lost. In least squares, the fitted coefficients are unique exactly when the design matrix has independent columns. That is the injectivity condition in disguise.",
+        "es": "**Por qué importa.** Una aplicación inyectiva no pierde información: puede invertirse sobre su imagen, y eso hace posible codificar y decodificar. Una aplicación de $\\mathbb{R}^{1000}$ a $\\mathbb{R}^{50}$ nunca puede ser inyectiva, pues su núcleo tiene dimensión al menos $950$, así que se pierde información. En mínimos cuadrados, los coeficientes ajustados son únicos exactamente cuando la matriz de diseño tiene columnas independientes. Es la condición de inyectividad disfrazada."
       }
     },
     {
@@ -41,6 +73,17 @@
       }
     },
     {
+      "type": "example",
+      "title": {
+        "en": "Worked example — injective but not onto",
+        "es": "Ejemplo resuelto — inyectiva pero no suprayectiva"
+      },
+      "content": {
+        "en": "Let $A = \\begin{pmatrix}1&0\\\\0&1\\\\1&1\\end{pmatrix}$, a map $\\mathbb{R}^2 \\to \\mathbb{R}^3$. The code at the end uses this matrix. Its rank is $2$, the number of columns, so the kernel is $\\{\\mathbf 0\\}$ and $T$ is injective. Its image is spanned by $(1,0,1)$ and $(0,1,1)$, which is the plane $z = x + y$. The vector $(0,0,1)$ is never reached, since $0 + 0 \\neq 1$, so $T$ is not surjective. Rank–nullity confirms it: $2 = 2 + 0$.",
+        "es": "Sea $A = \\begin{pmatrix}1&0\\\\0&1\\\\1&1\\end{pmatrix}$, una aplicación $\\mathbb{R}^2 \\to \\mathbb{R}^3$. El código del final usa esta misma matriz. Su rango es $2$, el número de columnas, así que el núcleo es $\\{\\mathbf 0\\}$ y $T$ es inyectiva. Su imagen está generada por $(1,0,1)$ y $(0,1,1)$, que es el plano $z = x + y$. El vector $(0,0,1)$ nunca se alcanza, pues $0 + 0 \\neq 1$, así que $T$ no es suprayectiva. El teorema de rango–nulidad lo confirma: $2 = 2 + 0$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
@@ -48,12 +91,12 @@
       ],
       "code": {
         "en": "import numpy as np\n# injective (mono) iff full column rank (trivial kernel)\nA = np.array([[1, 0], [0, 1], [1, 1]])\nprint(np.linalg.matrix_rank(A))",
-        "es": "import numpy as np\n# inyectivo (mono) sii rango completo por columnas (nucleo trivial)\nA = np.array([[1, 0], [0, 1], [1, 1]])\nprint(np.linalg.matrix_rank(A))"
+        "es": "import numpy as np\n# inyectiva (monomorfismo) si y solo si el rango es completo por columnas (núcleo trivial)\nA = np.array([[1, 0], [0, 1], [1, 1]])\nprint(np.linalg.matrix_rank(A))"
       },
       "expectedOutput": "2",
       "caption": {
         "en": "Full column rank (2 of 2) means the map is injective.",
-        "es": "Rango completo por columnas (2 de 2) significa que el mapa es inyectivo."
+        "es": "Rango completo por columnas (2 de 2) significa que la aplicación es inyectiva."
       }
     }
   ],
@@ -62,8 +105,8 @@
       "id": "linmaps-04-e1",
       "answerType": "number",
       "prompt": {
-        "en": "A linear map is injective iff its kernel is just the zero vector, i.e. nullity equals?",
-        "es": "Una aplicación lineal es inyectiva si su núcleo es solo el vector cero, es decir, la nulidad vale?"
+        "en": "A linear map is injective iff its kernel is just the zero vector, i.e. the nullity is?",
+        "es": "Una aplicación lineal es inyectiva si su núcleo es solo el vector cero, es decir, ¿la nulidad vale?"
       },
       "answer": "0",
       "acceptedAlt": [],
@@ -128,7 +171,7 @@
       "answerType": "number",
       "prompt": {
         "en": "A square matrix gives an isomorphism iff its determinant differs from ___?",
-        "es": "Una matriz cuadrada da un isomorfismo si su determinante es distinto de ___?"
+        "es": "¿Una matriz cuadrada da un isomorfismo si su determinante es distinto de ___?"
       },
       "answer": "0",
       "acceptedAlt": [],
@@ -142,7 +185,109 @@
           "en": "Nonzero determinant.",
           "es": "Determinante no nulo."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ is a determinant that works (the identity has it), not the value to avoid. The blank is the one value that breaks invertibility: $0$.",
+            "es": "$1$ es un determinante válido (lo tiene la identidad), no el valor que hay que evitar. El hueco es el único valor que rompe la invertibilidad: $0$."
+          }
+        }
       ]
+    },
+    {
+      "id": "linmaps-04-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "For which value of $k$ is the map with matrix $\\begin{pmatrix}1&k\\\\2&6\\end{pmatrix}$ not an isomorphism?",
+        "es": "¿Para qué valor de $k$ la aplicación de matriz $\\begin{pmatrix}1&k\\\\2&6\\end{pmatrix}$ no es un isomorfismo?"
+      },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "An isomorphism of $\\mathbb{R}^2$ needs a nonzero determinant.",
+        "es": "Un isomorfismo de $\\mathbb{R}^2$ necesita determinante no nulo."
+      },
+      "solution": [
+        {
+          "tex": "\\det = 1\\cdot 6 - k\\cdot 2 = 6 - 2k",
+          "en": "The map fails to be an isomorphism when the determinant vanishes.",
+          "es": "La aplicación deja de ser isomorfismo cuando el determinante se anula."
+        },
+        {
+          "tex": "6 - 2k = 0 \\Rightarrow k = 3",
+          "en": "So $k = 3$.",
+          "es": "Así, $k = 3$."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "6",
+          "feedback": {
+            "en": "$6$ comes from forgetting the factor $2$: $1\\cdot 6 - k = 0$ would give $k = 6$. Keep both terms: $\\det = 6 - 2k$.",
+            "es": "$6$ sale de olvidar el factor $2$: $1\\cdot 6 - k = 0$ daría $k = 6$. Conserva los dos términos: $\\det = 6 - 2k$."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linmaps-04-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "Can a linear map $\\mathbb{R}^3 \\to \\mathbb{R}^2$ be injective?",
+        "es": "¿Puede una aplicación lineal $\\mathbb{R}^3 \\to \\mathbb{R}^2$ ser inyectiva?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "No, because the rank is at most 2 and the kernel is nonzero.",
+            "es": "No, porque el rango es como mucho 2 y el núcleo no es nulo."
+          },
+          "correct": true,
+          "why": {
+            "en": "Injective means a trivial kernel, but rank–nullity gives nullity $= 3 - \\text{rank} \\ge 1$. some nonzero vector goes to $\\mathbf 0$.",
+            "es": "Inyectiva significa núcleo trivial, pero rango–nulidad da nulidad $= 3 - \\text{rango} \\ge 1$: algún vector no nulo va a $\\mathbf 0$."
+          }
+        },
+        {
+          "text": {
+            "en": "Yes, as long as its matrix has rank 2, so the image is a plane.",
+            "es": "Sí, siempre que su matriz tenga rango 2, así que la imagen es un plano."
+          },
+          "correct": false,
+          "why": {
+            "en": "Rank 2 makes the image the whole plane, which is surjectivity. The kernel is then a line, so two different inputs share an output.",
+            "es": "El rango 2 hace que la imagen sea todo el plano, es decir, suprayectividad. El núcleo es entonces una recta, así que dos entradas distintas comparten salida."
+          }
+        },
+        {
+          "text": {
+            "en": "Yes, provided no column of its matrix is the zero vector.",
+            "es": "Sí, siempre que ninguna columna de su matriz sea el vector cero."
+          },
+          "correct": false,
+          "why": {
+            "en": "Nonzero columns do not stop collisions. Three vectors in the plane are always dependent, so some nontrivial combination of the columns gives zero.",
+            "es": "Las columnas no nulas no evitan las colisiones. Tres vectores del plano son siempre dependientes, así que alguna combinación no trivial de las columnas da cero."
+          }
+        },
+        {
+          "text": {
+            "en": "No, unless it is also surjective onto the codomain.",
+            "es": "No, salvo que también sea suprayectiva."
+          },
+          "correct": false,
+          "why": {
+            "en": "Surjective maps from $\\mathbb{R}^3$ onto $\\mathbb{R}^2$ exist, but they still have a kernel of dimension at least 1. Surjectivity does not decide injectivity here.",
+            "es": "Existen aplicaciones suprayectivas de $\\mathbb{R}^3$ sobre $\\mathbb{R}^2$, pero siguen teniendo un núcleo de dimensión al menos 1. La suprayectividad no decide aquí la inyectividad."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Count dimensions: what does rank–nullity say about the kernel?",
+        "es": "Cuenta dimensiones: ¿qué dice rango–nulidad sobre el núcleo?"
+      }
     }
   ],
   "references": [

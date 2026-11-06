@@ -2,7 +2,7 @@
   "id": "linmaps-06-eigenvalues",
   "subjectId": "linear-maps",
   "order": 6,
-  "estimatedMinutes": 50,
+  "estimatedMinutes": 60,
   "title": {
     "en": "Eigenvalues & Eigenvectors",
     "es": "Valores y vectores propios"
@@ -11,22 +11,55 @@
     {
       "type": "prose",
       "content": {
-        "en": "Most vectors change direction when a matrix acts on them. But for special directions, the matrix only stretches or shrinks — without rotating. A nonzero vector $v$ with $A v = \\lambda v$ is an **eigenvector**, and the scalar $\\lambda$ is its **eigenvalue**. Eigen- means 'own' in German: these are the matrix's *own* directions.",
-        "es": "La mayoría de los vectores cambian de dirección cuando una matriz actúa sobre ellos. Pero para direcciones especiales, la matriz solo estira o encoge — sin rotar. Un vector no nulo $v$ con $A v = \\lambda v$ es un **vector propio (autovector)**, y el escalar $\\lambda$ su **valor propio (autovalor)**. *Eigen-* significa 'propio' en alemán: son las direcciones *propias* de la matriz."
+        "en": "Most vectors change direction when a matrix acts on them. But for special directions, the matrix only stretches or shrinks — without leaving its line. A nonzero vector $v$ with $A v = \\lambda v$ is an **eigenvector**, and the scalar $\\lambda$ is its **eigenvalue**. Eigen- means 'own' in German: these are the matrix's *own* directions.",
+        "es": "La mayoría de los vectores cambian de dirección cuando una matriz actúa sobre ellos. Pero para direcciones especiales, la matriz solo estira o encoge — sin salirse de su recta. Un vector no nulo $v$ con $A v = \\lambda v$ es un **vector propio** , y el escalar $\\lambda$ su **valor propio** (también llamado *autovalor*). *Eigen-* significa 'propio' en alemán: son las direcciones *propias* de la matriz."
+      }
+    },
+    {
+      "type": "prereq",
+      "lessons": [
+        "linalg-10-determinants-23",
+        "linalg-21-homogeneous",
+        "algebra-02-quadratic-equations"
+      ],
+      "note": {
+        "en": "Determinants give the characteristic equation, quadratic equations solve it, and the homogeneous system gives the eigenvectors.",
+        "es": "Los determinantes dan la ecuación característica, las ecuaciones de segundo grado la resuelven, y el sistema homogéneo da los vectores propios."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "Eigenvalues are the most important numbers attached to a matrix. They reveal stability of dynamical systems, the principal axes of data (PCA), the resonant frequencies of structures, and the behavior of Markov chains and PageRank. They are found by solving the **characteristic equation** $\\det(A - \\lambda I) = 0$ — the values of $\\lambda$ that make $A - \\lambda I$ singular.",
-        "es": "Los autovalores son los números más importantes asociados a una matriz. Revelan la estabilidad de sistemas dinámicos, los ejes principales de los datos (PCA), las frecuencias de resonancia de estructuras y el comportamiento de cadenas de Markov y del PageRank. Se hallan resolviendo la **ecuación característica** $\\det(A - \\lambda I) = 0$ — los valores de $\\lambda$ que hacen singular a $A - \\lambda I$."
+        "en": "Eigenvalues are among the most useful numbers attached to a matrix. They reveal stability of dynamical systems, the principal axes of data (PCA), the resonant frequencies of structures, and the behavior of Markov chains and PageRank. They are found by solving the **characteristic equation** $\\det(A - \\lambda I) = 0$ — the values of $\\lambda$ that make $A - \\lambda I$ singular.",
+        "es": "Los valores propios son de los números más útiles asociados a una matriz. Revelan la estabilidad de sistemas dinámicos, los ejes principales de los datos (PCA), las frecuencias de resonancia de estructuras y el comportamiento de cadenas de Markov y del PageRank. Se hallan resolviendo la **ecuación característica** $\\det(A - \\lambda I) = 0$ — los valores de $\\lambda$ que hacen singular a $A - \\lambda I$."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Precisely**, for a $2\\times2$ matrix $A$ the characteristic equation is $\\lambda^2 - (\\operatorname{tr} A)\\,\\lambda + \\det A = 0$, a quadratic whose roots are the eigenvalues. For each eigenvalue $\\lambda$, the eigenvectors are the nonzero solutions of $(A - \\lambda I)\\mathbf v = \\mathbf 0$. Together with $\\mathbf 0$ they form the eigenspace, a subspace, and any nonzero multiple of an eigenvector is again one. The eigenvalue $\\lambda = 0$ is allowed and means $A$ is singular. The vector $\\mathbf v = \\mathbf 0$ never counts. The discriminant $(\\operatorname{tr} A)^2 - 4\\det A$ tells you which case you are in: positive means two distinct real eigenvalues, zero means one repeated real eigenvalue, negative means none.",
+        "es": "**Con precisión**, para una matriz $2\\times2$ $A$ la ecuación característica es $\\lambda^2 - (\\operatorname{traza} A)\\,\\lambda + \\det A = 0$, una ecuación de segundo grado cuyas raíces son los valores propios. Para cada valor propio $\\lambda$, los vectores propios son las soluciones no nulas de $(A - \\lambda I)\\mathbf v = \\mathbf 0$. Junto con $\\mathbf 0$ forman el subespacio propio, y cualquier múltiplo no nulo de un vector propio es también vector propio. El valor propio $\\lambda = 0$ está permitido y significa que $A$ es singular. El vector $\\mathbf v = \\mathbf 0$ nunca cuenta. El discriminante $(\\operatorname{traza} A)^2 - 4\\det A$ indica en qué caso estás: si es positivo hay dos valores propios reales distintos; si es cero, uno real repetido; si es negativo, ninguno real."
       }
     },
     {
       "type": "prose",
       "content": {
         "en": "Two shortcuts make small cases easy. For a **triangular** (or diagonal) matrix, the eigenvalues are simply the **diagonal entries**. And in general, the eigenvalues satisfy: their **sum equals the trace** and their **product equals the determinant** — fast checks on any computation.",
-        "es": "Dos atajos facilitan los casos pequeños. Para una matriz **triangular** (o diagonal), los autovalores son simplemente los **elementos de la diagonal**. Y en general, los autovalores cumplen: su **suma es la traza** y su **producto es el determinante** — comprobaciones rápidas de cualquier cálculo."
+        "es": "Dos atajos facilitan los casos pequeños. Para una matriz **triangular** (o diagonal), los valores propios son simplemente los **elementos de la diagonal**. Y en general, los valores propios cumplen: su **suma es la traza** y su **producto es el determinante** — comprobaciones rápidas de cualquier cálculo."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**The trap: a real matrix may have no real eigenvalues.** The $90°$ rotation $\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ has $\\lambda^2 + 1 = 0$, so $\\lambda = \\pm i$. No real vector is only stretched by it, because every real vector turns. Also, row-reducing a matrix changes its eigenvalues, so never find them on a reduced copy. Row operations keep the rank, not the eigenvalues.",
+        "es": "**La trampa: una matriz real puede no tener valores propios reales.** La rotación de $90°$, $\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$, tiene $\\lambda^2 + 1 = 0$, así que $\\lambda = \\pm i$. Ningún vector real queda solo estirado por ella, porque cada uno cambia de recta. Además, reducir por filas una matriz cambia sus valores propios, así que nunca los busques sobre una copia reducida. Las operaciones por filas conservan el rango, no los valores propios."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "**Why it matters.** Eigenvectors are the directions a map only stretches, so they simplify repeated action. Applying $A$ $k$ times to an eigenvector gives $A^k\\mathbf v = \\lambda^k\\mathbf v$, which is why growth, decay and oscillation in iterated systems come from the eigenvalues. In data science, the eigenvectors of a covariance matrix are the principal directions of a dataset, and, for a unit eigenvector, the eigenvalue is the variance along its direction.",
+        "es": "**Por qué importa.** Los vectores propios son las direcciones que una aplicación solo estira, así que simplifican la acción repetida. Aplicar $A$ $k$ veces a un vector propio da $A^k\\mathbf v = \\lambda^k\\mathbf v$, y por eso el crecimiento, la desintegración y la oscilación de los sistemas iterados vienen de los valores propios. En ciencia de datos, los vectores propios de una matriz de covarianzas son las direcciones principales de un conjunto de datos, y, para un vector propio unitario, el valor propio es la varianza en su dirección."
       }
     },
     {
@@ -37,7 +70,18 @@
       },
       "content": {
         "en": "Eigenvalues of $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$? It is triangular, so read the diagonal: $\\lambda = 2$ and $\\lambda = 3$. Check: their sum $5$ equals the trace, and their product $6$ equals the determinant ✓.",
-        "es": "¿Autovalores de $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$? Es triangular, así que lee la diagonal: $\\lambda = 2$ y $\\lambda = 3$. Comprueba: su suma $5$ es la traza, y su producto $6$ el determinante ✓."
+        "es": "¿Valores propios de $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$? Es triangular, así que lee la diagonal: $\\lambda = 2$ y $\\lambda = 3$. Comprueba: su suma $5$ es la traza, y su producto $6$ el determinante ✓."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — finding both eigenvectors",
+        "es": "Ejemplo resuelto — hallar los dos vectores propios"
+      },
+      "content": {
+        "en": "Take $A = \\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}$. Its trace is $7$ and its determinant $10$, so $\\lambda^2 - 7\\lambda + 10 = 0$, giving $\\lambda = 5$ or $\\lambda = 2$. For $\\lambda = 5$, $A - 5I = \\begin{pmatrix}-1&1\\\\2&-2\\end{pmatrix}$, whose solutions are the multiples of $(1,1)$. For $\\lambda = 2$, $A - 2I = \\begin{pmatrix}2&1\\\\2&1\\end{pmatrix}$ gives $(1,-2)$. Check: $A(1,-2) = (2,-4) = 2\\,(1,-2)$ ✓. These are the vectors that diagonalized $A$ in lesson 05.",
+        "es": "Toma $A = \\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}$. Su traza es $7$ y su determinante $10$, así que $\\lambda^2 - 7\\lambda + 10 = 0$, y $\\lambda = 5$ o $\\lambda = 2$. Para $\\lambda = 5$, $A - 5I = \\begin{pmatrix}-1&1\\\\2&-2\\end{pmatrix}$, cuyas soluciones son los múltiplos de $(1,1)$. Para $\\lambda = 2$, $A - 2I = \\begin{pmatrix}2&1\\\\2&1\\end{pmatrix}$ da $(1,-2)$. Comprueba: $A(1,-2) = (2,-4) = 2\\,(1,-2)$ ✓. Son los vectores que diagonalizaron $A$ en la lección 05."
       }
     },
     {
@@ -48,12 +92,12 @@
       ],
       "code": {
         "en": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\nvalues, vectors = np.linalg.eig(A)\n# eigenvalues: scalars lambda with A v = lambda v\nprint(sorted(values.real.round(2).tolist()))",
-        "es": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\nvalues, vectors = np.linalg.eig(A)\n# autovalores: escalares lambda con A v = lambda v\nprint(sorted(values.real.round(2).tolist()))"
+        "es": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\nvalues, vectors = np.linalg.eig(A)\n# valores propios: escalares lambda con A v = lambda v\nprint(sorted(values.real.round(2).tolist()))"
       },
       "expectedOutput": "[2.0, 3.0]",
       "caption": {
         "en": "Eigenvalues are the scalars a map only stretches by.",
-        "es": "Los autovalores son los escalares por los que el mapa solo estira."
+        "es": "Los valores propios son los escalares por los que la aplicación solo estira."
       }
     }
   ],
@@ -79,7 +123,7 @@
         {
           "tex": "Av = \\lambda v",
           "en": "λ is an eigenvalue.",
-          "es": "λ es un autovalor."
+          "es": "λ es un valor propio."
         }
       ]
     },
@@ -88,7 +132,7 @@
       "answerType": "set",
       "prompt": {
         "en": "Eigenvalues of $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?",
-        "es": "¿Autovalores de $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?"
+        "es": "¿Valores propios de $\\begin{pmatrix}2&0\\\\0&3\\end{pmatrix}$?"
       },
       "answer": "2, 3",
       "acceptedAlt": [
@@ -111,7 +155,7 @@
       "answerType": "set",
       "prompt": {
         "en": "Eigenvalues of the triangular $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$?",
-        "es": "¿Autovalores de la triangular $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$?"
+        "es": "¿Valores propios de la triangular $\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$?"
       },
       "answer": "2, 3",
       "acceptedAlt": [
@@ -134,7 +178,7 @@
       "answerType": "number",
       "prompt": {
         "en": "The characteristic equation sets $\\det(A-\\lambda I)$ equal to ___?",
-        "es": "La ecuación característica iguala $\\det(A-\\lambda I)$ a ___?"
+        "es": "¿La ecuación característica iguala $\\det(A-\\lambda I)$ a ___?"
       },
       "answer": "0",
       "acceptedAlt": [],
@@ -155,7 +199,7 @@
       "answerType": "mcq",
       "prompt": {
         "en": "A nonzero vector v is an eigenvector of A with eigenvalue λ when...",
-        "es": "Un vector no nulo v es autovector de A con autovalor λ cuando..."
+        "es": "Un vector no nulo v es vector propio de A con valor propio λ cuando..."
       },
       "choices": [
         {
@@ -165,8 +209,8 @@
           },
           "correct": true,
           "why": {
-            "en": "The map only scales v by λ, without changing its direction.",
-            "es": "El mapa solo escala v por λ, sin cambiar su direccion."
+            "en": "The map only scales v by λ: v stays on its line (if λ < 0 it points the other way).",
+            "es": "La aplicación solo escala v por λ: v se queda en su recta (si λ < 0, apunta al lado contrario)."
           }
         },
         {
@@ -177,7 +221,7 @@
           "correct": false,
           "why": {
             "en": "That defines the kernel, not an eigenvector (unless λ=0).",
-            "es": "Eso define el nucleo, no un autovector (salvo λ=0)."
+            "es": "Eso define el núcleo, no un vector propio (salvo si λ = 0)."
           }
         },
         {
@@ -188,14 +232,102 @@
           "correct": false,
           "why": {
             "en": "Dimensions don't even match; the defining equation is A v = λ v.",
-            "es": "Ni siquiera coinciden las dimensiones; la ecuacion es A v = λ v."
+            "es": "Ni siquiera coinciden las dimensiones; la ecuación es A v = λ v."
+          }
+        },
+        {
+          "text": {
+            "en": "$\\lVert A v\\rVert = \\lVert v\\rVert$",
+            "es": "$\\lVert A v\\rVert = \\lVert v\\rVert$"
+          },
+          "correct": false,
+          "why": {
+            "en": "That describes rotations and reflections, which keep every length. An eigenvector is stretched by $|\\lambda|$.",
+            "es": "Eso describe rotaciones y reflexiones, que conservan toda longitud. Un vector propio se estira por $|\\lambda|$."
           }
         }
       ],
       "hint": {
-        "en": "The map must not rotate v, only scale it.",
-        "es": "El mapa no debe rotar v, solo escalarlo."
+        "en": "The map must keep v on its line and only scale it.",
+        "es": "La aplicación debe mantener v sobre su recta y solo escalarlo."
       }
+    },
+    {
+      "id": "linmaps-06-e6",
+      "answerType": "number",
+      "prompt": {
+        "en": "What is the largest eigenvalue of $\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$?",
+        "es": "¿Cuál es el mayor valor propio de $\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$?"
+      },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "Solve $\\lambda^2 - 2\\lambda - 3 = 0$.",
+        "es": "Resuelve $\\lambda^2 - 2\\lambda - 3 = 0$."
+      },
+      "solution": [
+        {
+          "tex": "\\lambda^2 - 2\\lambda + (1 - 4) = 0 \\Rightarrow (\\lambda - 3)(\\lambda + 1) = 0",
+          "en": "The trace is 2 and the determinant is $1\\cdot1 - 2\\cdot2 = -3$.",
+          "es": "La traza es 2 y el determinante es $1\\cdot1 - 2\\cdot2 = -3$."
+        },
+        {
+          "tex": "\\lambda = 3 \\text{ or } \\lambda = -1",
+          "en": "The largest is 3.",
+          "es": "El mayor es 3."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2",
+          "feedback": {
+            "en": "$2$ is an off-diagonal entry, not an eigenvalue. Off-diagonal entries enter through the determinant, $1 - 4 = -3$.",
+            "es": "$2$ es un elemento fuera de la diagonal, no un valor propio. Los elementos fuera de la diagonal entran a través del determinante, $1 - 4 = -3$."
+          }
+        },
+        {
+          "answer": "1",
+          "feedback": {
+            "en": "$1$ reads the diagonal, a shortcut that works only for triangular matrices. This matrix is symmetric, not triangular.",
+            "es": "$1$ lee la diagonal, un atajo que solo vale para matrices triangulares. Esta matriz es simétrica, no triangular."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linmaps-06-e7",
+      "answerType": "number",
+      "prompt": {
+        "en": "$A = \\begin{pmatrix}1&2\\\\3&2\\end{pmatrix}$ has the eigenvalue $4$. Find $y$ so that $(2, y)$ is an eigenvector of $A$ for $4$.",
+        "es": "$A = \\begin{pmatrix}1&2\\\\3&2\\end{pmatrix}$ tiene el valor propio $4$. Halla $y$ para que $(2, y)$ sea un vector propio de $A$ con valor propio $4$."
+      },
+      "answer": "3",
+      "acceptedAlt": [],
+      "hint": {
+        "en": "Solve $A\\mathbf v = 4\\mathbf v$: the first component gives $y$.",
+        "es": "Resuelve $A\\mathbf v = 4\\mathbf v$: la primera componente da $y$."
+      },
+      "solution": [
+        {
+          "tex": "A(2,y) = (2 + 2y,\\ 6 + 2y) = 4\\,(2,y)",
+          "en": "Compare the first components.",
+          "es": "Compara las primeras componentes."
+        },
+        {
+          "tex": "2 + 2y = 8 \\Rightarrow y = 3",
+          "en": "Check the second: $6 + 2\\cdot3 = 12 = 4\\cdot3$ ✓.",
+          "es": "Comprueba la segunda: $6 + 2\\cdot3 = 12 = 4\\cdot3$ ✓."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "-1",
+          "feedback": {
+            "en": "$-1$ comes from the first row of $A\\mathbf v = \\mathbf 0$ alone, $2 + 2y = 0$: the eigenvalue was forgotten. It is $A - 4I$ that must be singular: its first row gives $-3\\cdot2 + 2y = 0$, so $y = 3$.",
+            "es": "$-1$ sale solo de la primera fila de $A\\mathbf v = \\mathbf 0$, $2 + 2y = 0$: se olvidó el valor propio. Es $A - 4I$ la que debe ser singular: su primera fila da $-3\\cdot2 + 2y = 0$, así que $y = 3$."
+          }
+        }
+      ]
     }
   ],
   "references": [

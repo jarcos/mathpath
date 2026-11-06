@@ -2,7 +2,7 @@
   "id": "linmaps-01-concept",
   "subjectId": "linear-maps",
   "order": 1,
-  "estimatedMinutes": 40,
+  "estimatedMinutes": 50,
   "title": {
     "en": "Linear Maps: The Concept",
     "es": "Aplicaciones lineales: el concepto"
@@ -16,28 +16,71 @@
       }
     },
     {
-      "type": "prose",
-      "content": {
-        "en": "An immediate consequence: a linear map must send the zero vector to the zero vector, $T(\\mathbf{0}) = \\mathbf{0}$. This gives a quick test. $T(x) = 2x$ is linear (it scales). But $T(x) = x + 1$ is **not** linear — it moves the origin to $1$, violating $T(0)=0$. Maps like $x+1$ are *affine*, a close cousin we study later.",
-        "es": "Una consecuencia inmediata: una aplicación lineal debe enviar el vector cero al vector cero, $T(\\mathbf{0}) = \\mathbf{0}$. Esto da una prueba rápida. $T(x) = 2x$ es lineal (escala). Pero $T(x) = x + 1$ **no** es lineal — mueve el origen a $1$, violando $T(0)=0$. Las aplicaciones como $x+1$ son *afines*, una prima cercana que estudiaremos después."
+      "type": "prereq",
+      "lessons": [
+        "linalg-06-vector-spaces",
+        "functions-06-linear-affine"
+      ],
+      "note": {
+        "en": "Vector spaces are where linear maps live, and the functions $f(x) = mx$ are the one-dimensional case.",
+        "es": "Los espacios vectoriales son donde viven las aplicaciones lineales, y las funciones $f(x) = mx$ son el caso de una dimensión."
       }
     },
     {
       "type": "prose",
       "content": {
-        "en": "Linear maps are everywhere: rotations, reflections, projections, scalings, and — crucially for machine learning — every layer of a neural network applies a linear map (a matrix multiply) before a nonlinearity. Understanding linear maps is understanding the backbone of these systems.",
-        "es": "Las aplicaciones lineales están por todas partes: rotaciones, reflexiones, proyecciones, escalados y — crucial para el aprendizaje automático — cada capa de una red neuronal aplica una aplicación lineal (una multiplicación por matriz) antes de una no linealidad. Entender las aplicaciones lineales es entender el esqueleto de estos sistemas."
+        "en": "**Precisely**, a map $T : V \\to W$ between vector spaces is linear when $T(u + v) = T(u) + T(v)$ and $T(c\\,v) = c\\,T(v)$ for all vectors $u, v$ and every scalar $c$. The two rules fit in one: $T(a\\,u + b\\,v) = a\\,T(u) + b\\,T(v)$, so $T$ sends every linear combination to the same combination of the images. On $\\mathbb{R}^n$ the linear maps are exactly those whose output coordinates are fixed combinations $a_1x_1 + \\dots + a_nx_n$ of the inputs: no constant term, no products, no powers. $T(x, y) = (2x - y,\\ 3y)$ is one.",
+        "es": "**Con precisión**, una aplicación $T : V \\to W$ entre espacios vectoriales es lineal si $T(u + v) = T(u) + T(v)$ y $T(c\\,v) = c\\,T(v)$ para todos los vectores $u, v$ y todo escalar $c$. Las dos reglas caben en una: $T(a\\,u + b\\,v) = a\\,T(u) + b\\,T(v)$, así que $T$ lleva cada combinación lineal a la misma combinación de las imágenes. En $\\mathbb{R}^n$, las aplicaciones lineales son justo aquellas cuyas coordenadas de salida son combinaciones fijas $a_1x_1 + \\dots + a_nx_n$ de las de entrada: sin término independiente, sin productos y sin potencias. $T(x, y) = (2x - y,\\ 3y)$ es una de ellas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "An immediate consequence: a linear map must send the zero vector to the zero vector, $T(\\mathbf{0}) = \\mathbf{0}$. This gives a quick test. $T(x) = 2x$ is linear (it scales). But $T(x) = x + 1$ is **not** linear — it moves the origin to $1$, violating $T(0)=0$. Maps like $x+1$ are *affine*, a close relative we study later.",
+        "es": "Una consecuencia inmediata: una aplicación lineal debe enviar el vector cero al vector cero, $T(\\mathbf{0}) = \\mathbf{0}$. Esto da una prueba rápida. $T(x) = 2x$ es lineal (escala). Pero $T(x) = x + 1$ **no** es lineal — mueve el origen a $1$, así que incumple $T(0)=0$. Las aplicaciones como $x+1$ son *afines*, parientes cercanas que estudiaremos más adelante."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The test only works one way. If $T(\\mathbf 0) \\neq \\mathbf 0$, the map is not linear; if $T(\\mathbf 0) = \\mathbf 0$, it can still fail. $T(x) = x^2$ sends $0$ to $0$, yet $T(2) = 4$ while $2\\,T(1) = 2$. So the zero test rules maps out but never proves linearity: for that, check the two rules, or recognize the form above.",
+        "es": "La prueba solo funciona en un sentido. Si $T(\\mathbf 0) \\neq \\mathbf 0$, la aplicación no es lineal; si $T(\\mathbf 0) = \\mathbf 0$, aún puede no serlo. $T(x) = x^2$ lleva $0$ a $0$, pero $T(2) = 4$, mientras que $2\\,T(1) = 2$. Así que la prueba del cero descarta aplicaciones, pero nunca demuestra la linealidad: para eso, comprueba las dos reglas o reconoce la forma de arriba."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Linear maps are everywhere: rotations, reflections, projections, scalings, and — crucially for machine learning — every dense layer of a neural network multiplies its input by a matrix, which is a linear map, then adds a bias and applies a nonlinearity. Understanding linear maps is understanding the backbone of these systems.",
+        "es": "Las aplicaciones lineales están por todas partes: rotaciones, reflexiones, proyecciones, escalados y — crucial para el aprendizaje automático — cada capa densa de una red neuronal multiplica su entrada por una matriz, que es una aplicación lineal, y luego suma un sesgo y aplica una no linealidad. Entender las aplicaciones lineales es entender el esqueleto de estos sistemas."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Linearity reaches far beyond arrows in the plane. Differentiation is linear: $(f + g)' = f' + g'$ and $(c f)' = c f'$, so $D(f) = f'$ is a linear map on the space of polynomials. So are the definite integral and the expected value in probability, $E[aX + bY] = a\\,E[X] + b\\,E[Y]$. For linear systems in physics and signal processing, this is the **superposition principle**: the response to a sum of inputs is the sum of the responses. So a complicated input can be split into simple pieces, and their results added back.",
+        "es": "La linealidad llega mucho más allá de las flechas del plano. Derivar es lineal: $(f + g)' = f' + g'$ y $(c f)' = c f'$, así que $D(f) = f'$ es una aplicación lineal en el espacio de los polinomios. También lo son la integral definida y la esperanza en probabilidad, $E[aX + bY] = a\\,E[X] + b\\,E[Y]$. En los sistemas lineales de la física y del tratamiento de señales, es el **principio de superposición**: la respuesta a una suma de entradas es la suma de las respuestas. Así, una entrada complicada se puede partir en piezas simples y sumar después sus resultados."
       }
     },
     {
       "type": "example",
       "title": {
-        "en": "Worked example",
-        "es": "Ejemplo resuelto"
+        "en": "Worked example — a map of the line",
+        "es": "Ejemplo resuelto — una aplicación de la recta"
       },
       "content": {
         "en": "Is $T(x) = 3x$ linear? Check: $T(a+b) = 3(a+b) = 3a + 3b = T(a)+T(b)$ ✓, and $T(0) = 0$ ✓. Yes. Evaluate $T(2) = 6$. Is $T(x) = x+1$ linear? $T(0) = 1 \\neq 0$, so no.",
         "es": "¿Es $T(x) = 3x$ lineal? Comprueba: $T(a+b) = 3(a+b) = 3a + 3b = T(a)+T(b)$ ✓, y $T(0) = 0$ ✓. Sí. Evalúa $T(2) = 6$. ¿Es $T(x) = x+1$ lineal? $T(0) = 1 \\neq 0$, así que no."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — testing a map of the plane",
+        "es": "Ejemplo resuelto — comprobar una aplicación del plano"
+      },
+      "content": {
+        "en": "Is $T(x, y) = (x + 2y,\\ 3x)$ linear? Each output is a combination of $x$ and $y$ with no constant, so it is: for instance $T(1, 1) = (3, 3)$ and $T(2, 2) = (6, 6) = 2\\,T(1, 1)$ ✓. Now take $S(x, y) = (x + y,\\ xy)$. It passes the zero test, $S(0, 0) = (0, 0)$. But $S(1, 1) = (2, 1)$, so $2\\,S(1, 1) = (4, 2)$, while $S(2, 2) = (4, 4)$. Scaling fails, so $S$ is not linear, and the product $xy$ is to blame.",
+        "es": "¿Es lineal $T(x, y) = (x + 2y,\\ 3x)$? Cada salida es una combinación de $x$ e $y$ sin término independiente, así que sí: por ejemplo, $T(1, 1) = (3, 3)$ y $T(2, 2) = (6, 6) = 2\\,T(1, 1)$ ✓. Toma ahora $S(x, y) = (x + y,\\ xy)$. Pasa la prueba del cero, $S(0, 0) = (0, 0)$. Pero $S(1, 1) = (2, 1)$, así que $2\\,S(1, 1) = (4, 2)$, mientras que $S(2, 2) = (4, 4)$. Falla el escalado, así que $S$ no es lineal, y la culpa es del producto $xy$."
       }
     },
     {
@@ -48,12 +91,12 @@
       ],
       "code": {
         "en": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\n# a linear map T(x) = A x sends a vector to a new vector\nprint((A @ np.array([1, 1])).tolist())",
-        "es": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\n# un mapa lineal T(x) = A x lleva un vector a otro vector\nprint((A @ np.array([1, 1])).tolist())"
+        "es": "import numpy as np\nA = np.array([[2, 0], [0, 3]])\n# una aplicación lineal T(x) = A x lleva un vector a otro vector\nprint((A @ np.array([1, 1])).tolist())"
       },
       "expectedOutput": "[2, 3]",
       "caption": {
-        "en": "Every linear map is multiplication by a matrix.",
-        "es": "Todo mapa lineal es una multiplicacion por una matriz."
+        "en": "On ℝⁿ, every linear map is multiplication by a matrix.",
+        "es": "En ℝⁿ, toda aplicación lineal es una multiplicación por una matriz."
       }
     }
   ],
@@ -122,14 +165,23 @@
           "en": "Evaluate.",
           "es": "Evalúa."
         }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "2/3",
+          "feedback": {
+            "en": "$\\frac23$ solves $3x = 2$: it is the input that $T$ sends to $2$. $T(2)$ asks for the output at $x = 2$: $3\\cdot2 = 6$.",
+            "es": "$\\frac23$ resuelve $3x = 2$: es la entrada que $T$ lleva a $2$. $T(2)$ pide la salida en $x = 2$: $3\\cdot2 = 6$."
+          }
+        }
       ]
     },
     {
       "id": "linmaps-01-e4",
       "answerType": "number",
       "prompt": {
-        "en": "Every linear map sends the zero vector to which vector? (its single component)",
-        "es": "Toda aplicación lineal envía el vector cero a qué vector? (su componente)"
+        "en": "Every linear map sends the zero vector to a vector. What is its first component?",
+        "es": "Toda aplicación lineal envía el vector cero a un vector. ¿Cuál es su primera componente?"
       },
       "answer": "0",
       "acceptedAlt": [],
@@ -144,6 +196,108 @@
           "es": "Siempre cero."
         }
       ]
+    },
+    {
+      "id": "linmaps-01-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "A linear map $T$ has $T(\\mathbf u) = (1, 2)$ and $T(\\mathbf v) = (3, -1)$. Find the first component of $T(2\\mathbf u - \\mathbf v)$.",
+        "es": "Una aplicación lineal $T$ cumple $T(\\mathbf u) = (1, 2)$ y $T(\\mathbf v) = (3, -1)$. Halla la primera componente de $T(2\\mathbf u - \\mathbf v)$."
+      },
+      "answer": "-1",
+      "acceptedAlt": [
+        "2*1-3"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "5",
+          "feedback": {
+            "en": "$5 = 2\\cdot1 + 3$: the minus sign became a plus. Linearity keeps the combination as it is: $T(2\\mathbf u - \\mathbf v) = 2\\,T(\\mathbf u) - T(\\mathbf v)$.",
+            "es": "$5 = 2\\cdot1 + 3$: el signo menos se volvió más. La linealidad conserva la combinación tal cual: $T(2\\mathbf u - \\mathbf v) = 2\\,T(\\mathbf u) - T(\\mathbf v)$."
+          }
+        },
+        {
+          "answer": "-2",
+          "feedback": {
+            "en": "$-2 = 1 - 3$ forgets the factor $2$ on $\\mathbf u$. The scalar comes out with it: $2\\,T(\\mathbf u) - T(\\mathbf v)$, so $2\\cdot1 - 3$.",
+            "es": "$-2 = 1 - 3$ olvida el factor $2$ de $\\mathbf u$. El escalar sale con él: $2\\,T(\\mathbf u) - T(\\mathbf v)$, así que $2\\cdot1 - 3$."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Linearity lets you take the combination outside: T(2u − v) = 2T(u) − T(v).",
+        "es": "La linealidad te deja sacar la combinación fuera: T(2u − v) = 2T(u) − T(v)."
+      },
+      "solution": [
+        {
+          "tex": "T(2\\mathbf u - \\mathbf v) = 2\\,T(\\mathbf u) - T(\\mathbf v)",
+          "en": "Use both rules: sums go through T, and so do scalars.",
+          "es": "Usa las dos reglas: las sumas pasan a través de T, y los escalares también."
+        },
+        {
+          "tex": "2\\,(1, 2) - (3, -1) = (2 - 3,\\ 4 + 1) = (-1,\\ 5)",
+          "en": "Combine the images. The first component is −1.",
+          "es": "Combina las imágenes. La primera componente es −1."
+        }
+      ]
+    },
+    {
+      "id": "linmaps-01-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "A map $T : \\mathbb{R} \\to \\mathbb{R}$ satisfies $T(0) = 0$. What can you conclude?",
+        "es": "Una aplicación $T : \\mathbb{R} \\to \\mathbb{R}$ cumple $T(0) = 0$. ¿Qué puedes concluir?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "That T is probably linear, since it fixes the origin.",
+            "es": "Que T probablemente es lineal, porque fija el origen."
+          },
+          "correct": false,
+          "why": {
+            "en": "Fixing the origin is needed, but it isn't enough: $T(x) = x^2$ fixes it and is not linear.",
+            "es": "Fijar el origen hace falta, pero no basta: $T(x) = x^2$ lo fija y no es lineal."
+          }
+        },
+        {
+          "text": {
+            "en": "Nothing yet: $x^2$ also sends $0$ to $0$.",
+            "es": "Nada todavía: $x^2$ también lleva $0$ a $0$."
+          },
+          "correct": true,
+          "why": {
+            "en": "Right. $T(0) = 0$ only rules maps out. To prove linearity, check $T(a\\,u + b\\,v) = a\\,T(u) + b\\,T(v)$.",
+            "es": "Exacto. $T(0) = 0$ solo descarta aplicaciones. Para demostrar la linealidad, comprueba $T(a\\,u + b\\,v) = a\\,T(u) + b\\,T(v)$."
+          }
+        },
+        {
+          "text": {
+            "en": "That T is linear as long as it is continuous.",
+            "es": "Que T es lineal siempre que sea continua."
+          },
+          "correct": false,
+          "why": {
+            "en": "$x^2$ is continuous and sends $0$ to $0$, yet $T(2) = 4 \\neq 2\\,T(1) = 2$.",
+            "es": "$x^2$ es continua y lleva $0$ a $0$, pero $T(2) = 4 \\neq 2\\,T(1) = 2$."
+          }
+        },
+        {
+          "text": {
+            "en": "That T is affine, having no constant term.",
+            "es": "Que T es afín, al no tener término independiente."
+          },
+          "correct": false,
+          "why": {
+            "en": "No constant term doesn't make a map affine: $x^2$ has none and is not affine. And an affine map with $T(0) = 0$ is already linear.",
+            "es": "No tener término independiente no hace afín a una aplicación: $x^2$ no lo tiene y no es afín. Y una aplicación afín con $T(0) = 0$ ya es lineal."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Look for a map that sends 0 to 0 but breaks one of the two rules.",
+        "es": "Busca una aplicación que lleve 0 a 0 pero rompa una de las dos reglas."
+      }
     }
   ],
   "references": [

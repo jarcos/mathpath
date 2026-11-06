@@ -2,7 +2,7 @@
   "id": "linmaps-12-scaling",
   "subjectId": "linear-maps",
   "order": 12,
-  "estimatedMinutes": 35,
+  "estimatedMinutes": 45,
   "title": {
     "en": "Scaling in 2D",
     "es": "Escalado en 2D"
@@ -16,6 +16,17 @@
       }
     },
     {
+      "type": "prereq",
+      "lessons": [
+        "linalg-10-determinants-23",
+        "linmaps-02-matrix"
+      ],
+      "note": {
+        "en": "The area factor is a $2\\times 2$ determinant, and a scaling is the diagonal matrix $\\operatorname{diag}(k_x, k_y)$.",
+        "es": "El factor de área es el determinante de una matriz $2\\times 2$, y un escalado es la matriz diagonal $\\operatorname{diag}(k_x, k_y)$."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "Scaling is a linear map (it fixes the origin), and its determinant tells you the **area factor**: $\\det\\begin{pmatrix}k_x&0\\\\0&k_y\\end{pmatrix} = k_x k_y$. So uniform scaling by $k$ changes areas by $k^2$ in 2D (and volumes by $k^3$ in 3D) — the geometric meaning of the determinant in action.",
@@ -25,19 +36,51 @@
     {
       "type": "prose",
       "content": {
-        "en": "Factors greater than $1$ enlarge, between $0$ and $1$ shrink, and negative factors also **reflect** across an axis. Together with rotation and translation, scaling is one of the basic building blocks every graphics transformation is assembled from.",
-        "es": "Los factores mayores que $1$ agrandan, entre $0$ y $1$ encogen, y los factores negativos además **reflejan** respecto a un eje. Junto con la rotación y la traslación, el escalado es uno de los ladrillos básicos con los que se ensambla toda transformación gráfica."
+        "en": "**Precisely**, scaling by $k$ about a point $\\mathbf c$ is the map $\\mathbf x \\mapsto \\mathbf c + k(\\mathbf x - \\mathbf c)$: move $\\mathbf c$ to the origin, scale, then move it back. It is linear only when $\\mathbf c = \\mathbf 0$ (or $k = 1$, the identity), because otherwise the $\\mathbf c$ term is a translation. Scaling about the origin, by a single matrix $\\operatorname{diag}(k_x, k_y)$, is the linear case. The sign of the determinant tells you whether orientation survives: $\\det > 0$ keeps it, $\\det < 0$ reverses it, and $\\det = 0$ squashes the plane onto a line or a point.",
+        "es": "**Con precisión**, escalar por $k$ respecto a un punto $\\mathbf c$ es la aplicación $\\mathbf x \\mapsto \\mathbf c + k(\\mathbf x - \\mathbf c)$: lleva $\\mathbf c$ al origen, escala y lo devuelve a su sitio. Solo es lineal cuando $\\mathbf c = \\mathbf 0$ (o $k = 1$, la identidad), porque en otro caso el término $\\mathbf c$ es una traslación. Escalar respecto al origen, con una única matriz $\\operatorname{diag}(k_x, k_y)$, es el caso lineal. El signo del determinante dice si sobrevive la orientación: $\\det > 0$ la conserva, $\\det < 0$ la invierte, y $\\det = 0$ aplasta el plano sobre una recta o un punto."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "The trap is to read a scaling factor as an area factor. Uniform scaling by $k$ multiplies lengths by $k$, areas by $k^2$ and volumes by $k^3$. So doubling the side of a photo quadruples its area; it does not double it. A map at scale $1:50\\,000$ has every length $50\\,000$ times smaller than the ground, so its areas are $50\\,000^2 = 2.5\\cdot10^9$ times smaller. A factor of $0$ is the extreme case: it collapses an axis, the determinant is $0$, and the map cannot be undone.",
+        "es": "La trampa es leer un factor de escala como si fuera un factor de área. El escalado uniforme por $k$ multiplica las longitudes por $k$, las áreas por $k^2$ y los volúmenes por $k^3$. Así que duplicar el lado de una foto cuadruplica su área; no la duplica. Un mapa a escala $1:50\\,000$ tiene cada longitud $50\\,000$ veces menor que el terreno, así que sus áreas son $50\\,000^2 = 2.5\\cdot10^9$ veces menores. Un factor $0$ es el caso extremo: aplasta un eje, el determinante es $0$ y la aplicación no se puede deshacer."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Factors greater than $1$ enlarge, and factors between $0$ and $1$ shrink. A negative factor **reflects** across an axis: $\\operatorname{diag}(-1, 1)$ flips the sign of $x$. Two negative factors together, $\\operatorname{diag}(-1,-1)$, give a $180°$ turn about the origin. That is a rotation, so orientation is kept, and its determinant is $1 > 0$. Together with rotation and translation, scaling is one of the basic building blocks most graphics transformations are assembled from. Perspective is not one of them: it needs the division by $w$ of lesson 13.",
+        "es": "Los factores mayores que $1$ agrandan, y los comprendidos entre $0$ y $1$ encogen. Un factor negativo **refleja** respecto a un eje: $\\operatorname{diag}(-1, 1)$ cambia el signo de $x$. Dos factores negativos a la vez, $\\operatorname{diag}(-1,-1)$, dan una rotación de $180°$ alrededor del origen. Eso es una rotación, así que conserva la orientación, y su determinante es $1 > 0$. Junto con la rotación y la traslación, el escalado es uno de los ladrillos básicos con los que se ensamblan la mayoría de las transformaciones gráficas. La perspectiva no es una de ellas: necesita la división entre $w$ de la lección 13."
+      }
+    },
+    {
+      "type": "prose",
+      "content": {
+        "en": "Scaling is everywhere in data work. Zooming a picture, resizing an icon, or changing units from metres to centimetres are all scalings. In machine learning, **standardizing** a feature means subtracting its mean $\\mu$ and dividing by its standard deviation $\\sigma$: $x \\mapsto (x - \\mu)/\\sigma$. That is a translation followed by a scaling, and the factor $1/\\sigma$ differs from feature to feature, so it is a non-uniform scaling. It puts features with different units on comparable ranges, which helps gradient-based training behave well.",
+        "es": "El escalado está por todas partes en el trabajo con datos. Ampliar una imagen, redimensionar un icono o pasar de metros a centímetros son escalados. En aprendizaje automático, **estandarizar** una variable significa restarle su media $\\mu$ y dividir entre su desviación típica $\\sigma$: $x \\mapsto (x - \\mu)/\\sigma$. Es una traslación seguida de un escalado, y el factor $1/\\sigma$ cambia de una variable a otra, así que es un escalado no uniforme. Pone en rangos comparables variables con unidades distintas, lo que ayuda a que el entrenamiento por gradiente se comporte bien."
       }
     },
     {
       "type": "example",
       "title": {
-        "en": "Worked example",
-        "es": "Ejemplo resuelto"
+        "en": "Worked example — scaling a point",
+        "es": "Ejemplo resuelto — escalar un punto"
       },
       "content": {
         "en": "Scale $(2,3)$ by factor $2$: $(2\\cdot2, 2\\cdot3) = (4,6)$, first component $4$. The scaling matrix $\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}$ has determinant $4$, so areas quadruple — consistent with $k^2 = 2^2 = 4$.",
         "es": "Escala $(2,3)$ por factor $2$: $(2\\cdot2, 2\\cdot3) = (4,6)$, primera componente $4$. La matriz de escalado $\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}$ tiene determinante $4$, así las áreas se cuadruplican — coherente con $k^2 = 2^2 = 4$."
+      }
+    },
+    {
+      "type": "example",
+      "title": {
+        "en": "Worked example — same area, new shape",
+        "es": "Ejemplo resuelto — la misma área, otra forma"
+      },
+      "content": {
+        "en": "Take $D = \\operatorname{diag}(2, \\tfrac12)$. The unit square with corners $(0,0)$ and $(1,1)$ becomes the rectangle $[0,2] \\times [0,\\tfrac12]$, of area $2\\cdot\\tfrac12 = 1$: the same as before, since $\\det D = 1$. The unit circle $x^2 + y^2 = 1$ becomes the ellipse $\\left(\\tfrac X2\\right)^2 + (2Y)^2 = 1$, with semi-axes $2$ and $\\tfrac12$ and area $\\pi\\cdot 2\\cdot\\tfrac12 = \\pi$. Same area, new shape: a determinant of $1$ keeps the area but not the form.",
+        "es": "Toma $D = \\operatorname{diag}(2, \\tfrac12)$. El cuadrado unidad, con esquinas $(0,0)$ y $(1,1)$, se convierte en el rectángulo $[0,2] \\times [0,\\tfrac12]$, de área $2\\cdot\\tfrac12 = 1$: la misma que antes, ya que $\\det D = 1$. El círculo unidad $x^2 + y^2 = 1$ se convierte en la elipse $\\left(\\tfrac X2\\right)^2 + (2Y)^2 = 1$, con semiejes $2$ y $\\tfrac12$ y área $\\pi\\cdot 2\\cdot\\tfrac12 = \\pi$. Misma área, nueva forma: un determinante $1$ conserva el área, pero no la forma."
       }
     },
     {
@@ -94,8 +137,8 @@
         "det([[2,0],[0,2]])"
       ],
       "hint": {
-        "en": "kₓ · k_y.",
-        "es": "kₓ · k_y."
+        "en": "$k_x \\cdot k_y$",
+        "es": "$k_x \\cdot k_y$"
       },
       "solution": [
         {
@@ -110,7 +153,7 @@
       "answerType": "number",
       "prompt": {
         "en": "Uniform scaling by $k=3$ changes area by which factor in 2D?",
-        "es": "El escalado uniforme por $k=3$ cambia el área por qué factor en 2D?"
+        "es": "¿Por qué factor cambia el área el escalado uniforme por $k=3$ en 2D?"
       },
       "answer": "9",
       "acceptedAlt": [
@@ -125,6 +168,15 @@
           "tex": "k^2 = 9",
           "en": "Area factor.",
           "es": "Factor de área."
+        }
+      ],
+      "commonMistakes": [
+        {
+          "answer": "3",
+          "feedback": {
+            "en": "$3 = k$ is the length factor. Areas scale by $k^2 = 9$, because both sides of a square are stretched.",
+            "es": "$3 = k$ es el factor de longitud. Las áreas escalan por $k^2 = 9$, porque se estiran los dos lados de un cuadrado."
+          }
         }
       ]
     },
@@ -150,6 +202,103 @@
           "es": "Segunda componente 5."
         }
       ]
+    },
+    {
+      "id": "linmaps-12-e5",
+      "answerType": "number",
+      "prompt": {
+        "en": "Scale $(2,3)$ by factor $4$ about the point $(1,1)$. What is the $x$-coordinate of the image?",
+        "es": "Escala $(2,3)$ por factor $4$ respecto al punto $(1,1)$. ¿Cuál es la coordenada $x$ de la imagen?"
+      },
+      "answer": "5",
+      "acceptedAlt": [
+        "1+4*(2-1)"
+      ],
+      "commonMistakes": [
+        {
+          "answer": "8",
+          "feedback": {
+            "en": "$8 = 4\\cdot 2$ scales about the origin. Subtract the center first, scale, then add it back.",
+            "es": "$8 = 4\\cdot 2$ escala respecto al origen. Resta primero el centro, escala y después súmalo."
+          }
+        },
+        {
+          "answer": "4",
+          "feedback": {
+            "en": "$4 = 4\\,(2-1)$ forgets to add the center $(1,1)$ back after scaling.",
+            "es": "$4 = 4\\,(2-1)$ olvida sumar de nuevo el centro $(1,1)$ después de escalar."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Move the center to the origin: the point becomes (2,3) − (1,1) = (1,2).",
+        "es": "Lleva el centro al origen: el punto pasa a ser (2,3) − (1,1) = (1,2)."
+      },
+      "solution": [
+        {
+          "tex": "(1,1) + 4\\,\\big((2,3)-(1,1)\\big) = (1,1) + (4,8) = (5,9)",
+          "en": "Subtract the center, scale by 4, then add the center back. The x-coordinate is 5.",
+          "es": "Resta el centro, escala por 4 y vuelve a sumar el centro. La coordenada x es 5."
+        }
+      ]
+    },
+    {
+      "id": "linmaps-12-e6",
+      "answerType": "mcq",
+      "prompt": {
+        "en": "You scale by $3$ horizontally and by $-1$ vertically. What happens to area and orientation?",
+        "es": "Escalas por $3$ en horizontal y por $-1$ en vertical. ¿Qué pasa con el área y con la orientación?"
+      },
+      "choices": [
+        {
+          "text": {
+            "en": "The area is multiplied by −3, since the determinant of the map is −3.",
+            "es": "El área se multiplica por −3, ya que el determinante de la aplicación es −3."
+          },
+          "correct": false,
+          "why": {
+            "en": "The area factor is $|\\det| = 3$; the sign of the determinant only tells you about orientation.",
+            "es": "El factor de área es $|\\det| = 3$; el signo del determinante solo indica la orientación."
+          }
+        },
+        {
+          "text": {
+            "en": "The area is multiplied by 3 and the orientation is kept, since |−1| = 1 changes nothing.",
+            "es": "El área se multiplica por 3 y la orientación se conserva, porque |−1| = 1 no cambia nada."
+          },
+          "correct": false,
+          "why": {
+            "en": "The area factor is $|\\det| = 3$, but the sign of $-1$ does reverse orientation: $\\det < 0$.",
+            "es": "El factor de área es $|\\det| = 3$, pero el signo de $-1$ sí invierte la orientación: $\\det < 0$."
+          }
+        },
+        {
+          "text": {
+            "en": "The area is multiplied by 9, since each factor is squared.",
+            "es": "El área se multiplica por 9, ya que cada factor se eleva al cuadrado."
+          },
+          "correct": false,
+          "why": {
+            "en": "Squaring is the rule for uniform scaling only. Here the factor is $|\\det| = |3\\cdot(-1)| = 3$.",
+            "es": "Elevar al cuadrado es la regla solo para el escalado uniforme. Aquí el factor es $|\\det| = |3\\cdot(-1)| = 3$."
+          }
+        },
+        {
+          "text": {
+            "en": "The area is multiplied by 3 and the orientation flips, since the determinant is −3.",
+            "es": "El área se multiplica por 3 y la orientación se invierte, porque el determinante es −3."
+          },
+          "correct": true,
+          "why": {
+            "en": "The area factor is $|\\det| = 3$, and $\\det = -3 < 0$ means the orientation is reversed.",
+            "es": "El factor de área es $|\\det| = 3$, y $\\det = -3 < 0$ significa que la orientación se invierte."
+          }
+        }
+      ],
+      "hint": {
+        "en": "Area factors multiply. Find the determinant of diag(3, −1) first.",
+        "es": "Los factores de área se multiplican. Calcula primero el determinante de diag(3, −1)."
+      }
     }
   ],
   "references": [
