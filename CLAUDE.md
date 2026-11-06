@@ -148,7 +148,7 @@ docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 **Both tracks complete** (textbook depth, all verified). 255 lessons / 1215
 exercises (36 of them templates) / 6227 checks passing (`npm run verify:content`).
 M35 (in progress) deepens calculus, linear-algebra and linear-maps in place, one
-subject per release; calculus (v0.8.0) and linear-algebra are done. Existing exercises never change (progress
+subject per release; calculus (v0.8.0) and linear-algebra (v0.9.0) are done. Existing exercises never change (progress
 and review cards point at their ids).
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
