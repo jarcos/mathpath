@@ -416,6 +416,35 @@ Se hace con el mismo proceso que M32: borradores por asignatura, todas las puert
 - **Para quien ya estudia:** las lecciones completadas siguen completadas. Una lección de cálculo dominada puede volver a "practicada" hasta resolver sus ejercicios nuevos, porque el dominio pide el 80 % de los ejercicios de la lección.
 - **Publicada en v0.8.0** (6 de noviembre de 2026), firmada y notarizada. Antes de publicar, la app del ensayo se probó con una copia de una base de datos real: la lección de L'Hôpital tiene su recuadro de prerrequisitos, dos ejemplos y su test; la explicación de una opción errónea y el aviso de un error típico se ven, la base de datos sigue en la versión 5 y el original no se tocó. La base de datos no cambia en esta versión.
 
+### Estado de la parte 2: álgebra lineal (hito M35, sin publicar)
+
+- **Las 23 lecciones de álgebra lineal** pasan de unas 190 a unas 525 palabras de explicación por idioma (de 482 a 582). Cada una suma 2–3 secciones nuevas:
+  - la definición o el teorema precisos: la igualdad de complejos y la falta de orden en $\mathbb{C}$, el test de subespacio, $\det(kA) = k^n\det A$, $\mathbf v = P\,[\mathbf v]_B$, $PA = LU$, Rouché-Fröbenius con $r \le r' \le r+1$…;
+  - una trampa: $\sqrt a\,\sqrt b$ con los dos negativos, el argumento fuera del semiplano derecho, tres vectores dependientes sin dos paralelos, $AB = 0$ con $A, B \ne 0$, rectas alabeadas, proyectar sobre un vector no unitario…;
+  - para qué sirve: Fourier, mínimos cuadrados, PCA, la atención de los *transformers*, la compresión de rango bajo, ajustar una reacción química con un sistema homogéneo…
+- **Un segundo ejemplo resuelto** en cada lección, distinto del primero.
+- **46 ejercicios nuevos** (de 94 a 140):
+  - 22 tests conceptuales con la explicación de cada opción y la buena repartida entre las posiciones 1 a 4. La lección 16 ya tenía uno: ahora tiene cuatro opciones explicadas;
+  - 24 de respuesta numérica. Ninguna respuesta, alternativa ni error típico nuevo usa $i$, que mathjs no reduce.
+- **Errores típicos** en 57 ejercicios (antes ninguno), con 80 respuestas erróneas explicadas.
+- **Prerrequisitos:** las 23 lecciones tienen recuadro (antes 8), con 45 enlaces (antes 12), a álgebra, funciones y lecciones anteriores de la asignatura.
+- **Correcciones del texto antiguo:**
+  - $ad - bc$ es el área *con signo* (lección 10);
+  - una recta del espacio necesita dos ecuaciones implícitas, no una (14);
+  - "soluciones no triviales si y solo si $\det A = 0$" vale para $A$ cuadrada, y "la solución general de cualquier sistema" pide un sistema compatible (21);
+  - intercambiar o escalar filas sí cambia el determinante (11);
+  - el teorema fundamental del álgebra da raíz a todo polinomio *no constante* (1);
+  - "el determinante, guardián de los tres casos": solo separa el caso de solución única (22);
+  - *autovalores* pasa a *valores propios*; enunciados en español sin "¿" y muchas tildes en pies y comentarios de código.
+  - Cuatro enunciados ambiguos se aclararon sin cambiar su respuesta (18-e1, 18-e2, 21-e4, 23-e3).
+- **Cómo se hizo:** como en la parte 1. Escribí la lección 1 como modelo y el temario de las otras 22. Cuatro agentes las mejoraron en paralelo, con scripts que parten siempre del original, y cada lección pasó por dos revisiones independientes que recalcularon cada número: todos eran correctos. Encontraron:
+  - cinco errores: la regla $\sqrt a\,\sqrt b = \sqrt{ab}$ falla solo si los dos son negativos (lección 1, la mía); "solo un conjunto independiente agranda el generado" (7); "el sistema es incompatible justo cuando las rectas son alabeadas" olvidaba las paralelas (14); "$A = LU$" sin la permutación de filas (19); "reordenar mueve el cero" en Gram-Schmidt (18);
+  - unas 30 imprecisiones: $2^n > n^2$ también falla en 2 y 3; la igualdad en la desigualdad triangular con el vector cero; la atención divide entre $\sqrt d$; los coeficientes de Fourier necesitan el producto escalar integral; una frontera de decisión es un hiperplano; la multicolinealidad exacta hace que los coeficientes no sean únicos…;
+  - en 15 tests la opción buena destacaba por su longitud o por ser la única con otra forma; ahora no es la más larga en ninguno.
+  - Todo está corregido.
+- **Puertas:** 255 lecciones, 1215 ejercicios, 6227 comprobaciones y 394 enlaces de prerrequisito. Las 3980 fórmulas de álgebra lineal renderizan en KaTeX, el código pasa en CPython y en Pyodide, y los 88 tests pasan.
+- **Para quien ya estudia:** como en cálculo, las lecciones completadas siguen completadas, y una lección dominada puede volver a "practicada" hasta resolver sus ejercicios nuevos.
+
 ---
 
 ## Fase 4: navegación y experiencia
@@ -578,7 +607,7 @@ Orden propuesto para lo que queda: M35 (en curso) y M33. M34 está terminado.
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | — |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 (con dos arreglos en v0.7.1) |
-| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | 🟡 Parte 1 (cálculo, 12 lecciones) publicada en v0.8.0; partes 2 (álgebra lineal) y 3 (aplicaciones lineales) por hacer |
+| **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | 🟡 Parte 1 (cálculo, 12 lecciones) publicada en v0.8.0; parte 2 (álgebra lineal, 23 lecciones) hecha, sin publicar; parte 3 (aplicaciones lineales) por hacer |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
 
 ## Ideas que necesitan una decisión tuya
