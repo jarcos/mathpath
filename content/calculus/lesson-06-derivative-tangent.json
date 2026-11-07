@@ -54,9 +54,26 @@
         -3,
         3
       ],
+      "yDomain": [
+        -3,
+        9.5
+      ],
+      "tangent": {
+        "x": "a"
+      },
+      "sliders": [
+        {
+          "name": "a",
+          "min": -3,
+          "max": 3,
+          "step": 0.1,
+          "value": 1.5,
+          "label": "$a$"
+        }
+      ],
       "caption": {
-        "en": "$y = x^2$. The tangent at $x = 3$ has slope $f'(3) = 2\\cdot 3 = 6$; near the vertex at $x=0$ the slope is $0$ (horizontal tangent). The derivative function $f'(x) = 2x$ records the slope at every point.",
-        "es": "$y = x^2$. La tangente en $x = 3$ tiene pendiente $f'(3) = 2\\cdot 3 = 6$; cerca del vértice en $x=0$ la pendiente es $0$ (tangente horizontal). La función derivada $f'(x) = 2x$ registra la pendiente en cada punto."
+        "en": "$y = x^2$ and its tangent at $x = a$. Drag $a$ and read the slope below: it is always $f'(a) = 2a$. It is negative left of the vertex, $0$ at the vertex, where the tangent is horizontal, and positive to the right. At $a = 3$ the slope is $f'(3) = 2\\cdot 3 = 6$. The derivative function $f'(x) = 2x$ records the slope at every point.",
+        "es": "$y = x^2$ y su tangente en $x = a$. Arrastra $a$ y lee la pendiente debajo: siempre es $f'(a) = 2a$. Es negativa a la izquierda del vértice, $0$ en el vértice, donde la tangente es horizontal, y positiva a la derecha. En $a = 3$ la pendiente es $f'(3) = 2\\cdot 3 = 6$. La función derivada $f'(x) = 2x$ registra la pendiente en cada punto."
       }
     },
     {

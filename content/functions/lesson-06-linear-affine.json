@@ -41,14 +41,42 @@
     },
     {
       "type": "graph",
-      "fn": "2*x + 1",
+      "fn": "m*x + b",
       "domain": [
         -4,
         4
       ],
+      "yDomain": [
+        -8,
+        8
+      ],
+      "points": [
+        {
+          "x": 0,
+          "label": "(0, b)"
+        }
+      ],
+      "sliders": [
+        {
+          "name": "m",
+          "min": -3,
+          "max": 3,
+          "step": 0.5,
+          "value": 2,
+          "label": "$m$"
+        },
+        {
+          "name": "b",
+          "min": -3,
+          "max": 3,
+          "step": 0.5,
+          "value": 1,
+          "label": "$b$"
+        }
+      ],
       "caption": {
-        "en": "$f(x) = 2x + 1$: slope $2$ (up two for every one across), y-intercept $1$. Every linear function looks like this — a straight line fully determined by its slope and one point.",
-        "es": "$f(x) = 2x + 1$: pendiente $2$ (sube dos por cada uno que avanza), ordenada $1$. Toda función lineal se ve así — una recta determinada por su pendiente y un punto."
+        "en": "$f(x) = mx + b$, starting at $f(x) = 2x + 1$: slope $2$ (up two for every one across), y-intercept $1$. Drag $m$ and the line turns about the marked point $(0, b)$; drag $b$ and it slides up or down without turning. Every linear function looks like this: a straight line fully determined by its slope and one point.",
+        "es": "$f(x) = mx + b$, empezando por $f(x) = 2x + 1$: pendiente $2$ (sube dos por cada uno que avanza), ordenada $1$. Arrastra $m$ y la recta gira alrededor del punto marcado $(0, b)$; arrastra $b$ y sube o baja sin girar. Toda función lineal se ve así: una recta determinada por su pendiente y un punto."
       }
     },
     {

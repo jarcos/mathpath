@@ -41,6 +41,58 @@
       }
     },
     {
+      "type": "vector2d",
+      "matrix": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "sliders": [
+        {
+          "name": "a",
+          "min": -3,
+          "max": 3,
+          "step": 0.5,
+          "value": 2,
+          "label": "$a$"
+        },
+        {
+          "name": "b",
+          "min": -3,
+          "max": 3,
+          "step": 0.5,
+          "value": 0,
+          "label": "$b$"
+        },
+        {
+          "name": "c",
+          "min": -3,
+          "max": 3,
+          "step": 0.5,
+          "value": 0,
+          "label": "$c$"
+        },
+        {
+          "name": "d",
+          "min": -3,
+          "max": 3,
+          "step": 0.5,
+          "value": 1,
+          "label": "$d$"
+        }
+      ],
+      "morph": false,
+      "caption": {
+        "en": "The matrix $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ at work, starting as the map $T(x, y) = (2x, y)$. Move the sliders: the arrow $T(e_1)$ always ends at the first column $(a, c)$, the arrow $T(e_2)$ at the second column $(b, d)$, and the rest of the grid follows, because every vector is a combination of $e_1$ and $e_2$. Try $b = 1$ for a shear, or $a = d = 0$, $b = -1$, $c = 1$ for a quarter turn.",
+        "es": "La matriz $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ en acción, empezando por la aplicación $T(x, y) = (2x, y)$. Mueve los deslizadores: la flecha $T(e_1)$ siempre acaba en la primera columna $(a, c)$, la flecha $T(e_2)$ en la segunda columna $(b, d)$, y el resto de la cuadrícula las sigue, porque todo vector es combinación de $e_1$ y $e_2$. Prueba $b = 1$ para una cizalla, o $a = d = 0$, $b = -1$, $c = 1$ para un cuarto de vuelta."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "**The trap is the orientation of the columns.** The images go in the columns, not in the rows. For $T(x,y) = (x + 2y,\\ 3x)$, the images of the basis are $T(1,0) = (1,3)$ and $T(0,1) = (2,0)$, so $A = \\begin{pmatrix}1&2\\\\3&0\\end{pmatrix}$. Writing the images as rows gives the transpose, $\\begin{pmatrix}1&3\\\\2&0\\end{pmatrix}$, which is a different map: it sends $(0,1)$ to $(3,0)$ instead of $(2,0)$. Check your matrix on one basis vector: its column must be the output you computed.",

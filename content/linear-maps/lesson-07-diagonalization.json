@@ -49,6 +49,24 @@
       }
     },
     {
+      "type": "vector2d",
+      "matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "eigen": true,
+      "caption": {
+        "en": "The shear $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ pushes each horizontal line sideways in proportion to its height. Press **Play**: only the x-axis keeps its direction, so there is a single line of eigenvectors, all with $\\lambda = 1$. A basis of eigenvectors would need two independent ones, so the shear can't be diagonalized.",
+        "es": "La cizalla $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ desplaza cada recta horizontal hacia un lado en proporción a su altura. Pulsa **Reproducir**: solo el eje x conserva su dirección, así que hay una única recta de vectores propios, todos con $\\lambda = 1$. Una base de vectores propios necesitaría dos independientes, así que la cizalla no es diagonalizable."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "Why bother? Because in the diagonal world, hard problems become trivial. Computing $A^{100}$ directly is brutal, but $A^{100} = P D^{100} P^{-1}$, and $D^{100}$ just raises each eigenvalue to the $100$th power. Solving differential equations, analyzing stability, and compressing data all exploit this. Since $\\det(PDP^{-1}) = \\det D$, $\\det A$ is the **product of the eigenvalues**, the diagonal entries of $D$.",

@@ -65,6 +65,12 @@
         -2,
         4
       ],
+      "points": [
+        {
+          "x": 1,
+          "label": "(1, 5)"
+        }
+      ],
       "caption": {
         "en": "The objective $x^2 + y^2$ along the line $x + 2y = 5$, using $y = (5 - x)/2$. The lowest point of this parabola, at $x = 1$ with value $5$, is the closest point of the line to the origin from the worked example.",
         "es": "La función objetivo $x^2 + y^2$ sobre la recta $x + 2y = 5$, con $y = (5 - x)/2$. El punto más bajo de esta parábola, en $x = 1$ con valor $5$, es el punto de la recta más cercano al origen del ejemplo resuelto."

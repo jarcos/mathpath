@@ -121,6 +121,23 @@
         -1,
         6
       ],
+      "points": [
+        {
+          "x": 2,
+          "label": "(2, 0)"
+        },
+        {
+          "x": 3,
+          "label": "(3, 0)"
+        },
+        {
+          "x": 2.5,
+          "label": {
+            "en": "vertex",
+            "es": "vértice"
+          }
+        }
+      ],
       "caption": {
         "en": "The parabola $y = x^2 - 5x + 6$. Its **roots** are the x-intercepts $x = 2$ and $x = 3$; the **vertex** sits halfway between them at $x = 2.5$; the curve is symmetric about that vertical axis. Solving the equation is the algebraic version of finding where the graph crosses the x-axis.",
         "es": "La parábola $y = x^2 - 5x + 6$. Sus **raíces** son los cortes con el eje x, $x = 2$ y $x = 3$; el **vértice** está a medio camino, en $x = 2.5$; la curva es simétrica respecto a ese eje vertical. Resolver la ecuación es la versión algebraica de hallar dónde la gráfica cruza el eje x."

@@ -70,6 +70,47 @@
       }
     },
     {
+      "type": "vector2d",
+      "matrix": [
+        [
+          0.9,
+          0.2
+        ],
+        [
+          0.1,
+          0.8
+        ]
+      ],
+      "sliders": [
+        {
+          "name": "c",
+          "min": 0,
+          "max": 3,
+          "step": 0.1,
+          "value": 3,
+          "label": {
+            "en": "City at the start, $c_0$ (thousands)",
+            "es": "Ciudad al principio, $c_0$ (miles)"
+          }
+        }
+      ],
+      "vectors": [
+        {
+          "x": "c",
+          "y": "3 - c",
+          "label": "x₀",
+          "orbit": 12
+        }
+      ],
+      "eigen": true,
+      "square": false,
+      "morph": false,
+      "caption": {
+        "en": "The migration model with $3$ thousand people in all: $\\mathbf x_0 = (c_0,\\ 3 - c_0)$, in thousands, city first. The dots are $\\mathbf x_0, \\mathbf x_1, \\dots, \\mathbf x_{12}$. Each step shrinks the part along the eigenvector $(1, -1)$ by $\\lambda = 0.7$ and keeps the part along $(2, 1)$, where $\\lambda = 1$, so every start ends near $(2, 1)$: two thirds in the city, one third in the suburbs. With $c_0 = 3$ this is the worked example scaled by $3$.",
+        "es": "El modelo de migración con $3$ mil personas en total: $\\mathbf x_0 = (c_0,\\ 3 - c_0)$, en miles, primero la ciudad. Los puntos son $\\mathbf x_0, \\mathbf x_1, \\dots, \\mathbf x_{12}$. Cada paso encoge la parte a lo largo del vector propio $(1, -1)$ por $\\lambda = 0.7$ y conserva la parte a lo largo de $(2, 1)$, donde $\\lambda = 1$, así que todo punto de partida acaba cerca de $(2, 1)$: dos tercios en la ciudad y un tercio en las afueras. Con $c_0 = 3$ es el ejemplo resuelto multiplicado por $3$."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "A negative eigenvalue flips the sign at each step. With $\\lambda = -0.5$, the state alternates sign while it shrinks: $(-0.5)^k$ goes to zero, but in a zigzag. With $\\lambda = -1$ it swings between $+1$ and $-1$ forever, so there is no steady state, even though $|\\lambda| = 1$. Complex eigenvalues are stranger still: they rotate the state while scaling it, so the orbit spirals inward when $|\\lambda| < 1$ and outward when $|\\lambda| > 1$. Check the sign and the rotation, not only the size.",

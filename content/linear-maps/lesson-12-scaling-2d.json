@@ -84,6 +84,85 @@
       }
     },
     {
+      "type": "vector2d",
+      "matrix": [
+        [
+          "kx",
+          0
+        ],
+        [
+          0,
+          "ky"
+        ]
+      ],
+      "sliders": [
+        {
+          "name": "kx",
+          "min": -2,
+          "max": 2,
+          "step": 0.25,
+          "value": 2,
+          "label": "$k_x$"
+        },
+        {
+          "name": "ky",
+          "min": -2,
+          "max": 2,
+          "step": 0.25,
+          "value": 0.5,
+          "label": "$k_y$"
+        }
+      ],
+      "shape": [
+        [
+          0,
+          0
+        ],
+        [
+          0.4,
+          0
+        ],
+        [
+          0.4,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1.4
+        ],
+        [
+          0.4,
+          1.4
+        ],
+        [
+          0.4,
+          1.8
+        ],
+        [
+          1.2,
+          1.8
+        ],
+        [
+          1.2,
+          2.2
+        ],
+        [
+          0,
+          2.2
+        ]
+      ],
+      "morph": false,
+      "extent": 5,
+      "caption": {
+        "en": "Scaling by $k_x$ and $k_y$, starting at $\\operatorname{diag}(2, \\tfrac12)$ from the worked example: the unit square becomes a $2 \\times \\tfrac12$ rectangle with the same area. The letter F, dashed before and solid after, shows the orientation. Make one factor negative and the F is mirrored: a reflection, with a negative determinant. Make both negative and the F turns upside down without being mirrored, since the determinant is positive. With $k_x = k_y = -1$ that is exactly the $180°$ rotation; with other values the turn also stretches.",
+        "es": "Escalar por $k_x$ y $k_y$, empezando por la $\\operatorname{diag}(2, \\tfrac12)$ del ejemplo resuelto: el cuadrado unidad se convierte en un rectángulo de $2 \\times \\tfrac12$ con la misma área. La letra F, discontinua antes y continua después, muestra la orientación. Haz negativo un factor y la F se refleja: una reflexión, con determinante negativo. Hazlos negativos los dos y la F queda cabeza abajo sin reflejarse, porque el determinante es positivo. Con $k_x = k_y = -1$ es exactamente el giro de $180°$; con otros valores, el giro además estira."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

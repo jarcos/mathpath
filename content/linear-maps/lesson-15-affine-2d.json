@@ -84,6 +84,45 @@
       }
     },
     {
+      "type": "vector2d",
+      "matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "translate": [
+        "b1",
+        "b2"
+      ],
+      "sliders": [
+        {
+          "name": "b1",
+          "min": -3,
+          "max": 3,
+          "step": 0.5,
+          "value": 1,
+          "label": "$b_1$"
+        },
+        {
+          "name": "b2",
+          "min": -3,
+          "max": 3,
+          "step": 0.5,
+          "value": -2,
+          "label": "$b_2$"
+        }
+      ],
+      "caption": {
+        "en": "The worked example's $T(\\mathbf x) = A\\mathbf x + \\mathbf b$: a shear followed by a slide by $\\mathbf b = (b_1, b_2)$, starting at $(1, -2)$. Grid lines stay straight and parallel, and the unit square becomes a parallelogram of area $|\\det A| = 1$, but the origin lands on $\\mathbf b$. Set $\\mathbf b = (0, 0)$ and the map is linear again: just the shear.",
+        "es": "La $T(\\mathbf x) = A\\mathbf x + \\mathbf b$ del ejemplo resuelto: una cizalla seguida de un desplazamiento por $\\mathbf b = (b_1, b_2)$, empezando en $(1, -2)$. Las rectas de la cuadrícula siguen rectas y paralelas, y el cuadrado unidad se convierte en un paralelogramo de área $|\\det A| = 1$, pero el origen va a parar a $\\mathbf b$. Pon $\\mathbf b = (0, 0)$ y la aplicación vuelve a ser lineal: solo la cizalla."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

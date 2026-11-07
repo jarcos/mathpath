@@ -48,9 +48,27 @@
         0,
         4
       ],
+      "yDomain": [
+        -0.4,
+        4.4
+      ],
+      "area": {
+        "from": 0,
+        "to": "b"
+      },
+      "sliders": [
+        {
+          "name": "b",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.1,
+          "value": 4,
+          "label": "$b$"
+        }
+      ],
       "caption": {
-        "en": "The area under $f(x)=x$ from $0$ to $4$ is the shaded triangle. By geometry it is $\\tfrac12\\cdot4\\cdot4 = 8$; by integration $\\int_0^4 x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_0^4 = 8$ — the two methods agree.",
-        "es": "El área bajo $f(x)=x$ de $0$ a $4$ es el triángulo sombreado. Por geometría es $\\tfrac12\\cdot4\\cdot4 = 8$; por integración $\\int_0^4 x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_0^4 = 8$ — ambos métodos coinciden."
+        "en": "The area under $f(x)=x$ from $0$ to $b$ is the shaded triangle, with base and height $b$, so it is $\\tfrac12 b^2$. At $b = 4$, geometry gives $\\tfrac12\\cdot4\\cdot4 = 8$ and integration gives $\\int_0^4 x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_0^4 = 8$: the two methods agree. Drag $b$ and compare the integral below with $\\tfrac12 b^2$: they stay equal.",
+        "es": "El área bajo $f(x)=x$ de $0$ a $b$ es el triángulo sombreado, de base y altura $b$, así que vale $\\tfrac12 b^2$. En $b = 4$, la geometría da $\\tfrac12\\cdot4\\cdot4 = 8$ y la integración da $\\int_0^4 x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_0^4 = 8$: ambos métodos coinciden. Arrastra $b$ y compara la integral de debajo con $\\tfrac12 b^2$: siguen siendo iguales."
       }
     },
     {

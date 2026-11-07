@@ -55,6 +55,24 @@
       }
     },
     {
+      "type": "vector2d",
+      "matrix": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "eigen": true,
+      "caption": {
+        "en": "The projection $T(x, y) = (x, 0)$. Press **Play**: the whole plane flattens onto the x-axis, which is the image (rank $1$). The dashed line marked $\\lambda = 0$ is the kernel, the y-axis, whose points all land on $\\mathbf 0$ (nullity $1$). Rank plus nullity is $1 + 1 = 2$, the dimension of the domain.",
+        "es": "La proyección $T(x, y) = (x, 0)$. Pulsa **Reproducir**: todo el plano se aplasta sobre el eje x, que es la imagen (rango $1$). La línea discontinua marcada con $\\lambda = 0$ es el núcleo, el eje y, cuyos puntos van todos a parar a $\\mathbf 0$ (nulidad $1$). Rango más nulidad da $1 + 1 = 2$, la dimensión del dominio."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "**Why it matters.** The equation $A\\mathbf x = \\mathbf b$ has a solution exactly when $\\mathbf b$ lies in the image, and then its solutions are one particular solution plus any vector of the kernel. In a regression, a nonzero kernel means some combinations of the feature columns cancel to zero, so the fitted coefficients are not unique: adding any kernel vector to them leaves every prediction unchanged. This is why practitioners check the rank of the design matrix before trusting its coefficients.",

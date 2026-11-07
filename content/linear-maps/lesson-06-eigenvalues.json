@@ -85,6 +85,47 @@
       }
     },
     {
+      "type": "vector2d",
+      "matrix": [
+        [
+          4,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "sliders": [
+        {
+          "name": "p",
+          "min": 0,
+          "max": 6.28,
+          "step": 0.01,
+          "value": 0.4,
+          "label": {
+            "en": "Angle of $\\mathbf v$ (radians)",
+            "es": "Ángulo de $\\mathbf v$ (radianes)"
+          }
+        }
+      ],
+      "vectors": [
+        {
+          "x": "cos(p)",
+          "y": "sin(p)",
+          "label": "v"
+        }
+      ],
+      "eigen": true,
+      "square": false,
+      "morph": false,
+      "extent": 6,
+      "caption": {
+        "en": "Hunting for the eigenvectors of $A = \\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}$ from the worked example. Turn the unit vector $\\mathbf v$ with the slider and watch $T(\\mathbf v) = A\\mathbf v$. For most angles it points somewhere else. On the two dashed lines it stays on the line of $\\mathbf v$: along $(1, 1)$ it is $5$ times as long, and along $(1, -2)$ twice as long.",
+        "es": "A la caza de los vectores propios de $A = \\begin{pmatrix}4&1\\\\2&3\\end{pmatrix}$, la del ejemplo resuelto. Gira el vector unitario $\\mathbf v$ con el deslizador y observa $T(\\mathbf v) = A\\mathbf v$. Para casi todos los ángulos apunta a otro sitio. Sobre las dos líneas discontinuas se queda en la recta de $\\mathbf v$: a lo largo de $(1, 1)$ mide $5$ veces más, y a lo largo de $(1, -2)$, el doble."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

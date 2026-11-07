@@ -51,6 +51,15 @@
         -2,
         2
       ],
+      "points": [
+        {
+          "x": -1,
+          "label": {
+            "en": "local max",
+            "es": "máximo local"
+          }
+        }
+      ],
       "caption": {
         "en": "The slice $f(x,0)=x^3-3x$. Along this curve $x=-1$ is a local maximum, yet on the full surface $(-1,0)$ is a saddle: the $y^2$ term bends upwards in the $y$ direction.",
         "es": "El corte $f(x,0)=x^3-3x$. Sobre esta curva $x=-1$ es un máximo local, pero en la superficie completa $(-1,0)$ es un punto de silla: el término $y^2$ se curva hacia arriba en la dirección $y$."

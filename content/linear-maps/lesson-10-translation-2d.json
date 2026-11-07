@@ -77,6 +77,61 @@
       }
     },
     {
+      "type": "vector2d",
+      "matrix": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "translate": [
+        "a",
+        "b"
+      ],
+      "sliders": [
+        {
+          "name": "a",
+          "min": -4,
+          "max": 4,
+          "step": 0.5,
+          "value": -1,
+          "label": "$a$"
+        },
+        {
+          "name": "b",
+          "min": -4,
+          "max": 4,
+          "step": 0.5,
+          "value": 4,
+          "label": "$b$"
+        }
+      ],
+      "shape": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "square": false,
+      "extent": 7,
+      "caption": {
+        "en": "Translating the triangle $(0,0)$, $(2,0)$, $(1,3)$ by $(a, b)$, starting at the worked example's $(-1, 4)$; the dashed outline is the triangle before. Every point moves by the same vector, so sizes and angles are kept. But the origin moves too: the axes of the moved grid now cross at $(a, b)$. That is why a translation is not linear, unless $(a, b) = (0, 0)$.",
+        "es": "Trasladar el triángulo $(0,0)$, $(2,0)$, $(1,3)$ por $(a, b)$, empezando por el $(-1, 4)$ del ejemplo resuelto; el contorno discontinuo es el triángulo original. Todos los puntos se mueven por el mismo vector, así que se conservan tamaños y ángulos. Pero el origen también se mueve: los ejes de la cuadrícula movida se cortan ahora en $(a, b)$. Por eso una traslación no es lineal, salvo si $(a, b) = (0, 0)$."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "Translation is everywhere once you look for it. Centering a dataset subtracts its mean, which is a translation by $-\\bar{\\mathbf x}$, and principal component analysis needs centered data, because it looks for directions of spread around the mean. Convolutional neural networks are **translation-equivariant**: shifting an image shifts the feature maps by the same amount (exactly, for stride 1 and ignoring the borders), so the network need not learn each position separately. Pooling then makes the output approximately invariant to small shifts.",

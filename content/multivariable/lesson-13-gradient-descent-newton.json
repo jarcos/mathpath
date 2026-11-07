@@ -96,6 +96,12 @@
         -1,
         2
       ],
+      "points": [
+        {
+          "x": "log(2)",
+          "label": "ln 2"
+        }
+      ],
       "caption": {
         "en": "$f(x) = e^x - 2x$ is convex, with its lowest point at $x = \\ln 2 \\approx 0.693$, where $f' = 0$. Newton's method from $x = 0$ is within $10^{-6}$ of it after four steps.",
         "es": "$f(x) = e^x - 2x$ es convexa, con su punto más bajo en $x = \\ln 2 \\approx 0.693$, donde $f' = 0$. El método de Newton desde $x = 0$ está a menos de $10^{-6}$ de él tras cuatro pasos."

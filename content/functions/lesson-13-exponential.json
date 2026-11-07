@@ -41,14 +41,34 @@
     },
     {
       "type": "graph",
-      "fn": "2^x",
+      "fn": "b^x",
       "domain": [
         -3,
         4
       ],
+      "yDomain": [
+        -1,
+        17
+      ],
+      "points": [
+        {
+          "x": 0,
+          "label": "(0, 1)"
+        }
+      ],
+      "sliders": [
+        {
+          "name": "b",
+          "min": 0.25,
+          "max": 4,
+          "step": 0.05,
+          "value": 2,
+          "label": "$b$"
+        }
+      ],
       "caption": {
-        "en": "$f(x) = 2^x$: always positive, passing through $(0,1)$, hugging the x-axis on the left and growing explosively on the right.",
-        "es": "$f(x) = 2^x$: siempre positiva, pasa por $(0,1)$, se pega al eje x por la izquierda y crece de forma explosiva por la derecha."
+        "en": "$f(x) = b^x$, starting at $2^x$: always positive, passing through $(0,1)$, hugging the x-axis on the left and growing explosively on the right. Drag $b$: every base passes through $(0, 1)$, because $b^0 = 1$. For $0 < b < 1$ the curve falls instead, and $b = 1$ gives the flat line $y = 1$.",
+        "es": "$f(x) = b^x$, empezando por $2^x$: siempre positiva, pasa por $(0,1)$, se pega al eje x por la izquierda y crece de forma explosiva por la derecha. Arrastra $b$: toda base pasa por $(0, 1)$, porque $b^0 = 1$. Para $0 < b < 1$ la curva baja, y $b = 1$ da la recta horizontal $y = 1$."
       }
     },
     {

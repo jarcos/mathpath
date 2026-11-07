@@ -41,14 +41,54 @@
     },
     {
       "type": "graph",
-      "fn": "x^2 - 4*x + 3",
+      "fn": "a*(x - h)^2 + k",
       "domain": [
         -1,
         5
       ],
+      "yDomain": [
+        -4,
+        8
+      ],
+      "points": [
+        {
+          "x": "h",
+          "y": "k",
+          "label": {
+            "en": "vertex",
+            "es": "vértice"
+          }
+        }
+      ],
+      "sliders": [
+        {
+          "name": "a",
+          "min": -2,
+          "max": 2,
+          "step": 0.25,
+          "value": 1,
+          "label": "$a$"
+        },
+        {
+          "name": "h",
+          "min": 0,
+          "max": 4,
+          "step": 0.25,
+          "value": 2,
+          "label": "$h$"
+        },
+        {
+          "name": "k",
+          "min": -3,
+          "max": 3,
+          "step": 0.25,
+          "value": -1,
+          "label": "$k$"
+        }
+      ],
       "caption": {
-        "en": "$f(x) = x^2 - 4x + 3$: opens upward, roots at $1$ and $3$, vertex at $x = 2$ where the minimum value $f(2) = -1$ occurs.",
-        "es": "$f(x) = x^2 - 4x + 3$: abre hacia arriba, raíces en $1$ y $3$, vértice en $x = 2$ donde está el valor mínimo $f(2) = -1$."
+        "en": "$f(x) = a(x - h)^2 + k$ in vertex form, starting at $x^2 - 4x + 3 = (x - 2)^2 - 1$: it opens upward, has roots at $1$ and $3$, and its vertex is $(2, -1)$, where the minimum $f(2) = -1$ occurs. Drag $h$ and $k$ to move the vertex; drag $a$ to make the parabola narrower or wider, or to open it downward with $a < 0$. Watch how many times it meets the x-axis: twice, once or never. At $a = 0$ it is no longer a parabola, just the flat line $y = k$.",
+        "es": "$f(x) = a(x - h)^2 + k$ en forma de vértice, empezando por $x^2 - 4x + 3 = (x - 2)^2 - 1$: abre hacia arriba, tiene raíces en $1$ y $3$, y su vértice es $(2, -1)$, donde está el mínimo $f(2) = -1$. Arrastra $h$ y $k$ para mover el vértice; arrastra $a$ para estrechar o ensanchar la parábola, o para abrirla hacia abajo con $a < 0$. Fíjate en cuántas veces corta el eje x: dos, una o ninguna. Con $a = 0$ deja de ser una parábola: solo queda la recta horizontal $y = k$."
       }
     },
     {

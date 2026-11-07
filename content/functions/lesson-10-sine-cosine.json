@@ -41,14 +41,43 @@
     },
     {
       "type": "graph",
-      "fn": "sin(x)",
+      "fn": "A*sin(B*x)",
+      "label": "$A\\sin(Bx)$",
+      "curves": [
+        {
+          "fn": "sin(x)",
+          "label": "$\\sin x$"
+        }
+      ],
       "domain": [
         -6.5,
         6.5
       ],
+      "yDomain": [
+        -3.3,
+        3.3
+      ],
+      "sliders": [
+        {
+          "name": "A",
+          "min": 0.5,
+          "max": 3,
+          "step": 0.1,
+          "value": 2,
+          "label": "$A$"
+        },
+        {
+          "name": "B",
+          "min": 0.5,
+          "max": 3,
+          "step": 0.1,
+          "value": 1,
+          "label": "$B$"
+        }
+      ],
       "caption": {
-        "en": "$f(x) = \\sin x$: a smooth wave of period $2\\pi$ and amplitude $1$, crossing zero at every multiple of $\\pi$ and peaking at $\\pm 1$.",
-        "es": "$f(x) = \\sin x$: una onda suave de período $2\\pi$ y amplitud $1$, que cruza el cero en cada múltiplo de $\\pi$ y alcanza picos en $\\pm 1$."
+        "en": "$\\sin x$ is a smooth wave of period $2\\pi$ and amplitude $1$, crossing zero at every multiple of $\\pi$ and peaking at $\\pm 1$. The other curve is $A\\sin(Bx)$: drag $A$ to change the amplitude, and $B$ to change the period, which is $2\\pi/B$. It starts at $A = 2$, $B = 1$: twice as tall, with the same zeros.",
+        "es": "$\\sin x$ es una onda suave de período $2\\pi$ y amplitud $1$, que cruza el cero en cada múltiplo de $\\pi$ y alcanza picos en $\\pm 1$. La otra curva es $A\\sin(Bx)$: arrastra $A$ para cambiar la amplitud, y $B$ para cambiar el período, que es $2\\pi/B$. Empieza en $A = 2$, $B = 1$: el doble de alta y con los mismos ceros."
       }
     },
     {

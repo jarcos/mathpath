@@ -78,6 +78,45 @@
       }
     },
     {
+      "type": "vector2d",
+      "matrix": [
+        [
+          "cos(d * pi / 180)",
+          "-sin(d * pi / 180)"
+        ],
+        [
+          "sin(d * pi / 180)",
+          "cos(d * pi / 180)"
+        ]
+      ],
+      "sliders": [
+        {
+          "name": "d",
+          "min": 0,
+          "max": 360,
+          "step": 1,
+          "value": 30,
+          "label": {
+            "en": "$\\theta$ (degrees)",
+            "es": "$\\theta$ (grados)"
+          }
+        }
+      ],
+      "vectors": [
+        {
+          "x": 2,
+          "y": 1,
+          "label": "v"
+        }
+      ],
+      "eigen": true,
+      "morph": false,
+      "caption": {
+        "en": "The rotation $R(\\theta)$ acting on $\\mathbf v = (2, 1)$, starting at $\\theta = 30°$ as in the worked example. Drag $\\theta$: the grid turns as a rigid whole, the determinant stays $1$, and $T(\\mathbf v)$ travels around the circle of radius $\\sqrt 5$. No direction keeps its line, so there are no real eigenvalues, except at $0°$ and $180°$, where every vector is an eigenvector ($\\lambda = 1$ and $\\lambda = -1$).",
+        "es": "La rotación $R(\\theta)$ actuando sobre $\\mathbf v = (2, 1)$, empezando en $\\theta = 30°$ como en el ejemplo resuelto. Arrastra $\\theta$: la cuadrícula gira como un todo rígido, el determinante sigue siendo $1$ y $T(\\mathbf v)$ recorre la circunferencia de radio $\\sqrt 5$. Ninguna dirección conserva su recta, así que no hay valores propios reales, salvo en $0°$ y $180°$, donde todo vector es vector propio ($\\lambda = 1$ y $\\lambda = -1$)."
+      }
+    },
+    {
       "type": "prose",
       "content": {
         "en": "Rotations appear wherever direction matters. Multiplying by $\\cos\\theta + i\\sin\\theta$ is the same rotation in the complex plane (see the polar form of complex numbers). Robot arms chain rotations, one per joint, and the product of their matrices orients each link. Data augmentation rotates training images by small angles, so a slight tilt does not change the label; where orientation carries meaning (a 6 turned 180° looks like a 9), rotations must be limited. **Rotary position embeddings** (RoPE) in transformers rotate each pair of coordinates by an angle proportional to the token's position, so the dot product between two tokens depends on how far apart they are. In three dimensions, rotations about different axes do not commute, so the order of the turns matters.",

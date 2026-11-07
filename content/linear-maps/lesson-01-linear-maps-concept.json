@@ -84,6 +84,30 @@
       }
     },
     {
+      "type": "vector2d",
+      "matrix": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "vectors": [
+        {
+          "x": 1,
+          "y": 1,
+          "label": "v"
+        }
+      ],
+      "caption": {
+        "en": "The map $T(x, y) = (x + 2y,\\ 3x)$ from the worked example, acting on the whole plane. Drag **Apply $T$** or press **Play**: the grid lines stay straight, parallel and evenly spaced, and the origin stays where it is. That is what linearity looks like. The vector $\\mathbf v = (1, 1)$ lands on $T(\\mathbf v) = (3, 3)$, and the arrows $T(e_1) = (1, 3)$ and $T(e_2) = (2, 0)$ carry the grid with them.",
+        "es": "La aplicación $T(x, y) = (x + 2y,\\ 3x)$ del ejemplo resuelto, actuando sobre todo el plano. Arrastra **Aplicar $T$** o pulsa **Reproducir**: las rectas de la cuadrícula siguen rectas, paralelas e igual de espaciadas, y el origen no se mueve. Así se ve la linealidad. El vector $\\mathbf v = (1, 1)$ va a parar a $T(\\mathbf v) = (3, 3)$, y las flechas $T(e_1) = (1, 3)$ y $T(e_2) = (2, 0)$ arrastran la cuadrícula con ellas."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
