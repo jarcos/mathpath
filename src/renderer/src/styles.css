@@ -225,8 +225,25 @@ button.link.danger { color: var(--bad); }
 .lesson-graph { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin: 22px 0; }
 .lesson-graph figcaption { color: var(--muted); margin-top: 8px; padding: 0 4px; }
 .function-graph { width: 100%; }
-.function-graph svg { display: block; width: 100%; height: auto; }
+.function-graph > svg { display: block; width: 100%; height: auto; }
 .graph-error { color: var(--bad); padding: 20px; }
+.function-graph > svg { touch-action: pan-y; }
+.plot-key svg { flex: none; }
+.plot-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 2px 4px 8px; font-size: 0.88rem; color: var(--text); }
+.plot-key { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.plot-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; margin: 10px 4px 2px; }
+.plot-slider { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+.plot-slider-label { white-space: nowrap; }
+.plot-slider input[type="range"] { width: 150px; accent-color: var(--accent); }
+.plot-slider-value { min-width: 3.2em; font-variant-numeric: tabular-nums; color: var(--muted); }
+.plot-morph { display: inline-flex; align-items: center; gap: 12px; }
+.plot-reset { font-size: 0.85rem; }
+.plot-readouts { display: flex; flex-direction: column; gap: 6px; margin: 10px 4px 2px; font-size: 0.92rem; }
+.vector-plane { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: flex-start; }
+.vector-plane-svg { flex: none; max-width: 100%; height: auto; }
+.vector-plane-side { flex: 1 1 260px; min-width: 240px; }
+.vector-plane-side .plot-controls { flex-direction: column; align-items: flex-start; margin-top: 4px; }
+.vector-plane-side .plot-readouts { margin-top: 14px; }
 
 /* Exercises */
 .exercises { margin-top: 32px; }

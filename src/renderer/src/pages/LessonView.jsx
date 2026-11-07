@@ -11,6 +11,7 @@ import { countsClean, isGuessable, lessonStats } from '@/lib/mastery.js'
 import MasteryBadge from '@/components/MasteryBadge.jsx'
 import MathText from '@/components/MathText.jsx'
 import FunctionGraph from '@/components/FunctionGraph.jsx'
+import VectorPlane from '@/components/VectorPlane.jsx'
 import Exercise from '@/components/Exercise.jsx'
 import NotationBox from '@/components/NotationBox.jsx'
 import CodeBlock from '@/components/CodeBlock.jsx'
@@ -49,10 +50,10 @@ function Section({ section, loc, t, openLesson }) {
   if (section.type === 'prereq') {
     return <PrereqBox section={section} loc={loc} t={t} openLesson={openLesson} />
   }
-  if (section.type === 'graph') {
+  if (section.type === 'graph' || section.type === 'vector2d') {
     return (
       <figure className="lesson-graph">
-        <FunctionGraph fn={section.fn} domain={section.domain} />
+        {section.type === 'graph' ? <FunctionGraph section={section} /> : <VectorPlane section={section} />}
         {section.caption && (
           <figcaption className="muted small">
             <MathText>{loc(section.caption)}</MathText>
@@ -262,7 +263,9 @@ export default function LessonView({ lessonId, onBack, onOpenLesson }) {
 
       <article className="lesson-body">
         {lesson.sections.map((s, i) => (
-          <Section key={i} section={s} loc={loc} t={t} openLesson={onOpenLesson} />
+          // Keyed by lesson too: going to the next lesson must not reuse a
+          // figure (and its slider values) that sat at the same position.
+          <Section key={`${lesson.id}-${i}`} section={s} loc={loc} t={t} openLesson={onOpenLesson} />
         ))}
       </article>
 

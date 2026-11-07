@@ -19,6 +19,7 @@ import * as math from 'mathjs'
 import { assertEquivalent, checkAnswer, FORMS, inForm, validateAnswer } from '../src/shared/validate.js'
 import { buildCurriculum, checkCurriculum } from '../src/shared/curriculum.js'
 import { fill, instantiate, leftovers } from '../src/shared/params.js'
+import { graphProblems, vector2dProblems } from '../src/shared/plot.js'
 import katex from 'katex'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -276,13 +277,40 @@ function checkCodeSection(section, where) {
   if (typeof section.runnable !== 'boolean') fail(where, 'code section needs a boolean runnable')
 }
 
-function checkGraph(section, where) {
-  try {
-    const node = math.parse(section.fn)
-    node.compile().evaluate({ x: 1 })
-  } catch (e) {
-    fail(where, `graph fn "${section.fn}" failed to parse/evaluate: ${e.message}`)
+// Figures: every expression parses and reads only its sliders, curves are
+// drawable over the domain for every slider setting tried, points, tangent
+// and area stay inside it, captions and labels come in EN + ES.
+let figureCount = 0
+let sliderCount = 0
+function checkFigure(section, where) {
+  figureCount++
+  sliderCount += (section.sliders || []).length
+  const problems = section.type === 'graph' ? graphProblems(section) : vector2dProblems(section)
+  problems.forEach((p) => fail(where, p))
+  for (const tex of figureTex(section)) {
+    try {
+      katex.renderToString(tex, { throwOnError: true })
+    } catch (e) {
+      fail(where, `figure label "${tex}" doesn't render: ${e.message}`)
+    }
   }
+}
+
+// The TeX in a figure's caption and labels.
+function figureTex(section) {
+  const texts = []
+  const add = (v) => {
+    if (!v) return
+    if (typeof v === 'string') texts.push(v)
+    else texts.push(v.en || '', v.es || '')
+  }
+  add(section.caption)
+  add(section.label)
+  for (const c of section.curves || []) add(c.label)
+  for (const s of section.sliders || []) add(s.label)
+  const out = []
+  for (const t of texts) for (const m of t.matchAll(/\$\$([^$]+)\$\$|\$([^$]+)\$/g)) out.push(m[1] || m[2])
+  return out
 }
 
 // Progress, attempts and review cards are keyed by these ids, so each one
@@ -303,7 +331,7 @@ function checkLesson(lesson, file) {
   if (typeof lesson.order !== 'number') fail(where, 'missing numeric order')
 
   for (const section of lesson.sections || []) {
-    if (section.type === 'graph') checkGraph(section, where)
+    if (section.type === 'graph' || section.type === 'vector2d') checkFigure(section, where)
     else if (section.type === 'code') checkCodeSection(section, where)
     else if (section.type === 'prereq') {
       hasBoth(section.note, 'prereq note', where)
@@ -349,6 +377,7 @@ console.log(`  exercises: ${exerciseCount}`)
 console.log(`  equivalence/answer checks: ${checkCount}`)
 console.log(`  prerequisite links: ${edgeCount}`)
 console.log(`  exercise templates: ${templateCount} (${TEMPLATE_SAMPLES} instances each)`)
+console.log(`  figures: ${figureCount} (${sliderCount} sliders)`)
 
 if (problems.length) {
   console.log(`\n${problems.length} problem(s) found:\n`)
