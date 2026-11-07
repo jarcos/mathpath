@@ -92,6 +92,14 @@ src/
                  getRecentLessons in db.js, or the next one not completed)
                search.js — the Cmd+K index (lessons by title, section titles
                  and text in EN + ES, glossary symbols), accent-insensitive
+               plot.js — the interactive figures' maths and checks: `graph`
+                 (fn + up to 2 curves, points, tangent, area, sliders whose names
+                 are variables of the expressions; a yDomain when it has sliders)
+                 and `vector2d` (2×2 matrix or affine map: grid, unit square,
+                 vectors + orbit, shape, eigenvectors, identity→T morph). Slope,
+                 area, det and eigenvalues are computed, never written in content.
+                 verify:content runs graphProblems / vector2dProblems on every
+                 figure (sliders sampled at ends, start and 3 inner values)
                stats.js / sheet.js — Statistics page numbers; the subject
                  cheat sheet's display formulas and the notes as Markdown
                params.js — template exercises: `params`/`derived`/`where`,
@@ -110,9 +118,11 @@ src/
                        buttons (App.jsx), N for the next lesson, Enter on an MCQ
                        option, ⌘/Ctrl+Enter in a code exercise; never while typing
       lib/notes.js     a lesson's note (autosaved) + bookmark; all the notes
-      components/      MathText (KaTeX), FunctionGraph (custom SVG plotter on mathjs),
-                       Exercise (lesson / review modes), MasteryBadge, ProgressBar,
-                       SearchPalette (Cmd+K), ActivityHeatmap
+      components/      MathText (KaTeX), FunctionGraph (`graph` sections: custom
+                       SVG plotter on mathjs), VectorPlane (`vector2d` sections),
+                       plotKit (their colors, sliders, arrows), Exercise (lesson /
+                       review modes), MasteryBadge, ProgressBar, SearchPalette
+                       (Cmd+K), ActivityHeatmap
       pages/           Dashboard, SubjectView, LessonView, ReviewView, PlanView,
                        PlacementView, ExamView, MapView, NotesView, StatsView,
                        SheetView (cheat sheet → PDF), SettingsView (appearance,
@@ -130,11 +140,14 @@ sources/         math/ + ai/ source material; see sources/INDEX.md
 docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 ```
 
-- Math rendering: **KaTeX**. Graphs: **custom SVG plotter** (`FunctionGraph.jsx`)
-  built on mathjs — not function-plot.
+- Math rendering: **KaTeX**. Graphs: **custom SVG plotter** (`FunctionGraph.jsx`,
+  `VectorPlane.jsx`) built on mathjs — not function-plot. A figure's labels are
+  one plain string or {en, es} (`useSay`, not `loc`, which drops plain strings);
+  point and vector labels are SVG text, so no `$…$` in them.
 - **Light/dark theme:** state in AppContext, persisted in SQLite `settings` key
   `theme`, applied via `data-theme` on `documentElement`; light overrides live in
-  `styles.css` under `:root[data-theme="light"]`. FunctionGraph picks colors by theme.
+  `styles.css` under `:root[data-theme="light"]`. The figures pick colors by theme
+  (`PLOT_THEMES` in plotKit.jsx, validated for color blindness and contrast).
 
 ## mathjs gotchas
 
@@ -146,11 +159,16 @@ docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 ## Curriculum status
 
 **Both tracks complete** (textbook depth, all verified). 255 lessons / 1247
-exercises (36 of them templates) / 6294 checks passing (`npm run verify:content`).
+exercises (36 of them templates) / 6294 checks / 35 figures (23 sliders) passing
+(`npm run verify:content`).
 M35 (done) deepened calculus, linear-algebra and linear-maps in place, one
 subject per release: calculus (v0.8.0), linear-algebra (v0.9.0) and linear-maps
 (v0.10.0). Existing exercises never change (progress and review cards point at
 their ids).
+M33 (interactive visuals + AI code exercises) goes in three parts: part 1, graphs
+with sliders and the `vector2d` plane in 20 math-ladder lessons, is done (not
+released); part 2 is distributions, scatter and heatmaps for the AI track; part 3
+the implement-it-yourself exercises.
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
 linear-maps (16), multivariable (14, M32: Taylor, partial derivatives, gradient,
