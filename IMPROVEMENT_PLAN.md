@@ -475,7 +475,7 @@ Se hace con el mismo proceso que M32: borradores por asignatura, todas las puert
 - **Prueba en la app** firmada en local, con una copia de una base de datos real: las 16 lecciones abren desde la búsqueda en español con su recuadro de prerrequisitos, dos ejemplos y su test de cuatro opciones, sin fórmulas rotas. En la 16, el error típico (girar en sentido horario) tiene su aviso, la respuesta buena da "¡Correcto!" y una opción errónea muestra su explicación; en la 11, el test de las cuatro matrices; el inglés también. La base de datos sigue en la versión 5 y el original no se tocó.
 - **Publicada en v0.10.0** (6 de noviembre de 2026), firmada y notarizada, y con ella **M35 queda completo**: cálculo, álgebra lineal y aplicaciones lineales, 51 lecciones, a profundidad de libro de texto. Antes de publicar, la app del ensayo se probó con una copia de una base de datos real: la lección de diagonalización tiene su recuadro de prerrequisitos, dos ejemplos y su test; la explicación de una opción errónea, el aviso de un error típico y "¡Correcto!" se ven, la base de datos sigue en la versión 5 y el original no se tocó. La base de datos no cambia en esta versión.
 
-### Estado de 3.3, parte 1: gráficas interactivas y el plano (hito M33, sin publicar)
+### Estado de 3.3, parte 1: gráficas interactivas y el plano (hito M33, publicada en v0.11.0)
 
 M33 se hace en tres partes, como M34 y M35: (1) el motor de gráficas y el plano, en las lecciones de la escalera matemática; (2) distribuciones, dispersión y mapas de calor en la pista de IA; (3) los ejercicios de "impleméntalo tú" (3.4).
 
@@ -489,6 +489,7 @@ M33 se hace en tres partes, como M34 y M35: (1) el motor de gráficas y el plano
   - Los pies tenían un error de matemáticas: dos factores de escala negativos solo dan el giro de $180°$ cuando ambos valen $-1$. Hubo también cinco imprecisiones y dos términos en español; todo está corregido.
 - **Prueba en la app** firmada en local, con una copia de una base de datos real, en español y en inglés y en los dos temas. Las 20 lecciones abren con su figura, sin errores y sin coordenadas NaN. Con las flechas del teclado, el vector de la lección de valores propios cae sobre la recta de $\lambda = 5$ y mide 5 veces más. Reproducir pasa por $\det A = 0.42$ hasta $-6$. La rotación a $180°$ dice "$\lambda = -1$: todo vector es vector propio". Al imprimir se ocultan los deslizadores y se conservan sus valores. La base de datos sigue en la versión 5 y el original no se tocó.
 - **Para quien ya estudia:** no cambia ningún ejercicio ni la base de datos; solo se ve más en las lecciones.
+- **Publicada en v0.11.0** (7 de noviembre de 2026), firmada y notarizada. Antes de publicar, la app del ensayo se probó con una copia de una base de datos real: las 20 lecciones abren con su figura, sin errores ni coordenadas NaN y con todos los deslizadores rotulados, y en la lección de aplicaciones de la integral, con el teclado, $b = 3$ da $\int_0^3 x\,dx = 4.5$. La base de datos sigue en la versión 5 y el original no se tocó. La base de datos no cambia en esta versión.
 
 ---
 
@@ -640,7 +641,7 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 
 La numeración sigue la de `docs/project.html`, donde el último hito terminado antes de este plan era M26 (navegación y UX). La primera versión de este documento empezaba en M26, por error. M25 solo cubrió álgebra y funciones; el resto de la escalera matemática es M35.
 
-Lo que queda es M33, en tres partes; la primera está hecha, sin publicar. M34 y M35 están terminados.
+Lo que queda es M33, en tres partes; la primera se publicó en v0.11.0. M34 y M35 están terminados.
 
 | Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
@@ -650,7 +651,7 @@ Lo que queda es M33, en tres partes; la primera está hecha, sin publicar. M34 y
 | **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Publicado en v0.2.0; cierre en v0.2.1; crédito implícito en v0.2.2 |
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
-| **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | 🟡 Parte 1 (gráficas con deslizadores y el plano en 20 lecciones) hecha, sin publicar |
+| **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | 🟡 Parte 1 (gráficas con deslizadores y el plano en 20 lecciones) publicada en v0.11.0 |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 (con dos arreglos en v0.7.1) |
 | **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | ✅ Publicado en tres partes: cálculo (12 lecciones) en v0.8.0, álgebra lineal (23) en v0.9.0 y aplicaciones lineales (16) en v0.10.0 |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
