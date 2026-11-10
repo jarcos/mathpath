@@ -216,6 +216,11 @@ math). See `CURRICULUM.md` and `sources/INDEX.md`.
   on macOS run a fresh `npm install` under Node 22.
 - `better-sqlite3` (v13+) loads prebuilt Node-API binaries in both Node and
   Electron: never add an `electron-rebuild` step back.
+- `dependencies` holds only what the main process loads at runtime
+  (`better-sqlite3`, `electron-updater`, `ts-fsrs`), because electron-builder
+  ships them in the app. Renderer libraries are bundled by Vite, so they go in
+  `devDependencies`. Each platform's `files` in `electron-builder.yml` keeps
+  only that OS's better-sqlite3 binaries.
 - On macOS 27 the stock Electron binary (ad-hoc, linker-signed, no sealed
   resources) fails `codesign --verify --deep --strict`, and the OS moves it to
   the Trash as malware when launched. Check the signature before running

@@ -62,6 +62,16 @@ under `dist/`.
 - `out/**` — compiled main, preload, and renderer (renderer already embeds all
   lesson content).
 - `package.json` — the manifest.
+- `node_modules` with only the production `dependencies`: the packages the main
+  process loads at runtime (`better-sqlite3`, `electron-updater`, `ts-fsrs`).
+  Everything the renderer uses (React, i18next, KaTeX, mathjs) is bundled into
+  `out/renderer` by Vite, and the `pyodide` npm package is only the source that
+  `copy-pyodide.mjs` copies, so they are `devDependencies` and aren't shipped.
+  A new renderer library goes in `devDependencies`; a new main-process one in
+  `dependencies`.
+- `better-sqlite3` keeps only its prebuilt binaries for the target OS: each
+  platform's `files` in `electron-builder.yml` leaves out its C sources and the
+  other platforms' `.node` files.
 - The app ships as plain files (`asar: false`), so `better-sqlite3`'s prebuilt
   `.node` binary loads directly at runtime.
 - `sources/` (copyrighted reference material) and `content/` source JSON are
@@ -174,7 +184,8 @@ Lessons in the AI/ML and computational-math tracks include **runnable Python**
 WebAssembly) entirely on-device — no network at runtime, consistent with the
 offline-first principle.
 
-- `pyodide` is a normal dependency. After `npm install`, the **postinstall** step
+- `pyodide` is a devDependency: the app never imports the npm package. After
+  `npm install`, the **postinstall** step
   runs `scripts/copy-pyodide.mjs`, which copies the Pyodide **core** (loader,
   wasm, stdlib) into `src/renderer/public/pyodide/`. That folder is git-ignored
   and is served at `/pyodide/` by Vite/Electron.

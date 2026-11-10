@@ -8,19 +8,25 @@
 #
 # The renderer bundle already contains all lesson content (imported at build
 # time via import.meta.glob), so no content/ files are shipped separately.
-# better-sqlite3 is a native module and is unpacked from the asar so its
-# prebuilt .node binary can be loaded at runtime.
 
 appId: com.jarcos.mathpath
 productName: MathPath
 copyright: Copyright © 2026 Jose Arcos
 
-# What goes inside the app package. We ship only the compiled output and the
-# manifest; source, content/ and sources/ are never bundled (content is already
-# baked into out/renderer).
-files:
-  - out/**
-  - package.json
+# What goes inside the app package: the compiled output and the manifest.
+# Source, content/ and sources/ are never bundled (content is already baked
+# into out/renderer).
+#
+# electron-builder also copies the production `dependencies` from node_modules.
+# Only the main process needs any (better-sqlite3, electron-updater, ts-fsrs):
+# everything the renderer uses is bundled into out/renderer by Vite, so it is a
+# devDependency and isn't shipped twice. better-sqlite3 loads only
+# prebuilds/<platform>-<arch>.node, so each platform leaves out its C sources
+# and the other platforms' binaries.
+#
+# The list is in each platform's `files`, not here: electron-builder keeps a
+# top-level list apart from the platform ones, and a platform list with only
+# exclusions makes it pack the whole project.
 
 # better-sqlite3 (v13+) ships prebuilt Node-API binaries that load in Electron
 # as-is, so skip the native rebuild (it needs a C++ toolchain and broke the
@@ -50,6 +56,13 @@ mac:
   entitlements: build/entitlements.mac.plist
   entitlementsInherit: build/entitlements.mac.plist
   icon: build/icon.icns
+  # Keeps only the macOS better-sqlite3 binaries (x64 and arm64).
+  files:
+    - out/**
+    - package.json
+    - '!node_modules/better-sqlite3/{deps,src}/**'
+    - '!node_modules/better-sqlite3/binding.gyp'
+    - '!node_modules/better-sqlite3/prebuilds/{linux,linuxmusl,win32}-*.node'
   # Signed with the "Developer ID Application" cert auto-discovered in the
   # keychain (or imported from CSC_LINK in CI). Notarization runs when Apple
   # credentials are in the environment (APPLE_ID + APPLE_APP_SPECIFIC_PASSWORD +
@@ -65,12 +78,26 @@ linux:
     - deb
   maintainer: Jose Arcos
   icon: build/icon.png
+  # Keeps only the Linux better-sqlite3 binaries (glibc and musl, x64 and arm64).
+  files:
+    - out/**
+    - package.json
+    - '!node_modules/better-sqlite3/{deps,src}/**'
+    - '!node_modules/better-sqlite3/binding.gyp'
+    - '!node_modules/better-sqlite3/prebuilds/{darwin,win32}-*.node'
 
 # ---- Windows ----
 win:
   target:
     - nsis
   icon: build/icon.ico
+  # Keeps only the Windows better-sqlite3 binaries (x64 and arm64).
+  files:
+    - out/**
+    - package.json
+    - '!node_modules/better-sqlite3/{deps,src}/**'
+    - '!node_modules/better-sqlite3/binding.gyp'
+    - '!node_modules/better-sqlite3/prebuilds/{darwin,linux,linuxmusl}-*.node'
 
 nsis:
   oneClick: false
