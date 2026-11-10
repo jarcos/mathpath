@@ -175,8 +175,8 @@ subject per release: calculus (v0.8.0), linear-algebra (v0.9.0) and linear-maps
 their ids).
 M33 (interactive visuals + AI code exercises) goes in three parts: part 1, graphs
 with sliders and the `vector2d` plane in 20 math-ladder lessons, was released in
-v0.11.0; part 2, distributions, scatter and heatmaps in 16 AI-track lessons, is
-done (not released); part 3 is the implement-it-yourself exercises.
+v0.11.0; part 2, distributions, scatter and heatmaps in 16 AI-track lessons, was
+released in v0.12.0; part 3 is the implement-it-yourself exercises.
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
 linear-maps (16), multivariable (14, M32: Taylor, partial derivatives, gradient,
