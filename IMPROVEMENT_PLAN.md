@@ -702,6 +702,24 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 7. Firma de código en Windows, para quitar el aviso de SmartScreen.
 8. **Instalador más ligero** (comprobado en `/Applications/MathPath.app`): incluye 75 MB de `node_modules`. Gran parte ya va dentro de `out/renderer`: mathjs (16 MB), pyodide (13 MB), react-dom, katex, function-plot, d3… Pasar a `devDependencies` todo lo que solo usa el renderer o los scripts. En `dependencies` solo deben quedar `better-sqlite3` y `electron-updater`.
 
+### Estado de 5.8: instalador más ligero (hecho, sin publicar)
+
+- **En `dependencies` queda solo lo que carga el proceso principal:** `better-sqlite3`, `electron-updater` y `ts-fsrs` (este último lo usa `review.js` y faltaba en la lista de arriba). React, i18next, KaTeX y mathjs ya iban dentro de `out/renderer`, y la app nunca importa el paquete npm de Pyodide: solo lo copia `copy-pyodide.mjs`. Así que pasan a `devDependencies`. En el lockfile solo cambian esas marcas; ninguna versión cambia.
+- **better-sqlite3 lleva solo los binarios de su sistema.** Traía el código C de SQLite (11 MB) y binarios para 8 plataformas, pero solo carga `prebuilds/<plataforma>-<arquitectura>.node`. Cada plataforma de `electron-builder.yml` tiene su propia lista `files`, que deja fuera el código C y los binarios de los otros sistemas. La lista va entera en cada plataforma porque, si hay una lista general y una de plataforma con solo exclusiones, electron-builder empaqueta todo el proyecto.
+- **Resultado en macOS:**
+  - el `node_modules` de la app pasa de 81 a 8 MB, y la carpeta de la app instalada, de 233 a 160 MB;
+  - el ZIP de descarga pasa de 171,9 MB (el de v0.13.0) a 152,4 MB, unos 19,5 MB menos (un 11 %);
+  - el código de la app no cambia: el bundle del renderer tiene el mismo hash, y el del proceso principal ocupa lo mismo.
+- **Windows y Linux:** sus carpetas empaquetadas tienen solo `node_modules`, `out` y `package.json`, y cada una lleva solo los binarios de SQLite de su sistema.
+- **Comprobado:** los 115 tests, `verify` y el build pasan. Se probó la app firmada en local con una copia de una base de datos real:
+  - abre en español en la última lección, con KaTeX;
+  - mathjs corrige: rechaza una respuesta errónea y acepta una expresión equivalente;
+  - un repaso guarda el intento y ts-fsrs reprograma su tarjeta;
+  - el actualizador lee las versiones publicadas («Update for version 0.13.0 is not available»);
+  - un ejercicio de Python y la celda de NumPy de la lección de convolución se ejecutan en Pyodide.
+
+  La base de datos sigue en la versión 5 y el original no se tocó.
+
 ---
 
 ## Hoja de ruta propuesta
@@ -721,7 +739,7 @@ Todos los hitos del plan están publicados. M33 salió en tres partes: v0.11.0, 
 | **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | ✅ Publicado en tres partes: gráficas con deslizadores y el plano en 20 lecciones en v0.11.0; distribuciones, dispersión y mapas de calor en 16 lecciones de IA en v0.12.0; 16 ejercicios de código en la pista de IA, con 35 errores típicos, en v0.13.0 |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 (con dos arreglos en v0.7.1) |
 | **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | ✅ Publicado en tres partes: cálculo (12 lecciones) en v0.8.0, álgebra lineal (23) en v0.9.0 y aplicaciones lineales (16) en v0.10.0 |
-| continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |
+| continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6) | — | — |
 
 ## Ideas que necesitan una decisión tuya
 
