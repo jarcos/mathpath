@@ -21,6 +21,7 @@ import math
 import io
 import importlib
 import contextlib
+import copy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -159,6 +160,43 @@ def check_code_exercise(ex, where):
                 compile(starter, "<starter>", "exec")
             except SyntaxError as e:
                 problems.append(f"{where}: starter.{lang} syntax error: {e}")
+                continue
+            if passes_all(starter, fn_name, tests):
+                problems.append(f"{where}: starter.{lang} already passes every test")
+    # Known mistakes: each defines the function and fails at least one test.
+    for k, m in enumerate(ex.get("mistakes", [])):
+        ns = {"__name__": "_mistake"}
+        try:
+            exec(compile(m.get("code", ""), "<mistake>", "exec"), ns)
+        except Exception as e:
+            problems.append(f"{where}: mistake {k+1} failed to load: {type(e).__name__}: {e}")
+            continue
+        if not callable(ns.get(fn_name)):
+            problems.append(f"{where}: mistake {k+1} defines no function '{fn_name}'")
+        elif passes_all(m["code"], fn_name, tests):
+            problems.append(f"{where}: mistake {k+1} passes every test")
+
+
+def passes_all(code, fn_name, tests):
+    """True if `code` defines fn_name and it returns the expected value on every test."""
+    ns = {"__name__": "__main__"}
+    try:
+        with contextlib.redirect_stdout(io.StringIO()):
+            exec(compile(code, "<code>", "exec"), ns)
+            fn = ns.get(fn_name)
+            if not callable(fn):
+                return False
+            for t in tests:
+                res = fn(*copy.deepcopy(t.get("args", [])))
+                if hasattr(res, "tolist"):
+                    res = res.tolist()
+                if isinstance(res, tuple):
+                    res = list(res)
+                if res is None or not values_close(res, t["expected"], t.get("tol", 1e-9)):
+                    return False
+    except Exception:
+        return False
+    return True
 
 
 def main():

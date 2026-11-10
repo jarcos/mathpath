@@ -7,9 +7,12 @@
 //
 //   { id, kind: 'snippet', base, setup, packages, code }
 //       runs as __main__ in a fresh namespace → { ok, output }
-//   { id, kind: 'program', base, setup, packages, sources, inputs }
-//       runs `sources` in order in a fresh namespace, with `inputs` exposed as
-//       `_mp_inputs`, and returns the converted `_mp_result` → { ok, value }
+//   { id, kind: 'program', base, setup, packages, sources, vars }
+//       runs `sources` in order in a fresh namespace, with each entry of `vars`
+//       set as a global, and returns the converted `_mp_result` plus what was
+//       printed → { ok, value, output, outputCut }. The first source is the
+//       learner's code and runs as "<exec>", the rest as "<grader>", so a
+//       traceback can point at the learner's own lines.
 //
 // `setup` is Python run once, right after Pyodide loads. Before executing, each
 // job posts { id, phase: 'running' } so the page can start its timeout only
@@ -57,20 +60,43 @@ async function runSnippet(py, code) {
   }
 }
 
-async function runProgram(py, sources, inputs) {
-  const discard = { batched: () => {} }
-  py.setStdout(discard)
-  py.setStderr(discard)
+// What the learner's code prints is shown under the tests, up to this many
+// characters (a print in a loop can write far more in 30 seconds).
+const MAX_OUTPUT = 5000
+
+async function runProgram(py, sources, vars) {
+  let output = ''
+  let outputCut = false
+  const sink = {
+    batched: (s) => {
+      if (output.length + s.length + 1 <= MAX_OUTPUT) output += s + '\n'
+      else {
+        if (!outputCut) output += (s + '\n').slice(0, Math.max(0, MAX_OUTPUT - output.length))
+        outputCut = true
+      }
+    }
+  }
+  py.setStdout(sink)
+  py.setStderr(sink)
   const globals = py.toPy({})
   try {
-    globals.set('_mp_inputs', py.toPy(inputs ?? null))
-    for (const src of sources) await py.runPythonAsync(src, { globals })
+    for (const [name, v] of Object.entries(vars || {})) {
+      const pv = py.toPy(v ?? null)
+      globals.set(name, pv)
+      pv?.destroy?.()
+    }
+    // Synchronously: no top-level await is needed here, and a sys.exit() in
+    // the learner's code then fails this run instead of escaping as an
+    // unhandled error that would take the worker down.
+    for (const [i, src] of sources.entries()) {
+      py.runPython(src, { globals, filename: i === 0 ? '<exec>' : '<grader>' })
+    }
     const r = globals.get('_mp_result')
     const value = r?.toJs ? r.toJs({ dict_converter: Object.fromEntries, create_proxies: false }) : r
     r?.destroy?.()
-    return { ok: true, value }
+    return { ok: true, value, output, outputCut }
   } catch (e) {
-    return { ok: false, error: formatError(e) }
+    return { ok: false, error: formatError(e), output, outputCut }
   } finally {
     globals.destroy()
   }
@@ -91,7 +117,7 @@ async function handle(msg) {
   }
   self.postMessage({ id: msg.id, phase: 'running' })
   if (msg.kind === 'snippet') return runSnippet(py, msg.code)
-  return runProgram(py, msg.sources, msg.inputs)
+  return runProgram(py, msg.sources, msg.vars)
 }
 
 self.onmessage = (e) => {

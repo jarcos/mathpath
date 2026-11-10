@@ -69,7 +69,8 @@ function checkMcq(ex, where) {
   })
 }
 
-// Code-exercise integrity (executed for real by verify-code.py).
+// Code-exercise integrity (executed for real by verify-code.py and, the way
+// the app runs it, by verify-pyodide.mjs).
 function checkCodeExercise(ex, where) {
   exerciseCount++
   hasBoth(ex.prompt, 'prompt', where)
@@ -84,6 +85,57 @@ function checkCodeExercise(ex, where) {
       if (!Array.isArray(t.args)) fail(where, `test ${i + 1} args must be an array`)
     })
   }
+  // Known wrong implementations, each with what it gets wrong.
+  if (ex.mistakes !== undefined) {
+    if (!Array.isArray(ex.mistakes)) fail(where, 'mistakes must be an array')
+    else {
+      ex.mistakes.forEach((m, i) => {
+        if (!m || typeof m.code !== 'string' || !m.code.trim()) fail(where, `mistake ${i + 1} needs its code`)
+        hasBoth(m?.feedback, `mistake ${i + 1} feedback`, where)
+      })
+    }
+  }
+  // The starter, the solution and every mistake take as many arguments as each test passes.
+  if (ex.funcName && Array.isArray(ex.tests)) {
+    const sources = [
+      ['solution', ex.solution],
+      ['starter.en', ex.starter?.en],
+      ['starter.es', ex.starter?.es],
+      ...(ex.mistakes || []).map((m, i) => [`mistake ${i + 1}`, m?.code])
+    ]
+    for (const [label, src] of sources) {
+      const n = arity(src, ex.funcName)
+      if (n === undefined) fail(where, `${label} has no \`def ${ex.funcName}(…)\``)
+      else if (n !== null) {
+        ex.tests.forEach((t, i) => {
+          if (Array.isArray(t.args) && t.args.length !== n) {
+            fail(where, `${label} takes ${n} arguments but test ${i + 1} passes ${t.args.length}`)
+          }
+        })
+      }
+    }
+  }
+  // The maths in the prompt, hint and mistakes renders.
+  const texts = [ex.prompt, ex.hint, ...(ex.mistakes || []).map((m) => m?.feedback)]
+  for (const s of texts.flatMap((o) => (o ? [o.en, o.es] : []))) {
+    for (const m of String(s || '').matchAll(/\$\$?([^$]+)\$\$?/g)) {
+      try {
+        katex.renderToString(m[1], { throwOnError: true })
+      } catch (e) {
+        fail(where, `"${m[1]}" doesn't render: ${e.message}`)
+      }
+    }
+  }
+}
+
+// How many parameters `def name(…)` takes in `src`: undefined if there is no
+// such def, null if it has defaults, *args or annotations (not counted here).
+function arity(src, name) {
+  const m = String(src || '').match(new RegExp(`^\\s*def\\s+${name}\\s*\\(([^)]*)\\)`, 'm'))
+  if (!m) return undefined
+  const params = m[1].split(',').map((p) => p.trim()).filter(Boolean)
+  if (params.some((p) => /[=:*]/.test(p))) return null
+  return params.length
 }
 
 // Templates (src/shared/params.js) are checked on many instances: placeholders

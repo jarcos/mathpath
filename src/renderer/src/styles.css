@@ -551,9 +551,27 @@ button.heat-cell:focus-visible { outline: 2px solid var(--accent); outline-offse
 }
 .code-editor:focus { outline: none; border-color: var(--accent); }
 .code-exercise-actions { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
-.code-tests { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-direction: column; gap: 3px; font-size: 0.85rem; }
-.code-tests .pass { color: var(--ok); }
-.code-tests .fail { color: var(--bad); }
+.code-tests { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; }
+.code-test-head { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.code-test-mark { width: 1em; flex: none; text-align: center; }
+.code-tests .pass .code-test-mark { color: var(--ok); }
+.code-tests .fail .code-test-mark, .code-tests .fail .code-test-name { color: var(--bad); }
+.code-test-name { flex: none; }
+.code-test-call { color: var(--muted); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.code-test-detail {
+  display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 3px 12px; margin: 6px 0 2px 1.6em;
+  padding: 8px 12px; border-left: 2px solid var(--bad); background: var(--bg-soft); border-radius: 0 8px 8px 0;
+}
+.code-test-detail dt { color: var(--muted); }
+.code-test-detail dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--text); }
+.code-tests code { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.82rem; }
+.inline-code {
+  font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.86em; padding: 0.05em 0.35em;
+  background: var(--bg-soft); border: 1px solid var(--border); border-radius: 5px; overflow-wrap: anywhere;
+}
+.code-printed { margin-top: 10px; }
+.code-printed-label { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
+.code-printed .code-pre { max-height: 240px; overflow: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-soft); }
 .solution-code { margin-top: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-soft); }
 
 /* Multiple choice */
@@ -700,4 +718,5 @@ button.heat-cell:focus-visible { outline: 2px solid var(--accent); outline-offse
   .note-panel.empty, .notation-box:not(.open) { display: none !important; }
   .notation-chevron { display: none; }
   .code-pre { white-space: pre-wrap !important; overflow-wrap: anywhere; }
+  .code-printed .code-pre { max-height: none; overflow: visible; }
 }

@@ -6,7 +6,9 @@
  * the in-app grader (value conversion + valuesClose).
  *
  *   1. Every code-exercise reference solution is graded with the app's harness
- *      (src/shared/pygrade.js) and must pass all of its tests.
+ *      (src/shared/pygrade.js) and must pass all of its tests; the starter
+ *      (EN + ES) must fail one; each known mistake must fail one and be the one
+ *      the app recognizes when a learner's code gives its results.
  *   2. Every runnable snippet (EN + ES) must print its expectedOutput.
  *
  * Needs the bundled runtime + wheels (offline, never fetched from here):
@@ -18,7 +20,7 @@ import { existsSync, readFileSync } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import { loadPyodide } from 'pyodide'
-import { RUNTIME_SETUP, casesProgram, gradeCases, packagesFor } from '../src/shared/pygrade.js'
+import { RUNTIME_SETUP, casesGlobals, casesProgram, gradeCases, matchMistake, packagesFor } from '../src/shared/pygrade.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -97,13 +99,16 @@ const py = await loadPyodide({ indexURL: PYODIDE_DIR + '/' })
 await py.runPythonAsync(RUNTIME_SETUP)
 await py.loadPackage([...wanted], { messageCallback: () => {} })
 
-async function runProgram(sources, inputs) {
+// As the app's worker runs it: the learner's code as "<exec>", the grader after.
+async function runProgram(sources, vars) {
   py.setStdout({ batched: () => {} })
   py.setStderr({ batched: () => {} })
   const globals = py.toPy({})
   try {
-    globals.set('_mp_inputs', py.toPy(inputs))
-    for (const src of sources) await py.runPythonAsync(src, { globals })
+    for (const [name, v] of Object.entries(vars)) globals.set(name, py.toPy(v))
+    for (const [i, src] of sources.entries()) {
+      py.runPython(src, { globals, filename: i === 0 ? '<exec>' : '<grader>' })
+    }
     const r = globals.get('_mp_result')
     const value = r.toJs({ dict_converter: Object.fromEntries, create_proxies: false })
     r.destroy()
@@ -129,9 +134,12 @@ async function runSnippet(code) {
   }
 }
 
+let mistakeCount = 0
 for (const { where, ex } of exercises) {
+  const program = casesProgram(ex.funcName)
+  const vars = casesGlobals(ex)
   try {
-    const value = await runProgram([ex.solution, casesProgram(ex.funcName)], ex.tests.map((t) => t.args || []))
+    const value = await runProgram([ex.solution, program], vars)
     if (value.missing) {
       fail(where, `solution defines no function '${ex.funcName}'`)
       continue
@@ -141,8 +149,28 @@ for (const { where, ex } of exercises) {
         fail(where, `test ${i + 1} gave ${JSON.stringify(value.results[i])}, expected ${JSON.stringify(ex.tests[i].expected)}`)
       }
     })
+    // Known mistakes: each loads, fails a test, and is the one the app names.
+    ;(ex.mistakes || []).forEach((m, k) => {
+      mistakeCount++
+      const got = value.mistakes[k]
+      if (!Array.isArray(got)) return fail(where, `mistake ${k + 1} doesn't load or defines no '${ex.funcName}'`)
+      if (gradeCases(got, ex.tests).every(Boolean)) return fail(where, `mistake ${k + 1} passes every test`)
+      const named = matchMistake(got, value.mistakes, ex.tests)
+      if (named !== k) fail(where, `mistake ${k + 1} gives the same results as mistake ${named + 1}`)
+    })
   } catch (e) {
     fail(where, `reference solution failed: ${String(e?.message || e).trim().split('\n').pop()}`)
+  }
+  // The starter must not already pass (it may fail to define the function).
+  for (const lang of ['en', 'es']) {
+    try {
+      const value = await runProgram([ex.starter[lang], program], { ...vars, _mp_mistakes: [] })
+      if (!value.missing && gradeCases(value.results, ex.tests).every(Boolean)) {
+        fail(where, `starter.${lang} already passes every test`)
+      }
+    } catch (e) {
+      fail(where, `starter.${lang} fails to run: ${String(e?.message || e).trim().split('\n').pop()}`)
+    }
   }
 }
 
@@ -161,7 +189,7 @@ for (const { where, s } of snippets) {
 }
 
 console.log(`\nMathPath Pyodide verification`)
-console.log(`  code exercises graded: ${exercises.length}`)
+console.log(`  code exercises graded: ${exercises.length} (${mistakeCount} known mistakes)`)
 console.log(`  snippets executed:     ${ran}`)
 console.log(`  packages:              ${[...wanted].join(', ') || '(none)'}`)
 console.log(`  time:                  ${((Date.now() - started) / 1000).toFixed(1)} s`)

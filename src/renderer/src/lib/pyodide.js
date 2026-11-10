@@ -9,7 +9,7 @@
 // job at a time; the queue lives here so each job can be cancelled on its own.
 // Stopping the running job, or letting it go past RUN_TIMEOUT_MS, terminates
 // the worker; the next job starts a fresh one (and reloads Pyodide).
-import { RUNTIME_SETUP, casesProgram, packagesFor } from '@shared/pygrade.js'
+import { RUNTIME_SETUP, casesGlobals, casesProgram, packagesFor } from '@shared/pygrade.js'
 
 // Resolve relative to the current document so it works under the dev server and
 // the packaged loopback server alike (absolute URL avoids file:// pitfalls).
@@ -102,18 +102,22 @@ export async function runCode(code, libs = [], signal) {
   }
 }
 
-// Define the learner's code, call funcName(*args) for each test, return JS values.
-export async function runFunctionCases(userCode, funcName, argsList, libs = [], signal) {
+// Define the learner's code and call funcName(*args) for each test of the
+// exercise, and the same for each of its known mistakes. Returns
+// { ok, results, mistakes, output, outputCut }: a result per test, { value } or
+// { error }, and what the code printed.
+export async function runFunctionCases(userCode, exercise, signal) {
   const res = await post(
     {
       kind: 'program',
-      packages: packagesFor(libs),
-      sources: [userCode, casesProgram(funcName)],
-      inputs: argsList
+      packages: packagesFor(exercise.lib || []),
+      sources: [userCode, casesProgram(exercise.funcName)],
+      vars: casesGlobals(exercise)
     },
     signal
   )
-  if (!res.ok) return { ok: false, reason: res.reason, error: res.error }
-  if (res.value.missing) return { ok: false, error: 'missing_function' }
-  return { ok: true, results: res.value.results }
+  const printed = { output: String(res.output ?? '').replace(/\n+$/, ''), outputCut: !!res.outputCut }
+  if (!res.ok) return { ok: false, reason: res.reason, error: res.error, ...printed }
+  if (res.value.missing) return { ok: false, error: 'missing_function', ...printed }
+  return { ok: true, results: res.value.results, mistakes: res.value.mistakes || [], ...printed }
 }

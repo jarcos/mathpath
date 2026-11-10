@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { checkAnswer, previewTex } from '@shared/validate.js'
-import { gradeCases } from '@shared/pygrade.js'
+import { callRepr, gradeCases, matchMistake, pyRepr } from '@shared/pygrade.js'
 import { useApp } from '@/AppContext.jsx'
 import { isGuessable } from '@/lib/mastery.js'
 import { runFunctionCases } from '@/lib/pyodide.js'
@@ -172,11 +172,12 @@ export default function Exercise({
   const submitCode = async () => {
     setCodeState('running')
     setCodeFeedback(null)
-    const argsList = exercise.tests.map((tt) => tt.args || [])
+    setVerdict(null)
     codeRunRef.current = new AbortController()
-    const res = await runFunctionCases(code, exercise.funcName, argsList, exercise.lib || [], codeRunRef.current.signal)
+    const res = await runFunctionCases(code, exercise, codeRunRef.current.signal)
     codeRunRef.current = null
     setCodeState('idle')
+    const printed = { output: res.output, outputCut: res.outputCut }
     // Not the learner's doing: nothing is recorded.
     if (res.reason === 'stopped') {
       setCodeFeedback({ error: t('codeStopped') })
@@ -193,12 +194,15 @@ export default function Exercise({
           : res.error === 'missing_function'
             ? t('codeNoFunc', { fn: exercise.funcName })
             : res.error
-      setCodeFeedback({ error })
+      setCodeFeedback({ error, ...printed })
       finish(false, code)
       return
     }
     const passes = gradeCases(res.results, exercise.tests)
-    setCodeFeedback({ passes })
+    // Results that match a known wrong implementation get its explanation.
+    const m = matchMistake(res.results, res.mistakes, exercise.tests)
+    if (m !== -1) setVerdict({ reason: 'mistake', feedback: exercise.mistakes[m].feedback })
+    setCodeFeedback({ passes, results: res.results, ...printed })
     finish(passes.every(Boolean), code)
   }
 
@@ -329,12 +333,55 @@ export default function Exercise({
             {codeFeedback?.error && <div className="feedback bad">{codeFeedback.error}</div>}
             {codeFeedback?.passes && (
               <ul className="code-tests">
-                {codeFeedback.passes.map((p, i) => (
-                  <li key={i} className={p ? 'pass' : 'fail'}>
-                    {p ? '✓' : '✗'} {t('codeTest', { n: i + 1 })}
-                  </li>
-                ))}
+                {codeFeedback.passes.map((p, i) => {
+                  const test = exercise.tests[i]
+                  const call = callRepr(exercise.funcName, test.args)
+                  const got = codeFeedback.results[i]
+                  return (
+                    <li key={i} className={p ? 'pass' : 'fail'}>
+                      <div className="code-test-head">
+                        <span className="code-test-mark" aria-hidden="true">
+                          {p ? '✓' : '✗'}
+                        </span>
+                        <span className="code-test-name">
+                          {t('codeTest', { n: i + 1 })}
+                          <span className="visually-hidden">: {p ? t('codePassed') : t('codeFailed')}</span>
+                        </span>
+                        {p && <code className="code-test-call">{call}</code>}
+                      </div>
+                      {!p && (
+                        <dl className="code-test-detail">
+                          <dt>{t('codeCall')}</dt>
+                          <dd>
+                            <code>{call}</code>
+                          </dd>
+                          <dt>{t('codeWant')}</dt>
+                          <dd>
+                            <code>{pyRepr(test.expected)}</code>
+                          </dd>
+                          <dt>{got?.error ? t('codeRaised') : t('codeGot')}</dt>
+                          <dd>
+                            <code>
+                              {got?.error
+                                ? got.error.message + (got.error.line ? ` (${t('codeLine', { n: got.error.line })})` : '')
+                                : pyRepr(got?.value)}
+                            </code>
+                          </dd>
+                        </dl>
+                      )}
+                    </li>
+                  )
+                })}
               </ul>
+            )}
+            {codeFeedback?.output && (
+              <div className="code-printed">
+                <div className="code-printed-label">{t('codePrinted')}</div>
+                <pre className="code-pre" tabIndex={0} aria-label={t('codePrinted')}>
+                  {codeFeedback.output}
+                  {codeFeedback.outputCut && `\n${t('codeOutputCut')}`}
+                </pre>
+              </div>
             )}
           </div>
         </div>

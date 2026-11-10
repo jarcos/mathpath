@@ -1,7 +1,7 @@
 import katex from 'katex'
 
-// Renders a string that may mix prose, **bold**, inline math $...$ and
-// display math $$...$$. Used for all lesson prose and prompts.
+// Renders a string that may mix prose, **bold**, `inline code`, inline math
+// $...$ and display math $$...$$. Used for all lesson prose and prompts.
 
 // Private-use sentinel characters that won't collide with real text/numbers.
 const PH_OPEN = String.fromCharCode(0xe000)
@@ -23,9 +23,15 @@ function escapeHtml(s) {
 
 function toHtml(input) {
   if (!input) return ''
-  // 1) Pull math out into placeholders so bold (**...**) can span across math.
   const tokens = []
-  let s = input.replace(/(\$\$[^$]*\$\$|\$[^$]*\$)/g, (m) => {
+  const hold = (html) => {
+    tokens.push(html)
+    return PH_OPEN + (tokens.length - 1) + PH_CLOSE
+  }
+  // 1) Inline code is shown as typed: never maths, bold or italic.
+  let s = input.replace(/`([^`\n]+)`/g, (_, code) => hold(`<code class="inline-code">${escapeHtml(code)}</code>`))
+  // 2) Pull math out into placeholders so bold (**...**) can span across math.
+  s = s.replace(/(\$\$[^$]*\$\$|\$[^$]*\$)/g, (m) => {
     let html
     try {
       if (m.startsWith('$$')) html = katex.renderToString(m.slice(2, -2), { displayMode: true, throwOnError: false })
@@ -33,15 +39,14 @@ function toHtml(input) {
     } catch {
       html = escapeHtml(m)
     }
-    tokens.push(html)
-    return PH_OPEN + (tokens.length - 1) + PH_CLOSE
+    return hold(html)
   })
-  // 2) Escape the prose, then apply **bold** and *italic* (either may wrap a
+  // 3) Escape the prose, then apply **bold** and *italic* (either may wrap a
   // math placeholder).
   s = escapeHtml(s)
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(ITALIC, '$1<em>$2</em>')
-  // 3) Restore the rendered math.
+  // 4) Restore the code and the rendered math.
   return s.replace(new RegExp(PH_OPEN + '(\\d+)' + PH_CLOSE, 'g'), (_, i) => tokens[+i])
 }
 
