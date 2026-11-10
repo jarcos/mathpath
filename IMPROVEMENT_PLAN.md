@@ -517,6 +517,40 @@ M33 se hace en tres partes, como M34 y M35: (1) el motor de gráficas y el plano
 - **Para quien ya estudia:** no cambia ningún ejercicio ni la base de datos.
 - **Publicada en v0.12.0** (10 de noviembre de 2026), firmada y notarizada. Antes de publicar, la app del ensayo se probó con una copia de una base de datos real: las 16 lecciones abren en español con su figura, sin errores ni coordenadas NaN; con $\lambda = 2$ la lectura de la Poisson da $P(X = 0) \approx 0.1353$, y en la autoatención el foco sigue a la celda elegida con las flechas. La base de datos sigue en la versión 5 y el original no se tocó. La base de datos no cambia en esta versión.
 
+### Estado de 3.4: ejercicios de «impleméntalo tú» (hito M33, parte 3, sin publicar)
+
+- **16 ejercicios de código nuevos** en la pista de IA, uno por lección, tras los que ya tenía (de 30 a 46 en todo el curso):
+  - estadística: la varianza muestral y el coeficiente de correlación de Pearson;
+  - fundamentos de ML: un paso de descenso del gradiente para una recta, precisión, exhaustividad y $F_1$, la predicción de k vecinos más cercanos y una ronda de k-means;
+  - redes neuronales: el softmax (estable con puntuaciones como 1000) y la retropropagación en una neurona sigmoide;
+  - aprendizaje profundo: la convolución 2-D de una CNN y un paso de Adam;
+  - transformers: la atención de producto escalar escalado;
+  - aprendizaje por refuerzo: una pasada de iteración de valor y la elección de UCB;
+  - representación del conocimiento: el encadenamiento hacia atrás, con reglas en ciclo;
+  - visión: la supresión de no-máximos;
+  - inferencia activa: la divergencia KL.
+  Como las lecciones de IA son breves, cada enunciado da su fórmula completa, en inglés y en español. Los valores esperados los calcula la solución de referencia.
+- **Errores típicos de código (`mistakes`):** 35 implementaciones erróneas conocidas, de 2 o 3 por ejercicio (dividir entre $n$ en vez de $n-1$, el softmax que se desborda, voltear el filtro, olvidar la corrección del sesgo de Adam, el $\sqrt{d_k}$, actualizar los valores sobre la marcha, recursión sin fin con un ciclo de reglas…). La app las ejecuta junto al código del alumno y, si sus resultados coinciden en todas las pruebas, muestra la explicación de ese error.
+- **Corrección más útil** (la mitad de 2.7, sin CodeMirror):
+  - cada prueba muestra su llamada; las que fallan, el valor esperado y el obtenido, como los escribe Python;
+  - un error en una prueba ya no oculta las demás: sale en la suya, con su línea;
+  - lo que imprime el código del alumno aparece debajo, hasta 5000 caracteres;
+  - un `sys.exit()` o un número entero enorme ya no rompen la corrección;
+  - el texto entre comillas invertidas se ve como código en enunciados, pistas y lecciones.
+- **Comprobado en build**, en CPython y en el Pyodide de la app: la solución pasa todas las pruebas; el código de partida falla alguna; cada error típico carga, falla alguna prueba y es el que la app reconocería. Además se comprueba que cada función recibe tantos argumentos como pasan las pruebas, y que las fórmulas renderizan. Hay 5 tests nuevos (115 en total).
+- **Otro arreglo:** el código de la lección de convolución usaba `np.convolve`, que voltea el filtro e imprime `[2, 2, 2]`. Las capas de una CNN no lo voltean: ahora usa `np.correlate` e imprime `[-2, -2, -2]`, como dice el texto.
+- **Revisiones:**
+  - Ejercicios: sin errores de matemáticas. Se añadieron tres pruebas de casos límite (dos brazos sin probar, un empate en UCB, una IoU justo en el umbral) y se mejoró la redacción de 7 textos.
+  - Código: tres fallos latentes, que ningún ejercicio actual provocaba, están corregidos. Una función que cambiaba sus argumentos podía hacer que se nombrara el error típico equivocado; un entero mayor que $2^{53}$ correcto se daba por malo; y lo que imprimía un error típico llegaba a la salida del alumno.
+- **Prueba en la app** firmada en local, con una copia de una base de datos real, en español y en inglés y en los dos temas:
+  - el softmax inestable da `OverflowError` en la prueba 3, con su línea, y la explicación del desbordamiento; el bueno, «¡Correcto!»;
+  - la recursión sin fin con reglas en ciclo da `RecursionError` en las pruebas 3 y 4 dentro del worker, con su explicación;
+  - un error de sintaxis muestra su traza;
+  - una respuesta errónea que no coincide con ningún error típico muestra lo esperado y lo obtenido de cada prueba;
+  - la lección de detección conserva su ejercicio de IoU;
+  - la base de datos sigue en la versión 5 y el original no se tocó.
+- **Para quien ya estudia:** no cambia ningún ejercicio existente ni la base de datos. Como en M35, una lección dominada puede volver a «practicada» hasta resolver su ejercicio nuevo.
+
 ---
 
 ## Fase 4: navegación y experiencia
@@ -667,7 +701,7 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 
 La numeración sigue la de `docs/project.html`, donde el último hito terminado antes de este plan era M26 (navegación y UX). La primera versión de este documento empezaba en M26, por error. M25 solo cubrió álgebra y funciones; el resto de la escalera matemática es M35.
 
-Lo que queda es la tercera parte de M33; la primera se publicó en v0.11.0 y la segunda en v0.12.0. M34 y M35 están terminados.
+M33 está hecho: la primera parte se publicó en v0.11.0, la segunda en v0.12.0 y la tercera está hecha, sin publicar. M34 y M35 están terminados.
 
 | Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
@@ -677,7 +711,7 @@ Lo que queda es la tercera parte de M33; la primera se publicó en v0.11.0 y la 
 | **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Publicado en v0.2.0; cierre en v0.2.1; crédito implícito en v0.2.2 |
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
-| **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | 🟡 Parte 1 (gráficas con deslizadores y el plano en 20 lecciones) publicada en v0.11.0; parte 2 (distribuciones, dispersión y mapas de calor en 16 lecciones de IA) publicada en v0.12.0 |
+| **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | 🟡 Parte 1 (gráficas con deslizadores y el plano en 20 lecciones) publicada en v0.11.0; parte 2 (distribuciones, dispersión y mapas de calor en 16 lecciones de IA) publicada en v0.12.0; parte 3 (16 ejercicios de código en la pista de IA, con 35 errores típicos) hecha, sin publicar |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 (con dos arreglos en v0.7.1) |
 | **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | ✅ Publicado en tres partes: cálculo (12 lecciones) en v0.8.0, álgebra lineal (23) en v0.9.0 y aplicaciones lineales (16) en v0.10.0 |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |

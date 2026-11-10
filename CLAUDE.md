@@ -80,7 +80,14 @@ src/
                  commonMistakes. Text answers forgive accents, a plural and one
                  slip (5+ letters); verify:content checks the slip accepts no
                  other answer of the course. previewTex: the "Reads as" preview
-               pygrade.js — code-exercise grader, used by BOTH app and verify:pyodide
+               pygrade.js — code-exercise grader, used by BOTH app and verify:pyodide:
+                 a result per test ({value} or {error, line}), so one raise
+                 doesn't hide the rest; an exercise's `mistakes` (known wrong
+                 implementations, run beside the learner's code: equal
+                 results on every test show that mistake's feedback);
+                 pyRepr / callRepr show calls and values as Python prints them.
+                 verify:code and verify:pyodide check the solution passes,
+                 the starter fails and each mistake fails and is recognized
                learning.js — review ratings + mastery rules (main AND renderer);
                  guessable answers (MCQ, yes/no) count only when right first time
                curriculum.js — prerequisite graph (renderer AND verify:content)
@@ -124,7 +131,7 @@ src/
                        buttons (App.jsx), N for the next lesson, Enter on an MCQ
                        option, ⌘/Ctrl+Enter in a code exercise; never while typing
       lib/notes.js     a lesson's note (autosaved) + bookmark; all the notes
-      components/      MathText (KaTeX), FunctionGraph (`graph` sections: custom
+      components/      MathText (KaTeX, **bold**, `code`), FunctionGraph (`graph` sections: custom
                        SVG plotter on mathjs), VectorPlane (`vector2d` sections),
                        DistributionChart, ScatterFit, HeatGrid (the AI-track
                        figures), plotKit (their colors and heat scales, sliders,
@@ -166,9 +173,9 @@ docs/project.html  project dashboard (timeline + drag-drop kanban, localStorage)
 
 ## Curriculum status
 
-**Both tracks complete** (textbook depth, all verified). 255 lessons / 1247
-exercises (36 of them templates) / 6294 checks / 51 figures (41 sliders) passing
-(`npm run verify:content`).
+**Both tracks complete** (textbook depth, all verified). 255 lessons / 1263
+exercises (36 of them templates, 46 code exercises with 35 known mistakes) /
+6294 checks / 51 figures (41 sliders) passing (`npm run verify`).
 M35 (done) deepened calculus, linear-algebra and linear-maps in place, one
 subject per release: calculus (v0.8.0), linear-algebra (v0.9.0) and linear-maps
 (v0.10.0). Existing exercises never change (progress and review cards point at
@@ -176,7 +183,9 @@ their ids).
 M33 (interactive visuals + AI code exercises) goes in three parts: part 1, graphs
 with sliders and the `vector2d` plane in 20 math-ladder lessons, was released in
 v0.11.0; part 2, distributions, scatter and heatmaps in 16 AI-track lessons, was
-released in v0.12.0; part 3 is the implement-it-yourself exercises.
+released in v0.12.0; part 3, 16 implement-it-yourself exercises in the AI track
+(softmax, attention, Adam, backprop, k-means, NMS, UCB…) with per-test
+feedback and known mistakes, is done (not released).
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
 linear-maps (16), multivariable (14, M32: Taylor, partial derivatives, gradient,
