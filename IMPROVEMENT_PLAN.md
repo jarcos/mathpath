@@ -702,13 +702,13 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 7. Firma de código en Windows, para quitar el aviso de SmartScreen.
 8. **Instalador más ligero** (comprobado en `/Applications/MathPath.app`): incluye 75 MB de `node_modules`. Gran parte ya va dentro de `out/renderer`: mathjs (16 MB), pyodide (13 MB), react-dom, katex, function-plot, d3… Pasar a `devDependencies` todo lo que solo usa el renderer o los scripts. En `dependencies` solo deben quedar `better-sqlite3` y `electron-updater`.
 
-### Estado de 5.8: instalador más ligero (hecho, sin publicar)
+### Estado de 5.8: instalador más ligero (publicado en v0.13.1)
 
 - **En `dependencies` queda solo lo que carga el proceso principal:** `better-sqlite3`, `electron-updater` y `ts-fsrs` (este último lo usa `review.js` y faltaba en la lista de arriba). React, i18next, KaTeX y mathjs ya iban dentro de `out/renderer`, y la app nunca importa el paquete npm de Pyodide: solo lo copia `copy-pyodide.mjs`. Así que pasan a `devDependencies`. En el lockfile solo cambian esas marcas; ninguna versión cambia.
 - **better-sqlite3 lleva solo los binarios de su sistema.** Traía el código C de SQLite (11 MB) y binarios para 8 plataformas, pero solo carga `prebuilds/<plataforma>-<arquitectura>.node`. Cada plataforma de `electron-builder.yml` tiene su propia lista `files`, que deja fuera el código C y los binarios de los otros sistemas. La lista va entera en cada plataforma porque, si hay una lista general y una de plataforma con solo exclusiones, electron-builder empaqueta todo el proyecto.
-- **Resultado en macOS:**
-  - el `node_modules` de la app pasa de 81 a 8 MB, y la carpeta de la app instalada, de 233 a 160 MB;
-  - el ZIP de descarga pasa de 171,9 MB (el de v0.13.0) a 152,4 MB, unos 19,5 MB menos (un 11 %);
+- **Resultado:**
+  - en macOS, el `node_modules` de la app pasa de 81 a 8 MB, y la carpeta de la app instalada, de 233 a 160 MB;
+  - las descargas de v0.13.1 frente a las de v0.13.0: el ZIP de macOS pasa de 171,9 a 151,3 MB, el DMG de 176,8 a 157,0 MB y el instalador de Windows de 162,4 a 145,5 MB (entre un 10 y un 12 % menos);
   - el código de la app no cambia: el bundle del renderer tiene el mismo hash, y el del proceso principal ocupa lo mismo.
 - **Windows y Linux:** sus carpetas empaquetadas tienen solo `node_modules`, `out` y `package.json`, y cada una lleva solo los binarios de SQLite de su sistema.
 - **Comprobado:** los 115 tests, `verify` y el build pasan. Se probó la app firmada en local con una copia de una base de datos real:
@@ -719,6 +719,13 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
   - un ejercicio de Python y la celda de NumPy de la lección de convolución se ejecutan en Pyodide.
 
   La base de datos sigue en la versión 5 y el original no se tocó.
+- **Publicado en v0.13.1** (10 de noviembre de 2026), firmado y notarizado. Antes de publicar se revisó el ensayo de la release:
+  - la app de macOS lleva 8 MB de `node_modules` y solo los binarios de SQLite de macOS;
+  - el instalador de Windows, abierto con 7-Zip, lleva los mismos paquetes y solo los binarios de Windows;
+  - el bundle del renderer de macOS tiene el mismo hash que en v0.13.0;
+  - la app del ensayo, con una copia de una base de datos real, corrige con mathjs, reprograma un repaso con ts-fsrs, consulta el actualizador y ejecuta un ejercicio de Python y la celda de NumPy.
+
+  La base de datos no cambia en esta versión.
 
 ---
 
