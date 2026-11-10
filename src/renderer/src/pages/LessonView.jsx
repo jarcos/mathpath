@@ -12,9 +12,21 @@ import MasteryBadge from '@/components/MasteryBadge.jsx'
 import MathText from '@/components/MathText.jsx'
 import FunctionGraph from '@/components/FunctionGraph.jsx'
 import VectorPlane from '@/components/VectorPlane.jsx'
+import DistributionChart from '@/components/DistributionChart.jsx'
+import ScatterFit from '@/components/ScatterFit.jsx'
+import HeatGrid from '@/components/HeatGrid.jsx'
 import Exercise from '@/components/Exercise.jsx'
 import NotationBox from '@/components/NotationBox.jsx'
 import CodeBlock from '@/components/CodeBlock.jsx'
+
+// Each interactive figure type and the component that draws it.
+const FIGURES = {
+  graph: FunctionGraph,
+  vector2d: VectorPlane,
+  distribution: DistributionChart,
+  scatter: ScatterFit,
+  heatmap: HeatGrid
+}
 
 // "Before this lesson": the linked lessons, each with the learner's level, and
 // a nudge when one of them was never practised or is due for review.
@@ -50,10 +62,11 @@ function Section({ section, loc, t, openLesson }) {
   if (section.type === 'prereq') {
     return <PrereqBox section={section} loc={loc} t={t} openLesson={openLesson} />
   }
-  if (section.type === 'graph' || section.type === 'vector2d') {
+  const Figure = Object.hasOwn(FIGURES, section.type) ? FIGURES[section.type] : null
+  if (Figure) {
     return (
       <figure className="lesson-graph">
-        {section.type === 'graph' ? <FunctionGraph section={section} /> : <VectorPlane section={section} />}
+        <Figure section={section} />
         {section.caption && (
           <figcaption className="muted small">
             <MathText>{loc(section.caption)}</MathText>

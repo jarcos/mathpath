@@ -17,7 +17,7 @@ import * as math from 'mathjs'
 
 // The graph's variable and the mathjs constants: no slider may take them.
 const RESERVED = new Set(['x', 'e', 'E', 'pi', 'PI', 'tau', 'phi', 'i', 'Infinity', 'NaN', 'true', 'false', 'null', 'undefined'])
-const CONSTANTS = ['e', 'E', 'pi', 'PI', 'tau', 'phi']
+export const CONSTANTS = ['e', 'E', 'pi', 'PI', 'tau', 'phi']
 const NAME = /^[A-Za-z][A-Za-z0-9_]*$/
 
 /** Curves a graph may draw: its own `fn` and two more, one color each. */
@@ -25,7 +25,7 @@ export const MAX_CURVES = 3
 /** Samples per curve. */
 export const SAMPLES = 480
 
-const finite = (v) => typeof v === 'number' && Number.isFinite(v)
+export const finite = (v) => typeof v === 'number' && Number.isFinite(v)
 
 /** A number or a mathjs expression, compiled once; evaluate() gives a real number or NaN. */
 export function compile(src) {
@@ -248,10 +248,10 @@ const CURVE_KEYS = new Set(['fn', 'label'])
 const POINT_KEYS = new Set(['x', 'y', 'label'])
 const VEC_KEYS = new Set(['x', 'y', 'label', 'orbit'])
 
-const isObj = (v) => v !== null && typeof v === 'object' && !Array.isArray(v)
+export const isObj = (v) => v !== null && typeof v === 'object' && !Array.isArray(v)
 
 // Each item of a list field must be an object with only the known fields.
-function itemProblems(list, keys, what) {
+export function itemProblems(list, keys, what) {
   if (list === undefined) return []
   if (!Array.isArray(list)) return [`${what}s must be an array`]
   return list.flatMap((item, i) =>
@@ -260,23 +260,23 @@ function itemProblems(list, keys, what) {
 }
 
 // Point and vector labels are drawn as plain SVG text: no TeX.
-const plainLabel = (v) => typeof v === 'string' ? !v.includes('$') : !v || (!String(v.en).includes('$') && !String(v.es).includes('$'))
+export const plainLabel = (v) => typeof v === 'string' ? !v.includes('$') : !v || (!String(v.en).includes('$') && !String(v.es).includes('$'))
 
 // On the slider's grid min + k·step (as the range input snaps to it).
 const onGrid = (v, s) => Math.abs((v - s.min) / s.step - Math.round((v - s.min) / s.step)) < 1e-6
 
-const localized = (v) =>
+export const localized = (v) =>
   (typeof v === 'string' && v.trim() !== '') ||
   (v && typeof v === 'object' && typeof v.en === 'string' && v.en.trim() !== '' && typeof v.es === 'string' && v.es.trim() !== '')
 
-const isExpr = (v) => finite(v) || (typeof v === 'string' && v.trim() !== '')
-const isRange = (r) => Array.isArray(r) && r.length === 2 && finite(r[0]) && finite(r[1]) && r[0] < r[1]
+export const isExpr = (v) => finite(v) || (typeof v === 'string' && v.trim() !== '')
+export const isRange = (r) => Array.isArray(r) && r.length === 2 && finite(r[0]) && finite(r[1]) && r[0] < r[1]
 
-function unknownKeys(obj, keys, what) {
+export function unknownKeys(obj, keys, what) {
   return Object.keys(obj).filter((k) => !keys.has(k)).map((k) => `${what}: unknown field "${k}"`)
 }
 
-function sliderProblems(sliders) {
+export function sliderProblems(sliders) {
   if (!Array.isArray(sliders)) return ['sliders must be an array']
   const p = []
   const seen = new Set()
@@ -306,7 +306,7 @@ function sliderProblems(sliders) {
 
 // Parse each expression and check it only reads the allowed names; returns
 // the slider names it uses.
-function exprProblems(exprs, allowed, p) {
+export function exprProblems(exprs, allowed, p) {
   const used = new Set()
   for (const { where, src } of exprs) {
     if (!isExpr(src)) {

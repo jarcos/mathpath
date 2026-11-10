@@ -20,7 +20,19 @@ import { assertEquivalent, checkAnswer, FORMS, inForm, validateAnswer } from '..
 import { buildCurriculum, checkCurriculum } from '../src/shared/curriculum.js'
 import { fill, instantiate, leftovers } from '../src/shared/params.js'
 import { graphProblems, vector2dProblems } from '../src/shared/plot.js'
+import { distributionProblems } from '../src/shared/dist.js'
+import { scatterProblems } from '../src/shared/fit.js'
+import { heatmapProblems } from '../src/shared/grid.js'
 import katex from 'katex'
+
+// Each figure type and its checks (shared with the tests).
+const FIGURES = {
+  graph: graphProblems,
+  vector2d: vector2dProblems,
+  distribution: distributionProblems,
+  scatter: scatterProblems,
+  heatmap: heatmapProblems
+}
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -285,7 +297,7 @@ let sliderCount = 0
 function checkFigure(section, where) {
   figureCount++
   sliderCount += (section.sliders || []).length
-  const problems = section.type === 'graph' ? graphProblems(section) : vector2dProblems(section)
+  const problems = FIGURES[section.type](section)
   problems.forEach((p) => fail(where, p))
   for (const tex of figureTex(section)) {
     try {
@@ -308,6 +320,9 @@ function figureTex(section) {
   add(section.label)
   for (const c of section.curves || []) add(c.label)
   for (const s of section.sliders || []) add(s.label)
+  for (const k of section.kernels || []) add(k.label)
+  for (const v of Object.values(section.legend || {})) add(v)
+  for (const v of section.axes || []) add(v)
   const out = []
   for (const t of texts) for (const m of t.matchAll(/\$\$([^$]+)\$\$|\$([^$]+)\$/g)) out.push(m[1] || m[2])
   return out
@@ -331,7 +346,7 @@ function checkLesson(lesson, file) {
   if (typeof lesson.order !== 'number') fail(where, 'missing numeric order')
 
   for (const section of lesson.sections || []) {
-    if (section.type === 'graph' || section.type === 'vector2d') checkFigure(section, where)
+    if (Object.hasOwn(FIGURES, section.type)) checkFigure(section, where)
     else if (section.type === 'code') checkCodeSection(section, where)
     else if (section.type === 'prereq') {
       hasBoth(section.note, 'prereq note', where)
