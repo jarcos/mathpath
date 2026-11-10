@@ -41,6 +41,135 @@
       }
     },
     {
+      "type": "heatmap",
+      "mode": "conv",
+      "input": [
+        [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        [
+          10,
+          10,
+          90,
+          90,
+          10,
+          10
+        ],
+        [
+          10,
+          10,
+          90,
+          90,
+          10,
+          10
+        ],
+        [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ]
+      ],
+      "kernels": [
+        {
+          "label": {
+            "en": "Box blur",
+            "es": "Desenfoque de caja"
+          },
+          "kernel": [
+            [
+              0.1111111111111111,
+              0.1111111111111111,
+              0.1111111111111111
+            ],
+            [
+              0.1111111111111111,
+              0.1111111111111111,
+              0.1111111111111111
+            ],
+            [
+              0.1111111111111111,
+              0.1111111111111111,
+              0.1111111111111111
+            ]
+          ]
+        },
+        {
+          "label": {
+            "en": "Laplacian",
+            "es": "Laplaciano"
+          },
+          "kernel": [
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              -1,
+              4,
+              -1
+            ],
+            [
+              0,
+              -1,
+              0
+            ]
+          ]
+        },
+        {
+          "label": {
+            "en": "Sharpen",
+            "es": "Enfoque"
+          },
+          "kernel": [
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              -1,
+              5,
+              -1
+            ],
+            [
+              0,
+              -1,
+              0
+            ]
+          ]
+        }
+      ],
+      "caption": {
+        "en": "A $6\\times 6$ image, a bright $2\\times 2$ square ($90$) on a dark background ($10$), and three $3\\times 3$ kernels. Each output pixel is the weighted sum of the $3\\times 3$ patch under the kernel; pick one to see the sum. The box blur averages, so the square's brightness spreads out (about $45.56$ at the center) and, with weights that sum to $1$, a flat region keeps its value. The Laplacian, the kernel of the code below, gives $0$ on flat regions and large values at the square's edge: $160$ on it, $-80$ beside it. Sharpen is the Laplacian plus the pixel itself, so flat regions keep their value and edges get stronger.",
+        "es": "Una imagen de $6\\times 6$, un cuadrado brillante de $2\\times 2$ ($90$) sobre un fondo oscuro ($10$), y tres kernels de $3\\times 3$. Cada píxel de salida es la suma ponderada del parche de $3\\times 3$ bajo el kernel; elige uno para ver la suma. El desenfoque de caja promedia, así que el brillo del cuadrado se reparte (unos $45.56$ en el centro) y, con pesos que suman $1$, una zona uniforme conserva su valor. El laplaciano, el kernel del código de abajo, da $0$ en las zonas uniformes y valores grandes en el borde del cuadrado: $160$ sobre él, $-80$ a su lado. El enfoque es el laplaciano más el propio píxel, así que las zonas uniformes conservan su valor y los bordes se refuerzan."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

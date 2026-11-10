@@ -41,6 +41,40 @@
       }
     },
     {
+      "type": "distribution",
+      "family": "binomial",
+      "params": {
+        "n": "n",
+        "p": "p"
+      },
+      "sliders": [
+        {
+          "name": "n",
+          "min": 1,
+          "max": 40,
+          "step": 1,
+          "value": 10,
+          "label": "$n$"
+        },
+        {
+          "name": "p",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "value": 0.5,
+          "label": "$p$"
+        }
+      ],
+      "domain": [
+        0,
+        40
+      ],
+      "caption": {
+        "en": "The binomial $B(n, p)$: the bars are $P(X = k)$ for $k = 0, 1, \\dots, n$. It starts at $B(10, 0.5)$ from the worked example, so the readout shows mean $np = 5$ and variance $np(1-p) = 2.5$. Move $p$ away from $0.5$ and the bars pile up on one side while the variance shrinks, since $p(1-p)$ is largest at $p = 0.5$. Raise $n$ and the bars spread out, because the variance grows with $n$.",
+        "es": "La binomial $B(n, p)$: las barras son $P(X = k)$ para $k = 0, 1, \\dots, n$. Empieza en la $B(10, 0.5)$ del ejemplo resuelto, así que la lectura muestra media $np = 5$ y varianza $np(1-p) = 2.5$. Aleja $p$ de $0.5$ y las barras se amontonan a un lado mientras la varianza disminuye, porque $p(1-p)$ es máxima en $p = 0.5$. Sube $n$ y las barras se extienden, porque la varianza crece con $n$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [],

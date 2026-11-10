@@ -51,6 +51,57 @@
       }
     },
     {
+      "type": "heatmap",
+      "mode": "attention",
+      "tokens": [
+        "the",
+        "cat",
+        "sat",
+        "down"
+      ],
+      "q": [
+        [
+          0.4,
+          0.2
+        ],
+        [
+          0.2,
+          1
+        ],
+        [
+          1.4,
+          0.3
+        ],
+        [
+          0.3,
+          1.3
+        ]
+      ],
+      "k": [
+        [
+          0.2,
+          0.1
+        ],
+        [
+          1.5,
+          0.2
+        ],
+        [
+          0.3,
+          1.2
+        ],
+        [
+          0.1,
+          0.9
+        ]
+      ],
+      "causal": true,
+      "caption": {
+        "en": "Causal self-attention over “the cat sat down”, with the queries and keys of the self-attention lesson. Each token attends only to itself and the tokens before it: the cells above the diagonal are masked (drawn as —, with no weight). So “the” can only attend to itself, with weight $1$, while “down”, at position $4$, attends to all $4$ positions, as in the worked example. Its row is the same as without the mask: $0.137$, $0.198$, $0.385$ and $0.28$.",
+        "es": "Autoatención causal sobre «the cat sat down», con las consultas y claves de la lección de autoatención. Cada token atiende solo a sí mismo y a los anteriores: las celdas por encima de la diagonal están enmascaradas (se dibujan con —, sin peso). Así, «the» solo puede atender a sí mismo, con peso $1$, mientras que «down», en la posición $4$, atiende a las $4$ posiciones, como en el ejemplo resuelto. Su fila es la misma que sin máscara: $0.137$, $0.198$, $0.385$ y $0.28$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

@@ -41,6 +41,56 @@
       }
     },
     {
+      "type": "distribution",
+      "family": "normal",
+      "params": {
+        "mean": "m",
+        "sd": "s"
+      },
+      "sliders": [
+        {
+          "name": "m",
+          "min": -2,
+          "max": 2,
+          "step": 0.5,
+          "value": 0,
+          "label": "$\\mu$"
+        },
+        {
+          "name": "s",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25,
+          "value": 1,
+          "label": "$\\sigma$"
+        },
+        {
+          "name": "c",
+          "min": 0.5,
+          "max": 3,
+          "step": 0.5,
+          "value": 1,
+          "label": {
+            "en": "$c$ (standard deviations)",
+            "es": "$c$ (desviaciones típicas)"
+          }
+        }
+      ],
+      "domain": [
+        -8,
+        8
+      ],
+      "yMax": 0.85,
+      "shade": {
+        "from": "m - c*s",
+        "to": "m + c*s"
+      },
+      "caption": {
+        "en": "The normal $N(\\mu, \\sigma^2)$, with the area within $c$ standard deviations of the mean shaded. With $c = 1$, $2$ and $3$ the readout gives $0.6827$, $0.9545$ and $0.9973$: the 68-95-99.7 rule. Now move $\\mu$ and $\\sigma$: the curve shifts and widens or narrows, but the shaded probability doesn't change, because it only depends on the z-scores $\\pm c$.",
+        "es": "La normal $N(\\mu, \\sigma^2)$, con el área a menos de $c$ desviaciones típicas de la media sombreada. Con $c = 1$, $2$ y $3$ la lectura da $0.6827$, $0.9545$ y $0.9973$: la regla 68-95-99.7. Ahora mueve $\\mu$ y $\\sigma$: la curva se desplaza y se ensancha o se estrecha, pero la probabilidad sombreada no cambia, porque solo depende de las puntuaciones z $\\pm c$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

@@ -51,6 +51,41 @@
       }
     },
     {
+      "type": "distribution",
+      "family": "normal",
+      "params": {
+        "mean": 0,
+        "sd": 1
+      },
+      "sliders": [
+        {
+          "name": "z",
+          "min": 0.5,
+          "max": 4,
+          "step": 0.01,
+          "value": 2,
+          "label": {
+            "en": "Observed $z$",
+            "es": "$z$ observado"
+          }
+        }
+      ],
+      "domain": [
+        -4,
+        4
+      ],
+      "yMax": 0.45,
+      "shade": {
+        "from": "-z",
+        "to": "z",
+        "outside": true
+      },
+      "caption": {
+        "en": "In a z-test, if $H_0$ is true, the test statistic follows the standard normal. For an observed $z$, the two-sided p-value is the shaded area of both tails. At $z = 2$, as in the code below, it is about $0.0455 < 0.05$, so at $\\alpha = 0.05$ we reject $H_0$. Drag $z$ down to $1.96$, where the p-value reaches $0.05$: with any smaller $z$ we fail to reject. At $z = 3$ it is only about $0.0027$.",
+        "es": "En un contraste z, si $H_0$ es cierta, el estadístico de contraste sigue la normal estándar. Para un $z$ observado, el valor p bilateral es el área sombreada de las dos colas. Con $z = 2$, como en el código de abajo, vale unos $0.0455 < 0.05$, así que con $\\alpha = 0.05$ rechazamos $H_0$. Baja $z$ hasta $1.96$, donde el valor p llega a $0.05$: con cualquier $z$ menor no se rechaza. Con $z = 3$ es solo de unos $0.0027$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

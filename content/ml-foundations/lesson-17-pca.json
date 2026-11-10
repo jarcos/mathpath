@@ -51,6 +51,62 @@
       }
     },
     {
+      "type": "scatter",
+      "points": [
+        [
+          "1.5 + 0.5*s",
+          "1.5 - 0.4*s"
+        ],
+        [
+          "2.5 - 0.6*s",
+          "2.5 + 0.3*s"
+        ],
+        [
+          "3.5 + 0.4*s",
+          "3.5 + 0.6*s"
+        ],
+        [
+          "4.5 - 0.3*s",
+          "4.5 - 0.7*s"
+        ],
+        [
+          "5.5 + 0.7*s",
+          "5.5 - 0.2*s"
+        ],
+        [
+          "6.5 - 0.5*s",
+          "6.5 + 0.5*s"
+        ]
+      ],
+      "fit": "pca",
+      "project": true,
+      "sliders": [
+        {
+          "name": "s",
+          "min": 0,
+          "max": 2,
+          "step": 0.1,
+          "value": 1,
+          "label": {
+            "en": "Spread $s$",
+            "es": "Dispersión $s$"
+          }
+        }
+      ],
+      "domain": [
+        0,
+        8
+      ],
+      "yDomain": [
+        0,
+        8
+      ],
+      "caption": {
+        "en": "Six points around the line $y = x$, pushed off it by $s$ times fixed amounts. The arrows are the principal components, the eigenvectors of the covariance matrix, each drawn two standard deviations long. The dashed lines project the points onto the first one. At $s = 1$ the first component keeps about $95.4\\%$ of the variance, so keeping only that one coordinate loses little. At $s = 0$ the points lie on the line and it keeps $100\\%$, as in the code below; at $s = 2$, about $85.1\\%$.",
+        "es": "Seis puntos alrededor de la recta $y = x$, apartados de ella $s$ veces unas cantidades fijas. Las flechas son las componentes principales, los vectores propios de la matriz de covarianzas, cada una de dos desviaciones típicas de largo. Las líneas discontinuas proyectan los puntos sobre la primera. Con $s = 1$ la primera componente conserva cerca del $95.4\\%$ de la varianza, así que quedarse solo con esa coordenada pierde poco. Con $s = 0$ los puntos están sobre la recta y conserva el $100\\%$, como en el código de abajo; con $s = 2$, cerca del $85.1\\%$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

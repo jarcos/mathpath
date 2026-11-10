@@ -41,6 +41,41 @@
       }
     },
     {
+      "type": "heatmap",
+      "mode": "pool",
+      "input": [
+        [
+          1,
+          3,
+          2,
+          4
+        ],
+        [
+          5,
+          6,
+          1,
+          2
+        ],
+        [
+          7,
+          8,
+          0,
+          1
+        ],
+        [
+          3,
+          2,
+          4,
+          0
+        ]
+      ],
+      "size": 2,
+      "caption": {
+        "en": "The $4\\times 4$ feature map of the code below, pooled with $2\\times 2$ windows and stride $2$, so the output is $2\\times 2$. Max pooling keeps the strongest response of each window: $6$, $4$, $8$ and $4$, the code's output. Switch to average pooling and the same windows give $3.75$, $2.25$, $5$ and $1.25$. Pick an output cell to see its window.",
+        "es": "El mapa de características de $4\\times 4$ del código de abajo, con pooling en ventanas de $2\\times 2$ y paso $2$, así que la salida es de $2\\times 2$. El max pooling se queda con la respuesta más fuerte de cada ventana: $6$, $4$, $8$ y $4$, la salida del código. Cambia al pooling de media y las mismas ventanas dan $3.75$, $2.25$, $5$ y $1.25$. Elige una celda de salida para ver su ventana."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

@@ -52,6 +52,50 @@
       }
     },
     {
+      "type": "scatter",
+      "points": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          "y4"
+        ]
+      ],
+      "fit": "line",
+      "sliders": [
+        {
+          "name": "y4",
+          "min": -4,
+          "max": 12,
+          "step": 0.5,
+          "value": 8,
+          "label": "$y_4$"
+        }
+      ],
+      "domain": [
+        0,
+        5
+      ],
+      "yDomain": [
+        -5,
+        13
+      ],
+      "caption": {
+        "en": "The four points of the code below, with the last one's height $y_4$ on a slider, and the least-squares line. At the start, $y_4 = 8$ and $r \\approx 0.981$: a strong positive linear relationship. Pull the last point down and $r$ falls: about $0.913$ at $y_4 = 5$, $0.4$ at $y_4 = 3$ and $-0.544$ at $y_4 = -4$. One point can change $r$ a lot, so look at the data, not only at the number.",
+        "es": "Los cuatro puntos del código de abajo, con la altura del último, $y_4$, en un deslizador, y la recta de mínimos cuadrados. Al principio, $y_4 = 8$ y $r \\approx 0.981$: una relación lineal positiva fuerte. Baja el último punto y $r$ cae: unos $0.913$ con $y_4 = 5$, $0.4$ con $y_4 = 3$ y $-0.544$ con $y_4 = -4$. Un solo punto puede cambiar mucho $r$, así que mira los datos, no solo el número."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

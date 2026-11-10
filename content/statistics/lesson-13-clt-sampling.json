@@ -52,6 +52,33 @@
       }
     },
     {
+      "type": "distribution",
+      "family": "binomial",
+      "params": {
+        "n": "n",
+        "p": 0.2
+      },
+      "sliders": [
+        {
+          "name": "n",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "value": 1,
+          "label": "$n$"
+        }
+      ],
+      "domain": [
+        0,
+        40
+      ],
+      "approx": true,
+      "caption": {
+        "en": "One trial that succeeds with probability $0.2$ is nothing like a bell: at $n = 1$ there are just two bars, $0.8$ at $0$ and $0.2$ at $1$. The number of successes in $n$ such trials is the sum of $n$ independent copies, $B(n, 0.2)$, drawn here with the normal curve of the same mean and variance over it. Raise $n$: by $n = 30$ the bars follow the curve closely, and at $n = 100$ (mean $20$, variance $16$) they nearly match it. That is the Central Limit Theorem at work. The bars show the sum, so they spread out as $n$ grows (standard deviation $0.4\\sqrt{n}$); divided by $n$, the same sum is the sample mean, whose standard error $\\sigma/\\sqrt{n} = 0.4/\\sqrt{n}$ shrinks instead.",
+        "es": "Un ensayo que acierta con probabilidad $0.2$ no se parece nada a una campana: con $n = 1$ hay solo dos barras, $0.8$ en $0$ y $0.2$ en $1$. El número de aciertos en $n$ ensayos así es la suma de $n$ copias independientes, $B(n, 0.2)$, dibujada aquí con la curva normal de la misma media y varianza superpuesta. Sube $n$: hacia $n = 30$ las barras ya siguen de cerca la curva, y con $n = 100$ (media $20$, varianza $16$) casi coinciden con ella. Es el teorema central del límite en acción. Las barras muestran la suma, así que se extienden al crecer $n$ (desviación típica $0.4\\sqrt{n}$); dividida por $n$, esa misma suma es la media muestral, cuyo error estándar $\\sigma/\\sqrt{n} = 0.4/\\sqrt{n}$, en cambio, disminuye."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

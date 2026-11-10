@@ -51,6 +51,45 @@
       }
     },
     {
+      "type": "distribution",
+      "family": "normal",
+      "params": {
+        "mean": 10,
+        "sd": "se"
+      },
+      "sliders": [
+        {
+          "name": "z",
+          "min": 1,
+          "max": 3,
+          "step": 0.01,
+          "value": 1.96,
+          "label": "$z$"
+        },
+        {
+          "name": "se",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25,
+          "value": 1,
+          "label": "$\\text{SE}$"
+        }
+      ],
+      "domain": [
+        4,
+        16
+      ],
+      "yMax": 0.85,
+      "shade": {
+        "from": "10 - z*se",
+        "to": "10 + z*se"
+      },
+      "caption": {
+        "en": "The sampling distribution of the sample mean $\\bar x$ when the true mean is $10$, with standard error $\\text{SE}$. The shaded part is $10 \\pm z\\cdot\\text{SE}$. At the start, $z = 1.96$ and $\\text{SE} = 1$, the worked example's margin of about $2$, and it holds $0.95$ of the sample means. Whenever $\\bar x$ lands in it, the interval $\\bar x \\pm 1.96\\cdot\\text{SE}$ contains $10$, so $95\\%$ of such intervals do. Try $z = 2.58$ for $99\\%$, which gives a wider interval, or a smaller $\\text{SE}$ (as a larger sample gives) for a narrower one.",
+        "es": "La distribución muestral de la media muestral $\\bar x$ cuando la media verdadera es $10$, con error estándar $\\text{SE}$. La parte sombreada es $10 \\pm z\\cdot\\text{SE}$. Al principio, $z = 1.96$ y $\\text{SE} = 1$, el margen de unos $2$ del ejemplo resuelto, y contiene el $0.95$ de las medias muestrales. Siempre que $\\bar x$ cae en ella, el intervalo $\\bar x \\pm 1.96\\cdot\\text{SE}$ contiene el $10$, así que el $95\\%$ de esos intervalos lo contiene. Prueba $z = 2.58$ para el $99\\%$, que da un intervalo más ancho, o un $\\text{SE}$ menor (como el de una muestra más grande) para uno más estrecho."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

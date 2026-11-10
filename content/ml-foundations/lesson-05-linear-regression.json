@@ -41,6 +41,69 @@
       }
     },
     {
+      "type": "scatter",
+      "points": [
+        [
+          1,
+          2.3
+        ],
+        [
+          2,
+          3.6
+        ],
+        [
+          3,
+          6.5
+        ],
+        [
+          4,
+          7.4
+        ],
+        [
+          5,
+          10.4
+        ],
+        [
+          6,
+          11.8
+        ]
+      ],
+      "guess": {
+        "slope": "w",
+        "intercept": "b"
+      },
+      "sliders": [
+        {
+          "name": "w",
+          "min": 0,
+          "max": 4,
+          "step": 0.1,
+          "value": 1,
+          "label": "$w$"
+        },
+        {
+          "name": "b",
+          "min": -3,
+          "max": 3,
+          "step": 0.1,
+          "value": 1,
+          "label": "$b$"
+        }
+      ],
+      "domain": [
+        0,
+        7
+      ],
+      "yDomain": [
+        -1,
+        15
+      ],
+      "caption": {
+        "en": "Six noisy points near the line $y = 2x$. Your line, $\\hat y = wx + b$, is drawn with its residuals $y - \\hat y$ dashed. It starts at $w = 1$, $b = 1$, with an MSE of about $9.14$. Move the sliders to shrink the residuals: the readout compares your MSE with that of the least-squares line, $\\hat y \\approx 1.97x + 0.12$, whose MSE of about $0.173$ no other line beats. Even $\\hat y = 2x$ gives a little more, $0.177$.",
+        "es": "Seis puntos con ruido cerca de la recta $y = 2x$. Tu recta, $\\hat y = wx + b$, aparece con sus residuos $y - \\hat y$ en trazo discontinuo. Empieza en $w = 1$, $b = 1$, con un MSE de unos $9.14$. Mueve los deslizadores para encoger los residuos: la lectura compara tu MSE con el de la recta de mínimos cuadrados, $\\hat y \\approx 1.97x + 0.12$, cuyo MSE, unos $0.173$, no lo mejora ninguna otra recta. Incluso $\\hat y = 2x$ da algo más, $0.177$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

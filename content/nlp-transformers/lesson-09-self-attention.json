@@ -51,6 +51,70 @@
       }
     },
     {
+      "type": "heatmap",
+      "mode": "attention",
+      "tokens": [
+        "the",
+        "cat",
+        "sat",
+        "down"
+      ],
+      "q": [
+        [
+          0.4,
+          0.2
+        ],
+        [
+          0.2,
+          1
+        ],
+        [
+          1.4,
+          0.3
+        ],
+        [
+          0.3,
+          1.3
+        ]
+      ],
+      "k": [
+        [
+          0.2,
+          0.1
+        ],
+        [
+          1.5,
+          0.2
+        ],
+        [
+          0.3,
+          1.2
+        ],
+        [
+          0.1,
+          0.9
+        ]
+      ],
+      "temperature": "T",
+      "sliders": [
+        {
+          "name": "T",
+          "min": 0.25,
+          "max": 4,
+          "step": 0.25,
+          "value": 1,
+          "label": {
+            "en": "Temperature $T$",
+            "es": "Temperatura $T$"
+          }
+        }
+      ],
+      "caption": {
+        "en": "Self-attention over the four tokens of “the cat sat down”, with made-up queries and keys of dimension $2$. Each cell is the weight with which a query token (row) attends to a key token (column): the softmax of $q\\cdot k / (\\sqrt{2}\\,T)$ along the row, so every row adds up to $1$. At $T = 1$, “sat” attends most to “cat”, with weight $0.516$. Lower $T$ to $0.25$ and the softmax sharpens that to $0.968$; raise it to $4$ and the row flattens toward $0.25$ each. Dividing by $\\sqrt{d_k}$ works like a fixed temperature: dot products of $d_k$-dimensional vectors tend to grow with $d_k$, and without it the softmax would end up picking a single token.",
+        "es": "Autoatención sobre los cuatro tokens de la frase inglesa «the cat sat down», con consultas y claves inventadas de dimensión $2$. Cada celda es el peso con que la consulta de un token (fila) atiende a la clave de otro (columna): el softmax de $q\\cdot k / (\\sqrt{2}\\,T)$ a lo largo de la fila, así que cada fila suma $1$. Con $T = 1$, «sat» atiende sobre todo a «cat», con peso $0.516$. Baja $T$ a $0.25$ y el softmax lo agudiza hasta $0.968$; súbelo a $4$ y la fila se aplana hacia $0.25$ cada uno. Dividir por $\\sqrt{d_k}$ funciona como una temperatura fija: los productos escalares de vectores de dimensión $d_k$ tienden a crecer con $d_k$, y sin esa división el softmax acabaría eligiendo un solo token."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [

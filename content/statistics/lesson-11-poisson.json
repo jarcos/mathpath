@@ -41,6 +41,35 @@
       }
     },
     {
+      "type": "distribution",
+      "family": "poisson",
+      "params": {
+        "rate": "rate"
+      },
+      "sliders": [
+        {
+          "name": "rate",
+          "min": 0.5,
+          "max": 12,
+          "step": 0.5,
+          "value": 4,
+          "label": "$\\lambda$"
+        }
+      ],
+      "domain": [
+        0,
+        25
+      ],
+      "shade": {
+        "from": 0,
+        "to": 0
+      },
+      "caption": {
+        "en": "The Poisson distribution with rate $\\lambda$: the bars are $P(X = k)$, and the shaded one is $P(X = 0) = e^{-\\lambda}$. It starts at $\\lambda = 4$ from the worked example, and the readout gives mean $4$ and variance $4$, the same number, as for every Poisson. Set $\\lambda = 2$ and the shaded probability becomes $e^{-2} \\approx 0.1353$. As $\\lambda$ grows, the peak moves right and the bars spread out.",
+        "es": "La distribución de Poisson con tasa $\\lambda$: las barras son $P(X = k)$, y la sombreada es $P(X = 0) = e^{-\\lambda}$. Empieza en el $\\lambda = 4$ del ejemplo resuelto, y la lectura da media $4$ y varianza $4$, el mismo número, como en toda Poisson. Pon $\\lambda = 2$ y la probabilidad sombreada pasa a ser $e^{-2} \\approx 0.1353$. Al crecer $\\lambda$, el pico se desplaza a la derecha y las barras se extienden."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [],

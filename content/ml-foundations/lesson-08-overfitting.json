@@ -50,6 +50,125 @@
         "en": "A model scores $99\\%$ on training but $60\\%$ on test. The gap is $99 - 60 = 39$ points — a strong sign of **overfitting**. A model that scores $60\\%$ on *both* is more likely **underfitting** (high bias).",
         "es": "Un modelo obtiene $99\\%$ en entrenamiento pero $60\\%$ en prueba. La brecha es $99 - 60 = 39$ puntos — una fuerte señal de **sobreajuste**. Un modelo que obtiene $60\\%$ en *ambos* probablemente está **subajustando** (sesgo alto)."
       }
+    },
+    {
+      "type": "scatter",
+      "points": [
+        [
+          -0.95,
+          -0.57
+        ],
+        [
+          -0.74,
+          -1.14
+        ],
+        [
+          -0.53,
+          -0.88
+        ],
+        [
+          -0.32,
+          -0.52
+        ],
+        [
+          -0.11,
+          -0.42
+        ],
+        [
+          0.11,
+          0.32
+        ],
+        [
+          0.32,
+          0.5
+        ],
+        [
+          0.53,
+          1.13
+        ],
+        [
+          0.74,
+          0.88
+        ],
+        [
+          0.95,
+          0.83
+        ]
+      ],
+      "test": [
+        [
+          -0.85,
+          -0.95
+        ],
+        [
+          -0.66,
+          -0.83
+        ],
+        [
+          -0.47,
+          -0.98
+        ],
+        [
+          -0.28,
+          -0.53
+        ],
+        [
+          -0.09,
+          -0.41
+        ],
+        [
+          0.09,
+          0.3
+        ],
+        [
+          0.28,
+          0.77
+        ],
+        [
+          0.47,
+          0.78
+        ],
+        [
+          0.66,
+          1.07
+        ],
+        [
+          0.85,
+          0.73
+        ]
+      ],
+      "degree": "d",
+      "sliders": [
+        {
+          "name": "d",
+          "min": 0,
+          "max": 9,
+          "step": 1,
+          "value": 1,
+          "label": {
+            "en": "Degree $d$",
+            "es": "Grado $d$"
+          }
+        }
+      ],
+      "domain": [
+        -1.1,
+        1.1
+      ],
+      "yDomain": [
+        -2,
+        2
+      ],
+      "legend": {
+        "points": {
+          "en": "Training points",
+          "es": "Puntos de entrenamiento"
+        }
+      },
+      "caption": {
+        "en": "Ten training points (filled) and ten test points (hollow) from the same noisy curve, with the least-squares polynomial of degree $d$ fitted to the training points only. Degree $0$ is a flat line that underfits: both errors are about $0.6$. Degree $3$ has the lowest test MSE here, about $0.020$, though in practice you would pick the degree on validation data, since tuning it on the test points turns them into training data. Keep going and the training MSE keeps falling, down to $0$ at degree $9$, where the curve passes through every training point. Meanwhile the test MSE climbs to about $0.54$, as the curve memorizes the noise and swings wildly between the points, even out of the frame. That widening gap is overfitting.",
+        "es": "Diez puntos de entrenamiento (rellenos) y diez de prueba (huecos) de la misma curva con ruido, con el polinomio de mínimos cuadrados de grado $d$ ajustado solo a los de entrenamiento. El grado $0$ es una recta horizontal que se queda corta: los dos errores rondan $0.6$. El grado $3$ tiene aquí el MSE de prueba más bajo, unos $0.020$, aunque en la práctica el grado se elige con datos de validación, porque ajustarlo con los puntos de prueba los convierte en datos de entrenamiento. Sigue subiendo y el MSE de entrenamiento no deja de bajar, hasta $0$ con el grado $9$, cuando la curva pasa por todos los puntos de entrenamiento. Mientras, el MSE de prueba sube hasta unos $0.54$, porque la curva memoriza el ruido y oscila con fuerza entre los puntos, hasta salirse del marco. Esa brecha creciente es el sobreajuste."
+      }
     }
   ],
   "exercises": [

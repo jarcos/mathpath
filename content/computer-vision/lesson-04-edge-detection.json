@@ -51,6 +51,106 @@
       }
     },
     {
+      "type": "heatmap",
+      "mode": "conv",
+      "input": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          255,
+          255,
+          255
+        ],
+        [
+          0,
+          0,
+          0,
+          255,
+          255,
+          255
+        ],
+        [
+          0,
+          0,
+          0,
+          255,
+          255,
+          255
+        ]
+      ],
+      "kernels": [
+        {
+          "label": "Sobel $I_x$",
+          "kernel": [
+            [
+              -1,
+              0,
+              1
+            ],
+            [
+              -2,
+              0,
+              2
+            ],
+            [
+              -1,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "label": "Sobel $I_y$",
+          "kernel": [
+            [
+              -1,
+              -2,
+              -1
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              2,
+              1
+            ]
+          ]
+        }
+      ],
+      "caption": {
+        "en": "A dark image with a bright corner ($255$) and the two Sobel kernels (switch between them to read both). $I_x$ responds to the vertical edge, up to $1020 = 4\\cdot 255$ where the whole window straddles it, and $I_y$ to the horizontal one; both are $0$ on flat regions. They are positive because the image gets brighter to the right and downward, and because, as in CNNs, the kernel slides without being flipped (a cross-correlation); an edge the other way gives negative values. The edge strength is $\\sqrt{I_x^2 + I_y^2}$: at output cell $(2, 2)$, by the corner, $I_x = I_y = 255$ gives about $361$.",
+        "es": "Una imagen oscura con una esquina brillante ($255$) y los dos kernels de Sobel (cambia entre ellos para leer ambos). $I_x$ responde al borde vertical, hasta $1020 = 4\\cdot 255$ donde toda la ventana lo atraviesa, e $I_y$ al horizontal; los dos valen $0$ en las zonas uniformes. Son positivos porque la imagen se aclara hacia la derecha y hacia abajo, y porque, como en las CNN, el kernel se desliza sin voltearse (una correlación cruzada); un borde en sentido contrario da valores negativos. La fuerza del borde es $\\sqrt{I_x^2 + I_y^2}$: en la celda de salida $(2, 2)$, junto a la esquina, $I_x = I_y = 255$ da unos $361$."
+      }
+    },
+    {
       "type": "code",
       "runnable": true,
       "lib": [
