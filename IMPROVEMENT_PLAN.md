@@ -517,7 +517,7 @@ M33 se hace en tres partes, como M34 y M35: (1) el motor de gráficas y el plano
 - **Para quien ya estudia:** no cambia ningún ejercicio ni la base de datos.
 - **Publicada en v0.12.0** (10 de noviembre de 2026), firmada y notarizada. Antes de publicar, la app del ensayo se probó con una copia de una base de datos real: las 16 lecciones abren en español con su figura, sin errores ni coordenadas NaN; con $\lambda = 2$ la lectura de la Poisson da $P(X = 0) \approx 0.1353$, y en la autoatención el foco sigue a la celda elegida con las flechas. La base de datos sigue en la versión 5 y el original no se tocó. La base de datos no cambia en esta versión.
 
-### Estado de 3.4: ejercicios de «impleméntalo tú» (hito M33, parte 3, sin publicar)
+### Estado de 3.4: ejercicios de «impleméntalo tú» (hito M33, parte 3, publicada en v0.13.0)
 
 - **16 ejercicios de código nuevos** en la pista de IA, uno por lección, tras los que ya tenía (de 30 a 46 en todo el curso):
   - estadística: la varianza muestral y el coeficiente de correlación de Pearson;
@@ -550,6 +550,13 @@ M33 se hace en tres partes, como M34 y M35: (1) el motor de gráficas y el plano
   - la lección de detección conserva su ejercicio de IoU;
   - la base de datos sigue en la versión 5 y el original no se tocó.
 - **Para quien ya estudia:** no cambia ningún ejercicio existente ni la base de datos. Como en M35, una lección dominada puede volver a «practicada» hasta resolver su ejercicio nuevo.
+- **Publicada en v0.13.0** (10 de noviembre de 2026), firmada y notarizada. Antes de publicar, la app del ensayo se probó en español con una copia de una base de datos real:
+  - el softmax inestable da `OverflowError` en la prueba 3, con su línea y la explicación del desbordamiento; el bueno, «¡Correcto!»;
+  - la atención sin $\sqrt{d_k}$, Adam sin la corrección del sesgo y la NMS sin ordenar muestran la explicación de su error;
+  - las reglas en ciclo dan `RecursionError` en las pruebas 3 y 4, con su explicación;
+  - el ejercicio de IoU que ya existía sigue pasando.
+
+  La base de datos sigue en la versión 5 y el original no se tocó. La base de datos no cambia en esta versión.
 
 ---
 
@@ -701,7 +708,7 @@ M34 se hace en tres partes, cada una con su versión: (1) ajustes y copia de seg
 
 La numeración sigue la de `docs/project.html`, donde el último hito terminado antes de este plan era M26 (navegación y UX). La primera versión de este documento empezaba en M26, por error. M25 solo cubrió álgebra y funciones; el resto de la escalera matemática es M35.
 
-M33 está hecho: la primera parte se publicó en v0.11.0, la segunda en v0.12.0 y la tercera está hecha, sin publicar. M34 y M35 están terminados.
+Todos los hitos del plan están publicados. M33 salió en tres partes: v0.11.0, v0.12.0 y v0.13.0. M34 y M35 también están terminados.
 
 | Hito | Contenido | Esfuerzo | Estado |
 |---|---|---|---|
@@ -711,7 +718,7 @@ M33 está hecho: la primera parte se publicó en v0.11.0, la segunda en v0.12.0 
 | **M30** | Grafo de prerrequisitos + mapa + test de nivel + plan global (1.3, 1.5, 1.6) | M–L | ✅ Publicado en v0.2.0; cierre en v0.2.1; crédito implícito en v0.2.2 |
 | **M31** | Ejercicios parametrizados (1.4) + examen por asignatura (3.5) | M | ✅ Publicado en v0.2.0; 10 plantillas más en v0.2.1 |
 | **M32** | Asignatura nueva: Cálculo multivariable y optimización (3.1) | L | ✅ Publicado en v0.4.0 |
-| **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | 🟡 Parte 1 (gráficas con deslizadores y el plano en 20 lecciones) publicada en v0.11.0; parte 2 (distribuciones, dispersión y mapas de calor en 16 lecciones de IA) publicada en v0.12.0; parte 3 (16 ejercicios de código en la pista de IA, con 35 errores típicos) hecha, sin publicar |
+| **M33** | Visualizaciones interactivas (3.3) + ejercicios de código de IA (3.4) | L | ✅ Publicado en tres partes: gráficas con deslizadores y el plano en 20 lecciones en v0.11.0; distribuciones, dispersión y mapas de calor en 16 lecciones de IA en v0.12.0; 16 ejercicios de código en la pista de IA, con 35 errores típicos, en v0.13.0 |
 | **M34** | Navegación, búsqueda, notas, estadísticas, ajustes y copia de seguridad (Fase 4) | M | ✅ Publicado en tres partes: ajustes y copia de seguridad en v0.5.0; historial, "Continuar", atajos y accesibilidad en v0.6.0; búsqueda, notas, estadísticas y PDF en v0.7.0 (con dos arreglos en v0.7.1) |
 | **M35** | Profundidad de la escalera matemática: cálculo, álgebra lineal y aplicaciones lineales (3.2) | M–L | ✅ Publicado en tres partes: cálculo (12 lecciones) en v0.8.0, álgebra lineal (23) en v0.9.0 y aplicaciones lineales (16) en v0.10.0 |
 | continuo | Profundidad del resto del contenido (3.2), lint ES (3.6), comprobación paso a paso (2.6), instalador ligero (5.8) | — | — |

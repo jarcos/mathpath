@@ -180,12 +180,12 @@ M35 (done) deepened calculus, linear-algebra and linear-maps in place, one
 subject per release: calculus (v0.8.0), linear-algebra (v0.9.0) and linear-maps
 (v0.10.0). Existing exercises never change (progress and review cards point at
 their ids).
-M33 (interactive visuals + AI code exercises) goes in three parts: part 1, graphs
-with sliders and the `vector2d` plane in 20 math-ladder lessons, was released in
-v0.11.0; part 2, distributions, scatter and heatmaps in 16 AI-track lessons, was
-released in v0.12.0; part 3, 16 implement-it-yourself exercises in the AI track
-(softmax, attention, Adam, backprop, k-means, NMS, UCB…) with per-test
-feedback and known mistakes, is done (not released).
+M33 (done) added interactive visuals and AI code exercises in three parts:
+graphs with sliders and the `vector2d` plane in 20 math-ladder lessons (v0.11.0);
+distributions, scatter and heatmaps in 16 AI-track lessons (v0.12.0); and 16
+implement-it-yourself exercises in the AI track (softmax, attention, Adam,
+backprop, k-means, NMS, UCB…) with per-test feedback and known mistakes
+(v0.13.0).
 
 Math ladder: algebra (20), functions (16), calculus (12), linear-algebra (23),
 linear-maps (16), multivariable (14, M32: Taylor, partial derivatives, gradient,
