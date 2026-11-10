@@ -47,13 +47,13 @@
         "numpy"
       ],
       "code": {
-        "en": "import numpy as np\nx = np.array([1, 2, 3, 4, 5])\nk = np.array([1, 0, -1])\n# 1D convolution slides the kernel across the signal\nprint(np.convolve(x, k, mode=\"valid\").tolist())",
-        "es": "import numpy as np\nx = np.array([1, 2, 3, 4, 5])\nk = np.array([1, 0, -1])\n# la convolucion 1D desliza el nucleo sobre la senal\nprint(np.convolve(x, k, mode=\"valid\").tolist())"
+        "en": "import numpy as np\nx = np.array([1, 2, 3, 4, 5])\nk = np.array([1, 0, -1])\n# slide the kernel across the signal without flipping it, as CNN layers do\n# (np.convolve would flip it first and print [2, 2, 2])\nprint(np.correlate(x, k, mode=\"valid\").tolist())",
+        "es": "import numpy as np\nx = np.array([1, 2, 3, 4, 5])\nk = np.array([1, 0, -1])\n# desliza el filtro sobre la señal sin voltearlo, como las capas de una CNN\n# (np.convolve lo voltearía antes e imprimiría [2, 2, 2])\nprint(np.correlate(x, k, mode=\"valid\").tolist())"
       },
-      "expectedOutput": "[2, 2, 2]",
+      "expectedOutput": "[-2, -2, -2]",
       "caption": {
         "en": "Convolution detects a pattern at every position.",
-        "es": "La convolucion detecta un patron en cada posicion."
+        "es": "La convolución detecta un patrón en cada posición."
       }
     }
   ],
@@ -147,6 +147,228 @@
           "tex": "\\text{weight sharing}",
           "en": "Weights.",
           "es": "Pesos."
+        }
+      ]
+    },
+    {
+      "id": "dl-03-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `conv2d(image, kernel)`: slide the kernel over the image, without padding, and at each position add up the products of the kernel's entries with the pixels under them. As in CNN layers, the kernel is not flipped. For an $H\\times W$ image and an $h\\times w$ kernel, return the $(H - h + 1)\\times(W - w + 1)$ feature map as a list of rows.",
+        "es": "Completa `conv2d(image, kernel)`: desliza el filtro sobre la imagen, sin relleno, y en cada posición suma los productos de las entradas del filtro por los píxeles que tiene debajo. Como en las capas de una CNN, el filtro no se voltea. Para una imagen de $H\\times W$ y un filtro de $h\\times w$, devuelve el mapa de características de $(H - h + 1)\\times(W - w + 1)$ como una lista de filas."
+      },
+      "funcName": "conv2d",
+      "starter": {
+        "en": "def conv2d(image, kernel):\n    # out[i][j] = sum over a and b of image[i + a][j + b] * kernel[a][b]\n    pass",
+        "es": "def conv2d(image, kernel):\n    # out[i][j] = suma en a y b de image[i + a][j + b] * kernel[a][b]\n    pass"
+      },
+      "solution": "def conv2d(image, kernel):\n    H, W = len(image), len(image[0])\n    h, w = len(kernel), len(kernel[0])\n    return [[sum(image[i + a][j + b] * kernel[a][b] for a in range(h) for b in range(w))\n             for j in range(W - w + 1)]\n            for i in range(H - h + 1)]",
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5,
+                6
+              ],
+              [
+                7,
+                8,
+                9
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                -1
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              -4,
+              -4
+            ],
+            [
+              -4,
+              -4
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                -1,
+                1
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2,
+                3
+              ]
+            ],
+            [
+              [
+                1,
+                1
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              3,
+              5
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                3,
+                1,
+                0,
+                2,
+                5
+              ],
+              [
+                4,
+                2,
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                3,
+                2,
+                2
+              ],
+              [
+                1,
+                0,
+                2,
+                4,
+                3
+              ]
+            ],
+            [
+              [
+                -1,
+                0,
+                1
+              ],
+              [
+                -2,
+                0,
+                2
+              ],
+              [
+                -1,
+                0,
+                1
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              -6,
+              -2,
+              4
+            ],
+            [
+              4,
+              4,
+              -1
+            ]
+          ]
+        }
+      ],
+      "hint": {
+        "en": "Two loops for the output position $(i, j)$ and two for the kernel entry $(a, b)$. With the $1\\times 2$ kernel `[[1, 1]]`, the image `[[1, 2, 3]]` gives `[[3, 5]]`, as in the lesson.",
+        "es": "Dos bucles para la posición de salida $(i, j)$ y dos para la entrada del filtro $(a, b)$. Con el filtro de $1\\times 2$ `[[1, 1]]`, la imagen `[[1, 2, 3]]` da `[[3, 5]]`, como en la lección."
+      },
+      "mistakes": [
+        {
+          "code": "def conv2d(image, kernel):\n    H, W = len(image), len(image[0])\n    h, w = len(kernel), len(kernel[0])\n    return [[sum(image[i + a][j + b] * kernel[h - 1 - a][w - 1 - b] for a in range(h) for b in range(w))\n             for j in range(W - w + 1)]\n            for i in range(H - h + 1)]",
+          "feedback": {
+            "en": "You flipped the kernel: that's true convolution, as signal processing defines it. CNN layers slide the kernel as it is, so `out[i][j]` multiplies `image[i + a][j + b]` by `kernel[a][b]`.",
+            "es": "Has volteado el filtro: eso es la convolución verdadera, la de procesamiento de señales. Las capas de una CNN deslizan el filtro tal cual, así que `out[i][j]` multiplica `image[i + a][j + b]` por `kernel[a][b]`."
+          }
+        },
+        {
+          "code": "def conv2d(image, kernel):\n    H, W = len(image), len(image[0])\n    h, w = len(kernel), len(kernel[0])\n    return [[sum(image[i + a][j + b] * kernel[a][b] for a in range(h) for b in range(w))\n             for j in range(W - w)]\n            for i in range(H - h)]",
+          "feedback": {
+            "en": "Your feature map is a row and a column short: an $h$-row kernel fits in $H - h + 1$ positions down an $H$-row image (and likewise across).",
+            "es": "A tu mapa de características le falta una fila y una columna: un filtro de $h$ filas cabe en $H - h + 1$ posiciones de una imagen de $H$ filas (y lo mismo a lo ancho)."
+          }
         }
       ]
     }

@@ -194,6 +194,119 @@
         "en": "Think of a ball rolling downhill.",
         "es": "Piensa en una bola rodando cuesta abajo."
       }
+    },
+    {
+      "id": "dl-10-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `adam_step(w, g, m, v, t, lr, beta1, beta2, eps)`: step number `t` (counting from 1) of Adam for one weight `w` with gradient `g`. Update the running averages $m \\leftarrow \\beta_1 m + (1 - \\beta_1)\\,g$ and $v \\leftarrow \\beta_2 v + (1 - \\beta_2)\\,g^2$, correct their bias with $\\hat m = m/(1 - \\beta_1^t)$ and $\\hat v = v/(1 - \\beta_2^t)$, and step $w \\leftarrow w - \\eta\\,\\hat m/(\\sqrt{\\hat v} + \\epsilon)$. Return `[w, m, v]` with the new values, keeping the uncorrected $m$ and $v$ that the next step needs.",
+        "es": "Completa `adam_step(w, g, m, v, t, lr, beta1, beta2, eps)`: el paso número `t` (contando desde 1) de Adam para un peso `w` con gradiente `g`. Actualiza las medias móviles $m \\leftarrow \\beta_1 m + (1 - \\beta_1)\\,g$ y $v \\leftarrow \\beta_2 v + (1 - \\beta_2)\\,g^2$, corrige su sesgo con $\\hat m = m/(1 - \\beta_1^t)$ y $\\hat v = v/(1 - \\beta_2^t)$, y da el paso $w \\leftarrow w - \\eta\\,\\hat m/(\\sqrt{\\hat v} + \\epsilon)$. Devuelve `[w, m, v]` con los valores nuevos, guardando la $m$ y la $v$ sin corregir, que son las que necesita el paso siguiente."
+      },
+      "funcName": "adam_step",
+      "starter": {
+        "en": "import math\n\ndef adam_step(w, g, m, v, t, lr, beta1, beta2, eps):\n    # update m and v, correct their bias, then step w\n    pass",
+        "es": "import math\n\ndef adam_step(w, g, m, v, t, lr, beta1, beta2, eps):\n    # actualiza m y v, corrige su sesgo y da el paso en w\n    pass"
+      },
+      "solution": "import math\n\ndef adam_step(w, g, m, v, t, lr, beta1, beta2, eps):\n    m = beta1 * m + (1 - beta1) * g\n    v = beta2 * v + (1 - beta2) * g * g\n    m_hat = m / (1 - beta1 ** t)\n    v_hat = v / (1 - beta2 ** t)\n    return [w - lr * m_hat / (math.sqrt(v_hat) + eps), m, v]",
+      "tests": [
+        {
+          "args": [
+            1,
+            2,
+            0,
+            0,
+            1,
+            0.1,
+            0.9,
+            0.999,
+            1e-8
+          ],
+          "expected": [
+            0.9000000005,
+            0.19999999999999996,
+            0.0040000000000000036
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            0.9,
+            1.8,
+            0.2,
+            0.004,
+            2,
+            0.1,
+            0.9,
+            0.999,
+            1e-8
+          ],
+          "expected": [
+            0.800412228194683,
+            0.36,
+            0.007236000000000004
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            -0.5,
+            -0.3,
+            -0.05,
+            0.0002,
+            10,
+            0.01,
+            0.9,
+            0.999,
+            1e-8
+          ],
+          "expected": [
+            -0.493250993627996,
+            -0.075,
+            0.0002898000000000001
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            2,
+            0,
+            0,
+            0,
+            1,
+            0.1,
+            0.9,
+            0.999,
+            1e-8
+          ],
+          "expected": [
+            2,
+            0,
+            0
+          ],
+          "tol": 1e-9
+        }
+      ],
+      "hint": {
+        "en": "At $t = 1$, $m = (1 - \\beta_1)g$, so $\\hat m = g$; likewise $\\hat v = g^2$, and the first step moves $w$ by about $\\eta$, whatever the gradient's size. `beta1 ** t` is $\\beta_1^t$.",
+        "es": "En $t = 1$, $m = (1 - \\beta_1)g$, así que $\\hat m = g$; igualmente $\\hat v = g^2$, y el primer paso mueve $w$ unos $\\eta$, sea cual sea el tamaño del gradiente. `beta1 ** t` es $\\beta_1^t$."
+      },
+      "mistakes": [
+        {
+          "code": "import math\n\ndef adam_step(w, g, m, v, t, lr, beta1, beta2, eps):\n    m = beta1 * m + (1 - beta1) * g\n    v = beta2 * v + (1 - beta2) * g * g\n    return [w - lr * m / (math.sqrt(v) + eps), m, v]",
+          "feedback": {
+            "en": "You left out the bias correction. $m$ and $v$ start at $0$, so in the first steps they are too small: divide them by $1 - \\beta_1^t$ and $1 - \\beta_2^t$ before the step.",
+            "es": "Te has dejado la corrección del sesgo. $m$ y $v$ empiezan en $0$, así que en los primeros pasos son demasiado pequeñas: divídelas entre $1 - \\beta_1^t$ y $1 - \\beta_2^t$ antes del paso."
+          }
+        },
+        {
+          "code": "import math\n\ndef adam_step(w, g, m, v, t, lr, beta1, beta2, eps):\n    m = beta1 * m + (1 - beta1) * g\n    v = beta2 * v + (1 - beta2) * g * g\n    m_hat = m / (1 - beta1 ** t)\n    v_hat = v / (1 - beta2 ** t)\n    return [w - lr * m_hat / (math.sqrt(v_hat) + eps), m_hat, v_hat]",
+          "feedback": {
+            "en": "Return the running averages $m$ and $v$, not the corrected $\\hat m$ and $\\hat v$: the next step updates the uncorrected ones.",
+            "es": "Devuelve las medias móviles $m$ y $v$, no las corregidas $\\hat m$ y $\\hat v$: el paso siguiente actualiza las que no están corregidas."
+          }
+        }
+      ]
     }
   ],
   "references": [

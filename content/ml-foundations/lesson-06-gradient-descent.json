@@ -157,6 +157,138 @@
           "es": "Peso actualizado."
         }
       ]
+    },
+    {
+      "id": "mlf-06-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `gd_step(w, b, xs, ys, lr)`: one step of gradient descent for the line $\\hat y = wx + b$ on the mean squared error $L = \\tfrac1n\\sum (wx_i + b - y_i)^2$. With the gradients $\\dfrac{\\partial L}{\\partial w} = \\tfrac2n\\sum (\\hat y_i - y_i)\\,x_i$ and $\\dfrac{\\partial L}{\\partial b} = \\tfrac2n\\sum (\\hat y_i - y_i)$, both at the current $w$ and $b$, return `[new_w, new_b]`.",
+        "es": "Completa `gd_step(w, b, xs, ys, lr)`: un paso de descenso de gradiente para la recta $\\hat y = wx + b$ sobre el error cuadrático medio $L = \\tfrac1n\\sum (wx_i + b - y_i)^2$. Con los gradientes $\\dfrac{\\partial L}{\\partial w} = \\tfrac2n\\sum (\\hat y_i - y_i)\\,x_i$ y $\\dfrac{\\partial L}{\\partial b} = \\tfrac2n\\sum (\\hat y_i - y_i)$, los dos en los $w$ y $b$ actuales, devuelve `[new_w, new_b]`."
+      },
+      "funcName": "gd_step",
+      "starter": {
+        "en": "def gd_step(w, b, xs, ys, lr):\n    # the errors w*x + b - y, then both gradients, then step against them\n    pass",
+        "es": "def gd_step(w, b, xs, ys, lr):\n    # los errores w*x + b - y, luego los dos gradientes, y un paso contra ellos\n    pass"
+      },
+      "solution": "def gd_step(w, b, xs, ys, lr):\n    n = len(xs)\n    errors = [w * x + b - y for x, y in zip(xs, ys)]\n    dw = 2 / n * sum(e * x for e, x in zip(errors, xs))\n    db = 2 / n * sum(errors)\n    return [w - lr * dw, b - lr * db]",
+      "tests": [
+        {
+          "args": [
+            0,
+            0,
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              4,
+              6
+            ],
+            0.1
+          ],
+          "expected": [
+            1.8666666666666665,
+            0.8
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            1,
+            1,
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              3,
+              5
+            ],
+            0.05
+          ],
+          "expected": [
+            1.1666666666666667,
+            1.1
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            2,
+            1,
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              5
+            ],
+            0.1
+          ],
+          "expected": [
+            2,
+            1
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            0.5,
+            -1,
+            [
+              -1,
+              0,
+              2,
+              3
+            ],
+            [
+              0,
+              1,
+              1,
+              4
+            ],
+            0.02
+          ],
+          "expected": [
+            0.61,
+            -0.92
+          ],
+          "tol": 1e-9
+        }
+      ],
+      "hint": {
+        "en": "Compute the errors $e_i = wx_i + b - y_i$ first. Then $\\partial L/\\partial w = \\tfrac2n\\sum e_i x_i$ and $\\partial L/\\partial b = \\tfrac2n\\sum e_i$, and subtract `lr` times each.",
+        "es": "Calcula primero los errores $e_i = wx_i + b - y_i$. Luego $\\partial L/\\partial w = \\tfrac2n\\sum e_i x_i$ y $\\partial L/\\partial b = \\tfrac2n\\sum e_i$, y resta `lr` veces cada uno."
+      },
+      "mistakes": [
+        {
+          "code": "def gd_step(w, b, xs, ys, lr):\n    n = len(xs)\n    errors = [w * x + b - y for x, y in zip(xs, ys)]\n    dw = 2 / n * sum(e * x for e, x in zip(errors, xs))\n    db = 2 / n * sum(errors)\n    return [w + lr * dw, b + lr * db]",
+          "feedback": {
+            "en": "You stepped uphill. The gradient points to where the loss grows, so gradient descent subtracts it: $w \\leftarrow w - \\eta\\,\\partial L/\\partial w$.",
+            "es": "Has dado el paso cuesta arriba. El gradiente apunta hacia donde crece la pérdida, así que el descenso de gradiente lo resta: $w \\leftarrow w - \\eta\\,\\partial L/\\partial w$."
+          }
+        },
+        {
+          "code": "def gd_step(w, b, xs, ys, lr):\n    n = len(xs)\n    dw = 2 / n * sum((w * x + b - y) * x for x, y in zip(xs, ys))\n    w = w - lr * dw\n    db = 2 / n * sum(w * x + b - y for x, y in zip(xs, ys))\n    return [w, b - lr * db]",
+          "feedback": {
+            "en": "You updated $w$ before computing $\\partial L/\\partial b$, so $b$'s gradient used the new $w$. Compute both gradients at the current point first, then update both.",
+            "es": "Has actualizado $w$ antes de calcular $\\partial L/\\partial b$, así que el gradiente de $b$ usó la $w$ nueva. Calcula primero los dos gradientes en el punto actual y luego actualiza los dos."
+          }
+        },
+        {
+          "code": "def gd_step(w, b, xs, ys, lr):\n    n = len(xs)\n    errors = [w * x + b - y for x, y in zip(xs, ys)]\n    dw = sum(e * x for e, x in zip(errors, xs)) / n\n    db = sum(errors) / n\n    return [w - lr * dw, b - lr * db]",
+          "feedback": {
+            "en": "Your steps are half as long: the derivative of $(\\hat y_i - y_i)^2$ is $2(\\hat y_i - y_i)$, so both gradients carry the factor $\\tfrac2n$.",
+            "es": "Tus pasos miden la mitad: la derivada de $(\\hat y_i - y_i)^2$ es $2(\\hat y_i - y_i)$, así que los dos gradientes llevan el factor $\\tfrac2n$."
+          }
+        }
+      ]
     }
   ],
   "references": [

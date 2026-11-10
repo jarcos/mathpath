@@ -159,6 +159,201 @@
           "es": "Iteración."
         }
       ]
+    },
+    {
+      "id": "rl-06-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `value_sweep(V, nxt, R, gamma)`: one sweep of value iteration on a deterministic MDP. Taking action `a` in state `s` gives reward `R[s][a]` and leads to state `nxt[s][a]`. Return the list of new values $V'(s) = \\max_a \\big(R[s][a] + \\gamma\\,V(\\text{nxt}[s][a])\\big)$, every one of them computed from the old `V`.",
+        "es": "Completa `value_sweep(V, nxt, R, gamma)`: una pasada de iteración de valor en un MDP determinista. Tomar la acción `a` en el estado `s` da la recompensa `R[s][a]` y lleva al estado `nxt[s][a]`. Devuelve la lista de valores nuevos $V'(s) = \\max_a \\big(R[s][a] + \\gamma\\,V(\\text{nxt}[s][a])\\big)$, todos calculados a partir de la `V` antigua."
+      },
+      "funcName": "value_sweep",
+      "starter": {
+        "en": "def value_sweep(V, nxt, R, gamma):\n    # for each state, the best action's reward plus discounted next value\n    pass",
+        "es": "def value_sweep(V, nxt, R, gamma):\n    # para cada estado, la recompensa de la mejor acción más el valor siguiente descontado\n    pass"
+      },
+      "solution": "def value_sweep(V, nxt, R, gamma):\n    return [max(R[s][a] + gamma * V[nxt[s][a]] for a in range(len(R[s]))) for s in range(len(V))]",
+      "tests": [
+        {
+          "args": [
+            [
+              0,
+              1
+            ],
+            [
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            0.9
+          ],
+          "expected": [
+            0.9,
+            1.9
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            0.5
+          ],
+          "expected": [
+            1,
+            11.5,
+            1.5
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              0,
+              0
+            ],
+            [
+              [
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            0.9
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            [
+              [
+                -1,
+                -1
+              ],
+              [
+                5,
+                -1
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            0.9
+          ],
+          "expected": [
+            -1,
+            5,
+            1,
+            0
+          ],
+          "tol": 1e-9
+        }
+      ],
+      "hint": {
+        "en": "For each state $s$, list $R[s][a] + \\gamma V(\\text{nxt}[s][a])$ over its actions and keep the largest. Read only the old `V` while you do: build a new list.",
+        "es": "Para cada estado $s$, calcula $R[s][a] + \\gamma V(\\text{nxt}[s][a])$ para cada acción y quédate con el mayor. Mientras tanto, lee solo la `V` antigua: construye una lista nueva."
+      },
+      "mistakes": [
+        {
+          "code": "def value_sweep(V, nxt, R, gamma):\n    V = list(V)\n    for s in range(len(V)):\n        V[s] = max(R[s][a] + gamma * V[nxt[s][a]] for a in range(len(R[s])))\n    return V",
+          "feedback": {
+            "en": "You updated the values in place, so later states already saw new values. A sweep computes every $V'(s)$ from the old $V$. (Updating in place is a variant that also converges, but it isn't this sweep.)",
+            "es": "Has actualizado los valores sobre la marcha, así que los estados posteriores ya veían valores nuevos. Una pasada calcula cada $V'(s)$ con la $V$ antigua. (Actualizar sobre la marcha es una variante que también converge, pero no es esta pasada.)"
+          }
+        },
+        {
+          "code": "def value_sweep(V, nxt, R, gamma):\n    return [sum(R[s][a] + gamma * V[nxt[s][a]] for a in range(len(R[s]))) / len(R[s]) for s in range(len(V))]",
+          "feedback": {
+            "en": "Value iteration takes the best action, $\\max_a$. Averaging over the actions evaluates the policy that picks one at random.",
+            "es": "La iteración de valor toma la mejor acción, $\\max_a$. Promediar sobre las acciones evalúa la política que elige una al azar."
+          }
+        }
+      ]
     }
   ],
   "references": [

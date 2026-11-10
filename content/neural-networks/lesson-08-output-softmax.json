@@ -153,6 +153,103 @@
           "es": "Tres."
         }
       ]
+    },
+    {
+      "id": "nn-08-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `softmax(z)`: turn the list of scores `z` into probabilities, $\\text{softmax}(z)_i = \\dfrac{e^{z_i}}{\\sum_j e^{z_j}}$, returned as a list. It must also work for large scores such as `[1000, 1001, 1002]`, whose exponentials are too big for a float.",
+        "es": "Completa `softmax(z)`: convierte la lista de puntuaciones `z` en probabilidades, $\\text{softmax}(z)_i = \\dfrac{e^{z_i}}{\\sum_j e^{z_j}}$, y devuélvelas en una lista. Tiene que funcionar también con puntuaciones grandes como `[1000, 1001, 1002]`, cuyas exponenciales no caben en un float."
+      },
+      "funcName": "softmax",
+      "starter": {
+        "en": "import math\n\ndef softmax(z):\n    # exponentiate, then divide each by the total (watch out for huge scores)\n    pass",
+        "es": "import math\n\ndef softmax(z):\n    # exponencia y divide cada una entre el total (cuidado con las puntuaciones enormes)\n    pass"
+      },
+      "solution": "import math\n\ndef softmax(z):\n    m = max(z)\n    e = [math.exp(v - m) for v in z]\n    total = sum(e)\n    return [v / total for v in e]",
+      "tests": [
+        {
+          "args": [
+            [
+              2,
+              1,
+              0.1
+            ]
+          ],
+          "expected": [
+            0.6590011388859679,
+            0.24243297070471392,
+            0.09856589040931818
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "expected": [
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              1000,
+              1001,
+              1002
+            ]
+          ],
+          "expected": [
+            0.09003057317038046,
+            0.24472847105479764,
+            0.6652409557748218
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              -1,
+              5
+            ]
+          ],
+          "expected": [
+            0.0024726231566347748,
+            0.9975273768433653
+          ],
+          "tol": 1e-9
+        }
+      ],
+      "hint": {
+        "en": "For any number $m$, $\\dfrac{e^{z_i - m}}{\\sum_j e^{z_j - m}} = \\dfrac{e^{z_i}}{\\sum_j e^{z_j}}$. Take $m = \\max_j z_j$: then every exponent is at most $0$ and nothing overflows.",
+        "es": "Para cualquier número $m$, $\\dfrac{e^{z_i - m}}{\\sum_j e^{z_j - m}} = \\dfrac{e^{z_i}}{\\sum_j e^{z_j}}$. Toma $m = \\max_j z_j$: así cada exponente es como mucho $0$ y nada se desborda."
+      },
+      "mistakes": [
+        {
+          "code": "import math\n\ndef softmax(z):\n    e = [math.exp(v) for v in z]\n    total = sum(e)\n    return [v / total for v in e]",
+          "feedback": {
+            "en": "`math.exp(1000)` overflows: a float stops near $e^{709}$. Subtract the largest score from every score first. The probabilities don't change, and the largest exponential becomes $e^0 = 1$.",
+            "es": "`math.exp(1000)` se desborda: un float no pasa de unos $e^{709}$. Resta primero la puntuación mayor a todas. Las probabilidades no cambian, y la mayor exponencial pasa a ser $e^0 = 1$."
+          }
+        },
+        {
+          "code": "import math\n\ndef softmax(z):\n    return [math.exp(v) for v in z]",
+          "feedback": {
+            "en": "Those are the exponentials $e^{z_i}$. Divide each by their sum so that they add up to $1$ (and subtract the largest score first, so that large scores don't overflow).",
+            "es": "Esas son las exponenciales $e^{z_i}$. Divide cada una entre su suma para que sumen $1$ (y resta antes la puntuación mayor, para que las grandes no se desborden)."
+          }
+        }
+      ]
     }
   ],
   "references": [

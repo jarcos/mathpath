@@ -197,6 +197,227 @@
         "en": "Are there any labels in the data?",
         "es": "Hay etiquetas en los datos?"
       }
+    },
+    {
+      "id": "mlf-16-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `kmeans_step(points, centroids)`: one round of k-means on points of the plane. **Assign** each point to its nearest centroid (Euclidean distance; on a tie, the one that comes first), then **update** each centroid to the mean of its points. A centroid with no points stays where it is. Return the new centroids as a list of `[x, y]`.",
+        "es": "Completa `kmeans_step(points, centroids)`: una ronda de k-means con puntos del plano. **Asigna** cada punto a su centroide más cercano (distancia euclídea; si hay empate, al que va primero) y después **actualiza** cada centroide a la media de sus puntos. Un centroide sin puntos se queda donde está. Devuelve los nuevos centroides como una lista de `[x, y]`."
+      },
+      "funcName": "kmeans_step",
+      "starter": {
+        "en": "import math\n\ndef kmeans_step(points, centroids):\n    # 1) group the points by their nearest centroid  2) average each group\n    pass",
+        "es": "import math\n\ndef kmeans_step(points, centroids):\n    # 1) agrupa los puntos por su centroide más cercano  2) calcula la media de cada grupo\n    pass"
+      },
+      "solution": "import math\n\ndef kmeans_step(points, centroids):\n    groups = [[] for _ in centroids]\n    for p in points:\n        nearest = min(range(len(centroids)), key=lambda j: math.dist(p, centroids[j]))\n        groups[nearest].append(p)\n    new = []\n    for c, group in zip(centroids, groups):\n        if group:\n            new.append([sum(p[0] for p in group) / len(group), sum(p[1] for p in group) / len(group)])\n        else:\n            new.append(c)\n    return new",
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                10,
+                10
+              ],
+              [
+                11,
+                10
+              ],
+              [
+                10,
+                11
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                10,
+                10
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              0.3333333333333333,
+              0.3333333333333333
+            ],
+            [
+              10.333333333333334,
+              10.333333333333334
+            ]
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              1
+            ],
+            [
+              3.6666666666666665,
+              2.6666666666666665
+            ]
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                1
+              ],
+              [
+                50,
+                50
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              1
+            ],
+            [
+              50,
+              50
+            ]
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                6,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                9,
+                9
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              0.5,
+              0
+            ],
+            [
+              4,
+              0.5
+            ],
+            [
+              9,
+              9
+            ]
+          ],
+          "tol": 1e-9
+        }
+      ],
+      "hint": {
+        "en": "`min(range(len(centroids)), key=lambda j: math.dist(p, centroids[j]))` is the index of the nearest centroid, and on a tie it keeps the first. Collect each centroid's points in a list, then average their $x$ and their $y$.",
+        "es": "`min(range(len(centroids)), key=lambda j: math.dist(p, centroids[j]))` es el índice del centroide más cercano, y si hay empate se queda con el primero. Reúne en una lista los puntos de cada centroide y calcula la media de sus $x$ y de sus $y$."
+      },
+      "mistakes": [
+        {
+          "code": "import math\n\ndef kmeans_step(points, centroids):\n    groups = [[] for _ in centroids]\n    for p in points:\n        nearest = min(range(len(centroids)), key=lambda j: math.dist(p, centroids[j]))\n        groups[nearest].append(p)\n    return [[sum(p[0] for p in g) / len(g), sum(p[1] for p in g) / len(g)] for g in groups]",
+          "feedback": {
+            "en": "A centroid that gets no points has no mean (that's the division by zero). Leave it where it is.",
+            "es": "Un centroide al que no le toca ningún punto no tiene media (de ahí la división entre cero). Déjalo donde está."
+          }
+        },
+        {
+          "code": "import math\n\ndef kmeans_step(points, centroids):\n    return [min(range(len(centroids)), key=lambda j: math.dist(p, centroids[j])) for p in points]",
+          "feedback": {
+            "en": "That's the assignment step only: the cluster of each point. Return the new centroids, the mean of each cluster's points.",
+            "es": "Eso es solo el paso de asignación: el grupo de cada punto. Devuelve los nuevos centroides, la media de los puntos de cada grupo."
+          }
+        }
+      ]
     }
   ],
   "references": [

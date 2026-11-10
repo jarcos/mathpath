@@ -161,6 +161,155 @@
           "es": "Cuatro celdas."
         }
       ]
+    },
+    {
+      "id": "mlf-13-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `precision_recall_f1(y_true, y_pred)`: for two lists of labels `1` (positive) and `0` (negative), return `[precision, recall, f1]`, with precision $= \\dfrac{TP}{TP + FP}$, recall $= \\dfrac{TP}{TP + FN}$ and $F_1 = \\dfrac{2\\cdot\\text{precision}\\cdot\\text{recall}}{\\text{precision} + \\text{recall}}$. In the tests there is always at least one true positive.",
+        "es": "Completa `precision_recall_f1(y_true, y_pred)`: para dos listas de etiquetas `1` (positivo) y `0` (negativo), devuelve `[precision, recall, f1]`, con precisión $= \\dfrac{TP}{TP + FP}$, exhaustividad (recall) $= \\dfrac{TP}{TP + FN}$ y $F_1 = \\dfrac{2\\cdot\\text{precisión}\\cdot\\text{recall}}{\\text{precisión} + \\text{recall}}$. En las pruebas siempre hay al menos un verdadero positivo."
+      },
+      "funcName": "precision_recall_f1",
+      "starter": {
+        "en": "def precision_recall_f1(y_true, y_pred):\n    # count TP, FP and FN over the pairs (true, predicted)\n    pass",
+        "es": "def precision_recall_f1(y_true, y_pred):\n    # cuenta TP, FP y FN recorriendo los pares (real, predicho)\n    pass"
+      },
+      "solution": "def precision_recall_f1(y_true, y_pred):\n    pairs = list(zip(y_true, y_pred))\n    tp = sum(1 for t, p in pairs if t == 1 and p == 1)\n    fp = sum(1 for t, p in pairs if t == 0 and p == 1)\n    fn = sum(1 for t, p in pairs if t == 1 and p == 0)\n    precision = tp / (tp + fp)\n    recall = tp / (tp + fn)\n    return [precision, recall, 2 * precision * recall / (precision + recall)]",
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              0
+            ]
+          ],
+          "expected": [
+            1,
+            0.5,
+            0.6666666666666666
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              1,
+              0,
+              1,
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              0,
+              0,
+              1
+            ]
+          ],
+          "expected": [
+            0.75,
+            0.75,
+            0.75
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0
+            ]
+          ],
+          "expected": [
+            0.5,
+            1,
+            0.6666666666666666
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              0,
+              1,
+              0,
+              1,
+              1,
+              0,
+              1,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0,
+              0,
+              1,
+              1,
+              1,
+              0,
+              1,
+              0
+            ]
+          ],
+          "expected": [
+            0.5,
+            0.6,
+            0.5454545454545454
+          ],
+          "tol": 1e-9
+        }
+      ],
+      "hint": {
+        "en": "One pass over `zip(y_true, y_pred)`: a true positive is the pair `(1, 1)`, a false positive `(0, 1)` and a false negative `(1, 0)`.",
+        "es": "Una pasada por `zip(y_true, y_pred)`: un verdadero positivo es el par `(1, 1)`, un falso positivo `(0, 1)` y un falso negativo `(1, 0)`."
+      },
+      "mistakes": [
+        {
+          "code": "def precision_recall_f1(y_true, y_pred):\n    pairs = list(zip(y_true, y_pred))\n    tp = sum(1 for t, p in pairs if t == 1 and p == 1)\n    fp = sum(1 for t, p in pairs if t == 0 and p == 1)\n    fn = sum(1 for t, p in pairs if t == 1 and p == 0)\n    precision = tp / (tp + fn)\n    recall = tp / (tp + fp)\n    return [precision, recall, 2 * precision * recall / (precision + recall)]",
+          "feedback": {
+            "en": "You swapped precision and recall. Precision divides by everything predicted positive ($TP + FP$); recall by every actual positive ($TP + FN$).",
+            "es": "Has intercambiado precisión y exhaustividad. La precisión divide entre todo lo predicho como positivo ($TP + FP$); la exhaustividad, entre todos los positivos reales ($TP + FN$)."
+          }
+        },
+        {
+          "code": "def precision_recall_f1(y_true, y_pred):\n    pairs = list(zip(y_true, y_pred))\n    tp = sum(1 for t, p in pairs if t == 1 and p == 1)\n    fp = sum(1 for t, p in pairs if t == 0 and p == 1)\n    fn = sum(1 for t, p in pairs if t == 1 and p == 0)\n    precision = tp / (tp + fp)\n    recall = tp / (tp + fn)\n    return [precision, recall, (precision + recall) / 2]",
+          "feedback": {
+            "en": "$F_1$ is the harmonic mean, $\\tfrac{2pr}{p + r}$, not the average $\\tfrac{p + r}{2}$: it stays low when either of the two is low.",
+            "es": "$F_1$ es la media armónica, $\\tfrac{2pr}{p + r}$, no la media $\\tfrac{p + r}{2}$: se queda baja cuando cualquiera de las dos lo es."
+          }
+        }
+      ]
     }
   ],
   "references": [

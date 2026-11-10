@@ -155,6 +155,128 @@
           "es": "Cero (cota ajustada)."
         }
       ]
+    },
+    {
+      "id": "ai-04-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `kl_divergence(q, p)`: the KL divergence $\\mathrm{KL}(q\\,\\|\\,p) = \\sum_i q_i \\ln\\dfrac{q_i}{p_i}$ between two discrete distributions, given as lists of probabilities. A term with $q_i = 0$ counts as $0$ (the limit of $x\\ln x$ as $x \\to 0$), and wherever $q_i > 0$, $p_i > 0$ too.",
+        "es": "Completa `kl_divergence(q, p)`: la divergencia KL $\\mathrm{KL}(q\\,\\|\\,p) = \\sum_i q_i \\ln\\dfrac{q_i}{p_i}$ entre dos distribuciones discretas, dadas como listas de probabilidades. Un término con $q_i = 0$ cuenta como $0$ (el límite de $x\\ln x$ cuando $x \\to 0$), y siempre que $q_i > 0$, también $p_i > 0$."
+      },
+      "funcName": "kl_divergence",
+      "starter": {
+        "en": "import math\n\ndef kl_divergence(q, p):\n    # add q_i * ln(q_i / p_i), skipping the terms with q_i = 0\n    pass",
+        "es": "import math\n\ndef kl_divergence(q, p):\n    # suma q_i * ln(q_i / p_i), saltándote los términos con q_i = 0\n    pass"
+      },
+      "solution": "import math\n\ndef kl_divergence(q, p):\n    return sum(qi * math.log(qi / pi) for qi, pi in zip(q, p) if qi > 0)",
+      "tests": [
+        {
+          "args": [
+            [
+              0.7,
+              0.3
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ],
+          "expected": 0.08228287850505178,
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            [
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ]
+          ],
+          "expected": 0,
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              0.5,
+              0.5,
+              0
+            ],
+            [
+              0.25,
+              0.25,
+              0.5
+            ]
+          ],
+          "expected": 0.6931471805599453,
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              0.1,
+              0.2,
+              0.7
+            ],
+            [
+              0.3,
+              0.3,
+              0.4
+            ]
+          ],
+          "expected": 0.20077680106635193,
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              0.9,
+              0.1
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ],
+          "expected": 0.3680642071684971,
+          "tol": 1e-9
+        }
+      ],
+      "hint": {
+        "en": "`zip(q, p)` pairs the probabilities; add `qi * math.log(qi / pi)` only when `qi > 0`. `math.log` is the natural logarithm. With $q = (0.7, 0.3)$ and $p = (0.5, 0.5)$ you get about $0.0823$, as in the lesson.",
+        "es": "`zip(q, p)` empareja las probabilidades; suma `qi * math.log(qi / pi)` solo cuando `qi > 0`. `math.log` es el logaritmo natural. Con $q = (0.7, 0.3)$ y $p = (0.5, 0.5)$ sale unos $0.0823$, como en la lección."
+      },
+      "mistakes": [
+        {
+          "code": "import math\n\ndef kl_divergence(q, p):\n    return sum(pi * math.log(pi / qi) for qi, pi in zip(q, p) if pi > 0)",
+          "feedback": {
+            "en": "You computed $\\mathrm{KL}(p\\,\\|\\,q)$, and KL isn't symmetric. Weight the logarithms by $q$: $\\sum_i q_i \\ln(q_i/p_i)$.",
+            "es": "Has calculado $\\mathrm{KL}(p\\,\\|\\,q)$, y la KL no es simétrica. Pondera los logaritmos con $q$: $\\sum_i q_i \\ln(q_i/p_i)$."
+          }
+        },
+        {
+          "code": "import math\n\ndef kl_divergence(q, p):\n    return sum(qi * math.log(qi / pi) for qi, pi in zip(q, p))",
+          "feedback": {
+            "en": "A term with $q_i = 0$ is $0\\cdot\\ln 0$, which Python can't evaluate (`math.log(0)` fails). Skip it: $x\\ln x \\to 0$ as $x \\to 0$.",
+            "es": "Un término con $q_i = 0$ es $0\\cdot\\ln 0$, que Python no puede evaluar (`math.log(0)` falla). Sáltatelo: $x\\ln x \\to 0$ cuando $x \\to 0$."
+          }
+        },
+        {
+          "code": "import math\n\ndef kl_divergence(q, p):\n    return sum(qi * math.log2(qi / pi) for qi, pi in zip(q, p) if qi > 0)",
+          "feedback": {
+            "en": "That's the KL divergence in bits, with $\\log_2$. Here it's in nats, the unit of the natural logarithm: use `math.log`.",
+            "es": "Esa es la divergencia KL en bits, con $\\log_2$. Aquí va en nats, la unidad del logaritmo natural: usa `math.log`."
+          }
+        }
+      ]
     }
   ],
   "references": [

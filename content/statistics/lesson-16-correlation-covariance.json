@@ -200,6 +200,133 @@
           "es": "No causalidad."
         }
       ]
+    },
+    {
+      "id": "stats-16-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `pearson(xs, ys)`: the correlation coefficient $r = \\dfrac{\\sum (x_i - \\bar x)(y_i - \\bar y)}{\\sqrt{\\sum (x_i - \\bar x)^2}\\,\\sqrt{\\sum (y_i - \\bar y)^2}}$ of two lists of the same length, neither of them constant.",
+        "es": "Completa `pearson(xs, ys)`: el coeficiente de correlación $r = \\dfrac{\\sum (x_i - \\bar x)(y_i - \\bar y)}{\\sqrt{\\sum (x_i - \\bar x)^2}\\,\\sqrt{\\sum (y_i - \\bar y)^2}}$ de dos listas de la misma longitud, ninguna de ellas constante."
+      },
+      "funcName": "pearson",
+      "starter": {
+        "en": "import math\n\ndef pearson(xs, ys):\n    # center both lists on their means, then: sum of products / (root * root)\n    pass",
+        "es": "import math\n\ndef pearson(xs, ys):\n    # centra las dos listas en su media; luego: suma de productos / (raíz * raíz)\n    pass"
+      },
+      "solution": "import math\n\ndef pearson(xs, ys):\n    mx = sum(xs) / len(xs)\n    my = sum(ys) / len(ys)\n    dx = [x - mx for x in xs]\n    dy = [y - my for y in ys]\n    num = sum(a * b for a, b in zip(dx, dy))\n    return num / math.sqrt(sum(a * a for a in dx) * sum(b * b for b in dy))",
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            [
+              2,
+              4,
+              5,
+              8
+            ]
+          ],
+          "expected": 0.9811557810392123,
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              6,
+              4,
+              2
+            ]
+          ],
+          "expected": -1,
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            [
+              2,
+              1,
+              4,
+              3,
+              5
+            ]
+          ],
+          "expected": 0.8,
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              -2,
+              -1,
+              0,
+              1,
+              2
+            ],
+            [
+              4,
+              1,
+              0,
+              1,
+              4
+            ]
+          ],
+          "expected": 0,
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              10,
+              20,
+              30
+            ],
+            [
+              12,
+              13,
+              17
+            ]
+          ],
+          "expected": 0.944911182523068,
+          "tol": 1e-9
+        }
+      ],
+      "hint": {
+        "en": "Work with the deviations $d_x = x_i - \\bar x$ and $d_y = y_i - \\bar y$: then $r = \\sum d_x d_y \\big/ \\sqrt{\\sum d_x^2 \\sum d_y^2}$. The $\\tfrac1n$ in the covariance and in each standard deviation cancel.",
+        "es": "Trabaja con las desviaciones $d_x = x_i - \\bar x$ y $d_y = y_i - \\bar y$: entonces $r = \\sum d_x d_y \\big/ \\sqrt{\\sum d_x^2 \\sum d_y^2}$. El $\\tfrac1n$ de la covarianza y el de cada desviación típica se cancelan."
+      },
+      "mistakes": [
+        {
+          "code": "import math\n\ndef pearson(xs, ys):\n    num = sum(x * y for x, y in zip(xs, ys))\n    return num / math.sqrt(sum(x * x for x in xs) * sum(y * y for y in ys))",
+          "feedback": {
+            "en": "You skipped the centering: that's the cosine of the angle between the raw lists. Subtract each list's mean first, so that shifting the data doesn't change $r$.",
+            "es": "Te has saltado el centrado: eso es el coseno del ángulo entre las listas tal cual. Resta primero la media de cada lista, para que desplazar los datos no cambie $r$."
+          }
+        },
+        {
+          "code": "def pearson(xs, ys):\n    mx = sum(xs) / len(xs)\n    my = sum(ys) / len(ys)\n    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / (len(xs) - 1)",
+          "feedback": {
+            "en": "That's the covariance. Divide it by both standard deviations, so that $r$ has no units and lies between $-1$ and $1$.",
+            "es": "Eso es la covarianza. Divídela entre las dos desviaciones típicas, para que $r$ no tenga unidades y quede entre $-1$ y $1$."
+          }
+        }
+      ]
     }
   ],
   "references": [

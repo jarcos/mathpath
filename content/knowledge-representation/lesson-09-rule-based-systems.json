@@ -158,6 +158,161 @@
           "es": "Explicabilidad."
         }
       ]
+    },
+    {
+      "id": "kr-09-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `prove(goal, facts, rules)` by backward chaining. `facts` is a list of known facts and each rule is `[premises, conclusion]`: `[[\"A\", \"B\"], \"C\"]` means $A \\land B \\to C$. A goal holds if it is a fact, or if some rule concludes it and all of that rule's premises hold. Rules can form a cycle (`A` from `B`, `B` from `A`), so don't try to prove a goal again while you are still proving it. Return `True` or `False`.",
+        "es": "Completa `prove(goal, facts, rules)` con encadenamiento hacia atrás. `facts` es una lista de hechos conocidos y cada regla es `[premisas, conclusión]`: `[[\"A\", \"B\"], \"C\"]` significa $A \\land B \\to C$. Una meta se cumple si es un hecho, o si alguna regla la concluye y todas las premisas de esa regla se cumplen. Las reglas pueden formar un ciclo (`A` a partir de `B` y `B` a partir de `A`), así que no intentes probar una meta otra vez mientras aún la estás probando. Devuelve `True` o `False`."
+      },
+      "funcName": "prove",
+      "starter": {
+        "en": "def prove(goal, facts, rules):\n    # a fact holds; otherwise try each rule whose conclusion is the goal\n    pass",
+        "es": "def prove(goal, facts, rules):\n    # un hecho se cumple; si no, prueba cada regla cuya conclusión es la meta\n    pass"
+      },
+      "solution": "def prove(goal, facts, rules):\n    def holds(g, active):\n        if g in facts:\n            return True\n        if g in active:\n            return False\n        return any(all(holds(p, active | {g}) for p in premises)\n                   for premises, conclusion in rules if conclusion == g)\n    return holds(goal, frozenset())",
+      "tests": [
+        {
+          "args": [
+            "C",
+            [
+              "A"
+            ],
+            [
+              [
+                [
+                  "A"
+                ],
+                "B"
+              ],
+              [
+                [
+                  "B"
+                ],
+                "C"
+              ]
+            ]
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "D",
+            [
+              "A"
+            ],
+            [
+              [
+                [
+                  "A"
+                ],
+                "B"
+              ],
+              [
+                [
+                  "B",
+                  "E"
+                ],
+                "D"
+              ]
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "A",
+            [
+              "Z"
+            ],
+            [
+              [
+                [
+                  "B"
+                ],
+                "A"
+              ],
+              [
+                [
+                  "A"
+                ],
+                "B"
+              ]
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "A",
+            [
+              "C"
+            ],
+            [
+              [
+                [
+                  "B"
+                ],
+                "A"
+              ],
+              [
+                [
+                  "A"
+                ],
+                "B"
+              ],
+              [
+                [
+                  "C"
+                ],
+                "B"
+              ]
+            ]
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "measles",
+            [
+              "fever",
+              "rash"
+            ],
+            [
+              [
+                [
+                  "fever",
+                  "rash"
+                ],
+                "measles"
+              ]
+            ]
+          ],
+          "expected": true
+        }
+      ],
+      "hint": {
+        "en": "Write a helper `holds(g, active)` that also gets the set of goals being proved on the current path: a goal already in `active` fails there, and the premises are proved with `active | {g}`. `any` over the rules that conclude `g`, `all` over each one's premises.",
+        "es": "Escribe una función auxiliar `holds(g, active)` que reciba además el conjunto de metas que se están probando en el camino actual: una meta que ya está en `active` falla ahí, y las premisas se prueban con `active | {g}`. `any` sobre las reglas que concluyen `g`, `all` sobre las premisas de cada una."
+      },
+      "mistakes": [
+        {
+          "code": "def prove(goal, facts, rules):\n    if goal in facts:\n        return True\n    return any(all(prove(p, facts, rules) for p in premises)\n               for premises, conclusion in rules if conclusion == goal)",
+          "feedback": {
+            "en": "On a cycle of rules your code calls itself forever (`RecursionError`). Keep the goals you are proving in a set, and let a goal that is already in it fail.",
+            "es": "Con un ciclo de reglas tu código se llama a sí mismo sin fin (`RecursionError`). Guarda en un conjunto las metas que estás probando, y haz que falle una meta que ya está en él."
+          }
+        },
+        {
+          "code": "def prove(goal, facts, rules):\n    def holds(g, active):\n        if g in facts:\n            return True\n        if g in active:\n            return False\n        return any(any(holds(p, active | {g}) for p in premises)\n                   for premises, conclusion in rules if conclusion == g)\n    return holds(goal, frozenset())",
+          "feedback": {
+            "en": "A rule needs all of its premises: $A \\land B \\to C$ says nothing about $C$ when only $A$ holds. Use `all` over the premises, not `any`.",
+            "es": "Una regla necesita todas sus premisas: $A \\land B \\to C$ no dice nada de $C$ si solo se cumple $A$. Usa `all` con las premisas, no `any`."
+          }
+        }
+      ]
     }
   ],
   "references": [

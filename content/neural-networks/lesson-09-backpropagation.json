@@ -159,6 +159,138 @@
           "es": "Dos pasadas."
         }
       ]
+    },
+    {
+      "id": "nn-09-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `neuron_grads(w, b, x, y)`: backpropagation through one sigmoid neuron with squared error. Forward: $z = w\\cdot x + b$, $p = \\sigma(z) = \\dfrac{1}{1 + e^{-z}}$ and $L = (p - y)^2$. Backward, multiply the local derivatives along the path: $\\dfrac{\\partial L}{\\partial p} = 2(p - y)$, $\\dfrac{\\partial p}{\\partial z} = p(1 - p)$, $\\dfrac{\\partial z}{\\partial w_i} = x_i$ and $\\dfrac{\\partial z}{\\partial b} = 1$. Return `[grads_w, grad_b]`, where `grads_w` is the list of the $\\partial L/\\partial w_i$.",
+        "es": "Completa `neuron_grads(w, b, x, y)`: retropropagación en una neurona sigmoide con error cuadrático. Hacia delante: $z = w\\cdot x + b$, $p = \\sigma(z) = \\dfrac{1}{1 + e^{-z}}$ y $L = (p - y)^2$. Hacia atrás, multiplica las derivadas locales a lo largo del camino: $\\dfrac{\\partial L}{\\partial p} = 2(p - y)$, $\\dfrac{\\partial p}{\\partial z} = p(1 - p)$, $\\dfrac{\\partial z}{\\partial w_i} = x_i$ y $\\dfrac{\\partial z}{\\partial b} = 1$. Devuelve `[grads_w, grad_b]`, donde `grads_w` es la lista de las $\\partial L/\\partial w_i$."
+      },
+      "funcName": "neuron_grads",
+      "starter": {
+        "en": "import math\n\ndef neuron_grads(w, b, x, y):\n    # forward: z and p; backward: multiply the local derivatives\n    pass",
+        "es": "import math\n\ndef neuron_grads(w, b, x, y):\n    # hacia delante: z y p; hacia atrás: multiplica las derivadas locales\n    pass"
+      },
+      "solution": "import math\n\ndef neuron_grads(w, b, x, y):\n    z = sum(wi * xi for wi, xi in zip(w, x)) + b\n    p = 1 / (1 + math.exp(-z))\n    delta = 2 * (p - y) * p * (1 - p)\n    return [[delta * xi for xi in x], delta]",
+      "tests": [
+        {
+          "args": [
+            [
+              0.5,
+              -0.5
+            ],
+            0,
+            [
+              2,
+              1
+            ],
+            1
+          ],
+          "expected": [
+            [
+              -0.35489383469854746,
+              -0.17744691734927373
+            ],
+            -0.17744691734927373
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              0,
+              0
+            ],
+            0,
+            [
+              1,
+              1
+            ],
+            0
+          ],
+          "expected": [
+            [
+              0.25,
+              0.25
+            ],
+            0.25
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              -1
+            ],
+            0.5,
+            [
+              0.5,
+              -1,
+              2
+            ],
+            1
+          ],
+          "expected": [
+            [
+              -0.04303411719592781,
+              0.08606823439185562,
+              -0.17213646878371125
+            ],
+            -0.08606823439185562
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              0.2
+            ],
+            -0.1,
+            [
+              3
+            ],
+            0
+          ],
+          "expected": [
+            [
+              0.8776815211617459
+            ],
+            0.2925605070539153
+          ],
+          "tol": 1e-9
+        }
+      ],
+      "hint": {
+        "en": "Compute $\\delta = \\dfrac{\\partial L}{\\partial z} = 2(p - y)\\,p(1 - p)$ once. Then $\\partial L/\\partial w_i = \\delta\\,x_i$ and $\\partial L/\\partial b = \\delta$.",
+        "es": "Calcula una vez $\\delta = \\dfrac{\\partial L}{\\partial z} = 2(p - y)\\,p(1 - p)$. Entonces $\\partial L/\\partial w_i = \\delta\\,x_i$ y $\\partial L/\\partial b = \\delta$."
+      },
+      "mistakes": [
+        {
+          "code": "import math\n\ndef neuron_grads(w, b, x, y):\n    z = sum(wi * xi for wi, xi in zip(w, x)) + b\n    p = 1 / (1 + math.exp(-z))\n    delta = 2 * (p - y)\n    return [[delta * xi for xi in x], delta]",
+          "feedback": {
+            "en": "You skipped $\\partial p/\\partial z = p(1 - p)$, the sigmoid's derivative. The chain rule multiplies every local derivative on the way from $L$ back to the weight.",
+            "es": "Te has saltado $\\partial p/\\partial z = p(1 - p)$, la derivada de la sigmoide. La regla de la cadena multiplica todas las derivadas locales del camino de $L$ al peso."
+          }
+        },
+        {
+          "code": "import math\n\ndef neuron_grads(w, b, x, y):\n    z = sum(wi * xi for wi, xi in zip(w, x)) + b\n    p = 1 / (1 + math.exp(-z))\n    delta = 2 * (p - y) * p * (1 - p)\n    return [[delta for xi in x], delta]",
+          "feedback": {
+            "en": "Each $\\partial L/\\partial w_i$ ends with $\\partial z/\\partial w_i = x_i$: multiply by the input that the weight scales.",
+            "es": "Cada $\\partial L/\\partial w_i$ termina en $\\partial z/\\partial w_i = x_i$: multiplica por la entrada a la que escala ese peso."
+          }
+        },
+        {
+          "code": "import math\n\ndef neuron_grads(w, b, x, y):\n    z = sum(wi * xi for wi, xi in zip(w, x)) + b\n    p = 1 / (1 + math.exp(-z))\n    delta = 2 * (y - p) * p * (1 - p)\n    return [[delta * xi for xi in x], delta]",
+          "feedback": {
+            "en": "Your gradients have the wrong sign: $\\partial L/\\partial p = 2(p - y)$, not $2(y - p)$. With the wrong sign, gradient descent would climb the loss.",
+            "es": "Tus gradientes tienen el signo cambiado: $\\partial L/\\partial p = 2(p - y)$, no $2(y - p)$. Con ese signo, el descenso de gradiente subiría por la pérdida."
+          }
+        }
+      ]
     }
   ],
   "references": [

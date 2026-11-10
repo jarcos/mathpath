@@ -230,6 +230,207 @@
         "en": "Clamp overlap to >= 0; union = areaA + areaB - inter.",
         "es": "Limita el solape a >= 0; union = areaA + areaB - inter."
       }
+    },
+    {
+      "id": "cv-11-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `nms(boxes, scores, threshold)`: non-maximum suppression. Go through the boxes from the highest score to the lowest, and keep each one unless its IoU (intersection over union, as `iou(a, b)` computes it) with a box already kept is above `threshold`. Return the indices of the kept boxes, highest score first. Boxes are `[x1, y1, x2, y2]`, no two scores are equal, and you can use the `iou(a, b)` in the starter code.",
+        "es": "Completa `nms(boxes, scores, threshold)`: la supresión de no-máximos. Recorre las cajas de la de mayor puntuación a la de menor y quédate con cada una salvo que su IoU (intersección sobre unión, como la calcula `iou(a, b)`) con una caja ya conservada supere `threshold`. Devuelve los índices de las cajas conservadas, de mayor a menor puntuación. Las cajas son `[x1, y1, x2, y2]`, no hay dos puntuaciones iguales y puedes usar la `iou(a, b)` del código de partida."
+      },
+      "funcName": "nms",
+      "starter": {
+        "en": "def iou(a, b):\n    w = max(0, min(a[2], b[2]) - max(a[0], b[0]))\n    h = max(0, min(a[3], b[3]) - max(a[1], b[1]))\n    inter = w * h\n    union = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter\n    return inter / union\n\n\ndef nms(boxes, scores, threshold):\n    # visit the boxes by decreasing score; keep one unless it overlaps a kept box too much\n    pass",
+        "es": "def iou(a, b):\n    w = max(0, min(a[2], b[2]) - max(a[0], b[0]))\n    h = max(0, min(a[3], b[3]) - max(a[1], b[1]))\n    inter = w * h\n    union = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter\n    return inter / union\n\n\ndef nms(boxes, scores, threshold):\n    # recorre las cajas por puntuación decreciente; conserva una salvo que solape demasiado con una conservada\n    pass"
+      },
+      "solution": "def iou(a, b):\n    w = max(0, min(a[2], b[2]) - max(a[0], b[0]))\n    h = max(0, min(a[3], b[3]) - max(a[1], b[1]))\n    inter = w * h\n    union = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter\n    return inter / union\n\n\ndef nms(boxes, scores, threshold):\n    order = sorted(range(len(boxes)), key=lambda i: -scores[i])\n    keep = []\n    for i in order:\n        if all(iou(boxes[i], boxes[j]) <= threshold for j in keep):\n            keep.append(i)\n    return keep",
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                0,
+                0,
+                10,
+                10
+              ],
+              [
+                1,
+                1,
+                11,
+                11
+              ],
+              [
+                20,
+                20,
+                30,
+                30
+              ]
+            ],
+            [
+              0.9,
+              0.8,
+              0.7
+            ],
+            0.5
+          ],
+          "expected": [
+            0,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                0,
+                10,
+                10
+              ],
+              [
+                1,
+                1,
+                11,
+                11
+              ],
+              [
+                20,
+                20,
+                30,
+                30
+              ]
+            ],
+            [
+              0.6,
+              0.95,
+              0.7
+            ],
+            0.5
+          ],
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                0,
+                10,
+                10
+              ],
+              [
+                5,
+                0,
+                15,
+                10
+              ],
+              [
+                10,
+                0,
+                20,
+                10
+              ]
+            ],
+            [
+              0.9,
+              0.8,
+              0.7
+            ],
+            0.3
+          ],
+          "expected": [
+            0,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                0,
+                10,
+                10
+              ],
+              [
+                1,
+                1,
+                11,
+                11
+              ],
+              [
+                20,
+                20,
+                30,
+                30
+              ]
+            ],
+            [
+              0.9,
+              0.8,
+              0.7
+            ],
+            0.7
+          ],
+          "expected": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                0,
+                10,
+                10
+              ],
+              [
+                0,
+                0,
+                10,
+                5
+              ]
+            ],
+            [
+              0.9,
+              0.8
+            ],
+            0.5
+          ],
+          "expected": [
+            0,
+            1
+          ]
+        }
+      ],
+      "hint": {
+        "en": "`sorted(range(len(boxes)), key=lambda i: -scores[i])` lists the indices by decreasing score. Keep a list `keep` and test each new box against the boxes in it only.",
+        "es": "`sorted(range(len(boxes)), key=lambda i: -scores[i])` da los índices por puntuación decreciente. Lleva una lista `keep` y compara cada caja nueva solo con las que hay en ella."
+      },
+      "mistakes": [
+        {
+          "code": "def iou(a, b):\n    w = max(0, min(a[2], b[2]) - max(a[0], b[0]))\n    h = max(0, min(a[3], b[3]) - max(a[1], b[1]))\n    inter = w * h\n    union = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter\n    return inter / union\n\n\ndef nms(boxes, scores, threshold):\n    order = sorted(range(len(boxes)), key=lambda i: -scores[i])\n    keep = []\n    for n, i in enumerate(order):\n        if all(iou(boxes[i], boxes[j]) <= threshold for j in order[:n]):\n            keep.append(i)\n    return keep",
+          "feedback": {
+            "en": "Only the boxes you keep can suppress others. You also compared against boxes that had already been suppressed: compare against `keep`.",
+            "es": "Solo las cajas que conservas pueden suprimir a otras. Has comparado también con cajas ya suprimidas: compara con `keep`."
+          }
+        },
+        {
+          "code": "def iou(a, b):\n    w = max(0, min(a[2], b[2]) - max(a[0], b[0]))\n    h = max(0, min(a[3], b[3]) - max(a[1], b[1]))\n    inter = w * h\n    union = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter\n    return inter / union\n\n\ndef nms(boxes, scores, threshold):\n    keep = []\n    for i in range(len(boxes)):\n        if all(iou(boxes[i], boxes[j]) <= threshold for j in keep):\n            keep.append(i)\n    return keep",
+          "feedback": {
+            "en": "Visit the boxes from the highest score down, so that the best detection of each object is the one that survives, and list the kept ones in that order.",
+            "es": "Recorre las cajas de la mayor puntuación a la menor, para que sobreviva la mejor detección de cada objeto, y da las conservadas en ese orden."
+          }
+        }
+      ]
     }
   ],
   "references": [

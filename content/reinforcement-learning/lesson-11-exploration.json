@@ -221,6 +221,139 @@
         "en": "What about actions you've never sampled?",
         "es": "Que pasa con acciones que nunca has probado?"
       }
+    },
+    {
+      "id": "rl-11-e6",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `ucb_pick(counts, means, t, c)`: the arm UCB chooses at step `t` ($t \\ge 1$) of a multi-armed bandit. Arm `a` has been pulled `counts[a]` times, with average reward `means[a]`. An arm never pulled is chosen first (the first such arm); otherwise choose the arm with the largest $\\bar r_a + c\\sqrt{\\dfrac{\\ln t}{N_a}}$. Return its index (on a tie, the first one).",
+        "es": "Completa `ucb_pick(counts, means, t, c)`: el brazo que elige UCB en el paso `t` ($t \\ge 1$) de un bandido multibrazo. El brazo `a` se ha jugado `counts[a]` veces, con recompensa media `means[a]`. Un brazo que nunca se ha jugado se elige primero (el primero de ellos); si no, el brazo con el mayor $\\bar r_a + c\\sqrt{\\dfrac{\\ln t}{N_a}}$. Devuelve su índice (si hay empate, el primero)."
+      },
+      "funcName": "ucb_pick",
+      "starter": {
+        "en": "import math\n\ndef ucb_pick(counts, means, t, c):\n    # untried arms first; then the largest mean plus exploration bonus\n    pass",
+        "es": "import math\n\ndef ucb_pick(counts, means, t, c):\n    # primero los brazos sin probar; luego la mayor media más el bono de exploración\n    pass"
+      },
+      "solution": "import math\n\ndef ucb_pick(counts, means, t, c):\n    for a, n in enumerate(counts):\n        if n == 0:\n            return a\n    scores = [means[a] + c * math.sqrt(math.log(t) / counts[a]) for a in range(len(counts))]\n    return max(range(len(scores)), key=lambda a: scores[a])",
+      "tests": [
+        {
+          "args": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            15,
+            1
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              100,
+              2
+            ],
+            [
+              0.9,
+              0.5
+            ],
+            102,
+            2
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            [
+              3,
+              0,
+              4
+            ],
+            [
+              0.2,
+              0,
+              0.9
+            ],
+            7,
+            1
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            [
+              10,
+              40
+            ],
+            [
+              0.5,
+              0.6
+            ],
+            50,
+            0.5
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              0,
+              0.5
+            ],
+            3,
+            1
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              2,
+              2
+            ],
+            [
+              0.5,
+              0.5
+            ],
+            4,
+            1
+          ],
+          "expected": 0
+        }
+      ],
+      "hint": {
+        "en": "`math.log` is the natural logarithm. Score every arm, then `max(range(len(scores)), key=lambda a: scores[a])` returns the first index with the top score.",
+        "es": "`math.log` es el logaritmo natural. Puntúa cada brazo; luego `max(range(len(scores)), key=lambda a: scores[a])` devuelve el primer índice con la puntuación mayor."
+      },
+      "mistakes": [
+        {
+          "code": "def ucb_pick(counts, means, t, c):\n    return max(range(len(means)), key=lambda a: means[a])",
+          "feedback": {
+            "en": "That's the greedy choice. UCB adds the bonus $c\\sqrt{\\ln t / N_a}$, which is larger for arms pulled less, so that they get explored.",
+            "es": "Esa es la elección voraz. UCB suma el bono $c\\sqrt{\\ln t / N_a}$, mayor para los brazos menos jugados, para que se exploren."
+          }
+        },
+        {
+          "code": "import math\n\ndef ucb_pick(counts, means, t, c):\n    scores = [means[a] + c * math.sqrt(math.log(t) / counts[a]) for a in range(len(counts))]\n    return max(range(len(scores)), key=lambda a: scores[a])",
+          "feedback": {
+            "en": "An arm with $N_a = 0$ has an infinite bonus, and dividing by $0$ fails: choose the untried arms first.",
+            "es": "Un brazo con $N_a = 0$ tiene un bono infinito, y dividir entre $0$ falla: elige primero los brazos sin probar."
+          }
+        }
+      ]
     }
   ],
   "references": [

@@ -224,6 +224,219 @@
           "es": "Valor."
         }
       ]
+    },
+    {
+      "id": "nlp-09-e5",
+      "answerType": "code",
+      "lib": [],
+      "prompt": {
+        "en": "Complete `attention(Q, K, V)`: scaled dot-product attention, $\\text{softmax}\\!\\left(\\dfrac{QK^\\top}{\\sqrt{d_k}}\\right)V$. `Q` has one query per row, `K` one key per row and `V` one value per row (as many values as keys); $d_k$ is the length of a key. For each query, score every key with $q\\cdot k/\\sqrt{d_k}$, turn the scores into weights with a softmax and return the weighted sum of the values: one output row per query.",
+        "es": "Completa `attention(Q, K, V)`: la atención de producto escalar escalado, $\\text{softmax}\\!\\left(\\dfrac{QK^\\top}{\\sqrt{d_k}}\\right)V$. `Q` tiene una consulta por fila, `K` una clave por fila y `V` un valor por fila (tantos valores como claves); $d_k$ es la longitud de una clave. Para cada consulta, puntúa cada clave con $q\\cdot k/\\sqrt{d_k}$, convierte las puntuaciones en pesos con un softmax y devuelve la suma de los valores ponderada por esos pesos: una fila de salida por consulta."
+      },
+      "funcName": "attention",
+      "starter": {
+        "en": "import math\n\ndef attention(Q, K, V):\n    # for each query: scores -> softmax weights -> weighted sum of the rows of V\n    pass",
+        "es": "import math\n\ndef attention(Q, K, V):\n    # para cada consulta: puntuaciones -> pesos con softmax -> suma ponderada de las filas de V\n    pass"
+      },
+      "solution": "import math\n\ndef attention(Q, K, V):\n    d = len(K[0])\n    out = []\n    for q in Q:\n        scores = [sum(a * b for a, b in zip(q, k)) / math.sqrt(d) for k in K]\n        m = max(scores)\n        e = [math.exp(s - m) for s in scores]\n        total = sum(e)\n        weights = [x / total for x in e]\n        out.append([sum(weights[j] * V[j][c] for j in range(len(V))) for c in range(len(V[0]))])\n    return out",
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1.6604769013466862,
+              2.6604769013466862
+            ]
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              0.7517449217422769,
+              0.7517449217422769
+            ],
+            [
+              0.5541917258923967,
+              0.8916165482152063
+            ]
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              [
+                3,
+                -1
+              ]
+            ],
+            [
+              [
+                2,
+                2
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                0,
+                10
+              ],
+              [
+                4,
+                2
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              2,
+              6
+            ]
+          ],
+          "tol": 1e-9
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2,
+                0,
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                2
+              ],
+              [
+                3
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              2.4245977349564507
+            ]
+          ],
+          "tol": 1e-9
+        }
+      ],
+      "hint": {
+        "en": "One query at a time: its scores against every key, a softmax over those scores (subtract the largest first, as in the lesson's code), then output entry $c$ is $\\sum_j w_j V_{jc}$.",
+        "es": "Una consulta cada vez: sus puntuaciones con cada clave, un softmax sobre ellas (restando antes la mayor, como en el código de la lección) y la entrada $c$ de la salida es $\\sum_j w_j V_{jc}$."
+      },
+      "mistakes": [
+        {
+          "code": "import math\n\ndef attention(Q, K, V):\n    out = []\n    for q in Q:\n        scores = [sum(a * b for a, b in zip(q, k)) for k in K]\n        m = max(scores)\n        e = [math.exp(s - m) for s in scores]\n        total = sum(e)\n        weights = [x / total for x in e]\n        out.append([sum(weights[j] * V[j][c] for j in range(len(V))) for c in range(len(V[0]))])\n    return out",
+          "feedback": {
+            "en": "You left out the scaling: divide each score $q\\cdot k$ by $\\sqrt{d_k}$, the square root of a key's length, before the softmax.",
+            "es": "Te has dejado el escalado: divide cada puntuación $q\\cdot k$ entre $\\sqrt{d_k}$, la raíz de la longitud de una clave, antes del softmax."
+          }
+        },
+        {
+          "code": "import math\n\ndef attention(Q, K, V):\n    d = len(K[0])\n    S = [[sum(a * b for a, b in zip(q, k)) / math.sqrt(d) for k in K] for q in Q]\n    weights = [[0.0] * len(K) for _ in Q]\n    for j in range(len(K)):\n        column = [math.exp(S[i][j]) for i in range(len(Q))]\n        total = sum(column)\n        for i in range(len(Q)):\n            weights[i][j] = column[i] / total\n    return [[sum(weights[i][j] * V[j][c] for j in range(len(K))) for c in range(len(V[0]))] for i in range(len(Q))]",
+          "feedback": {
+            "en": "Your softmax ran down each column, over the queries. It runs along each query's row, over the keys, so that each query's weights add up to $1$.",
+            "es": "Tu softmax ha recorrido cada columna, sobre las consultas. Va a lo largo de la fila de cada consulta, sobre las claves, para que los pesos de cada consulta sumen $1$."
+          }
+        }
+      ]
     }
   ],
   "references": [
